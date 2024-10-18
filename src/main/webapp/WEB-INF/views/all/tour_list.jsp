@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 
@@ -41,17 +42,21 @@ pageEncoding="UTF-8"%>
                 <div><a href="">최신순</a></div>
                 <div><a href="">마감 임박순</a></div>
             </div>
+            
             <div class="tour-list-area">
-                <div class="tour-box">
-                    <img class="tour-country-image"
-                        src="https://search.pstatic.net/common?src=https://vertical.pstatic.net/vertical/static/travelhome/articleThumbnail/rc-upload-1725346835461-3.jpg&type=w800_travelsearch" />
-                    <p class="tour-subject">일본 삿포로 맛집 & 투어여행</p>
-                    <p class="tour-comment">삿포로 근교 맛집 , 투어 가이드분 모집합니다.성실하신분 신청해주세요</p>
-                    <p class="tour-schedule">일정 : 3박 4일</p>
-                    <p class="tour-deadline">마감 3일전</p>
-                    <p class="tour-cost">총 가이드 비용</p>
-                    <h1 class="tour-fee">300,000원</h1>
-                </div>
+                <c:forEach items="${userTourListVO.userTourList}" var="userTourVO">
+            		<div class="tour-box">
+	                    <img class="tour-country-image"
+	                        src="https://search.pstatic.net/common?src=https://vertical.pstatic.net/vertical/static/travelhome/articleThumbnail/rc-upload-1725346835461-3.jpg&type=w800_travelsearch" />
+	                    <p class="tour-subject">${userTourVO.usrTrTtl}</p>
+	                    <p class="tour-comment">삿포로 근교 맛집 , 투어 가이드분 모집합니다.성실하신분 신청해주세요</p>
+	                    <p class="tour-schedule">일정 : 3박 4일</p>
+	                    <p class="tour-deadline">마감 3일전</p>
+	                    <p class="tour-cost">총 가이드 비용</p>
+	                    <h1 class="tour-fee">${userTourVO.usrTrGdHrPrc}</h1>
+                	</div>
+            	</c:forEach>
+                
                 <div class="tour-box">
                     <img class="tour-country-image"
                         src="https://search.pstatic.net/common?src=https://vertical.pstatic.net/vertical/static/travelhome/articleThumbnail/rc-upload-1725346835461-3.jpg&type=w800_travelsearch" />

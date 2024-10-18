@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mate.bbs.dao.UserTourDao">
+
+	<resultMap type="com.mate.bbs.vo.UserTourVO" 
+			   id="userTourVOMap"
+			   autoMapping="true">
+		<id column="USR_TR_PST_ID" property="usrTrPstId" />
+		<result column="USR_TR_RQ_DTL" property="usrTrRqDtl" jdbcType="CLOB" javaType="java.lang.String" />
+		<association property="userVO" 
+					 javaType="com.mate.user.vo.UserVO"
+					 autoMapping="true">
+			<id column="USR_ID" property="usrId" />			 
+		</association>
+	</resultMap>
+
+	<insert id="insertNewUserTour" 
+			parameterType="com.mate.bbs.vo.WriteUserTourVO">
+		INSERT INTO USR_TR_RQST 
+		 (USR_TR_PST_ID
+		, ATHR_ID
+		, GD_ID
+		, USR_TR_TTL
+		, USR_TR_DT
+		, USR_TR_PRPS
+		, USR_TR_MP
+		, USR_TR_GD_RQ
+		, USR_TR_GD_HR_PRC
+		, USR_TR_NP
+		, USR_TR_TM
+		, USR_TR_IS_DLT
+		, USR_TR_RSTR_DT
+		, TR_CT_ID
+		, USR_TR_RQ_DTL)
+		VALUES
+		 ('UT-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_USR_TR_RQST_PK.NEXTVAL, 6, 0)
+		, #{athrId}
+		, NULL
+		, #{usrTrTtl}
+		, TO_DATE(#{usrTrDt}, 'YYYY-MM-DD')
+		, #{usrTrPrps}
+		, #{usrTrMp}
+		, #{usrTrGdRq}
+		, #{usrTrGdHrPrc}
+		, #{usrTrNp}
+		, #{usrTrTm}
+		, 'N'
+		, SYSDATE
+		, #{trCtId}
+		, #{usrTrRqDtl})
+	</insert>
+	
+	<select id="selectOneUserTour" parameterType="string" resultMap="userTourVOMap">
+		SELECT USR_TR_PST_ID
+		     , ATHR_ID
+		     , GD_ID
+		     , USR_TR_TTL
+		     , USR_TR_DT
+		     , USR_TR_PRPS
+		     , USR_TR_MP
+		     , USR_TR_GD_RQ
+		     , USR_TR_GD_HR_PRC
+		     , USR_TR_NP
+		     , USR_TR_IS_DLT
+		     , USR_TR_TM
+		     , USR_TR_RSTR_DT
+		     , USR_TR_MDFY_DT
+		     , USR_TR_DLT_DT
+		     , TR_CT_ID
+		     , USR_TR_RQ_DTL 
+		  FROM USR_TR_RQST
+		 WHERE USR_TR_PST_ID = #{_parameter}
+	</select>
+	
+	<select id="selectUserTourCount" resultType="_int">
+		SELECT COUNT(1)
+  		  FROM USR_TR_RQST
+	</select>
+	
+	<select id="selectAllUserTour" resultMap="userTourVOMap">
+		SELECT USR_TR_PST_ID
+		     , ATHR_ID
+		     , GD_ID
+		     , USR_TR_TTL
+		     , TO_CHAR(USR_TR_DT, 'YYYY-MM-DD') USR_TR_DT
+		     , USR_TR_PRPS
+		     , USR_TR_MP
+		     , USR_TR_GD_RQ
+		     , USR_TR_GD_HR_PRC
+		     , USR_TR_NP
+		     , USR_TR_IS_DLT
+		     , USR_TR_TM
+		     , TR_CT_ID
+		     , USR_TR_RQ_DTL
+		  FROM USR_TR_RQST
+	</select>
+	
+</mapper>
