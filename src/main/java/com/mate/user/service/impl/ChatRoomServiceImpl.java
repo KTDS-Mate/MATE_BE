@@ -1,4 +1,4 @@
-package com.mate.member.service.impl;
+package com.mate.user.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

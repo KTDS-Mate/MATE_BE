@@ -1,4 +1,4 @@
-package com.mate.member.service;
+package com.mate.user.service;
 
 import com.mate.bbs.vo.ChatRoomListVO;
 import com.mate.bbs.vo.ChatRoomVO;

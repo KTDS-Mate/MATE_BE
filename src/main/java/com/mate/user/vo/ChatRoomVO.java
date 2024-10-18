@@ -1,4 +1,4 @@
-package com.mate.member.vo;
+package com.mate.user.vo;
 
 public class ChatRoomVO {
     private String chatRoomId;

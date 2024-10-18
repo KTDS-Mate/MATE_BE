@@ -1,4 +1,4 @@
-package com.mate.member.web;
+package com.mate.user.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

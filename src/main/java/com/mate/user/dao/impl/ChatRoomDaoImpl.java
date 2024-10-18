@@ -1,4 +1,4 @@
-package com.mate.member.dao.impl;
+package com.mate.user.dao.impl;
 
 import java.util.List;
 

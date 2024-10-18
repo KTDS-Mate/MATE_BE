@@ -1,4 +1,4 @@
-package com.mate.member.vo;
+package com.mate.user.vo;
 
 import java.util.List;
 
