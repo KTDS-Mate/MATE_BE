@@ -1,0 +1,21 @@
+<!-- ==============웹소켓 시작 ====================== -->
+<!-- 웹소켓 요청시 해당 요청내용들을 처리해줄 클래스. (메세지 전송, 커넥션 연결요청, 해제 -->
+<beans:bean id="chatHandler" class="com.mate.websocket.MyWebSocketHandler"></beans:bean>
+
+<websocket:handlers>
+
+<!-- 웹 소켓 요청 주소를 처리할 bean객체 -->
+<websocket:mapping handler="chatHandler" path="/chat"/>
+<!--
+    http통신에서 request와 response를 가로챈 후 httpSession정보를 webSocketSession에 넣어준다.
+ -->
+<websocket:handshake-interceptors>
+    <beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"></beans:bean>
+</websocket:handshake-interceptors>
+<!-- SockJs라이브러리를 이용해서 만들어진 웹소켓 객체임을 의미한다.* -->
+<websocket:sockjs></websocket:sockjs>
+
+
+</websocket:handlers>
+
+        <!-- ==============웹소켓 끝 ====================== -->
