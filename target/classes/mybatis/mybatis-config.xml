@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  
+  <settings>
+  	<!-- DB의 Column 을 자바변수의 이름으로 자동으로 바꿔줌 -->
+  	<setting name="mapUnderscoreToCamelCase" value="true"/>
+  	<!-- DB에서의 Null 이 자바에서의 null 로 인식하게 만들어줌 -->
+  	<setting name="jdbcTypeForNull" value="NULL"/>
+  </settings>
+  
+</configuration>

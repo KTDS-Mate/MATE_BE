@@ -1,0 +1,52 @@
+div.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: auto;
+  height: 9rem;
+  border-bottom: 1px solid #000;
+}
+
+div.logo {
+  display: flex;
+}
+
+div.logo img {
+  width: auto;
+  height: 5rem;
+}
+
+div.header-center-menu {
+  display: flex;
+  align-items: center;
+}
+
+.header-right-menu {
+  display: flex;
+  align-items: center;
+}
+
+.header-center-menu div {
+  padding: 0 2.5rem;
+  font-size: 1.5rem;
+}
+.header-center-menu div a {
+  text-decoration: none;
+}
+.header-right-menu div {
+  padding: 0 0.5rem;
+}
+
+.header-right-menu div a {
+  text-decoration: none;
+}
+
+img.alram-icon {
+  width: auto;
+  height: 3.5rem;
+}
+
+img.message-icon {
+  width: auto;
+  height: 3.5rem;
+}

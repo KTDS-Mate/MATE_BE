@@ -1,0 +1,359 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+div.grid {
+  display: grid;
+  grid-template-columns: 1fr 90rem 1fr;
+  grid-template-rows: 9rem 1fr 9rem;
+  row-gap: 10px;
+}
+
+div.header {
+  grid-column: 2 / 2;
+}
+
+div.content {
+  grid-column: 2 / 2;
+  grid-row: 2 / 2;
+}
+
+div.footer {
+  grid-column: 1 / -1;
+}
+
+div.content-grid {
+  display: grid;
+  grid-template-columns: 13rem 1fr;
+  column-gap: 3rem;
+}
+div.my-page {
+  position: sticky;
+  top: 10px;
+  background-color: #fff6ec;
+  height: 33rem;
+  /* 상하 고정 크기 말고 리스트 추가하면 더 늘어나도록 항목에 따른 패딩을 부여  */
+  /* padding-top: 1rem; */
+  /* padding-bottom: 1rem; */
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.list {
+  padding: 0;
+}
+
+.my-page li {
+  font-size: 1.5rem;
+  display: block;
+  padding-bottom: 3rem;
+  font-weight: bold;
+  color: gray;
+}
+
+.my-page li:last-child {
+  padding: 0;
+}
+
+div.main-content {
+  border: 2px solid #ffeedb;
+  border-radius: 20px;
+}
+
+.content-title {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.border-line {
+  margin: 0 auto;
+  width: 70rem;
+  border-top: 1px solid #000;
+}
+
+.content-title div {
+  margin-left: 2rem;
+}
+
+.gray {
+  color: gray;
+}
+
+div.calendar {
+  border: 2px solid #ffeedb;
+  border-radius: 20px;
+  width: 70rem;
+  margin: 2rem;
+  padding: 1rem 0;
+  padding-bottom: 7rem;
+}
+
+div.year-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+p.year-minus {
+  border-bottom: 1.4rem solid transparent;
+  border-top: 1.4rem solid transparent;
+  border-left: 1.4rem solid transparent;
+  border-right: 1.4rem solid #333;
+  margin-right: 1rem;
+}
+
+p.year-plus {
+  border-bottom: 1.4rem solid transparent;
+  border-top: 1.4rem solid transparent;
+  border-left: 1.4rem solid #333;
+  border-right: 1.4rem solid transparent;
+  margin-left: 1rem;
+}
+
+span.year {
+  font-size: 3rem;
+  color: #333;
+}
+
+div.month-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+p.month-minus {
+  border-bottom: 0.9rem solid transparent;
+  border-top: 0.9rem solid transparent;
+  border-left: 0.9rem solid transparent;
+  border-right: 0.9rem solid #333;
+  margin-right: 1rem;
+}
+
+p.month-plus {
+  border-bottom: 0.9rem solid transparent;
+  border-top: 0.9rem solid transparent;
+  border-left: 0.9rem solid #333;
+  border-right: 0.9rem solid transparent;
+  margin-left: 1rem;
+}
+
+span.month {
+  font-size: 2rem;
+  color: #333;
+}
+
+div.weekname-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 1.3rem;
+}
+
+/*  플렉스로 해보려 했는데 답이 안보임 */
+/* div.week {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 1.3rem;
+}
+
+div.day-cell {
+  width: 3rem;
+  height: 7rem;
+  text-align: center;
+}
+
+div.today {
+  background-color: #a29cff;
+  border-radius: 25px;
+} */
+
+/* div.end-trip {
+  display: flex;
+  align-items: center;
+  background-color: #a29cff;
+  border-radius: 25px;
+} */
+
+/* 그리드를 이용한 캘린더 만들기*/
+div.days {
+  display: grid;
+  padding-left: 3rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  row-gap: 3rem;
+}
+div.day {
+  padding-left: 1rem;
+  font-size: 1.7rem;
+}
+
+div.today {
+  display: inline-block;
+  width: 2.3rem;
+  background-color: #a29cff;
+  border-radius: 25px;
+}
+
+div.schedule1 {
+  background-color: #d9d9d9;
+  width: 100%;
+}
+
+div.schedule1-start {
+  background-color: #d9d9d9;
+  width: 100%;
+  border-radius: 25px 0 0 25px;
+}
+
+div.schedule1-end {
+  background-color: #d9d9d9;
+  width: 3.5rem;
+  border-radius: 0 25px 25px 0;
+}
+
+div.schedule2 {
+  background-color: #ffb7b7;
+  width: 100%;
+}
+
+div.schedule2-start {
+  background-color: #ffb7b7;
+  width: 100%;
+  border-radius: 25px 0 0 25px;
+}
+
+div.schedule2-endweek {
+  background-color: #ffb7b7;
+  width: 3.5rem;
+  border-radius: 0 15px 15px 0;
+}
+
+div.schedule2-end {
+  background-color: #ffb7b7;
+  width: 3.5rem;
+  border-radius: 0 25px 25px 0;
+}
+
+div.add-schedule {
+  padding: 0 3rem;
+  border: 2px solid #ffeedb;
+  border-radius: 20px;
+  width: 70rem;
+  margin: 2rem;
+  padding: 1rem 0;
+  padding-bottom: 1.5rem;
+}
+
+div.schedule-flex {
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+}
+div.schedule-content {
+  display: flex;
+  border: 2px solid #ffeedb;
+  border-radius: 25px;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  width: 48rem;
+  justify-content: center;
+}
+
+/* div.schedule-content > div {
+  padding-;
+  } */
+
+div.schedule-content > select {
+  padding: 0 2rem;
+  margin: 0 1rem;
+}
+
+div.schedule-content-text {
+  border: 2px solid #ffeedb;
+  border-radius: 25px;
+  font-size: 1rem;
+}
+
+.content-text {
+  border-radius: 25px;
+  width: 48rem;
+  height: 20rem;
+  border: none;
+  font-size: 1.5rem;
+}
+.content-text:focus {
+  outline: none;
+}
+
+div.color-flex {
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+div.color-select {
+  display: flex;
+  padding: 0.5rem;
+  width: 48rem;
+  justify-content: center;
+  justify-content: space-evenly;
+}
+
+div.color-select div {
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 25px;
+}
+
+div.color-select div.yellow {
+  background-color: #ffff6c;
+}
+
+div.color-select div.green {
+  background-color: #93ff8a;
+}
+
+div.color-select div.pink {
+  background-color: #ffa0e2;
+}
+div.color-select div.beige {
+  background-color: #ffb188;
+}
+div.color-select div.mint {
+  background-color: #6bffdc;
+}
+div.color-select div.purple {
+  background-color: #976bff;
+}
+
+div.schedule-add-button {
+  display: flex;
+  font-size: 1.5rem;
+  align-items: center;
+  padding: 0.5rem 0;
+  justify-content: flex-end;
+  padding-right: 2rem;
+}
+
+input[type="submit"].schedule-submit {
+  background-color: #7d83ff;
+  border-radius: 15px;
+  font-size: 1.5rem;
+  border: none;
+  padding: 0.2rem 2rem;
+}
