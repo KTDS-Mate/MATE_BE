@@ -15,105 +15,105 @@ public class TestController {
 	@GetMapping("footer")
 	public String viewFooter(){return "footer";}
 
-	@GetMapping("mate/guide/tourlist")
+	@GetMapping("/guide/tourlist")
 	public String viewGuideTotalList() {
 		return "all/guide_total_tourlist";
 	}
 
-	@GetMapping("mate/guide/tourinfo")
+	@GetMapping("/guide/tourinfo")
 	public String viewGuideTourInfoPage(){return "all/GuideTourInfo";}
 
-	@GetMapping("mate/guide/guideprofile")
+	@GetMapping("/guide/guideprofile")
 	public String viewGuideProfilePage(){return "all/GuideProfile"; }
 
-//	@GetMapping("mate/sample")
+//	@GetMapping("/sample")
 //	public String viewSamplePage(){return "all/GuideProfile copy 2"; }
 
-	@GetMapping("mate/mypage/guide/calendar")
+	@GetMapping("/mypage/guide/calendar")
 	public String viewGuideCalendar(){
 		return "all/Mypage_Guide_Calendar";
 	}
 	
-	@GetMapping("mate/mypage/guide/editinfo")
+	@GetMapping("/mypage/guide/editinfo")
 	public String viewEditInfo() {
 		return "all/Mypage_Guide_EditInfo";
 	}
 	// sidebar 부분 공통되게 스타일 수정해야함
 	
 	
-	@GetMapping("mate/mypage/guide/mytourlist")
+	@GetMapping("/mypage/guide/mytourlist")
 	public String viewGuidsTourList () {
 		return "all/Mypage_Guide_MyTour";
 	}
 	
-	@GetMapping("mate/mypage/guide/guide/wishlist")
+	@GetMapping("/mypage/guide/guide/wishlist")
 	public String viewGuideWishList() {
 		return "all/Mypage_Guide_Wishlist";
 	}
 	
-	@GetMapping("mate/mypage/tourist/calendar")
+	@GetMapping("/mypage/tourist/calendar")
 	public String viewTouristCalendar() {
 		return "all/Mypage_Tourist_Calendar";
 	}
 	
-	@GetMapping("mate/mypage/tourist/editinfo")
+	@GetMapping("/mypage/tourist/editinfo")
 	public String viewTouristEditInfo() {
 		return "all/Mypage_Tourist_EditInfo";
 	}
 	// 위와 마찬가지로 사이드바 공통되게
 	
-	@GetMapping("mate/mypage/tourist/reviewlist")
+	@GetMapping("/mypage/tourist/reviewlist")
 	public String viewTouristReviewList() {
 		return "all/Mypage_Tourist_MyReview";
 	}
 	
-	@GetMapping("mate/mypage/tourist/tourlist")
+	@GetMapping("/mypage/tourist/tourlist")
 	public String viewTouristTourList() {
 		return "all/Mypage_Tourist_MyTour";
 	}
 	
-	@GetMapping("mate/mypage/tourist/whislist")
+	@GetMapping("/mypage/tourist/whislist")
 	public String viewTouristWishList() {
 		return "all/Mypage_Tourist_Wishlist";
 	}
 	
-	@GetMapping("mate/mypage/tourist/payment/Details")
+	@GetMapping("/mypage/tourist/payment/Details")
 	public String viewTouristPaymentDetails() {
 		return "all/MyPageLayout_PaymentDetails";
 	}
 	
-	@GetMapping("mate/mypage/guide/salesManagement")
+	@GetMapping("/mypage/guide/salesManagement")
 	public String viewGuideSalesManagement() {
 		return "all/MyPageLayout_SalesManagement";
 	}
 	
-	@GetMapping("mate/guide/regist")
+	@GetMapping("/guide/regist")
 	public String viewGuideRegistPage () {
 		return "all/reigst_Guide";
 	}
 	
 	
-	@GetMapping("mate/guide/tour/write")
+	@GetMapping("/guide/tour/write")
 	public String viewGuideTourWrite() {
 		return "all/Guide_TourInsert";
 	}
 	
-	@GetMapping("mate/guide/recruitment")
+	@GetMapping("/guide/recruitment")
 	public String viewGuideRecruitment() {
 		return "all/GuideRecruitmentPage";
 	}
 	
-	@GetMapping("mate/tourist/tour/write")
+	@GetMapping("/tourist/tour/write")
 	public String viewTouristTourWrite() {
 		return "all/Tourist_TourInsert";
 	}
 	
-	@GetMapping("mate/message/receive")
+	@GetMapping("/message/receive")
 	public String viewReceiveMessage(){return "all/receive_message";}
 
-	@GetMapping("mate/message/send")
+	@GetMapping("/message/send")
 	public String viewSendMessage(){return "all/send_message";}
 
-	@GetMapping("mate/tour/list")
+	@GetMapping("/tour/list")
 	public String viewTourListPage(){return "all/tour_list";}
 }

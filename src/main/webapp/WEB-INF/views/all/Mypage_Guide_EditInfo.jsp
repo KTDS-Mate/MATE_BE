@@ -5,6 +5,14 @@ pageEncoding="UTF-8"%>
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" type="text/css" href="/css/Mypage_EditInfo.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/common.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <title>Mypage_Tourist_EditInfo</title>
   </head>
   <body>
@@ -16,8 +24,8 @@ pageEncoding="UTF-8"%>
       <div class="content">
         <!-- 사이드바 -->
         <!-- side-bar 공통파일 -->
-        <!--<jsp:include page="../sidebar.jsp"></jsp:include>-->
-        <div class="sidebar-left">
+        <jsp:include page="../sidebar.jsp"></jsp:include>
+        <!-- <div class="sidebar-left">
           <ul class="sidebar-left-list">
             <li class="disabled">캘린더</li>
             <li class="disabled">즐겨찾기</li>
@@ -27,7 +35,7 @@ pageEncoding="UTF-8"%>
             <li class="active">내 정보 수정</li>
             <li class="disabled">메세지</li>
           </ul>
-        </div>
+        </div> -->
 
         <!-- 본문 내용 -->
         <div class="main-content">

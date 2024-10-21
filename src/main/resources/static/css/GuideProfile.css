@@ -1,33 +1,3 @@
-* {
-  box-sizing: border-box;
-  font-family: Inter;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-}
-
-div.grid {
-  display: grid;
-  grid-template-columns: 1fr 90rem 1fr;
-  grid-template-rows: 9rem 1fr 9rem;
-  row-gap: 1rem;
-}
-
-div.header {
-  grid-column: 2 / 2;
-}
-
-div.content {
-  grid-column: 2 / 2;
-  grid-row: 2 / 2;
-  padding: 2rem;
-}
-
-div.footer {
-  grid-column: 1 / -1;
-}
 
 .guideContentFrame {
   width: auto;
