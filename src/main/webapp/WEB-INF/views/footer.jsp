@@ -2,7 +2,9 @@
 pageEncoding="UTF-8"%>
 
     <link rel="stylesheet" type="text/css" href="/css/Footer.css" />
-
+	
+<div class="footer-grid">
+  <div class="footer-alpha">
     <div class="footer-left-padding">
       <ul>
         <li class="industryName">MATE</li>
@@ -21,3 +23,5 @@ pageEncoding="UTF-8"%>
         <li class="lastContent">©MATE Corp. All Rights Reserved.</li>
       </ul>
     </div>
+  </div>
+</div>

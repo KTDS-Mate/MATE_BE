@@ -5,6 +5,14 @@ pageEncoding="UTF-8"%>
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" type="text/css" href="/css/Mypage_EditInfo.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/common.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <title>Mypage_Tourist_EditInfo</title>
   </head>
   <body>
