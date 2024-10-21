@@ -1,34 +1,4 @@
 * {
-    box-sizing: border-box;
-    font-family: Inter;
-}
-
-body {
-    margin: 0px;
-    padding: 0px;
-}
-
-div.grid {
-    display: grid;
-    grid-template-columns: 1fr 90rem 1fr;
-    grid-template-rows: 9rem 1fr 9rem;
-    row-gap: 10px;
-}
-
-div.header {
-    grid-column: 2 / 2;
-}
-
-div.content {
-    grid-column: 2 / 2;
-    grid-row: 2 / 2;
-}
-
-div.footer {
-    grid-column: 1 / -1;
-}
-
-* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
