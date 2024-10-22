@@ -10,14 +10,6 @@ pageEncoding="UTF-8"%>
       type="text/css"
       href="/css/Mypage_Tourist_MyTour.css"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="/css/common.css"
-    />
   </head>
   <body>
     <div class="grid">
@@ -28,7 +20,7 @@ pageEncoding="UTF-8"%>
       <div class="content">
         <div class="content-grid">
           <!-- side-bar 공통파일 -->
-          <jsp:include page="../Tourist_Sidebar.jsp"></jsp:include>
+          <jsp:include page="../sidebar.jsp"></jsp:include>
           <!-- <div class="my-page">
             <ul class="list">
               <li>캘린더</li>
