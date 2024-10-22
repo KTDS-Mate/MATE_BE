@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * {
   box-sizing: border-box;
 }
@@ -31,11 +32,14 @@ div.footer {
   grid-column: 1 / -1;
 }
 
+=======
+>>>>>>> 8662bed88921a494095ede571cdadad7c5d5bb0f
 div.content-grid {
   display: grid;
   grid-template-columns: 13rem 1fr;
   column-gap: 3rem;
 }
+<<<<<<< HEAD
 
 div.my-page {
   position: sticky;
@@ -69,6 +73,12 @@ div.my-page {
 .my-page li:last-child {
   padding: 0;
 }
+=======
+
+div.my-page > ul.list > li.wishlist{
+	color: #333;
+}  
+>>>>>>> 8662bed88921a494095ede571cdadad7c5d5bb0f
 
 div.main-content {
   border: 2px solid #ffeedb;
@@ -83,7 +93,7 @@ div.main-content {
 
 .border-line {
   margin: 0 auto;
-  width: 70rem;
+  width: 60rem;
   border-top: 1px solid #000;
 }
 
@@ -94,7 +104,7 @@ div.main-content {
 div.wishlist {
   border: 2px solid #ffeedb;
   border-radius: 20px;
-  width: 70rem;
+  width: 60rem;
   height: 120rem;
   margin: 2rem;
   padding: 1rem 0;

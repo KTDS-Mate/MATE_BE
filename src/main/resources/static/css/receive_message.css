@@ -1,35 +1,14 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  padding: 0px;
-  margin: 0px;
-}
-div.grid {
-  display: grid;
-  grid-template-columns: 1fr 90rem 1fr;
-  grid-template-rows: 9rem 1fr 9rem;
-  row-gap: 10px;
-}
-
-div.header {
-  grid-column: 2 / 2;
-}
-
-div.content {
-  grid-column: 2 / 2;
-  grid-row: 2 / 2;
-}
-
-div.footer {
-  grid-column: 1 / -1;
-}
 div.content-grid {
   display: grid;
   grid-template-columns: 13rem 16rem 33rem;
   justify-items: center;
 }
+
+div.my-page > ul.list > li.message{
+	color: #333;
+}  
+        
+
 
 div.message-side-bar {
   position: sticky;

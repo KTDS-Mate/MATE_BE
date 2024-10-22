@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @font-face {
   font-family: 'Inter';
   /* 원하는 폰트 이름 지정 */
@@ -29,6 +30,8 @@ body {
 .footer {
   grid-column: 1 / -1;
 }
+=======
+>>>>>>> 8662bed88921a494095ede571cdadad7c5d5bb0f
 
 /* content 내부 그리드 설정 */
 .content {
@@ -42,6 +45,7 @@ body {
   padding: 20px;
 }
 
+<<<<<<< HEAD
 /* 사이드바 스타일 */
 .sidebar-left {
   background-color: #fff6ee;
@@ -77,8 +81,13 @@ body {
 .sidebar-left-list li:hover {
   cursor: pointer;
   color: #000;
+=======
+div.my-page > ul.list > li.edit-profile{
+	color: #333;
+>>>>>>> 8662bed88921a494095ede571cdadad7c5d5bb0f
 }
 
+/* 바꾸기 */
 /* 본문(Main-content) 스타일 */
 .main-content {
   display: flex;
