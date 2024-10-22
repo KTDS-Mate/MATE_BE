@@ -91,30 +91,6 @@ public class UserVO {
      */
     private String gdRpCntId;
 
-    public UserVO(String usrId, String usrLgnId, String usrPwd, String usrLnm, String usrFnm, String usrGndr, String usrEml, String usrPhn, String usrBd, String usrAddrs, String usrIsGd, String usrSlfIntdctn, String usrPypEml, double usrAvgRtng, String usrJnDt, String usrClDt, String usrIsCl, String usrMdfyDt, String gdPrflImg, String gdIdImg, String gdCbcImg, String gdRpCntId) {
-        this.usrId = usrId;
-        this.usrLgnId = usrLgnId;
-        this.usrPwd = usrPwd;
-        this.usrLnm = usrLnm;
-        this.usrFnm = usrFnm;
-        this.usrGndr = usrGndr;
-        this.usrEml = usrEml;
-        this.usrPhn = usrPhn;
-        this.usrBd = usrBd;
-        this.usrAddrs = usrAddrs;
-        this.usrIsGd = usrIsGd;
-        this.usrSlfIntdctn = usrSlfIntdctn;
-        this.usrPypEml = usrPypEml;
-        this.usrAvgRtng = usrAvgRtng;
-        this.usrJnDt = usrJnDt;
-        this.usrClDt = usrClDt;
-        this.usrIsCl = usrIsCl;
-        this.usrMdfyDt = usrMdfyDt;
-        this.gdPrflImg = gdPrflImg;
-        this.gdIdImg = gdIdImg;
-        this.gdCbcImg = gdCbcImg;
-        this.gdRpCntId = gdRpCntId;
-    }
 
     public String getUsrId() {
         return usrId;

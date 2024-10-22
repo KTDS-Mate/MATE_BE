@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.mate.bbs.dao.GuideTourDao">
+
+<select id="selectGuideTourAllCount" resultType="_int">
+	SELECT COUNT(1)
+	  FROM GD_TR_RCRT
+</select>
+
+<select id="selectAllGuideTour" resultType="com.mate.bbs.vo.GuideTourVO">
+	SELECT GD_TRs_PST_ID
+		 , ATHR_ID
+		 , USR_ID
+		 , GD_TR_TTL
+		 , TO_CHAR(GD_TR_DT, 'YYYY-MM-DD HH24:HH:MI:SS')
+		 , GD_TR_PRPS
+		 , GD_TR_MP
+		 , GD_TR_PRC
+		 , GD_TR_SMRY
+		 , GD_TR_TM
+		 , TO_CHAR(GD_TR_RSTR_DT, 'YYYY-MM-DD HH24:HH:MI:SS')
+		 , TO_CHAR(GD_TR_MDFY_DT, 'YYYY-MM-DD HH24:HH:MI:SS')
+		 , TO_CHAR(GD_TR_DLT_DT, 'YYYY-MM-DD HH24:HH:MI:SS')
+		 , GD_TR_IS_DLT
+		 , TR_CNT_ID
+		 , TR_CT_ID
+	  FROM GD_TR_RCRT
+
+</select>
+<insert id="createNewGuideTour" parameterType="com.mate.bbs.vo.WriteGuideTourVO">
+
+
+</insert>
+
+</mapper>
