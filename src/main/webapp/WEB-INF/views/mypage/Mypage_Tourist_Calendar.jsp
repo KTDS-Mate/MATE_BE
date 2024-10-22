@@ -10,6 +10,7 @@ pageEncoding="UTF-8"%>
       type="text/css"
       href="/css/Mypage_Tourist_Calendar.css"
     />
+<<<<<<< HEAD
     <link
       rel="stylesheet"
       type="text/css"
@@ -18,6 +19,8 @@ pageEncoding="UTF-8"%>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+=======
+>>>>>>> 7fdc88c21f13c221feb51b125c0e27e69a623dce
   </head>
   <body>
     <div class="grid">
