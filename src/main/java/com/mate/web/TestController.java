@@ -96,8 +96,8 @@ public class TestController {
 	@GetMapping("/guide/tour/write")
 	public String viewGuideTourWrite() {
 		return "all/Guide_TourInsert";
-	}
-	
+	}  
+	  
 	@GetMapping("/guide/recruitment")
 	public String viewGuideRecruitment() {
 		return "all/GuideRecruitmentPage";

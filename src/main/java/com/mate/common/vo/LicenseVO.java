@@ -1,7 +1,7 @@
 package com.mate.common.vo;
 
 public class LicenseVO {
-	
+
 	/**
 	 * 가이드 라이센스 아이디
 	 */

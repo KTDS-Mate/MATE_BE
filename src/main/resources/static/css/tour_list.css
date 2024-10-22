@@ -59,9 +59,10 @@ div.tour-request-list {
 .country-menu-area div {
   padding: 1.5rem 0;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.2rem;
   border: 2px solid #d7d7d7;
   border-bottom: 2px solid #333;
+  border-left : 0;
 }
 
 .country-menu-area div.checked {
@@ -86,7 +87,6 @@ div.checked > a {
 }
 .list-view-option div {
   color: #333;
-  font-size: large;
 }
 .list-view-option div::after {
   content: "|";

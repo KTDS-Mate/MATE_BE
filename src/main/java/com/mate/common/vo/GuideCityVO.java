@@ -2,6 +2,7 @@ package com.mate.common.vo;
 
 public class GuideCityVO {
 
+
 	/**
 	 * 도시 아이디
 	 */
@@ -40,4 +41,5 @@ public class GuideCityVO {
 	public void setCntId(String cntId) {
 		this.cntId = cntId;
 	}
+
 }
