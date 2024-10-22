@@ -1,0 +1,9 @@
+diff a/src/main/java/com/mate/common/beans/WebConfig.java b/src/main/java/com/mate/common/beans/WebConfig.java	(rejected hunks)
+@@ -10,6 +10,7 @@
+ @Configuration
+ @EnableWebMvc
+ public class WebConfig implements WebMvcConfigurer{
++<<<<<<< HEAD
+ 
+ 	@Bean
+ 	Sha createShaInstance() {

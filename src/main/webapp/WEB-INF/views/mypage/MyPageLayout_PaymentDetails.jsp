@@ -19,8 +19,6 @@ pageEncoding="UTF-8"%>
       type="text/css"
       href="/css/common.css"
     />
-=======
->>>>>>> 7fdc88c21f13c221feb51b125c0e27e69a623dce
   </head>
 
   <body>
