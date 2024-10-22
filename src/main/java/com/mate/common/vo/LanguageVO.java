@@ -17,4 +17,28 @@ public class LanguageVO {
 	 * 언어명
 	 */
 	private String langNm;
+
+	public String getLangId() {
+		return langId;
+	}
+
+	public void setLangId(String langId) {
+		this.langId = langId;
+	}
+
+	public String getUsrId() {
+		return usrId;
+	}
+
+	public void setUsrId(String usrId) {
+		this.usrId = usrId;
+	}
+
+	public String getLangNm() {
+		return langNm;
+	}
+
+	public void setLangNm(String langNm) {
+		this.langNm = langNm;
+	}
 }
