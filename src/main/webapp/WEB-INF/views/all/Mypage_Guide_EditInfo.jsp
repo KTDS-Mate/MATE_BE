@@ -24,7 +24,7 @@ pageEncoding="UTF-8"%>
       <div class="content">
         <!-- 사이드바 -->
         <!-- side-bar 공통파일 -->
-        <jsp:include page="../sidebar.jsp"></jsp:include>
+        <jsp:include page="../Guide_Sidebar.jsp"></jsp:include>
         <!-- <div class="sidebar-left">
           <ul class="sidebar-left-list">
             <li class="disabled">캘린더</li>
