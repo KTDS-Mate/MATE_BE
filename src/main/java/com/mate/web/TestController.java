@@ -21,7 +21,9 @@ public class TestController {
 	}
 
 	@GetMapping("/guide/tourinfo")
-	public String viewGuideTourInfoPage(){return "all/GuideTourInfo";}
+	public String viewGuideTourInfoPage(){
+		return "all/GuideTourInfo";
+	}
 
 	@GetMapping("/guide/guideprofile")
 	public String viewGuideProfilePage(){return "all/GuideProfile"; }
