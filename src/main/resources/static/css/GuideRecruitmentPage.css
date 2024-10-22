@@ -7,12 +7,13 @@
 .subject {
   display: grid;
   grid-template-columns: 1fr 4rem;
+  padding: 1rem;
 }
 
 .wish-button {
   width: 42px;
   height: 40px;
-  background-image: url(../image/tourboard/WishButton.png);
+  background-image: url(../img/tourboard/WishButton.png);
 }
 
 .img-price {
@@ -66,9 +67,8 @@
 }
 
 .price-person {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  justify-items: center;
+	display: flex;
+	justify-content: center;
 }
 
 .price-ad-c {
@@ -76,7 +76,7 @@
   border-radius: 10px;
   width: 80%;
   text-align: center;
-  margin-top: 2.5rem;
+  margin-top: 5rem;
 }
 
 .summation-guide {
