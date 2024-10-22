@@ -93,6 +93,7 @@ div.message-side-bar {
 .check-box-area > .page-clear-icon {
   height: 1rem;
   margin-left: 1rem;
+  margin-right : 1rem;
 }
 .check-area {
   display: flex;
@@ -100,7 +101,6 @@ div.message-side-bar {
 
 .check-box {
   height: 1rem;
-  margin-left : 1rem;
 }
 
 .check-box-read {

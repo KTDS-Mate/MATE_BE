@@ -2,6 +2,7 @@ package com.mate.bbs.vo;
 
 import com.mate.common.vo.CityVO;
 import com.mate.common.vo.CountryVO;
+import com.mate.user.vo.UserVO;
 
 public class GuideTourVO {
 
@@ -70,27 +71,15 @@ public class GuideTourVO {
 	 * 투어 도시 아이디
 	 */
 	private String trCtId;
-	
-	//private UsrInfoVO usrInfo;
-	
+	/**
+	 * 게시글 작성자의 정보를 담은 VO
+	 */
+	private UserVO userVO;
 	
 	private CountryVO countryVO;
 	
-	
 	private CityVO cityVO;
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 	public CountryVO getCountryVO() {
 		return countryVO;
 	}

@@ -1,5 +1,9 @@
 package com.mate.bbs.vo;
 
+import java.util.List;
+
+import com.mate.user.vo.UserVO;
+
 public class GuideTourImgVO {
 
 	/**
@@ -27,6 +31,22 @@ public class GuideTourImgVO {
 	 */
 	private String gdTrImgIsDlt;
 	
+	private UserVO userVO;
+	
+	private List<GuideTourImgVO> guideTourImgVO;
+	
+	public UserVO getUserVO() {
+		return userVO;
+	}
+	public void setUserVO(UserVO userVO) {
+		this.userVO = userVO;
+	}
+	public List<GuideTourImgVO> getGuideTourImgVO() {
+		return guideTourImgVO;
+	}
+	public void setGuideTourImgVO(List<GuideTourImgVO> guideTourImgVO) {
+		this.guideTourImgVO = guideTourImgVO;
+	}
 	public String getGdTrImgId() {
 		return gdTrImgId;
 	}
