@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mate.bbs.dao.GuideTourDao;
+import com.mate.bbs.vo.GuideTourModifyVO;
 import com.mate.bbs.vo.GuideTourVO;
-import com.mate.bbs.vo.WriteGuideTourVO;
+import com.mate.bbs.vo.GuideTourWriteVO;
 
 @Repository
 public class GuideTourDaoImpl extends SqlSessionDaoSupport implements GuideTourDao{
@@ -24,13 +25,22 @@ public class GuideTourDaoImpl extends SqlSessionDaoSupport implements GuideTourD
 	public int selectGuideTourAllCount() {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectGuideTourAllCount");
 	}
-	
 	@Override
 	public List<GuideTourVO> selectAllGuideTour() {
 		return this.getSqlSession().selectList(NAMESPACE + ".selectAllGuideTour");
 	}
+	
 	@Override
-	public int createNewGuideTour(WriteGuideTourVO writeGuideTourVO) {
-		return this.getSqlSession().insert(NAMESPACE + ".createNewGuideTour", writeGuideTourVO);
+	public int insertNewGuideTour(GuideTourWriteVO guideTourWriteVO) {
+		return this.getSqlSession().insert(NAMESPACE + ".insertNewGuideTour", guideTourWriteVO);
 	}
+	@Override
+	public int updateGuideTour(GuideTourModifyVO guideTourModifyVO) {
+		return this.getSqlSession().update(NAMESPACE + ".updateGuideTour", guideTourModifyVO);
+	}
+	@Override
+	public int updateGuideTourIsDtl(String gdTrPstId) {
+		return this.getSqlSession().update(NAMESPACE + ".updateGuideTourIsDtl", gdTrPstId);
+	}
+	
 }

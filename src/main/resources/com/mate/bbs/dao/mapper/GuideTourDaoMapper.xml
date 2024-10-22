@@ -11,7 +11,7 @@
 </select>
 
 <select id="selectAllGuideTour" resultType="com.mate.bbs.vo.GuideTourVO">
-	SELECT GD_TRs_PST_ID
+	SELECT GD_TR_PST_ID
 		 , ATHR_ID
 		 , USR_ID
 		 , GD_TR_TTL
@@ -28,11 +28,7 @@
 		 , TR_CNT_ID
 		 , TR_CT_ID
 	  FROM GD_TR_RCRT
-
 </select>
-<insert id="createNewGuideTour" parameterType="com.mate.bbs.vo.WriteGuideTourVO">
 
-
-</insert>
 
 </mapper>

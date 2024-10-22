@@ -2,7 +2,7 @@ package com.mate.bbs.vo;
 
 import java.util.List;
 
-public class WriteGuideTourVO {
+public class GuideTourWriteVO {
 
 	
 	/**
@@ -31,14 +31,6 @@ public class WriteGuideTourVO {
 	 * 끝날짜
 	 */
 	private String gdTrTm;
-	/**
-	 *  투어제공항목 리스트
-	 */
-	private List<GuideTourProvidedVO> guideTourProvidedVO;
-	/**
-	 * 투어 사진 리스트
-	 */
-	private List<GuideTourImgVO> guideTourImgVO;
 	
 	/**
 	 * 투어 요약
@@ -55,8 +47,22 @@ public class WriteGuideTourVO {
 	private int gdTrPrc;
 	
 	/**
-	 * 여행자와 만날 장소
+	 * 투어 미팅 포인트
 	 */
 	private String gdTrMp;
+	/**
+	 *  투어제공항목 리스트
+	 */
+	private List<GuideTourProvidedVO> guideTourProvidedList;
+	/**
+	 * 투어 사진 리스트
+	 */
+	private List<GuideTourImgVO> guideTourImgList;
+	/**
+	 * 가이드 투어 상세정보 리스트 VO
+	 */
+	private List<GuideTourDetailInfoVO> guideTourDetailInfoList;
+	
+	
 	
 }

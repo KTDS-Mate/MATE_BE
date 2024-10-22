@@ -16,9 +16,6 @@ public class GuideTourListVO {
 	 */
 	
 	private List<GuideTourVO> guideTourList;
-	
-	
-	
 
 	public int getGdTrPstCnt() {
 		return gdTrPstCnt;
@@ -28,7 +25,11 @@ public class GuideTourListVO {
 		this.gdTrPstCnt = gdTrPstCnt;
 	}
 
+	public List<GuideTourVO> getGuideTourList() {
+		return guideTourList;
+	}
 
-	
-	
+	public void setGuideTourList(List<GuideTourVO> guideTourList) {
+		this.guideTourList = guideTourList;
+	}
 }

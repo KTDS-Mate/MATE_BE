@@ -1,8 +1,5 @@
 package com.mate.bbs.vo;
 
-import com.mate.common.vo.CityVO;
-import com.mate.common.vo.CountryVO;
-
 /**
  * 가이드 투어 제공항목 VO
  */
@@ -22,7 +19,6 @@ public class GuideTourProvidedVO {
 	private String gdTrPstId;
 	
 	
-
 	
 	public String getTrIncldId() {
 		return trIncldId;

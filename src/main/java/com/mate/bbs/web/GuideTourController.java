@@ -14,14 +14,11 @@ public class GuideTourController {
 	@Autowired
 	private GuideTourService guideTourService;
 	
-	@GetMapping("/guideTour/list")
+	@GetMapping("/guidetour/list")
 	public String viewGuideTourList(Model model) {
 		GuideTourListVO guideTourListVO = this.guideTourService.getAllGuideTour();
 		model.addAttribute("guideTourListVO", guideTourListVO);
-		return "guide/Guide_TourInsert";
+		return "all/guide_total_tourlist";
 	}
-	@GetMapping("/message")
-	public String view() {
-		return "all/send_message";
-	}
+
 }

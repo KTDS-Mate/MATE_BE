@@ -33,7 +33,6 @@ public class GuideTourImgVO {
 	
 	private UserVO userVO;
 	
-	private List<GuideTourImgVO> guideTourImgVO;
 	
 	public UserVO getUserVO() {
 		return userVO;
@@ -41,12 +40,7 @@ public class GuideTourImgVO {
 	public void setUserVO(UserVO userVO) {
 		this.userVO = userVO;
 	}
-	public List<GuideTourImgVO> getGuideTourImgVO() {
-		return guideTourImgVO;
-	}
-	public void setGuideTourImgVO(List<GuideTourImgVO> guideTourImgVO) {
-		this.guideTourImgVO = guideTourImgVO;
-	}
+	
 	public String getGdTrImgId() {
 		return gdTrImgId;
 	}
