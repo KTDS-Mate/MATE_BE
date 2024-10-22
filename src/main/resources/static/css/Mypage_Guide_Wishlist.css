@@ -3,6 +3,11 @@ div.content-grid {
   grid-template-columns: 13rem 1fr;
   column-gap: 3rem;
 }
+
+div.my-page > ul.list > li.wishlist{
+	color: #333;
+}
+
 div.my-page {
   position: sticky;
   top: 10px;

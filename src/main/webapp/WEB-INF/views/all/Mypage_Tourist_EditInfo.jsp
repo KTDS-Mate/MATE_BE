@@ -23,9 +23,9 @@ pageEncoding="UTF-8"%>
       </div>
       <div class="content">
         <!-- side-bar 공통파일 -->
-        <!--<jsp:include page="../sidebar.jsp"></jsp:include>-->
         <!-- 사이드바 -->
-        <div class="sidebar-left">
+        <jsp:include page="../Tourist_Sidebar.jsp"></jsp:include>
+<!--         <div class="sidebar-left">
           <ul class="sidebar-left-list">
             <li class="disabled">캘린더</li>
             <li class="disabled">즐겨찾기</li>
@@ -36,6 +36,7 @@ pageEncoding="UTF-8"%>
             <li class="disabled">메세지</li>
           </ul>
         </div>
+         -->
 
         <!-- 본문 내용 -->
         <div class="main-content">

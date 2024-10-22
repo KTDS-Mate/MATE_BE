@@ -1,3 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+div.grid {
+  display: grid;
+  grid-template-columns: 1fr 80rem 1fr;
+  grid-template-rows: 9rem 1fr 9rem;
+  row-gap: 10px;
+}
+
+div.header {
+  grid-column: 2 / 2;
+}
+
+div.content {
+  grid-column: 2 / 2;
+  grid-row: 2 / 2;
+}
+
+div.footer {
+  grid-column: 1 / -1;
+}
 
 div.content-grid {
   display: grid;
@@ -8,7 +36,7 @@ div.content-grid {
 .where-going {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border: 2px solid #ffeedb;
+  border: 2px solid #f5f6f7;
   border-radius: 20px;
   align-items: center;
 }
@@ -67,7 +95,7 @@ li {
 }
 
 .background-img {
-  background-image: url(../image/tourboard/예시\ 여행\ 이미지.png);
+  background-image: url(../img/tourboard/예시\ 여행\ 이미지.png);
   width: 31.75rem;
   height: 31rem;
 }
@@ -77,7 +105,7 @@ li {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   align-items: center;
-  border: 2px solid #ffeedb;
+  border: 2px solid #f5f6f7;
   border-radius: 20px;
   padding: 4rem;
 }
@@ -90,7 +118,7 @@ li {
 
 .calendar {
   width: 30rem;
-  border: 2px solid #ffeedb;
+  border: 2px solid #f5f6f7;
   border-radius: 20px;
   padding: 1rem;
   margin-left: 2rem;
@@ -103,7 +131,7 @@ li {
 .datetime {
   display: grid;
   grid-template-rows: 1fr 1fr;
-  border: 2px solid #ffeedb;
+  border: 2px solid #f5f6f7;
   border-radius: 20px;
 }
 
@@ -144,8 +172,8 @@ select {
   grid-template-rows: 4.1rem 1fr;
   justify-items: center;
   align-items: center;
-  border-top: 2px solid #ffeedb;
-  border-right: 2px solid #ffeedb;
+  border-top: 2px solid #f5f6f7;
+  border-right: 2px solid #f5f6f7;
   border-top-right-radius: 20px;
 }
 
@@ -161,8 +189,8 @@ select {
   grid-template-rows: 4.1rem 4.1rem;
   justify-items: center;
   align-items: center;
-  border-top: 2px solid #ffeedb;
-  border-left: 2px solid #ffeedb;
+  border-top: 2px solid #f5f6f7;
+  border-left: 2px solid #f5f6f7;
   border-top-left-radius: 20px;
 }
 
@@ -178,9 +206,9 @@ select {
   grid-template-rows: 4.1rem 4.1rem;
   justify-items: center;
   align-items: center;
-  border-top: 2px solid #ffeedb;
-  border-left: 2px solid #ffeedb;
-  border-right: 2px solid #ffeedb;
+  border-top: 2px solid #f5f6f7;
+  border-left: 2px solid #f5f6f7;
+  border-right: 2px solid #f5f6f7;
 }
 
 .place > div:first-child {
@@ -195,7 +223,7 @@ select {
   grid-template-rows: 4.1rem 1fr;
   justify-items: center;
   align-items: center;
-  border: 2px solid #ffeedb;
+  border: 2px solid #f5f6f7;
   border-bottom-left-radius: 20px;
 }
 
@@ -210,7 +238,7 @@ select {
   display: grid;
   grid-template-rows: 4.1rem 1fr;
   justify-items: right;
-  border: 2px solid #ffeedb;
+  border: 2px solid #f5f6f7;
   border-left: none;
   border-bottom-right-radius: 20px;
 }
@@ -236,18 +264,17 @@ select {
 .final-view {
   display: grid;
   grid-template-rows: 1fr 5rem;
-  border: 2px solid #ffeedb;
+  border: 2px solid #f5f6f7;
   border-radius: 20px;
-  height: 65rem;
 }
 
 .final-view-div {
   display: grid;
-  grid-template-rows: 5rem 5rem 1fr 14rem;
-  border: 2px solid #ffeedb;
+  grid-template-rows: 5rem 5rem 1fr 20rem;
+  border: 2px solid #f5f6f7;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  width: 80rem;
+  width: 70rem;
   margin: 0 auto;
   margin-top: 2rem;
 }
@@ -266,7 +293,7 @@ select {
   align-items: center;
   justify-items: center;
   grid-template-columns: 1fr 1fr;
-  border-bottom: 2px solid #ffeedb;
+  border-bottom: 2px solid #f5f6f7;
 }
 
 .group-two > div:last-child > h6 {
@@ -275,25 +302,76 @@ select {
 }
 
 .group-three {
-  border-bottom: 2px solid #ffeedb;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  border-bottom: 2px solid #f5f6f7;
+}
+
+.final-request {
+  padding: 2rem;
+}
+
+.file-insert-box {
+  border-top: 2px solid #f5f6f7;
+  padding: 1rem;
+}
+
+input[type="file"] {
+  margin-bottom: 1rem;
+  margin-left: 2rem;
+}
+
+.file-list {
+  height: 80%;
+  border: 2px solid #f5f6f7;
+  margin: 0 auto;
 }
 
 .group-four {
   display: grid;
   align-items: center;
-  grid-template-rows: 6rem 1fr;
-  padding-left: 3rem;
+  grid-template-rows: 3rem 1fr;
+  padding: 1rem;
 }
 
-.add-button {
-  background-color: #f164d8cd;
-  color: #fff;
-  text-align: center;
-  vertical-align: middle;
-  border: 0;
-  border-radius: 1rem;
-  width: 2rem;
-  height: 2rem;
+.select-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 3rem 3rem 3rem;
+	gap: 10px 10px
+}
+
+.want-gd > select {
+	padding: 0.3rem;
+	outline: none;
+	margin-left: 1rem;
+}
+
+.want-gd {
+	display: flex;
+	align-items: center;
+	border: 1px solid #f5f6f7;
+	padding: 0.5rem;
+}
+
+.want-to-gd {
+	grid-row: span 3;
+	border: 1px solid #f5f6f7;
+}
+
+.want-to-gd-some {
+	border-bottom: 1px solid #f5f6f7;
+	padding: 0.5rem;
+}
+
+.text-area {
+	padding: 0.5rem;
+}
+
+textarea {
+	width: 95%;
+	height: 100px;
+	outline: none;
 }
 
 .price {
@@ -301,11 +379,11 @@ select {
   grid-template-columns: 1fr 1fr;
   align-items: center;
   margin: 0 auto;
-  width: 80rem;
+  width: 70rem;
 }
 
 .guide-price {
-  border: 2px solid #ffeedb;
+  border: 2px solid #f5f6f7;
   width: 21.5rem;
   height: 3.5rem;
   display: flex;
@@ -328,7 +406,7 @@ button {
   border-radius: 10px;
   box-shadow: 0 0 2px 0 rgba(#000, 0.2), 0 5px 10px 0 rgba(#000, 0.1);
   padding: 1rem;
-  border: 2px solid #ffeedb;
+  border: 2px solid #f5f6f7;
   border-radius: 10px;
 }
 

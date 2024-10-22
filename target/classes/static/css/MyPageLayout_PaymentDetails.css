@@ -3,39 +3,17 @@
     src: url('./font/Inter-VariableFont_opsz\,wght.ttf') format('truetype');
 }
 
+        
+div.my-page > ul.list > li.payment{
+	color: #333;
+}  
+
 div.content-grid {
     display: grid;
     grid-template-columns: 13rem 1fr;
     column-gap: 3rem;
 }
 
-div.my-page {
-    position: sticky;
-    background-color: #fff6ec;
-    height: 38rem;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px;
-    text-align: center;
-}
-
-.list {
-    padding: 0;
-}
-
-.my-page li {
-    font-size: 1.5rem;
-    display: block;
-    margin-bottom: 3rem;
-    font-weight: bold;
-    color: gray;
-}
-
-.my-page li:last-child {
-    margin: 0;
-}
 
 div.my-tour {
     border: 2px solid #ffeedb;

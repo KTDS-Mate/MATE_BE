@@ -27,12 +27,10 @@ pageEncoding="UTF-8"%>
       </div>
       <div class="content">
         <div class="header">
-          <!-- header 공통파일 -->
-          <jsp:include page="../header.jsp"></jsp:include>
         </div>
         <div class="content-grid">
           <!-- side-bar 공통파일 -->
-          <jsp:include page="../sidebar.jsp"></jsp:include>
+          <jsp:include page="../Tourist_Sidebar.jsp"></jsp:include>
           <!-- 수정이 예정 되어있음 -->
           <!-- 좌측의 네비게이션 바 -->
           <!-- <div class="my-page">

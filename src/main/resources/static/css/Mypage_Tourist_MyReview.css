@@ -1,3 +1,33 @@
+@charset "UTF-8";
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+div.grid {
+  display: grid;
+  grid-template-columns: 1fr 80rem 1fr;
+  grid-template-rows: 9rem 1fr 9rem;
+  row-gap: 10px;
+}
+
+div.header {
+  grid-column: 2 / 2;
+}
+
+div.content {
+  grid-column: 2 / 2;
+  grid-row: 2 / 2;
+}
+
+div.footer {
+  grid-column: 1 / -1;
+}
+
 div.content-grid {
   display: grid;
   grid-template-columns: 13rem 1fr;
@@ -34,7 +64,7 @@ div.my-page {
 }
 
 div.my-tour {
-  border: 2px solid #ffeedb;
+  border: 2px solid #f5f6f7;
   border-radius: 20px;
 }
 
@@ -46,7 +76,7 @@ div.my-tour {
 
 .border {
   margin: 0 auto;
-  width: 70rem;
+  width: 95%;
   border-top: 1px solid #000;
 }
 
@@ -59,18 +89,18 @@ div.my-tour {
 }
 
 .tour-list {
-  border: 2px solid #ffeedb;
+  border: 2px solid #f5f6f7;
   border-radius: 20px;
-  width: 70rem;
+  width: 95%;
   height: 110rem;
   margin: 2rem;
 }
 
 .search-area {
   display: flex;
-  border: 2px solid #ffeedb;
+  border: 2px solid #f5f6f7;
   border-radius: 20px;
-  width: 66rem;
+  width: 95%;
   height: 6rem;
   align-items: center;
   margin: 0 auto;
@@ -79,20 +109,20 @@ div.my-tour {
 }
 
 .sort-button {
-  width: 9.4rem;
   height: 3.9rem;
   border: 1px solid #333;
   border-radius: 10px;
   margin-left: 2rem;
   text-align: center;
+  width: 7rem;
 }
 
 #search-content {
   margin-left: 3rem;
   height: 3.9rem;
+  width: 30rem;
   outline: none;
   border-radius: 10px;
-  width: 39rem;
 }
 
 input::placeholder {
@@ -101,8 +131,8 @@ input::placeholder {
 }
 
 .search-button {
-  width: 9.4rem;
   height: 3.9rem;
+  width: 5rem;
   border: 1px solid #333;
   border-radius: 10px;
   margin-left: 1rem;
@@ -111,17 +141,17 @@ input::placeholder {
 }
 
 .list-area {
-  border: 2px solid #ffeedb;
+  border: 2px solid #f5f6f7;
   border-radius: 20px;
-  width: 66rem;
+  width: 95%;
   height: 90rem;
   margin: 0 auto;
 }
 
 .list-item {
-  border: 2px solid #ffeedb;
+  border: 2px solid #f5f6f7;
   border-radius: 20px;
-  width: 62rem;
+  width: 90%;
   margin: 0 auto;
   margin-top: 2rem;
   padding: 1.5rem;
@@ -148,7 +178,7 @@ input::placeholder {
 
 .page {
   display: flex;
-  width: 100%;
+  width: 95%;
   height: 8rem;
   align-items: flex-end;
   justify-content: center;
