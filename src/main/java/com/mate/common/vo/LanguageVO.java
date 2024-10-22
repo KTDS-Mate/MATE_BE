@@ -2,7 +2,7 @@ package com.mate.common.vo;
 
 public class LanguageVO {
 
-	
+
 	/**
 	 * 구사언어 아이디
 	 */
