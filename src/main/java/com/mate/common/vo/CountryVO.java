@@ -27,4 +27,5 @@ public class CountryVO {
 	public void setCntNm(String cntNm) {
 		this.cntNm = cntNm;
 	}
+	
 }
