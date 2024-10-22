@@ -4,7 +4,10 @@
 div.footer-grid{
     display: grid;
     grid-template-columns: 1fr 80rem 1fr;
-    background-color: #f5f6f7;
+}
+
+.footer {
+	 background-color: #f5f6f7;
 }
 
 .test {
