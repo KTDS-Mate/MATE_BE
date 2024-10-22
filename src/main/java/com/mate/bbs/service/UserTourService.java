@@ -1,19 +1,19 @@
 package com.mate.bbs.service;
 
-import com.mate.bbs.vo.ModifyUserTourVO;
+import com.mate.bbs.vo.UserTourInsertVO;
 import com.mate.bbs.vo.UserTourListVO;
-import com.mate.bbs.vo.WriteUserTourVO;
+import com.mate.bbs.vo.UserTourModifyVO;
+import com.mate.bbs.vo.UserTourVO;
 
 public interface UserTourService {
 
-	public boolean createNewUserTour(WriteUserTourVO writeUserTourVO);
+	public boolean createNewUserTour(UserTourInsertVO userTourInsertVO);
 	
-	public boolean readOneUserTour(String usrTrPstId);
+	public UserTourVO getOneUserTour(String usrTrPstId);
+
+	public UserTourListVO getAllUserTour();
 	
-	public UserTourListVO readAllUserTour();
-	
-	public boolean modifyUserTourContent(ModifyUserTourVO modifyUserTourVO);
+	public boolean modifyUserTour(UserTourModifyVO userTourModifyVO);
 	
 	public boolean softDeleteUserTour(String usrTrPstId);
-	
 }

@@ -24,6 +24,4 @@ public class UserTourListVO {
 		this.userTourList = userTourList;
 	}
 	
-	
-	
 }

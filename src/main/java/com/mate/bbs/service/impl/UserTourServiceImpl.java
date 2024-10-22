@@ -7,35 +7,32 @@ import org.springframework.stereotype.Service;
 
 import com.mate.bbs.dao.UserTourDao;
 import com.mate.bbs.service.UserTourService;
-import com.mate.bbs.vo.ModifyUserTourVO;
+import com.mate.bbs.vo.UserTourInsertVO;
 import com.mate.bbs.vo.UserTourListVO;
+import com.mate.bbs.vo.UserTourModifyVO;
 import com.mate.bbs.vo.UserTourVO;
-import com.mate.bbs.vo.WriteUserTourVO;
 
 @Service
 public class UserTourServiceImpl implements UserTourService {
 
 	@Autowired
 	private UserTourDao userTourDao;
-
+	
 	@Override
-	public boolean createNewUserTour(WriteUserTourVO writeUserTourVO) {
-		this.userTourDao.insertNewUserTour(writeUserTourVO);
-		return false;
+	public boolean createNewUserTour(UserTourInsertVO userTourInsertVO) {
+		return this.userTourDao.insertNewUserTour(userTourInsertVO) > 0;
 	}
 
 	@Override
-	public boolean readOneUserTour(String usrTrPstId) {
-		this.userTourDao.selectOneUserTour(usrTrPstId);
-		return false;
+	public UserTourVO getOneUserTour(String usrTrPstId) {
+		return this.userTourDao.selectOneUserTour(usrTrPstId);
 	}
 
 	@Override
-	public UserTourListVO readAllUserTour() {
+	public UserTourListVO getAllUserTour() {
 		UserTourListVO userTourListVO = new UserTourListVO();
 		int userTourCount = this.userTourDao.selectUserTourCount();
 		List<UserTourVO> userTourList = this.userTourDao.selectAllUserTour();
-		
 		userTourListVO.setUserTourCount(userTourCount);
 		userTourListVO.setUserTourList(userTourList);
 		
@@ -43,15 +40,15 @@ public class UserTourServiceImpl implements UserTourService {
 	}
 
 	@Override
-	public boolean modifyUserTourContent(ModifyUserTourVO modifyUserTourVO) {
-		return this.userTourDao.updateUserTourContent(modifyUserTourVO) > 0;
+	public boolean modifyUserTour(UserTourModifyVO userTourModifyVO) {
+		return this.userTourDao.updateUserTour(userTourModifyVO) > 0;
 	}
 
 	@Override
 	public boolean softDeleteUserTour(String usrTrPstId) {
 		return this.userTourDao.updateUserTourIsDlt(usrTrPstId) > 0;
 	}
-	
+
 	
 	
 }

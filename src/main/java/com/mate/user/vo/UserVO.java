@@ -25,7 +25,6 @@ public class UserVO {
     private String gdCbcImg;
     private String gdRpCntId;
 
-
     public String getUsrId() {
         return usrId;
     }

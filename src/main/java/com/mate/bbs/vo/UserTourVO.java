@@ -6,6 +6,7 @@ import com.mate.user.vo.UserVO;
 
 public class UserTourVO {
 
+	/***USRTRRQST 테이블***/
 	/**
 	 * 게시글의 아이디. Pk
 	 */
@@ -41,17 +42,17 @@ public class UserTourVO {
 	/**
 	 * 여행자가 가이드에게 제시하는 고용 금액
 	 */
-	private int usrTrGdHrPrc;
+	private double usrTrGdHrPrc;
 	/**
 	 * 여행자의 총 투어 인원
 	 */
 	private int usrTrNp;
 	/**
-	 * 논리적 삭제를 위한 게시글 삭제 여부 (N / Y)
+	 * 논리적 삭제를 위한 게시글 삭제 여부
 	 */
 	private String usrTrIsDlt;
 	/**
-	 * 여행자의 투어 소요 시간(시간 단위)
+	 * 여행자의 투어 소요 시간(분 단위)
 	 */
 	private int usrTrTm;
 	/**
@@ -70,18 +71,24 @@ public class UserTourVO {
 	 * 여행자가 등록한 투어 지역의 도시명. FK
 	 */
 	private String trCtId;
-	
 	/**
 	 * 여행자의 가이드 구인 게시글의 세부 요구사항 내용
 	 */
 	private String usrTrRqDtl;
-	
 	/**
-	 * 여행자가 등록한 투어 이미지
+	 * 해당 개시글을 작성한 유저
 	 */
-	private UserTourImgVO userTourImgVO;
-	
 	private UserVO userVO;
+	/**
+	 * 게시글 이미지 리스트
+	 */
+	private List<UserTourImgVO> userTourImgList;
+	
+	/**DB에 컬럼이 존재하지 않음(쿼리로 값만 구해옴)**/
+	/**
+	 * 마감일
+	 */
+	private String deadline;
 	
 	public String getUsrTrPstId() {
 		return usrTrPstId;
@@ -131,10 +138,10 @@ public class UserTourVO {
 	public void setUsrTrGdRq(String usrTrGdRq) {
 		this.usrTrGdRq = usrTrGdRq;
 	}
-	public int getUsrTrGdHrPrc() {
+	public double getUsrTrGdHrPrc() {
 		return usrTrGdHrPrc;
 	}
-	public void setUsrTrGdHrPrc(int usrTrGdHrPrc) {
+	public void setUsrTrGdHrPrc(double usrTrGdHrPrc) {
 		this.usrTrGdHrPrc = usrTrGdHrPrc;
 	}
 	public int getUsrTrNp() {
@@ -185,17 +192,24 @@ public class UserTourVO {
 	public void setUsrTrRqDtl(String usrTrRqDtl) {
 		this.usrTrRqDtl = usrTrRqDtl;
 	}
-	public UserTourImgVO getUserTourImgVO() {
-		return userTourImgVO;
-	}
-	public void setUserTourImgVO(UserTourImgVO userTourImgVO) {
-		this.userTourImgVO = userTourImgVO;
-	}
 	public UserVO getUserVO() {
 		return userVO;
 	}
 	public void setUserVO(UserVO userVO) {
 		this.userVO = userVO;
 	}
+	public List<UserTourImgVO> getUserTourImgList() {
+		return userTourImgList;
+	}
+	public void setUserTourImgList(List<UserTourImgVO> userTourImgList) {
+		this.userTourImgList = userTourImgList;
+	}
+	public String getDeadline() {
+		return deadline;
+	}
+	public void setDeadline(String deadline) {
+		this.deadline = deadline;
+	}
 
 }
+

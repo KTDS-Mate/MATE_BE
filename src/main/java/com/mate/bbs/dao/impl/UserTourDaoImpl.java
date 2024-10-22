@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mate.bbs.dao.UserTourDao;
-import com.mate.bbs.vo.ModifyUserTourVO;
+import com.mate.bbs.vo.UserTourInsertVO;
+import com.mate.bbs.vo.UserTourModifyVO;
 import com.mate.bbs.vo.UserTourVO;
-import com.mate.bbs.vo.WriteUserTourVO;
 
 @Repository
 public class UserTourDaoImpl extends SqlSessionDaoSupport implements UserTourDao {
@@ -22,28 +22,28 @@ public class UserTourDaoImpl extends SqlSessionDaoSupport implements UserTourDao
 	}
 	
 	@Override
-	public int insertNewUserTour(WriteUserTourVO writeUserTourVO) {
-		return this.getSqlSession().insert(NAMESPACE + ".insertNewUserTour", writeUserTourVO);
+	public int insertNewUserTour(UserTourInsertVO userTourInsertVO) {
+		return this.getSqlSession().insert(NAMESPACE + ".insertNewUserTour", userTourInsertVO);
 	}
 
 	@Override
 	public UserTourVO selectOneUserTour(String usrTrPstId) {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectOneUserTour", usrTrPstId);
 	}
-	
+
 	@Override
 	public int selectUserTourCount() {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectUserTourCount");
 	}
-
+	
 	@Override
 	public List<UserTourVO> selectAllUserTour() {
 		return this.getSqlSession().selectList(NAMESPACE + ".selectAllUserTour");
 	}
 
 	@Override
-	public int updateUserTourContent(ModifyUserTourVO modifyUserTourVO) {
-		return this.getSqlSession().update(NAMESPACE + ".updateUserTourContent", modifyUserTourVO);
+	public int updateUserTour(UserTourModifyVO userTourModifyVO) {
+		return this.getSqlSession().update(NAMESPACE + ".updateUserTour", userTourModifyVO);
 	}
 
 	@Override
