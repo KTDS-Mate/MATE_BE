@@ -1,6 +1,6 @@
 package com.mate.common.vo;
 
-public class CityVO {
+public class GuideCityVO {
 
 	/**
 	 * 도시 아이디

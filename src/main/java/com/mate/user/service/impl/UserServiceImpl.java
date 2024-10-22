@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mate.access.dao.AccessLogDao;
+import com.mate.access.vo.AccessLogVO;
 import com.mate.common.beans.Sha;
+import com.mate.common.utils.RequestUtil;
 import com.mate.user.dao.UserDao;
 import com.mate.user.service.UserService;
 import com.mate.user.vo.LoginUserVO;
@@ -62,8 +64,16 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public UserVO readUser(LoginUserVO loginUserVO) {
+		boolean isIpBlock = this.accessLogDao.selectLoginFailCount(RequestUtil.getIp()) >= 5;
 		
+		if (isIpBlock) {
+			throw new IllegalArgumentException("이메일 또는 비밀번호가 올바르게 입력되지 않았습니다.");
+		}
 		
+		String salt = this.userDao.selectSalt(loginUserVO.getUsrId());
+		if (salt == null) {
+			AccessLogVO accessLogVO = new AccessLogVO();
+		}
 		
 		return null;
 	}
