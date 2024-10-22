@@ -7,9 +7,13 @@ body {
   padding: 0px;
 }
 
+.whish-list-selected {
+  color: #333;
+}
+
 div.grid {
   display: grid;
-  grid-template-columns: 1fr 90rem 1fr;
+  grid-template-columns: 1fr 80rem 1fr;
   grid-template-rows: 9rem 1fr 9rem;
   row-gap: 10px;
 }
@@ -32,6 +36,7 @@ div.content-grid {
   grid-template-columns: 13rem 1fr;
   column-gap: 3rem;
 }
+
 div.my-page {
   position: sticky;
   top: 10px;
@@ -54,7 +59,7 @@ div.my-page {
 }
 
 .my-page li {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   display: block;
   padding-bottom: 3rem;
   font-weight: bold;
@@ -124,25 +129,26 @@ div.right-element {
   display: flex;
   align-items: center;
 }
+
 div.wishlist-info {
   padding: 0.5rem 2rem;
 }
 
 div.wishlist-info div {
   display: flex;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 div.info-content {
   padding-left: 1rem;
 }
 
-div.goto-button > button {
+div.goto-button>button {
   border-radius: 15px;
   border: none;
   width: 13rem;
   height: 3.5rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 button.activate {

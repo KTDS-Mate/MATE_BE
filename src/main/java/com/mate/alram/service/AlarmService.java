@@ -1,4 +1,4 @@
-package com.mate.alram.service;
-
-public interface AlarmService {
-}
+//package com.mate.alram.service;
+//
+//public interface AlarmService {
+//}

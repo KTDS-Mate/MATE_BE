@@ -11,7 +11,7 @@ mybatis:
   # mybatis-config.xml 파일의 위치를 지정
   config-location: classpath:mybatis/mybatis-config.xml
   # classpath -> target 폴더의 classes 폴더
-  mapper-locations: classpath:com/mate/**/dao/mapper/*Mapper.xml	
+  mapper-locations: classpath:com/mate/**/dao/mapper/**/*Mapper.xml
   
 #		 servlet:
 #		    multipart:

@@ -8,14 +8,14 @@
 
 div.footer-left-padding{
 	display:flex;
-	width: auto;
+	width: 90rem;
 	justify-content: center;
 }
 
 
 .footer ul li{
   list-style-type: none;
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
 .footer > .industryName {

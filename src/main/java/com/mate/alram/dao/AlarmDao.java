@@ -1,6 +1,6 @@
-package com.mate.alram.dao;
-
-public interface AlarmDao {
-
-
-}
+//package com.mate.alram.dao;
+//
+//public interface AlarmDao {
+//
+//
+//}

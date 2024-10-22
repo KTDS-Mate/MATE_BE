@@ -9,7 +9,7 @@ body {
 
 div.grid {
   display: grid;
-  grid-template-columns: 1fr 90rem 1fr;
+  grid-template-columns: 1fr 80rem 1fr;
   grid-template-rows: 9rem 1fr 9rem;
   row-gap: 10px;
 }
@@ -54,7 +54,7 @@ div.my-page {
 }
 
 .my-page li {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   display: block;
   padding-bottom: 3rem;
   font-weight: bold;
@@ -130,7 +130,7 @@ div.wishlist-info {
 
 div.wishlist-info div {
   display: flex;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 div.info-content {
@@ -142,7 +142,7 @@ div.goto-button > button {
   border: none;
   width: 13rem;
   height: 3.5rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 button.activate {

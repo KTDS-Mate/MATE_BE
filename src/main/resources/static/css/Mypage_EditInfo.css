@@ -1,7 +1,21 @@
+@font-face {
+  font-family: 'Inter';
+  /* 원하는 폰트 이름 지정 */
+  src: url('/font/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+  font-weight: normal;
+  /* 폰트 두께 */
+  font-style: normal;
+  /* 폰트 스타일 */
+}
+
+body {
+  font-family: 'Inter';
+}
+
 /* 전체 그리드 레이아웃 */
 .grid {
   display: grid;
-  grid-template-columns: 1fr 90rem 1fr;
+  grid-template-columns: 1fr 80rem 1fr;
   grid-template-rows: 9rem 1fr 9rem;
   row-gap: 10px;
 }
@@ -44,7 +58,8 @@
 }
 
 .sidebar-left-list li {
-  font-size: 24px; /* 글씨 크기 */
+  font-size: 1.1rem;
+  /* 글씨 크기 */
   color: hwb(25 75% 18% / 0.124);
   margin: 2.5rem 0;
   text-align: center;
@@ -124,10 +139,7 @@
   display: block;
 }
 
-/* 이미지가 있으면 네모 안에 표시되도록 */
-.profile-placeholder img[src=""] {
-  display: none;
-}
+
 
 /* 네모 박스를 대신 표시 */
 .empty-placeholder {
@@ -181,6 +193,7 @@ p {
   /* 각 info-row 간의 간격을 1rem로 설정 */
   margin-bottom: 0.8rem;
 }
+
 .info-item p {
   margin: 5px 0;
   font-size: 14px;
