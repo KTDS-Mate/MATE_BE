@@ -1,70 +1,13 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0px;
-  padding: 0px;
-}
-
-div.grid {
-  display: grid;
-  grid-template-columns: 1fr 90rem 1fr;
-  grid-template-rows: 9rem 1fr 9rem;
-  row-gap: 10px;
-}
-
-div.header {
-  grid-column: 2 / 2;
-}
-
-div.content {
-  grid-column: 2 / 2;
-  grid-row: 2 / 2;
-}
-
-div.footer {
-  grid-column: 1 / -1;
-}
-
 div.content-grid {
   display: grid;
   grid-template-columns: 13rem 1fr;
   column-gap: 3rem;
 }
-div.my-page {
-  position: sticky;
-  top: 10px;
-  background-color: #fff6ec;
-  height: 33rem;
-  /* 상하 고정 크기 말고 리스트 추가하면 더 늘어나도록 항목에 따른 패딩을 부여  */
-  /* padding-top: 1rem; */
-  /* padding-bottom: 1rem; */
 
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 20px;
-  text-align: center;
+
+div.my-page > ul.list > li.calendar{
+	color: #333;
 }
-
-.list {
-  padding: 0;
-}
-
-.my-page li {
-  font-size: 1.5rem;
-  display: block;
-  padding-bottom: 3rem;
-  font-weight: bold;
-  color: gray;
-}
-
-.my-page li:last-child {
-  padding: 0;
-}
-
 div.main-content {
   border: 2px solid #ffeedb;
   border-radius: 20px;
@@ -78,7 +21,7 @@ div.main-content {
 
 .border-line {
   margin: 0 auto;
-  width: 70rem;
+  width: 60rem;
   border-top: 1px solid #000;
 }
 
@@ -93,7 +36,7 @@ div.main-content {
 div.calendar {
   border: 2px solid #ffeedb;
   border-radius: 20px;
-  width: 70rem;
+  width: 60rem;
   margin: 2rem;
   padding: 1rem 0;
   padding-bottom: 7rem;
@@ -250,7 +193,7 @@ div.add-schedule {
   padding: 0 3rem;
   border: 2px solid #ffeedb;
   border-radius: 20px;
-  width: 70rem;
+  width: 60rem;
   margin: 2rem;
   padding: 1rem 0;
   padding-bottom: 1.5rem;
@@ -309,7 +252,7 @@ div.color-flex {
 div.color-select {
   display: flex;
   padding: 0.5rem;
-  width: 48rem;
+  width: 43rem;
   justify-content: center;
   justify-content: space-evenly;
 }

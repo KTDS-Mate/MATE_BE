@@ -4,6 +4,12 @@ div.content-grid {
   justify-items: center;
 }
 
+div.my-page > ul.list > li.message{
+	color: #333;
+}  
+        
+
+
 div.message-side-bar {
   position: sticky;
   top: 10px;

@@ -236,25 +236,54 @@ pageEncoding="UTF-8" %>
                 <div><h6>Open In GoogleMap</h6></div>
               </div>
               <div class="group-three">
-                <h3>
-                  다낭 사원을 가고싶은데 안내해주세요! 사원에 대한 설명과
-                  맛집까지 안내해 주세요!
-                </h3>
+              	<div class="final-request">
+              		<h3>
+                  		다낭 사원을 가고싶은데 안내해주세요! 사원에 대한 설명과
+                  		맛집까지 안내해 주세요!
+                	</h3>
+              	</div>
+                <div class="file-insert-box">
+                  <label for="file">원하는 투어 사진</label>
+                  <input type="file" type="file" name="file" multiple />
+                  <div class="file-list"></div>
+                </div>
               </div>
               <div class="group-four">
-                <div><h4>이런 가이드를 원해요</h4></div>
+                <div><h4>희망 가이드 정보</h4></div>
                 <div class="select-container">
-                  <select name="want" id="want">
-                    <option value="한국어 잘함">한국어 잘함</option>
-                    <option value="맛잘알">맛잘알</option>
-                    <option value="친절">친절</option>
-                  </select>
-                  <select name="want" id="want">
-                    <option value="한국어 잘함">한국어 잘함</option>
-                    <option value="맛잘알">맛잘알</option>
-                    <option value="친절">친절</option>
-                  </select>
-                  <button class="add-button">+</button>
+                  <div class="want-gd">
+                  	<label id="gender">성별 :</label>
+                  	<select id="gender">
+                  		<option value="other">상관없음</option>
+                  		<option value="female">여자</option>
+                  		<option value="male">남자</option>
+                  	</select>
+                  </div>
+                  <div class="want-to-gd">
+                  	<div class="want-to-gd-some">가이드에게 원하는 것</div>
+                  	<div class="text-area">
+                  		<textarea id="want-to-gd-some" name="want-to-gd-some"></textarea>
+                  	</div>
+                  </div>
+                  <div class="want-gd">
+                  	<label id="career">경력 :</label>
+                  	<select id="career" name="career">
+                  		<option value="other">상관없음</option>
+                  		<option value="one-three">1~3년 차</option>
+                  		<option value="five">5년 차</option>
+                  		<option value="ten">10년 차</option>
+                  	</select>
+                  </div>
+                  <div class="want-gd">
+                  	<label id="age">나이 :</label>
+                  	<select id="age" name="age">
+                  		<option value="other">상관없음</option>
+                  		<option value="twenties">20대</option>
+                  		<option value="thrities">30대</option>
+                  		<option value="forties">40대</option>
+                  		<option value="fifies">50대</option>
+                  	</select>
+                  </div>
                 </div>
               </div>
             </div>

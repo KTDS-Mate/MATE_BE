@@ -10,6 +10,14 @@ pageEncoding="UTF-8"%>
       type="text/css"
       href="/css/Mypage_Tourist_Wishlist.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/common.css"
+    />
   </head>
   <body>
     <div class="grid">
@@ -19,12 +27,10 @@ pageEncoding="UTF-8"%>
       </div>
       <div class="content">
         <div class="header">
-          <!-- header 공통파일 -->
-          <jsp:include page="../header.jsp"></jsp:include>
         </div>
         <div class="content-grid">
           <!-- side-bar 공통파일 -->
-          <jsp:include page="../sidebar.jsp"></jsp:include>
+          <jsp:include page="../Tourist_Sidebar.jsp"></jsp:include>
           <!-- 수정이 예정 되어있음 -->
           <!-- 좌측의 네비게이션 바 -->
           <!-- <div class="my-page">

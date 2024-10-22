@@ -1,20 +1,3 @@
-/* 전체 그리드 레이아웃 */
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 90rem 1fr;
-  grid-template-rows: 9rem 1fr 9rem;
-  row-gap: 10px;
-}
-
-/* 헤더 설정 */
-.header {
-  grid-column: 2 / 2;
-}
-
-/* 푸터 설정 */
-.footer {
-  grid-column: 1 / -1;
-}
 
 /* content 내부 그리드 설정 */
 .content {
@@ -28,42 +11,11 @@
   padding: 20px;
 }
 
-/* 사이드바 스타일 */
-.sidebar-left {
-  background-color: #fff6ee;
-  border-radius: 15px;
-  padding: 20px;
-  height: fit-content;
+div.my-page > ul.list > li.edit-profile{
+	color: #333;
 }
 
-.sidebar-left-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 150px;
-}
-
-.sidebar-left-list li {
-  font-size: 24px; /* 글씨 크기 */
-  color: hwb(25 75% 18% / 0.124);
-  margin: 2.5rem 0;
-  text-align: center;
-}
-
-.sidebar-left-list .active {
-  font-weight: bold;
-  color: black;
-}
-
-.sidebar-left-list .disabled {
-  color: #d1c7c0;
-}
-
-.sidebar-left-list li:hover {
-  cursor: pointer;
-  color: #000;
-}
-
+/* 바꾸기 */
 /* 본문(Main-content) 스타일 */
 .main-content {
   display: flex;
