@@ -2,29 +2,119 @@ package com.mate.user.vo;
 
 public class UserVO {
 
+    /**
+     * 회원 아이디
+     */
     private String usrId;
+    /**
+     * 회원 로그인 아이디
+     */
     private String usrLgnId;
+    /**
+     * 비밀번호
+     */
     private String usrPwd;
+    /**
+     * 회원의 성
+     */
     private String usrLnm;
+    /**
+     * 회원의 이름
+     */
     private String usrFnm;
+    /**
+     * 회원의 성별
+     */
     private String usrGndr;
+    /**
+     * 회원의 이메일
+     */
     private String usrEml;
+    /**
+     * 회원의 전화번호
+     */
     private String usrPhn;
+    /**
+     * 회원의 생년월일
+     */
     private String usrBd;
+    /**
+     * 회원의 주소
+     */
     private String usrAddrs;
+    /**
+     * 가이드 여부 확인
+     */
     private String usrIsGd;
+    /**
+     * 회원(가이드) 자기소개
+     */
     private String usrSlfIntdctn;
+    /**
+     * 회원의 페이팔 이메일
+     */
     private String usrPypEml;
+    /**
+     * 평균 별점
+     */
     private double usrAvgRtng;
+    /**
+     * 회원의 가입일자
+     */
     private String usrJnDt;
+    /**
+     * 회원의 탈퇴일자
+     */
     private String usrClDt;
+    /**
+     * 회원의 탈퇴 여부
+     */
     private String usrIsCl;
+    /**
+     * 수정일자
+     */
     private String usrMdfyDt;
+    /**
+     * 가이드 프로필 사진
+     */
     private String gdPrflImg;
+    /**
+     * 가이드 신분증 사진
+     */
     private String gdIdImg;
+    /**
+     * 가이드 범죄경력 조회서 사진
+     */
     private String gdCbcImg;
+    /**
+     * 가이드 대표 국적 아이디
+     */
     private String gdRpCntId;
 
+    public UserVO(String usrId, String usrLgnId, String usrPwd, String usrLnm, String usrFnm, String usrGndr, String usrEml, String usrPhn, String usrBd, String usrAddrs, String usrIsGd, String usrSlfIntdctn, String usrPypEml, double usrAvgRtng, String usrJnDt, String usrClDt, String usrIsCl, String usrMdfyDt, String gdPrflImg, String gdIdImg, String gdCbcImg, String gdRpCntId) {
+        this.usrId = usrId;
+        this.usrLgnId = usrLgnId;
+        this.usrPwd = usrPwd;
+        this.usrLnm = usrLnm;
+        this.usrFnm = usrFnm;
+        this.usrGndr = usrGndr;
+        this.usrEml = usrEml;
+        this.usrPhn = usrPhn;
+        this.usrBd = usrBd;
+        this.usrAddrs = usrAddrs;
+        this.usrIsGd = usrIsGd;
+        this.usrSlfIntdctn = usrSlfIntdctn;
+        this.usrPypEml = usrPypEml;
+        this.usrAvgRtng = usrAvgRtng;
+        this.usrJnDt = usrJnDt;
+        this.usrClDt = usrClDt;
+        this.usrIsCl = usrIsCl;
+        this.usrMdfyDt = usrMdfyDt;
+        this.gdPrflImg = gdPrflImg;
+        this.gdIdImg = gdIdImg;
+        this.gdCbcImg = gdCbcImg;
+        this.gdRpCntId = gdRpCntId;
+    }
 
     public String getUsrId() {
         return usrId;
