@@ -3,6 +3,7 @@ package com.mate.user.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mate.access.dao.AccessLogDao;
 import com.mate.access.vo.AccessLogVO;
 import com.mate.common.beans.Sha;
 import com.mate.common.utils.RequestUtil;
@@ -22,8 +23,8 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private Sha sha;
 	
-//	@Autowired
-//	private AccessLogDao accessLogDao;
+	@Autowired
+	private AccessLogDao accessLogDao;
 
 	@Override
 	public boolean createNewUser(RegistUserVO registUserVO) {
