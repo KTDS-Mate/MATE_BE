@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: mate
+  datasource:
+    url: jdbc:oracle:thin:@43.201.83.116:1521:XE
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    username: MATE
+    password: MATE    
+
+mybatis:
+  # mybatis-config.xml 파일의 위치를 지정
+  config-location: classpath:mybatis/mybatis-config.xml
+  # classpath -> target 폴더의 classes 폴더
+  mapper-locations: classpath:com/mate/**/dao/mapper/*Mapper.xml  
+  
+#    servlet:
+#       multipart:
+#         # 애플리케이션이 받을 수 있는 최대 업로드 용량에 대한 설정(100MB)
+#         max-file-size: 104857600
+#         # 한 사용자가 업로드 할 수 있는 최대 업로드 용량에 대한 설정(10MB)
+#         max-request-size: 10485760
+#     # mybatis 설정 파일의 경로 지정
+#   mybatis:
+#     # mybatis-config.xml 파일의 위치를 지정
+#     config-location: classpath:mybatis/mybatis-config.xml
+#     # classpath -> target 폴더의 classes 폴더
+#     mapper-locations: classpath:com/ktdsuniversity/edu/hello_spring/**/dao/mapper/*Mapper.xml
+#
+#   # Application 전용 설정 (Spring과 관계 없음)
+#   app:
+#     multipart:
+#       base-dir: C:\\uploadfiles
+#       # 파일명 난독화 설정
+#       obfuscation:
+#         enable: true
+#         # 파일 확장자 가릴 것인지 설정
+#         hide-ext:
+#           enable: true
+#     interceptors:
+#       check-session:
+#         path-patterns: /**
+
+# 이거 인터셉트용임
+#         exclude-path-patterns: 
+#           /js/**,
+#           /css/**,
+#         /image/**,
+#           /member/login,
+#           /member/regist/**
+#       check-dup-login:
+#         path-patterns:
+#           /member/login,
+#           /member/regist/**
+#         exclude-path-patterns:
+#       add-access-log:
+#         path-patterns: /**
+#         exclude-path-patterns: 
+#           /js/**,
+#           /css/**,
+#         /image/**
