@@ -21,7 +21,7 @@ pageEncoding="UTF-8" %>
         <div class="grid-rows">
           <div class="subject">
             <div>
-              <h3>기요미즈데라 사원에서 전통 참배 투어를 하고 싶어요</h3>
+              <h3>${userTourVO.usrTrTtl}</h3>
             </div>
             <div class="wish-button"></div>
           </div>
@@ -34,14 +34,11 @@ pageEncoding="UTF-8" %>
             </div>
             <div class="price-group">
               <div class="price-for">
-                <h2>Price for person</h2>
+                <h2>Price</h2>
               </div>
               <div class="price-person">
                 <div class="price-ad-c">
-                  <h2>Adult : 300$</h2>
-                </div>
-                <div class="price-ad-c">
-                  <h2>Child : 100$</h2>
+                  <h2>${userTourVO.usrTrGdHrPrc}$</h2>
                 </div>
               </div>
             </div>
@@ -104,10 +101,10 @@ pageEncoding="UTF-8" %>
               </div>
               <div class="margin-left">
                 <h2>
-                  일본 〒605-0864 Kyoto, Higashiyama Ward, Yugyomaecho, 583-3
+                  ${userTourVO.usrTrMp}
                 </h2>
                 <div class="flex-div">
-                  <div><h3>2024-10-20 09:00</h3></div>
+                  <div><h3>${userTourVO.usrTrDt}</h3></div>
                   <div class="margin-right"><h4>Open In GoogleMap</h4></div>
                 </div>
               </div>

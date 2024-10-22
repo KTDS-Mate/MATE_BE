@@ -1,37 +1,13 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0px;
-  padding: 0px;
-}
-
-div.grid {
-  display: grid;
-  grid-template-columns: 1fr 90rem 1fr;
-  grid-template-rows: 9rem 1fr 9rem;
-  row-gap: 10px;
-}
-
-div.header {
-  grid-column: 2 / 2;
-}
-
-div.content {
-  grid-column: 2 / 2;
-  grid-row: 2 / 2;
-}
-
-div.footer {
-  grid-column: 1 / -1;
-}
-
 div.content-grid {
   display: grid;
   grid-template-columns: 13rem 1fr;
   column-gap: 3rem;
 }
+
+div.my-page > ul.list > li.wishlist{
+	color: #333;
+}
+
 div.my-page {
   position: sticky;
   top: 10px;
@@ -78,7 +54,7 @@ div.main-content {
 
 .border-line {
   margin: 0 auto;
-  width: 70rem;
+  width: 60rem;
   border-top: 1px solid #000;
 }
 
@@ -89,7 +65,7 @@ div.main-content {
 div.wishlist {
   border: 2px solid #ffeedb;
   border-radius: 20px;
-  width: 70rem;
+  width: 60rem;
   height: 120rem;
   margin: 2rem;
   padding: 1rem 0;
