@@ -28,7 +28,7 @@ pageEncoding="UTF-8"%>
       <div class="content">
         <div class="content-grid">
           <!-- side-bar 공통파일 -->
-          <jsp:include page="../sidebar.jsp"></jsp:include>
+          <jsp:include page="../Tourist_Sidebar.jsp"></jsp:include>
           <!-- <div class="my-page">
             <ul class="list">
               <li>캘린더</li>

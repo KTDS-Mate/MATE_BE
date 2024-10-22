@@ -46,7 +46,7 @@ public class TestController {
 		return "all/Mypage_Guide_MyTour";
 	}
 	
-	@GetMapping("/mypage/guide/guide/wishlist")
+	@GetMapping("/mypage/guide/wishlist")
 	public String viewGuideWishList() {
 		return "all/Mypage_Guide_Wishlist";
 	}

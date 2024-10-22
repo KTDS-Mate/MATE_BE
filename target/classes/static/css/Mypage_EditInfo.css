@@ -11,42 +11,11 @@
   padding: 20px;
 }
 
-/* 사이드바 스타일 */
-.sidebar-left {
-  background-color: #fff6ee;
-  border-radius: 15px;
-  padding: 20px;
-  height: fit-content;
+div.my-page > ul.list > li.edit-profile{
+	color: #333;
 }
 
-.sidebar-left-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 150px;
-}
-
-.sidebar-left-list li {
-  font-size: 24px; /* 글씨 크기 */
-  color: hwb(25 75% 18% / 0.124);
-  margin: 2.5rem 0;
-  text-align: center;
-}
-
-.sidebar-left-list .active {
-  font-weight: bold;
-  color: black;
-}
-
-.sidebar-left-list .disabled {
-  color: #d1c7c0;
-}
-
-.sidebar-left-list li:hover {
-  cursor: pointer;
-  color: #000;
-}
-
+/* 바꾸기 */
 /* 본문(Main-content) 스타일 */
 .main-content {
   display: flex;
