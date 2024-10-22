@@ -20,7 +20,7 @@ pageEncoding="UTF-8"%>
       <div class="content">
         <div class="content-grid">
           <!-- side-bar 공통파일 -->
-          <jsp:include page="../sidebar.jsp"></jsp:include>
+          <jsp:include page="../Guide_Sidebar.jsp"></jsp:include>
           <!-- 수정이 예정 되어있음 -->
           <!-- 좌측의 네비게이션 바 -->
           <!-- <div class="my-page">
