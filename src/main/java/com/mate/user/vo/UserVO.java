@@ -5,8 +5,8 @@ public class UserVO {
     private String usrId;
     private String usrLgnId;
     private String usrPwd;
-    private String usrLnm;
-    private String usrFnm;
+    private String usrLnm;   
+    private String usrFnm;   
     private String usrGndr;
     private String usrEml;
     private String usrPhn;
