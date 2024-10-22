@@ -5,7 +5,6 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" type="text/css" href="/css/Mypage_EditInfo.css" />
-<<<<<<< HEAD
     <link
       rel="stylesheet"
       type="text/css"
@@ -14,8 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-=======
->>>>>>> 7fdc88c21f13c221feb51b125c0e27e69a623dce
+
     <title>Mypage_Tourist_EditInfo</title>
   </head>
 
@@ -28,13 +26,10 @@
       <div class="content">
         <!-- 사이드바 -->
         <!-- side-bar 공통파일 -->
-<<<<<<< HEAD
         <jsp:include page="../Guide_Sidebar.jsp"></jsp:include>
         <!-- <div class="sidebar-left">
-=======
         <!--<jsp:include page="../sidebar.jsp"></jsp:include>-->
         <div class="sidebar-left">
->>>>>>> 7fdc88c21f13c221feb51b125c0e27e69a623dce
           <ul class="sidebar-left-list">
             <li class="disabled">캘린더</li>
             <li class="disabled">즐겨찾기</li>
