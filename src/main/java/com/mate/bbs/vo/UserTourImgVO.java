@@ -2,7 +2,6 @@ package com.mate.bbs.vo;
 
 public class UserTourImgVO {
 
-	/** 여행객이 등록한 이미지를 받아오는 VO**/
 	/**
 	 * 여행자 등록 투어 게시글의 사진 PK
 	 */
@@ -24,7 +23,7 @@ public class UserTourImgVO {
 	 */
 	private String usrTrDltDt;
 	/**
-	 * 사진의 삭제 여부
+	 * 사진의 삭제 여부 (기본 값 : N)
 	 */
 	private String gdTrImgIsDlt;
 	

@@ -6,7 +6,6 @@ import com.mate.user.vo.UserVO;
 
 public class UserTourVO {
 
-	/***USRTRRQST 테이블***/
 	/**
 	 * 게시글의 아이디. Pk
 	 */
@@ -36,25 +35,21 @@ public class UserTourVO {
 	 */
 	private String usrTrMp;
 	/**
-	 * 가이드에게 간단하게 요청할 사안
-	 */
-	private String usrTrGdRq;
-	/**
 	 * 여행자가 가이드에게 제시하는 고용 금액
 	 */
-	private double usrTrGdHrPrc;
+	private String usrTrGdHrPrc;
 	/**
 	 * 여행자의 총 투어 인원
 	 */
-	private int usrTrNp;
+	private String usrTrNp;
 	/**
-	 * 논리적 삭제를 위한 게시글 삭제 여부
+	 * 논리적 삭제를 위한 게시글 삭제 여부 (기본 값 : N)
 	 */
 	private String usrTrIsDlt;
 	/**
 	 * 여행자의 투어 소요 시간(분 단위)
 	 */
-	private int usrTrTm;
+	private String usrTrTm;
 	/**
 	 * 여행자가 투어 요청 게시글을 등록한 일시
 	 */
@@ -76,19 +71,11 @@ public class UserTourVO {
 	 */
 	private String usrTrRqDtl;
 	/**
-	 * 해당 개시글을 작성한 유저
+	 * 게시글 작성자의 정보를 담은 VO
 	 */
 	private UserVO userVO;
-	/**
-	 * 게시글 이미지 리스트
-	 */
-	private List<UserTourImgVO> userTourImgList;
 	
-	/**DB에 컬럼이 존재하지 않음(쿼리로 값만 구해옴)**/
-	/**
-	 * 마감일
-	 */
-	private String deadline;
+	private List<UserTourImgVO> userTourImgList;
 	
 	public String getUsrTrPstId() {
 		return usrTrPstId;
@@ -132,22 +119,16 @@ public class UserTourVO {
 	public void setUsrTrMp(String usrTrMp) {
 		this.usrTrMp = usrTrMp;
 	}
-	public String getUsrTrGdRq() {
-		return usrTrGdRq;
-	}
-	public void setUsrTrGdRq(String usrTrGdRq) {
-		this.usrTrGdRq = usrTrGdRq;
-	}
-	public double getUsrTrGdHrPrc() {
+	public String getUsrTrGdHrPrc() {
 		return usrTrGdHrPrc;
 	}
-	public void setUsrTrGdHrPrc(double usrTrGdHrPrc) {
+	public void setUsrTrGdHrPrc(String usrTrGdHrPrc) {
 		this.usrTrGdHrPrc = usrTrGdHrPrc;
 	}
-	public int getUsrTrNp() {
+	public String getUsrTrNp() {
 		return usrTrNp;
 	}
-	public void setUsrTrNp(int usrTrNp) {
+	public void setUsrTrNp(String usrTrNp) {
 		this.usrTrNp = usrTrNp;
 	}
 	public String getUsrTrIsDlt() {
@@ -156,10 +137,10 @@ public class UserTourVO {
 	public void setUsrTrIsDlt(String usrTrIsDlt) {
 		this.usrTrIsDlt = usrTrIsDlt;
 	}
-	public int getUsrTrTm() {
+	public String getUsrTrTm() {
 		return usrTrTm;
 	}
-	public void setUsrTrTm(int usrTrTm) {
+	public void setUsrTrTm(String usrTrTm) {
 		this.usrTrTm = usrTrTm;
 	}
 	public String getUsrTrRstrDt() {
@@ -204,12 +185,5 @@ public class UserTourVO {
 	public void setUserTourImgList(List<UserTourImgVO> userTourImgList) {
 		this.userTourImgList = userTourImgList;
 	}
-	public String getDeadline() {
-		return deadline;
-	}
-	public void setDeadline(String deadline) {
-		this.deadline = deadline;
-	}
-
+	
 }
-
