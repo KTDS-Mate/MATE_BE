@@ -40,7 +40,7 @@ mybatis:
 #		    check-session:
 #		      path-patterns: /**
 
-        # 이거 인터셉트용임
+#   이거 인터셉트용임
 #		      exclude-path-patterns: 
 #		        /js/**,
 #		        /css/**,

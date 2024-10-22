@@ -1,5 +1,6 @@
 package com.mate.common.beans;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -10,7 +11,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer{
 
-
+	@Bean
+	Sha createShaInstance() {
+		Sha sha = new Sha();
+		return sha;
+	}
 	/**
 	 *  JSP View Resolver 설정
 	 */

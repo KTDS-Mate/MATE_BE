@@ -1,38 +1,3 @@
-<<<<<<< HEAD
-@font-face {
-  font-family: 'Inter';
-  /* 원하는 폰트 이름 지정 */
-  src: url('/font/Inter-VariableFont_opsz,wght.ttf') format('truetype');
-  font-weight: normal;
-  /* 폰트 두께 */
-  font-style: normal;
-  /* 폰트 스타일 */
-}
-
-body {
-  font-family: 'Inter';
-}
-
-/* 전체 그리드 레이아웃 */
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 80rem 1fr;
-  grid-template-rows: 9rem 1fr 9rem;
-  row-gap: 10px;
-}
-
-/* 헤더 설정 */
-.header {
-  grid-column: 2 / 2;
-}
-
-/* 푸터 설정 */
-.footer {
-  grid-column: 1 / -1;
-}
-=======
->>>>>>> 8662bed88921a494095ede571cdadad7c5d5bb0f
-
 /* content 내부 그리드 설정 */
 .content {
   grid-column: 2 / 2;
@@ -43,48 +8,6 @@ body {
   /* 사이드바와 본문(Main-content) 사이 간격을 4rem으로 설정 */
   column-gap: 4rem;
   padding: 20px;
-}
-
-<<<<<<< HEAD
-/* 사이드바 스타일 */
-.sidebar-left {
-  background-color: #fff6ee;
-  border-radius: 15px;
-  padding: 20px;
-  height: fit-content;
-}
-
-.sidebar-left-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 150px;
-}
-
-.sidebar-left-list li {
-  font-size: 1.1rem;
-  /* 글씨 크기 */
-  color: hwb(25 75% 18% / 0.124);
-  margin: 2.5rem 0;
-  text-align: center;
-}
-
-.sidebar-left-list .active {
-  font-weight: bold;
-  color: black;
-}
-
-.sidebar-left-list .disabled {
-  color: #d1c7c0;
-}
-
-.sidebar-left-list li:hover {
-  cursor: pointer;
-  color: #000;
-=======
-div.my-page > ul.list > li.edit-profile{
-	color: #333;
->>>>>>> 8662bed88921a494095ede571cdadad7c5d5bb0f
 }
 
 /* 바꾸기 */
