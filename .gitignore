@@ -425,3 +425,4 @@ $RECYCLE.BIN/
 .DS_Store
 
 # End of https://www.toptal.com/developers/gitignore/api/node,windows,macos,intellij,eclipse,maven,visualstudiocode
+.idea/
