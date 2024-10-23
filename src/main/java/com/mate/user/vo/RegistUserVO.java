@@ -1,6 +1,8 @@
 package com.mate.user.vo;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public class RegistUserVO {
 
@@ -9,16 +11,17 @@ public class RegistUserVO {
 	@NotBlank(message = "아이디를 입력해주세요.")
 	private String usrLgnId;
 
-	@NotBlank(message = "비밀번호를 입력해주세요.")
+	@NotBlank(message = "영문, 숫자, 특수 문자를 포함해서 8자 이상 16자 이하로 입력해주세요.")
+	@Size(min=8, max=16)
 	private String usrPw;
 	
 	@NotBlank(message = "비밀번호를 다시 한번 입력해주세요.")
 	private String confirmPw;
 	
-	@NotBlank(message = "이름을 입력해주세요.")
+	@NotBlank(message = "성을 입력해주세요.")
 	private String usrLnm;
 	
-	@NotBlank(message = "성을 입력해주세요.")
+	@NotBlank(message = "이름을 입력해주세요.")
 	private String usrFnm;
 	
 	@NotBlank(message = "지역번호를 포함한 휴대폰 번호를 입력해주세요.")
@@ -29,10 +32,14 @@ public class RegistUserVO {
 	private String usrBd;
 	
 	@NotBlank(message = "이메일을 입력해 주세요.")
+	@Email(message = "이메일 형식에 맞게 입력해주세요.")
 	private String usrEml;
 	
 	private String salt;
-
+	
+	@NotBlank(message = "국적을 입력하세요.")
+	private String country;
+	
 	public String getUsrId() {
 		return usrId;
 	}
@@ -119,5 +126,13 @@ public class RegistUserVO {
 
 	public void setSalt(String salt) {
 		this.salt = salt;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 }
