@@ -161,6 +161,7 @@ a:hover, a:active, a:visited, a:link {
 
 .tourtime-deadline {
 	display: flex;
+	justify-content: space-between;
 }
 
 .tourtime-deadline p {
@@ -173,7 +174,6 @@ a:hover, a:active, a:visited, a:link {
 }
 
 .tour-deadline {
-	margin-left: 8rem;
 	font-weight: 500;
 	font-family: Inter;
 }

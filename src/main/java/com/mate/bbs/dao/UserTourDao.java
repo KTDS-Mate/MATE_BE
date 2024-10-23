@@ -3,6 +3,7 @@ package com.mate.bbs.dao;
 import java.util.List;
 
 import com.mate.bbs.vo.SearchUserTourVO;
+import com.mate.bbs.vo.UserTourImgVO;
 import com.mate.bbs.vo.UserTourModifyVO;
 import com.mate.bbs.vo.UserTourVO;
 import com.mate.bbs.vo.UserTourWriteVO;

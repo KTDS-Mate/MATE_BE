@@ -47,10 +47,6 @@ public class UserTourVO {
 	 */
 	private int usrTrIsDlt;
 	/**
-	 * 여행자의 투어 소요 시간(분 단위)
-	 */
-	private String usrTrTm;
-	/**
 	 * 여행자가 투어 요청 게시글을 등록한 일시
 	 */
 	private String usrTrRstrDt;
@@ -104,6 +100,10 @@ public class UserTourVO {
 	
 	/**컬럼은 존재하지 않음**/
 	private int deadline;
+	/**
+	 * 여행자의 투어 소요 시간(분 단위)
+	 */
+	private String usrTrTm;
 
 	public String getUsrTrPstId() {
 		return usrTrPstId;
