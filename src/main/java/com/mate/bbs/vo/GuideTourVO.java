@@ -30,6 +30,10 @@ public class GuideTourVO {
 	 */
 	private String gdTrStDt;
 	/**
+	 * 투어 종료 날짜
+	 */
+	private int gdTrEdDt;
+	/**
 	 * 투어 목적
 	 */
 	private String gdTrPrps;
@@ -45,10 +49,7 @@ public class GuideTourVO {
 	 * 투어 요약
 	 */
 	private String gdTrSmry;
-	/**
-	 * 투어 종료 날짜
-	 */
-	private int gdTrEdDt;
+	
 	/**
 	 * 투어 등록일
 	 */
@@ -72,18 +73,31 @@ public class GuideTourVO {
 	private String trCtId;
 	
 	/**
+	 * 투어를 진행할 국가 아이디 fk
+	 */
+	private String trCntId;
+	/**
+	 * 투어 최대 인원 수
+	 */
+	private int gdTrMxNp;
+	
+	/**
 	 * 가이드 투어 이미지 리스트 VO 
 	 */
-	private List<GuideTourImgVO> guideTourImgVO;
+	private List<GuideTourImgVO> guideTourImgList;
 	/**
 	 * 가이드 투어 상세정보 리스트 VO
 	 */
-	private List<GuideTourDetailInfoVO> guideTourDetailInfoVO;
+	private List<GuideTourDetailInfoVO> guideTourDetailInfoList;
 	
 	/**
 	 * 가이드 투어 제공요소 리스트 VO
 	 */
 	private List<GuideTourProvidedVO> guideTourProvidedList;
+	/**
+	 * 가이드 투어 리뷰 리스트 VO
+	 */
+	private List<GuideTourReviewVO> guideTourReviewList;
 	
 	/**
 	 * 게시글 작성자의 정보를 담은 VO
@@ -93,173 +107,152 @@ public class GuideTourVO {
 	 * 도시 정보를 담은 VO
 	 */
 	private CityVO cityVO;
-	
+	/**
+	 * 나라 정보를 담은 VO
+	 */
 	private CountryVO countryVO;
-
+	
 	public String getGdTrPstId() {
 		return gdTrPstId;
 	}
-
 	public void setGdTrPstId(String gdTrPstId) {
 		this.gdTrPstId = gdTrPstId;
 	}
-
 	public String getAthrId() {
 		return athrId;
 	}
-
 	public void setAthrId(String athrId) {
 		this.athrId = athrId;
 	}
-
 	public String getUsrId() {
 		return usrId;
 	}
-
 	public void setUsrId(String usrId) {
 		this.usrId = usrId;
 	}
-
 	public String getGdTrTtl() {
 		return gdTrTtl;
 	}
-
 	public void setGdTrTtl(String gdTrTtl) {
 		this.gdTrTtl = gdTrTtl;
 	}
-
 	public String getGdTrStDt() {
 		return gdTrStDt;
 	}
-
 	public void setGdTrStDt(String gdTrStDt) {
 		this.gdTrStDt = gdTrStDt;
 	}
-
-	public String getGdTrPrps() {
-		return gdTrPrps;
-	}
-
-	public void setGdTrPrps(String gdTrPrps) {
-		this.gdTrPrps = gdTrPrps;
-	}
-
-	public String getGdTrMp() {
-		return gdTrMp;
-	}
-
-	public void setGdTrMp(String gdTrMp) {
-		this.gdTrMp = gdTrMp;
-	}
-
-	public int getGdTrPrc() {
-		return gdTrPrc;
-	}
-
-	public void setGdTrPrc(int gdTrPrc) {
-		this.gdTrPrc = gdTrPrc;
-	}
-
-	public String getGdTrSmry() {
-		return gdTrSmry;
-	}
-
-	public void setGdTrSmry(String gdTrSmry) {
-		this.gdTrSmry = gdTrSmry;
-	}
-
 	public int getGdTrEdDt() {
 		return gdTrEdDt;
 	}
-
 	public void setGdTrEdDt(int gdTrEdDt) {
 		this.gdTrEdDt = gdTrEdDt;
 	}
-
+	public String getGdTrPrps() {
+		return gdTrPrps;
+	}
+	public void setGdTrPrps(String gdTrPrps) {
+		this.gdTrPrps = gdTrPrps;
+	}
+	public String getGdTrMp() {
+		return gdTrMp;
+	}
+	public void setGdTrMp(String gdTrMp) {
+		this.gdTrMp = gdTrMp;
+	}
+	public int getGdTrPrc() {
+		return gdTrPrc;
+	}
+	public void setGdTrPrc(int gdTrPrc) {
+		this.gdTrPrc = gdTrPrc;
+	}
+	public String getGdTrSmry() {
+		return gdTrSmry;
+	}
+	public void setGdTrSmry(String gdTrSmry) {
+		this.gdTrSmry = gdTrSmry;
+	}
 	public String getGdTrRstrDt() {
 		return gdTrRstrDt;
 	}
-
 	public void setGdTrRstrDt(String gdTrRstrDt) {
 		this.gdTrRstrDt = gdTrRstrDt;
 	}
-
 	public String getGdTrMdfyDt() {
 		return gdTrMdfyDt;
 	}
-
 	public void setGdTrMdfyDt(String gdTrMdfyDt) {
 		this.gdTrMdfyDt = gdTrMdfyDt;
 	}
-
 	public String getGdTrDltDt() {
 		return gdTrDltDt;
 	}
-
 	public void setGdTrDltDt(String gdTrDltDt) {
 		this.gdTrDltDt = gdTrDltDt;
 	}
-
 	public String getGdTrIsDlt() {
 		return gdTrIsDlt;
 	}
-
 	public void setGdTrIsDlt(String gdTrIsDlt) {
 		this.gdTrIsDlt = gdTrIsDlt;
 	}
-
 	public String getTrCtId() {
 		return trCtId;
 	}
-
 	public void setTrCtId(String trCtId) {
 		this.trCtId = trCtId;
 	}
-
-	public List<GuideTourImgVO> getGuideTourImgVO() {
-		return guideTourImgVO;
+	public String getTrCntId() {
+		return trCntId;
 	}
-
-	public void setGuideTourImgVO(List<GuideTourImgVO> guideTourImgVO) {
-		this.guideTourImgVO = guideTourImgVO;
+	public void setTrCntId(String trCntId) {
+		this.trCntId = trCntId;
 	}
-
-	public List<GuideTourDetailInfoVO> getGuideTourDetailInfoVO() {
-		return guideTourDetailInfoVO;
+	public int getGdTrMxNp() {
+		return gdTrMxNp;
 	}
-
-	public void setGuideTourDetailInfoVO(List<GuideTourDetailInfoVO> guideTourDetailInfoVO) {
-		this.guideTourDetailInfoVO = guideTourDetailInfoVO;
+	public void setGdTrMxNp(int gdTrMxNp) {
+		this.gdTrMxNp = gdTrMxNp;
 	}
-
+	public List<GuideTourImgVO> getGuideTourImgList() {
+		return guideTourImgList;
+	}
+	public void setGuideTourImgList(List<GuideTourImgVO> guideTourImgList) {
+		this.guideTourImgList = guideTourImgList;
+	}
+	public List<GuideTourDetailInfoVO> getGuideTourDetailInfoList() {
+		return guideTourDetailInfoList;
+	}
+	public void setGuideTourDetailInfoList(List<GuideTourDetailInfoVO> guideTourDetailInfoList) {
+		this.guideTourDetailInfoList = guideTourDetailInfoList;
+	}
 	public List<GuideTourProvidedVO> getGuideTourProvidedList() {
 		return guideTourProvidedList;
 	}
-
 	public void setGuideTourProvidedList(List<GuideTourProvidedVO> guideTourProvidedList) {
 		this.guideTourProvidedList = guideTourProvidedList;
 	}
-
+	public List<GuideTourReviewVO> getGuideTourReviewList() {
+		return guideTourReviewList;
+	}
+	public void setGuideTourReviewList(List<GuideTourReviewVO> guideTourReviewList) {
+		this.guideTourReviewList = guideTourReviewList;
+	}
 	public UserVO getUserVO() {
 		return userVO;
 	}
-
 	public void setUserVO(UserVO userVO) {
 		this.userVO = userVO;
 	}
-
 	public CityVO getCityVO() {
 		return cityVO;
 	}
-
 	public void setCityVO(CityVO cityVO) {
 		this.cityVO = cityVO;
 	}
-
 	public CountryVO getCountryVO() {
 		return countryVO;
 	}
-
 	public void setCountryVO(CountryVO countryVO) {
 		this.countryVO = countryVO;
 	}
