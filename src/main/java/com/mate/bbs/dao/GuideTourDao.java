@@ -23,6 +23,8 @@ public interface GuideTourDao {
      */
     public List<GuideTourVO> selectAllGuideTour();
     
+//    public  selectOneGuideTour();
+    
     /**
      *  새로운 가이드 투어를 생성하는 메서드
      * @param guideTourWriteVO : 가이드 투어 작성 VO

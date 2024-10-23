@@ -5,6 +5,7 @@ pageEncoding="UTF-8" %>
   <head>
     <meta charset="UTF-8" />
     <title>여행자 투어 등록</title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
     <link rel="stylesheet" type="text/css" href="/css/Tourist_TourInsert.css" />
   </head>
   <body>
