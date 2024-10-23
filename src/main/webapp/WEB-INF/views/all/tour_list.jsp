@@ -77,7 +77,10 @@ pageEncoding="UTF-8"%>
 	                    <a href="/usertour/view?usrTrPstId=${userTourVO.usrTrPstId}" class="tour-subject"><span class="ttl-color">${userTourVO.usrTrTtl}</span></a>
 	                    <a href="/usertour/view?usrTrPstId=${userTourVO.usrTrPstId}" class="tour-comment">${userTourVO.usrTrPrps}</a>
 	                    <div class="tourtime-deadline">
-		                    <p class="tour-schedule">투어 소요 시간 : ${userTourVO.usrTrTm}분</p>
+		                    <div>
+		                    	<p class="tour-schedule">투어일 : ${userTourVO.usrTrDt}</p>
+		                    	<div class="">소요시간 : ${userTourVO.usrTrTm}분</div>
+		                    </div>
 		                    <p class="tour-deadline">마감 ${userTourVO.deadline}일전</p>
 	                    </div>
 	                    <div class="tour-cost-fee">

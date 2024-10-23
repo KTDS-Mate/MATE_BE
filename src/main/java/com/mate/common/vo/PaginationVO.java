@@ -2,6 +2,13 @@ package com.mate.common.vo;
 
 public class PaginationVO {
 
+	/*
+	 * 페이지네이션을 위한 VO
+	 * 각자 검색 VO(EX> SearchUserTourVO)에 상속 받고 
+	 * ServiceImpl에서 setListSize()사용해서 각자 한 화면에 보여주고 싶은 페이지 직접 할당
+	 * -> EX> UserTourServiceImpl
+	 */
+	
 	/**페이지네이션 조회**/
 	private int pageNo;
 	
@@ -29,7 +36,6 @@ public class PaginationVO {
 	private int prevGroupStartPageNo;
 	
 	public PaginationVO() {
-		this.listSize = 9;
 		this.pageCountInGroup = 10;
 	}
 

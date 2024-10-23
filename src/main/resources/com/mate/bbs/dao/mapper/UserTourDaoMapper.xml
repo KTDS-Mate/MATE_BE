@@ -79,7 +79,6 @@
 		     , UTR.USR_TR_MP
 		     , UTR.USR_TR_GD_HR_PRC
 		     , UTR.USR_TR_NP
-		     , UTR.USR_TR_TM
 		     , UTR.USR_TR_RSTR_DT
 		     , UTR.USR_TR_MDFY_DT
 		     , UTR.USR_TR_DLT_DT
@@ -120,34 +119,25 @@
 		     , UTR.ATHR_ID
 		     , UTR.GD_ID
 		     , UTR.USR_TR_TTL
-		     , UTR.USR_TR_DT
+		     , TO_CHAR(UTR.USR_TR_DT, 'YYYY-MM-DD') USR_TR_DT
 		     , UTR.USR_TR_PRPS
 		     , UTR.USR_TR_MP
 		     , UTR.USR_TR_GD_HR_PRC
 		     , UTR.USR_TR_NP
-		     , UTR.USR_TR_TM
 		     , UTR.USR_TR_RSTR_DT
 		     , UTR.USR_TR_MDFY_DT
 		     , UTR.USR_TR_DLT_DT
 		     , UTR.TR_CT_ID
 		     , UTR.USR_TR_RQ_DTL 
 		     , UTRI.USR_TR_RQ_IMG_ID_URL
-		     , UI.USR_LNM 
-		     , UI.USR_FNM 
 		     , UTR.GD_GNDR 
 		     , UTR.GD_AGE 
 		     , UTR.GD_CRR 
 		     , UTR.GD_WNT_RQ 
-		     , TS.TR_LCTNS 
-		     , TS.TR_RQST 
 		     , CEIL (UTR.USR_TR_DT - SYSDATE) AS DEADLINE
 		  FROM USR_TR_RQST UTR
 		  LEFT JOIN USR_TR_RQST_IMG UTRI
 		    ON UTR.USR_TR_PST_ID = UTRI.USR_TR_PST_ID
-		 INNER JOIN USR_INF UI
-		    ON UTR.ATHR_ID = UI.USR_ID 
-		  LEFT JOIN TR_SCHDL TS
-		    ON UTR.USR_TR_PST_ID = TS.USR_TR_PST_ID
 		<if test="_parameter != null">
 			<include refid="com.mate.bbs.dao.UserTourDao.selectSubjectAndContent" />
 		</if>

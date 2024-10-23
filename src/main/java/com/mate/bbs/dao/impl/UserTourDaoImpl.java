@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mate.bbs.dao.UserTourDao;
 import com.mate.bbs.vo.SearchUserTourVO;
+import com.mate.bbs.vo.UserTourImgVO;
 import com.mate.bbs.vo.UserTourModifyVO;
 import com.mate.bbs.vo.UserTourVO;
 import com.mate.bbs.vo.UserTourWriteVO;
@@ -41,7 +42,7 @@ public class UserTourDaoImpl extends SqlSessionDaoSupport implements UserTourDao
 	public List<UserTourVO> selectAllUserTour(SearchUserTourVO searchUserTourVO) {
 		return this.getSqlSession().selectList(NAMESPACE + ".selectAllUserTour", searchUserTourVO);
 	}
-
+	
 	@Override
 	public int updateUserTour(UserTourModifyVO userTourModifyVO) {
 		return this.getSqlSession().update(NAMESPACE + ".updateUserTour", userTourModifyVO);

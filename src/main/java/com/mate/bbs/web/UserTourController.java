@@ -37,4 +37,9 @@ public class UserTourController {
 		return "all/GuideRecruitmentPage";
 	}
 	
+	@GetMapping("/usertour/insert")
+	public String viewUserTourInsertPage() {
+		return "all/Tourist_TourInsert";
+	}
+	
 }
