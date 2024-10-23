@@ -18,9 +18,6 @@ public class GuideTourProvidedVO {
 	 */
 	private String gdTrPstId;
 	
-	
-
-	
 	public String getTrIncldId() {
 		return trIncldId;
 	}

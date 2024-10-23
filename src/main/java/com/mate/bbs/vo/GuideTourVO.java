@@ -78,18 +78,6 @@ public class GuideTourVO {
 	
 //	private CityVO cityVO;
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 	public CountryVO getCountryVO() {
 		return countryVO;
 	}
