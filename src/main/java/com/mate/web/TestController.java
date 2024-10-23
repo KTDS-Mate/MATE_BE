@@ -100,7 +100,7 @@ public class TestController {
 		return "all/Guide_TourInsert";
 	}  
 	  
-	@GetMapping("/guide/recruitment")
+	@GetMapping("/tourist/recruitment")
 	public String viewGuideRecruitment() {
 		return "all/GuideRecruitmentPage";
 	}

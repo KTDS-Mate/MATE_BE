@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,6 +10,11 @@ pageEncoding="UTF-8"%>
       rel="stylesheet"
       type="text/css"
       href="/css/MyPageLayout_PaymentDetails.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/common.css"
     />
   </head>
 
@@ -98,35 +104,31 @@ pageEncoding="UTF-8"%>
                   <th>투어번호</th>
                   <th>결제요청일자</th>
                   <th>투어명</th>
-                  <th>가이드</th>
+                  <th>가이드 이름</th>
                   <th>결제상태</th>
                   <th>투어금액</th>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>A12345678</td>
-                    <td>2024.09.18</td>
-                    <td>베니스 황혼의 곤돌라투어</td>
-                    <td>워씽시</td>
-                    <td>완료</td>
-                    <td>300,000원</td>
-                  </tr>
-                  <tr>
-                    <td>A12345678</td>
-                    <td>2024.09.18</td>
-                    <td>베니스 황혼의 곤돌라투어</td>
-                    <td>워씽시</td>
-                    <td>완료</td>
-                    <td>300,000원</td>
-                  </tr>
-                  <tr>
-                    <td>A12345678</td>
-                    <td>2024.09.18</td>
-                    <td>베니스 황혼의 곤돌라투어</td>
-                    <td>워씽시</td>
-                    <td>완료</td>
-                    <td>300,000원</td>
-                  </tr>
+                  <c:choose>
+                    <c:when test="${not empty paymentListVO.paymentList}">
+                      <c:forEach item="${paymentListVO.paymentList}" var=payInfo>
+                        <tr>
+		                  <td>${payInfo.payId}</td>
+		                  <td>${payInfo.payCrtDt}</td>
+		                  <td>${payInfo.gdVO.usrFnm}</td>
+		                  <!-- TODO 아래에 있는 투어 이름 나중에 투어VO받아오면 그걸로 바꾸기 -->
+		                  <td>${payInfo.payTrName}</td>
+		                  <td>${payInfo.payStt}</td>
+		                  <td>${payInfo.payCsh}</td>
+		                </tr>
+                      </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                      <tr>
+		                <td colspan="6">결제 내역이 존재하지 않습니다.</td>
+		              </tr>
+                    </c:otherwise>
+                  </c:choose>
                 </tbody>
               </table>
             </div>

@@ -10,6 +10,11 @@ pageEncoding="UTF-8"%>
       type="text/css"
       href="/css/Mypage_Tourist_Calendar.css"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/common.css"
+    />
   </head>
   <body>
     <div class="grid">
