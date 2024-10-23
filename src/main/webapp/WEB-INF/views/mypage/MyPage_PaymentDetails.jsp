@@ -1,23 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+  <!DOCTYPE html>
+  <html>
+
   <head>
     <meta charset="UTF-8" />
     <title>Mypage_Tourist_MyTour</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="/css/MyPageLayout_SalesManagement.css"
-    />
+    <link rel="stylesheet" type="text/css" href="/css/MyPageLayout_PaymentDetails.css" />
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      rel="stylesheet"
-      type="text/css"
-      href="/css/common.css"
-    />
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet">
   </head>
 
   <body>
@@ -26,13 +20,14 @@ pageEncoding="UTF-8"%>
       <div class="header">
         <!-- header 공통파일 -->
         <jsp:include page="../header.jsp"></jsp:include>
+
       </div>
       <!--  -->
 
       <div class="content">
         <div class="content-grid">
           <!-- side-bar 공통파일 -->
-          <jsp:include page="../Guide_Sidebar.jsp"></jsp:include>
+          <jsp:include page="../Tourist_Sidebar.jsp"></jsp:include>
           <!-- <div class="my-page">
             <ul class="list">
               <li>캘린더</li>
@@ -58,6 +53,47 @@ pageEncoding="UTF-8"%>
                 최근 2년간 주문내역을 조회하실 수 있습니다
               </span>
             </div>
+
+            <!-- 필터 박스 --------------------------------------------------------------->
+            <div class="filter-box">
+              <div class="filter-grid">
+                <!-- 날짜 버튼들 -->
+
+                <div class="date-buttons">
+                  <div class="align-button">
+                    <span class="sample1"> 최근일주일</span>
+                  </div>
+                  <div class="align-button">
+                    <span class="sample1"> 1개월</span>
+                  </div>
+                  <div class="align-button">
+                    <span class="sample1"> 3개월</span>
+                  </div>
+                  <div class="align-button">
+                    <span class="sample1"> 6개월</span>
+                  </div>
+                </div>
+
+                <!-- 날짜 입력란 -->
+                <div class="date-range">
+                  <input type="date" value="2023-09-18" />
+                  ~
+                  <input type="date" value="2024-09-18" />
+                </div>
+
+                <!-- 투어명 선택 -->
+                <div class="tour-name">
+                  <select>
+                    <option value="">투어명</option>
+                    <!-- 추가 옵션 -->
+                  </select>
+                </div>
+
+                <!-- 조회 버튼 -->
+                <button>조회</button>
+              </div>
+            </div>
+            <!-------------------------------------------------------------->
 
             <div class="tour-list">
               <table class="payment-table">
@@ -97,9 +133,6 @@ pageEncoding="UTF-8"%>
                 </tbody>
               </table>
             </div>
-            <div class="total-sale">
-              <h2>총 매출은 32,585,000원 입니다.</h2>
-            </div>
           </div>
         </div>
       </div>
@@ -110,4 +143,5 @@ pageEncoding="UTF-8"%>
       </div>
     </div>
   </body>
-</html>
+
+  </html>

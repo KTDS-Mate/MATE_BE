@@ -1,9 +1,0 @@
-diff a/src/main/webapp/WEB-INF/views/mypage/MyPageLayout_SalesManagement.jsp b/src/main/webapp/WEB-INF/views/mypage/MyPageLayout_SalesManagement.jsp	(rejected hunks)
-@@ -10,6 +10,7 @@
-       type="text/css"
-       href="/css/MyPageLayout_SalesManagement.css"
-     />
-+<<<<<<< HEAD
-     <link rel="preconnect" href="https://fonts.googleapis.com">
- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
