@@ -31,7 +31,6 @@ pageEncoding="UTF-8"%>
 
       <div class="content">
         <div class="my-tour">
-          <div class="border"></div>
 
           <div class="align-button">
             <span class="align-button-text">대륙</span>
@@ -40,7 +39,7 @@ pageEncoding="UTF-8"%>
           </div>
 
           <div class="tour-box">
-            <img src="/image/tourlist/베니스.jpg" alt="" />
+            <img src="/img/tourlist/베니스.jpg" alt="" />
             <div class="tour-contents">
               <h3>테스트제목</h3>
               <p class="tour-contents-text">날짜 :2024.02.12 ~ 2024.03.02</p>
@@ -52,7 +51,7 @@ pageEncoding="UTF-8"%>
           </div>
 
           <div class="tour-box">
-            <img src="/image/tourlist/라스베가스 야경.jpg" alt="" />
+            <img src="/img/tourlist/라스베가스 야경.jpg" alt="" />
             <div class="tour-contents">
               <h3>테스트제목</h3>
               <p class="tour-contents-text">날짜 :2024.02.12 ~ 2024.03.02</p>
@@ -64,7 +63,7 @@ pageEncoding="UTF-8"%>
           </div>
 
           <div class="tour-box">
-            <img src="/image/tourlist/베트남 퀴논 도시.jpg" alt="" />
+            <img src="/img/tourlist/베트남 퀴논 도시.jpg" alt="" />
             <div class="tour-contents">
               <h3>테스트제목</h3>
               <p class="tour-contents-text">날짜 :2024.02.12 ~ 2024.03.02</p>
@@ -76,7 +75,7 @@ pageEncoding="UTF-8"%>
           </div>
 
           <div class="tour-box">
-            <img src="/image/tourlist/삿포로 온천.jpg" alt="" />
+            <img src="/img/tourlist/삿포로 온천.jpg" alt="" />
             <div class="tour-contents">
               <h3>테스트제목</h3>
               <p class="tour-contents-text">날짜 :2024.02.12 ~ 2024.03.02</p>

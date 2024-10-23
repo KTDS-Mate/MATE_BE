@@ -39,7 +39,6 @@ div.my-tour {
     display: flex;
     border: 1px solid #BBBBBB;
     border-radius: 20px;
-    width: 87.5rem;
     height: 25rem;
     margin: 2.3rem auto;
     flex-grow: 0;

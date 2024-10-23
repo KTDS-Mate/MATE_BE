@@ -5,29 +5,78 @@
   
 <mapper namespace="com.mate.bbs.dao.GuideTourDao">
 
+<resultMap id="guideTourVOMap" 
+		   type="com.mate.bbs.vo.GuideTourVO"
+		   autoMapping="true">
+		   <id column="GD_TR_PST_ID" property="gdTrPstId"/>
+		   <association property="userVO"
+		   				javaType="com.mate.user.vo.UserVO"
+						autoMapping="true">
+				<id column="USR_ID" property="usrId" />	
+			</association>
+		</resultMap>
+
 <select id="selectGuideTourAllCount" resultType="_int">
 	SELECT COUNT(1)
 	  FROM GD_TR_RCRT
 </select>
 
+<select id="selectOneGuideTour" parameterType="string">
+	SELECT GTR.GD_TR_PST_ID
+		 , GTR.ATHR_ID
+		 , GTR.USR_ID
+		 , GTR.GD_TR_TTL
+		 , GTR.GD_TR_ST_DT
+		 , GTR.GD_TR_ED_DT 
+		 , GTR.GD_TR_PRPS
+		 , GTR.GD_TR_MP
+		 , GTR.GD_TR_PRC
+		 , GTR.GD_TR_SMRY
+		 , GTR.GD_TR_TM
+		 , GTR.GD_TR_RSTR_DT
+		 , GTR.GD_TR_MDFY_DT
+		 , GTR.GD_TR_DLT_DT
+		 , GTR.GD_TR_IS_DLT
+		 , GTR.TR_CNT_ID
+		 , GTR.TR_CT_ID
+		 , GTRI.GD_TR_IMG_URL 
+		 , UI.USR_FNM 
+		 , UI.USR_LNM 
+		 , UI.USR_GNDR 
+		 , UI.GD_PRFL_IMG 
+	  FROM GD_TR_RCRT GTR
+	  LEFT JOIN GD_TR_RCRT_IMG GTRI
+	    ON GTR.GD_TR_PST_ID = GTRI.GD_TR_PST_ID 
+	  LEFT JOIN GD_TR_RVW GTRV
+	    ON GTR.GD_TR_PST_ID = GTRV.GD_TR_PST_ID 
+	 INNER JOIN USR_INF UI
+	    ON UI.USR_ID = GTR.USR_ID 
+</select>
+
 <select id="selectAllGuideTour" resultType="com.mate.bbs.vo.GuideTourVO">
-	SELECT GD_TR_PST_ID
-		 , ATHR_ID
-		 , USR_ID
-		 , GD_TR_TTL
-		 , TO_CHAR(GD_TR_DT, 'YYYY-MM-DD HH24:HH:MI:SS')
-		 , GD_TR_PRPS
-		 , GD_TR_MP
-		 , GD_TR_PRC
-		 , GD_TR_SMRY
-		 , GD_TR_TM
-		 , TO_CHAR(GD_TR_RSTR_DT, 'YYYY-MM-DD HH24:HH:MI:SS')
-		 , TO_CHAR(GD_TR_MDFY_DT, 'YYYY-MM-DD HH24:HH:MI:SS')
-		 , TO_CHAR(GD_TR_DLT_DT, 'YYYY-MM-DD HH24:HH:MI:SS')
-		 , GD_TR_IS_DLT
-		 , TR_CNT_ID
-		 , TR_CT_ID
-	  FROM GD_TR_RCRT
+	SELECT GTR.GD_TR_PST_ID
+	 , GTR.ATHR_ID
+	 , GTR.USR_ID
+	 , GTR.GD_TR_TTL
+	 , GTR.GD_TR_ST_DT
+	 , GTR.GD_TR_ED_DT 
+	 , GTR.GD_TR_PRPS
+	 , GTR.GD_TR_MP
+	 , GTR.GD_TR_PRC
+	 , GTR.GD_TR_SMRY
+	 , GTR.GD_TR_TM
+	 , GTR.GD_TR_RSTR_DT
+	 , GTR.GD_TR_MDFY_DT
+	 , GTR.GD_TR_DLT_DT
+	 , GTR.GD_TR_IS_DLT
+	 , GTR.TR_CNT_ID
+	 , GTR.TR_CT_ID
+	 , GTRI.GD_TR_IMG_URL 
+  FROM GD_TR_RCRT GTR
+ INNER JOIN GD_TR_RCRT_IMG GTRI
+    ON GTR.GD_TR_PST_ID = GTRI.GD_TR_PST_ID 
+ INNER JOIN GD_TR_RVW GTRV
+    ON GTR.GD_TR_PST_ID = GTRV.GD_TR_PST_ID 
 </select>
 
 

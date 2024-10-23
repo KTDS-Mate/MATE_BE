@@ -62,7 +62,82 @@ public class GuideTourWriteVO {
 	 * 가이드 투어 상세정보 리스트 VO
 	 */
 	private List<GuideTourDetailInfoVO> guideTourDetailInfoList;
-	
-	
-	
+	public String getUsrLnm() {
+		return usrLnm;
+	}
+	public void setUsrLnm(String usrLnm) {
+		this.usrLnm = usrLnm;
+	}
+	public String getUsrFnm() {
+		return usrFnm;
+	}
+	public void setUsrFnm(String usrFnm) {
+		this.usrFnm = usrFnm;
+	}
+	public String getGdTrTtl() {
+		return gdTrTtl;
+	}
+	public void setGdTrTtl(String gdTrTtl) {
+		this.gdTrTtl = gdTrTtl;
+	}
+	public String getCtNm() {
+		return ctNm;
+	}
+	public void setCtNm(String ctNm) {
+		this.ctNm = ctNm;
+	}
+	public String getGdTrDt() {
+		return gdTrDt;
+	}
+	public void setGdTrDt(String gdTrDt) {
+		this.gdTrDt = gdTrDt;
+	}
+	public String getGdTrTm() {
+		return gdTrTm;
+	}
+	public void setGdTrTm(String gdTrTm) {
+		this.gdTrTm = gdTrTm;
+	}
+	public String getGdTrSmry() {
+		return gdTrSmry;
+	}
+	public void setGdTrSmry(String gdTrSmry) {
+		this.gdTrSmry = gdTrSmry;
+	}
+	public String getGdTrPrps() {
+		return gdTrPrps;
+	}
+	public void setGdTrPrps(String gdTrPrps) {
+		this.gdTrPrps = gdTrPrps;
+	}
+	public int getGdTrPrc() {
+		return gdTrPrc;
+	}
+	public void setGdTrPrc(int gdTrPrc) {
+		this.gdTrPrc = gdTrPrc;
+	}
+	public String getGdTrMp() {
+		return gdTrMp;
+	}
+	public void setGdTrMp(String gdTrMp) {
+		this.gdTrMp = gdTrMp;
+	}
+	public List<GuideTourProvidedVO> getGuideTourProvidedList() {
+		return guideTourProvidedList;
+	}
+	public void setGuideTourProvidedList(List<GuideTourProvidedVO> guideTourProvidedList) {
+		this.guideTourProvidedList = guideTourProvidedList;
+	}
+	public List<GuideTourImgVO> getGuideTourImgList() {
+		return guideTourImgList;
+	}
+	public void setGuideTourImgList(List<GuideTourImgVO> guideTourImgList) {
+		this.guideTourImgList = guideTourImgList;
+	}
+	public List<GuideTourDetailInfoVO> getGuideTourDetailInfoList() {
+		return guideTourDetailInfoList;
+	}
+	public void setGuideTourDetailInfoList(List<GuideTourDetailInfoVO> guideTourDetailInfoList) {
+		this.guideTourDetailInfoList = guideTourDetailInfoList;
+	}
 }

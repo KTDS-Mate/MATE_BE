@@ -29,6 +29,10 @@ public class GuideTourDaoImpl extends SqlSessionDaoSupport implements GuideTourD
 	public List<GuideTourVO> selectAllGuideTour() {
 		return this.getSqlSession().selectList(NAMESPACE + ".selectAllGuideTour");
 	}
+	@Override
+	public GuideTourVO selectOneGuideTour(String gdTrPstId) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectOneGuideTour", gdTrPstId);
+	}
 	
 	@Override
 	public int insertNewGuideTour(GuideTourWriteVO guideTourWriteVO) {
@@ -42,5 +46,4 @@ public class GuideTourDaoImpl extends SqlSessionDaoSupport implements GuideTourD
 	public int updateGuideTourIsDtl(String gdTrPstId) {
 		return this.getSqlSession().update(NAMESPACE + ".updateGuideTourIsDtl", gdTrPstId);
 	}
-	
 }

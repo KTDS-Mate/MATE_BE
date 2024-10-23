@@ -2,8 +2,8 @@ package com.mate.bbs.vo;
 
 import java.util.List;
 
+import com.mate.common.vo.CityVO;
 import com.mate.common.vo.CountryVO;
-import com.mate.common.vo.GuideCityVO;
 import com.mate.user.vo.UserVO;
 
 public class GuideTourVO {
@@ -26,9 +26,9 @@ public class GuideTourVO {
 	 */
 	private String gdTrTtl;
 	/**
-	 * 투어 일시
+	 * 투어 시작 날짜
 	 */
-	private String gdTrDt;
+	private String gdTrStDt;
 	/**
 	 * 투어 목적
 	 */
@@ -46,9 +46,9 @@ public class GuideTourVO {
 	 */
 	private String gdTrSmry;
 	/**
-	 * 투어 소요 시간
+	 * 투어 종료 날짜
 	 */
-	private int gdTrTm;
+	private int gdTrEdDt;
 	/**
 	 * 투어 등록일
 	 */
@@ -89,6 +89,10 @@ public class GuideTourVO {
 	 * 게시글 작성자의 정보를 담은 VO
 	 */
 	private UserVO userVO;
+	/**
+	 * 도시 정보를 담은 VO
+	 */
+	private CityVO cityVO;
 	
 	private CountryVO countryVO;
 
@@ -124,12 +128,12 @@ public class GuideTourVO {
 		this.gdTrTtl = gdTrTtl;
 	}
 
-	public String getGdTrDt() {
-		return gdTrDt;
+	public String getGdTrStDt() {
+		return gdTrStDt;
 	}
 
-	public void setGdTrDt(String gdTrDt) {
-		this.gdTrDt = gdTrDt;
+	public void setGdTrStDt(String gdTrStDt) {
+		this.gdTrStDt = gdTrStDt;
 	}
 
 	public String getGdTrPrps() {
@@ -164,12 +168,12 @@ public class GuideTourVO {
 		this.gdTrSmry = gdTrSmry;
 	}
 
-	public int getGdTrTm() {
-		return gdTrTm;
+	public int getGdTrEdDt() {
+		return gdTrEdDt;
 	}
 
-	public void setGdTrTm(int gdTrTm) {
-		this.gdTrTm = gdTrTm;
+	public void setGdTrEdDt(int gdTrEdDt) {
+		this.gdTrEdDt = gdTrEdDt;
 	}
 
 	public String getGdTrRstrDt() {
@@ -227,7 +231,7 @@ public class GuideTourVO {
 	public void setGuideTourDetailInfoVO(List<GuideTourDetailInfoVO> guideTourDetailInfoVO) {
 		this.guideTourDetailInfoVO = guideTourDetailInfoVO;
 	}
-	
+
 	public List<GuideTourProvidedVO> getGuideTourProvidedList() {
 		return guideTourProvidedList;
 	}
@@ -242,6 +246,14 @@ public class GuideTourVO {
 
 	public void setUserVO(UserVO userVO) {
 		this.userVO = userVO;
+	}
+
+	public CityVO getCityVO() {
+		return cityVO;
+	}
+
+	public void setCityVO(CityVO cityVO) {
+		this.cityVO = cityVO;
 	}
 
 	public CountryVO getCountryVO() {

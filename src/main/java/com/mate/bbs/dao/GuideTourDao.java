@@ -11,19 +11,23 @@ public interface GuideTourDao {
 	public String NAMESPACE = "com.mate.bbs.dao.GuideTourDao";
 	
     /**
-     *  가이드 투어 수를 반환하는 메서드
+     *  가이드 투어 수를 조회
      * @param gdTrPstId : 가이드 투어 게시글 아이디
      * @return
      */
     public int selectGuideTourAllCount();
     /**
-     *  모든 가이드 투어 목록을 반환하는 메서드
+     *  모든 가이드 투어 목록 조회
      * @param athrId : 작성자 아이디
      * @return
      */
     public List<GuideTourVO> selectAllGuideTour();
-    
-//    public  selectOneGuideTour();
+    /**
+     * 한 가이드 투어 게시글 조회
+     * @param gdTrPstId
+     * @return
+     */
+    public GuideTourVO selectOneGuideTour(String gdTrPstId);
     
     /**
      *  새로운 가이드 투어를 생성하는 메서드

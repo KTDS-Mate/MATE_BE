@@ -31,16 +31,6 @@ public class GuideTourImgVO {
 	 */
 	private String gdTrImgIsDlt;
 	
-	private UserVO userVO;
-	
-	
-	public UserVO getUserVO() {
-		return userVO;
-	}
-	public void setUserVO(UserVO userVO) {
-		this.userVO = userVO;
-	}
-	
 	public String getGdTrImgId() {
 		return gdTrImgId;
 	}
