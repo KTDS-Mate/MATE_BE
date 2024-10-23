@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,6 +10,11 @@ pageEncoding="UTF-8" %>
       rel="stylesheet"
       type="text/css"
       href="/css/GuideRecruitmentPage.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/common.css"
     />
   </head>
   <body>
@@ -27,10 +33,21 @@ pageEncoding="UTF-8" %>
           </div>
           <div class="img-price">
             <div class="img-group">
-              <div class="main-img">1</div>
-              <div class="second-img">2</div>
-              <div class="third-img">3</div>
-              <div class="plus-img">4</div>
+              <div class="main-img">
+              	<img alt="main-img" src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}">
+              </div>
+              <div class="second-img">
+              	<img alt="second-img" src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}">
+              </div>
+              <div class="third-img">
+              	<img alt="third-img" src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}">
+              </div>
+              <div class="plus-img">
+              	<img alt="plus-img" src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}">
+              	<div class="z-index">
+              		<button class="img-btn">+</button>
+              	</div>
+              </div>
             </div>
             <div class="price-group">
               <div class="price-for">
@@ -46,32 +63,13 @@ pageEncoding="UTF-8" %>
           <div class="summation-guide">
             <div class="summation">
               <div class="view-dtls">
-                <h2>투어 요청 요약</h2>
-                <a href="">
-                  <h6>상세보기</h6>
-                </a>
-              </div>
-              <div>
-                <ol class="summation-list">
-                  <li>즐겁고 재미난 투어</li>
-                  <li>현지 가이드와 함께하는 투어</li>
-                  <li>눈이 즐거운 투어</li>
-                  <li>음식이 맛있는 투어</li>
-                </ol>
-              </div>
-            </div>
-            <div class="summation">
-              <div class="view-dtls">
                 <h2>희망 가이드</h2>
-                <a href="">
-                  <h6>상세보기</h6>
-                </a>
               </div>
               <div>
                 <ul class="guide-dtls-list">
-                  <li>성별 : 여자</li>
-                  <li>나이 : 20대</li>
-                  <li>가이드 경력 : 10회 이상</li>
+                  <li>성별 : ${userTourVO.gdGndr}</li>
+                  <li>나이 : ${userTourVO.gdAge}대</li>
+                  <li>가이드 경력 : ${userTourVO.gdCrr}년 이상</li>
                 </ul>
               </div>
             </div>
@@ -80,16 +78,12 @@ pageEncoding="UTF-8" %>
             <div class="want-list">
               <div class="view-dtls">
                 <h2>투어에서 원하는 것</h2>
-                <a href="">
-                  <h6>상세보기</h6>
-                </a>
               </div>
               <div>
                 <ol class="summation-list">
-                  <li>즐겁고 재미난 투어</li>
-                  <li>현지 가이드와 함께하는 투어</li>
-                  <li>눈이 즐거운 투어</li>
-                  <li>음식이 맛있는 투어</li>
+                  <c:if test="${not empty userTourVO.usrTrRqDtl}">
+                  	<li>${userTourVO.usrTrRqDtl}</li>
+                  </c:if>
                 </ol>
               </div>
             </div>
@@ -117,50 +111,29 @@ pageEncoding="UTF-8" %>
               </div>
               <div>
                 <ul class="hope-info-list">
-                  <li>
-                    <p class="list-item">
-                      <span class="background-num">1</span> 테라스 기요미즈 도쿄
-                    </p>
-                    <p class="border-left">
-                      숙소에서 자차로 픽업해서 사원까지 데려다 주세요
-                    </p>
-                  </li>
-                  <li>
-                    <p class="list-item">
-                      <span class="background-num">2</span> 기요미즈데라 사원
-                    </p>
-                    <p class="border-left">
-                      사원에 가서 일본인들이 즐기는 체험과 전통 문화를 경험하고
-                      싶어요
-                    </p>
-                  </li>
-                  <li>
-                    <p class="list-item">
-                      <span class="background-num">3</span> 기요미즈데라 사원
-                    </p>
-                    <p class="border-left">
-                      기요미즈데라 사원 근처의 맛집에서 맛있는 음식과 술을
-                      마시고 싶어요
-                    </p>
-                  </li>
-                  <li>
-                    <p class="list-item">
-                      <span class="background-num">4</span> 테라스 기요미즈 도쿄
-                    </p>
-                    <p class="margin-left">숙소까지 데려다 주세요</p>
-                  </li>
+                  <c:choose>
+                  	<c:when test="${not empty userTourVO.userTourSchdlList}">
+				    	<c:forEach items="${userTourVO.userTourSchdlList}" 
+                  			 var="userTourSchdl"
+                  			 varStatus="index">
+                  			<li>
+	                    		<p class="list-item">
+	                      			<span class="background-num">${index.index + 1}</span>
+	                      				${userTourSchdl.trLctns}
+	                    		</p>
+	                    		<p class="border-left">
+	                      			${userTourSchdl.trRqst}
+	                    		</p>
+                  			</li>
+                  		</c:forEach>
+                  	</c:when>
+                  	<c:otherwise>
+                  		<li>
+                  			<p class="list-item">작성한 투어 희망 정보가 없습니다.</p>
+                  		</li>
+                  	</c:otherwise>
+                  </c:choose>
                 </ul>
-                <a href="">&lt;show more&gt;</a>
-              </div>
-            </div>
-          </div>
-          <div class="want-time">
-            <div class="plus-info">
-              <div class="view-dtls">
-                <h2>추가 정보</h2>
-              </div>
-              <div class="margin-left">
-                <h2>Etc...</h2>
               </div>
             </div>
           </div>

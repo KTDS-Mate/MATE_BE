@@ -2,6 +2,8 @@ package com.mate.user.vo;
 
 public class LoginUserVO {
 	
+	private String usrId;
+	
 	private String usrLgnId;
 	
 	private String email;
@@ -12,6 +14,14 @@ public class LoginUserVO {
 	
 	private String ip;
 	
+	public String getUsrId() {
+		return usrId;
+	}
+
+	public void setUsrId(String usrId) {
+		this.usrId = usrId;
+	}
+
 	public String getUsrLgnId() {
 		return usrLgnId;
 	}

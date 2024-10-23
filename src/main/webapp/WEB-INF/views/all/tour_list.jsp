@@ -16,6 +16,8 @@ pageEncoding="UTF-8"%>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="/js/usertour/usertourlist.js"></script>
 </head>
 
 <body>
@@ -28,18 +30,22 @@ pageEncoding="UTF-8"%>
             <div class="tour-request-list">
                 <h1>투어 요청 목록</h1>
             </div>
-
+            <!-- 게시글 수 세기 위함
+			<div>${userTourListVO.userTourCount}</div> -->
             <div class="search-zone">
-                <div class="search-area">
-                    <input type="text" class="search-input" placeholder="검색할 나라 또는 지역을 입력하세요." />
-                    <button class="search-button">검색</button>
-                </div>
+            	<form class="search-form">
+            		<input type="hidden" name="pageNo" class="page-no" value="${searchUserTourVO.pageNo}" />
+                	<div class="search-area">
+                    	<input type="text" class="search-input" placeholder="지역을 입력하세요." />
+                    	<button class="search-button">검색</button>
+                	</div>
+            	</form>
             </div>
             <div class="country-menu-area">
-                <div class="checked"><a href="">일본</a></div>
+                <div class="checked"><a href="">전체</a></div>
+                <div><a href="">일본</a></div>
                 <div><a href="">동남아</a></div>
                 <div><a href="">유럽</a></div>
-                <div><a href="">미국</a></div>
                 <div><a href="">중국</a></div>
                 <div><a href="">그 외</a></div>
             </div>
@@ -54,99 +60,61 @@ pageEncoding="UTF-8"%>
             <div class="tour-list-area">
                 <c:forEach items="${userTourListVO.userTourList}" var="userTourVO">
             		<div class="tour-box">
-	                    <img class="tour-country-image"
-	                        src="https://search.pstatic.net/common?src=https://vertical.pstatic.net/vertical/static/travelhome/articleThumbnail/rc-upload-1725346835461-3.jpg&type=w800_travelsearch" />
-	                    <p class="tour-subject">${userTourVO.usrTrTtl}</p>
-	                    <p class="tour-comment">삿포로 근교 맛집 , 투어 가이드분 모집합니다.성실하신분 신청해주세요</p>
-	                    <p class="tour-schedule">일정 : 3박 4일</p>
-	                    <p class="tour-deadline">마감 3일전</p>
-	                    <p class="tour-cost">총 가이드 비용</p>
-	                    <h1 class="tour-fee">${userTourVO.usrTrGdHrPrc}</h1>
+            		 <c:choose>
+            		 	<c:when test="${not empty userTourVO.userTourImgList && not empty userTourVO.userTourImgList[0].usrTrRqImgIdUrl}">
+            		 		<a href="/usertour/view?usrTrPstId=${userTourVO.usrTrPstId}">
+	            		 		<img class="tour-country-image"
+		                        src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}" />
+	                        </a>
+            		 	</c:when>
+            		 	<c:otherwise>
+            		 		<a href="/usertour/view?usrTrPstId=${userTourVO.usrTrPstId}">
+	            		 		<img class="tour-country-image"
+		                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr0t3L6uYd0dlfnh5DF4JSbDvumbCUZbGhIg&s" />
+	                        </a>
+            		 	</c:otherwise>
+            		 </c:choose>
+	                    <a href="/usertour/view?usrTrPstId=${userTourVO.usrTrPstId}" class="tour-subject"><span class="ttl-color">${userTourVO.usrTrTtl}</span></a>
+	                    <a href="/usertour/view?usrTrPstId=${userTourVO.usrTrPstId}" class="tour-comment">${userTourVO.usrTrPrps}</a>
+	                    <div class="tourtime-deadline">
+		                    <p class="tour-schedule">투어 소요 시간 : ${userTourVO.usrTrTm}분</p>
+		                    <p class="tour-deadline">마감 ${userTourVO.deadline}일전</p>
+	                    </div>
+	                    <div class="tour-cost-fee">
+		                    <p class="tour-cost">총 가이드 비용</p>
+		                    <h1 class="tour-fee">${userTourVO.usrTrGdHrPrc} $</h1>
+	                    </div>
                 	</div>
             	</c:forEach>
-                
-                <div class="tour-box">
-                    <img class="tour-country-image"
-                        src="https://search.pstatic.net/common?src=https://vertical.pstatic.net/vertical/static/travelhome/articleThumbnail/rc-upload-1725346835461-3.jpg&type=w800_travelsearch" />
-                    <p class="tour-subject">일본 삿포로 맛집 & 투어여행</p>
-                    <p class="tour-comment">삿포로 근교 맛집 , 투어 가이드분 모집합니다.성실하신분 신청해주세요</p>
-                    <p class="tour-schedule">일정 : 3박 4일</p>
-                    <p class="tour-deadline">마감 3일전</p>
-                    <p class="tour-cost">총 가이드 비용</p>
-                    <h1 class="tour-fee">300,000원</h1>
-                </div>
-                <div class="tour-box">
-                    <img class="tour-country-image"
-                        src="https://search.pstatic.net/common?src=https://vertical.pstatic.net/vertical/static/travelhome/articleThumbnail/rc-upload-1725346835461-3.jpg&type=w800_travelsearch" />
-                    <p class="tour-subject">일본 삿포로 맛집 & 투어여행</p>
-                    <p class="tour-comment">삿포로 근교 맛집 , 투어 가이드분 모집합니다.성실하신분 신청해주세요</p>
-                    <p class="tour-schedule">일정 : 3박 4일</p>
-                    <p class="tour-deadline">마감 3일전</p>
-                    <p class="tour-cost">총 가이드 비용</p>
-                    <h1 class="tour-fee">300,000원</h1>
-                </div>
-                <div class="tour-box">
-                    <img class="tour-country-image"
-                        src="https://search.pstatic.net/common?src=https://vertical.pstatic.net/vertical/static/travelhome/articleThumbnail/rc-upload-1725346835461-3.jpg&type=w800_travelsearch" />
-                    <p class="tour-subject">일본 삿포로 맛집 & 투어여행</p>
-                    <p class="tour-comment">삿포로 근교 맛집 , 투어 가이드분 모집합니다.성실하신분 신청해주세요</p>
-                    <p class="tour-schedule">일정 : 3박 4일</p>
-                    <p class="tour-deadline">마감 3일전</p>
-                    <p class="tour-cost">총 가이드 비용</p>
-                    <h1 class="tour-fee">300,000원</h1>
-                </div>
-                <div class="tour-box">
-                    <img class="tour-country-image"
-                        src="https://search.pstatic.net/common?src=https://vertical.pstatic.net/vertical/static/travelhome/articleThumbnail/rc-upload-1725346835461-3.jpg&type=w800_travelsearch" />
-                    <p class="tour-subject">일본 삿포로 맛집 & 투어여행</p>
-                    <p class="tour-comment">삿포로 근교 맛집 , 투어 가이드분 모집합니다.성실하신분 신청해주세요</p>
-                    <p class="tour-schedule">일정 : 3박 4일</p>
-                    <p class="tour-deadline">마감 3일전</p>
-                    <p class="tour-cost">총 가이드 비용</p>
-                    <h1 class="tour-fee">300,000원</h1>
-                </div>
-                <div class="tour-box">
-                    <img class="tour-country-image"
-                        src="https://search.pstatic.net/common?src=https://vertical.pstatic.net/vertical/static/travelhome/articleThumbnail/rc-upload-1725346835461-3.jpg&type=w800_travelsearch" />
-                    <p class="tour-subject">일본 삿포로 맛집 & 투어여행</p>
-                    <p class="tour-comment">삿포로 근교 맛집 , 투어 가이드분 모집합니다.성실하신분 신청해주세요</p>
-                    <p class="tour-schedule">일정 : 3박 4일</p>
-                    <p class="tour-deadline">마감 3일전</p>
-                    <p class="tour-cost">총 가이드 비용</p>
-                    <h1 class="tour-fee">300,000원</h1>
-                </div>
-                <div class="tour-box">
-                    <img class="tour-country-image"
-                        src="https://search.pstatic.net/common?src=https://vertical.pstatic.net/vertical/static/travelhome/articleThumbnail/rc-upload-1725346835461-3.jpg&type=w800_travelsearch" />
-                    <p class="tour-subject">일본 삿포로 맛집 & 투어여행</p>
-                    <p class="tour-comment">삿포로 근교 맛집 , 투어 가이드분 모집합니다.성실하신분 신청해주세요</p>
-                    <p class="tour-schedule">일정 : 3박 4일</p>
-                    <p class="tour-deadline">마감 3일전</p>
-                    <p class="tour-cost">총 가이드 비용</p>
-                    <h1 class="tour-fee">300,000원</h1>
-                </div>
-                <div class="tour-box">
-                    <img class="tour-country-image"
-                        src="https://search.pstatic.net/common?src=https://vertical.pstatic.net/vertical/static/travelhome/articleThumbnail/rc-upload-1725346835461-3.jpg&type=w800_travelsearch" />
-                    <p class="tour-subject">일본 삿포로 맛집 & 투어여행</p>
-                    <p class="tour-comment">삿포로 근교 맛집 , 투어 가이드분 모집합니다.성실하신분 신청해주세요</p>
-                    <p class="tour-schedule">일정 : 3박 4일</p>
-                    <p class="tour-deadline">마감 3일전</p>
-                    <p class="tour-cost">총 가이드 비용</p>
-                    <h1 class="tour-fee">300,000원</h1>
-                </div>
-                <div class="tour-box">
-                    <img class="tour-country-image"
-                        src="https://search.pstatic.net/common?src=https://vertical.pstatic.net/vertical/static/travelhome/articleThumbnail/rc-upload-1725346835461-3.jpg&type=w800_travelsearch" />
-                    <p class="tour-subject">일본 삿포로 맛집 & 투어여행</p>
-                    <p class="tour-comment">삿포로 근교 맛집 , 투어 가이드분 모집합니다.성실하신분 신청해주세요</p>
-                    <p class="tour-schedule">일정 : 3박 4일</p>
-                    <p class="tour-deadline">마감 3일전</p>
-                    <p class="tour-cost">총 가이드 비용</p>
-                    <h1 class="tour-fee">300,000원</h1>
-                </div>
             </div>
-
+            <div>
+            	<ul class="page-nav">
+            		<c:if test="${searchUserTourVO.hesprevGroup}">
+            			<li>
+            				<a href="javascript:movepage(${searchUserTourVO.prevGroupStartPageNo});">
+            					&lt;
+            				</a>
+            			</li>
+            		</c:if>
+            		<c:forEach begin="${searchUserTourVO.groupStartPageNo}"
+            				   end="${searchUserTourVO.groupEndPageNo}"
+            				   step="1"
+            				   var="p">
+            			<li class="${p eq searchUserTourVO.pageNo ? 'active' : ''}">
+            				<a href="/usertour/list?pageNo=${p}&listSize=${searchUserTourVO.listSize}">
+            					${p + 1}
+            				</a>
+            			</li>
+            		</c:forEach>
+            		<c:if test="${searchUserTourVO.hasNextGroup}">
+            			<li>
+            				<a href="javascript:movepage(${searchUserTourVO.nextGroupStartPageNo});">
+            					&gt;
+            				</a>
+            			</li>
+            		</c:if>
+            	</ul>
+            </div>
         </div>
         <div class="footer">
             <!-- footer 공통파일 -->
