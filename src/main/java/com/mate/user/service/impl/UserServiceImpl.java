@@ -1,7 +1,5 @@
 package com.mate.user.service.impl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +17,6 @@ import com.mate.user.vo.UserVO;
 @Service
 public class UserServiceImpl implements UserService {
 
-	private static final Logger log = LoggerFactory.getLogger(UserServiceImpl.class); 
-	
 	@Autowired
 	private UserDao userDao;
 	
@@ -71,76 +67,20 @@ public class UserServiceImpl implements UserService {
 	public UserVO readUser(LoginUserVO loginUserVO) {
 		boolean isIpBlock = this.accessLogDao.selectLoginFailCount(RequestUtil.getIp()) >= 5;
 		
-		log.info("로그인 시도 아이디: {}", loginUserVO.getUsrLgnId());
-		
 		if (isIpBlock) {
-			throw new IllegalArgumentException("해당 IP의 로그인 시도가 잦습니다. 잠시 후 다시 시도해 주세요.");
+			throw new IllegalArgumentException("이메일 또는 비밀번호가 올바르게 입력되지 않았습니다.");
 		}
 		
-		// salt 조회
-		String salt = this.userDao.selectSalt(loginUserVO.getUsrLgnId());
+		String salt = this.userDao.selectSalt(loginUserVO.getUsrId());
 		if (salt == null) {
-			log.warn("SALT를 찾을 수 없습니다. 아이디가 잘못되었습니다: {}", loginUserVO.getUsrLgnId());
-			
 			AccessLogVO accessLogVO = new AccessLogVO();
-			accessLogVO.setAccessType("LOGIN");
-			accessLogVO.setAccessUrl( RequestUtil.getRequest().getRequestURI() );
-			accessLogVO.setAccessMethod( RequestUtil.getRequest().getMethod().toUpperCase() );
-			accessLogVO.setAccessIp( RequestUtil.getIp());
-		
-			this.accessLogDao.insertNewAccessLog(accessLogVO);
-			
-			throw new IllegalArgumentException("잘못된 아이디 또는 비밀번호입니다.");
-		}
-		/*
-			loginUserVO.setIp(RequestUtil.getIp());
-			this.userDao.updateLoginFailState(loginUserVO);
-			throw new IllegalArgumentException("잘못된 아이디 또는 비밀번호입니다.");
-		*/
-		
-		// 사용자 입력 비밀번호 암호화
-		String password = loginUserVO.getUsrPwd();
-		password = this.sha.getEncrypt(password, salt);
-		loginUserVO.setUsrPwd(password);
-		
-		// 이메일과 암호화된 비밀번호로 데이터베이스에서 회원 정보 조회
-		log.info("암호화된 비밀번호: {}", password);
-		UserVO userVO = this.userDao.selectOneMember(loginUserVO);
-		if (userVO == null) {
-			log.warn("로그인 실패 - 잘못된 비밀번호");
-			loginUserVO.setIp(RequestUtil.getIp());
-//			this.userDao.upadateLoginSuccessState(loginUserVO);
-			this.userDao.updateLoginFailState(loginUserVO);
-			throw new IllegalArgumentException("잘못된 아이디 또는 비밀번호입니다.");
 		}
 		
-		// LOGIN_FAIL_COUNT가 5회 이상 & 5회 count 이후 1시간이 지나지 않았을 경우 로그인 실패 처리
-		boolean isBlockState = this.userDao.selectLoginRestrictionCount(loginUserVO.getUsrLgnId()) > 0;
-		
-		if (isBlockState) {
-			throw new IllegalArgumentException("로그인이 불가능합니다. 잠시 후 다시 시도해주세요.");
-		}
-		
-		loginUserVO.setIp(RequestUtil.getIp());
-		this.userDao.upadateLoginSuccessState(loginUserVO);
-		
-		AccessLogVO accessLogVO = new AccessLogVO();
-		accessLogVO.setAccessType("LOGIN");
-		accessLogVO.setAccessLogId(loginUserVO.getUsrLgnId());
-		accessLogVO.setAccessUrl(RequestUtil.getRequest().getRequestURI());
-		accessLogVO.setAccessMethod(RequestUtil.getRequest().getMethod().toUpperCase());
-		accessLogVO.setAccessIp(RequestUtil.getIp());
-		accessLogVO.setLoginSuccessStatus("Y");
-		
-		// 성공 로그
-		this.accessLogDao.insertNewAccessLog(accessLogVO);
-		
-		log.info("로그인 성공: {}", userVO);
-		return userVO;
+		return null;
 	}
 
 	@Override
-	public boolean softDeleteUser(String usrLgnId) {
-		return this.userDao.softDeleteOneUser(usrLgnId) > 0;
+	public boolean safeDeleteMember(String usrId) {
+		return false;
 	}
 }

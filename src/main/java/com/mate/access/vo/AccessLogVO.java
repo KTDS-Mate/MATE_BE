@@ -18,8 +18,6 @@ public class AccessLogVO {
 	
 	private String loginSuccessStatus;
 
-	private String loginSuccessYn;
-	
 	public String getAccessLogId() {
 		return accessLogId;
 	}
@@ -82,13 +80,5 @@ public class AccessLogVO {
 
 	public void setLoginSuccessStatus(String loginSuccessStatus) {
 		this.loginSuccessStatus = loginSuccessStatus;
-	}
-
-	public String getLoginSuccessYn() {
-		return loginSuccessYn;
-	}
-
-	public void setLoginSuccessYn(String loginSuccessYn) {
-		this.loginSuccessYn = loginSuccessYn;
 	}
 }

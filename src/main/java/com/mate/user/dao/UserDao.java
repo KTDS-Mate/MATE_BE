@@ -6,7 +6,7 @@ import com.mate.user.vo.UserVO;
 
 public interface UserDao {
 	
-	public String NAMESPACE = "com.mate.user.dao.UserDao";
+	public String NAMESPACE = "com.mate.user.vo.UserDao";
 	
 	public int insertNewUser(RegistUserVO registUserVO);
 
@@ -24,5 +24,5 @@ public interface UserDao {
 	
 	public int upadateLoginSuccessState(LoginUserVO loginUserVO);
 	
-	public int softDeleteOneUser(String usrLgnId);
+	public int softDeleteOneUser(UserVO userVO);
 }

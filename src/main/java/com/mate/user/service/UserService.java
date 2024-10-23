@@ -14,5 +14,5 @@ public interface UserService {
 	
 	public UserVO readUser(LoginUserVO loginUserVO);
 	
-	public boolean softDeleteUser(String usrLgnId);
+	public boolean safeDeleteMember(String usrId);
 }
