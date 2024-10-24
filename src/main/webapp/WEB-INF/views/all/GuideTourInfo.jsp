@@ -156,8 +156,7 @@
             <div class="flex-row-b-2a">
               <div class="rectangle-2b">
                 <div class="flex-column-a">
-                  <span class="detail-view-2c">상세보기</span
-                  ><span class="detail-view-2d">상세보기</span>
+                  <span class="detail-view-2c">상세보기</span>
                 </div>
                 <div class="flex-column-c">
                   <span class="tour-rating-review">투어 평점 및 후기</span>

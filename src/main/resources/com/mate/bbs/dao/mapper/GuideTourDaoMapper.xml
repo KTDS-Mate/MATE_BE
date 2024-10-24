@@ -32,7 +32,7 @@
 			 <collection property="guideTourReviewList"
 						ofType="com.mate.bbs.vo.GuideTourReviewVO"
 						autoMapping="true">
-				<id column="GD_TR_RVW_ID" property="gdTrRvwId"/>
+				<id column="GD_TR_RVW_ID" property="gdTrRv	wId"/>
 			</collection>
 		</resultMap>
 
@@ -59,7 +59,6 @@
 			 , GTR.GD_TR_MDFY_DT
 			 , GTR.GD_TR_DLT_DT
 			 , GTR.GD_TR_IS_DLT
-			 , GTR.TR_CNT_ID
 			 , GTR.TR_CT_ID
 			 , GTRI.GD_TR_IMG_URL 
 			 , UI.USR_FNM 
@@ -81,8 +80,8 @@
 			 , GTR.ATHR_ID
 			 , GTR.USR_ID
 			 , GTR.GD_TR_TTL
-			 , GTR.GD_TR_ST_DT
-			 , GTR.GD_TR_ED_DT
+			 , TO_CHAR(GTR.GD_TR_ST_DT, 'YYYY-MM-DD') GD_TR_ST_DT
+			 , TO_CHAR(GTR.GD_TR_ED_DT, 'YYYY-MM-DD') GD_TR_ED_DT
 			 , GTR.GD_TR_PRPS
 			 , GTR.GD_TR_MP
 			 , GTR.GD_TR_PRC
@@ -91,18 +90,18 @@
 			 , GTR.GD_TR_MDFY_DT
 			 , GTR.GD_TR_DLT_DT
 			 , GTR.GD_TR_IS_DLT
-			 , GTR.TR_CNT_ID
 			 , GTR.TR_CT_ID
 			 , GTRI.GD_TR_IMG_URL
-			 , GTRV.GD_TR_RVW_RTNG
 			 , GTR.GD_TR_MX_NP
+			 , (SELECT AVG(gtr2.GD_TR_RVW_RTNG)
+			      FROM GD_TR_RVW gtr2
+			 	 WHERE gtr2.GD_TR_PST_ID = GTR.GD_TR_PST_ID) AS AVG_RVW	
 		  FROM GD_TR_RCRT GTR
 		 LEFT JOIN GD_TR_RCRT_IMG GTRI
 		    ON GTR.GD_TR_PST_ID = GTRI.GD_TR_PST_ID 
 		 LEFT JOIN GD_TR_RVW GTRV
-		    ON GTR.GD_TR_PST_ID = GTRV.GD_TR_PST_ID 
+		    ON GTR.GD_TR_PST_ID = GTRV.GD_TR_PST_ID
 	</select>
-	
 	<insert id="insertNewGuideTour" 
 			parameterType="com.mate.bbs.vo.GuideTourWriteVO">
 		INSERT INTO GD_TR_RCRT
@@ -122,7 +121,7 @@
 			, TR_CNT_ID
 			, TR_CT_ID
 			, GD_TR_ED_DT
-			, GTR.GD_TR_MX_NP)
+			, GD_TR_MX_NP)
 			VALUES
 			 ('GT-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_GD_TR_RCRT_PK.NEXTVAL, 6, 0)
 			, '7'
@@ -147,7 +146,7 @@
 			UPDATE GD_TR_RCRT
 			   SET GD_TR_TTL = #{gdTrTtl}
 			   	 , GD_TR_ST_DT = TO_DATE(#{gdTrStDt}, 'YYYY-MM-DD HH24:MI')
-			   	 , GD_TR_ED_DT = #{gdTrEdDt}
+			   	 , GD_TR_ED_DT = TO_DATE(#{gdTrEdDt}, 'YYYY-MM-DD HH24:MI')
 			   	 , GD_TR_MDFY_DT = SYSDATE
 			   	 , GD_TR_SMRY = #{gdTrSmry}
 			   	 , GD_TR_PRC = #{gdTrPrc}

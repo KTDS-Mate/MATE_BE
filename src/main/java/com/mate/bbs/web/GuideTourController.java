@@ -30,6 +30,10 @@ public class GuideTourController {
 	public String viewOneGuideTourPage(@RequestParam String gdTrPstId , Model model) {
 		GuideTourVO guideTourVO = this.guideTourService.getOneGuideTour(gdTrPstId);
 		model.addAttribute("guideTourVO",guideTourVO);
-		return "all/GuideTourInfo";
+		return "all/GuideRecruitmentPage";
+	}
+	@GetMapping("/guidetour/insert")
+	public String viewGuideTourInsertPage() {
+		return "guide/Guide_TourInsert";
 	}
 }

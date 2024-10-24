@@ -32,7 +32,7 @@ public class GuideTourVO {
 	/**
 	 * 투어 종료 날짜
 	 */
-	private int gdTrEdDt;
+	private String gdTrEdDt;
 	/**
 	 * 투어 목적
 	 */
@@ -81,6 +81,10 @@ public class GuideTourVO {
 	 */
 	private int gdTrMxNp;
 	
+	/**
+	 * 리뷰 평점 알리아스
+	 */
+	private double avgRvw;
 	/**
 	 * 가이드 투어 이미지 리스트 VO 
 	 */
@@ -142,10 +146,11 @@ public class GuideTourVO {
 	public void setGdTrStDt(String gdTrStDt) {
 		this.gdTrStDt = gdTrStDt;
 	}
-	public int getGdTrEdDt() {
+	
+	public String getGdTrEdDt() {
 		return gdTrEdDt;
 	}
-	public void setGdTrEdDt(int gdTrEdDt) {
+	public void setGdTrEdDt(String gdTrEdDt) {
 		this.gdTrEdDt = gdTrEdDt;
 	}
 	public String getGdTrPrps() {
@@ -255,5 +260,11 @@ public class GuideTourVO {
 	}
 	public void setCountryVO(CountryVO countryVO) {
 		this.countryVO = countryVO;
+	}
+	public double getAvgRvw() {
+		return avgRvw;
+	}
+	public void setAvgRvw(double avgRvw) {
+		this.avgRvw = avgRvw;
 	}
 }

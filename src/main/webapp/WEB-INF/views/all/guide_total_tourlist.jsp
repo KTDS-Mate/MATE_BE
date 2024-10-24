@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -18,6 +19,7 @@ pageEncoding="UTF-8"%>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
   </head>
 
   <body>
@@ -38,53 +40,18 @@ pageEncoding="UTF-8"%>
             <span class="align-button-text">정렬순서</span>
           </div>
 
+<c:forEach items="${guideTourListVO.guideTourList}" var="guidTourVO">
           <div class="tour-box">
             <img src="/img/tourlist/베니스.jpg" alt="" />
             <div class="tour-contents">
-              <h3>테스트제목</h3>
-              <p class="tour-contents-text">날짜 :2024.02.12 ~ 2024.03.02</p>
-              <p class="tour-contents-text">투어인원 : 2명</p>
-              <p class="tour-contents-text">치안 : ★★★★</p>
-              <p class="tour-contents-text">비용 : 1,050,000원</p>
-              <p class="tour-contents-text">가이드 평점 : 3.5</p>
+              <h3>${guidTourVO.gdTrTtl}</h3>
+              <p class="tour-contents-text">날짜 :${guidTourVO.gdTrStDt} ~ ${guidTourVO.gdTrEdDt}</p>
+              <p class="tour-contents-text">투어 최대인원 : ${guidTourVO.gdTrMxNp}명</p>
+              <p class="tour-contents-text">비용 : ${guidTourVO.gdTrPrc}$</p>
+              <p class="tour-contents-text">가이드 평점 : ${guidTourVO.avgRvw}</p>
             </div>
           </div>
-
-          <div class="tour-box">
-            <img src="/img/tourlist/라스베가스 야경.jpg" alt="" />
-            <div class="tour-contents">
-              <h3>테스트제목</h3>
-              <p class="tour-contents-text">날짜 :2024.02.12 ~ 2024.03.02</p>
-              <p class="tour-contents-text">투어인원 : 2명</p>
-              <p class="tour-contents-text">치안 : ★★★★</p>
-              <p class="tour-contents-text">비용 : 1,050,000원</p>
-              <p class="tour-contents-text">가이드 평점 : 3.5</p>
-            </div>
-          </div>
-
-          <div class="tour-box">
-            <img src="/img/tourlist/베트남 퀴논 도시.jpg" alt="" />
-            <div class="tour-contents">
-              <h3>테스트제목</h3>
-              <p class="tour-contents-text">날짜 :2024.02.12 ~ 2024.03.02</p>
-              <p class="tour-contents-text">투어인원 : 2명</p>
-              <p class="tour-contents-text">치안 : ★★★★</p>
-              <p class="tour-contents-text">비용 : 1,050,000원</p>
-              <p class="tour-contents-text">가이드 평점 : 3.5</p>
-            </div>
-          </div>
-
-          <div class="tour-box">
-            <img src="/img/tourlist/삿포로 온천.jpg" alt="" />
-            <div class="tour-contents">
-              <h3>테스트제목</h3>
-              <p class="tour-contents-text">날짜 :2024.02.12 ~ 2024.03.02</p>
-              <p class="tour-contents-text">투어인원 : 2명</p>
-              <p class="tour-contents-text">치안 : ★★★★</p>
-              <p class="tour-contents-text">비용 : 1,050,000원</p>
-              <p class="tour-contents-text">가이드 평점 : 3.5</p>
-            </div>
-          </div>
+</c:forEach>
 
           <!-------------------------------------------------------------->
         </div>
