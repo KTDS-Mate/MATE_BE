@@ -1,14 +1,27 @@
 package com.mate.bbs.vo;
 
-public class SearchGuideTourVO {
+import com.mate.common.vo.PaginationVO;
 
-	private int pageNo;
+public class SearchGuideTourVO extends PaginationVO{
+
+	/** 클라이언트가 검색한 국가 검색 창 */
+	private String searchType;
 	
-	private int listSize;
-	
-	private int pageCount;
-	
-	public SearchGuideTourVO () {
-		listSize = 5;
+	private String searchKeyword;
+
+	public String getSearchType() {
+		return searchType;
+	}
+
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
 	}
 }

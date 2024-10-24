@@ -4,6 +4,7 @@ import com.mate.bbs.vo.GuideTourListVO;
 import com.mate.bbs.vo.GuideTourModifyVO;
 import com.mate.bbs.vo.GuideTourVO;
 import com.mate.bbs.vo.GuideTourWriteVO;
+import com.mate.bbs.vo.SearchGuideTourVO;
 
 public interface GuideTourService {
 
@@ -11,7 +12,7 @@ public interface GuideTourService {
      *  모든 가이드 투어 목록 조회
      * @return
      */
-    public GuideTourListVO getAllGuideTour();
+    public GuideTourListVO getAllGuideTour(SearchGuideTourVO searchGuideTourVO);
 
     /**
      * 가이드 투어 게시글 한개 조회.

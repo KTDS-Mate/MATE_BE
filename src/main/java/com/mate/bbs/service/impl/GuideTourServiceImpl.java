@@ -14,6 +14,7 @@ import com.mate.bbs.vo.GuideTourListVO;
 import com.mate.bbs.vo.GuideTourModifyVO;
 import com.mate.bbs.vo.GuideTourVO;
 import com.mate.bbs.vo.GuideTourWriteVO;
+import com.mate.bbs.vo.SearchGuideTourVO;
 
 @Service
 public class GuideTourServiceImpl implements GuideTourService{
@@ -22,7 +23,7 @@ public class GuideTourServiceImpl implements GuideTourService{
 	private GuideTourDao guideTourDao;
 	
 	@Override
-	public GuideTourListVO getAllGuideTour() {
+	public GuideTourListVO getAllGuideTour(SearchGuideTourVO searchGuideTourVO) {
 		int guideTourListCount = this.guideTourDao.selectGuideTourAllCount();
 		
 		if(guideTourListCount == 0) {
@@ -32,7 +33,11 @@ public class GuideTourServiceImpl implements GuideTourService{
 			
 			return guideTourListVO;
 		}
-		List<GuideTourVO> guideTourList = this.guideTourDao.selectAllGuideTour();
+		List<GuideTourVO> guideTourList = this.guideTourDao.selectAllGuideTour(searchGuideTourVO);
+		
+		searchGuideTourVO.setPageCount(guideTourListCount);
+		
+		searchGuideTourVO.setListSize(5);
 		
 		GuideTourListVO guideTourListVO = new GuideTourListVO();
 		guideTourListVO.setGdTrPstCnt(guideTourListCount);

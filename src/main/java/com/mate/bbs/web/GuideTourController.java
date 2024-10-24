@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.mate.bbs.service.GuideTourService;
 import com.mate.bbs.vo.GuideTourListVO;
 import com.mate.bbs.vo.GuideTourVO;
+import com.mate.bbs.vo.SearchGuideTourVO;
 
 @Controller
 public class GuideTourController {
@@ -20,9 +21,10 @@ public class GuideTourController {
 	 * 가이드 투어 목록 조회하는 페이지
 	 */
 	@GetMapping("/guidetour/list")
-	public String viewAllGuideTourPage(Model model) {
-		GuideTourListVO guideTourListVO = this.guideTourService.getAllGuideTour();
+	public String viewAllGuideTourPage(Model model, SearchGuideTourVO searchGuideTourVO) {
+		GuideTourListVO guideTourListVO = this.guideTourService.getAllGuideTour(searchGuideTourVO);
 		model.addAttribute("guideTourListVO", guideTourListVO);
+		model.addAttribute("searchGuideTourVO", searchGuideTourVO);
 		return "all/guide_total_tourlist";
 	}
 

@@ -20,6 +20,7 @@ pageEncoding="UTF-8"%>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="/js/guidetour/guidetourlist.js"></script>
   </head>
 
   <body>
@@ -32,30 +33,68 @@ pageEncoding="UTF-8"%>
       <!--  -->
 
       <div class="content">
+      <div class="search-zone">
+            	<form class="search-form">
+            		<input type="hidden" name="pageNo" class="page-no" value="${searchGuideTourVO.pageNo}" />
+                	<div class="search-area">
+                    	<input type="text" class="search-input" placeholder="찾고싶은 국가를 입력하세요." />
+                    	<button class="search-button">검색</button>
+                	</div>
+            	</form>
+      </div>
+      <div class="list-view-option">
+                <div><a href="">높은 비용순</a></div>
+                <div><a href="">낮은 비용순</a></div>
+                <div><a href="">최신순</a></div>
+                <div><a href="">평점 높은순</a></div>
+      </div>
         <div class="my-tour">
-
-          <div class="align-button">
-            <span class="align-button-text">대륙</span>
-            <span class="align-button-text">요금</span>
-            <span class="align-button-text">정렬순서</span>
-          </div>
-
-<c:forEach items="${guideTourListVO.guideTourList}" var="guidTourVO">
+	<c:forEach items="${guideTourListVO.guideTourList}" var="guidTourVO">
           <div class="tour-box">
             <img src="/img/tourlist/베니스.jpg" alt="" />
             <div class="tour-contents">
-              <h3>${guidTourVO.gdTrTtl}</h3>
-              <p class="tour-contents-text">날짜 :${guidTourVO.gdTrStDt} ~ ${guidTourVO.gdTrEdDt}</p>
-              <p class="tour-contents-text">투어 최대인원 : ${guidTourVO.gdTrMxNp}명</p>
-              <p class="tour-contents-text">비용 : ${guidTourVO.gdTrPrc}$</p>
-              <p class="tour-contents-text">가이드 평점 : ${guidTourVO.avgRvw}</p>
+              <h2>${guidTourVO.gdTrTtl}</h2>
+              <p class="tour-contents-text"><span>나라 :</span> ${guidTourVO.cityVO.ctNm}</p>
+              <p class="tour-contents-text"><span>날짜 :</span> ${guidTourVO.gdTrStDt} ~ ${guidTourVO.gdTrEdDt}</p>
+              <p class="tour-contents-text"><span>투어 최대인원 :</span> ${guidTourVO.gdTrMxNp}명</p>
+              <p class="tour-contents-text"><span>비용 :</span> ${guidTourVO.gdTrPrc}$</p>
+              <p class="tour-contents-text"><span>가이드 평점 :</span> ${guidTourVO.avgRvw}</p>
             </div>
           </div>
 </c:forEach>
 
           <!-------------------------------------------------------------->
         </div>
+        <div class="page-area">
+            	<ul class="page-nav">
+            		<c:if test="${searchGuideTourVO.hesprevGroup}">
+            			<li>
+            				<a href="javascript:movepage(${searchGuideTourVO.prevGroupStartPageNo});">
+            					&lt;
+            				</a>
+            			</li>
+            		</c:if>
+            		<c:forEach begin="${searchGuideTourVO.groupStartPageNo}"
+            				   end="${searchGuideTourVO.groupEndPageNo}"
+            				   step="1"
+            				   var="p">
+            			<li class="${p eq searchGuideTourVO.pageNo ? 'active' : ''}">
+            				<a href="/guidetour/list?pageNo=${p}&listSize=${searchGuideTourVO.listSize}">
+            					${p + 1}
+            				</a>
+            			</li>
+            		</c:forEach>
+            		<c:if test="${searchGuideTourVO.hasNextGroup}">
+            			<li>
+            				<a href="javascript:movepage(${searchGuideTourVO.nextGroupStartPageNo});">
+            					&gt;
+            				</a>
+            			</li>
+            		</c:if>
+            	</ul>
+            </div>
       </div>
+      		
       <div class="footer">
         <!-- footer 공통파일 -->
         <jsp:include page="../footer.jsp"></jsp:include>

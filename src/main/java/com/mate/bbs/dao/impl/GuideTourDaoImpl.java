@@ -11,6 +11,7 @@ import com.mate.bbs.dao.GuideTourDao;
 import com.mate.bbs.vo.GuideTourModifyVO;
 import com.mate.bbs.vo.GuideTourVO;
 import com.mate.bbs.vo.GuideTourWriteVO;
+import com.mate.bbs.vo.SearchGuideTourVO;
 
 @Repository
 public class GuideTourDaoImpl extends SqlSessionDaoSupport implements GuideTourDao{
@@ -26,8 +27,8 @@ public class GuideTourDaoImpl extends SqlSessionDaoSupport implements GuideTourD
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectGuideTourAllCount");
 	}
 	@Override
-	public List<GuideTourVO> selectAllGuideTour() {
-		return this.getSqlSession().selectList(NAMESPACE + ".selectAllGuideTour");
+	public List<GuideTourVO> selectAllGuideTour(SearchGuideTourVO searchGuideTourVO) {
+		return this.getSqlSession().selectList(NAMESPACE + ".selectAllGuideTour", searchGuideTourVO);
 	}
 	@Override
 	public GuideTourVO selectOneGuideTour(String gdTrPstId) {

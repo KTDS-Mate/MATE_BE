@@ -5,6 +5,7 @@ import java.util.List;
 import com.mate.bbs.vo.GuideTourModifyVO;
 import com.mate.bbs.vo.GuideTourVO;
 import com.mate.bbs.vo.GuideTourWriteVO;
+import com.mate.bbs.vo.SearchGuideTourVO;
 
 public interface GuideTourDao {
 
@@ -21,7 +22,7 @@ public interface GuideTourDao {
      * @param athrId : 작성자 아이디
      * @return
      */
-    public List<GuideTourVO> selectAllGuideTour();
+    public List<GuideTourVO> selectAllGuideTour(SearchGuideTourVO searchGuideTourVO);
     /**
      * 한 가이드 투어 게시글 조회
      * @param gdTrPstId
