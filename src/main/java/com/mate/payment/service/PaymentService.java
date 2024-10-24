@@ -6,6 +6,7 @@ public interface PaymentService {
 	
 	public PaymentListVO getAllPayment();
 	
+	public PaymentListVO getAllMyPayment(String trstId);
 	
 	
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -101,8 +102,9 @@ pageEncoding="UTF-8"%>
             <div class="tour-list">
               <table class="payment-table">
                 <thead>
-                  <th>투어번호</th>
-                  <th>결제요청일자</th>
+                  <th>결제정보ID</th>
+                  <th>결제요청일</th>
+                  <th>투어타입</th>
                   <th>투어명</th>
                   <th>가이드 이름</th>
                   <th>결제상태</th>
@@ -111,13 +113,19 @@ pageEncoding="UTF-8"%>
                 <tbody>
                   <c:choose>
                     <c:when test="${not empty paymentListVO.paymentList}">
-                      <c:forEach item="${paymentListVO.paymentList}" var=payInfo>
+                      <c:forEach items="${paymentListVO.paymentList}" var="payInfo">
                         <tr>
 		                  <td>${payInfo.payId}</td>
 		                  <td>${payInfo.payCrtDt}</td>
-		                  <td>${payInfo.gdVO.usrFnm}</td>
-		                  <!-- TODO 아래에 있는 투어 이름 나중에 투어VO받아오면 그걸로 바꾸기 -->
-		                  <td>${payInfo.payTrName}</td>
+		                  <td>${payInfo.payTrTp}</td>
+		                  <!-- if문을 이용하여 payTrTp이 어느 게시글인지에 따라 출력 -->
+			                <c:if test="${payInfo.payTrTp eq 'TOURIST'}">
+			                  <td>${payInfo.usrTrTtl}</td>
+			                </c:if>
+			                <c:if test="${payInfo.payTrTp eq 'GUIDE'}">
+			                  <td>${payInfo.gdTrTtl}</td>
+			                </c:if>
+		                  <td>${payInfo.gdFnm}</td>
 		                  <td>${payInfo.payStt}</td>
 		                  <td>${payInfo.payCsh}</td>
 		                </tr>
@@ -125,7 +133,7 @@ pageEncoding="UTF-8"%>
                     </c:when>
                     <c:otherwise>
                       <tr>
-		                <td colspan="6">결제 내역이 존재하지 않습니다.</td>
+		                <td colspan="7">결제 내역이 존재하지 않습니다.</td>
 		              </tr>
                     </c:otherwise>
                   </c:choose>

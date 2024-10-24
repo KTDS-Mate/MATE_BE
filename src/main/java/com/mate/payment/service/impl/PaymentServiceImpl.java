@@ -26,6 +26,19 @@ public class PaymentServiceImpl implements PaymentService{
 		return paymentListVO;
 	}
 	
+	@Override
+	public PaymentListVO getAllMyPayment(String trstId) {
+		PaymentListVO paymentListVO = new PaymentListVO();
+		List<PaymentVO> paymentList = this.paymentDao.selectAllMyPayment(trstId);
+		int cnt = this.paymentDao.selectAllMyPaymentCount(trstId);
+		paymentListVO.setPaymentCnt(cnt);
+		paymentListVO.setPaymentList(paymentList);
+		return paymentListVO;
+	}
+	
+	
+	
+	
 	
 	
 	

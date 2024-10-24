@@ -11,16 +11,16 @@ public class PaymentVO {
 	 * 여행자의 회원아이디
 	 */
 	private String trstId;
-	
+
 	/**
 	 * 가이드 아이디
 	 */
 	private String gdId;
-	
+
 	/**
 	 * 가이드 이름
 	 */
-	private String gdName;
+	private String gdFnm;
 
 	/**
 	 * 투어 종류(TOURIST, GUIDE)
@@ -31,11 +31,16 @@ public class PaymentVO {
 	 * 결제할 투어게시글 아이디 FK
 	 */
 	private String payTrId;
-	
+
 	/**
-	 * 결제할 투어게시글의 이름
+	 * 결제할 여행자 투어게시글의 이름
 	 */
-	private String payTrName;
+	private String usrTrTtl;
+
+	/**
+	 * 결제할 가이드 투어게시글의 이름
+	 */
+	private String gdTrTtl;
 
 	/**
 	 * 결제 금액
@@ -84,8 +89,6 @@ public class PaymentVO {
 	public void setPayId(String payId) {
 		this.payId = payId;
 	}
-
-	
 
 	public String getGdId() {
 		return gdId;
@@ -175,12 +178,20 @@ public class PaymentVO {
 		this.payCmmssn = payCmmssn;
 	}
 
-	public String getPayTrName() {
-		return payTrName;
+	public String getUsrTrTtl() {
+		return usrTrTtl;
 	}
-	
-	public void setPayTrName(String payTrName) {
-		this.payTrName = payTrName;
+
+	public void setUsrTrTtl(String usrTrTtl) {
+		this.usrTrTtl = usrTrTtl;
+	}
+
+	public String getGdTrTtl() {
+		return gdTrTtl;
+	}
+
+	public void setGdTrTtl(String gdTrTtl) {
+		this.gdTrTtl = gdTrTtl;
 	}
 
 	public String getTrstId() {
@@ -191,13 +202,15 @@ public class PaymentVO {
 		this.trstId = trstId;
 	}
 
-	public String getGdName() {
-		return gdName;
+
+
+	public String getGdFnm() {
+		return gdFnm;
 	}
 
-	public void setGdName(String gdName) {
-		this.gdName = gdName;
+	public void setGdFnm(String gdFnm) {
+		this.gdFnm = gdFnm;
 	}
-	
+
 
 }

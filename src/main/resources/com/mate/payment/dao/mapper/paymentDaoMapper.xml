@@ -9,24 +9,77 @@
 	  FROM PAY_INF
 </select>
 
-<select id="selectAllPayment" resultType="com.mate.payment.vo.PaymentVO">
-SELECT PAY_ID
-     , TRST_ID
-     , GD_ID
-     , PAY_TR_TP
-     , PAY_TR_ID
-     , PAY_CSH
-     , PAY_STT
-     , TO_CHAR(PAY_CRT_DT, 'YYYY-MM-DD HH24:mm') PAY_CRT_DT
-     , TO_CHAR(PAY_CMPLT_DT, 'YYYY-MM-DD HH24:mm') PAY_CMPLT_DT
-     , PAY_KEY
-     , PAY_MTHD
-     , PAY_CRRNC
-     , PAY_CMMSSN
-  FROM PAY_INF
+
+<select id="selectAllMyPaymentCount" parameterType="String" resultType="_int">
+	SELECT COUNT(1)
+	  FROM PAY_INF
+	 WHERE TRST_ID = #{_parameter}
 </select>
 
+<select id="selectAllPayment" resultType="com.mate.payment.vo.PaymentVO">
+	SELECT PAY_ID
+	     , TRST_ID
+	     , PI.GD_ID AS GD_ID
+	     , GD.USR_FNM AS GD_FNM
+	     , PAY_TR_TP
+	     , PAY_TR_ID
+		 , UTR.USR_TR_TTL AS USR_TR_TTL
+	     , GTR.GD_TR_TTL AS GD_TR_TTL
+	     , PAY_CSH
+	     , PAY_STT
+	     , TO_CHAR(PAY_CRT_DT  , 'YYYY-MM-DD HH24:MI') PAY_CRT_DT
+	     , TO_CHAR(PAY_CMPLT_DT, 'YYYY-MM-DD HH24:MI') PAY_CMPLT_DT
+	     , PAY_KEY
+	     , PAY_MTHD
+	     , PAY_CRRNC
+	     , PAY_CMMSSN
+	  FROM PAY_INF PI
+	  JOIN (SELECT *
+	  		  FROM USR_INF
+	  		 WHERE USR_IS_GD = 'Y') GD
+	    ON GD.USR_ID = PI.GD_ID
+	  LEFT JOIN USR_TR_RQST UTR
+	    ON PI.PAY_TR_ID = UTR.USR_TR_PST_ID
+	  LEFT JOIN GD_TR_RCRT GTR
+	    ON PI.PAY_TR_ID = GTR.GD_TR_PST_ID
+	 WHERE USR_TR_TTL IS NOT NULL
+    	OR GD_TR_TTL IS NOT NULL
+	<!-- TODO 자기 것만 나와야하니까 그것도 만들어야 함. -->
+  
+</select>
 
+<select id="selectAllMyPayment" parameterType="String" resultType="com.mate.payment.vo.PaymentVO">
+	SELECT PAY_ID
+	     , TRST_ID
+	     , PI.GD_ID AS GD_ID
+	     , GD.USR_FNM AS GD_FNM
+	     , PAY_TR_TP
+	     , PAY_TR_ID
+		 , UTR.USR_TR_TTL AS USR_TR_TTL
+	     , GTR.GD_TR_TTL AS GD_TR_TTL
+	     , PAY_CSH
+	     , PAY_STT
+	     , TO_CHAR(PAY_CRT_DT  , 'YYYY-MM-DD HH24:MI') PAY_CRT_DT
+	     , TO_CHAR(PAY_CMPLT_DT, 'YYYY-MM-DD HH24:MI') PAY_CMPLT_DT
+	     , PAY_KEY
+	     , PAY_MTHD
+	     , PAY_CRRNC
+	     , PAY_CMMSSN
+	  FROM PAY_INF PI
+	  JOIN (SELECT *
+	  		  FROM USR_INF
+	  		 WHERE USR_IS_GD = 'Y') GD
+	    ON GD.USR_ID = PI.GD_ID
+	  LEFT JOIN USR_TR_RQST UTR
+	    ON PI.PAY_TR_ID = UTR.USR_TR_PST_ID
+	  LEFT JOIN GD_TR_RCRT GTR
+	    ON PI.PAY_TR_ID = GTR.GD_TR_PST_ID
+	 WHERE (USR_TR_TTL IS NOT NULL
+    	OR GD_TR_TTL IS NOT NULL)
+       AND TRST_ID = #{_parameter}
+	<!-- TODO 자기 것만 나와야하니까 그것도 만들어야 함. -->
+  
+</select>
 
 
 
