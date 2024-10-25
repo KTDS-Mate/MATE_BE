@@ -7,7 +7,7 @@
     </div>
 
     <div class="header-center-menu">
-      <div><a href="">투어 요청 목록</a></div>
+      <div><a href="/usertour/list?usrLgnId=${sessionScope._LOGIN_USER_.usrLgnId}&usrIsGd=${sessionScope._LOGIN_USER_.usrIsGd}">투어 요청 목록</a></div>
       <div><a href="">가이드 투어 목록</a></div>
       <div><a href="">가이드 목록</a></div>
     </div>
@@ -22,6 +22,7 @@
           <img class="alram-icon" src="/public/alarmOnButton.png" alt="알람버튼" />
         </a>
       </div>
+      <!-- // http://localhost:8080/board/list?pageNo=1&listSize=10 -->
       <c:choose>
 				<c:when test="${empty sessionScope._LOGIN_USER_}">
 					<div>
@@ -33,13 +34,13 @@
 				</c:when>
 				<c:otherwise>
 					<div>
-						${sessionScope._LOGIN_USER_.usrId}
+					${sessionScope._LOGIN_USER_.usrLgnId} 님 환영합니다
 					</div>
 					<div>
-						<a href="/mypage/mytour/gd-mytour">로그아웃</a>
+						<a href="/user/logout">로그아웃</a>
 					</div>
 					<div>
-						<a href="/mypage/mytour/gd-mytour">마이페이지</a>
+						<a href="/mypage/edit-profile/choice?usrLgnId=${sessionScope._LOGIN_USER_.usrLgnId}&usrIsGd=${sessionScope._LOGIN_USER_.usrIsGd}">마이페이지</a>
 					</div>
 				</c:otherwise>
 			</c:choose>

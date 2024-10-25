@@ -38,7 +38,7 @@
         FROM
             USR_INF
         WHERE
-            USR_ID = #{_parameter}
+            USR_LGN_ID = #{_parameter}
     </select>
 
 
