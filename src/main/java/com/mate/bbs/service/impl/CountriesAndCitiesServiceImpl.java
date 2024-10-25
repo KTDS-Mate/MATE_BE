@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.mate.bbs.dao.CountriesAndCitiesDao;
 import com.mate.bbs.service.CountriesAndCitiesService;
+import com.mate.common.vo.CitiesListVO;
+import com.mate.common.vo.CitiesVO;
 import com.mate.common.vo.CountriesListVO;
 import com.mate.common.vo.CountriesVO;
 
@@ -25,6 +27,16 @@ public class CountriesAndCitiesServiceImpl implements CountriesAndCitiesService 
 		countriesListVO.setCountriesCount(countriesCount);
 		
 		return countriesListVO;
+	}
+	
+	@Override
+	public CitiesListVO getAllCities(int countryId) {
+		List<CitiesVO> citiesList = this.countriesAndCitiesDao.selectCities(countryId);
+		CitiesListVO citiesListVO = new CitiesListVO();
+		
+		citiesListVO.setCitiesList(citiesList);
+		
+		return citiesListVO;
 	}
 	
 }
