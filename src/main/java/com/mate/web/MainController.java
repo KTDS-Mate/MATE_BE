@@ -7,13 +7,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {
 	
 	@GetMapping("/")
-	public String viewMainPage(){return "all/MT_M001";}
+	public String viewMainPage(){
+		return "all/MT_M001";
+		}
 
 	@GetMapping("header")
-	public String viewHeader(){return "header";}
+	public String viewHeader(){
+		return "header";
+		}
 
 	@GetMapping("footer")
-	public String viewFooter(){return "footer";}
+	public String viewFooter(){
+		return "footer";
+		}
 
 	@GetMapping("/guide/tourlist")
 	public String viewGuideTotalList() {
@@ -21,7 +27,9 @@ public class MainController {
 	}
 
 	@GetMapping("/guide/tourinfo")
-	public String viewGuideTourInfoPage(){return "all/GuideTourInfo";}
+	public String viewGuideTourInfoPage(){
+		return "all/GuideTourInfo";
+		}
 
 	@GetMapping("/guide/guideprofile")
 	public String viewGuideProfilePage(){return "all/GuideProfile"; }
