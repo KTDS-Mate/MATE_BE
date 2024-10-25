@@ -25,8 +25,8 @@
 		</collection>
 	</resultMap>
 	
+	<!-- 검색기능에 사용 -->
 	<sql id="selectSubjectAndContent">
-		WHERE 1 = 1
 	<if test='searchKeyword != null and searchKeyword != ""'>
 		  AND (UTR.USR_TR_TTL LIKE '%' || #{searchKeyword} || '%'
 		   OR UTR.USR_TR_PRPS LIKE '%' || #{searchKeyword} || '%')
@@ -35,36 +35,55 @@
 	
 	<insert id="insertNewUserTour"
 			parameterType="com.mate.bbs.vo.UserTourWriteVO">
-		INSERT INTO USR_TR_RQST 
+		<!--
+		 PK를 먼저 발급 받음 
+		 keyProperty : VO에서 PK를 담당하는 프로퍼티 작성
+		 order : BEFORE - 쿼리를 실행하기 전에 먼저 실행
+		 		 AFTER - 쿼리를 실행한 후 실행
+		 resultType : 해당 쿼리의 반환 값
+		-->
+		<selectKey keyProperty="usrTrPstId" order="BEFORE" resultType="string">
+			SELECT 'UT-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_USR_TR_RQST_PK.NEXTVAL, 6, 0)
+			  FROM DUAL
+		</selectKey>
+		INSERT INTO USR_TR_RQST
 		 (USR_TR_PST_ID
 		, ATHR_ID
 		, GD_ID
 		, USR_TR_TTL
-		, USR_TR_DT
+		, USR_TR_ST_DT
 		, USR_TR_PRPS
 		, USR_TR_MP
 		, USR_TR_GD_HR_PRC
 		, USR_TR_NP
-		, USR_TR_TM
 		, USR_TR_IS_DLT
 		, USR_TR_RSTR_DT
 		, TR_CT_ID
-		, USR_TR_RQ_DTL)
+		, USR_TR_RQ_DTL
+		, GD_GNDR
+		, GD_AGE
+		, GD_CRR
+		, GD_WNT_RQ
+		, USR_TR_ED_DT)
 		VALUES
-		 ('UT-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_USR_TR_RQST_PK.NEXTVAL, 6, 0)
+		 (#{usrTrPstId}
 		, '1'
 		, NULL
 		, #{usrTrTtl}
-		, TO_DATE(#{usrTrDt}, 'YYYY-MM-DD')
+		, TO_DATE(#{usrTrStDt}, 'YYYY-MM-DD HH24:MI')
 		, #{usrTrPrps}
 		, #{usrTrMp}
 		, #{usrTrGdHrPrc}
 		, #{usrTrNp}
-		, #{usrTrTm}
 		, 'N'
 		, SYSDATE
 		, #{trCtId}
-		, #{usrTrRqDtl})
+		, #{usrTrRqDtl}
+		, #{gdGndr}
+		, #{gdAge}
+		, #{gdCrr}
+		, #{gdWntRq}
+		, TO_DATE(#{usrTrEdDt}, 'YYYY-MM-DD HH24:MI'))
 	</insert>
 	
 	<select id="selectOneUserTour"
@@ -74,7 +93,6 @@
 		     , UTR.ATHR_ID
 		     , UTR.GD_ID
 		     , UTR.USR_TR_TTL
-		     , UTR.USR_TR_DT
 		     , UTR.USR_TR_PRPS
 		     , UTR.USR_TR_MP
 		     , UTR.USR_TR_GD_HR_PRC
@@ -88,6 +106,8 @@
 		     , UTR.GD_AGE 
 		     , UTR.GD_CRR 
 		     , UTR.GD_WNT_RQ 
+		     , TO_CHAR(UTR.USR_TR_ST_DT, 'YYYY-MM-DD') USR_TR_ST_DT
+		     , TO_CHAR(UTR.USR_TR_ED_DT, 'YYYY-MM-DD') USR_TR_ED_DT
 		     , UTRI.USR_TR_RQ_IMG_ID_URL
 		     , UI.USR_LNM 
 		     , UI.USR_FNM 
@@ -116,28 +136,18 @@
 			<include refid="Common.pagination_header" />
 		</if>
 		SELECT UTR.USR_TR_PST_ID
-		     , UTR.ATHR_ID
-		     , UTR.GD_ID
-		     , UTR.USR_TR_TTL
-		     , TO_CHAR(UTR.USR_TR_DT, 'YYYY-MM-DD') USR_TR_DT
-		     , UTR.USR_TR_PRPS
-		     , UTR.USR_TR_MP
-		     , UTR.USR_TR_GD_HR_PRC
-		     , UTR.USR_TR_NP
-		     , UTR.USR_TR_RSTR_DT
-		     , UTR.USR_TR_MDFY_DT
-		     , UTR.USR_TR_DLT_DT
-		     , UTR.TR_CT_ID
-		     , UTR.USR_TR_RQ_DTL 
-		     , UTRI.USR_TR_RQ_IMG_ID_URL
-		     , UTR.GD_GNDR 
-		     , UTR.GD_AGE 
-		     , UTR.GD_CRR 
-		     , UTR.GD_WNT_RQ 
-		     , CEIL (UTR.USR_TR_DT - SYSDATE) AS DEADLINE
+		     , UTR.USR_TR_TTL 
+		     , UTR.USR_TR_PRPS 
+		     , TO_CHAR(UTR.USR_TR_ST_DT, 'YYYY-MM-DD') USR_TR_ST_DT 
+		     , UTR.USR_TR_ED_DT 
+		     , UTR.USR_TR_GD_HR_PRC 
+		     , CEIL (UTR.USR_TR_ST_DT - SYSDATE) AS DEADLINE
+		     , TRUNC((UTR.USR_TR_ED_DT - UTR.USR_TR_ST_DT) * 24 * 60) AS USR_TR_TM
+		     , UTRI.USR_TR_RQ_IMG_ID_URL 
 		  FROM USR_TR_RQST UTR
 		  LEFT JOIN USR_TR_RQST_IMG UTRI
-		    ON UTR.USR_TR_PST_ID = UTRI.USR_TR_PST_ID
+		    ON UTR.USR_TR_PST_ID = UTRI.USR_TR_PST_ID 
+		 WHERE UTR.USR_TR_ST_DT > SYSDATE
 		<if test="_parameter != null">
 			<include refid="com.mate.bbs.dao.UserTourDao.selectSubjectAndContent" />
 		</if>
@@ -168,5 +178,31 @@
 		   SET USR_TR_IS_DLT = 'Y'
 		 WHERE USR_TR_PST_ID = #{_parameter}
 	</update>
+	
+	<select id="selectAttachStartHour"
+			parameterType="com.mate.bbs.vo.UserTourWriteVO">
+		SELECT #{inputYear} || ' ' || #{inputStartHour} || ':' || #{inputStartMinute}
+ 		  FROM DUAL
+	</select>
+	
+	<select id="selectAttachEndHour"
+			parameterType="com.mate.bbs.vo.UserTourWriteVO">
+		SELECT #{inputYear} || ' ' || #{inputEndHour} || ':' || #{inputEndMinute}
+ 		  FROM DUAL
+	</select>
+	
+	<insert id="insertUserTourScheduls"
+			parameterType="com.mate.bbs.vo.UserTourSchdlVO">
+		INSERT INTO TR_SCHDL
+		 (TR_SCHDL_ID
+		, USR_TR_PST_ID
+		, TR_LCTNS
+		, TR_RQST)
+		VALUES
+		 ('RQ-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_TR_SCHDL_PK.NEXTVAL, 6, 0)
+		, #{usrTrPstId}
+		, #{trLctns}
+		, #{trRqst})
+	</insert>
 	
 </mapper>

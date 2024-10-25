@@ -25,7 +25,7 @@ public class UserTourVO {
 	/**
 	 * 여행자가 입력한 투어 일시
 	 */
-	private String usrTrDt;
+	private String usrTrStDt;
 	/**
 	 * 여행자가 입력한 투어의 목적
 	 */
@@ -84,6 +84,10 @@ public class UserTourVO {
 	private String gdWntRq;
 	
 	/**
+	 * 여행자가 입력한 투어 종료일시 
+	 */
+	private String usrTrEdDt;
+	/**
 	 * 게시글 작성자의 정보를 담은 VO
 	 */
 	private UserVO userVO;
@@ -137,12 +141,12 @@ public class UserTourVO {
 		this.usrTrTtl = usrTrTtl;
 	}
 
-	public String getUsrTrDt() {
-		return usrTrDt;
+	public String getUsrTrStDt() {
+		return usrTrStDt;
 	}
 
-	public void setUsrTrDt(String usrTrDt) {
-		this.usrTrDt = usrTrDt;
+	public void setUsrTrStDt(String usrTrStDt) {
+		this.usrTrStDt = usrTrStDt;
 	}
 
 	public String getUsrTrPrps() {
@@ -296,5 +300,12 @@ public class UserTourVO {
 	public void setDeadline(int deadline) {
 		this.deadline = deadline;
 	}
-	
+
+	public String getUsrTrEdDt() {
+		return usrTrEdDt;
+	}
+
+	public void setUsrTrEdDt(String usrTrEdDt) {
+		this.usrTrEdDt = usrTrEdDt;
+	}
 }

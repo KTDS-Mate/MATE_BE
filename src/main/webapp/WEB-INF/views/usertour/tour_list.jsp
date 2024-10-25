@@ -7,7 +7,7 @@ pageEncoding="UTF-8"%>
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="/css/tour_list.css">
+    <link rel="stylesheet" type="text/css" href="/css/usertour/tour_list.css">
     <link
       rel="stylesheet"
       type="text/css"
@@ -49,36 +49,41 @@ pageEncoding="UTF-8"%>
                 <div><a href="">중국</a></div>
                 <div><a href="">그 외</a></div>
             </div>
-            <div class="list-view-option">
-                <div><a href="">Mate 랭킹순</a></div>
-                <div><a href="">높은 가격순</a></div>
-                <div><a href="">낮은 가격순</a></div>
-                <div><a href="">최신순</a></div>
-                <div><a href="">마감 임박순</a></div>
+            <div class="flex-list-insert-btn">
+            	<div>
+            		<a class="insert-tour-btn" href="/usertour/insert">투어 등록</a>
+            	</div>
+	            <div class="list-view-option">
+	                <div class="checked2"><a href="">최신순</a></div>
+	                <div><a href="">Mate 랭킹순</a></div>
+	                <div><a href="">높은 가격순</a></div>
+	                <div><a href="">낮은 가격순</a></div>
+	                <div><a href="">마감 임박순</a></div>
+	            </div>
             </div>
-            
             <div class="tour-list-area">
                 <c:forEach items="${userTourListVO.userTourList}" var="userTourVO">
             		<div class="tour-box">
-            		 <c:choose>
-            		 	<c:when test="${not empty userTourVO.userTourImgList && not empty userTourVO.userTourImgList[0].usrTrRqImgIdUrl}">
-            		 		<a href="/usertour/view?usrTrPstId=${userTourVO.usrTrPstId}">
-	            		 		<img class="tour-country-image"
-		                        src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}" />
-	                        </a>
-            		 	</c:when>
-            		 	<c:otherwise>
-            		 		<a href="/usertour/view?usrTrPstId=${userTourVO.usrTrPstId}">
-	            		 		<img class="tour-country-image"
-		                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr0t3L6uYd0dlfnh5DF4JSbDvumbCUZbGhIg&s" />
-	                        </a>
-            		 	</c:otherwise>
-            		 </c:choose>
-	                    <a href="/usertour/view?usrTrPstId=${userTourVO.usrTrPstId}" class="tour-subject"><span class="ttl-color">${userTourVO.usrTrTtl}</span></a>
-	                    <a href="/usertour/view?usrTrPstId=${userTourVO.usrTrPstId}" class="tour-comment">${userTourVO.usrTrPrps}</a>
+            			<input class="hide" type="hidden" data-pst-id="${userTourVO.usrTrPstId}" />
+            		 	<c:choose>
+            		 		<c:when test="${not empty userTourVO.userTourImgList && not empty userTourVO.userTourImgList[0].usrTrRqImgIdUrl}">
+	            		 			<img class="tour-country-image"
+		                        	src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}" />
+            		 		</c:when>
+            		 		<c:otherwise>
+	            		 			<img class="tour-country-image"
+		                        	src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr0t3L6uYd0dlfnh5DF4JSbDvumbCUZbGhIg&s" />
+            		 		</c:otherwise>
+            			 </c:choose>
+            			 <p>
+	                    	<h3 class="tour-subject">${userTourVO.usrTrTtl}</h3>
+	                    </p>
+	                    <div class="tour-comment">
+	                    	${userTourVO.usrTrPrps}
+	                    </div>
 	                    <div class="tourtime-deadline">
 		                    <div>
-		                    	<p class="tour-schedule">투어일 : ${userTourVO.usrTrDt}</p>
+		                    	<p class="tour-schedule">투어일 : ${userTourVO.usrTrStDt}</p>
 		                    	<div class="">소요시간 : ${userTourVO.usrTrTm}분</div>
 		                    </div>
 		                    <p class="tour-deadline">마감 ${userTourVO.deadline}일전</p>

@@ -30,9 +30,5 @@
 	  FROM GD_TR_RCRT
 
 </select>
-<insert id="createNewGuideTour" parameterType="com.mate.bbs.vo.WriteGuideTourVO">
-
-
-</insert>
 
 </mapper>
