@@ -8,7 +8,7 @@
 
     <div class="header-center-menu">
       <div><a href="">투어 요청 목록</a></div>
-      <div><a href="">가이드 투어 목록</a></div>
+      <div><a href="/guidetour/list">가이드 투어 목록</a></div>
       <div><a href="">가이드 목록</a></div>
     </div>
     <div class="header-right-menu">

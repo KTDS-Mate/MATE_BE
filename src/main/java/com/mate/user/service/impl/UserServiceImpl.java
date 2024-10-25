@@ -15,8 +15,6 @@ import com.mate.user.vo.LoginUserVO;
 import com.mate.user.vo.RegistUserVO;
 import com.mate.user.vo.UserVO;
 
-import io.socket.engineio.client.transports.PollingXHR.Request;
-
 
 @Service
 public class UserServiceImpl implements UserService {
