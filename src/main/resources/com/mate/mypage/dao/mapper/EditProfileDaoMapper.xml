@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mate.mypage.dao.EditProfileDao">
+
+    <select id="countUsers" resultType="_int">
+        SELECT
+            COUNT(1)
+        FROM
+            USR_INF
+    </select>
+
+    <select id="selectOneUser" parameterType="string" resultType="com.mate.user.vo.UserVO">
+        SELECT
+            USR_ID
+            ,USR_LGN_ID
+            ,USR_PWD
+            ,USR_LNM
+            ,USR_FNM
+            ,USR_GNDR
+            ,USR_EML
+            ,USR_PHN
+            ,USR_BD
+            ,USR_ADDRS
+            ,USR_IS_GD
+            ,USR_SLF_INTDCTN
+            ,USR_PYP_EML
+            ,USR_AVG_RTNG
+            ,USR_JN_DT
+            ,USR_CL_DT
+            ,USR_IS_CL
+            ,USR_MDFY_DT
+            ,GD_PRFL_IMG
+            ,GD_ID_IMG
+            ,GD_CBC_IMG
+            ,GD_RP_CNT_ID
+        FROM
+            USR_INF
+        WHERE
+            USR_ID = #{_parameter}
+    </select>
+
+
+
+</mapper>

@@ -6,7 +6,7 @@ $().ready(function () {
 	var nextUrl = "";
 	
 	if (pathname === "/user/login") {
-		nextUrl = "/board/list";
+		nextUrl = "/";
 		
 	} else {
 		nextUrl = pathname + search;
