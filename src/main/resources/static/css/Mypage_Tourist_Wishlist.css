@@ -1,3 +1,4 @@
+
 div.content-grid {
   display: grid;
   grid-template-columns: 13rem 1fr;
@@ -7,6 +8,7 @@ div.content-grid {
 div.my-page > ul.list > li.wishlist{
 	color: #333;
 }  
+
 
 div.main-content {
   border: 2px solid #ffeedb;
@@ -67,25 +69,26 @@ div.right-element {
   display: flex;
   align-items: center;
 }
+
 div.wishlist-info {
   padding: 0.5rem 2rem;
 }
 
 div.wishlist-info div {
   display: flex;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 div.info-content {
   padding-left: 1rem;
 }
 
-div.goto-button > button {
+div.goto-button>button {
   border-radius: 15px;
   border: none;
   width: 13rem;
   height: 3.5rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 button.activate {

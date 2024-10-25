@@ -8,38 +8,6 @@ div.my-page > ul.list > li.wishlist{
 	color: #333;
 }
 
-div.my-page {
-  position: sticky;
-  top: 10px;
-  background-color: #fff6ec;
-  height: 33rem;
-  /* 상하 고정 크기 말고 리스트 추가하면 더 늘어나도록 항목에 따른 패딩을 부여  */
-  /* padding-top: 1rem; */
-  /* padding-bottom: 1rem; */
-
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 20px;
-  text-align: center;
-}
-
-.list {
-  padding: 0;
-}
-
-.my-page li {
-  font-size: 1.5rem;
-  display: block;
-  padding-bottom: 3rem;
-  font-weight: bold;
-  color: gray;
-}
-
-.my-page li:last-child {
-  padding: 0;
-}
 
 div.main-content {
   border: 2px solid #ffeedb;
@@ -106,7 +74,7 @@ div.wishlist-info {
 
 div.wishlist-info div {
   display: flex;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 div.info-content {
@@ -118,7 +86,7 @@ div.goto-button > button {
   border: none;
   width: 13rem;
   height: 3.5rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 button.activate {

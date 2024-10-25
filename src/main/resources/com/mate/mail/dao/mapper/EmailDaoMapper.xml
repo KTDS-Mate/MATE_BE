@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mate.mail.dao.EmailDao">
+	<insert id="saveAuthInfo" parameterType="com.mate.mail.vo.EmailVO">
+		INSERT INTO AUTH_MAIL
+		     ( AUTH_MAIL_ID
+		     , AUTH_MAIL_EMAIL
+		     , AUTH_MAIL_AUTHCODE
+		     , AUTH_MAIL_ISSUETIME)
+		VALUES
+		     ( 'EML-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_AUTH_MAIL_PK.NEXTVAL, 6, 0)
+		     , #{email}
+		     , #{authCode}
+		     , SYSDATE)
+	</insert>
+	
+	<select id="getAuthCodeByEmail" parameterType="String" resultType="String">
+		SELECT AUTH_MAIL_AUTHCODE
+		  FROM ( SELECT AUTH_MAIL_AUTHCODE
+		           FROM AUTH_MAIL
+		          WHERE AUTH_MAIL_EMAIL = #{email}
+		          ORDER BY AUTH_MAIL_ISSUETIME DESC)
+		 WHERE ROWNUM = 1
+	</select>
+	
+</mapper> 

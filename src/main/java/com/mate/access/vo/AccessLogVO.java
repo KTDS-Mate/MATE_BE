@@ -2,22 +2,35 @@ package com.mate.access.vo;
 
 public class AccessLogVO {
 
+	// PK
 	private String accessLogId;
 	
+	// 접근 유형
 	private String accessType;
 	
-	private String accessEmail;
+	// 유저의 아이디(usrLgnId)
+	private String accessId;
 	
+	// 접근 시간
 	private String accessTime;
 	
+	// 접근 URL
 	private String accessUrl;
 	
+	// 접근 HTTP method
 	private String accessMethod;
 	
+	// 접근 IP
 	private String accessIp;
 	
+<<<<<<< HEAD
 	private String loginSuccessStatus;
 
+=======
+	// login 성공/실패 여부
+	private String loginSuccessYn;
+	
+>>>>>>> main
 	public String getAccessLogId() {
 		return accessLogId;
 	}
@@ -34,12 +47,12 @@ public class AccessLogVO {
 		this.accessType = accessType;
 	}
 
-	public String getAccessEmail() {
-		return accessEmail;
+	public String getAccessId() {
+		return accessId;
 	}
 
-	public void setAccessEmail(String accessEmail) {
-		this.accessEmail = accessEmail;
+	public void setAccessId(String accessId) {
+		this.accessId = accessId;
 	}
 
 	public String getAccessTime() {
@@ -74,11 +87,20 @@ public class AccessLogVO {
 		this.accessIp = accessIp;
 	}
 
+<<<<<<< HEAD
 	public String getLoginSuccessStatus() {
 		return loginSuccessStatus;
 	}
 
 	public void setLoginSuccessStatus(String loginSuccessStatus) {
 		this.loginSuccessStatus = loginSuccessStatus;
+=======
+	public String getLoginSuccessYn() {
+		return loginSuccessYn;
+	}
+
+	public void setLoginSuccessYn(String loginSuccessYn) {
+		this.loginSuccessYn = loginSuccessYn;
+>>>>>>> main
 	}
 }

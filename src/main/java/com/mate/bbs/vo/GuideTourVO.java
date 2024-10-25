@@ -1,14 +1,17 @@
 package com.mate.bbs.vo;
 
+<<<<<<< HEAD
 import java.util.List;
 
 import com.mate.common.vo.CityVO;
+=======
+>>>>>>> main
 import com.mate.common.vo.CountryVO;
 import com.mate.user.vo.UserVO;
 
 public class GuideTourVO {
 
-	
+
 	/**
 	 * 가이드 투어 게시글 아이디
 	 */
@@ -26,6 +29,7 @@ public class GuideTourVO {
 	 */
 	private String gdTrTtl;
 	/**
+<<<<<<< HEAD
 	 * 투어 시작 날짜
 	 */
 	private String gdTrStDt;
@@ -33,6 +37,15 @@ public class GuideTourVO {
 	 * 투어 종료 날짜
 	 */
 	private String gdTrEdDt;
+=======
+	 * 투어 시작일시
+	 */
+	private String gdTrStDt;
+	/**
+	 * 투어 종료일자
+	 */
+	private int gdTrEdDt;
+>>>>>>> main
 	/**
 	 * 투어 목적
 	 */
@@ -49,7 +62,10 @@ public class GuideTourVO {
 	 * 투어 요약
 	 */
 	private String gdTrSmry;
+<<<<<<< HEAD
 	
+=======
+>>>>>>> main
 	/**
 	 * 투어 등록일
 	 */
@@ -116,6 +132,24 @@ public class GuideTourVO {
 	 */
 	private CountryVO countryVO;
 	
+<<<<<<< HEAD
+=======
+	
+//	private CityVO cityVO;
+	
+	public CountryVO getCountryVO() {
+		return countryVO;
+	}
+	public void setCountryVO(CountryVO countryVO) {
+		this.countryVO = countryVO;
+	}
+//	public CityVO getCityVO() {
+//		return cityVO;
+//	}
+//	public void setCityVO(CityVO cityVO) {
+//		this.cityVO = cityVO;
+//	}
+>>>>>>> main
 	public String getGdTrPstId() {
 		return gdTrPstId;
 	}
@@ -140,6 +174,7 @@ public class GuideTourVO {
 	public void setGdTrTtl(String gdTrTtl) {
 		this.gdTrTtl = gdTrTtl;
 	}
+<<<<<<< HEAD
 	public String getGdTrStDt() {
 		return gdTrStDt;
 	}
@@ -151,8 +186,25 @@ public class GuideTourVO {
 		return gdTrEdDt;
 	}
 	public void setGdTrEdDt(String gdTrEdDt) {
+=======
+
+	public int getGdTrEdDt() {
+		return gdTrEdDt;
+	}
+
+	public void setGdTrEdDt(int gdTrEdDt) {
+>>>>>>> main
 		this.gdTrEdDt = gdTrEdDt;
 	}
+
+	public String getGdTrStDt() {
+		return gdTrStDt;
+	}
+
+	public void setGdTrStDt(String gdTrStDt) {
+		this.gdTrStDt = gdTrStDt;
+	}
+
 	public String getGdTrPrps() {
 		return gdTrPrps;
 	}
@@ -177,6 +229,10 @@ public class GuideTourVO {
 	public void setGdTrSmry(String gdTrSmry) {
 		this.gdTrSmry = gdTrSmry;
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 	public String getGdTrRstrDt() {
 		return gdTrRstrDt;
 	}
