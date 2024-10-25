@@ -1,0 +1,83 @@
+.reviewWriteModal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 투명한 배경 적용 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.hidden {
+  display: none; /* 모달 숨기기 */
+}
+
+.reviewWritingArea {
+  width: 60rem;
+  height: 40rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 20px; /* 내부 여백 추가 */
+  border-radius: 10px; /* 모서리 둥글게 */
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* 그림자 추가 */
+  position: relative; /* 부모 요소 내에서 배치 */
+}
+
+.reviewWritingArea > h2 {
+  font-size: 2rem;
+}
+
+.starRating {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.star {
+  font-size: 20px; /* 별 크기 조정 */
+  cursor: pointer;
+  color: #ccc; /* 기본 별 색상 */
+  background: url("/public/Star 1.png") no-repeat center;
+}
+
+.star.on {
+  color: #ffc107; /* 선택된 별 색상 */
+  background: url("/public/Star 1.png") no-repeat center;
+}
+
+.starBox {
+  width: 400px;
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 15px 0;
+  background: #f3f4f8;
+  border: 0;
+  border-radius: 10px;
+  height: 100px;
+  resize: none;
+  padding: 15px;
+  font-size: 13px;
+  font-family: sans-serif;
+}
+
+.reviewSubmitButton {
+  display: block;
+  width: 400px;
+  font-weight: bold;
+  border: 0;
+  border-radius: 10px;
+  max-height: 50px;
+  padding: 15px 0;
+  font-size: 1.1em;
+  text-align: center;
+  background: bisque;
+  cursor: pointer; /* 클릭 가능하게 */
+}

@@ -1,6 +1,12 @@
 package com.mate.bbs.vo;
 
+
+import java.util.List;
+
+import com.mate.common.vo.CityVO;
+
 import com.mate.common.vo.CountryVO;
+import com.mate.user.vo.UserVO;
 
 public class GuideTourVO {
 
@@ -22,13 +28,14 @@ public class GuideTourVO {
 	 */
 	private String gdTrTtl;
 	/**
-	 * 투어 시작일시
+	 * 투어 시작 날짜
 	 */
 	private String gdTrStDt;
 	/**
-	 * 투어 종료일자
+	 * 투어 종료 날짜
 	 */
-	private int gdTrEdDt;
+	private String gdTrEdDt;
+
 	/**
 	 * 투어 목적
 	 */
@@ -45,6 +52,7 @@ public class GuideTourVO {
 	 * 투어 요약
 	 */
 	private String gdTrSmry;
+
 	/**
 	 * 투어 등록일
 	 */
@@ -61,35 +69,55 @@ public class GuideTourVO {
 	 * 투어 삭제 여부
 	 */
 	private String gdTrIsDlt;
-	/**
-	 * 투어 국가 아이디
-	 */
-	private String trCntId;
+	
 	/**
 	 * 투어 도시 아이디
 	 */
 	private String trCtId;
 	
-	//private UsrInfoVO usrInfo;
+	/**
+	 * 투어를 진행할 국가 아이디 fk
+	 */
+	private String trCntId;
+	/**
+	 * 투어 최대 인원 수
+	 */
+	private int gdTrMxNp;
 	
+	/**
+	 * 리뷰 평점 알리아스
+	 */
+	private double avgRvw;
+	/**
+	 * 가이드 투어 이미지 리스트 VO 
+	 */
+	private List<GuideTourImgVO> guideTourImgList;
+	/**
+	 * 가이드 투어 상세정보 리스트 VO
+	 */
+	private List<GuideTourDetailInfoVO> guideTourDetailInfoList;
 	
+	/**
+	 * 가이드 투어 제공요소 리스트 VO
+	 */
+	private List<GuideTourProvidedVO> guideTourProvidedList;
+	/**
+	 * 가이드 투어 리뷰 리스트 VO
+	 */
+	private List<GuideTourReviewVO> guideTourReviewList;
+	
+	/**
+	 * 게시글 작성자의 정보를 담은 VO
+	 */
+	private UserVO userVO;
+	/**
+	 * 도시 정보를 담은 VO
+	 */
+	private CityVO cityVO;
+	/**
+	 * 나라 정보를 담은 VO
+	 */
 	private CountryVO countryVO;
-	
-	
-//	private CityVO cityVO;
-	
-	public CountryVO getCountryVO() {
-		return countryVO;
-	}
-	public void setCountryVO(CountryVO countryVO) {
-		this.countryVO = countryVO;
-	}
-//	public CityVO getCityVO() {
-//		return cityVO;
-//	}
-//	public void setCityVO(CityVO cityVO) {
-//		this.cityVO = cityVO;
-//	}
 	public String getGdTrPstId() {
 		return gdTrPstId;
 	}
@@ -114,23 +142,18 @@ public class GuideTourVO {
 	public void setGdTrTtl(String gdTrTtl) {
 		this.gdTrTtl = gdTrTtl;
 	}
-
-	public int getGdTrEdDt() {
-		return gdTrEdDt;
-	}
-
-	public void setGdTrEdDt(int gdTrEdDt) {
-		this.gdTrEdDt = gdTrEdDt;
-	}
-
 	public String getGdTrStDt() {
 		return gdTrStDt;
 	}
-
 	public void setGdTrStDt(String gdTrStDt) {
 		this.gdTrStDt = gdTrStDt;
 	}
-
+	public String getGdTrEdDt() {
+		return gdTrEdDt;
+	}
+	public void setGdTrEdDt(String gdTrEdDt) {
+		this.gdTrEdDt = gdTrEdDt;
+	}
 	public String getGdTrPrps() {
 		return gdTrPrps;
 	}
@@ -155,7 +178,6 @@ public class GuideTourVO {
 	public void setGdTrSmry(String gdTrSmry) {
 		this.gdTrSmry = gdTrSmry;
 	}
-
 	public String getGdTrRstrDt() {
 		return gdTrRstrDt;
 	}
@@ -180,17 +202,71 @@ public class GuideTourVO {
 	public void setGdTrIsDlt(String gdTrIsDlt) {
 		this.gdTrIsDlt = gdTrIsDlt;
 	}
+	public String getTrCtId() {
+		return trCtId;
+	}
+	public void setTrCtId(String trCtId) {
+		this.trCtId = trCtId;
+	}
 	public String getTrCntId() {
 		return trCntId;
 	}
 	public void setTrCntId(String trCntId) {
 		this.trCntId = trCntId;
 	}
-	public String getTrCtId() {
-		return trCtId;
+	public int getGdTrMxNp() {
+		return gdTrMxNp;
 	}
-	public void setTrCtId(String trCtId) {
-		this.trCtId = trCtId;
+	public void setGdTrMxNp(int gdTrMxNp) {
+		this.gdTrMxNp = gdTrMxNp;
+	}
+	public double getAvgRvw() {
+		return avgRvw;
+	}
+	public void setAvgRvw(double avgRvw) {
+		this.avgRvw = avgRvw;
+	}
+	public List<GuideTourImgVO> getGuideTourImgList() {
+		return guideTourImgList;
+	}
+	public void setGuideTourImgList(List<GuideTourImgVO> guideTourImgList) {
+		this.guideTourImgList = guideTourImgList;
+	}
+	public List<GuideTourDetailInfoVO> getGuideTourDetailInfoList() {
+		return guideTourDetailInfoList;
+	}
+	public void setGuideTourDetailInfoList(List<GuideTourDetailInfoVO> guideTourDetailInfoList) {
+		this.guideTourDetailInfoList = guideTourDetailInfoList;
+	}
+	public List<GuideTourProvidedVO> getGuideTourProvidedList() {
+		return guideTourProvidedList;
+	}
+	public void setGuideTourProvidedList(List<GuideTourProvidedVO> guideTourProvidedList) {
+		this.guideTourProvidedList = guideTourProvidedList;
+	}
+	public List<GuideTourReviewVO> getGuideTourReviewList() {
+		return guideTourReviewList;
+	}
+	public void setGuideTourReviewList(List<GuideTourReviewVO> guideTourReviewList) {
+		this.guideTourReviewList = guideTourReviewList;
+	}
+	public UserVO getUserVO() {
+		return userVO;
+	}
+	public void setUserVO(UserVO userVO) {
+		this.userVO = userVO;
+	}
+	public CityVO getCityVO() {
+		return cityVO;
+	}
+	public void setCityVO(CityVO cityVO) {
+		this.cityVO = cityVO;
+	}
+	public CountryVO getCountryVO() {
+		return countryVO;
+	}
+	public void setCountryVO(CountryVO countryVO) {
+		this.countryVO = countryVO;
 	}
 	
 }

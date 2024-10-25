@@ -2,7 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,windows,macos,intellij,eclipse,maven,visualstudiocode
 
 ### Eclipse ###
-.metadata
+.metadata/
 bin/
 tmp/
 *.tmp
@@ -36,7 +36,7 @@ local.properties
 .buildpath
 
 # sbteclipse plugin
-.target
+target/
 
 # Tern plugin
 .tern-project
