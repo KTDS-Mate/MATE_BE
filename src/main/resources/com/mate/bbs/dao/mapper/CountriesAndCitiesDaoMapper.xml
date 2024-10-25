@@ -11,12 +11,22 @@
 		     , NAME 
 		     , KOR_NAME 
 		  FROM COUNTRIES
+	     ORDER BY KOR_NAME 
 	</select>
 	
 	<select id="selectCountriesCount"
 			resultType="_int">
 		SELECT COUNT(1)
   		  FROM COUNTRIES		
+	</select>
+
+	<select id="selectCities"
+			parameterType="_int"
+			resultType="com.mate.common.vo.CitiesVO">
+		SELECT ID 
+		     , NAME 
+		  FROM CITIES
+		 WHERE COUNTRY_ID = #{_parameter}
 	</select>
 
 </mapper>
