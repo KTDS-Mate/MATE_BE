@@ -1,0 +1,134 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/css/usertour/tour_list.css">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/common.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="/js/usertour/usertourlist.js"></script>
+</head>
+
+<body>
+    <div class="grid">
+        <div class="header">
+            <!-- 헤더 공통파일 -->
+            <jsp:include page="../header.jsp"></jsp:include>
+        </div>
+        <div class="content">
+            <div class="tour-request-list">
+                <h1>투어 요청 목록</h1>
+            </div>
+            <!-- 게시글 수 세기 위함
+			<div>${userTourListVO.userTourCount}</div> -->
+            <div class="search-zone">
+            	<form class="search-form">
+            		<input type="hidden" name="pageNo" class="page-no" value="${searchUserTourVO.pageNo}" />
+                	<div class="search-area">
+                    	<input type="text" class="search-input" placeholder="지역을 입력하세요." />
+                    	<button class="search-button">검색</button>
+                	</div>
+            	</form>
+            </div>
+            <div class="country-menu-area">
+                <div class="checked"><a href="">전체</a></div>
+                <div><a href="">일본</a></div>
+                <div><a href="">동남아</a></div>
+                <div><a href="">유럽</a></div>
+                <div><a href="">중국</a></div>
+                <div><a href="">그 외</a></div>
+            </div>
+            <div class="flex-list-insert-btn">
+            	<div>
+            		<a class="insert-tour-btn" href="/usertour/insert">투어 등록</a>
+            	</div>
+	            <div class="list-view-option">
+	                <div class="checked2"><a href="">최신순</a></div>
+	                <div><a href="">Mate 랭킹순</a></div>
+	                <div><a href="">높은 가격순</a></div>
+	                <div><a href="">낮은 가격순</a></div>
+	                <div><a href="">마감 임박순</a></div>
+	            </div>
+            </div>
+            <div class="tour-list-area">
+                <c:forEach items="${userTourListVO.userTourList}" var="userTourVO">
+            		<div class="tour-box">
+            			<input class="hide" type="hidden" data-pst-id="${userTourVO.usrTrPstId}" />
+            		 	<c:choose>
+            		 		<c:when test="${not empty userTourVO.userTourImgList && not empty userTourVO.userTourImgList[0].usrTrRqImgIdUrl}">
+	            		 			<img class="tour-country-image"
+		                        	src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}" />
+            		 		</c:when>
+            		 		<c:otherwise>
+	            		 			<img class="tour-country-image"
+		                        	src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr0t3L6uYd0dlfnh5DF4JSbDvumbCUZbGhIg&s" />
+            		 		</c:otherwise>
+            			 </c:choose>
+            			 <p>
+	                    	<h3 class="tour-subject">${userTourVO.usrTrTtl}</h3>
+	                    </p>
+	                    <div class="tour-comment">
+	                    	${userTourVO.usrTrPrps}
+	                    </div>
+	                    <div class="tourtime-deadline">
+		                    <div>
+		                    	<p class="tour-schedule">투어일 : ${userTourVO.usrTrStDt}</p>
+		                    	<div class="">소요시간 : ${userTourVO.usrTrTm}분</div>
+		                    </div>
+		                    <p class="tour-deadline">마감 ${userTourVO.deadline}일전</p>
+	                    </div>
+	                    <div class="tour-cost-fee">
+		                    <p class="tour-cost">총 가이드 비용</p>
+		                    <h1 class="tour-fee">${userTourVO.usrTrGdHrPrc} $</h1>
+	                    </div>
+                	</div>
+            	</c:forEach>
+            </div>
+            <div>
+            	<ul class="page-nav">
+            		<c:if test="${searchUserTourVO.hesprevGroup}">
+            			<li>
+            				<a href="javascript:movepage(${searchUserTourVO.prevGroupStartPageNo});">
+            					&lt;
+            				</a>
+            			</li>
+            		</c:if>
+            		<c:forEach begin="${searchUserTourVO.groupStartPageNo}"
+            				   end="${searchUserTourVO.groupEndPageNo}"
+            				   step="1"
+            				   var="p">
+            			<li class="${p eq searchUserTourVO.pageNo ? 'active' : ''}">
+            				<a href="/usertour/list?pageNo=${p}&listSize=${searchUserTourVO.listSize}">
+            					${p + 1}
+            				</a>
+            			</li>
+            		</c:forEach>
+            		<c:if test="${searchUserTourVO.hasNextGroup}">
+            			<li>
+            				<a href="javascript:movepage(${searchUserTourVO.nextGroupStartPageNo});">
+            					&gt;
+            				</a>
+            			</li>
+            		</c:if>
+            	</ul>
+            </div>
+        </div>
+        <div class="footer">
+            <!-- footer 공통파일 -->
+            <jsp:include page="../footer.jsp"></jsp:include>
+        </div>
+    </div>
+</body>
+
+</html>

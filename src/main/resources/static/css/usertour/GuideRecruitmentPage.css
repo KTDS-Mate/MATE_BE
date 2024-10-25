@@ -37,25 +37,71 @@
   border-bottom-left-radius: 10px;
 }
 
+.main-img img {
+	width: 100%;
+	height: 100%;
+	border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
 .second-img {
   border: 1px solid #333;
   border-top-right-radius: 10px;
   border-left: 0;
 }
 
+.second-img img {
+	width: 100%;
+	height: 100%;
+  	border-top-right-radius: 10px;
+}
+
 .third-img {
   border-right: 1px solid #333;
 }
 
+.third-img img {
+	width: 100%;
+	height: 100%;
+}
+
 .plus-img {
+  position: relative;
   border: 1px solid #333;
   border-bottom-right-radius: 10px;
   border-left: 0;
-  background-color: #cccaca;
+}
+
+.plus-img img {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border-bottom-right-radius: 10px;
+}
+
+.z-index {
+	position: absolute;
+	display: grid;
+	align-items: center;
+    justify-content: center;
+	width: 100%;
+	height: 100%;
+	background-color: #3338;
+	border-bottom-right-radius: 10px;
+}
+
+.img-btn {
+	width: 2rem;
+	height: 2rem;
+	padding: 0;
+	border-radius: 1rem;
+	opacity: 0.8;
+	background-color: #fff9;
+	border: 1px solid #333;
 }
 
 .price-group {
-  border: 2px solid #ffeedb;
+  border: 2px solid #f5f6f7;
   border-radius: 20px;
   width: 27rem;
   height: 22rem;
@@ -63,7 +109,7 @@
 
 .price-for {
   text-align: center;
-  border-bottom: 2px solid #ffeedb;
+  border-bottom: 2px solid #f5f6f7;
 }
 
 .price-person {
@@ -72,7 +118,7 @@
 }
 
 .price-ad-c {
-  border: 2px solid #ffeedb;
+  border: 2px solid #f5f6f7;
   border-radius: 10px;
   width: 80%;
   text-align: center;
@@ -86,15 +132,15 @@
 }
 
 .summation {
-  border: 2px solid #ffeedb;
-  width: 34rem;
+  border: 2px solid #f5f6f7;
+  width: 75rem;
   height: 19rem;
   border-radius: 20px;
 }
 
 .view-dtls {
   display: flex;
-  border-bottom: 2px solid #ffeedb;
+  border-bottom: 2px solid #f5f6f7;
   align-items: baseline;
   justify-content: space-between;
 }
@@ -137,7 +183,7 @@ a:hover {
 }
 
 .want-list {
-  border: 2px solid #ffeedb;
+  border: 2px solid #f5f6f7;
   border-radius: 20px;
   width: 75rem;
   height: 19rem;
@@ -149,7 +195,7 @@ a:hover {
 }
 
 .want-time-place {
-  border: 2px solid #ffeedb;
+  border: 2px solid #f5f6f7;
   border-radius: 20px;
   width: 75rem;
   height: 30rem;
@@ -182,10 +228,9 @@ a:hover {
 }
 
 .hope-info {
-  border: 2px solid #ffeedb;
+  border: 2px solid #f5f6f7;
   border-radius: 20px;
   width: 75rem;
-  height: 33rem;
 }
 
 .list-item {
@@ -222,7 +267,7 @@ a:hover {
 }
 
 .plus-info {
-  border: 2px solid #ffeedb;
+  border: 2px solid #f5f6f7;
   border-radius: 20px;
   width: 75rem;
   height: 15rem;
