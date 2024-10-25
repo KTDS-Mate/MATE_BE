@@ -3,6 +3,7 @@ package com.mate.bbs.service;
 import com.mate.bbs.vo.SearchUserTourVO;
 import com.mate.bbs.vo.UserTourListVO;
 import com.mate.bbs.vo.UserTourModifyVO;
+import com.mate.bbs.vo.UserTourSchdlVO;
 import com.mate.bbs.vo.UserTourVO;
 import com.mate.bbs.vo.UserTourWriteVO;
 

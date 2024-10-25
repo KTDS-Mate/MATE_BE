@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-package com.mate.user.web;
-
-import org.springframework.stereotype.Controller;
-
-@Controller
-public class ChatRoomController {
-
-   
-    
-}
-=======
 //package com.mate.member.web;
 //
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -77,4 +65,3 @@ public class ChatRoomController {
 //        }
 //    }
 //}
->>>>>>> main

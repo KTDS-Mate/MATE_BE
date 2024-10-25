@@ -9,7 +9,7 @@ pageEncoding="UTF-8" %>
     <link
       rel="stylesheet"
       type="text/css"
-      href="/css/GuideRecruitmentPage.css"
+      href="/css/usertour/GuideRecruitmentPage.css"
     />
     <link
       rel="stylesheet"
@@ -68,8 +68,24 @@ pageEncoding="UTF-8" %>
               <div>
                 <ul class="guide-dtls-list">
                   <li>성별 : ${userTourVO.gdGndr}</li>
-                  <li>나이 : ${userTourVO.gdAge}대</li>
-                  <li>가이드 경력 : ${userTourVO.gdCrr}년 이상</li>
+                  <c:choose>
+                  	<c:when test="${userTourVO.gdAge == 0}">
+                  	 <li>나이 : 상관없음</li>
+                  	</c:when>
+                  	<c:otherwise>
+                  	 <li>나이 : ${userTourVO.gdAge}대</li>
+                  	</c:otherwise>
+                  </c:choose>
+                 
+                  <c:choose>
+                  	<c:when test="${userTourVO.gdCrr == 0}">
+                  	<li>가이드 경력 : 상관없음</li>
+                  	</c:when>
+                  	<c:otherwise>
+                  	<li>가이드 경력 : ${userTourVO.gdCrr}년 이상</li>
+                  	</c:otherwise>
+                  </c:choose>
+                  
                 </ul>
               </div>
             </div>
@@ -98,7 +114,7 @@ pageEncoding="UTF-8" %>
                   ${userTourVO.usrTrMp}
                 </h2>
                 <div class="flex-div">
-                  <div><h3>${userTourVO.usrTrDt}</h3></div>
+                  <div><h3>${userTourVO.usrTrStDt} ~ ${userTourVO.usrTrEdDt}</h3></div>
                   <div class="margin-right"><h4>Open In GoogleMap</h4></div>
                 </div>
               </div>

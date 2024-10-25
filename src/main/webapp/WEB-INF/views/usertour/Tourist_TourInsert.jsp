@@ -1,0 +1,267 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8" %> <%@ taglib prefix="form"
+uri="http://www.springframework.org/tags/form" %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>여행자 투어 등록</title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/usertour/Tourist_TourInsert.css" />
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+    <script
+      type="text/javascript"
+      src="/js/usertour/usertourinsert.js"></script>
+  </head>
+  <body>
+    <div class="grid">
+      <div class="header">
+        <!-- header 공통파일 -->
+        <jsp:include page="../header.jsp"></jsp:include>
+      </div>
+      <div class="content">
+        <form:form
+          modelAttribute="userTourWriteVO"
+          method="post">
+          <div class="insert-main">
+            <div class="flex-main-img">
+              <div>
+                <h1>투어 요청 작성</h1>
+              </div>
+              <img alt="메인 이미지" src="/img/tourboard/예시여행이미지.png" />
+            </div>
+            <div class="all-select-div">
+              <div class="select-div"><span class="red">*</span> 제목 작성</div>
+              <form:errors path="usrTrTtl" element="div" cssClass="errors" />
+              <input
+                id="usrTrTtl"
+                name="usrTrTtl"
+                type="text"
+                placeholder="제목을 입력해주세요."
+                value="${userTourWriteVO.usrTrTtl}" />
+            </div>
+            <div class="all-select-div">
+              <div class="select-div">
+                <span class="red">*</span> 투어 지역 선택
+              </div>
+              <select id="country">
+                <option value="">국가 선택</option>
+              </select>
+              <select id="city" name="trCtId">
+                <option value="">도시 선택</option>
+              </select>
+            </div>
+            <div class="all-select-div">
+              <div class="select-div"><span class="red">*</span> 날짜 선택</div>
+              <input
+                id="inputYear"
+                name="inputYear"
+                type="date"
+                data-placeholder="투어 날짜를 골라주세요."
+                value="${userTourWriteVO.inputYear}" />
+            </div>
+            <div class="all-select-div">
+              <div class="select-div"><span class="red">*</span> 시간 선택</div>
+              <div class="flex-hour-div">
+                <select id="start-hour" name="inputStartHour">
+                  <option value="">시작 시간 선택</option>
+                  <option value="01">01</option>
+                  <option value="02">02</option>
+                  <option value="03">03</option>
+                  <option value="04">04</option>
+                  <option value="05">05</option>
+                  <option value="06">06</option>
+                  <option value="07">07</option>
+                  <option value="08">08</option>
+                  <option value="09">09</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                </select>
+                <select id="start-minutes" name="inputStartMinute">
+                  <option value="">시작 분 선택</option>
+                  <option value="00">00</option>
+                  <option value="05">05</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                  <option value="25">25</option>
+                  <option value="30">30</option>
+                  <option value="35">35</option>
+                  <option value="40">40</option>
+                  <option value="45">45</option>
+                  <option value="50">50</option>
+                  <option value="55">55</option>
+                </select>
+                <div class="inline-margin">
+                  <img src="/img/tourboard/~.png" />
+                </div>
+                <select id="end-hour" name="inputEndHour">
+                  <option value="">종료 시간 선택</option>
+                  <option value="01">01</option>
+                  <option value="02">02</option>
+                  <option value="03">03</option>
+                  <option value="04">04</option>
+                  <option value="05">05</option>
+                  <option value="06">06</option>
+                  <option value="07">07</option>
+                  <option value="08">08</option>
+                  <option value="09">09</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                </select>
+                <select id="end-minutes" name="inputEndMinute">
+                  <option value="">종료 분 선택</option>
+                  <option value="00">00</option>
+                  <option value="05">05</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                  <option value="25">25</option>
+                  <option value="30">30</option>
+                  <option value="35">35</option>
+                  <option value="40">40</option>
+                  <option value="45">45</option>
+                  <option value="50">50</option>
+                  <option value="55">55</option>
+                </select>
+              </div>
+            </div>
+            <div class="all-select-div">
+              <div class="select-div"><span class="red">*</span> 인원 선택</div>
+              <form:errors path="usrTrNp" element="div" cssClass="errors" />
+              <div class="person-flex-div">
+                <input
+                  type="number"
+                  name="usrTrNp"
+                  value="${userTourWriteVO.usrTrNp}" />
+                <div>명</div>
+              </div>
+            </div>
+            <div class="all-select-div">
+              <div class="select-div"><span class="red">*</span> 투어 목적</div>
+              <form:errors path="usrTrPrps" element="div" cssClass="errors" />
+              <textarea name="usrTrPrps">${userTourWriteVO.usrTrPrps}</textarea>
+            </div>
+            <div class="all-select-div">
+              <div class="select-div">투어 희망 정보</div>
+              <div class="loc-inf">
+              	<!-- jquery를 사용해 여러 개를 호출 받는 곳 -->
+              </div>
+              <div class="hope-btn">
+                <input id="plus" type="button" value="일정 추가하기" />
+              </div>
+            </div>
+            <div class="all-select-div">
+              <div class="select-div">
+                <span class="red">*</span> 투어 세부 요구사항
+              </div>
+              <form:errors path="usrTrRqDtl" element="div" cssClass="errors" />
+              <textarea name="usrTrRqDtl">
+${userTourWriteVO.usrTrRqDtl}</textarea
+              >
+            </div>
+            <div class="all-select-div">
+              <div class="inline">
+                <div class="select-div">투어 이미지 추가</div>
+                <input type="file" multiple="multiple" />
+                <div class="file-list"></div>
+              </div>
+              <div class="inline margin-left-location">
+                <div class="select-div">
+                  <span class="red">*</span> 집결 장소 선택
+                </div>
+                <a><span class="red-font">Open In Google Map</span></a>
+              </div>
+            </div>
+            <div class="all-select-div">
+              <div class="select-div">원하는 가이드</div>
+              <div class="flex-want-gd-div">
+                <div>
+                  <label for="gender">성별</label>
+                  <select name="gdGndr" id="gender">
+                    <option value="상관없음">상관없음</option>
+                    <option value="male">남자</option>
+                    <option value="female">여자</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="age">나이</label>
+                  <select name="gdAge" id="age">
+                    <option value="0">상관없음</option>
+                    <option value="20">20대</option>
+                    <option value="30">30대</option>
+                    <option value="40">40대</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="career">경력</label>
+                  <select name="gdCrr" id="career">
+                    <option value="0">상관없음</option>
+                    <option value="1">1년차 이상</option>
+                    <option value="3">3년차 이상</option>
+                    <option value="5">5년차 이상</option>
+                    <option value="10">10년차 이상</option>
+                  </select>
+                </div>
+              </div>
+              <div>가이드에게 원하는 사항</div>
+              <textarea name="gdWntRq">${userTourWriteVO.gdWntRq}</textarea>
+              <div class="price-submit-btn">
+                <div class="select-div">
+                  <span class="red">*</span> 고용 금액
+                </div>
+                <form:errors
+                  path="usrTrGdHrPrc"
+                  element="div"
+                  cssClass="errors" />
+                <div class="price-flex-div">
+                  <input
+                    name="usrTrGdHrPrc"
+                    type="number"
+                    value="${userTourWriteVO.usrTrGdHrPrc}" />
+                  <div>$</div>
+                </div>
+                <div class="right-align">
+                  <input type="submit" value="투어 등록" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </form:form>
+      </div>
+      <div class="footer">
+        <!-- footer 공통파일 -->
+        <jsp:include page="../footer.jsp"></jsp:include>
+      </div>
+    </div>
+  </body>
+</html>

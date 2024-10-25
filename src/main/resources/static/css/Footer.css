@@ -7,8 +7,9 @@ div.footer-grid{
 }
 
 .footer {
-	 background-color: #f5f6f7;
+  background-color: #f5f6f7;
 }
+
 
 .test {
 	color:#333;
@@ -24,10 +25,7 @@ div.footer-left-padding{
 
 	width: auto;
 	justify-content: flex-start;
-<<<<<<< HEAD
-=======
 
->>>>>>> main
 }
 
 

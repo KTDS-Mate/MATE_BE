@@ -3,8 +3,8 @@ package com.mate.bbs.dao;
 import java.util.List;
 
 import com.mate.bbs.vo.SearchUserTourVO;
-import com.mate.bbs.vo.UserTourImgVO;
 import com.mate.bbs.vo.UserTourModifyVO;
+import com.mate.bbs.vo.UserTourSchdlVO;
 import com.mate.bbs.vo.UserTourVO;
 import com.mate.bbs.vo.UserTourWriteVO;
 
@@ -47,5 +47,11 @@ public interface UserTourDao {
 	 * @return
 	 */
 	public int updateUserTourIsDtl(String usrTrPstId);
+	
+	public String selectAttachStartHour(UserTourWriteVO userTourWriteVO);
+	
+	public String selectAttachEndHour(UserTourWriteVO userTourWriteVO);
+	
+	public int insertUserTourScheduls(UserTourSchdlVO userTourSchdlVO);
 	
 }
