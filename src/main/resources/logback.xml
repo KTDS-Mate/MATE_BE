@@ -30,7 +30,7 @@
 		</encoder>
 	</appender>
 
-	<root level="INFO">
+	<root level="DEBUG">
 		<!-- 콘솔에도 나오고 파일로도 저장하도록 설정했음 -->
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="FILE" />
