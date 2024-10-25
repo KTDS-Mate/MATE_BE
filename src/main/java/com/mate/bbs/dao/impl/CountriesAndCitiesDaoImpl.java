@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mate.bbs.dao.CountriesAndCitiesDao;
+import com.mate.common.vo.CitiesVO;
 import com.mate.common.vo.CountriesVO;
 
 @Repository
@@ -27,6 +28,11 @@ public class CountriesAndCitiesDaoImpl extends SqlSessionDaoSupport implements C
 	@Override
 	public int selectCountriesCount() {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectCountriesCount");
+	}
+	
+	@Override
+	public List<CitiesVO> selectCities(int countryId) {
+		return this.getSqlSession().selectList(NAMESPACE + ".selectCities", countryId);
 	}
 	
 }
