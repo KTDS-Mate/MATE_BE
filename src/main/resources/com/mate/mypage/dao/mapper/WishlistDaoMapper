@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mate.mypage.dao.WishlistDao">
+	
+	<resultMap type="" id="">
+	
+	</resultMap>
+
+
+	<select id="selectTLAllWish" parameterType="string" resultMap="">
+	
+	SELECT 
+		f.FAV_ID
+		,f.FAV_CR_AT
+		,f.FAV_IS_DLT
+		,f.FAV_DLT_AT
+		,f.USR_ID
+		,f.GD_TR_PST_ID
+		,g.GD_TR_TTL 
+		,g.GD_TR_ST_DT 
+		,g.GD_TR_ED_DT 
+		,g.GD_TR_PRC 
+		,g.TR_CT_ID 
+		,t.CT_NM 
+	FROM 
+		FVRTS f
+	INNER JOIN 
+		GD_TR_RCRT g
+	ON 
+		f.GD_TR_PST_ID = g.GD_TR_PST_ID 
+	INNER JOIN 
+		CT t
+	ON 
+		g.TR_CT_ID = t.CT_ID 
+	WHERE 
+		f.USR_ID = #{_parameter};
+	</select>
+
+</mapper>

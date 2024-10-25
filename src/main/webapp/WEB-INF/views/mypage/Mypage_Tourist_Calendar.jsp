@@ -1,16 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+  <!DOCTYPE html>
+  <html>
+
   <head>
     <meta charset="UTF-8" />
     <title>MATE 일정관리(변경예정)</title>
+    <link rel="stylesheet" type="text/css" href="/css/Mypage_Tourist_Calendar.css" />
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      rel="stylesheet"
-      type="text/css"
-      href="/css/Mypage_Tourist_Calendar.css"
-    />
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet">
   </head>
+
   <body>
     <div class="grid">
       <div class="header">
@@ -247,11 +250,7 @@ pageEncoding="UTF-8"%>
                   <div>일정 내용</div>
 
                   <div class="schedule-content-text">
-                    <textarea
-                      name="content-text"
-                      id="content-text"
-                      class="content-text"
-                    ></textarea>
+                    <textarea name="content-text" id="content-text" class="content-text"></textarea>
                   </div>
                 </div>
 
@@ -281,4 +280,5 @@ pageEncoding="UTF-8"%>
       </div>
     </div>
   </body>
-</html>
+
+  </html>

@@ -22,13 +22,17 @@ div.footer-grid{
 
 div.footer-left-padding{
 	display:flex;
-	width: auto;
+	width: 90rem;
 	justify-content: center;
 }
 
 
 .footer-alpha ul li{
   list-style-type: none;
+<<<<<<< HEAD
+  font-size: 1rem;
+=======
+>>>>>>> 8662bed88921a494095ede571cdadad7c5d5bb0f
 }
 
 footer-left-padding > ul > li{

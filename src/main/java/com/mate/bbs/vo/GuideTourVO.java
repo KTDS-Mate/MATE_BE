@@ -1,11 +1,10 @@
 package com.mate.bbs.vo;
 
-import com.mate.common.vo.CityVO;
 import com.mate.common.vo.CountryVO;
 
 public class GuideTourVO {
 
-	
+
 	/**
 	 * 가이드 투어 게시글 아이디
 	 */
@@ -23,9 +22,13 @@ public class GuideTourVO {
 	 */
 	private String gdTrTtl;
 	/**
-	 * 투어 일시
+	 * 투어 시작일시
 	 */
-	private String gdTrDt;
+	private String gdTrStDt;
+	/**
+	 * 투어 종료일자
+	 */
+	private int gdTrEdDt;
 	/**
 	 * 투어 목적
 	 */
@@ -42,10 +45,6 @@ public class GuideTourVO {
 	 * 투어 요약
 	 */
 	private String gdTrSmry;
-	/**
-	 * 투어 소요 시간
-	 */
-	private int gdTrTm;
 	/**
 	 * 투어 등록일
 	 */
@@ -77,7 +76,7 @@ public class GuideTourVO {
 	private CountryVO countryVO;
 	
 	
-	private CityVO cityVO;
+//	private CityVO cityVO;
 	
 	public CountryVO getCountryVO() {
 		return countryVO;
@@ -85,12 +84,12 @@ public class GuideTourVO {
 	public void setCountryVO(CountryVO countryVO) {
 		this.countryVO = countryVO;
 	}
-	public CityVO getCityVO() {
-		return cityVO;
-	}
-	public void setCityVO(CityVO cityVO) {
-		this.cityVO = cityVO;
-	}
+//	public CityVO getCityVO() {
+//		return cityVO;
+//	}
+//	public void setCityVO(CityVO cityVO) {
+//		this.cityVO = cityVO;
+//	}
 	public String getGdTrPstId() {
 		return gdTrPstId;
 	}
@@ -115,12 +114,23 @@ public class GuideTourVO {
 	public void setGdTrTtl(String gdTrTtl) {
 		this.gdTrTtl = gdTrTtl;
 	}
-	public String getGdTrDt() {
-		return gdTrDt;
+
+	public int getGdTrEdDt() {
+		return gdTrEdDt;
 	}
-	public void setGdTrDt(String gdTrDt) {
-		this.gdTrDt = gdTrDt;
+
+	public void setGdTrEdDt(int gdTrEdDt) {
+		this.gdTrEdDt = gdTrEdDt;
 	}
+
+	public String getGdTrStDt() {
+		return gdTrStDt;
+	}
+
+	public void setGdTrStDt(String gdTrStDt) {
+		this.gdTrStDt = gdTrStDt;
+	}
+
 	public String getGdTrPrps() {
 		return gdTrPrps;
 	}
@@ -145,12 +155,7 @@ public class GuideTourVO {
 	public void setGdTrSmry(String gdTrSmry) {
 		this.gdTrSmry = gdTrSmry;
 	}
-	public int getGdTrTm() {
-		return gdTrTm;
-	}
-	public void setGdTrTm(int gdTrTm) {
-		this.gdTrTm = gdTrTm;
-	}
+
 	public String getGdTrRstrDt() {
 		return gdTrRstrDt;
 	}
