@@ -1,17 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="ko">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+  <!DOCTYPE html>
+  <html lang="ko">
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/css/Mypage_CMS_MemberInfo.css" />
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      rel="stylesheet"
-      type="text/css"
-      href="/css/Mypage_CMS_MemberInfo.css"
-    />
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet">
     <title>회원 정보 관리</title>
   </head>
+
   <body>
     <div class="grid">
       <div class="header">
@@ -54,11 +57,7 @@ pageEncoding="UTF-8"%>
           <!-- 검색 바와 버튼 -->
           <div class="search-container">
             <div class="search-wrapper">
-              <input
-                type="text"
-                placeholder="검색할 아이디를 입력하세요."
-                class="search-bar"
-              />
+              <input type="text" placeholder="검색할 아이디를 입력하세요." class="search-bar" />
               <button class="search-button">🔍</button>
             </div>
           </div>
@@ -113,4 +112,5 @@ pageEncoding="UTF-8"%>
       </div>
     </div>
   </body>
-</html>
+
+  </html>

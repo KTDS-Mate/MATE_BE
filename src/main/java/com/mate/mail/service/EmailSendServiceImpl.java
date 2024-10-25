@@ -1,0 +1,102 @@
+package com.mate.mail.service;
+
+import java.util.Random;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Service;
+
+import com.mate.mail.dao.EmailDao;
+import com.mate.mail.vo.EmailVO;
+
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+
+@Service
+public class EmailSendServiceImpl implements EmailSendService {
+
+	private static final Logger log = LoggerFactory.getLogger(EmailSendServiceImpl.class);
+	
+	@Autowired
+	private JavaMailSender javaMailSender;
+
+	@Autowired
+	private EmailDao emailDao;
+	
+	@Override
+	public String sendAuthMail(EmailVO emailVO) {
+		// 인증 코드
+		String authCode = "";
+		// 이 email은 사용자 입력값(사용자가 인증을 요청한 email)
+        String email = emailVO.getEmail();
+        
+        try {
+            // 인증코드 생성 (6자리)
+            Random random = new Random();
+            // 0 이상 1_000_000미만 숫자 생성. 자릿수가 모자라면 앞에 0을 채운다.
+            authCode = String.format("%06d", random.nextInt(1000000));
+            
+            // 메일 내용 설정
+            // 메일 메세지를 생성하기 위한 MimeMessage 객체 생성
+            MimeMessage message = javaMailSender.createMimeMessage();
+            
+            // 이메일 메세지 구성하기 위한 MimeMessageHelper 객체 생성. 
+            /**
+             * message : 생성한 MimeMessage 전달.
+             * true : MultiPart메세지 허용. (ex: 첨부 파일 등)
+             * "UTF-8" : 메세지 인코딩 방식 설정. 설정하지 않을 경우 메일 열람시 인코딩이 깨져서 출력된다.
+             */
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+            // 메세지 수신자 설정. email 변수에 저장된 이메일 주소로 설정됨.
+            helper.setTo(email);
+            // 메일 제목 설정
+            helper.setSubject("메이트 회원가입 이메일 인증");
+            
+            // 메일 내용
+            String messageToUser =  """
+            	    <div>
+                    <h1> 안녕하세요! Mate 입니다.</h1>
+                    <br>
+                    <h3>회원가입 이메일 인증 코드입니다.</h3>
+                    <br>
+                    <div>아래 코드를 회원가입 창으로 돌아가 입력해주세요.</div>
+                    인증코드 : <strong>%s</strong>
+                    <br>
+                </div>
+                """.formatted(authCode);
+            // true or false: 본문 내용이 HTML 형식인지 아닌지를 지정. true 일 경우 HTML 형식.
+            helper.setText(messageToUser, true);
+            
+            // 메일 발송
+            javaMailSender.send(message);
+            
+            // emailVO 객체에 생성한 authCode를 설정함
+            emailVO.setAuthCode(authCode);
+            // 인증 정보 DB에 저장.
+            emailDao.saveAuthInfo(emailVO);
+            
+        } catch (MessagingException e) {
+            log.error("이메일 전송 중 에러가 발생했습니다. 이메일: {}", email, e);
+        }
+        // 생성된 인증 코드를 반환함
+        return emailVO.getAuthCode();
+	}
+	
+	@Override
+	public boolean verifyAuthCode(EmailVO emailVO) { // 인증 코드 검증
+		
+		// AuthCode 가져오기
+		// DB의 email주소에 매핑되어있는 인증 코드를 가져온다. emailDao.saveAuthInfo(emailVO);
+		String authCode = emailDao.getAuthCodeByEmail(emailVO.getEmail());
+		
+		// DB의 authCode가 null이 아니고 emailVO에 저장된 authcode와 값이 같으면
+		if (authCode != null && authCode.equals(emailVO.getAuthCode())) {
+			// 인증코드가 일치하면 true 반환
+			return true;
+		}
+		return false;
+	}
+}

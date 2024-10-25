@@ -2,7 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,windows,macos,intellij,eclipse,maven,visualstudiocode
 
 ### Eclipse ###
-.metadata
+.metadata/
 bin/
 tmp/
 *.tmp
@@ -36,7 +36,7 @@ local.properties
 .buildpath
 
 # sbteclipse plugin
-.target
+target/
 
 # Tern plugin
 .tern-project
@@ -73,6 +73,7 @@ local.properties
 
 
 # User-specific stuff
+.idea/
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/**/usage.statistics.xml
@@ -424,3 +425,5 @@ $RECYCLE.BIN/
 .DS_Store
 
 # End of https://www.toptal.com/developers/gitignore/api/node,windows,macos,intellij,eclipse,maven,visualstudiocode
+.idea/
+src/main/resources/application.yml

@@ -7,8 +7,9 @@ div.footer-grid{
 }
 
 .footer {
-	 background-color: #f5f6f7;
+  background-color: #f5f6f7;
 }
+
 
 .test {
 	color:#333;
@@ -21,13 +22,18 @@ div.footer-grid{
 
 div.footer-left-padding{
 	display:flex;
+
 	width: auto;
 	justify-content: flex-start;
+
 }
 
 
 .footer-alpha ul li{
   list-style-type: none;
+
+  font-size: 1rem;
+
 }
 
 footer-left-padding > ul > li{
