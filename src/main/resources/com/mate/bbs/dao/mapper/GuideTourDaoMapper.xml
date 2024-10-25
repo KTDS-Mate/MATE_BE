@@ -5,30 +5,175 @@
   
 <mapper namespace="com.mate.bbs.dao.GuideTourDao">
 
-<select id="selectGuideTourAllCount" resultType="_int">
-	SELECT COUNT(1)
-	  FROM GD_TR_RCRT
-</select>
-
-<select id="selectAllGuideTour" resultType="com.mate.bbs.vo.GuideTourVO">
-	SELECT GD_TRs_PST_ID
-		 , ATHR_ID
-		 , USR_ID
-		 , GD_TR_TTL
-		 , TO_CHAR(GD_TR_DT, 'YYYY-MM-DD HH24:HH:MI:SS')
-		 , GD_TR_PRPS
-		 , GD_TR_MP
-		 , GD_TR_PRC
-		 , GD_TR_SMRY
-		 , GD_TR_TM
-		 , TO_CHAR(GD_TR_RSTR_DT, 'YYYY-MM-DD HH24:HH:MI:SS')
-		 , TO_CHAR(GD_TR_MDFY_DT, 'YYYY-MM-DD HH24:HH:MI:SS')
-		 , TO_CHAR(GD_TR_DLT_DT, 'YYYY-MM-DD HH24:HH:MI:SS')
-		 , GD_TR_IS_DLT
-		 , TR_CNT_ID
-		 , TR_CT_ID
-	  FROM GD_TR_RCRT
-
-</select>
-
+<resultMap id="guideTourVOMap" 
+		   type="com.mate.bbs.vo.GuideTourVO"
+		   autoMapping="true">
+		   <id column="GD_TR_PST_ID" property="gdTrPstId"/>
+		   <association property="userVO"
+		   				javaType="com.mate.user.vo.UserVO"
+						autoMapping="true">
+				<id column="USR_ID" property="usrId" />	
+			</association>
+			<collection property="guideTourImgList" 
+						ofType="com.mate.bbs.vo.GuideTourImgVO"
+						autoMapping="true">
+				<id column="GD_TR_IMG_ID" property="gdTrImgId"/>
+			</collection>
+			<collection property="guideTourDetailInfoList"
+						ofType="com.mate.bbs.vo.GuideTourDetailInfoVO"
+						autoMapping="true">
+				<id column="TR_DTL_ID" property="trDtlId"/>
+			</collection>
+			<collection property="guideTourProvidedList"
+						ofType="com.mate.bbs.vo.GuideTourProvidedVO"
+						autoMapping="true">
+				<id column="TR_INCLD_ID" property="trIncldId"/>
+			</collection>
+			 <collection property="guideTourReviewList"
+						ofType="com.mate.bbs.vo.GuideTourReviewVO"
+						autoMapping="true">
+				<id column="GD_TR_RVW_ID" property="gdTrRvwId"/>
+			</collection>
+			<collection property="cityVO"
+						ofType="com.mate.common.vo.CityVO"
+						autoMapping="true">
+				<id column="CT_ID" property="trCtId"/>
+			</collection>
+		</resultMap>
+	
+	<select id="selectGuideTourAllCount" resultType="_int">
+		SELECT COUNT(1)
+		  FROM GD_TR_RCRT
+	</select>
+	
+	<select id="selectOneGuideTour" 
+			parameterType="string"
+			resultMap="guideTourVOMap">
+		SELECT GTR.GD_TR_PST_ID
+			 , GTR.ATHR_ID
+			 , GTR.USR_ID
+			 , GTR.GD_TR_TTL
+			 , GTR.GD_TR_ST_DT
+			 , GTR.GD_TR_ED_DT
+			 , GTR.GD_TR_MX_NP 
+			 , GTR.GD_TR_PRPS
+			 , GTR.GD_TR_MP
+			 , GTR.GD_TR_PRC
+			 , GTR.GD_TR_SMRY
+			 , GTR.GD_TR_RSTR_DT
+			 , GTR.GD_TR_MDFY_DT
+			 , GTR.GD_TR_DLT_DT
+			 , GTR.GD_TR_IS_DLT
+			 , GTR.TR_CT_ID
+			 , GTRI.GD_TR_IMG_URL 
+			 , UI.USR_FNM 
+			 , UI.USR_LNM 
+			 , UI.USR_GNDR 
+			 , UI.GD_PRFL_IMG 
+		  FROM GD_TR_RCRT GTR
+		  LEFT JOIN GD_TR_RCRT_IMG GTRI
+		    ON GTR.GD_TR_PST_ID = GTRI.GD_TR_PST_ID 
+		  LEFT JOIN GD_TR_RVW GTRV
+		    ON GTR.GD_TR_PST_ID = GTRV.GD_TR_PST_ID 
+		 INNER JOIN USR_INF UI
+		    ON UI.USR_ID = GTR.USR_ID 
+	</select>
+	
+	<select id="selectAllGuideTour" 
+			resultMap="guideTourVOMap"
+			parameterType="com.mate.bbs.vo.SearchGuideTourVO">
+	<if test="_parameter != null">
+			<include refid="Common.pagination_header" />
+	</if>
+		SELECT GTR.GD_TR_PST_ID
+			 , GTR.ATHR_ID
+			 , GTR.USR_ID
+			 , GTR.GD_TR_TTL
+			 , GTR.GD_TR_ST_DT
+			 , GTR.GD_TR_ED_DT
+			 , GTR.GD_TR_PRPS
+			 , GTR.GD_TR_MP
+			 , GTR.GD_TR_PRC
+			 , GTR.GD_TR_SMRY
+			 , GTR.GD_TR_RSTR_DT
+			 , GTR.GD_TR_MDFY_DT
+			 , GTR.GD_TR_DLT_DT
+			 , GTR.GD_TR_IS_DLT
+			 , GTR.TR_CT_ID
+			 , GTRI.GD_TR_IMG_URL
+			 , GTR.GD_TR_MX_NP
+			 , C.CT_NM 
+			 , ( SELECT AVG(gtr2.GD_TR_RVW_RTNG)
+			       FROM GD_TR_RVW gtr2
+			 	  WHERE gtr2.GD_TR_PST_ID = GTR.GD_TR_PST_ID) AS AVG_RVW
+	     FROM GD_TR_RCRT GTR
+	     LEFT JOIN GD_TR_RCRT_IMG GTRI
+	       ON GTR.GD_TR_PST_ID = GTRI.GD_TR_PST_ID 
+	     LEFT JOIN GD_TR_RVW GTRV
+	       ON GTR.GD_TR_PST_ID = GTRV.GD_TR_PST_ID
+	     JOIN CT C
+	       ON C.CT_ID = gtr.TR_CT_ID
+	    <if test="_parameter != null">
+			<include refid="Common.pagination_footer" />
+		</if>
+	</select>
+	<insert id="insertNewGuideTour" 
+			parameterType="com.mate.bbs.vo.GuideTourWriteVO">
+		INSERT INTO GD_TR_RCRT
+			 (GD_TR_PST_ID
+			, ATHR_ID
+			, USR_ID
+			, GD_TR_TTL
+			, GD_TR_ST_DT
+			, GD_TR_PRPS
+			, GD_TR_MP
+			, GD_TR_PRC
+			, GD_TR_SMRY
+			, GD_TR_RSTR_DT
+			, GD_TR_MDFY_DT
+			, GD_TR_DLT_DT
+			, GD_TR_IS_DLT
+			, TR_CNT_ID
+			, TR_CT_ID
+			, GD_TR_ED_DT
+			, GD_TR_MX_NP)
+			VALUES
+			 ('GT-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_GD_TR_RCRT_PK.NEXTVAL, 6, 0)
+			, '7'
+			, NULL
+			, #{gdTrTtl}
+			, TO_DATE(#{gdTrStDt}, 'YYYY-MM-DD')
+			, #{gdTrPrps}
+			, #{gdTrMp}
+			, #{gdTrPrc}
+			, #{gdTrSmry}
+			, TO_DATE(#{gdTrRstrDt}, 'YYYY-MM-DD')
+			, NULL
+			, NULL
+			, 'N'
+			, #{trCntId}
+			, #{trCtId}
+			, #{gdTrEdDt}
+			, #{gdTrMxNp})
+	</insert>
+	<update id="updateGuideTour"
+			parameterType="com.mate.bbs.vo.GuideTourModifyVO">
+			UPDATE GD_TR_RCRT
+			   SET GD_TR_TTL = #{gdTrTtl}
+			   	 , GD_TR_ST_DT = TO_DATE(#{gdTrStDt}, 'YYYY-MM-DD HH24:MI')
+			   	 , GD_TR_ED_DT = TO_DATE(#{gdTrEdDt}, 'YYYY-MM-DD HH24:MI')
+			   	 , GD_TR_MDFY_DT = SYSDATE
+			   	 , GD_TR_SMRY = #{gdTrSmry}
+			   	 , GD_TR_PRC = #{gdTrPrc}
+			   	 , GD_TR_PRPS = #{gdTrPrps}
+			   	 , GD_TR_MP = #{gdTrMp}
+			   	 , GD_TR_MX_NP = #{gdTrMxNp}
+			 WHERE GD_TR_PST_ID = #{gdTrPstId}
+	</update>
+	<update id="updateGuideTourIsDtl"
+			parameterType="string">
+		UPDATE GD_TR_RCRT 
+		   SET GD_TR_IS_DLT = 'Y'
+		 WHERE GD_TR_PST_ID = #{_parameter}
+	</update>
 </mapper>

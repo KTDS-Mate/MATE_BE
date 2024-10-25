@@ -18,9 +18,9 @@ public class MyBoardServiceImpl implements MyBoardService {
     private MyBoardDao myBoardDao;
 
     @Override
-    public MyBoardListVO selectGDMyAllBoard(String usrId) {
+    public MyBoardListVO selectGDMyAllBoard(String usrLgnId) {
     	
-    	int count = this.myBoardDao.selectBoardCount(usrId);
+    	int count = this.myBoardDao.selectBoardCount(usrLgnId);
     	
     	if(count == 0) {
     		MyBoardListVO boardListVO = new MyBoardListVO();
@@ -32,7 +32,7 @@ public class MyBoardServiceImpl implements MyBoardService {
     	
     	MyBoardListVO boardListVO = new MyBoardListVO();
     	
-    	List<MyBoardVO> myWriteBoard = this.myBoardDao.selectGDMyAllBoard(usrId);
+    	List<MyBoardVO> myWriteBoard = this.myBoardDao.selectGDMyAllBoard(usrLgnId);
     	
     	boardListVO.setBoardCnt(count);
     	boardListVO.setBoardList(myWriteBoard);

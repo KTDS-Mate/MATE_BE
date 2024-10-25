@@ -7,7 +7,7 @@ import com.mate.mypage.vo.MyBoardVO;
 
 public interface MyBoardService {
 
-    public MyBoardListVO selectGDMyAllBoard(String usrId);
+    public MyBoardListVO selectGDMyAllBoard(String usrLgnId);
     
     public int deleteGDBoard(String gdTrPstId);
 }
