@@ -1,9 +1,4 @@
-@font-face {
-    font-family: 'Inter';
-    src: url('./font/Inter-VariableFont_opsz\,wght.ttf') format('truetype');
-}
 
-        
 div.my-page > ul.list > li.payment{
 	color: #333;
 }  
@@ -28,7 +23,7 @@ div.my-tour {
 
 .border {
     margin: 0 auto;
-    width: 70rem;
+    width: 60rem;
     border-top: 1px solid #000;
 }
 
@@ -39,8 +34,6 @@ div.my-tour {
 .tour-list {
     border: 2px solid #ffeedb;
     border-radius: 20px;
-    width: 70rem;
-    height: 110rem;
     margin: 2rem;
 }
 .sample {
@@ -62,7 +55,6 @@ div.my-tour {
 .filter-box {
     border: 2px solid #ffeedb;
     border-radius: 20px;
-    width: 70rem;
     height: 15.6rem;
     margin: 2.3rem 2rem;
     flex-grow: 0;

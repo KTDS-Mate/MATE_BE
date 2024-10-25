@@ -1,13 +1,11 @@
 package com.mate.mypage.web;
 
-import com.mate.mypage.service.EditProfileService;
-import com.mate.user.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import com.mate.mypage.service.EditProfileService;
 
 @Controller
 @RequestMapping("/mypage")
