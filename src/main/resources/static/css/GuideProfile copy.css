@@ -1,0 +1,216 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+div.grid {
+  display: grid;
+  grid-template-columns: 1fr 90rem 1fr;
+  grid-template-rows: 1fr auto 1fr;
+  row-gap: 1rem;
+}
+
+div.header {
+  grid-column: 2 / 2;
+}
+
+div.content {
+  width: 90rem;
+  height: auto;
+  grid-column: 2 / 2;
+  grid-row: 2 / 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.footer {
+  grid-column: 1 / -1;
+}
+
+.container {
+  width: auto;
+  height: auto;
+  justify-content: center;
+}
+
+.guideInfoArea {
+  width: 83.75rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.guidePicArea {
+  width: auto;
+  height: auto;
+}
+
+.guidePicArea > img {
+  width: 25rem;
+  height: 31.25rem;
+  object-fit: cover;
+  border: 0.25rem solid #ffeedb;
+  border-radius: 1.25rem;
+}
+
+.guideProfileArea {
+  height: 31.25rem;
+  border: 0.25rem solid #ffeedb;
+  border-radius: 1.25rem;
+}
+
+.guideProfileTitleArea {
+  width: 55rem;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.guideProfileTitleArea > span {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 1.5rem 0 0 2rem;
+}
+
+.guideProfileTitleArea > img {
+  width: 3.75rem;
+  height: 3.75rem;
+  margin: 0.5rem 0 0 0;
+}
+
+.guideProfileDetailArea {
+  width: 55rem;
+  height: 26.25rem;
+  display: flex;
+  background-color: #ffeedb;
+  border: 0.25rem solid #ffeedb;
+  border-bottom-left-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.guideDetailTable {
+  width: 25rem;
+  height: auto;
+  margin: 1rem 0 0 0;
+  font-size: 2rem;
+}
+
+.seperateLine > img {
+  width: 0.2rem;
+  height: 22rem;
+  vertical-align: middle;
+}
+
+.guideReviewArea {
+  width: 83.75rem;
+  height: 45rem;
+  margin: 2rem 0 0 0;
+  border: 0.25rem solid #ffeedb;
+  border-radius: 1.25rem;
+}
+
+.guideReviewTitleArea {
+  width: 83.75rem;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.guideReviewTitleArea > span {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 1.5rem 0 0 2rem;
+}
+
+.guideReviewDetailArea {
+  width: auto;
+  height: 40rem;
+  display: flex;
+  background-color: #ffeedb;
+  border: 0.25rem solid #ffeedb;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.averageRatingArea {
+  width: auto;
+  height: 3.4375rem;
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  margin: 1rem 0 0 2rem;
+}
+
+.star {
+  width: 3.4375rem;
+  height: 3.4375rem;
+  margin: 0 1rem 0 0;
+}
+
+.averageRating {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0.8rem 0 0 0;
+}
+
+.ratingArea {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 1rem 0 0 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.ratingOneArea,
+.ratingTwoArea,
+.ratingThreeArea,
+.ratingFourArea,
+.ratingFiveArea {
+  display: flex;
+  margin: 0 0 0.5rem 0;
+}
+
+meter.ratingGage {
+  width: 47.5rem;
+  height: 4rem;
+}
+
+meter.ratingGage::-webkit-meter-bar {
+  background: #ffffff; /* 미터 바 배경색 */
+  border-radius: 8px; /* 테두리 둥글게 */
+}
+
+/* 게이지의 최적 영역 스타일 */
+meter.ratingGage::-webkit-meter-optimum-value {
+  background: #ffe812; /* 색상 변경 */
+  border-radius: 8px; /* 게이지 끝을 둥글게 */
+}
+
+/* 게이지 높이 맞추기 */
+meter.ratingGage::-webkit-meter-suboptimum-value,
+meter.ratingGage::-webkit-meter-even-less-good-value {
+  height: 100%; /* 세로폭 맞추기 */
+}
+
+.rating {
+  width: 1.25rem;
+  margin: 0.8rem 1rem 0.8rem 1rem;
+}
+
+.ratingCount {
+  margin: 1rem 0 0 0;
+  padding: 0 0 0 1rem;
+}
+
+.showDetail {
+  margin: 2rem 2rem 0 0;
+  font-size: 1.25rem;
+  font-weight: 200;
+  color: #868686;
+}

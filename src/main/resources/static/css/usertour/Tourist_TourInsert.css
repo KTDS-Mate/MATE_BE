@@ -1,0 +1,205 @@
+.insert-main {
+  border: 2px solid #f5f6f7;
+  border-radius: 20px;
+  padding: 1rem;
+}
+
+.flex-main-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.insert-main img {
+  width: 20rem;
+  height: 20rem;
+}
+
+.select-div {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.all-select-div {
+  border-bottom: 1px solid #ddd;
+}
+
+.all-select-div:last-child {
+  border: 0;
+}
+
+select {
+  padding: 0.5rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.flex-hour-div {
+  display: flex;
+}
+
+.inline-margin {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.inline-margin img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+#usrTrTtl {
+  width: 50%;
+}
+
+textarea {
+  width: 90%;
+  height: 200px;
+  outline: none;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  resize: none;
+}
+
+input[type="number"] {
+  border: none;
+  padding: 0.3rem;
+  width: 4rem;
+}
+
+input[type="text"] {
+  padding: 0.3rem;
+  margin-bottom: 1rem;
+}
+
+.right-align {
+  text-align: right;
+}
+
+input[type="submit"] {
+  color: #fff;
+  background-color: #333;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  border-radius: 0;
+  padding: 0.5rem 1rem;
+}
+
+.hope-btn {
+  margin-bottom: 1rem;
+}
+
+input[type="file"] {
+  border: 1px solid #ddd;
+  border-radius: 0;
+  border-left: 0;
+}
+
+.file-list {
+  border: 1px solid #ddd;
+  height: 200px;
+  width: 450px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.margin-left-location {
+  margin-left: 10rem;
+}
+
+.red-font {
+  color: red;
+  font-size: x-small;
+}
+
+.person-flex-div {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  align-items: center;
+  width: 6rem;
+  margin-bottom: 1rem;
+  padding-left: 0.2rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+
+.price-flex-div {
+  display: flex;
+  align-items: center;
+  width: 5.5rem;
+  margin-bottom: 1rem;
+  padding-left: 0.2rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+input[type="date"] {
+  position: relative;
+  margin-bottom: 1rem;
+  padding: 1rem 2rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 0.8rem;
+}
+
+input {
+  outline: none;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.border-top-loc {
+  border-top: 1px solid #ddd;
+  margin-bottom: 1rem;
+  width: 55%;
+}
+
+#hope-location {
+  width: 50%;
+}
+
+#hope-info {
+  width: 50%;
+}
+
+#gender,
+#age,
+#career {
+  margin-left: 1rem;
+}
+
+.red {
+  color: red;
+  margin-right: 0.5rem;
+}
+
+.flex-want-gd-div {
+  display: flex;
+}
+
+.errors {
+  font-size: x-small;
+  color: red;
+  margin-bottom: 1rem;
+  margin-left: 0.8rem;
+}
+
+.locs {
+  border-bottom: 1px solid #ddd;
+  padding-top: 1rem;
+}
+
+.locs:last-child {
+  border: 0;
+}

@@ -1,0 +1,93 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f5f5f5;
+}
+
+.guideContentFrame {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 1.5rem;
+    padding: 2rem;
+    background-color: #ffffff;
+}
+
+.guideContentFrame .group,
+.guideContentFrame .guidePicAndProfileArea {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #fff;
+    border-radius: 20px;
+    border: 3px solid #ffeedb;
+    padding: 1.5rem;
+}
+
+.guideContentFrame .guidePicArea {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.guideContentFrame .guideProfileArea {
+    flex: 2;
+    padding-left: 2rem;
+}
+
+.guideContentFrame .subtitleArea {
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffeedb;
+    padding: 1rem;
+    border-radius: 20px 20px 0 0;
+    border: 3px solid #ffeedb;
+}
+
+.guideContentFrame .tour-program-area,
+.guideContentFrame .introductionArea,
+.guideContentFrame .contactArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #fff4e8;
+    padding: 1rem;
+    border-radius: 20px;
+    border: 2px solid #ffeedb;
+}
+
+.guideContentFrame .tour-program-area ul {
+    list-style: none;
+    margin-top: 1rem;
+}
+
+.guideContentFrame .tour-program-area ul li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.guideContentFrame .introduction-writing {
+    font-size: 1.25rem;
+    line-height: 1.8;
+}
+
+.guideContentFrame .contactArea .text-wrapper {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.guideContentFrame .text-wrapper {
+    font-size: 1.5rem;
+    text-align: left;
+    color: #000;
+}

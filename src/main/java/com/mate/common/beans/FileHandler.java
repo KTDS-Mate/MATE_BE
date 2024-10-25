@@ -19,9 +19,8 @@
 //import org.springframework.stereotype.Component;
 //import org.springframework.web.multipart.MultipartFile;
 //
-//import com.ktdsuniversity.edu.hello_spring.common.exceptions.FileNotExistException;
-//import com.ktdsuniversity.edu.hello_spring.common.exceptions.MakeXlsxFileException;
-//import com.ktdsuniversity.edu.hello_spring.common.vo.StoreResultVO;
+//import com.mate.common.vo.StoreResultVO;
+//
 //
 ///**
 // * @Component Spring Bean 으로 생성해라
@@ -92,7 +91,7 @@
 //			os = new FileOutputStream(xlsxFile);
 //				workbook.write(os);
 //		} catch (IOException e) {
-//			throw new MakeXlsxFileException("엑셀파일을 만들 수 없습니다.");
+//			throw new IllegalArgumentException("엑셀파일을 만들 수 없습니다.");
 //		} finally {
 //			try {
 //				workbook.close();
@@ -141,7 +140,7 @@
 //			resource = new InputStreamResource(new FileInputStream(downloadFile));
 //		} catch (FileNotFoundException e) {
 //			e.printStackTrace();
-//			throw new FileNotExistException("파일이 존재하지 않습니다.");
+//			throw new IllegalArgumentException("파일이 존재하지 않습니다.");
 //		}
 //
 //		// 브라우저에게 보낼 응답 데이터를 생성
