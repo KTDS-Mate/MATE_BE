@@ -1,6 +1,6 @@
 package com.mate.bbs.vo;
 
-import com.mate.common.vo.CityVO;
+import com.mate.common.vo.GuideCityVO;
 import com.mate.common.vo.CountryVO;
 
 public class GuideTourVO {
@@ -77,7 +77,7 @@ public class GuideTourVO {
 	private CountryVO countryVO;
 	
 	
-	private CityVO cityVO;
+	private GuideCityVO guideCityVO;
 	
 	
 	
@@ -97,11 +97,11 @@ public class GuideTourVO {
 	public void setCountryVO(CountryVO countryVO) {
 		this.countryVO = countryVO;
 	}
-	public CityVO getCityVO() {
-		return cityVO;
+	public GuideCityVO getGuideCityVO() {
+		return guideCityVO;
 	}
-	public void setCityVO(CityVO cityVO) {
-		this.cityVO = cityVO;
+	public void setGuideCityVO(GuideCityVO guideCityVO) {
+		this.guideCityVO = guideCityVO;
 	}
 	public String getGdTrPstId() {
 		return gdTrPstId;

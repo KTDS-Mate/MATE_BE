@@ -14,6 +14,12 @@ public class TestController {
 
 	@GetMapping("footer")
 	public String viewFooter(){return "footer";}
+	
+	@GetMapping("sample")
+	public String viewSample(){return "all/GuideProfile copy";}
+
+	@GetMapping("modal")
+	public String viewModal(){return "all/ModalSample";}
 
 	@GetMapping("/guide/tourlist")
 	public String viewGuideTotalList() {
@@ -25,9 +31,6 @@ public class TestController {
 
 	@GetMapping("/guide/guideprofile")
 	public String viewGuideProfilePage(){return "all/GuideProfile"; }
-
-//	@GetMapping("/sample")
-//	public String viewSamplePage(){return "all/GuideProfile copy 2"; }
 
 	@GetMapping("/mypage/guide/calendar")
 	public String viewGuideCalendar(){

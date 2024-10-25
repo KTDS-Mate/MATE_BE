@@ -1,6 +1,6 @@
 package com.mate.bbs.vo;
 
-import com.mate.common.vo.CityVO;
+import com.mate.common.vo.GuideCityVO;
 import com.mate.common.vo.CountryVO;
 
 /**

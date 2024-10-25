@@ -1,301 +1,500 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="/css/GuideTourInfo.css" />
+    <link rel="stylesheet" href="/css/reviewWriteModal.css" />
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
-      type="text/css"
-      href="/css/common.css"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="/js/reviewWriteModal.js"></script>
   </head>
   <body>
     <div class="grid">
       <!--  -->
       <div class="header">
-          <!-- 헤더 공통파일 -->
-          <jsp:include page="../header.jsp"></jsp:include>
+        <!-- 헤더 공통파일 -->
+        <jsp:include page="../header.jsp"></jsp:include>
       </div>
       <!--  -->
       <div class="content">
-        <div class="main-container">
-            <div class="flex-row-c">
-              <span class="tour-title"
-                >기요미즈데라 사원에서 진행하는 일본의 전통 참배 투어</span
-              >
-              <div class="wish-button"></div>
-            </div>
-            <div class="flex-row-bc">
-              <div class="tour-pic-area">
-                <img src="/public/라스베가스 야경.jpg">
-              </div>
-              <div class="rectangle"></div>
-              <span class="price-for-person">Price for Person</span>
-              <div class="rectangle-1">
-                <div class="line"></div>
-                <div class="rectangle-2">
-                  <span class="adult-cost">Adult : 300$</span>
+        <div class="container">
+          <div class="title">
+            <h1>기요미즈데라 사원에서 진행하는 일본의 전통 참배 투어</h1>
+          </div>
+          <!-- <div class="reviewWriteModal hidden"> -->
+          <dialog id="modalArea" class="reviewWriteModal hidden">
+            <div class="reviewWritingArea">
+              <form>
+                <h2>리뷰 작성</h2>
+                <div class="starRating">
+                  <span class="star on" value="1"></span>
+                  <span class="star" value="2"></span>
+                  <span class="star" value="3"></span>
+                  <span class="star" value="4"></span>
+                  <span class="star" value="5"></span>
                 </div>
-                <div class="rectangle-3">
-                  <span class="child-cost">Child : 100$</span>
-                </div>
-                <div class="rectangle-4">
-                  <span class="reservation-request">예약 요청</span>
-                </div>
-              </div>
+                <textarea
+                  class="starBox"
+                  placeholder="리뷰 내용을 작성해주세요."
+                ></textarea>
+                <input
+                  type="submit"
+                  class="reviewSubmitButton btn-close-modal"
+                  value="리뷰 등록"
+                />
+              </form>
             </div>
-            <div class="flex-row-bca">
-              <div class="rectangle-5">
-                <span class="guide-profile">가이드 프로필</span
-                ><span class="view-details">상세보기</span>
+          </dialog>
+          <div class="firstLayer">
+            <div class="tourPicArea">
+              <div class="bigPicArea">
+                <img src="/public/다낭.jpg" alt="사진 1" />
               </div>
-              <div class="rectangle-6">
-                <span class="view-details-7">상세보기</span>
-              </div>
-              <span class="tour-summary">투어 요약</span>
-            </div>
-            <div class="flex-row-f">
-              <div class="rectangle-8">
-                <div class="line-9"></div>
-                <span class="tour-description"
-                  >즐겁고 재미난 투어<br />현지 가이드와 함께하는 투어<br />눈이
-                  즐거운 투어<br />음식이 맛있는 투어</span
-                >
-              </div>
-              <div class="rectangle-a">
-                <div class="line-b"></div>
-                <div class="flex-row-f-c">
-                  <div class="group-d"></div>
-                  <span class="guide-info">
-                    성별 : 여자<br />
-                    나이 : 24세 가이드 경력 : 12회</span
-                  >
+              <div class="smallPicAreas">
+                <div class="smallPicArea">
+                  <img src="/public/다낭.jpg" alt="사진 1" />
+                </div>
+                <div class="smallPicArea">
+                  <img src="/public/다낭.jpg" alt="사진 2" />
+                </div>
+                <div class="morePicArea">
+                  <img
+                    src="/img/tourboard/MorePicButton.png"
+                    alt="더보기 버튼"
+                  />
                 </div>
               </div>
             </div>
-            <div class="rectangle-e">
-              <div class="tour-inclusions">
-                <span class="line-f">투어에서 제공하는 것</span>
-                <div class="img-4"></div>
+            <div class="priceArea">
+              <div class="priceTitleArea">
+                <span>Price for Person</span>
               </div>
-              <span class="detail-view">상세보기</span>
-            </div>
-            <div class="rectangle-10">
-              <span class="fun-tour-guide"
-                >즐겁고 재미난 투어<br />현지 가이드와 함께하는 투어<br />눈이 즐거운
-                투어<br />음식이 맛있는 투어</span
-              >
-            </div>
-            <div class="rectangle-11">
-              <div class="flex-column-cd">
-                <span class="meeting-place">집결 장소</span>
-                <div class="line-12"></div>
-              </div>
-              <span class="detail-view-13">상세보기</span>
-            </div>
-            <div class="rectangle-14">
-              <span class="fun-tour-guide-15"
-                >즐겁고 재미난 투어<br />현지 가이드와 함께하는 투어<br />눈이 즐거운
-                투어<br />음식이 맛있는 투어</span
-              ><span class="google-map">Google Map</span>
-              <div class="rectangle-16"><div class="google-map-17"></div></div>
-            </div>
-            <div class="rectangle-18">
-              <div class="flex-column-ebc">
-                <span class="tour-details">투어 상세 정보</span>
-                <div class="line-19"></div>
-              </div>
-              <span class="detail-view-1a">상세보기</span>
-            </div>
-            <div class="rectangle-1b">
-              <div class="flex-row-b">
-                <span class="kiyomizu-dera-temple"
-                  >기요미즈데라 사원 (상세 정보)</span
-                >
-                <div class="ellipse"></div>
-                <span class="text-16">1</span>
-              </div>
-              <div class="flex-row">
-                <span class="kiyomizu-dera-temple-1c"
-                  >기요미즈데라 사원 (상세 정보)</span
-                >
-                <div class="ellipse-1d"></div>
-                <span class="text-18">2</span>
-              </div>
-            </div>
-            <div class="flex-row-ec">
-              <div class="rectangle-1e">
-                <div class="flex-column-eb">
-                  <span class="additional-info">추가 정보</span>
-                  <div class="line-1f"></div>
+              <div class="priceDetailArea">
+                <div class="adultPrice">
+                  <span>Adult : 300$</span>
                 </div>
-                <span class="detail-view-20">상세보기</span>
-              </div>
-              <div class="rectangle-21">
-                <span class="etc-write-area">Etc...</span>
-              </div>
-            </div>
-            <div class="flex-row-fe">
-              <div class="rectangle-22">
-                <span class="traveler-tour-photo">여행자 투어 사진</span>
-                <div class="line-23"></div>
-              </div>
-              <div class="rectangle-24">
-                <div class="rectangle-25"></div>
-                <div class="rectangle-26"></div>
-                <div class="rectangle-27"></div>
-                <div class="rectangle-28"></div>
-                <div class="rectangle-29"><span class="plus-999">+ 999</span></div>
-              </div>
-            </div>
-            <div class="flex-row-b-2a">
-              <div class="rectangle-2b">
-                <div class="flex-column-a">
-                  <span class="detail-view-2c">상세보기</span
-                  ><span class="detail-view-2d">상세보기</span>
+                <div class="childPrice">
+                  <span>Child : 100$</span>
                 </div>
-                <div class="flex-column-c">
-                  <span class="tour-rating-review">투어 평점 및 후기</span>
-                  <div class="line-2e"></div>
-                </div>
-              </div>
-              <div class="rectangle-2f">
-                <div class="flex-row-a">
-                  <div class="star"></div>
-                  <span class="text-21">4.8</span>
-                  <div class="star-5"></div>
-                  <span class="rating-gage-white">5</span>
-                  <div class="rating-gage-yellow">
-                    <div class="rating-count-4834"></div>
-                  </div>
-                  <span class="flex-row-ba">4834</span>
-                </div>
-                <div class="wrapper-a">
-                  <div class="star-4"></div>
-                  <span class="rating-gage-white-30">4</span>
-                  <div class="rating-gage-yellow-31">
-                    <div class="rating-count-124"></div>
-                  </div>
-                  <span class="text-25">124</span>
-                </div>
-                <div class="flex-row-aa">
-                  <div class="star-3"></div>
-                  <span class="text-26">3</span>
-                  <div class="rating-gage-white-32">
-                    <div class="rating-gage-yellow-33"></div>
-                  </div>
-                  <span class="rating-count">1</span>
-                </div>
-                <div class="flex-row-cfec">
-                  <div class="star-34"></div>
-                  <span class="rating-number">2</span>
-                  <div class="rating-gage-white-35">
-                    <div class="rating-gage-yellow-36"></div>
-                  </div>
-                  <span class="rating-count-37">0</span>
-                </div>
-                <div class="flex-row-e">
-                  <div class="star-38"></div>
-                  <span class="rating-number-39">1</span>
-                  <div class="rating-gage-white-3a">
-                    <div class="rating-gage-yellow-3b"></div>
-                  </div>
-                  <span class="rating-count-3c">0</span>
-                </div>
-                <div class="review-area">
-                  <div class="flex-row-bf">
-                    <div class="review-rating"></div>
-                    <span class="review-title">Amazing Day!</span>
-                  </div>
-                  <div class="flex-row-ad">
-                    <span class="review-writer">RainyMoon</span
-                    ><span class="review-write-day">SEP. 2024</span>
-                  </div>
-                  <span class="review-plot-area">Harry is an Amazing Guide!!</span>
-                </div>
-              </div>
-            </div>
-            <div class="rectangle-3d">
-              <span class="guide-rating-review">가이드 평점 및 후기</span
-              ><span class="view-details-3e">상세보기</span>
-            </div>
-            <div class="flex-row-3f">
-              <div class="line-40"></div>
-              <div class="rectangle-41">
-                <div class="flex-row-c-42">
-                  <div class="star-43"></div>
-                  <span class="rating-number-44">4.8</span>
-                  <div class="star-45"></div>
-                  <span class="rating-number-46">5</span>
-                  <div class="rating-gage-white-47">
-                    <div class="rating-gage-yellow-48"></div>
-                  </div>
-                  <span class="rating-count-49">4834</span>
-                </div>
-                <div class="flex-row-dc">
-                  <div class="star-4a"></div>
-                  <span class="rating-number-4b">4</span>
-                  <div class="rating-gage-white-4c">
-                    <div class="rating-gage-yellow-4d"></div>
-                  </div>
-                  <span class="rating-count-4e">124</span>
-                </div>
-                <div class="flex-row-dffa">
-                  <div class="star-4f"></div>
-                  <span class="rating-number-50">3</span>
-                  <div class="rating-gage-white-51">
-                    <div class="rating-gage-yellow-52"></div>
-                  </div>
-                  <span class="rating-count-53">1</span>
-                </div>
-                <div class="flex-row-a-54">
-                  <div class="star-55"></div>
-                  <span class="rating-number-56">2</span>
-                  <div class="rating-gage-white-57">
-                    <div class="rating-gage-yellow-58"></div>
-                  </div>
-                  <span class="rating-count-59">0</span>
-                </div>
-                <div class="flex-row-d">
-                  <div class="star-5a"></div>
-                  <span class="rating-number-5b">1</span>
-                  <div class="rating-gage-white-5c">
-                    <div class="rating-gage-yellow-5d"></div>
-                  </div>
-                  <span class="rating-count-5e">0</span>
-                </div>
-                <div class="review-area-5f">
-                  <div class="flex-row-e-60">
-                    <div class="review-rating-61"></div>
-                    <span class="review-title-62">Amazing Day!</span>
-                  </div>
-                  <div class="flex-row-de">
-                    <span class="review-writer-63">RainyMoon</span
-                    ><span class="review-write-day-64">SEP. 2024</span>
-                  </div>
-                  <span class="review-plot-area-65">Harry is an Amazing Guide!!</span>
+                <div class="reserveButton">
+                  <span>예약 요청</span>
                 </div>
               </div>
             </div>
           </div>
+          <div class="secondLayer">
+            <div class="tourSummaryArea">
+              <div class="summaryTitleArea">
+                <span>투어 요약</span>
+                <h3 class="showDetail" onclick="location.href='index.html'">
+                  상세보기
+                </h3>
+              </div>
+              <div class="summaryDetailArea">
+                <h1>1. 즐겁고 재미난 투어</h1>
+                <h1>2. 현지 가이드와 함께하는 투어</h1>
+                <h1>3. 눈이 즐거운 투어</h1>
+                <h1>4. 음식이 맛있는 투어</h1>
+              </div>
+            </div>
+            <div class="guideProfileArea">
+              <div class="profileTitleArea">
+                <span>가이드 프로필</span>
+                <h3 class="showDetail" onclick="location.href='index.html'">
+                  상세보기
+                </h3>
+              </div>
+              <div class="profileDetailArea">
+                <img src="/public/가이드 샘플 사진.jpg" alt="가이드 사진" />
+                <div class="profileSummaryArea">
+                  <h1>성별 : 여자</h1>
+                  <h1>나이 : 24세</h1>
+                  <h1>가이드 경력 : 12회</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="thirdLayer">
+            <div class="tourOfferArea">
+              <div class="offerTitleArea">
+                <span>투어에서 제공하는 것</span>
+                <h3 class="showDetail" onclick="location.href='index.html'">
+                  상세보기
+                </h3>
+              </div>
+              <div class="offerDetailArea">
+                <h1>1. 즐겁고 재미난 투어</h1>
+                <h1>2. 현지 가이드와 함께하는 투어</h1>
+                <h1>3. 눈이 즐거운 투어</h1>
+                <h1>4. 음식이 맛있는 투어</h1>
+              </div>
+            </div>
+          </div>
+          <div class="fourthLayer">
+            <div class="rallyPointArea">
+              <div class="rallyPointTitleArea">
+                <span>집결 장소</span>
+                <h3 class="showDetail" onclick="location.href='index.html'">
+                  상세보기
+                </h3>
+              </div>
+              <div class="rallyPointDetailArea">
+                <div class="summaryArea">
+                  <div class="rallyPointSummaryArea">
+                    <h1>1. 즐겁고 재미난 투어</h1>
+                    <h1>2. 현지 가이드와 함께하는 투어</h1>
+                    <h1>3. 눈이 즐거운 투어</h1>
+                    <h1>4. 음식이 맛있는 투어</h1>
+                  </div>
+                </div>
+                <div class="mapApiArea">
+                  <span>Google Map</span>
+                  <div class="apiArea"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="fifthLayer">
+            <div class="tourInfoArea">
+              <div class="tourInfoTitleArea">
+                <span>투어 상세 정보</span>
+                <h3 class="showDetail" onclick="location.href='index.html'">
+                  상세보기
+                </h3>
+              </div>
+              <div class="tourInfoDetailArea">
+                <div class="tourInfoSummaryArea">
+                  <h1>1. 즐겁고 재미난 투어</h1>
+                  <h1>2. 현지 가이드와 함께하는 투어</h1>
+                  <h1>3. 눈이 즐거운 투어</h1>
+                  <h1>4. 음식이 맛있는 투어</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sixthLayer">
+            <div class="touristPicArea">
+              <div class="touristPicTitleArea">
+                <span>여행자 투어 사진</span>
+                <h3 class="showDetail" onclick="location.href='index.html'">
+                  상세보기
+                </h3>
+              </div>
+              <div class="touristPicDetailArea">
+                <div class="touristPicturesArea">
+                  <div class="touristBigPicArea">
+                    <img src="/public/일본.jpg" alt="큰 사진1" />
+                  </div>
+                  <div class="touristSmallPicAreas">
+                    <div class="touristSmallPicArea">
+                      <img src="/public/일본.jpg" alt="작은 사진1" />
+                    </div>
+                    <div class="touristSmallPicArea">
+                      <img src="/public/일본.jpg" alt="작은 사진2" />
+                    </div>
+                    <div class="touristSmallPicArea">
+                      <img src="/public/일본.jpg" alt="작은 사진3" />
+                    </div>
+                    <div class="touristMorePicArea">
+                      <h1>+ 999</h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="seventhLayer">
+            <div class="tourReviewArea">
+              <div class="tourReviewTitleArea">
+                <span>투어 평점 및 후기</span>
+                <h2 class="writeReview btn-open-modal">후기 작성</h2>
+                <h3 class="showDetail" onclick="location.href='index.html'">
+                  상세보기
+                </h3>
+              </div>
+              <div class="tourReviewDetailArea">
+                <div class="tourReviewRatingArea">
+                  <div class="averageRatingArea">
+                    <img
+                      src="/public/Star 1.png"
+                      alt="별점 아이콘"
+                      class="star"
+                    />
+                    <span class="averageRating">4.8</span>
+                  </div>
+                  <div class="ratingArea">
+                    <div class="ratingFiveArea">
+                      <img
+                        src="/public/Star 1.png"
+                        alt="별점 5점"
+                        class="star"
+                      />
+                      <span class="rating">5</span>
+                      <meter
+                        class="ratingGage"
+                        min="0"
+                        max="100"
+                        value="90"
+                      ></meter>
+                      <span class="ratingCount">4834</span>
+                    </div>
+                    <div class="ratingFourArea">
+                      <img
+                        src="/public/Star 1.png"
+                        alt="별점 4점"
+                        class="star"
+                      />
+                      <span class="rating">4</span>
+                      <meter
+                        class="ratingGage"
+                        min="0"
+                        max="100"
+                        value="4"
+                      ></meter>
+                      <span class="ratingCount">124</span>
+                    </div>
+                    <div class="ratingThreeArea">
+                      <img
+                        src="/public/Star 1.png"
+                        alt="별점 3점"
+                        class="star"
+                      />
+                      <span class="rating">3</span>
+                      <meter
+                        class="ratingGage"
+                        min="0"
+                        max="100"
+                        value="3"
+                      ></meter>
+                      <span class="ratingCount">50</span>
+                    </div>
+                    <div class="ratingTwoArea">
+                      <img
+                        src="/public/Star 1.png"
+                        alt="별점 2점"
+                        class="star"
+                      />
+                      <span class="rating">2</span>
+                      <meter
+                        class="ratingGage"
+                        min="0"
+                        max="100"
+                        value="2"
+                      ></meter>
+                      <span class="ratingCount">20</span>
+                    </div>
+                    <div class="ratingOneArea">
+                      <img
+                        src="/public/Star 1.png"
+                        alt="별점 1점"
+                        class="star"
+                      />
+                      <span class="rating">1</span>
+                      <meter
+                        class="ratingGage"
+                        min="0"
+                        max="100"
+                        value="1"
+                      ></meter>
+                      <span class="ratingCount">10</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="reviewArea">
+                  <div class="smallReviewArea">
+                    <div class="someoneReviewFirstArea">
+                      <img
+                        src="/public/Star 1.png"
+                        alt="별점 아이콘"
+                        class="starTwo"
+                      />
+                      <img
+                        src="/public/Star 1.png"
+                        alt="별점 아이콘"
+                        class="starTwo"
+                      />
+                      <img
+                        src="/public/Star 1.png"
+                        alt="별점 아이콘"
+                        class="starTwo"
+                      />
+                      <img
+                        src="/public/Star 1.png"
+                        alt="별점 아이콘"
+                        class="starTwo"
+                      />
+                      <img
+                        src="/public/Star 1.png"
+                        alt="별점 아이콘"
+                        class="starTwo"
+                      />
+                      <span class="someoneReviewTitleArea">Amazing Day!</span>
+                    </div>
+                    <div class="someoneReviewSecondArea">
+                      <span class="reviewWriterArea">RainyMoon</span>
+                      <span class="reviewWritingDate">SEP.2024</span>
+                    </div>
+                  </div>
+                  <div class="reviewTextArea">
+                    <span>Harry is an Amazing Guide!!</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="eighthLayer">
+            <div class="guideReviewArea">
+              <div class="guideReviewTitleArea">
+                <span>가이드 평점 및 후기</span>
+                <h2 class="writeReview btn-open-modal">후기 작성</h2>
+                <h3 class="showDetail" onclick="location.href='index.html'">
+                  상세보기
+                </h3>
+              </div>
+              <div class="guideReviewDetailArea">
+                <div class="guideReviewRatingArea">
+                  <div class="averageRatingArea">
+                    <img
+                      src="/public/Star 1.png"
+                      alt="별점 아이콘"
+                      class="star"
+                    />
+                    <span class="averageRating">4.8</span>
+                  </div>
+                  <div class="ratingArea">
+                    <div class="ratingFiveArea">
+                      <img
+                        src="/public/Star 1.png"
+                        alt="별점 5점"
+                        class="star"
+                      />
+                      <span class="rating">5</span>
+                      <meter
+                        class="ratingGage"
+                        min="0"
+                        max="100"
+                        value="90"
+                      ></meter>
+                      <span class="ratingCount">4834</span>
+                    </div>
+                    <div class="ratingFourArea">
+                      <img
+                        src="/public/Star 1.png"
+                        alt="별점 4점"
+                        class="star"
+                      />
+                      <span class="rating">4</span>
+                      <meter
+                        class="ratingGage"
+                        min="0"
+                        max="100"
+                        value="4"
+                      ></meter>
+                      <span class="ratingCount">124</span>
+                    </div>
+                    <div class="ratingThreeArea">
+                      <img
+                        src="/public/Star 1.png"
+                        alt="별점 3점"
+                        class="star"
+                      />
+                      <span class="rating">3</span>
+                      <meter
+                        class="ratingGage"
+                        min="0"
+                        max="100"
+                        value="3"
+                      ></meter>
+                      <span class="ratingCount">50</span>
+                    </div>
+                    <div class="ratingTwoArea">
+                      <img
+                        src="/public/Star 1.png"
+                        alt="별점 2점"
+                        class="star"
+                      />
+                      <span class="rating">2</span>
+                      <meter
+                        class="ratingGage"
+                        min="0"
+                        max="100"
+                        value="2"
+                      ></meter>
+                      <span class="ratingCount">20</span>
+                    </div>
+                    <div class="ratingOneArea">
+                      <img
+                        src="/public/Star 1.png"
+                        alt="별점 1점"
+                        class="star"
+                      />
+                      <span class="rating">1</span>
+                      <meter
+                        class="ratingGage"
+                        min="0"
+                        max="100"
+                        value="1"
+                      ></meter>
+                      <span class="ratingCount">10</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="reviewArea">
+                  <div class="smallReviewArea">
+                    <div class="someoneReviewFirstArea">
+                      <img
+                        src="/public/Star 1.png"
+                        alt="별점 아이콘"
+                        class="starTwo"
+                      />
+                      <img
+                        src="/public/Star 1.png"
+                        alt="별점 아이콘"
+                        class="starTwo"
+                      />
+                      <img
+                        src="/public/Star 1.png"
+                        alt="별점 아이콘"
+                        class="starTwo"
+                      />
+                      <img
+                        src="/public/Star 1.png"
+                        alt="별점 아이콘"
+                        class="starTwo"
+                      />
+                      <img
+                        src="/public/Star 1.png"
+                        alt="별점 아이콘"
+                        class="starTwo"
+                      />
+                      <span class="someoneReviewTitleArea">Amazing Day!</span>
+                    </div>
+                    <div class="someoneReviewSecondArea">
+                      <span class="reviewWriterArea">RainyMoon</span>
+                      <span class="reviewWritingDate">SEP.2024</span>
+                    </div>
+                  </div>
+                  <div class="reviewTextArea">
+                    <span>Harry is an Amazing Guide!!</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-        
-      </div>
-        
     </div>
-  
     <div class="footer">
       <!-- footer 공통파일 -->
       <jsp:include page="../footer.jsp"></jsp:include>
-  </div>
-</div>
-
-</div>
-</body>
+    </div>
+  </body>
 </html>
-

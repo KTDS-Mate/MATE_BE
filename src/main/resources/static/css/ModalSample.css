@@ -1,0 +1,23 @@
+.container {
+  width: 80rem;
+  /* height: auto; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  position: absolute;
+
+  width: 18.75rem;
+  height: 18.75rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: yellow;
+}
+
+.hidden {
+  display: none;
+}
