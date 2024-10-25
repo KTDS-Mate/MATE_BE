@@ -7,11 +7,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class mainController {
 	
 	@GetMapping("/")
+<<<<<<< HEAD:src/main/java/com/mate/web/mainController.java
 	public String viewMainPage(){
 		return "all/MT_M001";
 	}
 
 	@GetMapping("/test/guide/tourlist")
+=======
+	public String viewMainPage(){return "all/MT_M001";}
+
+	@GetMapping("/guide/tourlist")
+>>>>>>> main:src/main/java/com/mate/web/TestController.java
 	public String viewGuideTotalList() {
 		return "all/guide_total_tourlist";
 	}

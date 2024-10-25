@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="/css/userregist.css">
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="/js/user/userlogin.js"></script>
+    <script type="text/javascript" src="/js/user/emailauthverify.js"></script>
+    <script type="text/javascript" src="/js/user/emailauth.js"></script>
 </head>
 <body>
     <div class="container">
@@ -21,8 +23,6 @@
                 <input type="text" id="usrLgnId" name="usrLgnId" value="${registUserVO.usrLgnId}" />
                 <form:errors path="usrLgnId" element="div" cssClass="error" />
             </div>
-            
-            <!-- 여기서부터 해야함 -->
             
             <div class="form-group">
                 <label for="usrPw">비밀번호</label>
@@ -58,12 +58,6 @@
             </div>
 
             <div class="form-group">
-                <label for="name">국적</label>
-                <input type="text" id="country" name="country" value="${registUserVO.country}" />
-                <form:errors path="country" element="div" cssClass="error" />
-            </div>
-            
-            <div class="form-group">
                 <label for="usrPhn">전화번호</label>
                 <input type="text" id="usrPhn" name="usrPhn" value="${registUserVO.usrPhn}" />
                 <form:errors path="usrPhn" element="div" cssClass="error" />
@@ -83,8 +77,21 @@
                 <input type="email" id="usrEml" name="usrEml" value="${registUserVO.usrEml}" />
                 <form:errors path="usrEml" element="div" cssClass="error">
                 </form:errors>
-                <button type="button" class="send-code-btn">인증메일 발송</button>
+                <button type="button" id="auth-button" class="send-code-btn">인증 메일 발송</button>
             </div>
+            
+            <div class="form-group">
+                <label for="confirmAuthCode">인증번호입력</label>
+                <input type="text" id="authCode" name="authCode" value="" />
+                <button type="button" id="verify-btn" class="send-code-btn">인증 코드 확인</button>
+                <button type="button" id="re-send-btn" class="send-code-btn">인증 메일 재발송</button>
+                <form:errors path="confirmAuthCode" element="div" cssClass="error">
+                </form:errors>
+            </div>
+            
+            <!-- 인증 여부 서버 전송 -->
+            <input type="hidden" id="authVerified" name="authVerified" value="false" />
+            
             <div class="form-group submit-btn">
                 <input type="submit" value="회가입" />
             </div>
