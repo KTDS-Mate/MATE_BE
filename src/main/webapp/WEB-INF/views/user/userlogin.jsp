@@ -18,34 +18,20 @@
         <!-- nextUrl 설정 -->
         <input type="hidden" name="nextUrl" />
         
-          <input
-            type="id"
-            id="id"
-            class="login-input"
-            name="usrLgnId"
-            value="${loginUserVO.usrLgnId}"
-            required
-          />
+          <input type="id" id="id" class="login-input" name="usrLgnId" value="${loginUserVO.usrLgnId}" />
+          
+          <input id="password" type="password" name="usrPwd" class="login-input" />
           
           <form:errors path="usrLgnId" element="div" cssClass="error" />
           <c:if test="${not empty message}">
           	<div class="error">${message}</div>
           </c:if>
           
-          <input
-          	id="password"
-            type="password"
-            name="usrPwd"
-            class="login-input"
-            required
-          />
-          
-          <form:errors path="usrPwd" element="div" cssClass="error" />
-          
           <button type="submit" class="login-btn">로그인</button>
         
         <div class="login-options">
-          <a href="#">아이디 찾기</a> /
+          <a href="#">회원 가입</a> | 
+          <a href="#">아이디 찾기</a> | 
           <a href="#">비밀번호 찾기</a>
         </div>
 		</form:form>

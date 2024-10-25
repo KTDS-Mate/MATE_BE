@@ -91,11 +91,16 @@ public class UserController {
 		
 		UserVO userVO = this.userService.readUser(loginUserVO);
 		session.setAttribute("_LOGIN_USER_", userVO);
-		
-		return "redirect:" + loginUserVO.getNextUrl();
-//		return "redirect:/user/userregist";
+//		return "redirect:" + loginUserVO.getNextUrl();
+		return "redirect:/mate";
 	}
 
+	@GetMapping("/user/logout")
+	public String doLogout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/mate";
+	}
+	
 	/*
 	 * 회원탈퇴 기능 수행은 마이페이지
 	 */
@@ -122,5 +127,4 @@ public class UserController {
 		}
 		return "user/" + result + "softdelete";
 	}
-
 }

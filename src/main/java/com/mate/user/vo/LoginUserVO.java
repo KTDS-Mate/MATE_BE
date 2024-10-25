@@ -1,6 +1,5 @@
 package com.mate.user.vo;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 public class LoginUserVO {
@@ -18,6 +17,8 @@ public class LoginUserVO {
 	private String nextUrl;
 	
 	private String ip;
+	
+	private String usrIsGd;
 	
 	public String getUsrId() {
 		return usrId;
@@ -65,5 +66,13 @@ public class LoginUserVO {
 
 	public void setIp(String ip) {
 		this.ip = ip;
+	}
+
+	public String getUsrIsGd() {
+		return usrIsGd;
+	}
+
+	public void setUsrIsGd(String usrIsGd) {
+		this.usrIsGd = usrIsGd;
 	}
 }
