@@ -21,28 +21,44 @@ public class GuideTourDaoImpl extends SqlSessionDaoSupport implements GuideTourD
 	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
 		super.setSqlSessionTemplate(sqlSessionTemplate);
 	}
-	
+	/**
+	 * 가이드 투어 전체 수를 조회
+	 */
 	@Override
 	public int selectGuideTourAllCount() {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectGuideTourAllCount");
 	}
+	/**
+	 * 모든 가이드 투어 목록 조회 (검색)
+	 */
 	@Override
 	public List<GuideTourVO> selectAllGuideTour(SearchGuideTourVO searchGuideTourVO) {
 		return this.getSqlSession().selectList(NAMESPACE + ".selectAllGuideTour", searchGuideTourVO);
 	}
+	/**
+	 * 한 가이드 투어 게시글 조회
+	 */
 	@Override
 	public GuideTourVO selectOneGuideTour(String gdTrPstId) {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectOneGuideTour", gdTrPstId);
 	}
-	
+	/**
+	 * 새로운 가이드 투어를 생성
+	 */
 	@Override
 	public int insertNewGuideTour(GuideTourWriteVO guideTourWriteVO) {
 		return this.getSqlSession().insert(NAMESPACE + ".insertNewGuideTour", guideTourWriteVO);
 	}
+	/**
+	 * 가이드 투어 수정
+	 */
 	@Override
 	public int updateGuideTour(GuideTourModifyVO guideTourModifyVO) {
 		return this.getSqlSession().update(NAMESPACE + ".updateGuideTour", guideTourModifyVO);
 	}
+	/**
+	 * 가이드 투어 삭제 ( 소프트 딜리트 )
+	 */
 	@Override
 	public int updateGuideTourIsDtl(String gdTrPstId) {
 		return this.getSqlSession().update(NAMESPACE + ".updateGuideTourIsDtl", gdTrPstId);

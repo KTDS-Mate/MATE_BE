@@ -22,6 +22,9 @@ public class GuideTourServiceImpl implements GuideTourService{
 	@Autowired
 	private GuideTourDao guideTourDao;
 	
+	/**
+	 * 모든 가이드 투어 전체 수를 조회
+	 */
 	@Override
 	public GuideTourListVO getAllGuideTour(SearchGuideTourVO searchGuideTourVO) {
 		int guideTourListCount = this.guideTourDao.selectGuideTourAllCount();

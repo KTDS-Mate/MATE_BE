@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -24,9 +25,10 @@
       <!--  -->
       <div class="content">
         <div class="main-container">
+        <c:forEach>
             <div class="flex-row-c">
-              <span class="tour-title"
-                >기요미즈데라 사원에서 진행하는 일본의 전통 참배 투어</span
+              <span class="tour-title">
+              	기요미즈데라 사원에서 진행하는 일본의 전통 참배 투어</span
               >
               <div class="wish-button"></div>
             </div>
@@ -281,6 +283,7 @@
                 </div>
               </div>
             </div>
+            </c:forEach>
           </div>
       </div>
         
