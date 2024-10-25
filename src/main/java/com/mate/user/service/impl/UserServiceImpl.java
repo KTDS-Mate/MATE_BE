@@ -15,6 +15,8 @@ import com.mate.user.vo.LoginUserVO;
 import com.mate.user.vo.RegistUserVO;
 import com.mate.user.vo.UserVO;
 
+import io.socket.engineio.client.transports.PollingXHR.Request;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -79,6 +81,7 @@ public class UserServiceImpl implements UserService {
 		
 		// salt 조회
 		String salt = this.userDao.selectSalt(loginUserVO.getUsrLgnId());
+		// 유저 ID가 잘못된 경우
 		if (salt == null) {
 			log.warn("SALT를 찾을 수 없습니다. 아이디가 잘못되었습니다: {}", loginUserVO.getUsrLgnId());
 			
@@ -87,18 +90,16 @@ public class UserServiceImpl implements UserService {
 			accessLogVO.setAccessUrl( RequestUtil.getRequest().getRequestURI() );
 			accessLogVO.setAccessMethod( RequestUtil.getRequest().getMethod().toUpperCase() );
 			accessLogVO.setAccessIp( RequestUtil.getIp());
+			accessLogVO.setAccessId(loginUserVO.getUsrLgnId());
+			accessLogVO.setAccessLogId(loginUserVO.getUsrId());
+			accessLogVO.setLoginSuccessYn("N");
 		
 			this.accessLogDao.insertNewAccessLog(accessLogVO);
 			
 			throw new IllegalArgumentException("잘못된 아이디 또는 비밀번호입니다.");
 		}
-		/*
-			loginUserVO.setIp(RequestUtil.getIp());
-			this.userDao.updateLoginFailState(loginUserVO);
-			throw new IllegalArgumentException("잘못된 아이디 또는 비밀번호입니다.");
-		*/
 		
-		// 사용자 입력 비밀번호 암호화
+		// 유저 입력 비밀번호 암호화
 		String password = loginUserVO.getUsrPwd();
 		password = this.sha.getEncrypt(password, salt);
 		loginUserVO.setUsrPwd(password);
@@ -106,11 +107,23 @@ public class UserServiceImpl implements UserService {
 		// 이메일과 암호화된 비밀번호로 데이터베이스에서 회원 정보 조회
 		log.info("암호화된 비밀번호: {}", password);
 		UserVO userVO = this.userDao.selectOneMember(loginUserVO);
+		// 유저의 비밀번호가 잘못된 경우
 		if (userVO == null) {
 			log.warn("로그인 실패 - 잘못된 비밀번호");
 			loginUserVO.setIp(RequestUtil.getIp());
-//			this.userDao.upadateLoginSuccessState(loginUserVO);
 			this.userDao.updateLoginFailState(loginUserVO);
+			
+			AccessLogVO accessLogVO = new AccessLogVO();
+			accessLogVO.setAccessType("LOGIN");
+			accessLogVO.setAccessId(loginUserVO.getUsrLgnId());
+			accessLogVO.setAccessIp(RequestUtil.getIp());
+			accessLogVO.setAccessMethod(RequestUtil.getRequest().getMethod().toUpperCase());
+			accessLogVO.setAccessUrl(RequestUtil.getRequest().getRequestURI());
+			accessLogVO.setLoginSuccessYn("N");
+			log.info("비밀번호 실패 로그 - 유저의 ID는 : {}", accessLogVO.getAccessId());
+			
+			this.accessLogDao.insertNewAccessLog(accessLogVO);
+			
 			throw new IllegalArgumentException("잘못된 아이디 또는 비밀번호입니다.");
 		}
 		
@@ -126,11 +139,11 @@ public class UserServiceImpl implements UserService {
 		
 		AccessLogVO accessLogVO = new AccessLogVO();
 		accessLogVO.setAccessType("LOGIN");
-		accessLogVO.setAccessLogId(loginUserVO.getUsrLgnId());
+		accessLogVO.setAccessId(loginUserVO.getUsrLgnId());
 		accessLogVO.setAccessUrl(RequestUtil.getRequest().getRequestURI());
 		accessLogVO.setAccessMethod(RequestUtil.getRequest().getMethod().toUpperCase());
 		accessLogVO.setAccessIp(RequestUtil.getIp());
-		accessLogVO.setLoginSuccessStatus("Y");
+		accessLogVO.setLoginSuccessYn("Y");
 		
 		// 성공 로그
 		this.accessLogDao.insertNewAccessLog(accessLogVO);
