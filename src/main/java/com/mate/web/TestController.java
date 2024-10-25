@@ -6,14 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TestController {
 	
-	@GetMapping("mate")
+	@GetMapping("/")
 	public String viewMainPage(){return "all/MT_M001";}
-
-	@GetMapping("header")
-	public String viewHeader(){return "header";}
-
-	@GetMapping("footer")
-	public String viewFooter(){return "footer";}
 
 	@GetMapping("/guide/tourlist")
 	public String viewGuideTotalList() {

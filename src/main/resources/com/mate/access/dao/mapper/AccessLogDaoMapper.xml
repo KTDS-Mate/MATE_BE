@@ -8,7 +8,7 @@
 		INSERT INTO ACCESS_LOG
 			 ( ACCESS_LOG_ID
 			 , ACCESS_TYPE
-			 , ACCESS_EMAIL
+			 , ACCESS_ID
 			 , ACCESS_TIME
 			 , ACCESS_URL
 			 , ACCESS_METHOD
@@ -17,7 +17,7 @@
 		VALUES
 			 ('AL-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_ACCESS_LOG_PK.NEXTVAL, 6, 0)
 			 , #{accessType}
-			 , #{accessEmail}
+			 , #{accessId}
 			 , SYSDATE
 			 , #{accessUrl}
 			 , #{accessMethod}
@@ -29,6 +29,7 @@
 		SELECT COUNT(1)
 		  FROM ACCESS_LOG
 		 WHERE ACCESS_IP = #{_parameter}
+		   AND ACCESS_ID = #{accessId}
 		   AND ACCESS_TYPE = 'LOGIN'
 		   AND LOGIN_SUCCESS_YN = 'N'
 		   AND ACCESS_TIME BETWEEN SYSDATE -1/24 AND SYSDATE
