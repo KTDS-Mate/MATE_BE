@@ -1,18 +1,24 @@
 package com.mate.user.vo;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class LoginUserVO {
 	
 	private String usrId;
 	
+	@NotBlank(message = "아이디를 입력해주세요.")
 	private String usrLgnId;
 	
 	private String email;
 	
+	@NotBlank(message ="비밀번호를 입력해주세요.")
 	private String usrPwd;
 
 	private String nextUrl;
 	
 	private String ip;
+	
+	private String usrIsGd;
 	
 	public String getUsrId() {
 		return usrId;
@@ -60,5 +66,13 @@ public class LoginUserVO {
 
 	public void setIp(String ip) {
 		this.ip = ip;
+	}
+
+	public String getUsrIsGd() {
+		return usrIsGd;
+	}
+
+	public void setUsrIsGd(String usrIsGd) {
+		this.usrIsGd = usrIsGd;
 	}
 }

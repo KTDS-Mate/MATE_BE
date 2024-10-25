@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mate.mypage.dao.MyBoardDao">
+
+	<select id="selectBoardCount" parameterType="string" resultType="_int">
+		SELECT 
+			COUNT(1)
+		FROM 
+			GD_TR_RCRT 
+		WHERE 
+			ATHR_ID = #{_parameter}
+	</select>
+
+
+    <select id="selectGDMyAllBoard" parameterType="string" resultType="com.mate.mypage.vo.MyBoardVO">
+        SELECT
+	        GD_TR_PST_ID
+			,ATHR_ID
+			,USR_ID
+			,GD_TR_TTL
+			,TO_CHAR(GD_TR_ST_DT , 'YYYY-MM-DD HH24:MI') GD_TR_ST_DT
+			,TO_CHAR(GD_TR_ED_DT , 'YYYY-MM-DD HH24:MI') GD_TR_ED_DT
+			,GD_TR_PRPS
+			,GD_TR_MP
+			,GD_TR_PRC
+			,GD_TR_SMRY
+			,TO_CHAR(GD_TR_RSTR_DT , 'YYYY-MM-DD HH24:MI') GD_TR_RSTR_DT
+			,TO_CHAR(GD_TR_MDFY_DT , 'YYYY-MM-DD HH24:MI') GD_TR_MDFY_DT
+			,TO_CHAR(GD_TR_DLT_DT , 'YYYY-MM-DD HH24:MI') GD_TR_DLT_DT
+			,GD_TR_IS_DLT
+			,TR_CT_ID
+			,GD_TR_MX_NP
+        FROM
+        	GD_TR_RCRT
+        WHERE
+        	ATHR_ID = #{_parameter}  
+    </select>
+    
+
+	<delete id="deleteGDBoard" parameterType="string">
+	DELETE  
+		FROM GD_TR_RCRT
+	WHERE 
+		GD_TR_PST_ID = #{_parameter}
+	</delete>
+</mapper>

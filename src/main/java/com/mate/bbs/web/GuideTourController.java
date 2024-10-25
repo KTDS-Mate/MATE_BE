@@ -4,9 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mate.bbs.service.GuideTourService;
 import com.mate.bbs.vo.GuideTourListVO;
+import com.mate.bbs.vo.GuideTourVO;
+import com.mate.bbs.vo.SearchGuideTourVO;
 
 @Controller
 public class GuideTourController {
@@ -14,14 +17,25 @@ public class GuideTourController {
 	@Autowired
 	private GuideTourService guideTourService;
 	
-	@GetMapping("/guideTour/list")
-	public String viewGuideTourList(Model model) {
-		GuideTourListVO guideTourListVO = this.guideTourService.getAllGuideTour();
+	/**
+	 * 가이드 투어 목록 조회하는 페이지
+	 */
+	@GetMapping("/guidetour/list")
+	public String viewAllGuideTourPage(Model model, SearchGuideTourVO searchGuideTourVO) {
+		GuideTourListVO guideTourListVO = this.guideTourService.getAllGuideTour(searchGuideTourVO);
 		model.addAttribute("guideTourListVO", guideTourListVO);
-		return "guide/Guide_TourInsert";
+		model.addAttribute("searchGuideTourVO", searchGuideTourVO);
+		return "all/guide_total_tourlist";
 	}
-	@GetMapping("/message")
-	public String view() {
-		return "all/send_message";
+
+	@GetMapping("/guidetour/info")
+	public String viewOneGuideTourPage(@RequestParam String gdTrPstId , Model model) {
+		GuideTourVO guideTourVO = this.guideTourService.getOneGuideTour(gdTrPstId);
+		model.addAttribute("guideTourVO",guideTourVO);
+		return "all/GuideRecruitmentPage";
+	}
+	@GetMapping("/guidetour/insert")
+	public String viewGuideTourInsertPage() {
+		return "guide/Guide_TourInsert";
 	}
 }

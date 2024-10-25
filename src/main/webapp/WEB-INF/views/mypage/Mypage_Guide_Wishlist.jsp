@@ -1,16 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+  <!DOCTYPE html>
+  <html>
+
   <head>
     <meta charset="UTF-8" />
     <title>MATE 즐겨찾기</title>
+    <link rel="stylesheet" type="text/css" href="/css/Mypage_Guide_Wishlist.css" />
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      rel="stylesheet"
-      type="text/css"
-      href="/css/Mypage_Guide_Wishlist.css"
-    />
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet">
+
   </head>
+
   <body>
     <div class="grid">
       <div class="header">
@@ -21,18 +25,7 @@ pageEncoding="UTF-8"%>
         <div class="content-grid">
           <!-- side-bar 공통파일 -->
           <jsp:include page="../Guide_Sidebar.jsp"></jsp:include>
-          <!-- 수정이 예정 되어있음 -->
-          <!-- 좌측의 네비게이션 바 -->
-          <!-- <div class="my-page">
-            <ul class="list">
-              <li>캘린더</li>
-              <li>즐겨찾기</li>
-              <li>나의 등록 투어</li>
-              <li>매출 관리</li>
-              <li>내 정보 수정</li>
-              <li>메세지</li>
-            </ul> 
-          </div>-->
+
           <!-- 좌측 네비게이션 바 -->
 
           <div class="main-content">
@@ -49,11 +42,7 @@ pageEncoding="UTF-8"%>
                 <div class="one-wishlist">
                   <div class="right-element">
                     <div>
-                      <img
-                        class="check"
-                        src="/image/wishlist/check.png"
-                        alt="check"
-                      />
+                      <img class="check" src="/image/wishlist/check.png" alt="check" />
                     </div>
                     <div class="wishlist-info">
                       <div>
@@ -86,11 +75,7 @@ pageEncoding="UTF-8"%>
                 <div class="one-wishlist">
                   <div class="right-element">
                     <div>
-                      <img
-                        class="check"
-                        src="/image/wishlist/check.png"
-                        alt="check"
-                      />
+                      <img class="check" src="/image/wishlist/check.png" alt="check" />
                     </div>
                     <div class="wishlist-info">
                       <div>
@@ -122,11 +107,7 @@ pageEncoding="UTF-8"%>
                 <div class="one-wishlist">
                   <div class="right-element">
                     <div>
-                      <img
-                        class="uncheck"
-                        src="/image/wishlist/uncheck.png"
-                        alt="uncheck"
-                      />
+                      <img class="uncheck" src="/image/wishlist/uncheck.png" alt="uncheck" />
                     </div>
                     <div class="wishlist-info">
                       <div>
@@ -158,11 +139,7 @@ pageEncoding="UTF-8"%>
                 <div class="one-wishlist">
                   <div class="right-element">
                     <div>
-                      <img
-                        class="check"
-                        src="/image/wishlist/check.png"
-                        alt="check"
-                      />
+                      <img class="check" src="/image/wishlist/check.png" alt="check" />
                     </div>
                     <div class="wishlist-info">
                       <div>
@@ -196,11 +173,7 @@ pageEncoding="UTF-8"%>
                 <div class="one-wishlist">
                   <div class="right-element">
                     <div>
-                      <img
-                        class="check"
-                        src="/image/wishlist/check.png"
-                        alt="check"
-                      />
+                      <img class="check" src="/image/wishlist/check.png" alt="check" />
                     </div>
                     <div class="wishlist-info">
                       <div>
@@ -234,11 +207,7 @@ pageEncoding="UTF-8"%>
                 <div class="one-wishlist">
                   <div class="right-element">
                     <div>
-                      <img
-                        class="check"
-                        src="/image/wishlist/check.png"
-                        alt="check"
-                      />
+                      <img class="check" src="/image/wishlist/check.png" alt="check" />
                     </div>
                     <div class="wishlist-info">
                       <div>
@@ -270,11 +239,7 @@ pageEncoding="UTF-8"%>
                 <div class="one-wishlist">
                   <div class="right-element">
                     <div>
-                      <img
-                        class="uncheck"
-                        src="/image/wishlist/uncheck.png"
-                        alt="uncheck"
-                      />
+                      <img class="uncheck" src="/image/wishlist/uncheck.png" alt="uncheck" />
                     </div>
                     <div class="wishlist-info">
                       <div>
@@ -306,11 +271,7 @@ pageEncoding="UTF-8"%>
                 <div class="one-wishlist">
                   <div class="right-element">
                     <div>
-                      <img
-                        class="check"
-                        src="/image/wishlist/check.png"
-                        alt="check"
-                      />
+                      <img class="check" src="/image/wishlist/check.png" alt="check" />
                     </div>
                     <div class="wishlist-info">
                       <div>
@@ -342,11 +303,7 @@ pageEncoding="UTF-8"%>
                 <div class="one-wishlist">
                   <div class="right-element">
                     <div>
-                      <img
-                        class="check"
-                        src="/image/wishlist/check.png"
-                        alt="check"
-                      />
+                      <img class="check" src="/image/wishlist/check.png" alt="check" />
                     </div>
                     <div class="wishlist-info">
                       <div>
@@ -378,11 +335,7 @@ pageEncoding="UTF-8"%>
                 <div class="one-wishlist">
                   <div class="right-element">
                     <div>
-                      <img
-                        class="uncheck"
-                        src="/image/wishlist/uncheck.png"
-                        alt="uncheck"
-                      />
+                      <img class="uncheck" src="/image/wishlist/uncheck.png" alt="uncheck" />
                     </div>
                     <div class="wishlist-info">
                       <div>
@@ -431,4 +384,5 @@ pageEncoding="UTF-8"%>
       </div>
     </div>
   </body>
-</html>
+
+  </html>

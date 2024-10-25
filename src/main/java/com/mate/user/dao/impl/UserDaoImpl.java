@@ -30,9 +30,8 @@ public class UserDaoImpl extends SqlSessionDaoSupport implements UserDao {
 	}
 	
 	@Override
-	public int softDeleteOneUser(UserVO userVO) {
-		// TODO SoftDelete 
-		return getSqlSession().update(NAMESPACE + ".softDeleteOneUser",userVO);
+	public int softDeleteOneUser(String usrLgnId) {
+		return getSqlSession().update(NAMESPACE + ".softDeleteOneUser", usrLgnId);
 	}
 	
 	@Override

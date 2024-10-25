@@ -1,16 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+  <!DOCTYPE html>
+  <html>
+
   <head>
     <meta charset="UTF-8" />
     <title>Mypage_Tourist_MyReview</title>
+    <link rel="stylesheet" type="text/css" href="/css/Mypage_Tourist_MyReview.css" />
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      rel="stylesheet"
-      type="text/css"
-      href="/css/Mypage_Tourist_MyReview.css"
-    />
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet">
   </head>
+
   <body>
     <div class="grid">
       <div class="header">
@@ -41,13 +44,13 @@ pageEncoding="UTF-8"%>
             <div class="border"></div>
             <div class="tour-list">
               <div class="search-area">
-                <div class="sort-button"><h3>날짜 순 ↓</h3></div>
-                <input
-                  id="search-content"
-                  type="text"
-                  placeholder="찾고 싶은 투어를 검색해 주세요."
-                />
-                <div class="search-button"><h3>검색</h3></div>
+                <div class="sort-button">
+                  <h3>날짜 순 ↓</h3>
+                </div>
+                <input id="search-content" type="text" placeholder="찾고 싶은 투어를 검색해 주세요." />
+                <div class="search-button">
+                  <h3>검색</h3>
+                </div>
               </div>
               <div class="list-area">
                 <div class="list-item">
@@ -157,4 +160,5 @@ pageEncoding="UTF-8"%>
       </div>
     </div>
   </body>
-</html>
+
+  </html>

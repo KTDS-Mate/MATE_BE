@@ -2,26 +2,53 @@ package com.mate.bbs.dao;
 
 import java.util.List;
 
+import com.mate.bbs.vo.GuideTourModifyVO;
 import com.mate.bbs.vo.GuideTourVO;
-import com.mate.bbs.vo.WriteGuideTourVO;
+import com.mate.bbs.vo.GuideTourWriteVO;
+import com.mate.bbs.vo.SearchGuideTourVO;
 
 public interface GuideTourDao {
 
 	public String NAMESPACE = "com.mate.bbs.dao.GuideTourDao";
 	
-    // 가이드 투어 수를 반환하는 메서드 정의
+    /**
+     *  가이드 투어 전체 수를 조회
+     * @param gdTrPstId : 가이드 투어 게시글 아이디
+     * @return
+     */
     public int selectGuideTourAllCount();
-
-    // 모든 가이드 투어 목록을 반환하는 메서드 정의
-    public List<GuideTourVO> selectAllGuideTour();
-
-    // 새로운 가이드 투어를 생성하는 메서드 정의
-    public int createNewGuideTour(WriteGuideTourVO writeGuideTourVO);
-//
-//    // 특정 ID 를 가진 채팅방의 정보를 반환하는 메서드 정의
-//    public GuideTourVO selectChatRoomById(String id);
-//
-//    // 특정 ID 를 가진 채팅방을 삭제(soft delete)하는 메서드 정의
-//    public int deleteChatRoomById(String id, boolean isDeleted);
+    /**
+     *  모든 가이드 투어 목록 조회
+     * @param athrId : 작성자 아이디
+     * @return
+     */
+    public List<GuideTourVO> selectAllGuideTour(SearchGuideTourVO searchGuideTourVO);
+    /**
+     * 한 가이드 투어 게시글 조회
+     * @param gdTrPstId
+     * @return
+     */
+    public GuideTourVO selectOneGuideTour(String gdTrPstId);
+    
+    /**
+     *  새로운 가이드 투어를 생성
+     * @param guideTourWriteVO : 가이드 투어 작성 VO
+     * @return
+     */
+    public int insertNewGuideTour(GuideTourWriteVO guideTourWriteVO);
+    
+    /**
+     * 가이드 투어 수정
+     * @param guideTourModifyVO : 가이드 투어 수정 VO
+     * @return
+     */
+    public int updateGuideTour(GuideTourModifyVO guideTourModifyVO);
+    
+    /**
+     * 가이드 투어 삭제 ( 소프트 딜리트 )
+     * @param gdTrPstId : 가이드 투어 게시글 아이디
+     * @return
+     */
+    public int updateGuideTourIsDtl(String gdTrPstId);
 
 }
