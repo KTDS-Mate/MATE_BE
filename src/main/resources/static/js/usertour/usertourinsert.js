@@ -2,14 +2,31 @@ $().ready(function() {
 
 	// TODO 국가와 도시를 가져와야 함
 	$("#country").on("click", function() {
-		$get("/tour/countreis", {}, function(countriesResult) {
+		$.get("/tour/countreis", {}, function(countriesResult) {
 			
-			var id = countriesResult.countries.id; // COUNTRIES의 PK
-			var korName = countriesResult.countries.korname; // COUNTRIES의 국가명(한글)
 			var countriesCnt = countriesResult.countriesCnt; // COUNTRIES의 개수
 			
-			var countriesOptionDom = $(`<option name="trCtId" value="${id}">${korName}</option>`);
+			for (i = 0; i < countriesCnt; i++) {
+				$("#country").append(`<option value="${countriesResult.countries[i].id}">${countriesResult.countries[i].korname}</option>`);
+			}
 			
+		});
+	});
+	
+	$("#country").on("change", function() {
+		
+		$("#city").empty();
+		$("#city").append(`<option value="">도시 선택</option>`)
+		
+		var countryId = $(this).val();
+		
+		$.get(`/tour/cities/${countryId}`, {}, function(citiesResult) {
+			
+			var citiesCnt = citiesResult.cities.length;
+			
+			for (i = 0; i < citiesCnt; i++) {
+				$("#city").append(`<option value="${citiesResult.cities[i].id}">${citiesResult.cities[i].name}</option>`);
+			}
 			
 		});
 	});
