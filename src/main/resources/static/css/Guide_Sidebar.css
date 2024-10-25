@@ -30,3 +30,13 @@ div.my-page {
 .my-page li:last-child {
   padding: 0;
 }
+a {
+  text-decoration: none;
+  color : black;
+}
+a:visited {
+  color : black;
+}
+a:link {
+  color : black;
+}
