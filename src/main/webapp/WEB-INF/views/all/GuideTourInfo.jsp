@@ -5,7 +5,6 @@ pageEncoding="UTF-8" %>
   <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="/css/GuideTourInfo.css" />
-    <link rel="stylesheet" href="/css/Modal.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,7 +13,6 @@ pageEncoding="UTF-8" %>
       rel="stylesheet"
     />
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
-    <script type="text/javascript" src="/js/modal.js"></script>
   </head>
   <body>
     <div class="grid">
@@ -30,120 +28,7 @@ pageEncoding="UTF-8" %>
             <h1>기요미즈데라 사원에서 진행하는 일본의 전통 참배 투어</h1>
           </div>
           <!-- <div class="reviewWriteModal hidden"> -->
-          <dialog id="reviewModalArea" class="reviewWriteModal hidden">
-            <div class="closeButtonArea">
-              <img
-                src="/public/close.png"
-                alt="닫기 버튼"
-                class="closeButton btn-close-review-modal"
-              />
-            </div>
-            <div class="reviewWritingArea">
-              <form>
-                <h2>리뷰 작성</h2>
-                <div class="starRating">
-                  <span class="starThree on" value="1"></span>
-                  <span class="starThree" value="2"></span>
-                  <span class="starThree" value="3"></span>
-                  <span class="starThree" value="4"></span>
-                  <span class="starThree" value="5"></span>
-                </div>
-                <textarea
-                  class="starBox"
-                  placeholder="리뷰 내용을 작성해주세요."
-                ></textarea>
-                <input
-                  type="submit"
-                  class="reviewSubmitButton btn-submit-review"
-                  value="리뷰 등록"
-                />
-              </form>
-            </div>
-          </dialog>
-          <dialog id="picModalArea" class="picModal hidden">
-            <div class="closeButtonArea">
-              <img
-                src="/public/close.png"
-                alt="닫기 버튼"
-                class="closeButton btn-close-pic-modal"
-              />
-            </div>
-            <div class="picArea">
-              <img src="/public/라스베가스 야경.jpg" alt="확대 사진" />
-            </div>
-          </dialog>
-          <dialog id="viewAllReviewModal" class="viewAllReviewModal hidden">
-            <div class="closeReviewListButtonArea">
-              <h2>후기</h2>
-              <img
-                src="/public/close.png"
-                alt="닫기 버튼"
-                class="closeButton btn-close-review-list-modal"
-              />
-            </div>
-            <div class="allReviewArea">
-              <div class="reviewListArea">
-                <div class="oneReview">
-                  <div class="oneReviewRating">
-                    <img
-                      src="/public/Star.png"
-                      alt="별점 아이콘"
-                      class="star"
-                    />
-                    <span class="oneReviewRatingCount">5</span>
-                    <span class="reviewerNameArea">Gil-Dong Hong</span>
-                  </div>
-                  <div class="reviewerAllPicArea">
-                    <div class="reviewerPicturesAreas">
-                      <div class="reviewerPicArea">
-                        <img
-                          src="/public/일본.jpg"
-                          alt="작은 사진1"
-                          class="reviewerPicture"
-                        />
-                      </div>
-                      <div class="reviewerPicArea">
-                        <img
-                          src="/public/일본.jpg"
-                          alt="작은 사진2"
-                          class="reviewerPicture"
-                        />
-                      </div>
-                      <div class="reviewerPicArea">
-                        <img
-                          src="/public/일본.jpg"
-                          alt="작은 사진3"
-                          class="reviewerPicture"
-                        />
-                      </div>
-                      <div class="reviewerPicArea">
-                        <img
-                          src="/public/일본.jpg"
-                          alt="작은 사진3"
-                          class="reviewerPicture"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="oneReviewTextArea">
-                    <span
-                      >Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type and scrambled it to make a
-                      type specimen book. It has survived not only five
-                      centuries, but also the leap into electronic typesetting,
-                      remaining essentially unchanged. It was popularised in the
-                      1960s with the release of Letraset sheets containing Lorem
-                      Ipsum passages, and more recently with desktop publishing
-                      software like Aldus PageMaker including versions of Lorem
-                      Ipsum.</span
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </dialog>
+          <jsp:include page="Modal.jsp" />
           <div class="firstLayer">
             <div class="tourPicArea">
               <div class="bigPicArea btn-open-pic-modal">
