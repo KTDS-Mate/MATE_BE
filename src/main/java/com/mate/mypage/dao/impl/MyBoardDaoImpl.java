@@ -20,14 +20,14 @@ public class MyBoardDaoImpl extends SqlSessionDaoSupport implements MyBoardDao {
     }
 
     @Override
-    public int selectBoardCount(String usrId) {
+    public int selectBoardCount(String usrLgnId) {
 
-    	return this.getSqlSession().selectOne(NAMESPACE + ".selectBoardCount" ,usrId);
+    	return this.getSqlSession().selectOne(NAMESPACE + ".selectBoardCount" ,usrLgnId);
     }
     
     @Override
-    public List<MyBoardVO> selectGDMyAllBoard(String usrId) {
-        return this.getSqlSession().selectList(NAMESPACE + ".selectGDMyAllBoard", usrId);
+    public List<MyBoardVO> selectGDMyAllBoard(String usrLgnId) {
+        return this.getSqlSession().selectList(NAMESPACE + ".selectGDMyAllBoard", usrLgnId);
     }
 
 	@Override

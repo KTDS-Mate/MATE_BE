@@ -23,20 +23,20 @@ public class MyBoardController {
 
     //----------------------------------------------------등록 투어
 
-    @GetMapping("/tr-mytour")
-    public String viewTRMyTour(@RequestParam String usrId, Model model) {
+    @GetMapping("/tr-mytour/{usrLgnId}")
+    public String viewTRMyTour(@PathVariable String usrLgnId, Model model) {
 
-    	MyBoardListVO myWriteBoard = this.myBoardService.selectGDMyAllBoard(usrId);
+    	MyBoardListVO myWriteBoard = this.myBoardService.selectGDMyAllBoard(usrLgnId);
     	
         model.addAttribute("myWriteBoard", myWriteBoard);
 
         return "mypage/Mypage_Tourist_MyTour";
     }
 
-    @GetMapping("/gd-mytour")
-    public String viewGDMyTour(@RequestParam String usrId, Model model) {
+    @GetMapping("/gd-mytour/{usrLgnId}")
+    public String viewGDMyTour(@PathVariable String usrLgnId, Model model) {
 
-    	MyBoardListVO boardListVO = this.myBoardService.selectGDMyAllBoard(usrId);
+    	MyBoardListVO boardListVO = this.myBoardService.selectGDMyAllBoard(usrLgnId);
         
         System.out.println(boardListVO);
         model.addAttribute("boardListVO", boardListVO);

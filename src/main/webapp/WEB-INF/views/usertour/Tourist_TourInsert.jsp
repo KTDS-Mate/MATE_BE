@@ -247,7 +247,8 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
                   <input
                     name="usrTrGdHrPrc"
                     type="number"
-                    value="${userTourWriteVO.usrTrGdHrPrc}" />
+                    value="${userTourWriteVO.usrTrGdHrPrc}"
+                    step="0.01" />
                   <div>$</div>
                 </div>
                 <div class="right-align">

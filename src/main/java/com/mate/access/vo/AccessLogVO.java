@@ -26,6 +26,10 @@ public class AccessLogVO {
 	// login 성공/실패 여부
 	private String loginSuccessYn;
 	
+	
+	private String usrIsGd;
+	
+	
 	public String getAccessLogId() {
 		return accessLogId;
 	}
@@ -88,5 +92,13 @@ public class AccessLogVO {
 
 	public void setLoginSuccessYn(String loginSuccessYn) {
 		this.loginSuccessYn = loginSuccessYn;
+	}
+
+	public String getUsrIsGd() {
+		return usrIsGd;
+	}
+
+	public void setUsrIsGd(String usrIsGd) {
+		this.usrIsGd = usrIsGd;
 	}
 }

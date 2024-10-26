@@ -21,9 +21,9 @@ public class EditProfileServiceImpl implements EditProfileService {
     }
 
     @Override
-    public UserVO selectOneUser(String usrId) {
+    public UserVO selectOneUser(String usrLgnId) {
 
-        UserVO user = this.editProfileDao.selectOneUser(usrId);
+        UserVO user = this.editProfileDao.selectOneUser(usrLgnId);
 
         return user;
     }

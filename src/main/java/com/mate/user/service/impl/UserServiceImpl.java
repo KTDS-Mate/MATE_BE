@@ -92,6 +92,7 @@ public class UserServiceImpl implements UserService {
 			accessLogVO.setAccessIp( RequestUtil.getIp());
 			accessLogVO.setAccessId(loginUserVO.getUsrLgnId());
 			accessLogVO.setAccessLogId(loginUserVO.getUsrId());
+			accessLogVO.setAccessLogId(loginUserVO.getUsrIsGd());
 			accessLogVO.setLoginSuccessYn("N");
 		
 			this.accessLogDao.insertNewAccessLog(accessLogVO);
@@ -119,6 +120,7 @@ public class UserServiceImpl implements UserService {
 			accessLogVO.setAccessIp(RequestUtil.getIp());
 			accessLogVO.setAccessMethod(RequestUtil.getRequest().getMethod().toUpperCase());
 			accessLogVO.setAccessUrl(RequestUtil.getRequest().getRequestURI());
+			accessLogVO.setAccessLogId(loginUserVO.getUsrIsGd());
 			accessLogVO.setLoginSuccessYn("N");
 			log.info("비밀번호 실패 로그 - 유저의 ID는 : {}", accessLogVO.getAccessId());
 			
@@ -143,6 +145,7 @@ public class UserServiceImpl implements UserService {
 		accessLogVO.setAccessUrl(RequestUtil.getRequest().getRequestURI());
 		accessLogVO.setAccessMethod(RequestUtil.getRequest().getMethod().toUpperCase());
 		accessLogVO.setAccessIp(RequestUtil.getIp());
+		accessLogVO.setAccessLogId(loginUserVO.getUsrIsGd());
 		accessLogVO.setLoginSuccessYn("Y");
 		
 		// 성공 로그
