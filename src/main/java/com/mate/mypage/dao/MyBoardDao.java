@@ -8,9 +8,9 @@ public interface MyBoardDao {
 
     public String NAMESPACE = "com.mate.mypage.dao.MyBoardDao";
 
-    public int selectBoardCount(String usrId);
+    public int selectBoardCount(String usrLgnId);
     
-    public List<MyBoardVO> selectGDMyAllBoard(String usrId);
+    public List<MyBoardVO> selectGDMyAllBoard(String usrLgnId);
     
     public int deleteGDBoard(String gdTrPstId);
 }

@@ -92,13 +92,13 @@ public class UserController {
 		UserVO userVO = this.userService.readUser(loginUserVO);
 		session.setAttribute("_LOGIN_USER_", userVO);
 //		return "redirect:" + loginUserVO.getNextUrl();
-		return "redirect:/mate";
+		return "redirect:/";
 	}
 
 	@GetMapping("/user/logout")
 	public String doLogout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/mate";
+		return "redirect:/";
 	}
 	
 	/*
