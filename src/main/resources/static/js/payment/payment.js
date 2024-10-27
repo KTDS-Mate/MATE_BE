@@ -10,24 +10,18 @@ $().ready(function () {
 
   $('.getToken').on('click', function() {
 	$.ajax({
-		url: 'mate.com:8080/users/getToken', 
-		method: 'POST',
-		data: JSON.stringify({
-		       apiKey: '8408511610228667',   // 여기에 API 키 입력
-		       apiSecret: 'fWQcZ0aEmO4NgPxu2cs8gNe8ODxM9YHf0A7FwlkxmtlMa6rvaXQ5RrBBqcQvfMOmUv0EsxfzTMYNF5Ts' // 여기에 시크릿 키 입력
-		}),
-		success: function(data) {
-			console.log("받아온 Access Token >> ", data);
-		},
-		error: function(xhr, status, error){	// Service에서 준 에러
-			alert("에러가 발생했습니다. : ", error)
-		}
-		
-	})
+	    url: '/getAccessToken',
+	    type: 'GET',
+	    success: function(result) {
+	        console.log("받아온 토큰 : " +result);
+	    },
+	    error: function(textStatus, errorThrown) {
+	        console.error("토큰 발급에 실패 했습니다 :", textStatus, errorThrown);
+	        alert('토큰 발급에 실패했습니다.');
+	    }
+	});
   });
   
-  
- 
 
   $("button.kakaopay-btn").on("click", function () {
     IMP.request_pay(
@@ -158,11 +152,6 @@ $().ready(function () {
   
   
 });
-
-function getToken(){
-	
-} 
-
 
 
 

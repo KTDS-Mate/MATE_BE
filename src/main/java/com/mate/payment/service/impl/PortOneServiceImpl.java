@@ -1,38 +1,44 @@
 package com.mate.payment.service.impl;
 
-import java.net.http.HttpHeaders;
+import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.mate.payment.service.PortOneService;
+import com.siot.IamportRestClient.IamportClient;
+import com.siot.IamportRestClient.exception.IamportResponseException;
 
 @Service
-public class PortOneServiceImpl implements PortOneService{
-	
-	
-	
-	
-	
-	/**
-	 * 포트원 토큰 발급 URL
-	 */
-	private final String BASE_URL = "https://api.portone.io/v1";
-	
-	/**
-	 * MATE 포트원 API KEY
-	 */
-    private final String CLIENT_ID = "8408511610228667";
-    
+public class PortOneServiceImpl implements PortOneService {
+
     /**
-     * MATE 포트원 API SECRET KEY
+     * 포트원 Bsse URL
      */
-    private final String CLIENT_SECRET = "fWQcZ0aEmO4NgPxu2cs8gNe8ODxM9YHf0A7FwlkxmtlMa6rvaXQ5RrBBqcQvfMOmUv0EsxfzTMYNF5Ts";
+    private final String BASE_URL = "https://api.portone.io/v1";
+
+    private final IamportClient iamportClient;
 	
+    
+    @Autowired
+    public PortOneServiceImpl(@Value("${portone.api.key}") String key,
+    						  @Value("${portone.api.secret}") String secret) {
+    	System.out.println(key + "와 " + secret);
+    	this.iamportClient = new IamportClient(key, secret);
+    }
+
+    
 	@Override
 	public String getAccessToken() {
-		String tokenUrl = BASE_URL + "/users/getToken";
-//		HttpHeaders headers = new HttpHeaders();
-		
+//		String tokenUrl = BASE_URL + "/users/getToken"; // 포트원 API설명에서는 post /users/getToken을 불러오라던데 뭔가 다르다... 웹에서 js로 사용할때만인가..?	
+		try {
+			return iamportClient.getAuth().getResponse().getToken();
+		} catch (IamportResponseException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 	
