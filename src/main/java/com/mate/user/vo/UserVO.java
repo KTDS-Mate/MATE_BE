@@ -91,6 +91,11 @@ public class UserVO {
      */
     private String gdRpCntId;
 
+    /**
+     * 국가 번호 코드
+     */
+	private String usrCntCode;
+
 
     public String getUsrId() {
         return usrId;
@@ -267,4 +272,12 @@ public class UserVO {
     public void setGdRpCntId(String gdRpCntId) {
         this.gdRpCntId = gdRpCntId;
     }
+
+	public String getUsrCntCode() {
+		return usrCntCode;
+	}
+
+	public void setUsrCntCode(String usrCntCode) {
+		this.usrCntCode = usrCntCode;
+	}
 }

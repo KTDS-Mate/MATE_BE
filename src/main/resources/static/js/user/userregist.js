@@ -1,10 +1,18 @@
 $().ready(function () {
+	// 제출버튼 비활성화
+	$("input[type=submit]").attr("disabled", "disabled");
 	
-	// 정규표현식 설정
+	// 아이디 정규 표현식 설정
 	var idRegex = /^[a-z0-9-_]{5,21}$/;
 	
 	// 비밀번호 정규 표현식
-	var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\-=/]).{8,16}$/; 
+	var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\-=/]).{8,16}$/;
+	
+	// 휴대전화번호 정규 표현식
+	var phoneRegex = /^\+?[0-9]{1,15}$/;
+	
+	// 이메일 정규 표현식
+	var emailRegex = /^[a-z0-9_\.\-]+@[a-z0-9\-]+\.[a-z0-9\-]+/;
 	
 	$("#usrLgnId").keyup(function() {
 		var usrLgnId = $(this).val();
@@ -88,11 +96,22 @@ $().ready(function () {
 		toggleSubmitButton();
 	});
 
-    // 이메일 중복 확인
+    // 이메일 중복 확인 검사 및 이메일 유효성 검사
     $("#usrEml").keyup(function () {
         var usrEml = $(this).val();
 
-        // 서버에 get 요청
+		// 이메일 유효성 검사
+		if (!emailRegex.test(usrEml)) {
+			$("#usrEml-error").text("유효한 이메일 형식이 아닙니다.");
+			$("#usrEml").removeClass("available").addClass("unusable input-error");
+			toggleSubmitButton();
+			return;
+		} else {
+			$("#usrEml-error").text("");
+			$("#usrEml").removeClass("unusable input-error").addClass("available");
+		}
+		
+        // 이메일 중복확인 검사
         $.get("/user/regist/availableemail", 
 			{ usrEml: usrEml }, 
 			function (response) {
@@ -111,10 +130,21 @@ $().ready(function () {
         });
     });
 
-	// 휴대전화번호 중복 확인
+	// 휴대전화번호 중복 확인 및 정규식 검증
 	$("#usrPhn").keyup(function() {
 		var usrPhn = $(this).val();
 		
+		// 정규 표현식을 사용해서 휴대전화번호 유효성 검증
+		if (!phoneRegex.test(usrPhn)) {
+			$("#usrPhn-error").text("휴대전화번호를 올바르게 입력해주세요.");
+			$("#usrPhn").removeClass("available").addClass("unusable input-error");
+			toggleSubmitButton();
+			return;
+		} else {
+			$("#usrPhn-error").text("");
+			$("#usrPhn").removeClass("unusable input-error").addClass("available");
+		}
+		// 휴대전화번호 중복 검증	
 		$.get("/user/regist/availablephn",
 			{ usrPhn: usrPhn },
 			function (response) {
@@ -130,13 +160,34 @@ $().ready(function () {
 				toggleSubmitButton();
 			}
 		)
+	}); 
+	
+	// intlTellInput 라이브러리를 사용하여 국제 전화번호 입력창 구현
+	var input = document.querySelector("#usrPhn");
+	
+	var iti = window.intlTelInput(input, {
+		nationalMode: true,
+		utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/utils.js"
+	});
+	
+	input.addEventListener("change", function() {
+		var selectedCountryData = iti.getSelectedCountryData();
+		// 국가코드도 저장.
+		$("usrCountryCode").val(selectedCountryData.dialCode);
+		console.log("국가코드", selectedCountryData.iso2);
+		console.log("전화번호", iti.getNumber());
+	});
+	// 제출 버튼 클릭 시 전화번호 저장
+	$("#usrPhn").on("change keyup", function() {
+		var fullNumber = iti.getNumber(); // 국가번호 + 개인 휴대전화번호
+		$(this).val(fullNumber);
 	});
 	
     // 아이디, 비밀번호, 이메일, 휴대전화번호가 모두 사용 가능한 경우에만 제출 버튼 활성화
     function toggleSubmitButton() {
         if ($("#usrLgnId").hasClass("available") && $("#usrPw").hasClass("available") 
-			&& $("#usrEml").hasClass("available") && $("#confirmPw").hassClass("available")
-			&& $("#usrPhn").hassClass("available")) 
+			&& $("#usrEml").hasClass("available") && $("#confirmPw").hasClass("available")
+			&& $("#usrPhn").hasClass("available")) 
 			{
             $("input[type=submit]").removeAttr("disabled");
         
