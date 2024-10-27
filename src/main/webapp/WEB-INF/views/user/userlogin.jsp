@@ -16,16 +16,28 @@
       <div class="login-box">
         <form:form class="login-form" modelAttribute="loginUserVO" method="post" action="/user/login">
         <!-- nextUrl 설정 -->
-        <input type="hidden" name="nextUrl" />
+        <input type="hidden" name="nextUrl" value="${loginUserVO.nextUrl}" />
         
-          <input type="id" id="id" class="login-input" name="usrLgnId" value="${loginUserVO.usrLgnId}" />
+          <!-- 아이디 입력 -->
+          <input type="text" id="id" class="login-input" name="usrLgnId" value="${loginUserVO.usrLgnId}" />
+          <form:errors path="usrLgnId" cssClass="error-message" />
+          <%-- <c:if test="${not empty usrLgnIdError}">
+            <div class="error-message">${usrLgnIdError}</div>
+          </c:if> --%>
           
+          <!-- 비밀번호 입력 -->
           <input id="password" type="password" name="usrPwd" class="login-input" />
+          <form:errors path="usrPwd" cssClass="error-message" />
+          <%-- <c:if test="${not empty usrPwdError}">
+            <div class="error-message">${usrPwdError}</div>
+          </c:if> --%>
           
-          <form:errors path="usrLgnId" element="div" cssClass="error" />
-          <c:if test="${not empty message}">
-          	<div class="error">${message}</div>
+          <!-- 로그인 실패 메세지 출력 -->
+          <c:if test="${not empty loginError}">
+          	<div class="error-message">${loginError}</div>
           </c:if>
+          
+          <%-- <form:errors element="div" cssClass="error-message" /> --%>
           
           <button type="submit" class="login-btn">로그인</button>
         
@@ -38,4 +50,3 @@
       </div>
     </div>
   </body>
-</html>

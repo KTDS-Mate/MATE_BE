@@ -97,3 +97,8 @@ h2 {
   font-size: 0.8rem;
   color: #a00;
 }
+
+.input-error {
+    border: 2px solid #ff0000 !important; 
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.2); 
+}
