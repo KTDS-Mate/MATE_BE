@@ -3,7 +3,7 @@ package com.mate.mypage.vo;
 public class MyBoardVO {
 
     private String gdTrPstId;
-    private String athrId;
+    private String athrId; // 게시글 작성한 사람의 로그인 아이디 
     private String usrId;
     private String gdTrTtl;
     private String gdTrStDt;

@@ -13,7 +13,8 @@
 			 , ACCESS_URL
 			 , ACCESS_METHOD
 			 , ACCESS_IP
-			 , LOGIN_SUCCESS_YN)
+			 , LOGIN_SUCCESS_YN
+			 , USR_IS_GD)
 		VALUES
 			 ('AL-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_ACCESS_LOG_PK.NEXTVAL, 6, 0)
 			 , #{accessType}
@@ -22,7 +23,8 @@
 			 , #{accessUrl}
 			 , #{accessMethod}
 			 , #{accessIp}
-			 , NVL(#{loginSuccessYn}, 'N'))
+			 , NVL(#{loginSuccessYn}, 'N')
+			 , #{usrIsGd})
 	</insert>
 	
 	<select id="selectLoginFailCount" parameterType="string" resultType="_int">
