@@ -1,6 +1,5 @@
 $().ready(function () {
 	$("#auth-button").click(function() {
-		console.log("인증버튼 클");
 		var email = $("#usrEml").val();
 		var emailVO = {
 			email: email

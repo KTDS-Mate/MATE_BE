@@ -19,13 +19,18 @@ public class EmailDaoImpl extends SqlSessionDaoSupport implements EmailDao {
 	
 	// email 인증 코드를 DB에 저장.
 	@Override
-	public void saveAuthInfo(EmailVO emailVO) {
-		getSqlSession().insert(NAMESPACE + ".saveAuthInfo", emailVO);
+	public void insertNewAuthCode(EmailVO emailVO) {
+		getSqlSession().insert(NAMESPACE + ".insertNewAuthCode", emailVO);
 	}
 	
 	// 이메일에 해당하는 인증 코드 조회
 	@Override
-	public String getAuthCodeByEmail(String email) {
+	public EmailVO getAuthCodeByEmail(String email) {
 		return getSqlSession().selectOne(NAMESPACE + ".getAuthCodeByEmail", email);
+	}
+
+	// email 인증 코드 재발급 시 이전에 발급했던 코드 무효화
+	public int invalidatePrevAuthCode(String email) {
+		return getSqlSession().update(NAMESPACE + ".invalidatePrevAuthCode", email);
 	}
 }

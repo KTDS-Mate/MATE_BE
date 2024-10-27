@@ -18,12 +18,6 @@ spring:
       "mail.smtp.starttls.enable": true
       "mail.smtp.starttls.required": true
 
-# redis 설정
-  data:
-    redis:
-      host: localhost
-      port: 6379
-
 mybatis:
   # mybatis-config.xml 파일의 위치를 지정
   config-location: classpath:mybatis/mybatis-config.xml

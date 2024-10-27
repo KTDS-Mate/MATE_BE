@@ -14,6 +14,8 @@ public interface UserDao {
 	
 	public int getEmailCount(String email);
 	
+	public int getPhnCount(String usrPhn);
+	
 	public String selectSalt(String usrId);
 	
 	UserVO selectOneMember(LoginUserVO loginUserVO);

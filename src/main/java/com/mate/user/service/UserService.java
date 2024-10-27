@@ -12,6 +12,8 @@ public interface UserService {
 	
 	public boolean checkAvailableId(String usrId);
 	
+	public boolean checkAvailablePhn(String usrPhn);
+	
 	public UserVO readUser(LoginUserVO loginUserVO);
 	
 	public boolean softDeleteUser(String usrLgnId);
