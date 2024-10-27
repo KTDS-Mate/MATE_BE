@@ -5,7 +5,6 @@ pageEncoding="UTF-8" %>
   <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="/css/GuideTourInfo.css" />
-    <link rel="stylesheet" href="/css/reviewWriteModal.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,7 +13,6 @@ pageEncoding="UTF-8" %>
       rel="stylesheet"
     />
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
-    <script type="text/javascript" src="/js/reviewWriteModal.js"></script>
   </head>
   <body>
     <div class="grid">
@@ -30,45 +28,24 @@ pageEncoding="UTF-8" %>
             <h1>기요미즈데라 사원에서 진행하는 일본의 전통 참배 투어</h1>
           </div>
           <!-- <div class="reviewWriteModal hidden"> -->
-          <dialog id="modalArea" class="reviewWriteModal hidden">
-            <div class="reviewWritingArea">
-              <form>
-                <h2>리뷰 작성</h2>
-                <div class="starRating">
-                  <span class="star on" value="1"></span>
-                  <span class="star" value="2"></span>
-                  <span class="star" value="3"></span>
-                  <span class="star" value="4"></span>
-                  <span class="star" value="5"></span>
-                </div>
-                <textarea
-                  class="starBox"
-                  placeholder="리뷰 내용을 작성해주세요."
-                ></textarea>
-                <input
-                  type="submit"
-                  class="reviewSubmitButton btn-close-modal"
-                  value="리뷰 등록"
-                />
-              </form>
-            </div>
-          </dialog>
+          <jsp:include page="Modal.jsp" />
           <div class="firstLayer">
             <div class="tourPicArea">
-              <div class="bigPicArea">
+              <div class="bigPicArea btn-open-pic-modal">
                 <img src="/public/다낭.jpg" alt="사진 1" />
               </div>
               <div class="smallPicAreas">
-                <div class="smallPicArea">
+                <div class="smallPicArea btn-open-pic-modal">
                   <img src="/public/다낭.jpg" alt="사진 1" />
                 </div>
-                <div class="smallPicArea">
+                <div class="smallPicArea btn-open-pic-modal">
                   <img src="/public/다낭.jpg" alt="사진 2" />
                 </div>
                 <div class="morePicArea">
                   <img
                     src="/img/tourboard/MorePicButton.png"
                     alt="더보기 버튼"
+                    onclick="location.href='index.html'"
                   />
                 </div>
               </div>
@@ -85,7 +62,7 @@ pageEncoding="UTF-8" %>
                   <span>Child : 100$</span>
                 </div>
                 <div class="reserveButton">
-                  <span>예약 요청</span>
+                  <span onclick="location.href='index.html'">예약 요청</span>
                 </div>
               </div>
             </div>
@@ -190,20 +167,23 @@ pageEncoding="UTF-8" %>
               </div>
               <div class="touristPicDetailArea">
                 <div class="touristPicturesArea">
-                  <div class="touristBigPicArea">
+                  <div class="touristBigPicArea btn-open-pic-modal">
                     <img src="/public/일본.jpg" alt="큰 사진1" />
                   </div>
                   <div class="touristSmallPicAreas">
-                    <div class="touristSmallPicArea">
+                    <div class="touristSmallPicArea btn-open-pic-modal">
                       <img src="/public/일본.jpg" alt="작은 사진1" />
                     </div>
-                    <div class="touristSmallPicArea">
+                    <div class="touristSmallPicArea btn-open-pic-modal">
                       <img src="/public/일본.jpg" alt="작은 사진2" />
                     </div>
-                    <div class="touristSmallPicArea">
+                    <div class="touristSmallPicArea btn-open-pic-modal">
                       <img src="/public/일본.jpg" alt="작은 사진3" />
                     </div>
-                    <div class="touristMorePicArea">
+                    <div
+                      class="touristMorePicArea"
+                      onclick="location.href='index.html'"
+                    >
                       <h1>+ 999</h1>
                     </div>
                   </div>
@@ -215,16 +195,14 @@ pageEncoding="UTF-8" %>
             <div class="tourReviewArea">
               <div class="tourReviewTitleArea">
                 <span>투어 평점 및 후기</span>
-                <h2 class="writeReview btn-open-modal">후기 작성</h2>
-                <h3 class="showDetail" onclick="location.href='index.html'">
-                  상세보기
-                </h3>
+                <h2 class="writeReview btn-open-review-modal">후기 작성</h2>
+                <h3 class="showDetail btn-open-review-list-modal">상세보기</h3>
               </div>
               <div class="tourReviewDetailArea">
                 <div class="tourReviewRatingArea">
                   <div class="averageRatingArea">
                     <img
-                      src="/public/Star 1.png"
+                      src="/public/Star.png"
                       alt="별점 아이콘"
                       class="star"
                     />
@@ -232,11 +210,7 @@ pageEncoding="UTF-8" %>
                   </div>
                   <div class="ratingArea">
                     <div class="ratingFiveArea">
-                      <img
-                        src="/public/Star 1.png"
-                        alt="별점 5점"
-                        class="star"
-                      />
+                      <img src="/public/Star.png" alt="별점 5점" class="star" />
                       <span class="rating">5</span>
                       <meter
                         class="ratingGage"
@@ -247,11 +221,7 @@ pageEncoding="UTF-8" %>
                       <span class="ratingCount">4834</span>
                     </div>
                     <div class="ratingFourArea">
-                      <img
-                        src="/public/Star 1.png"
-                        alt="별점 4점"
-                        class="star"
-                      />
+                      <img src="/public/Star.png" alt="별점 4점" class="star" />
                       <span class="rating">4</span>
                       <meter
                         class="ratingGage"
@@ -262,11 +232,7 @@ pageEncoding="UTF-8" %>
                       <span class="ratingCount">124</span>
                     </div>
                     <div class="ratingThreeArea">
-                      <img
-                        src="/public/Star 1.png"
-                        alt="별점 3점"
-                        class="star"
-                      />
+                      <img src="/public/Star.png" alt="별점 3점" class="star" />
                       <span class="rating">3</span>
                       <meter
                         class="ratingGage"
@@ -277,11 +243,7 @@ pageEncoding="UTF-8" %>
                       <span class="ratingCount">50</span>
                     </div>
                     <div class="ratingTwoArea">
-                      <img
-                        src="/public/Star 1.png"
-                        alt="별점 2점"
-                        class="star"
-                      />
+                      <img src="/public/Star.png" alt="별점 2점" class="star" />
                       <span class="rating">2</span>
                       <meter
                         class="ratingGage"
@@ -292,11 +254,7 @@ pageEncoding="UTF-8" %>
                       <span class="ratingCount">20</span>
                     </div>
                     <div class="ratingOneArea">
-                      <img
-                        src="/public/Star 1.png"
-                        alt="별점 1점"
-                        class="star"
-                      />
+                      <img src="/public/Star.png" alt="별점 1점" class="star" />
                       <span class="rating">1</span>
                       <meter
                         class="ratingGage"
@@ -312,27 +270,27 @@ pageEncoding="UTF-8" %>
                   <div class="smallReviewArea">
                     <div class="someoneReviewFirstArea">
                       <img
-                        src="/public/Star 1.png"
+                        src="/public/Star.png"
                         alt="별점 아이콘"
                         class="starTwo"
                       />
                       <img
-                        src="/public/Star 1.png"
+                        src="/public/Star.png"
                         alt="별점 아이콘"
                         class="starTwo"
                       />
                       <img
-                        src="/public/Star 1.png"
+                        src="/public/Star.png"
                         alt="별점 아이콘"
                         class="starTwo"
                       />
                       <img
-                        src="/public/Star 1.png"
+                        src="/public/Star.png"
                         alt="별점 아이콘"
                         class="starTwo"
                       />
                       <img
-                        src="/public/Star 1.png"
+                        src="/public/Star.png"
                         alt="별점 아이콘"
                         class="starTwo"
                       />
@@ -354,16 +312,14 @@ pageEncoding="UTF-8" %>
             <div class="guideReviewArea">
               <div class="guideReviewTitleArea">
                 <span>가이드 평점 및 후기</span>
-                <h2 class="writeReview btn-open-modal">후기 작성</h2>
-                <h3 class="showDetail" onclick="location.href='index.html'">
-                  상세보기
-                </h3>
+                <h2 class="writeReview btn-open-review-modal">후기 작성</h2>
+                <h3 class="showDetail btn-open-review-list-modal">상세보기</h3>
               </div>
               <div class="guideReviewDetailArea">
                 <div class="guideReviewRatingArea">
                   <div class="averageRatingArea">
                     <img
-                      src="/public/Star 1.png"
+                      src="/public/Star.png"
                       alt="별점 아이콘"
                       class="star"
                     />
@@ -371,11 +327,7 @@ pageEncoding="UTF-8" %>
                   </div>
                   <div class="ratingArea">
                     <div class="ratingFiveArea">
-                      <img
-                        src="/public/Star 1.png"
-                        alt="별점 5점"
-                        class="star"
-                      />
+                      <img src="/public/Star.png" alt="별점 5점" class="star" />
                       <span class="rating">5</span>
                       <meter
                         class="ratingGage"
@@ -386,11 +338,7 @@ pageEncoding="UTF-8" %>
                       <span class="ratingCount">4834</span>
                     </div>
                     <div class="ratingFourArea">
-                      <img
-                        src="/public/Star 1.png"
-                        alt="별점 4점"
-                        class="star"
-                      />
+                      <img src="/public/Star.png" alt="별점 4점" class="star" />
                       <span class="rating">4</span>
                       <meter
                         class="ratingGage"
@@ -401,11 +349,7 @@ pageEncoding="UTF-8" %>
                       <span class="ratingCount">124</span>
                     </div>
                     <div class="ratingThreeArea">
-                      <img
-                        src="/public/Star 1.png"
-                        alt="별점 3점"
-                        class="star"
-                      />
+                      <img src="/public/Star.png" alt="별점 3점" class="star" />
                       <span class="rating">3</span>
                       <meter
                         class="ratingGage"
@@ -416,11 +360,7 @@ pageEncoding="UTF-8" %>
                       <span class="ratingCount">50</span>
                     </div>
                     <div class="ratingTwoArea">
-                      <img
-                        src="/public/Star 1.png"
-                        alt="별점 2점"
-                        class="star"
-                      />
+                      <img src="/public/Star.png" alt="별점 2점" class="star" />
                       <span class="rating">2</span>
                       <meter
                         class="ratingGage"
@@ -431,11 +371,7 @@ pageEncoding="UTF-8" %>
                       <span class="ratingCount">20</span>
                     </div>
                     <div class="ratingOneArea">
-                      <img
-                        src="/public/Star 1.png"
-                        alt="별점 1점"
-                        class="star"
-                      />
+                      <img src="/public/Star.png" alt="별점 1점" class="star" />
                       <span class="rating">1</span>
                       <meter
                         class="ratingGage"
@@ -451,27 +387,27 @@ pageEncoding="UTF-8" %>
                   <div class="smallReviewArea">
                     <div class="someoneReviewFirstArea">
                       <img
-                        src="/public/Star 1.png"
+                        src="/public/Star.png"
                         alt="별점 아이콘"
                         class="starTwo"
                       />
                       <img
-                        src="/public/Star 1.png"
+                        src="/public/Star.png"
                         alt="별점 아이콘"
                         class="starTwo"
                       />
                       <img
-                        src="/public/Star 1.png"
+                        src="/public/Star.png"
                         alt="별점 아이콘"
                         class="starTwo"
                       />
                       <img
-                        src="/public/Star 1.png"
+                        src="/public/Star.png"
                         alt="별점 아이콘"
                         class="starTwo"
                       />
                       <img
-                        src="/public/Star 1.png"
+                        src="/public/Star.png"
                         alt="별점 아이콘"
                         class="starTwo"
                       />
