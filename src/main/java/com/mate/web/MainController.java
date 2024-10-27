@@ -32,10 +32,9 @@ public class MainController {
 		}
 
 	@GetMapping("/guide/guideprofile")
-	public String viewGuideProfilePage(){return "all/GuideProfile"; }
-
-
-
+	public String viewGuideProfilePage(){
+		return "all/GuideProfile"; 
+		}
 	
 	
 	@GetMapping("/guide/regist")

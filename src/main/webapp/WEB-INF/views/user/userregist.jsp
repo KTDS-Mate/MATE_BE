@@ -11,6 +11,7 @@
     <script type="text/javascript" src="/js/user/userlogin.js"></script>
     <script type="text/javascript" src="/js/user/emailauthverify.js"></script>
     <script type="text/javascript" src="/js/user/emailauth.js"></script>
+    <script type="text/javascript" src="/js/user/userregist.js"></script>
 </head>
 <body>
     <div class="container">

@@ -23,6 +23,7 @@
           <input id="password" type="password" name="usrPwd" class="login-input" />
           
           <form:errors path="usrLgnId" element="div" cssClass="error" />
+          <form:errors path="usrPwd" element="div" cssClass="error" />
           <c:if test="${not empty message}">
           	<div class="error">${message}</div>
           </c:if>
