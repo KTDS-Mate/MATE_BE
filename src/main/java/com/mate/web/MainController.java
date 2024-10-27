@@ -21,6 +21,8 @@ public class MainController {
 		return "footer";
 		}
 
+		
+
 	@GetMapping("/guide/tourlist")
 	public String viewGuideTotalList() {
 		return "all/guide_total_tourlist";

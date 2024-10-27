@@ -71,8 +71,6 @@
   display: block;
 }
 
-
-
 /* 네모 박스를 대신 표시 */
 .empty-placeholder {
   width: 100px;
@@ -183,7 +181,7 @@ p {
   background-color: white;
   border: 2px solid #ffeedb;
   border-radius: 20px;
-  padding: 5px 15px;
+  padding: 5px 1rem;
   font-size: 14px;
   cursor: pointer;
 }

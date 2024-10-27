@@ -80,36 +80,36 @@
             </div>
             <div class="guideReviewDetailArea">
               <div class="averageRatingArea">
-                <img src="/public/Star 1.png" alt="별점 아이콘" class="star">
+                <img src="/public/Star.png" alt="별점 아이콘" class="star">
                 <span class="averageRating">4.8</span>
               </div>
               <div class="ratingArea">
                 <div class="ratingFiveArea">
-                  <img src="/public/Star 1.png" alt="별점 5점" class="star">
+                  <img src="/public/Star.png" alt="별점 5점" class="star">
                   <span class="rating">5</span>
                   <meter class="ratingGage" min="0" max="100" value="90"></meter>
                   <span class="ratingCount">4834</span>
                 </div>
                 <div class="ratingFourArea">
-                  <img src="/public/Star 1.png" alt="별점 4점" class="star">
+                  <img src="/public/Star.png" alt="별점 4점" class="star">
                   <span class="rating">4</span>
                   <meter class="ratingGage" min="0" max="100" value="4"></meter>
                   <span class="ratingCount">124</span>
                 </div>
                 <div class="ratingThreeArea">
-                  <img src="/public/Star 1.png" alt="별점 3점" class="star">
+                  <img src="/public/Star.png" alt="별점 3점" class="star">
                   <span class="rating">3</span>
                   <meter class="ratingGage" min="0" max="100" value="3"></meter>
                   <span class="ratingCount">50</span>
                 </div>
                 <div class="ratingTwoArea">
-                  <img src="/public/Star 1.png" alt="별점 2점" class="star">
+                  <img src="/public/Star.png" alt="별점 2점" class="star">
                   <span class="rating">2</span>
                   <meter class="ratingGage" min="0" max="100" value="2"></meter>
                   <span class="ratingCount">20</span>
                 </div>
                 <div class="ratingOneArea">
-                  <img src="/public/Star 1.png" alt="별점 1점" class="star">
+                  <img src="/public/Star.png" alt="별점 1점" class="star">
                   <span class="rating">1</span>
                   <meter class="ratingGage" min="0" max="100" value="1"></meter>
                   <span class="ratingCount">10</span>

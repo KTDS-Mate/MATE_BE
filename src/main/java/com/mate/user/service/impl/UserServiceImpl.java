@@ -70,13 +70,21 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
+	public boolean checkAvailablePhn(String usrPhn) {
+		return this.userDao.getPhnCount(usrPhn) == 0;
+	}
+	
+	@Override
 	public UserVO readUser(LoginUserVO loginUserVO) {
 		boolean isIpBlock = this.accessLogDao.selectLoginFailCount(RequestUtil.getIp()) >= 5;
 		
 		log.info("로그인 시도 아이디: {}", loginUserVO.getUsrLgnId());
 		
+		// return null을 하는 이유. 로그인 오류시 사용자를 읽어올때 예외를 던지면 화이트라벨 페이지로 넘어가게 된다. 따라서 null을 던지면
+		// controller에서 null을 잡아 로그인 페이지로 다시 이동하도록 만들기 위한 설정
 		if (isIpBlock) {
-			throw new IllegalArgumentException("해당 IP의 로그인 시도가 잦습니다. 잠시 후 다시 시도해 주세요.");
+//			throw new IllegalArgumentException("해당 IP의 로그인 시도가 잦습니다. 잠시 후 다시 시도해 주세요.");
+			return null;
 		}
 		
 		// salt 조회
@@ -85,19 +93,11 @@ public class UserServiceImpl implements UserService {
 		if (salt == null) {
 			log.warn("SALT를 찾을 수 없습니다. 아이디가 잘못되었습니다: {}", loginUserVO.getUsrLgnId());
 			
-			AccessLogVO accessLogVO = new AccessLogVO();
-			accessLogVO.setAccessType("LOGIN");
-			accessLogVO.setAccessUrl( RequestUtil.getRequest().getRequestURI() );
-			accessLogVO.setAccessMethod( RequestUtil.getRequest().getMethod().toUpperCase() );
-			accessLogVO.setAccessIp( RequestUtil.getIp());
-			accessLogVO.setAccessId(loginUserVO.getUsrLgnId());
-			accessLogVO.setAccessLogId(loginUserVO.getUsrId());
-			accessLogVO.setAccessLogId(loginUserVO.getUsrIsGd());
-			accessLogVO.setLoginSuccessYn("N");
-		
-			this.accessLogDao.insertNewAccessLog(accessLogVO);
-			
-			throw new IllegalArgumentException("잘못된 아이디 또는 비밀번호입니다.");
+			this.insertAccessLog(loginUserVO, "N");
+			// 잘못된 아이디인 경우 Null 반환
+			return null; 
+			//this.accessLogDao.insertNewAccessLog(accessLogVO);
+			//throw new IllegalArgumentException("잘못된 아이디 또는 비밀번호입니다.");
 		}
 		
 		// 유저 입력 비밀번호 암호화
@@ -114,30 +114,36 @@ public class UserServiceImpl implements UserService {
 			loginUserVO.setIp(RequestUtil.getIp());
 			this.userDao.updateLoginFailState(loginUserVO);
 			
-			AccessLogVO accessLogVO = new AccessLogVO();
-			accessLogVO.setAccessType("LOGIN");
-			accessLogVO.setAccessId(loginUserVO.getUsrLgnId());
-			accessLogVO.setAccessIp(RequestUtil.getIp());
-			accessLogVO.setAccessMethod(RequestUtil.getRequest().getMethod().toUpperCase());
-			accessLogVO.setAccessUrl(RequestUtil.getRequest().getRequestURI());
-			accessLogVO.setAccessLogId(loginUserVO.getUsrIsGd());
-			accessLogVO.setLoginSuccessYn("N");
-			log.info("비밀번호 실패 로그 - 유저의 ID는 : {}", accessLogVO.getAccessId());
+			this.insertAccessLog(loginUserVO, "N");
 			
-			this.accessLogDao.insertNewAccessLog(accessLogVO);
+			//this.accessLogDao.insertNewAccessLog(accessLogVO);
 			
-			throw new IllegalArgumentException("잘못된 아이디 또는 비밀번호입니다.");
+			return null;
+			
+			//throw new IllegalArgumentException("잘못된 아이디 또는 비밀번호입니다.");
 		}
 		
 		// LOGIN_FAIL_COUNT가 5회 이상 & 5회 count 이후 1시간이 지나지 않았을 경우 로그인 실패 처리
 		boolean isBlockState = this.userDao.selectLoginRestrictionCount(loginUserVO.getUsrLgnId()) > 0;
 		
 		if (isBlockState) {
-			throw new IllegalArgumentException("로그인이 불가능합니다. 잠시 후 다시 시도해주세요.");
+			//throw new IllegalArgumentException("로그인이 불가능합니다. 잠시 후 다시 시도해주세요.");
+			return null;
 		}
 		
 		loginUserVO.setIp(RequestUtil.getIp());
 		this.userDao.upadateLoginSuccessState(loginUserVO);
+		this.insertAccessLog(loginUserVO, "Y");
+
+		// 성공 로그
+		//this.accessLogDao.insertNewAccessLog(accessLogVO);
+		
+		log.info("로그인 성공: {}", userVO);
+		return userVO;
+	}
+
+	// accessLog를 기록하는 메서드 분리
+	private void insertAccessLog(LoginUserVO loginUserVO, String successYn) {
 		
 		AccessLogVO accessLogVO = new AccessLogVO();
 		accessLogVO.setAccessType("LOGIN");
@@ -146,15 +152,11 @@ public class UserServiceImpl implements UserService {
 		accessLogVO.setAccessMethod(RequestUtil.getRequest().getMethod().toUpperCase());
 		accessLogVO.setAccessIp(RequestUtil.getIp());
 		accessLogVO.setAccessLogId(loginUserVO.getUsrIsGd());
-		accessLogVO.setLoginSuccessYn("Y");
+		accessLogVO.setLoginSuccessYn(successYn);
 		
-		// 성공 로그
 		this.accessLogDao.insertNewAccessLog(accessLogVO);
-		
-		log.info("로그인 성공: {}", userVO);
-		return userVO;
 	}
-
+	
 	@Override
 	public boolean softDeleteUser(String usrLgnId) {
 		return this.userDao.softDeleteOneUser(usrLgnId) > 0;
