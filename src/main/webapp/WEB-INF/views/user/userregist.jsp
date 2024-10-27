@@ -12,6 +12,9 @@
     <script type="text/javascript" src="/js/user/userregist.js"></script>
     <script type="text/javascript" src="/js/user/emailauthverify.js"></script>
     <script type="text/javascript" src="/js/user/emailauth.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.min.js"></script>
+
 </head>
 <body>
     <div class="container">
@@ -58,10 +61,10 @@
                 <form:input path="country" id="country" />
                 <form:errors path="country" element="div" cssClass="error" />
             </div>
-
-            <div class="form-group">
+            
+			<div class="form-group">
                 <label for="usrPhn">휴대전화번호</label>
-                <form:input path="usrPhn" id="usrPhn" />
+                <form:input type="tel" path="usrPhn" id="usrPhn" />
                 <form:errors path="usrPhn" element="div" cssClass="error" />
                 <div class="error" id="usrPhn-error"></div>
             </div>
