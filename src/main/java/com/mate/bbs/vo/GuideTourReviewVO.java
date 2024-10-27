@@ -1,5 +1,7 @@
 package com.mate.bbs.vo;
 
+import java.util.List;
+
 public class GuideTourReviewVO {
 
 	/**
@@ -38,6 +40,11 @@ public class GuideTourReviewVO {
 	 * 투어에 대한 평점
 	 */
 	private String gdTrRvwRtng;
+	
+	/**
+	 * 가이드 투어 리뷰 이미지 리스트 VO
+	 */
+	private List<GuideTourReviewImgVO> guideTourReviewImgList;
 	
 	public String getGdTrRvwId() {
 		return gdTrRvwId;
@@ -92,5 +99,11 @@ public class GuideTourReviewVO {
 	}
 	public void setGdTrRvwRtng(String gdTrRvwRtng) {
 		this.gdTrRvwRtng = gdTrRvwRtng;
+	}
+	public List<GuideTourReviewImgVO> getGuideTourReviewImgList() {
+		return guideTourReviewImgList;
+	}
+	public void setGuideTourReviewImgList(List<GuideTourReviewImgVO> guideTourReviewImgList) {
+		this.guideTourReviewImgList = guideTourReviewImgList;
 	}
 }

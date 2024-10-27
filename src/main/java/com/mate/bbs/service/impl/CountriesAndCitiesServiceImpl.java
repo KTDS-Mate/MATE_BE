@@ -29,14 +29,14 @@ public class CountriesAndCitiesServiceImpl implements CountriesAndCitiesService 
 		return countriesListVO;
 	}
 	
-	@Override
-	public CitiesListVO getAllCities(int countryId) {
-		List<CitiesVO> citiesList = this.countriesAndCitiesDao.selectCities(countryId);
-		CitiesListVO citiesListVO = new CitiesListVO();
-		
-		citiesListVO.setCitiesList(citiesList);
-		
-		return citiesListVO;
-	}
+//	@Override
+//	public CitiesListVO getAllCities(int countryId) {
+//		List<CitiesVO> citiesList = this.countriesAndCitiesDao.selectCities(countryId);
+//		CitiesListVO citiesListVO = new CitiesListVO();
+//		
+//		citiesListVO.setCitiesList(citiesList);
+//		
+//		return citiesListVO;
+//	}
 	
 }

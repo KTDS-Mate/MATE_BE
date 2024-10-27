@@ -4,12 +4,10 @@ package com.mate.bbs.vo;
 import java.util.List;
 
 import com.mate.common.vo.CityVO;
-
 import com.mate.common.vo.CountryVO;
 import com.mate.user.vo.UserVO;
 
 public class GuideTourVO {
-
 
 	/**
 	 * 가이드 투어 게시글 아이디
@@ -105,6 +103,16 @@ public class GuideTourVO {
 	 * 가이드 투어 리뷰 리스트 VO
 	 */
 	private List<GuideTourReviewVO> guideTourReviewList;
+	
+	/**
+	 * 가이드 투어 즐겨찾기 리스트 VO
+	 */
+	// private List<GuideTourFavoriteVO> guideTourFavoriteList;
+	
+	/**
+	 * 가이드 투어 추가정보 리스트 VO
+	 */
+	// private List<GuideTourAdditionInfoVO> guideTourAdditionInfoList;
 	
 	/**
 	 * 게시글 작성자의 정보를 담은 VO
@@ -249,6 +257,18 @@ public class GuideTourVO {
 	}
 	public void setGuideTourReviewList(List<GuideTourReviewVO> guideTourReviewList) {
 		this.guideTourReviewList = guideTourReviewList;
+	}
+	public List<GuideTourFavoriteVO> getGuideTourFavoriteList() {
+		return guideTourFavoriteList;
+	}
+	public void setGuideTourFavoriteList(List<GuideTourFavoriteVO> guideTourFavoriteList) {
+		this.guideTourFavoriteList = guideTourFavoriteList;
+	}
+	public List<GuideTourAdditionInfoVO> getGuideTourAdditionInfoList() {
+		return guideTourAdditionInfoList;
+	}
+	public void setGuideTourAdditionInfoList(List<GuideTourAdditionInfoVO> guideTourAdditionInfoList) {
+		this.guideTourAdditionInfoList = guideTourAdditionInfoList;
 	}
 	public UserVO getUserVO() {
 		return userVO;

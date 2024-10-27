@@ -7,6 +7,6 @@ public interface CountriesAndCitiesService {
 
 	public CountriesListVO getAllCountries();
 	
-	public CitiesListVO getAllCities(int countryId);
+//	public CitiesListVO getAllCities(int countryId);
 	
 }

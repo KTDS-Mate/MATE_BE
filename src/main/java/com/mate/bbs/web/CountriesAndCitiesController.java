@@ -29,13 +29,13 @@ public class CountriesAndCitiesController {
 		return resultMap;
 	}
 	
-	@GetMapping("/tour/cities/{countryId}")
-	public Map<String, Object> getCities(@PathVariable int countryId) {
-		CitiesListVO citiesVO = this.countriesAndCitiesService.getAllCities(countryId);
-		Map<String, Object> resultMap = new HashMap<>();
-		resultMap.put("cities", citiesVO.getCitiesList());
-		
-		return resultMap;
-	}
+//	@GetMapping("/tour/cities/{countryId}")
+//	public Map<String, Object> getCities(@PathVariable int countryId) {
+//		CitiesListVO citiesVO = this.countriesAndCitiesService.getAllCities(countryId);
+//		Map<String, Object> resultMap = new HashMap<>();
+//		resultMap.put("cities", citiesVO.getCitiesList());
+//		
+//		return resultMap;
+//	}
 	
 }
