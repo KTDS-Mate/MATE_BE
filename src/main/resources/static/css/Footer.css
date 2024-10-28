@@ -23,7 +23,7 @@ div.footer-grid{
 div.footer-left-padding{
 	display:flex;
 	width: 90rem;
-	justify-content: center;
+	justify-content: flex-start;
 }
 
 
