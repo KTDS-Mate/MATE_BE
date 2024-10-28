@@ -57,7 +57,7 @@
             </div>
             
             <div class="form-group">
-                <label for="name">국적</label>
+                <label for="name">대표국적</label>
                 <form:input path="country" id="country" />
                 <form:errors path="country" element="div" cssClass="error" />
             </div>

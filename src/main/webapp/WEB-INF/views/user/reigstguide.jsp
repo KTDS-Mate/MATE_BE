@@ -22,25 +22,10 @@ pageEncoding="UTF-8"%>
         <jsp:include page="../header.jsp"></jsp:include>
       </div>
       <div class="content">
-        <!-- header 공통파일 -->
-        <!-- <div class="content-grid"> -->
-          <!-- 수정이 예정 되어있음 -->
-          <!-- 좌측의 네비게이션 바 -->
-          <!-- <div class="my-page">
-            <ul class="list">
-              <li>캘린더</li>
-              <li>즐겨찾기</li>
-              <li>나의 등록 투어</li>
-              <li>매출 관리</li>
-              <li>내 정보 수정</li>
-              <li>메세지</li>
-            </ul> -->
-          <!-- </div> -->
-          <!-- 좌측 네비게이션 바 -->
           <div class="main-content">
             <div class="content-title">
               <div>
-                <h2>가이드 회원 등록 신청</h2>
+                <h2>가이드 등록</h2>
               </div>
             </div>
             <div class="regist-form">
@@ -50,48 +35,39 @@ pageEncoding="UTF-8"%>
 
                     <div class="form-item">
                       <label for="first-name">성</label>
-                      <div><input type="text" value="성" id="first-name"></div>
+                      <div> ${usrVO.usrLnm} </div>
                     </div>
                     
                     <div class="form-item">
                       <label for="last-name">이름</label>
-                      <div><input type="text" value="이름" id="last-name"></div>
+                      <div> ${usrVO.usrFnm} </div>
                     </div>
                     
                     <div class="form-item">
                         <label for="gender">성별</label>
-                        <select name="gender" id="gender"></select>
+                        <div>${usrVO.usrGndr}</div>
                     </div>
 
                     <div class="form-item">
                         <label for="birthday">생년월일</label>
-                        <input type="date" value="Ex. 20001125" id="birthday">
+                        <div> ${usrVO.usrBd} </div>
                     </div>
                     
                     <div class="form-item">
-                        <label for="phone-number">대표번호</label>
-                        <!-- 히든으로 region number넣어야하나? 백엔드할 때 수정할 내용 -->
-                        <div>
-                            <select name="region-number" id="region-number"></select>
-                            <input class="region-number" type="text" value="1012341234" id="phone-number">
-                        </div>
+                        <label for="phone-number">휴대전화번호</label>
+                        <div> ${usrVO.usrPhn} </div>
                     </div>
+                   
+                   <div class="form-item">
+                        <label for="email">이메일</label>
+                        <div class="email-form"> ${usrVO.usrEml}</div>
+                   </div>
 
                     <div class="form-item">
-                        <label for="profile">프로필 사진</br>250X250크기의 jpg, png 형식</label>
+                        <label for="profile">프로필 사진</br>(250X250크기의 <br>  jpg, png 형식)</label>
                         <div class="img-form">
                             <div>(여기에 파일경로)</div>
                             <button>이미지 업로드</button>
-                        </div>
-                    </div>
-
-                    <div class="form-item">
-                        <label for="email">이메일</label>
-                        <div class="email-form">
-                            <input class="email" type="text" id="front-email">
-                            <p>@</p>
-                            <input class="email" type="text" id="back-email">
-                            <select class="email" name="back-email" id="back-email"></select>
                         </div>
                     </div>
 

@@ -3,7 +3,7 @@ package com.mate.common.vo;
 public class CountriesVO {
 
 	private int id;
-	private String name;
+	private String countryName;
 	private String phonecode;
 	private String korname;
 	
@@ -14,10 +14,10 @@ public class CountriesVO {
 		this.id = id;
 	}
 	public String getName() {
-		return name;
+		return countryName;
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.countryName = countryName;
 	}
 	public String getPhonecode() {
 		return phonecode;

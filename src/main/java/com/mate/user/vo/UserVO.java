@@ -1,5 +1,9 @@
 package com.mate.user.vo;
 
+import java.util.List;
+
+import com.mate.common.vo.CitiesVO;
+
 public class UserVO {
 
     /**
@@ -18,30 +22,32 @@ public class UserVO {
      * 회원의 성
      */
     private String usrLnm;
+    
     /**
      * 회원의 이름
      */
     private String usrFnm;
+    
     /**
      * 회원의 성별
      */
     private String usrGndr;
+    
     /**
      * 회원의 이메일
      */
     private String usrEml;
+    
     /**
      * 회원의 전화번호
      */
     private String usrPhn;
+    
     /**
      * 회원의 생년월일
      */
     private String usrBd;
-    /**
-     * 회원의 주소
-     */
-    private String usrAddrs;
+    
     /**
      * 가이드 여부 확인
      */
@@ -92,10 +98,19 @@ public class UserVO {
     private String gdRpCntId;
 
     /**
+     * 가이드 활동 도시 (여러개 선택 가능)
+     */
+    private List<CitiesVO> citiesVO;
+    
+    /**
+     * 가이드 활동 국가
+     */
+    private String countryName;
+    
+    /**
      * 국가 번호 코드
      */
 	private String usrCntCode;
-
 
     public String getUsrId() {
         return usrId;
@@ -167,14 +182,6 @@ public class UserVO {
 
     public void setUsrBd(String usrBd) {
         this.usrBd = usrBd;
-    }
-
-    public String getUsrAddrs() {
-        return usrAddrs;
-    }
-
-    public void setUsrAddrs(String usrAddrs) {
-        this.usrAddrs = usrAddrs;
     }
 
     public String getUsrIsGd() {
@@ -279,5 +286,21 @@ public class UserVO {
 
 	public void setUsrCntCode(String usrCntCode) {
 		this.usrCntCode = usrCntCode;
+	}
+
+	public List<CitiesVO> getCitiesVO() {
+		return citiesVO;
+	}
+
+	public void setCitiesVO(List<CitiesVO> citiesVO) {
+		this.citiesVO = citiesVO;
+	}
+
+	public String getCountryName() {
+		return countryName;
+	}
+
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
 	}
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mate.user.dao.GuideDao">
+
+	<!-- 가이드 정보 입력 -->
+	<update id="updateGuideInfo" parameterType="com.mate.user.vo.RegistGuideVO">
+    	UPDATE USR_INF 
+		   SET USR_IS_GD = 'Y'
+		     , GD_PRFL_IMG = #{gdPrflImg}
+		     , USR_SLF_INTDCTN = #{usrSlfIntdctn}
+		     , GD_ID_IMG = #{gdIdImg}
+		     , GD_CBC_IMG = #{gdCbcImg}
+		     , USR_PYP_EML = #{usrPypEml}
+		     , USR_GD_EXP = #{usrGdExp}
+		 WHERE USR_ID = #{usrId}
+	</update>
+	
+	<insert id="insertGuideCity" parameterType="com.mate.common.vo.CitiesVO">
+		<forEach collection="CitiesVO" item="license" separator=";">
+			 INSERT INTO GD_LCN
+			      ( GD_LCN_ID
+			      , GD_LCN_NM 
+			      , GD_LCN_IMG)	
+			 VALUES
+			      ( #{license.gdLcnId}
+			      , #{license.gdLcnNm}
+			      , #{license.gdLcnImg})
+		</forEach>
+	</insert>
+	
+
+</mapper>

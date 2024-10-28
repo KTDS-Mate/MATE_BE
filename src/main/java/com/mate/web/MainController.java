@@ -21,8 +21,6 @@ public class MainController {
 		return "footer";
 		}
 
-		
-
 	@GetMapping("/guide/tourlist")
 	public String viewGuideTotalList() {
 		return "all/guide_total_tourlist";
@@ -35,16 +33,11 @@ public class MainController {
 
 	@GetMapping("/guide/guideprofile")
 	public String viewGuideProfilePage(){return "all/GuideProfile"; }
-
-
-
-	
 	
 	@GetMapping("/guide/regist")
 	public String viewGuideRegistPage () {
-		return "all/reigst_Guide";
+		return "user/reigstguide";
 	}
-	
 	
 	@GetMapping("/guide/tour/write")
 	public String viewGuideTourWrite() {

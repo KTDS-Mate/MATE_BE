@@ -12,6 +12,9 @@ uri="http://www.springframework.org/tags/form" %>
       type="text/css"
       href="/css/usertour/Tourist_TourInsert.css" />
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script src="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.js"></script>
+	<link href="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css" rel="stylesheet">
     <script
       type="text/javascript"
       src="/js/usertour/usertourinsert.js"></script>
