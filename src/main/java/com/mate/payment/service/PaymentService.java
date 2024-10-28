@@ -8,5 +8,6 @@ public interface PaymentService {
 	
 	public PaymentListVO getAllMyPayment(String trstId);
 	
+//	public PaymentVO getPaymentDetail(String trstId, );
 	
 }

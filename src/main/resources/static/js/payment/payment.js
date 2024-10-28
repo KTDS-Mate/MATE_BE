@@ -4,8 +4,13 @@ $().ready(function () {
   var pay_method = "card";
   const amount = "6000";	// 결제금액 못 바꾸도록 고정
   var name = "상품명";
+  var buyer_name = "여행자 이름";
+  var buyer_tel = "010-1234-1234";
+  var buyer_email = "sjfla3197@gmail.com";
+  var m_redirect_url = "www.naver.com"; 
 
   // 결제에 성공하면 이 uid로 다시 결제 못한다. PK처럼 중복이 안되는 값을 넣어야한다.
+  // pay_inf의 pk
   var merchant_uid = "ORD-20241007-000214";
 
   $('.getToken').on('click', function() {
@@ -13,7 +18,7 @@ $().ready(function () {
 	    url: '/getAccessToken',
 	    type: 'GET',
 	    success: function(result) {
-	        console.log("받아온 토큰 : " +result);
+	        console.log("받아온 토큰 : " + result);
 	    },
 	    error: function(textStatus, errorThrown) {
 	        console.error("토큰 발급에 실패 했습니다 :", textStatus, errorThrown);
@@ -34,14 +39,22 @@ $().ready(function () {
         // 여기에 추가적인 내용을 추가할 수 있음, 자세한 것은 포트원 API페이지 참조
       },
       function (rsp) {
-		if (rep.success){
+		if (rsp.success) {
 			//성공한 경우
+			console.log("결제 완료");
+			
 			var msg = '결제가 완료되었습니다.';
 			var result = {
 				"payId": rsp.merchant_uid, // 결제번호
 				//등등
 			};
-			
+		}
+		else {
+			console.log("결제 실패");
+			var msg ='결제에 실패했습니다.';
+			var result = {
+				error_code : rsp.error_code,
+			}
 		}
 		
 		
