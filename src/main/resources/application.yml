@@ -18,6 +18,12 @@ spring:
       "mail.smtp.starttls.enable": true
       "mail.smtp.starttls.required": true
 
+# 아래는 포트원 API키와 시크릿 키인데 절대 공개되면 안된다.
+portone:
+  api:
+    key: 8408511610228667
+    secret: fWQcZ0aEmO4NgPxu2cs8gNe8ODxM9YHf0A7FwlkxmtlMa6rvaXQ5RrBBqcQvfMOmUv0EsxfzTMYNF5Ts
+
 mybatis:
   # mybatis-config.xml 파일의 위치를 지정
   config-location: classpath:mybatis/mybatis-config.xml
