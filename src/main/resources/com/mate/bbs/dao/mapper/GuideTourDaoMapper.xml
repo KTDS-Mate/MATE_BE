@@ -34,10 +34,10 @@
 						autoMapping="true">
 				<id column="GD_TR_RVW_ID" property="gdTrRvwId"/>
 			</collection>
-			<collection property="cityVO"
-						ofType="com.mate.common.vo.CityVO"
+			<collection property="citiesVO"
+						ofType="com.mate.common.vo.CitiesVO"
 						autoMapping="true">
-				<id column="CT_ID" property="trCtId"/>
+				<id column="CITY_ID" property="cityId"/>
 			</collection>
 		</resultMap>
 	
