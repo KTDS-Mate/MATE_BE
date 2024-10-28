@@ -61,7 +61,7 @@ public class UserTourVO {
 	/**
 	 * 여행자가 등록한 투어 지역의 도시명. FK
 	 */
-	private String trCtId;
+	private int trCtId;
 	/**
 	 * 여행자의 가이드 구인 게시글의 세부 요구사항 내용
 	 */
@@ -221,11 +221,11 @@ public class UserTourVO {
 		this.usrTrDltDt = usrTrDltDt;
 	}
 
-	public String getTrCtId() {
+	public int getTrCtId() {
 		return trCtId;
 	}
 
-	public void setTrCtId(String trCtId) {
+	public void setTrCtId(int trCtId) {
 		this.trCtId = trCtId;
 	}
 
