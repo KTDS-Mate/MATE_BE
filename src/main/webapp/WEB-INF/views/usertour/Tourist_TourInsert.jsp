@@ -16,8 +16,10 @@ uri="http://www.springframework.org/tags/form" %>
       type="text/javascript"
       src="/js/usertour/usertourinsert.js"></script>
     <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.js"></script>
-<link href="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css" rel="stylesheet">
+    <script src="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.js"></script>
+    <link
+      href="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css"
+      rel="stylesheet" />
   </head>
   <body>
     <div class="grid">
@@ -26,9 +28,8 @@ uri="http://www.springframework.org/tags/form" %>
         <jsp:include page="../header.jsp"></jsp:include>
       </div>
       <div class="content">
-        <form:form
-          modelAttribute="userTourWriteVO"
-          method="post">
+        <form:form modelAttribute="userTourWriteVO" method="post">
+          <input />
           <div class="insert-main">
             <div class="flex-main-img">
               <div>
@@ -37,7 +38,7 @@ uri="http://www.springframework.org/tags/form" %>
               <img alt="메인 이미지" src="/img/tourboard/예시여행이미지.png" />
             </div>
             <div class="all-select-div">
-              <div class="select-div"><span class="red">*</span> 제목 작성</div>
+              <div class="select-div"><span class="red">*</span> 투어 제목</div>
               <form:errors path="usrTrTtl" element="div" cssClass="errors" />
               <input
                 id="usrTrTtl"
@@ -50,9 +51,23 @@ uri="http://www.springframework.org/tags/form" %>
               <div class="select-div">
                 <span class="red">*</span> 투어 지역 선택
               </div>
-              <input id="region" type="text" data-filter="true" placeholder="대륙 선택" />
-              <input id="country" type="text" data-filter="true" placeholder="국가 선택" disabled="disabled" />
-              <input id="city" type="text" data-filter="true" placeholder="도시 선택" disabled="disabled" />
+              <input
+                id="region"
+                type="text"
+                data-filter="true"
+                placeholder="대륙 선택" />
+              <input
+                id="country"
+                type="text"
+                data-filter="true"
+                placeholder="국가 선택"
+                disabled="disabled" />
+              <input
+                id="city"
+                type="text"
+                data-filter="true"
+                placeholder="도시 선택"
+                disabled="disabled" />
               <input id="hidden-ipt" type="hidden" name="trCtId" />
             </div>
             <div class="all-select-div">
@@ -67,93 +82,47 @@ uri="http://www.springframework.org/tags/form" %>
             <div class="all-select-div">
               <div class="select-div"><span class="red">*</span> 시간 선택</div>
               <div class="flex-hour-div">
-                <select id="start-hour" name="inputStartHour">
-                  <option value="">시작 시간 선택</option>
-                  <option value="01">01</option>
-                  <option value="02">02</option>
-                  <option value="03">03</option>
-                  <option value="04">04</option>
-                  <option value="05">05</option>
-                  <option value="06">06</option>
-                  <option value="07">07</option>
-                  <option value="08">08</option>
-                  <option value="09">09</option>
-                  <option value="10">10</option>
-                  <option value="11">11</option>
-                  <option value="12">12</option>
-                  <option value="13">13</option>
-                  <option value="14">14</option>
-                  <option value="15">15</option>
-                  <option value="16">16</option>
-                  <option value="17">17</option>
-                  <option value="18">18</option>
-                  <option value="19">19</option>
-                  <option value="20">20</option>
-                  <option value="21">21</option>
-                  <option value="22">22</option>
-                  <option value="23">23</option>
-                  <option value="24">24</option>
-                </select>
-                <select id="start-minutes" name="inputStartMinute">
-                  <option value="">시작 분 선택</option>
-                  <option value="00">00</option>
-                  <option value="05">05</option>
-                  <option value="10">10</option>
-                  <option value="15">15</option>
-                  <option value="20">20</option>
-                  <option value="25">25</option>
-                  <option value="30">30</option>
-                  <option value="35">35</option>
-                  <option value="40">40</option>
-                  <option value="45">45</option>
-                  <option value="50">50</option>
-                  <option value="55">55</option>
-                </select>
+                <div class="time-select">
+                  <input
+                    id="start-hour"
+                    type="text"
+                    placeholder="시작 시간 선택" />
+                  <input
+                    id="start-minutes"
+                    type="text"
+                    placeholder="시작 분 선택" />
+                  <input
+                    id="hidden-start-hour"
+                    type="hidden"
+                    name="inputStartHour" />
+                  <input
+                    id="hidden-start-minutes"
+                    type="hidden"
+                    name="inputStartMinute" />
+                </div>
                 <div class="inline-margin">
                   <img src="/img/tourboard/~.png" />
                 </div>
-                <select id="end-hour" name="inputEndHour">
-                  <option value="">종료 시간 선택</option>
-                  <option value="01">01</option>
-                  <option value="02">02</option>
-                  <option value="03">03</option>
-                  <option value="04">04</option>
-                  <option value="05">05</option>
-                  <option value="06">06</option>
-                  <option value="07">07</option>
-                  <option value="08">08</option>
-                  <option value="09">09</option>
-                  <option value="10">10</option>
-                  <option value="11">11</option>
-                  <option value="12">12</option>
-                  <option value="13">13</option>
-                  <option value="14">14</option>
-                  <option value="15">15</option>
-                  <option value="16">16</option>
-                  <option value="17">17</option>
-                  <option value="18">18</option>
-                  <option value="19">19</option>
-                  <option value="20">20</option>
-                  <option value="21">21</option>
-                  <option value="22">22</option>
-                  <option value="23">23</option>
-                  <option value="24">24</option>
-                </select>
-                <select id="end-minutes" name="inputEndMinute">
-                  <option value="">종료 분 선택</option>
-                  <option value="00">00</option>
-                  <option value="05">05</option>
-                  <option value="10">10</option>
-                  <option value="15">15</option>
-                  <option value="20">20</option>
-                  <option value="25">25</option>
-                  <option value="30">30</option>
-                  <option value="35">35</option>
-                  <option value="40">40</option>
-                  <option value="45">45</option>
-                  <option value="50">50</option>
-                  <option value="55">55</option>
-                </select>
+                <div class="time-select">
+                  <input
+                    id="end-hour"
+                    type="text"
+                    placeholder="종료 시간 선택"
+                    disabled="disabled" />
+                  <input
+                    id="end-minutes"
+                    type="text"
+                    placeholder="종료 분 선택"
+                    disabled="disabled" />
+                  <input
+                    id="hidden-end-hour"
+                    type="hidden"
+                    name="inputEndHour" />
+                  <input
+                    id="hidden-end-minutes"
+                    type="hidden"
+                    name="inputEndMinute" />
+                </div>
               </div>
             </div>
             <div class="all-select-div">
@@ -173,9 +142,13 @@ uri="http://www.springframework.org/tags/form" %>
               <textarea name="usrTrPrps">${userTourWriteVO.usrTrPrps}</textarea>
             </div>
             <div class="all-select-div">
-              <div class="select-div">투어 희망 정보</div>
+              <div class="select-div">
+                투어 희망 정보<span class="font-we"
+                  >원하는 일정을 추가해주세요.</span
+                >
+              </div>
               <div class="loc-inf">
-              	<!-- jquery를 사용해 여러 개를 호출 받는 곳 -->
+                <!-- jquery를 사용해 여러 개를 호출 받는 곳 -->
               </div>
               <div class="hope-btn">
                 <input id="plus" type="button" value="일정 추가하기" />
@@ -234,8 +207,10 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
                   </select>
                 </div>
               </div>
-              <div>가이드에게 원하는 사항</div>
-              <textarea name="gdWntRq">${userTourWriteVO.gdWntRq}</textarea>
+              <div>
+                <div class="select-div">가이드에게 원하는 사항</div>
+                <textarea name="gdWntRq">${userTourWriteVO.gdWntRq}</textarea>
+              </div>
               <div class="price-submit-btn">
                 <div class="select-div">
                   <span class="red">*</span> 고용 금액
