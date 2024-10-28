@@ -3,8 +3,8 @@ package com.mate.bbs.vo;
 
 import java.util.List;
 
-import com.mate.common.vo.CityVO;
-import com.mate.common.vo.CountryVO;
+import com.mate.common.vo.CitiesVO;
+import com.mate.common.vo.CountriesVO;
 import com.mate.user.vo.UserVO;
 
 public class GuideTourVO {
@@ -121,11 +121,11 @@ public class GuideTourVO {
 	/**
 	 * 도시 정보를 담은 VO
 	 */
-	private CityVO cityVO;
+	private CitiesVO citiesVO;
 	/**
 	 * 나라 정보를 담은 VO
 	 */
-	private CountryVO countryVO;
+	private CountriesVO countriesVO;
 	
 	/**
 	 * 해당 프로퍼티는 DB컬럼에 존재하지 않음
@@ -282,17 +282,17 @@ public class GuideTourVO {
 	public void setUserVO(UserVO userVO) {
 		this.userVO = userVO;
 	}
-	public CityVO getCityVO() {
-		return cityVO;
+	public CitiesVO getCitiesVO() {
+		return citiesVO;
 	}
-	public void setCityVO(CityVO cityVO) {
-		this.cityVO = cityVO;
+	public void setCitiesVO(CitiesVO citiesVO) {
+		this.citiesVO = citiesVO;
 	}
-	public CountryVO getCountryVO() {
-		return countryVO;
+	public CountriesVO getCountriesVO() {
+		return countriesVO;
 	}
-	public void setCountryVO(CountryVO countryVO) {
-		this.countryVO = countryVO;
+	public void setCountriesVO(CountriesVO countriesVO) {
+		this.countriesVO = countriesVO;
 	}
 	public String getGuideAge() {
 		return guideAge;
@@ -300,5 +300,4 @@ public class GuideTourVO {
 	public void setGuideAge(String guideAge) {
 		this.guideAge = guideAge;
 	}
-	
 }

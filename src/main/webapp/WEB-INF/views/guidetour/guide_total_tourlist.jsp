@@ -42,28 +42,40 @@ pageEncoding="UTF-8"%>
                    </div>
                </form>
       </div>
+      <div class="tour"><a href="">투어 등록하기</a></a></div>
       <div class="list-view-option">
+      			
                 <div><a href="">높은 비용순</a></div>
                 <div><a href="">낮은 비용순</a></div>
                 <div><a href="">최신순</a></div>
                 <div><a href="">평점 높은순</a></div>
       </div>
         <div class="my-tour">
-   <c:forEach items="${guideTourListVO.guideTourList}" var="guidTourVO">
-          <div class="tour-box">
-            <img src="/img/tourlist/베니스.jpg" alt="" />
-            <div class="tour-contents">
-              <h2>${guidTourVO.gdTrTtl}</h2>
-              <p class="tour-contents-text"><span>나라 :</span> ${guidTourVO.cityVO.ctNm}</p>
-              <p class="tour-contents-text"><span>날짜 :</span> ${guidTourVO.gdTrStDt} ~ ${guidTourVO.gdTrEdDt}</p>
-              <p class="tour-contents-text"><span>투어 최대인원 :</span> ${guidTourVO.gdTrMxNp}명</p>
-              <p class="tour-contents-text"><span>비용 :</span> ${guidTourVO.gdTrPrc}$</p>
-              <p class="tour-contents-text"><span>가이드 평점 :</span> ${guidTourVO.avgRvw}</p>
-            </div>
-          </div>
-	</c:forEach>
+		   <c:forEach items="${guideTourListVO.guideTourList}" var="guideTourVO">
+		   		<div class="tour-img">
+		   		<input class="hide" type="hidden" data-gdpst-id="${guideTourVO.gdTrPstId}" />
+		        <c:choose>
+			        <c:when test="${not empty guideTourVO.guideTourImgList && not empty guideTourVO.guideTourImgList[0].gdTrImgUrl}">
+			        	<div class="tour-box">
+			            <img src="${guideTourVO.guideTourImgList[0].gdTrImgUrl}" />
+			        </c:when>
+			        <c:otherwise>
+			          <div class="tour-box">
+			            <img src="/img/tourlist/베니스.jpg" alt="mate 기본이미지" />
+			        </c:otherwise>
+		        </c:choose>
+		            <div class="tour-contents">
+		              <h2>${guideTourVO.gdTrTtl}</h2>
+		              <p class="tour-contents-text"><span>나라 :</span> ${guideTourVO.citiesVO.cityName}</p>
+		              <p class="tour-contents-text"><span>날짜 :</span> ${guideTourVO.gdTrStDt} ~ ${guideTourVO.gdTrEdDt}</p>
+		              <p class="tour-contents-text"><span>투어 최대인원 :</span> ${guideTourVO.gdTrMxNp}명</p>
+		              <p class="tour-contents-text"><span>비용 :</span> ${guideTourVO.gdTrPrc}$</p>
+		              <p class="tour-contents-text"><span>가이드 평점 :</span> ${guideTourVO.avgRvw}</p>
+		            </div>
+		          </div>
+			</c:forEach>
+		</div>
           <!-------------------------------------------------------------->
-        </div>
         <div class="page-area">
                <ul class="page-nav">
                   <c:if test="${searchGuideTourVO.hesprevGroup}">

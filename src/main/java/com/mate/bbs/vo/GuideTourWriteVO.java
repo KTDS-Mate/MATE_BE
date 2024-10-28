@@ -17,7 +17,18 @@ public class GuideTourWriteVO {
 	 * 투어 제목
 	 */
 	private String gdTrTtl;
-	
+	/**
+	 * 투어 시작 일자
+	 */
+	private String gdTrStDt;
+	/**
+	 * 투어 종료 일자
+	 */
+	private String gdTrEdDt;
+	/**
+	 * 투어 최대 인원수
+	 */
+	private int gdTrMxNp;
 	/**
 	 * 투어 장소 (국가 도시)
 	 */
@@ -26,12 +37,18 @@ public class GuideTourWriteVO {
 	 * 투어 날짜
 	 */
 	private String gdTrDt;
-	
+	/**
+	 * 투어 게시글 등록 날자
+	 */
+	private String gdTrRstrDt;
 	/**
 	 * 끝날짜
 	 */
 	private String gdTrTm;
-	
+	/**
+	 * 투어를 진행할 도시 아이디 fk
+	 */
+	private String trCtId;
 	/**
 	 * 투어 요약
 	 */
@@ -80,6 +97,24 @@ public class GuideTourWriteVO {
 	public void setGdTrTtl(String gdTrTtl) {
 		this.gdTrTtl = gdTrTtl;
 	}
+	public String getGdTrStDt() {
+		return gdTrStDt;
+	}
+	public void setGdTrStDt(String gdTrStDt) {
+		this.gdTrStDt = gdTrStDt;
+	}
+	public String getGdTrEdDt() {
+		return gdTrEdDt;
+	}
+	public void setGdTrEdDt(String gdTrEdDt) {
+		this.gdTrEdDt = gdTrEdDt;
+	}
+	public int getGdTrMxNp() {
+		return gdTrMxNp;
+	}
+	public void setGdTrMxNp(int gdTrMxNp) {
+		this.gdTrMxNp = gdTrMxNp;
+	}
 	public String getCtNm() {
 		return ctNm;
 	}
@@ -92,11 +127,23 @@ public class GuideTourWriteVO {
 	public void setGdTrDt(String gdTrDt) {
 		this.gdTrDt = gdTrDt;
 	}
+	public String getGdTrRstrDt() {
+		return gdTrRstrDt;
+	}
+	public void setGdTrRstrDt(String gdTrRstrDt) {
+		this.gdTrRstrDt = gdTrRstrDt;
+	}
 	public String getGdTrTm() {
 		return gdTrTm;
 	}
 	public void setGdTrTm(String gdTrTm) {
 		this.gdTrTm = gdTrTm;
+	}
+	public String getTrCtId() {
+		return trCtId;
+	}
+	public void setTrCtId(String trCtId) {
+		this.trCtId = trCtId;
 	}
 	public String getGdTrSmry() {
 		return gdTrSmry;

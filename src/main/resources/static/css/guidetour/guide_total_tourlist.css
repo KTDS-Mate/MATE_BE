@@ -73,6 +73,7 @@ div.my-tour {
     width: 90rem;
     border-top: 1px solid #000;
 }
+
 .list-view-option {
 	display: flex;
 	gap: 10px; /* Space between each item */
@@ -80,7 +81,12 @@ div.my-tour {
 	font-size: 14px;
 	justify-content: flex-end;
 	margin-top: 2rem;
-	margin-bottom: 2rem;
+	margin-bottom: 0.5rem;
+
+}
+
+.tour{
+	margin-left : 1rem;
 }
 
 .list-view-option div {
@@ -110,7 +116,7 @@ div.my-tour {
     border: 1px solid #BBBBBB;
     border-radius: 20px;
     height: 25rem;
-    margin: 2.3rem auto;
+    margin-bottom: 2rem;
     flex-grow: 0;
     padding: 39px 95px 39px 39Spx;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);

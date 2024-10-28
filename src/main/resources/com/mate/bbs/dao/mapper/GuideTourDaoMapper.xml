@@ -143,7 +143,6 @@
 			, GD_TR_MDFY_DT
 			, GD_TR_DLT_DT
 			, GD_TR_IS_DLT
-			, TR_CNT_ID
 			, TR_CT_ID
 			, GD_TR_ED_DT
 			, GD_TR_MX_NP)
@@ -161,7 +160,6 @@
 			, NULL
 			, NULL
 			, 'N'
-			, #{trCntId}
 			, #{trCtId}
 			, #{gdTrEdDt}
 			, #{gdTrMxNp})

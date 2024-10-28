@@ -29,7 +29,7 @@ uri="http://www.springframework.org/tags/form" %>
           <div class="insert-main">
             <div class="flex-main-img">
               <div>
-                <h1>투어 요청 작성</h1>
+                <h1>가이드 투어 요청 작성</h1>
               </div>
               <img alt="메인 이미지" src="/img/tourboard/예시여행이미지.png" />
             </div>
@@ -156,7 +156,7 @@ uri="http://www.springframework.org/tags/form" %>
               </div>
             </div>
             <div class="all-select-div">
-              <div class="select-div"><span class="red">*</span> 인원 선택</div>
+              <div class="select-div"><span class="red">*</span> 최대 인원 선택</div>
               <form:errors path="usrTrNp" element="div" cssClass="errors" />
               <div class="person-flex-div">
                 <input
@@ -203,37 +203,15 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
               </div>
             </div>
             <div class="all-select-div">
-              <div class="select-div">원하는 가이드</div>
               <div class="flex-want-gd-div">
                 <div>
-                  <label for="gender">성별</label>
-                  <select name="gdGndr" id="gender">
-                    <option value="상관없음">상관없음</option>
-                    <option value="male">남자</option>
-                    <option value="female">여자</option>
-                  </select>
+                  
                 </div>
-                <div>
-                  <label for="age">나이</label>
-                  <select name="gdAge" id="age">
-                    <option value="0">상관없음</option>
-                    <option value="20">20대</option>
-                    <option value="30">30대</option>
-                    <option value="40">40대</option>
-                  </select>
-                </div>
-                <div>
-                  <label for="career">경력</label>
-                  <select name="gdCrr" id="career">
-                    <option value="0">상관없음</option>
-                    <option value="1">1년차 이상</option>
-                    <option value="3">3년차 이상</option>
-                    <option value="5">5년차 이상</option>
-                    <option value="10">10년차 이상</option>
-                  </select>
-                </div>
+                <d
               </div>
-              <div>가이드에게 원하는 사항</div>
+              <div class="tourist-request">
+              	<div>투어자에게 원하는 사항</div>
+              </div>
               <textarea name="gdWntRq">${userTourWriteVO.gdWntRq}</textarea>
               <div class="price-submit-btn">
                 <div class="select-div">
