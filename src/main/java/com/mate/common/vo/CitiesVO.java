@@ -3,29 +3,28 @@ package com.mate.common.vo;
 public class CitiesVO {
 
 	/**
-	 * 도시의 PK
+	 * 도시 아이디
 	 */
-	private int id;
+	private int cityId;
 	/**
-	 * 도시 명 (영어)
+	 * 도시 명
 	 */
-	private String name;
+	private String cityName;
 	/**
-	 * 국가 PK
+	 * 국가 아이디
 	 */
 	private int countryId;
-	
-	public int getId() {
-		return id;
+	public int getCityId() {
+		return cityId;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setCityId(int cityId) {
+		this.cityId = cityId;
 	}
-	public String getName() {
-		return name;
+	public String getCityName() {
+		return cityName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
 	}
 	public int getCountryId() {
 		return countryId;

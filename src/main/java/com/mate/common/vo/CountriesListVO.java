@@ -4,8 +4,13 @@ import java.util.List;
 
 public class CountriesListVO {
 
+	/**
+	 * 대륙 별 국가 수
+	 */
 	private int countriesCount;
-	
+	/**
+	 * 대륙 별 국가 리스트
+	 */
 	private List<CountriesVO> countriesList;
 
 	public int getCountriesCount() {
