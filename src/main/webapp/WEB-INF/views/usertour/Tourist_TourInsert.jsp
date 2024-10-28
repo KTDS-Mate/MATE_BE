@@ -37,7 +37,7 @@ uri="http://www.springframework.org/tags/form" %>
               <img alt="메인 이미지" src="/img/tourboard/예시여행이미지.png" />
             </div>
             <div class="all-select-div">
-              <div class="select-div"><span class="red">*</span> 제목 작성</div>
+              <div class="select-div"><span class="red">*</span> 투어 제목</div>
               <form:errors path="usrTrTtl" element="div" cssClass="errors" />
               <input
                 id="usrTrTtl"
@@ -234,8 +234,10 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
                   </select>
                 </div>
               </div>
-              <div>가이드에게 원하는 사항</div>
-              <textarea name="gdWntRq">${userTourWriteVO.gdWntRq}</textarea>
+              <div>
+	              <div class="select-div">가이드에게 원하는 사항</div>
+	              <textarea name="gdWntRq">${userTourWriteVO.gdWntRq}</textarea>
+              </div>
               <div class="price-submit-btn">
                 <div class="select-div">
                   <span class="red">*</span> 고용 금액
