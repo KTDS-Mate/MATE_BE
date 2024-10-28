@@ -1,332 +1,268 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+pageEncoding="UTF-8" %> <%@ taglib prefix="form"
+uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta charset="UTF-8" />
-  <title>여행자 투어 등록</title>
-  <link rel="stylesheet" type="text/css" href="/css/Guide_TourInsert.css" />
-  <link
+  <head>
+    <meta charset="UTF-8" />
+    <title>가이드 투어 등록</title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <link
       rel="stylesheet"
       type="text/css"
-      href="/css/common.css"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-</head>
-
-<body>
-  <div class="grid">
-    <div class="header">
-      <!-- header 공통파일 -->
-      <jsp:include page="../header.jsp"></jsp:include>
-    </div>
-    <div class="content">
-      <div class="content-grid">
-        <div class="where-going">
-          <div class="where-search">
-            <div class="search-div">
+      href="/css/guidetour/Guide_TourInsert.css" />
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+    <script
+      type="text/javascript"
+      src="/js/usertour/usertourinsert.js"></script>
+  </head>
+  <body>
+    <div class="grid">
+      <div class="header">
+        <!-- header 공통파일 -->
+        <jsp:include page="../header.jsp"></jsp:include>
+      </div>
+      <div class="content">
+        <form:form
+          modelAttribute="userTourWriteVO"
+          method="post">
+          <div class="insert-main">
+            <div class="flex-main-img">
               <div>
-                <input id="search" type="text" placeholder="진행할 투어 장소는 어디신가요?" />
+                <h1>투어 요청 작성</h1>
               </div>
-              <div class="search-btn">
-                <img src="/img/tourboard/Search.png" alt="검색 버튼" />
-              </div>
+              <img alt="메인 이미지" src="/img/tourboard/예시여행이미지.png" />
             </div>
-            <div class="travle-list">
-              <ul>
-                <li>영국</li>
-                <li>베트남 / 다낭</li>
-                <li>괌</li>
-                <li>일본 / 오사카</li>
-                <li>이탈리아</li>
-              </ul>
+            <div class="all-select-div">
+              <div class="select-div"><span class="red">*</span> 제목 작성</div>
+              <form:errors path="usrTrTtl" element="div" cssClass="errors" />
+              <input
+                id="usrTrTtl"
+                name="usrTrTtl"
+                type="text"
+                placeholder="제목을 입력해주세요."
+                value="${userTourWriteVO.usrTrTtl}" />
             </div>
-          </div>
-          <div class="img-div">
-            <div class="background-img"></div>
-          </div>
-        </div>
-        <div class="input-div">
-          <div class="calendar">
-            <h3>원하는 투어 날짜를 입력해주세요!</h3>
-            <div class="datepicker">
-              <div class="datepicker-top">
-                <div class="month-selector">
-                  <button class="arrow">
-                    <i class="material-icons">&lt;</i>
-                  </button>
-                  <span class="month-name">December 2020</span>
-                  <button class="arrow">
-                    <i class="material-icons">&gt;</i>
-                  </button>
-                </div>
+            <div class="all-select-div">
+              <div class="select-div">
+                <span class="red">*</span> 투어 지역 선택
               </div>
-              <div class="datepicker-calendar">
-                <span class="day">Mo</span>
-                <span class="day">Tu</span>
-                <span class="day">We</span>
-                <span class="day">Th</span>
-                <span class="day">Fr</span>
-                <span class="day">Sa</span>
-                <span class="day">Su</span>
-                <button class="date faded">30</button>
-                <button class="date">1</button>
-                <button class="date">2</button>
-                <button class="date">3</button>
-                <button class="date">4</button>
-                <button class="date">5</button>
-                <button class="date">6</button>
-                <button class="date">7</button>
-                <button class="date">8</button>
-                <button class="date">9</button>
-                <button class="date">10</button>
-                <button class="date">11</button>
-                <button class="date">12</button>
-                <button class="date">13</button>
-                <button class="date">14</button>
-                <button class="date">15</button>
-                <button class="date">16</button>
-                <button class="date">17</button>
-                <button class="date">18</button>
-                <button class="date">19</button>
-                <button class="date">20</button>
-                <button class="date">21</button>
-                <button class="date">22</button>
-                <button class="date">23</button>
-                <button class="date">24</button>
-                <button class="date">25</button>
-                <button class="date">26</button>
-                <button class="date">27</button>
-                <button class="date">28</button>
-                <button class="date">29</button>
-                <button class="date">30</button>
-                <button class="date">31</button>
-                <button class="date faded">1</button>
-                <button class="date faded">2</button>
-                <button class="date faded">3</button>
-              </div>
-            </div>
-          </div>
-          <div class="datetime">
-            <div class="start-time">
-              <select name="start-hour" id="start-hour">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-                <option value="16">16</option>
-                <option value="17">17</option>
-                <option value="18">18</option>
-                <option value="19">19</option>
-                <option value="20">20</option>
-                <option value="21">21</option>
-                <option value="22">22</option>
-                <option value="23">23</option>
-                <option value="24">24</option>
+              <select id="country">
+                <option value="">국가 선택</option>
               </select>
-              <div>
-                <h3>시</h3>
-              </div>
-              <select name="start-minute" id="start-minute">
-                <option value="0">0</option>
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="15">15</option>
-                <option value="20">20</option>
-                <option value="25">25</option>
-                <option value="30">30</option>
-                <option value="35">35</option>
-                <option value="40">40</option>
-                <option value="45">45</option>
-                <option value="50">50</option>
-                <option value="55">55</option>
+              <select id="city" name="trCtId">
+                <option value="">도시 선택</option>
               </select>
-              <div>
-                <h3>분</h3>
+            </div>
+            <div class="all-select-div">
+              <div class="select-div"><span class="red">*</span> 날짜 선택</div>
+              <input
+                id="inputYear"
+                name="inputYear"
+                type="date"
+                data-placeholder="투어 날짜를 골라주세요."
+                value="${userTourWriteVO.inputYear}" />
+            </div>
+            <div class="all-select-div">
+              <div class="select-div"><span class="red">*</span> 시간 선택</div>
+              <div class="flex-hour-div">
+                <select id="start-hour" name="inputStartHour">
+                  <option value="">시작 시간 선택</option>
+                  <option value="01">01</option>
+                  <option value="02">02</option>
+                  <option value="03">03</option>
+                  <option value="04">04</option>
+                  <option value="05">05</option>
+                  <option value="06">06</option>
+                  <option value="07">07</option>
+                  <option value="08">08</option>
+                  <option value="09">09</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                </select>
+                <select id="start-minutes" name="inputStartMinute">
+                  <option value="">시작 분 선택</option>
+                  <option value="00">00</option>
+                  <option value="05">05</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                  <option value="25">25</option>
+                  <option value="30">30</option>
+                  <option value="35">35</option>
+                  <option value="40">40</option>
+                  <option value="45">45</option>
+                  <option value="50">50</option>
+                  <option value="55">55</option>
+                </select>
+                <div class="inline-margin">
+                  <img src="/img/tourboard/~.png" />
+                </div>
+                <select id="end-hour" name="inputEndHour">
+                  <option value="">종료 시간 선택</option>
+                  <option value="01">01</option>
+                  <option value="02">02</option>
+                  <option value="03">03</option>
+                  <option value="04">04</option>
+                  <option value="05">05</option>
+                  <option value="06">06</option>
+                  <option value="07">07</option>
+                  <option value="08">08</option>
+                  <option value="09">09</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                </select>
+                <select id="end-minutes" name="inputEndMinute">
+                  <option value="">종료 분 선택</option>
+                  <option value="00">00</option>
+                  <option value="05">05</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                  <option value="25">25</option>
+                  <option value="30">30</option>
+                  <option value="35">35</option>
+                  <option value="40">40</option>
+                  <option value="45">45</option>
+                  <option value="50">50</option>
+                  <option value="55">55</option>
+                </select>
               </div>
             </div>
-            <div class="end-time">
-              <select name="end-hour" id="end-hour">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-                <option value="16">16</option>
-                <option value="17">17</option>
-                <option value="18">18</option>
-                <option value="19">19</option>
-                <option value="20">20</option>
-                <option value="21">21</option>
-                <option value="22">22</option>
-                <option value="23">23</option>
-                <option value="24">24</option>
-              </select>
-              <div>
-                <h3>시</h3>
+            <div class="all-select-div">
+              <div class="select-div"><span class="red">*</span> 인원 선택</div>
+              <form:errors path="usrTrNp" element="div" cssClass="errors" />
+              <div class="person-flex-div">
+                <input
+                  type="number"
+                  name="usrTrNp"
+                  value="${userTourWriteVO.usrTrNp}" />
+                <div>명</div>
               </div>
-              <select name="end-minute" id="end-minute">
-                <option value="0">0</option>
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="15">15</option>
-                <option value="20">20</option>
-                <option value="25">25</option>
-                <option value="30">30</option>
-                <option value="35">35</option>
-                <option value="40">40</option>
-                <option value="45">45</option>
-                <option value="50">50</option>
-                <option value="55">55</option>
-              </select>
-              <div>
-                <h3>분</h3>
+            </div>
+            <div class="all-select-div">
+              <div class="select-div"><span class="red">*</span> 투어 목적</div>
+              <form:errors path="usrTrPrps" element="div" cssClass="errors" />
+              <textarea name="usrTrPrps">${userTourWriteVO.usrTrPrps}</textarea>
+            </div>
+            <div class="all-select-div">
+              <div class="select-div">투어 희망 정보</div>
+              <div class="loc-inf">
+              	<!-- jquery를 사용해 여러 개를 호출 받는 곳 -->
+              </div>
+              <div class="hope-btn">
+                <input id="plus" type="button" value="일정 추가하기" />
+              </div>
+            </div>
+            <div class="all-select-div">
+              <div class="select-div">
+                <span class="red">*</span> 투어 세부 요구사항
+              </div>
+              <form:errors path="usrTrRqDtl" element="div" cssClass="errors" />
+              <textarea name="usrTrRqDtl">
+${userTourWriteVO.usrTrRqDtl}</textarea
+              >
+            </div>
+            <div class="all-select-div">
+              <div class="inline">
+                <div class="select-div">투어 이미지 추가</div>
+                <input type="file" multiple="multiple" />
+                <div class="file-list"></div>
+              </div>
+              <div class="inline margin-left-location">
+                <div class="select-div">
+                  <span class="red">*</span> 집결 장소 선택
+                </div>
+                <a><span class="red-font">Open In Google Map</span></a>
+              </div>
+            </div>
+            <div class="all-select-div">
+              <div class="select-div">원하는 가이드</div>
+              <div class="flex-want-gd-div">
+                <div>
+                  <label for="gender">성별</label>
+                  <select name="gdGndr" id="gender">
+                    <option value="상관없음">상관없음</option>
+                    <option value="male">남자</option>
+                    <option value="female">여자</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="age">나이</label>
+                  <select name="gdAge" id="age">
+                    <option value="0">상관없음</option>
+                    <option value="20">20대</option>
+                    <option value="30">30대</option>
+                    <option value="40">40대</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="career">경력</label>
+                  <select name="gdCrr" id="career">
+                    <option value="0">상관없음</option>
+                    <option value="1">1년차 이상</option>
+                    <option value="3">3년차 이상</option>
+                    <option value="5">5년차 이상</option>
+                    <option value="10">10년차 이상</option>
+                  </select>
+                </div>
+              </div>
+              <div>가이드에게 원하는 사항</div>
+              <textarea name="gdWntRq">${userTourWriteVO.gdWntRq}</textarea>
+              <div class="price-submit-btn">
+                <div class="select-div">
+                  <span class="red">*</span> 고용 금액
+                </div>
+                <form:errors
+                  path="usrTrGdHrPrc"
+                  element="div"
+                  cssClass="errors" />
+                <div class="price-flex-div">
+                  <input
+                    name="usrTrGdHrPrc"
+                    type="number"
+                    value="${userTourWriteVO.usrTrGdHrPrc}"
+                    step="0.01" />
+                  <div>$</div>
+                </div>
+                <div class="right-align">
+                  <input type="submit" value="투어 등록" />
+                </div>
               </div>
             </div>
           </div>
-          <div class="see-all">
-            <div class="user-input">
-              <div class="want-to-do">
-                <div>
-                  <h4>투어테마</h4>
-                </div>
-                <div>핫플레이스 투어</div>
-              </div>
-              <div class="place">
-                <div>
-                  <h4>장소</h4>
-                </div>
-                <div>Danang Temple</div>
-              </div>
-              <div class="meeting-place">
-                <div>
-                  <h4>만날 장소</h4>
-                </div>
-                <div></div>
-              </div>
-              <div class="requset">
-                <div>
-                  <h4>투어제공항목</h4>
-                </div>
-                <div>
-                  1.와이파이</br>
-                  2.차량</br>
-                  3.물
-                </div>
-              </div>
-              <div class="list">
-                <div>
-                  <h6>Open In GoogleMap</h6>
-                </div>
-              </div>
-            </div>
-            <div class="right-align">
-              <input type="submit" value="시간대 선택 완료" />
-            </div>
-          </div>
-        </div>
-
-        <!-- 사진 등록 필드----------------------------------------------------------------------------------------------------------------------- -->
-        <div class="photo-view">
-          <div class="photo-view-div">
-            <img class="guide-photo" src="/img/tourlist/라스베가스 야경.jpg" alt="">
-            <img class="big-guide-photo" src="/img/tourlist/라스베가스 카지노.jpeg" alt="">
-            <img class="guide-photo" src="/img/tourlist/라스베가스 호텔.jpg" alt="">
-            <img class="guide-photo" src="/img/tourlist/베트남 퀴논 해변.jpg" alt="">
-            <img class="guide-photo" src="/img/tourlist/별하늘.jpg" alt="">
-          </div>
-          <div class="photo">
-            <div class="right-align">
-              <input type="submit" value="사진등록" />
-            </div>
-          </div>
-        </div>
-        <!-- 사진 등록 필드----------------------------------------------------------------------------------------------------------------------- -->
-
-
-
-
-        <div class="final-view">
-          <div class="final-view-div">
-            <div class="group-one">
-              <div>
-                <h3>베트남 / 다낭</h3>
-              </div>
-              <div>
-                <h3>투어 테마</h3>
-              </div>
-              <div>
-                <h3>2024-10-30 12:30 ~ 14:30</h3>
-              </div>
-            </div>
-            <div class="group-two">
-              <div>만날장소 : 다낭 / Radisson Hotel</div>
-              <div>
-                <h6>Open In GoogleMap</h6>
-              </div>
-            </div>
-            <div class="group-three">
-              <h2>투어상세정보</h2>
-              <p>
-                내가 꼴리는데로 진행할테니 따라오기나 해
-              </p>
-            </div>
-            <div class="group-four">
-              <div>
-                <h2>투어요약</h2>
-                <p>12:30 - 만남</p>
-                <p>13:00 - 출발</p>
-                <p>14:30 - 종료</p>
-              </div>
-              <div class="select-container">
-
-              </div>
-            </div>
-          </div>
-          <div class="price">
-            <div class="guide-price">
-              <div>투어 비용 :</div>
-              <div><input type="number" min="0" value="0" /></div>
-              <div>$</div>
-            </div>
-            <div class="right-align">
-              <input type="submit" value="투어등록" />
-            </div>
-          </div>
-        </div>
-
-
+        </form:form>
+      </div>
+      <div class="footer">
+        <!-- footer 공통파일 -->
+        <jsp:include page="../footer.jsp"></jsp:include>
       </div>
     </div>
-    <div class="footer">
-      <!-- footer 공통파일 -->
-      <jsp:include page="../footer.jsp"></jsp:include>
-    </div>
-  </div>
-</body>
-
+  </body>
 </html>

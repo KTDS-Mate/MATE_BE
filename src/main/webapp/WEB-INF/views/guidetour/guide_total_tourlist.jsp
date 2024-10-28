@@ -9,7 +9,7 @@ pageEncoding="UTF-8"%>
     <link
       rel="stylesheet"
       type="text/css"
-      href="/css/guide_total_tourlist.css"
+      href="/css/guidetour/guide_total_tourlist.css"
     />
     <link
       rel="stylesheet"
@@ -61,8 +61,7 @@ pageEncoding="UTF-8"%>
               <p class="tour-contents-text"><span>가이드 평점 :</span> ${guidTourVO.avgRvw}</p>
             </div>
           </div>
-</c:forEach>
-
+	</c:forEach>
           <!-------------------------------------------------------------->
         </div>
         <div class="page-area">

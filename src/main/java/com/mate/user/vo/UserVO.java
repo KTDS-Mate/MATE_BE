@@ -91,6 +91,10 @@ public class UserVO {
      */
     private String gdRpCntId;
 
+    /**
+     * 가이드 경력.
+     */
+    private int usrGdExp;
 
     public String getUsrId() {
         return usrId;
@@ -267,4 +271,12 @@ public class UserVO {
     public void setGdRpCntId(String gdRpCntId) {
         this.gdRpCntId = gdRpCntId;
     }
+
+	public int getUsrGdExp() {
+		return usrGdExp;
+	}
+
+	public void setUsrGdExp(int usrGdExp) {
+		this.usrGdExp = usrGdExp;
+	}
 }

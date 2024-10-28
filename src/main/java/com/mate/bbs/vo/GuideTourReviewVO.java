@@ -42,6 +42,11 @@ public class GuideTourReviewVO {
 	private String gdTrRvwRtng;
 	
 	/**
+	 * 별점의 개수.
+	 */
+	private int reviewCount;
+	
+	/**
 	 * 가이드 투어 리뷰 이미지 리스트 VO
 	 */
 	private List<GuideTourReviewImgVO> guideTourReviewImgList;
@@ -99,6 +104,12 @@ public class GuideTourReviewVO {
 	}
 	public void setGdTrRvwRtng(String gdTrRvwRtng) {
 		this.gdTrRvwRtng = gdTrRvwRtng;
+	}
+	public int getReviewCount() {
+		return reviewCount;
+	}
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
 	}
 	public List<GuideTourReviewImgVO> getGuideTourReviewImgList() {
 		return guideTourReviewImgList;

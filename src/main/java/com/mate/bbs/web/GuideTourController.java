@@ -25,14 +25,14 @@ public class GuideTourController {
 		GuideTourListVO guideTourListVO = this.guideTourService.getAllGuideTour(searchGuideTourVO);
 		model.addAttribute("guideTourListVO", guideTourListVO);
 		model.addAttribute("searchGuideTourVO", searchGuideTourVO);
-		return "all/guide_total_tourlist";
+		return "guidetour/guide_total_tourlist";
 	}
 
 	@GetMapping("/guidetour/info")
 	public String viewOneGuideTourPage(@RequestParam String gdTrPstId , Model model) {
 		GuideTourVO guideTourVO = this.guideTourService.getOneGuideTour(gdTrPstId);
 		model.addAttribute("guideTourVO",guideTourVO);
-		return "all/GuideRecruitmentPage";
+		return "guidetour/GuideTourInfo";
 	}
 	@GetMapping("/guidetour/insert")
 	public String viewGuideTourInsertPage() {

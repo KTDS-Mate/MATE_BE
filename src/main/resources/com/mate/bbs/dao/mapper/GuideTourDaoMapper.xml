@@ -70,6 +70,11 @@
 			 , UI.USR_LNM 
 			 , UI.USR_GNDR 
 			 , UI.GD_PRFL_IMG 
+			 , UI.USR_BD 
+			 , UI.USR_GD_EXP 
+			 , TI.TR_INCLD 
+			 , TD.TR_DTL_INF 
+			 , TRUNC(MONTHS_BETWEEN(TRUNC(SYSDATE), UI.USR_BD) / 12) AS GUIDE_AGE
 		  FROM GD_TR_RCRT GTR
 		  LEFT JOIN GD_TR_RCRT_IMG GTRI
 		    ON GTR.GD_TR_PST_ID = GTRI.GD_TR_PST_ID 
@@ -77,6 +82,11 @@
 		    ON GTR.GD_TR_PST_ID = GTRV.GD_TR_PST_ID 
 		 INNER JOIN USR_INF UI
 		    ON UI.USR_ID = GTR.USR_ID 
+		 INNER JOIN TOUR_INCLD TI
+		    ON TI.GD_TR_PST_ID = GTR.GD_TR_PST_ID  
+		 INNER JOIN TR_DTL TD
+		    ON TD.GD_TR_PST_ID = GTR.GD_TR_PST_ID
+		 WHERE GTR.GD_TR_PST_ID = #{_parameter}
 	</select>
 	
 	<select id="selectAllGuideTour" 
@@ -102,7 +112,7 @@
 			 , GTR.TR_CT_ID
 			 , GTRI.GD_TR_IMG_URL
 			 , GTR.GD_TR_MX_NP
-			 , C.CT_NM 
+			 , C.CITY_NAME 
 			 , ( SELECT AVG(gtr2.GD_TR_RVW_RTNG)
 			       FROM GD_TR_RVW gtr2
 			 	  WHERE gtr2.GD_TR_PST_ID = GTR.GD_TR_PST_ID) AS AVG_RVW
@@ -111,8 +121,8 @@
 	       ON GTR.GD_TR_PST_ID = GTRI.GD_TR_PST_ID 
 	     LEFT JOIN GD_TR_RVW GTRV
 	       ON GTR.GD_TR_PST_ID = GTRV.GD_TR_PST_ID
-	     JOIN CT C
-	       ON C.CT_ID = gtr.TR_CT_ID
+	     JOIN CITIES C
+	       ON C.CITY_ID = gtr.TR_CT_ID
 	    <if test="_parameter != null">
 			<include refid="Common.pagination_footer" />
 		</if>

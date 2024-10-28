@@ -126,6 +126,12 @@ public class GuideTourVO {
 	 * 나라 정보를 담은 VO
 	 */
 	private CountryVO countryVO;
+	
+	/**
+	 * 해당 프로퍼티는 DB컬럼에 존재하지 않음
+	 */
+	private String guideAge;
+	
 	public String getGdTrPstId() {
 		return gdTrPstId;
 	}
@@ -258,18 +264,18 @@ public class GuideTourVO {
 	public void setGuideTourReviewList(List<GuideTourReviewVO> guideTourReviewList) {
 		this.guideTourReviewList = guideTourReviewList;
 	}
-	public List<GuideTourFavoriteVO> getGuideTourFavoriteList() {
-		return guideTourFavoriteList;
-	}
-	public void setGuideTourFavoriteList(List<GuideTourFavoriteVO> guideTourFavoriteList) {
-		this.guideTourFavoriteList = guideTourFavoriteList;
-	}
-	public List<GuideTourAdditionInfoVO> getGuideTourAdditionInfoList() {
-		return guideTourAdditionInfoList;
-	}
-	public void setGuideTourAdditionInfoList(List<GuideTourAdditionInfoVO> guideTourAdditionInfoList) {
-		this.guideTourAdditionInfoList = guideTourAdditionInfoList;
-	}
+//	public List<GuideTourFavoriteVO> getGuideTourFavoriteList() {
+//		return guideTourFavoriteList;
+//	}
+//	public void setGuideTourFavoriteList(List<GuideTourFavoriteVO> guideTourFavoriteList) {
+//		this.guideTourFavoriteList = guideTourFavoriteList;
+//	}
+//	public List<GuideTourAdditionInfoVO> getGuideTourAdditionInfoList() {
+//		return guideTourAdditionInfoList;
+//	}
+//	public void setGuideTourAdditionInfoList(List<GuideTourAdditionInfoVO> guideTourAdditionInfoList) {
+//		this.guideTourAdditionInfoList = guideTourAdditionInfoList;
+//	}
 	public UserVO getUserVO() {
 		return userVO;
 	}
@@ -287,6 +293,12 @@ public class GuideTourVO {
 	}
 	public void setCountryVO(CountryVO countryVO) {
 		this.countryVO = countryVO;
+	}
+	public String getGuideAge() {
+		return guideAge;
+	}
+	public void setGuideAge(String guideAge) {
+		this.guideAge = guideAge;
 	}
 	
 }
