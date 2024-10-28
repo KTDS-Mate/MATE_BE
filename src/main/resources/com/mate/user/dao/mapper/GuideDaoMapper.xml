@@ -18,18 +18,21 @@
 		 WHERE USR_ID = #{usrId}
 	</update>
 	
-	<insert id="insertGuideCity" parameterType="com.mate.common.vo.CitiesVO">
-		<forEach collection="CitiesVO" item="license" separator=";">
-			 INSERT INTO GD_LCN
-			      ( GD_LCN_ID
-			      , GD_LCN_NM 
-			      , GD_LCN_IMG)	
-			 VALUES
-			      ( #{license.gdLcnId}
-			      , #{license.gdLcnNm}
-			      , #{license.gdLcnImg})
-		</forEach>
-	</insert>
+	<!-- 도시명 기반으로 CITY_ID 조회 -->
+	<select id="selectCityIdByName" parameterType="String" resultType="int">
+			SELECT CITY_ID 
+			  FROM CITIES
+			 WEHRE CITY_NAME = #{cityName}
+	</select>
 	
-
+	<!-- GD_ACT_CT 테이블에 가이드 활동 도시 삽입 -->
+	<insert id="insertGuideCountry" parameterType="list" >
+		INSERT INTO GD_ACT_CT
+		     ( CT_ID
+		     , USR_ID)
+		VALUES
+		<foreach collection="list" item="city">
+			(#{city.cityId}, #{city.usrId})
+		</foreach>
+	</insert>
 </mapper>

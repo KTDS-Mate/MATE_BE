@@ -13,7 +13,11 @@ public interface GuideDao {
 	
 	public int updateGuideInfo(RegistGuideVO registGuideVO);
 	
-	public int insertGuideCity(List<CitiesVO> citiesVOList);
+	// 도시명으로 CITY_ID 조회
+	public Integer selectCityIdByName(String cityName);
+	
+	// GD_ACT_CT에 데이터 삽입
+	public int insertGuideCities(List<CitiesVO> CitiesVOList);
 	
 	public int insertGuideCountry(CountriesVO countriesVO);
 	

@@ -26,10 +26,15 @@ public class GuideDaoImpl extends SqlSessionDaoSupport implements GuideDao{
 	}
 
 	@Override
-	public int insertGuideCity(List<CitiesVO> citiesVOList) {
-		return getSqlSession().insert(NAMESPACE + ".insertGuideCity", citiesVOList);
+	public int insertGuideCities(List<CitiesVO> CitiesVOList) {
+		return getSqlSession().insert(NAMESPACE + ".insertGuideCities", CitiesVOList);
 	}
 
+	@Override
+	public Integer selectCityIdByName(String cityName) {
+		return getSqlSession().selectOne(NAMESPACE + ".insertGuideCities", cityName);
+	}
+	
 	@Override
 	public int insertGuideCountry(CountriesVO countriesVO) {
 		return getSqlSession().insert(NAMESPACE + ".insertGuideCountry", countriesVO);
