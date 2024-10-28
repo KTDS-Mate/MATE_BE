@@ -7,12 +7,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.mate.bbs.service.UserTourService;
 import com.mate.bbs.vo.SearchUserTourVO;
 import com.mate.bbs.vo.UserTourListVO;
 import com.mate.bbs.vo.UserTourVO;
 import com.mate.bbs.vo.UserTourWriteVO;
+import com.mate.user.vo.UserVO;
 
 import jakarta.validation.Valid;
 
@@ -53,16 +55,17 @@ public class UserTourController {
 	public String doCreateNewUserTour(@Valid UserTourWriteVO userTourWriteVO
 									, BindingResult bindingResult
 									, Model model
-//									, @SessionAttribute(value = "_LOGIN_USER_", required = false) UserVO loginUserVO
+									, @SessionAttribute(value = "_LOGIN_USER_", required = false) UserVO loginUserVO
 									) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("userTourWriteVO", userTourWriteVO);
 			return "usertour/Tourist_TourInsert";
 		}
-//		if (loginUserVO == null) {
-//			return "redirect:/user/login";
-//		}
-//		userTourWriteVO.setAthrId(loginUserVO.getUsrId());
+		if (loginUserVO == null) {
+			return "redirect:/user/login";
+		}
+		
+		userTourWriteVO.setAthrId(loginUserVO.getUsrLgnId());
 		
 		this.userTourService.createNewUserTour(userTourWriteVO);
 		
