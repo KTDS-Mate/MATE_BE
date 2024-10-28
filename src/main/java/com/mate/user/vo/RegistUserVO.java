@@ -43,6 +43,9 @@ public class RegistUserVO {
 	
 	private String authVerified;
 	
+	// 국가 번호 코드
+	private String usrCntCode;
+	
 	public String getAuthVerified() {
 		return authVerified;
 	}
@@ -145,5 +148,13 @@ public class RegistUserVO {
 
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+	public String getUsrCntCode() {
+		return usrCntCode;
+	}
+
+	public void setUsrCntCode(String usrCntCode) {
+		this.usrCntCode = usrCntCode;
 	}
 }

@@ -92,9 +92,10 @@ public class UserVO {
     private String gdRpCntId;
 
     /**
-     * 가이드 경력.
+     * 국가 번호 코드
      */
-    private int usrGdExp;
+	private String usrCntCode;
+
 
     public String getUsrId() {
         return usrId;
@@ -272,11 +273,11 @@ public class UserVO {
         this.gdRpCntId = gdRpCntId;
     }
 
-	public int getUsrGdExp() {
-		return usrGdExp;
+	public String getUsrCntCode() {
+		return usrCntCode;
 	}
 
-	public void setUsrGdExp(int usrGdExp) {
-		this.usrGdExp = usrGdExp;
+	public void setUsrCntCode(String usrCntCode) {
+		this.usrCntCode = usrCntCode;
 	}
 }

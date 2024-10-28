@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mate.bbs.service.CountriesAndCitiesService;
 import com.mate.common.vo.CitiesListVO;
 import com.mate.common.vo.CountriesListVO;
+import com.mate.common.vo.RegionsListVO;
 
 
 @RestController
@@ -19,23 +20,37 @@ public class CountriesAndCitiesController {
 	@Autowired
 	private CountriesAndCitiesService countriesAndCitiesService;
 	
-	@GetMapping("/tour/countreis")
-	public Map<String, Object> getAllCounties() {
-		CountriesListVO countriesVO = this.countriesAndCitiesService.getAllCountries();
+	@GetMapping("/tour/regions")
+	public Map<String, Object> getAllRegions() {
+		RegionsListVO regions = this.countriesAndCitiesService.getAllRegions();
 		Map<String, Object> resultMap = new HashMap<>();
-		resultMap.put("countries", countriesVO.getCountriesList());
-		resultMap.put("countriesCnt", countriesVO.getCountriesCount());
+		
+		resultMap.put("regions", regions.getRegionsList());
+		resultMap.put("regionsCount", regions.getRegionsCount());
 		
 		return resultMap;
 	}
 	
-//	@GetMapping("/tour/cities/{countryId}")
-//	public Map<String, Object> getCities(@PathVariable int countryId) {
-//		CitiesListVO citiesVO = this.countriesAndCitiesService.getAllCities(countryId);
-//		Map<String, Object> resultMap = new HashMap<>();
-//		resultMap.put("cities", citiesVO.getCitiesList());
-//		
-//		return resultMap;
-//	}
+	@GetMapping("/tour/countries/{regionId}")
+	public Map<String, Object> getCountries(@PathVariable int regionId) {
+		CountriesListVO countries = this.countriesAndCitiesService.getCountries(regionId);
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		resultMap.put("countries", countries.getCountriesList());
+		resultMap.put("countriesCount", countries.getCountriesCount());
+		
+		return resultMap;
+	}
+	
+	@GetMapping("/tour/cities/{countryId}")
+	public Map<String, Object> getCities(@PathVariable int countryId) {
+		CitiesListVO cities = this.countriesAndCitiesService.getCities(countryId);
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		resultMap.put("cities", cities.getCitiesList());
+		resultMap.put("citiesCount", cities.getCitiesCount());
+		
+		return resultMap;
+	}
 	
 }
