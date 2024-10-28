@@ -38,12 +38,14 @@ public class UserTourServiceImpl implements UserTourService{
 		// PK를 먼저 발급받기 위해 호출
 		int createCount = this.userTourDao.insertNewUserTour(userTourWriteVO);
 		
-		// 게시글이 작성 된 후 PK를 가져와 forEach문으로 INSERT문 반복
-		for (UserTourSchdlVO userTourSchdlVO : schdlList) {
-			// PK를 VO에 할당
-			userTourSchdlVO.setUsrTrPstId(userTourWriteVO.getUsrTrPstId());
-			// listSize만큼 INSERT문 반복
-			this.userTourDao.insertUserTourScheduls(userTourSchdlVO);
+		if (schdlList != null) {
+			// 게시글이 작성 된 후 PK를 가져와 forEach문으로 INSERT문 반복
+			for (UserTourSchdlVO userTourSchdlVO : schdlList) {
+				// PK를 VO에 할당
+				userTourSchdlVO.setUsrTrPstId(userTourWriteVO.getUsrTrPstId());
+				// listSize만큼 INSERT문 반복
+				this.userTourDao.insertUserTourScheduls(userTourSchdlVO);
+			}
 		}
 		
 		return createCount > 0;

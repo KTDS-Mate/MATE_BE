@@ -15,6 +15,9 @@ uri="http://www.springframework.org/tags/form" %>
     <script
       type="text/javascript"
       src="/js/usertour/usertourinsert.js"></script>
+    <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.js"></script>
+<link href="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css" rel="stylesheet">
   </head>
   <body>
     <div class="grid">
@@ -47,12 +50,10 @@ uri="http://www.springframework.org/tags/form" %>
               <div class="select-div">
                 <span class="red">*</span> 투어 지역 선택
               </div>
-              <select id="country">
-                <option value="">국가 선택</option>
-              </select>
-              <select id="city" name="trCtId">
-                <option value="">도시 선택</option>
-              </select>
+              <input id="region" type="text" data-filter="true" placeholder="대륙 선택" />
+              <input id="country" type="text" data-filter="true" placeholder="국가 선택" disabled="disabled" />
+              <input id="city" type="text" data-filter="true" placeholder="도시 선택" disabled="disabled" />
+              <input id="hidden-ipt" type="hidden" name="trCtId" />
             </div>
             <div class="all-select-div">
               <div class="select-div"><span class="red">*</span> 날짜 선택</div>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.mate.bbs.dao.CountriesAndCitiesDao;
 import com.mate.common.vo.CitiesVO;
 import com.mate.common.vo.CountriesVO;
+import com.mate.common.vo.RegionsVO;
 
 @Repository
 public class CountriesAndCitiesDaoImpl extends SqlSessionDaoSupport implements CountriesAndCitiesDao{
@@ -19,20 +20,35 @@ public class CountriesAndCitiesDaoImpl extends SqlSessionDaoSupport implements C
 	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
 		super.setSqlSessionTemplate(sqlSessionTemplate);
 	}
-	
+
 	@Override
-	public List<CountriesVO> selectAllCountries() {
-		return this.getSqlSession().selectList(NAMESPACE + ".selectAllCountries");
+	public List<RegionsVO> selectAllRegions() {
+		return this.getSqlSession().selectList(NAMESPACE + ".selectAllRegions");
 	}
-	
+
 	@Override
-	public int selectCountriesCount() {
-		return this.getSqlSession().selectOne(NAMESPACE + ".selectCountriesCount");
+	public int selectRegionsCount() {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectRegionsCount");
 	}
-	
+
+	@Override
+	public List<CountriesVO> selectCountries(int regionId) {
+		return this.getSqlSession().selectList(NAMESPACE + ".selectCountries", regionId);
+	}
+
+	@Override
+	public int selectCountriesCount(int regionId) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectCountriesCount", regionId);
+	}
+
 	@Override
 	public List<CitiesVO> selectCities(int countryId) {
 		return this.getSqlSession().selectList(NAMESPACE + ".selectCities", countryId);
+	}
+
+	@Override
+	public int selectCitiesCount(int countryId) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectCitiesCount", countryId);
 	}
 	
 }
