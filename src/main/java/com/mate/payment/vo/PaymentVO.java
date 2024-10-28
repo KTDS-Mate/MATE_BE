@@ -8,7 +8,7 @@ public class PaymentVO {
 	private String payId;
 
 	/**
-	 * 여행자의 회원아이디
+	 * 여행자의 회원아이디(로그인 아이디임)
 	 */
 	private String trstId;
 

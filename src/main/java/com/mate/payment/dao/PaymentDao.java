@@ -16,7 +16,7 @@ public interface PaymentDao {
 	
 	public int selectAllMyPaymentCount(String trstId);
 	
-	public PaymentVO selectOnePayment(String trstId, String trId);
+	public PaymentVO selectOnePayment(String payId);
 	
 	
 	

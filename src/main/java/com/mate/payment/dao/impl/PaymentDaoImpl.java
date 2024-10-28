@@ -41,8 +41,8 @@ public class PaymentDaoImpl extends SqlSessionDaoSupport implements PaymentDao {
 	}
 	
 	@Override
-	public PaymentVO selectOnePayment(String trstId, String payId) {
-		return null;
+	public PaymentVO selectOnePayment(String payId) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectOnePayment", payId);
 	}
 	
 	

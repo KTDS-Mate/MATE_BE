@@ -1,6 +1,7 @@
 package com.mate.payment.service;
 
 import com.mate.payment.vo.PaymentListVO;
+import com.mate.payment.vo.PaymentVO;
 
 public interface PaymentService {
 	
@@ -8,6 +9,6 @@ public interface PaymentService {
 	
 	public PaymentListVO getAllMyPayment(String trstId);
 	
-//	public PaymentVO getPaymentDetail(String trstId, );
+	public PaymentVO getPaymentDetail(String payId);
 	
 }

@@ -36,6 +36,11 @@ public class PaymentServiceImpl implements PaymentService{
 		return paymentListVO;
 	}
 	
+	@Override
+	public PaymentVO getPaymentDetail(String payId) {
+		return this.paymentDao.selectOnePayment(payId);
+	}
+	
 	
 	
 	

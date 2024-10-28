@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.mate.payment.service.PortOneService;
 import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
+import com.siot.IamportRestClient.response.IamportResponse;
+import com.siot.IamportRestClient.response.Payment;
 
 @Service
 public class PortOneServiceImpl implements PortOneService {
@@ -24,14 +26,13 @@ public class PortOneServiceImpl implements PortOneService {
     @Autowired
     public PortOneServiceImpl(@Value("${portone.api.key}") String key,
     						  @Value("${portone.api.secret}") String secret) {
-    	System.out.println(key + "와 " + secret);
     	this.iamportClient = new IamportClient(key, secret);
     }
 
     
 	@Override
 	public String getAccessToken() {
-//		String tokenUrl = BASE_URL + "/users/getToken"; // 포트원 API설명에서는 post /users/getToken을 불러오라던데 뭔가 다르다... 웹에서 js로 사용할때만인가..?	
+//		String tokenUrl = BASE_URL + "/users/getToken"; // 포트	원 API설명에서는 post /users/getToken을 불러오라던데 뭔가 다르다... 웹에서 js로 사용할때만인가..?	
 		try {
 			return iamportClient.getAuth().getResponse().getToken();
 		} catch (IamportResponseException e) {
@@ -41,6 +42,28 @@ public class PortOneServiceImpl implements PortOneService {
 		}
 		return null;
 	}
+	
+	@Override
+	public IamportResponse<Payment> verifyIamport(String impUid) {
+		try {
+			return this.iamportClient.paymentByImpUid(impUid);
+		} catch (IamportResponseException | IOException e) {
+			return null;
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }
