@@ -40,15 +40,21 @@
               </div>
               <div class="border"></div>
               <div class="tour-list">
+                <form class="search-form">
                 <div class="search-area">
-                  <div class="sort-button">
-                    <h3>날짜 순 ↓</h3>
-                  </div>
+                <select class="search-type" name="searchType">
+              <option value="boardId" ${"boardId" eq searchBoardVO.searchType ? "selected" : "" }>글번호</option>
+              <option value="subject" ${"subject" eq searchBoardVO.searchType ? "selected" : "" }>제목</option>
+              <option value="content" ${"content" eq searchBoardVO.searchType ? "selected" : "" }>내용</option>
+              <option value="subject+content" ${"subject+content" eq searchBoardVO.searchType ? "selected" : "" }>제목 +
+                내용</option>
+              <option value="name" ${"name" eq searchBoardVO.searchType ? "selected" : "" }>작성자 이름</option>
+              <option value="email" ${"email" eq searchBoardVO.searchType ? "selected" : "" }>작성자 이메일</option>
+            </select>
                   <input id="search-content" type="text" placeholder="찾고 싶은 투어를 검색해 주세요." />
-                  <div class="search-button">
-                    <h3>검색</h3>
-                  </div>
+                  <button type="button" class="search-button search-btn">검색</button>
                 </div>
+                </form>
                 <div class="list-area">
 
                   <c:choose>
@@ -85,17 +91,46 @@
 
 
                 </div>
-                <div class="page">
-                  <div>1</div>
-                  <div>2</div>
-                  <div>3</div>
-                  <div>4</div>
-                  <div>5</div>
-                  <div>6</div>
-                  <div>7</div>
-                  <div>8</div>
-                  <div>9</div>
-                </div>
+                
+                <ul class="page-nav">
+            <c:if test="${searchBoardVO.hasPreGroup}">
+              <li>
+                <!-- <a href="/board/list?pageNo=0&listSize=${searchBoardVO.listSize}"> -->
+                <a href="javascript:movePage(0)">
+                  처음
+                </a>
+              </li>
+              <li>
+                <a href="javascript:movePage(${searchBoardVO.prevGroupStartPageNo})">
+                  이전
+                </a>
+              </li>
+            </c:if>
+            <c:forEach begin="${searchBoardVO.groupStartPageNo}" end="${searchBoardVO.groupEndPageNo}" step="1" var="p">
+              <li class="${p eq searchBoardVO.pageNo ? 'active' : ''}">
+                <a href="/board/list?pageNo=${p}&listSize=${searchBoardVO.listSize}">
+
+                  ${p+1}
+
+                </a>
+              </li>
+            </c:forEach>
+            <c:if test="${searchBoardVO.hasNextGroup}">
+              <li>
+                <a href="javascript:movePage(${searchBoardVO.nextGroupStartPageNo})">
+                  다음
+                </a>
+              </li>
+              <li>
+                <a href="javascript:movePage(${searchBoardVO.pageCount - 1})">
+                  끝
+                </a>
+              </li>
+            </c:if>
+          </ul>
+                
+                
+                
               </div>
             </div>
           </div>
