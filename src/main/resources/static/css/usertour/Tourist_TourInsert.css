@@ -47,11 +47,10 @@ select {
 
 .inline-margin {
   display: inline-block;
-  margin-right: 1rem;
 }
 
 .inline-margin img {
-    margin-top: 0.5rem;
+    margin-top: 0.3rem;
     width: 1rem;
     height: 1rem;
 }
@@ -92,6 +91,12 @@ input[type="submit"] {
   margin-right: 1rem;
   border-radius: 0;
   padding: 0.5rem 1rem;
+}
+
+.font-we {
+	font-size: x-small;
+	color: #aaa;
+	margin-left: 1rem;
 }
 
 .hope-btn {
@@ -209,6 +214,16 @@ input {
 
 .locs:last-child {
   border: 0;
+}
+
+.time-select {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.time-select > input {
+	text-align: center;
+	width: 30%;
 }
 
 /*! jQuery Editable Select - v2.2.5 - https://github.com/indrimuska/jquery-editable-select - (c) 2016 Indri Muska - MIT */
