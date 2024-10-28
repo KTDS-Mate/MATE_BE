@@ -36,14 +36,8 @@ public class EmailController {
 	}
 	
 	@PostMapping("/verify-auth-code")
-	public Map<String, Boolean> verifyAuthCode(@RequestBody EmailVO emailVO) {
-		
-		// 입력된 인증 코드 유효성 검사. 결과를 isValid에 저장
-		boolean isValid = emailSendService.verifyAuthCode(emailVO);
-		
-		Map<String, Boolean> response = new HashMap<>();
-		response.put("valid", isValid);
-		
-		return response;
+	public Map<String, Object> verifyAuthCode(@RequestBody EmailVO emailVO) {
+		// emailSendService.verifyAuthCode에서 이미 response를 만들어서 반환하기 때문에 service에서 반환한 값을 그대로 전달한다.
+		return emailSendService.verifyAuthCode(emailVO);
 	}
 }

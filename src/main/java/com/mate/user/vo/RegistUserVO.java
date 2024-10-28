@@ -9,6 +9,7 @@ public class RegistUserVO {
 	private String usrId;
 	
 	@NotBlank(message = "아이디를 입력해주세요.")
+	@Size(min=4, max=20)
 	private String usrLgnId;
 
 	@NotBlank(message = "영문, 숫자, 특수 문자를 포함해서 8자 이상 16자 이하로 입력해주세요.")
@@ -40,6 +41,19 @@ public class RegistUserVO {
 	@NotBlank(message = "국적을 입력하세요.")
 	private String country;
 	
+	private String authVerified;
+	
+	// 국가 번호 코드
+	private String usrCntCode;
+	
+	public String getAuthVerified() {
+		return authVerified;
+	}
+
+	public void setAuthVerified(String authVerified) {
+		this.authVerified = authVerified;
+	}
+
 	public String getUsrId() {
 		return usrId;
 	}
@@ -134,5 +148,13 @@ public class RegistUserVO {
 
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+	public String getUsrCntCode() {
+		return usrCntCode;
+	}
+
+	public void setUsrCntCode(String usrCntCode) {
+		this.usrCntCode = usrCntCode;
 	}
 }

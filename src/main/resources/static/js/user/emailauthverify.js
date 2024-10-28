@@ -24,7 +24,7 @@ $().ready(function() {
 					alert("인증이 완료되었습니다. 회원 가입을 완료하세요!")
 					$("#authVerified").val("true");
 				} else {
-					alert("인증 코드가 일치하지 않습니다. 다시 확인해주세요.");
+					alert(response.message);
 				}
 			},
 			error: function() {
