@@ -27,4 +27,13 @@ public class EditProfileServiceImpl implements EditProfileService {
 
         return user;
     }
+
+	@Override
+	public int updateOneUser(UserVO userVO) {
+		
+		int success = this.editProfileDao.updateOneUser(userVO);
+		return success;
+	}
+    
+   
 }
