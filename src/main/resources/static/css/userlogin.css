@@ -76,3 +76,19 @@ body {
   font-size: 0.8rem;
   color: #a00;
 }
+
+.input-error {
+    border: 2px solid #ff0000 !important; 
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.2); 
+}
+
+.error-message {
+  font-size: 0.9rem;
+  color: #a00;
+  background-color: #ffe6e6; 
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+  text-align: center;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.1); 
+}

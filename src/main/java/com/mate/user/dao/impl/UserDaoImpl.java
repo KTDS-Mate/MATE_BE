@@ -45,6 +45,11 @@ public class UserDaoImpl extends SqlSessionDaoSupport implements UserDao {
 	}
 	
 	@Override
+	public int getPhnCount(String usrPhn) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".getPhnCount", usrPhn);
+	}
+	
+	@Override
 	public UserVO selectOneMember(LoginUserVO loginUserVO) {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectOneMember", loginUserVO);
 	}

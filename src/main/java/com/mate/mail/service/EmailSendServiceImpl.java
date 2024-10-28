@@ -1,5 +1,10 @@
 package com.mate.mail.service;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import org.slf4j.Logger;
@@ -75,8 +80,11 @@ public class EmailSendServiceImpl implements EmailSendService {
             
             // emailVO 객체에 생성한 authCode를 설정함
             emailVO.setAuthCode(authCode);
+            
+            // 전에 발급했던 인증 코드가 있는 경우 무효화
+            emailDao.invalidatePrevAuthCode(email);
             // 인증 정보 DB에 저장.
-            emailDao.saveAuthInfo(emailVO);
+            emailDao.insertNewAuthCode(emailVO);
             
         } catch (MessagingException e) {
             log.error("이메일 전송 중 에러가 발생했습니다. 이메일: {}", email, e);
@@ -86,17 +94,43 @@ public class EmailSendServiceImpl implements EmailSendService {
 	}
 	
 	@Override
-	public boolean verifyAuthCode(EmailVO emailVO) { // 인증 코드 검증
+	public Map<String, Object> verifyAuthCode(EmailVO emailVO) { // 인증 코드 검증
 		
+		Map<String, Object> response = new HashMap<>();
 		// AuthCode 가져오기
-		// DB의 email주소에 매핑되어있는 인증 코드를 가져온다. emailDao.saveAuthInfo(emailVO);
-		String authCode = emailDao.getAuthCodeByEmail(emailVO.getEmail());
+		// DB의 email주소에 매핑되어있는 인증 코드와 발급시간을 가져온다.
+		EmailVO storedEmailVO = emailDao.getAuthCodeByEmail(emailVO.getEmail()); 
+		log.debug("storedEmailVO null 체크: {}", storedEmailVO);
 		
-		// DB의 authCode가 null이 아니고 emailVO에 저장된 authcode와 값이 같으면
-		if (authCode != null && authCode.equals(emailVO.getAuthCode())) {
-			// 인증코드가 일치하면 true 반환
-			return true;
+		// DB에 저장된 authCode가 null 일 경우 false 반환
+		if (storedEmailVO == null) {
+			response.put("valid", false);
+			response.put("message", "인증 코드가 존재하지 않습니다.");
+			return response;
 		}
-		return false;
+		
+		// 발급 시간과 현재 시간을 비교하여 5분 이내인지 확인
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd HH:mm:ss");
+		LocalDateTime issueTime  = LocalDateTime.parse(storedEmailVO.getIssueTime(), formatter);
+		LocalDateTime currentTime = LocalDateTime.now();
+		
+		// 만약 5분을 초과했다면 인증 실패
+		if (Duration.between(issueTime, currentTime).toMinutes() > 5) {
+			response.put("valid", false);
+			response.put("message", "인증 코드 유효시간이 초과되었습니다.");
+			return response;
+		}
+		
+		// 인증코드가 일치할 경우 true 반환
+		if (storedEmailVO.getAuthCode().trim().equals(emailVO.getAuthCode().trim())) {
+			response.put("valid", true);
+			response.put("message", "인증이 완료되었습니다.");
+		// 실패할 경우 False 반환
+		} else {
+			response.put("valid", false);
+			response.put("message", "인증코드가 일치하지 않습니다.");
+		}
+		
+		return response;
 	}
 }

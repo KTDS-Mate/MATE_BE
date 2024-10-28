@@ -4,8 +4,8 @@ div.content-grid {
   column-gap: 3rem;
 }
 
-div.my-page > ul.list > li.calendar{
-	color: #333;
+div.my-page > ul.list > li.calendar {
+  color: #333;
 }
 
 div.main-content {
@@ -92,7 +92,7 @@ p.month-plus {
 }
 
 span.month {
-  font-size: 2rem;
+  font-size: 1rem;
   color: #333;
 }
 

@@ -108,12 +108,12 @@
                 <div class="guideRatingInArea"><div class="rectangle-3"></div></div>
                 <div class="main-area">
                   <div class="ratingAvgArea">
-                    <img class="star" src="/public/Star 1.png" />
+                    <img class="star" src="/public/Star.png" />
                     <div class="text-wrapper-14">4.8</div>
                   </div>
                   <div class="rating-one">
                     <div class="div-2">
-                      <img class="star" src="/public/Star 1.png" />
+                      <img class="star" src="/public/Star.png" />
                       <div class="text-wrapper-14">1</div>
                     </div>
                     <div class="rating-count">0</div>
@@ -123,7 +123,7 @@
                   </div>
                   <div class="rating-two">
                     <div class="div-2">
-                      <img class="star" src="/public/Star 1.png" />
+                      <img class="star" src="/public/Star.png" />
                       <div class="text-wrapper-14">2</div>
                     </div>
                     <div class="rating-count">0</div>
@@ -133,7 +133,7 @@
                   </div>
                   <div class="rating-three">
                     <div class="div-2">
-                      <img class="star" src="/public/Star 1.png" />
+                      <img class="star" src="/public/Star.png" />
                       <div class="text-wrapper-14">3</div>
                     </div>
                     <div class="rating-count">1</div>
@@ -143,7 +143,7 @@
                   </div>
                   <div class="rating-four">
                     <div class="div-2">
-                      <img class="star" src="/public/Star 1.png" />
+                      <img class="star" src="/public/Star.png" />
                       <div class="text-wrapper-14">4</div>
                     </div>
                     <div class="rating-count">124</div>
@@ -153,7 +153,7 @@
                   </div>
                   <div class="rating-five">
                     <div class="div-2">
-                      <img class="star" src="/public/Star 1.png" />
+                      <img class="star" src="/public/Star.png" />
                       <div class="text-wrapper-14">5</div>
                     </div>
                     <div class="rating-count">4834</div>
@@ -168,11 +168,11 @@
                         <div class="review-write-day">SEP. 2024</div>
                       </div>
                       <div class="review-rating">
-                        <img class="star-2" src="/public/Star 1.png" />
-                        <img class="star-3" src="/public/Star 1.png" />
-                        <img class="star-4" src="/public/Star 1.png" />
-                        <img class="star-5" src="/public/Star 1.png" />
-                        <img class="star-6" src="/public/Star 1.png" />
+                        <img class="star-2" src="/public/Star.png" />
+                        <img class="star-3" src="/public/Star.png" />
+                        <img class="star-4" src="/public/Star.png" />
+                        <img class="star-5" src="/public/Star.png" />
+                        <img class="star-6" src="/public/Star.png" />
                       </div>
                       <div class="review-writer">RainyMoon</div>
                       <p class="review-plot-area">Yuki is an Amazing Guide!!</p>

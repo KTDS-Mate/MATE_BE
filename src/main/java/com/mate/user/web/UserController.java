@@ -29,21 +29,29 @@ public class UserController {
 	UserService userService;
 	
 	@GetMapping("/user/regist")
-	public String viewCreateUserPage() {
+	public String viewCreateUserPage(Model model) {
+		model.addAttribute("registUserVO", new RegistUserVO());
 		return "user/userregist";
 	}
 	
 	@PostMapping("/user/regist")
 	public String doCreateUser(@Valid RegistUserVO registUserVO, BindingResult bindingResult, Model model) {
 		
-		if (bindingResult.hasErrors()) {
-			model.addAttribute("userVO", registUserVO);
+		// 이메일 인증이 되지 않을 경우 회원가입 진행 불가 설정
+		if (!"true".equals(registUserVO.getAuthVerified())) {
+			bindingResult.rejectValue("authVerified", "error.authVerified", "이메일 인증을 완료해야 회원가입이 완료됩니다. 이메일을 인증해주세요.");
 			return "user/userregist";
 		}
 		
-		if (!registUserVO.getConfirmPw().equals(registUserVO.getUsrPw())) {
-			model.addAttribute("error_password", "비밀번호가 일치하지 않습니다.");
-			model.addAttribute("userVO", registUserVO);
+		// 비밀번호가 불일치될 경우 회원 가입 진행 불가 설정
+		if (!registUserVO.getUsrPw().trim().equals(registUserVO.getConfirmPw().trim())) {
+			bindingResult.rejectValue("confirmPw", "error_password", "비밀번호가 일치하지 않습니다.");
+			model.addAttribute("registUserVO", registUserVO);
+			return "user/userregist";
+		}
+		
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("registUserVO", registUserVO);
 			return "user/userregist";
 		}
 		
@@ -76,6 +84,18 @@ public class UserController {
 		return response;
 	}
 	
+	@ResponseBody
+	@GetMapping("/user/regist/availablephn")
+	public Map<String, Object> doCheckAvailablePhn(@RequestParam String usrPhn) {
+		boolean isAvailablePhn = this.userService.checkAvailablePhn(usrPhn);
+		
+		Map<String, Object> response = new HashMap<>();
+		response.put("usrPhn", usrPhn);
+		response.put("available", isAvailablePhn);
+		
+		return response;
+	}
+	
 	@GetMapping("/user/login")
 	public String viewLoginPage() {
 		return "user/userlogin";
@@ -84,21 +104,42 @@ public class UserController {
 	@PostMapping("/user/login")
 	public String doLogin(@Valid LoginUserVO loginUserVO, BindingResult bindingResult, HttpSession session, Model model) {
 		
+		// 아이디나 비밀번호가 입력되지 않았을 경우 개별적으로 에러를 추가.
+//		if (loginUserVO.getUsrLgnId() == null || loginUserVO.getUsrLgnId().trim().isEmpty()) {
+//			bindingResult.rejectValue("usrLgnId", "error.usrLgnId", "아이디를 입력해주세요.");
+//		}
+//		if (loginUserVO.getUsrPwd() == null || loginUserVO.getUsrPwd().trim().isEmpty()) {
+//			bindingResult.rejectValue("usrPwd", "error.usrPwd", "비밀번호를 입력해주세요.");
+//		}
+		// 위 두개의 바인딩 에러가 있으면 로그인 페이지로 돌아간다.
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("loginUserVO", loginUserVO);
 			return "user/userlogin";
 		}
 		
 		UserVO userVO = this.userService.readUser(loginUserVO);
+		
+		// 아이디 또는 비밀번호가 잘못 입력된 경우
+		if (userVO == null) { 
+			// 에러메세지 설정
+			model.addAttribute("loginError", "아이디 또는 비밀번호가 올바르지 않습니다.");
+			// 폼 데이터 유지
+			//model.addAttribute("loginUserVO", loginUserVO);
+			//bindingResult.reject("loginError", "아이디 또는 비밀번호가 올바르지 않습니다.");
+			return "user/userlogin"; 
+		}
+		
+		// 로그인 성공 시 세션 저장 및 리다이렉트
 		session.setAttribute("_LOGIN_USER_", userVO);
-//		return "redirect:" + loginUserVO.getNextUrl();
-		return "redirect:/mate";
+		String nextUrl = loginUserVO.getNextUrl();
+		return "redirect:" + (nextUrl != null && !nextUrl.isEmpty() ? nextUrl : "/");
+		//return "redirect:/";
 	}
 
 	@GetMapping("/user/logout")
 	public String doLogout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/mate";
+		return "redirect:/";
 	}
 	
 	/*

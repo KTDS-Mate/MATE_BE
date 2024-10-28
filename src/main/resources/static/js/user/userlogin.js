@@ -9,7 +9,7 @@ $().ready(function () {
 	// 만약 현재 경로가 user/login이면 로그인을 하려는 것.
 	if (pathname === "/user/login") {
 		// 다음으로 보여줄 url은 /mate
-		nextUrl = "/mate";
+		nextUrl = "/";
 		
 	} else {
 		// 현재 페이지가 로그인 페이지가 아니면 -> 로그인 후에 현재 페이지로 돌아 갈 수 있도록 설정.

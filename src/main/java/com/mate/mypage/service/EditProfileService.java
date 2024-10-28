@@ -6,6 +6,6 @@ public interface EditProfileService {
 
     public int countUsers();
 
-    public UserVO selectOneUser(String usrId);
+    public UserVO selectOneUser(String usrLgnId);
 
 }

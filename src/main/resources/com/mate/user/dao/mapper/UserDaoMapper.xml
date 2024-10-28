@@ -14,6 +14,7 @@
 		     , USR_GNDR 
 		     , USR_EML 
 		     , USR_PHN
+		     , USR_CNT_CODE
 		     , USR_BD
 		     , SALT
 		     , LOGIN_FAIL_COUNT)
@@ -26,6 +27,7 @@
 		     , #{usrGndr}
 		     , #{usrEml}
 		     , #{usrPhn}
+		     , #{usrCntCode}
 		     , TO_DATE(#{usrBd}, 'YYYY-MM-DD')
 		     , #{salt}
 		     , 0)
@@ -42,6 +44,12 @@
   		  FROM USR_INF
  		 WHERE USR_EML = #{_parameter}
 	</select>
+	
+	<select id="getPhnCount" parameterType="String" resultType="_int">
+		SELECT COUNT(1)
+  		  FROM USR_INF
+ 		 WHERE USR_PHN = #{_parameter}
+	</select>	
 	
 	<select id="selectSalt" parameterType="String" resultType="String">
 		SELECT SALT
@@ -60,6 +68,7 @@
 		     , LATEST_LOGIN_IP 
 		     , TO_CHAR(LATEST_LOGIN_SUCCESS_DATE, 'YYYY-MM-DD HH24:MI:SS') LATEST_LOGIN_SUCCESS_DATE
 		     , USR_IS_CL
+		     , USR_IS_GD
 		  FROM USR_INF
 		 WHERE USR_LGN_ID = #{usrLgnId}
 		   AND USR_PWD = #{usrPwd}
