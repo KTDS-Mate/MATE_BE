@@ -21,7 +21,6 @@ public class PortOneServiceImpl implements PortOneService {
     private final String BASE_URL = "https://api.portone.io/v1";
 
     private final IamportClient iamportClient;
-	
     
     @Autowired
     public PortOneServiceImpl(@Value("${portone.api.key}") String key,
@@ -43,14 +42,10 @@ public class PortOneServiceImpl implements PortOneService {
 		return null;
 	}
 	
-	@Override
-	public IamportResponse<Payment> verifyIamport(String impUid) {
-		try {
-			return this.iamportClient.paymentByImpUid(impUid);
-		} catch (IamportResponseException | IOException e) {
-			return null;
-		}
-	}
+	
+	
+	
+	
 	
 	
 	

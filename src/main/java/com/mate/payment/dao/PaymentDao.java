@@ -18,6 +18,7 @@ public interface PaymentDao {
 	
 	public PaymentVO selectOnePayment(String payId);
 	
+	public double selectOnePaymentAmount(String payId);
 	
 	
 	

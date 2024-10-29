@@ -1,25 +1,26 @@
 $().ready(function () {
   IMP.init("imp22850400");
-  const merchant_uid = $('.payId').text();
-  console.log("payId는 " + merchant_uid);
+  const merchantUid = $('.payId').text();
+  console.log("payId는 " + merchantUid);
 
   const amount = $('.payCsh').text();	// 결제금액 못 바꾸도록 고정
   console.log("가격은 " + amount);
   
   if ($('.payTrTp').text() === "GUIDE"){
-  	const name = $('.gdTrTtl').text();
+  	var title = $('.gdTrTtl').text();
   } else if($('.payTrTp').text() === "TOURIST") {
-	const name = $('.usrTrTtl').text();
+	var title = $('.usrTrTtl').text();
   }
+  const name = title;
   console.log("결제할 이름 " + name)
   
-  const buyer_name = $('.trstId').text();
-  console.log("결제자 유저 UID " + buyer_name)
+  const buyerName = $('.trstId').text();
+  console.log("결제자 유저 UID " + buyerName)
   
   
   var pg = "kakaopay"	// 얜 나중에 바꿀 수 있도록 함수를 만들 예정이다.
-  var pay_method = "card";	// 위의 pg와 마찬가지 
-  var m_redirect_url = "www.naver.com";
+  var payMethod = "card";	// 위의 pg와 마찬가지 
+  var mRedirectUrl = "www.naver.com";
   
 	  // 결제에 성공하면 이 uid로 다시 결제 못한다. PK처럼 중복이 안되는 값을 넣어야한다.
   // pay_inf의 pk
@@ -37,23 +38,71 @@ $().ready(function () {
 	});
   });
   
+  $('.do').on("click", function(){
+	$.ajax({
+		type: 'get',
+		url : '/verifyPayment',
+		data : {"payId": merchantUid, "amount": amount },
+		success: function(result) {
+			console.log("변조 검사를 실시합니다.");
+			if (result == true){
+				alert("올바른 결제입니다. 이용해주셔서 감사합니다.")
+				// 결제 완료 ajax 실행
+				
+				
+			} else {
+				alert("위조된 결제입니다. 결제를 취소합니다.")
+				// TODO 결제 취소
+			}
+		},
+		error : function() {
+			alert("결제 검증에 실패했습니다. 결제를 취소합니다.");
+			// TODO 여기에 결제 취소가 들어가야한다.(일단 취소되는지 확인을 먼저 해야함)
+		}
+	});
+  });
+  
+  
 
   $("button.kakaopay-btn").on("click", function () {
     IMP.request_pay(
       {
         pg: "kakaopay",
-        pay_method: pay_method,
+        pay_method: payMethod,
         amount: amount, // 구매가격
         name: name, // 구매물품 이름
-        merchant_uid: merchant_uid, // 결제에 대한 PK값 우리는 결제내역 ID가져오면 됨
-        // 여기에 추가적인 내용을 추가할 수 있음, 자세한 것은 포트원 API페이지 참조
+        merchant_uid: merchantUid, // 결제에 대한 PK값 우리는 결제내역 ID가져오면 됨
+		buyer_name: buyerName,	//이름대신 아이디긴 함
+		
       },
       function (rsp) {
 		if (rsp.success) {
-			//성공한 경우
 			console.log("결제 완료");
-			
-			var msg = '결제가 완료되었습니다.';
+			var msg = '결제 완료';
+			msg += '// 고유ID : ' + rsp.imp_uid;
+			msg += '// 상점 거래ID : ' + rsp.merchant_uid;
+			msg += '// 졀게 금액 : ' + rsp.paid_amount;
+			$.ajax({
+				type: 'get',
+				url : '/verifyPayment',
+				data : {"payId": rsp.merchant_uid, "amount": rsp.paid_amount },
+				success: function(result) {
+					console.log("변조 검사를 실시합니다.");
+					if (result == true){
+						alert("올바른 결제입니다. 이용해주셔서 감사합니다.")
+						// 결제 완료 ajax 실행
+						
+						
+					} else {
+						alert("위조된 결제입니다. 결제를 취소합니다.")
+						// TODO 결제 취소
+					}
+				},
+				error : function() {
+					alert("결제 검증에 실패했습니다. 결제를 취소합니다.");
+					// TODO 여기에 결제 취소가 들어가야한다.(일단 취소되는지 확인을 먼저 해야함)
+				}
+			});
 			var result = {
 				"payId": rsp.merchant_uid, // 결제번호
 				//등등

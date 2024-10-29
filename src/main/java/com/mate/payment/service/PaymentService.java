@@ -11,4 +11,7 @@ public interface PaymentService {
 	
 	public PaymentVO getPaymentDetail(String payId);
 	
+	public double getPayAmount(String payId);
+	
+	
 }
