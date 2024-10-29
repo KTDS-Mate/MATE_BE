@@ -114,7 +114,8 @@
 
 .price-person {
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+    align-items: center;
 }
 
 .price-ad-c {
@@ -271,4 +272,13 @@ a:hover {
   border-radius: 20px;
   width: 75rem;
   height: 15rem;
+}
+
+.reserve-btn > button {
+	padding: 1rem;
+	margin-top: 2rem;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	color: #333;
 }

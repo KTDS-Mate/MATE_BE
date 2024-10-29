@@ -1,4 +1,32 @@
 $().ready(function() {
+
+	$("#inputYear").on("change", function() {
+		// 현재 날짜(년월일)보다 느리면(이전이면) 안됨
+		// 현재 날짜를 가져옴
+		var today = new Date();
+
+		var year = today.getFullYear();
+		var month = ('0' + (today.getMonth() + 1)).slice(-2);
+		var day = ('0' + today.getDate()).slice(-2);
+		// 포맷 맞추기
+		var dateString = year + '-' + month + '-' + day
+		// 입력한 값 가져옴
+		var inputYear = $("#inputYear").val();
+		// Date 타입으로 변환
+		var nowDate = new Date(dateString);
+		var inputDate = new Date(inputYear);
+		// 만약 입력 한 시간이 현재 시간보다 느리다(이전이다)라면 입력 값 초기화
+		if (nowDate > inputDate) {
+			alert("지난 날은 입력하실 수 없습니다!");
+			$(this).val("");
+			$("#start-time").attr('disabled', 'disabled');
+		}
+		else {
+			$("#start-time").removeAttr('disabled');
+		}
+
+	});
+	
 	// 현재 모든 날짜와 시간을 가져옴
 	var nowDate = new Date();
 	// 현재 시간을 가져옴
@@ -7,78 +35,19 @@ $().ready(function() {
 	var nowMinutes = nowDate.getMinutes();
 	// 비교 대상과의 포멧을 맞춤
 	var nowTime = nowHour + ':' + nowMinutes;
-	
 	// 시작 시간 기본 값을 현재 시간으로 설정
 	$("#start-time").val(nowTime);
 	
-	$("#inputYear").on("change", function() {
-		// 현재 날짜(년월일)보다 느리면(이전이면) 안됨
-		// 현재 날짜를 가져옴
-		var today = new Date();
-		var year = today.getFullYear();
-		var month = ('0' + (today.getMonth() + 1)).slice(-2);
-		var day = ('0' + today.getDate()).slice(-2);
-		// 포맷 맞추기
-		var dateString = year + '-' + month + '-' + day
-		// 입력한 값 가져옴
-		var inputYear = $(this).val();
-		// Date 타입으로 변환
-		var nowDate = new Date(dateString);
-		var inputDate = new Date(inputYear);
-		// int 타입으로 변환
-		var formattingNow = dateString.replace(/-/gi, "");
-		var formattingInput = inputYear.replace(/-/gi, "");
-		var intNow = parseInt(formattingNow);
-		var intInput = parseInt(formattingInput);
-		
-		if (intNow === intInput) {
-			// 만약 당일로 다시 바꾼다면?
-			// 시간 입력 값 초기화
-			$("#start-time").val("");
-			$("#end-time").val("");
-		}
-		// 만약 입력 한 시간이 현재 시간보다 느리다(이전이다)라면 입력 값 초기화
-		if (nowDate > inputDate) {
-			alert("지난 날은 입력하실 수 없습니다!");
-			$(this).val("");
-			$("#start-time").attr('disabled', 'disabled');
-			$("#start-time").val(nowTime);
-		}
-		else {
-			$("#start-time").removeAttr('disabled');
-			$("#start-time").val(nowTime);
-		}
-		
-	});
-
 	$("#start-time").on('change', function() {
-		var today = new Date();
-		var year = today.getFullYear();
-		var month = ('0' + (today.getMonth() + 1)).slice(-2);
-		var day = ('0' + today.getDate()).slice(-2);
-
-		var nowDateString = year + month + day; // YYYYMMDD
-		var inputDateString = $("#inputYear").val(); // YYYY-MM-DD
-		inputDateString = inputDateString.replace(/-/gi, ""); // YYYYMMDD
-		// 현재 날짜를 Int로 변경
-		var intNowDate = parseInt(nowDateString);
-		// 입력한 날짜를 Int로 변경
-		var intInputDate = parseInt(inputDateString);
-		// 당일 예약이라면? 
-		// 현재 시간보다 이전을 선택할 수 없게 해야 함
+		// 입력한 값을 가져옴
 		var inputVal = $(this).val();
-		if (intNowDate === intInputDate) {
-			if (inputVal < nowTime) {
-				alert("현재 시간보다 이전을 선택하실 수 없습니다!");
-				$(this).val("");
-			}
-			else {
-				// 올바르게 입력했다면 disabled 해제
-				$("#end-time").removeAttr("disabled");
-			}
+		// 입력한 값이 현재 시간보다 이전이라면 alert후 값 초기화
+		if (inputVal < nowTime) {
+			alert("현재 시간보다 이전을 선택하실 수 없습니다!");
+			$(this).val("");
 		}
+		// 올바르게 입력했다면 disabled 해제
 		else {
-			// 아니라면 모든 시간대 선택 가능
 			$("#end-time").removeAttr("disabled");
 		}
 	});
@@ -174,27 +143,30 @@ $().ready(function() {
 				var cityOption = $(`<option value="${cityResult.cities[i].cityId}">${cityResult.cities[i].cityName}</option>`);
 				$("#city").append(cityOption);
 			}
+
 		});
 
 	});
-
-	$("#tourNp").on('change', function() {
+	
+	$("#tourNp").on('change', function () {
 		var npVal = $(this).val();
-
+		
 		if (npVal < 1) {
 			alert("음수를 지정할 수 없습니다!");
 			$(this).val(1);
 		}
 	});
-
-	$("#trPrc").on('change', function() {
+	
+	$("#trPrc").on('change', function () {
 		var trPrcVal = $(this).val();
-
+		
 		if (trPrcVal < 30) {
 			alert("최소 가격은 30$ 이상입니다!");
 			$(this).val(30);
 		}
-
+		
 	});
+	
+	
 
 });
