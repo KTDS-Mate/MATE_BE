@@ -45,12 +45,14 @@ uri="http://www.springframework.org/tags/form" %>
               <div class="select-div">
                 <span class="red">*</span> 투어 지역 선택
               </div>
-              <select id="region" required="required">
-              	<option value="">대륙 선택</option>
-              </select>
-              <select id="country" disabled="disabled" required="required">
-              	<option value="">국가 선택</option>
-              </select>
+              <div>
+	              <select id="region" required="required">
+	              	<option value="">대륙 선택</option>
+	              </select>
+	              <select id="country" disabled="disabled" required="required">
+	              	<option value="">국가 선택</option>
+	              </select>
+              </div>
               <select id="city" name="trCtId" disabled="disabled" required="required">
               	<option value="">도시 선택</option>
               </select>
@@ -121,7 +123,9 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
             </div>
             <div class="all-select-div">
               <div class="inline">
-                <div class="select-div">투어 이미지 추가</div>
+                <div class="select-div">투어 이미지 추가<span class="font-we"
+                  >&lt;img, png, svc 파일만 넣을 수 있습니다.&gt;</span
+                ></div>
                 <input type="file" multiple="multiple" />
                 <div class="file-list"></div>
               </div>
@@ -129,7 +133,7 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
                 <div class="select-div">
                   <span class="red">*</span> 집결 장소 선택
                 </div>
-                <a><span class="red-font">Open In Google Map</span></a>
+                <div id="googleMap"></div>
               </div>
             </div>
             <div class="all-select-div">
@@ -181,7 +185,8 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
                     name="usrTrGdHrPrc"
                     type="number"
                     value="${userTourWriteVO.usrTrGdHrPrc}"
-                    step="0.01" />
+                    step="0.01"
+                    placeholder="min:30$"/>
                   <div>$</div>
                 </div>
                 <div class="right-align">

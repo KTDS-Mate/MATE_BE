@@ -41,6 +41,18 @@ select {
   border-radius: 10px;
 }
 
+#region {
+	width: 6rem;
+}
+
+#country {
+	width: 20rem;
+}
+
+#city {
+	width: 28.5rem;
+}
+
 .flex-hour-div {
   display: flex;
   justify-content: center;

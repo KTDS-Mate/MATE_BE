@@ -7,7 +7,7 @@ $().ready(function() {
 	var nowMinutes = nowDate.getMinutes();
 	// 비교 대상과의 포멧을 맞춤
 	var nowTime = nowHour + ':' + nowMinutes;
-
+	
 	// 시작 시간 기본 값을 현재 시간으로 설정
 	$("#start-time").val(nowTime);
 	
@@ -21,10 +21,22 @@ $().ready(function() {
 		// 포맷 맞추기
 		var dateString = year + '-' + month + '-' + day
 		// 입력한 값 가져옴
-		var inputYear = $("#inputYear").val();
+		var inputYear = $(this).val();
 		// Date 타입으로 변환
 		var nowDate = new Date(dateString);
 		var inputDate = new Date(inputYear);
+		// int 타입으로 변환
+		var formattingNow = dateString.replace(/-/gi, "");
+		var formattingInput = inputYear.replace(/-/gi, "");
+		var intNow = parseInt(formattingNow);
+		var intInput = parseInt(formattingInput);
+		
+		if (intNow === intInput) {
+			// 만약 당일로 다시 바꾼다면?
+			// 시간 입력 값 초기화
+			$("#start-time").val("");
+			$("#end-time").val("");
+		}
 		// 만약 입력 한 시간이 현재 시간보다 느리다(이전이다)라면 입력 값 초기화
 		if (nowDate > inputDate) {
 			alert("지난 날은 입력하실 수 없습니다!");
@@ -36,7 +48,7 @@ $().ready(function() {
 			$("#start-time").removeAttr('disabled');
 			$("#start-time").val(nowTime);
 		}
-
+		
 	});
 
 	$("#start-time").on('change', function() {
@@ -162,7 +174,6 @@ $().ready(function() {
 				var cityOption = $(`<option value="${cityResult.cities[i].cityId}">${cityResult.cities[i].cityName}</option>`);
 				$("#city").append(cityOption);
 			}
-
 		});
 
 	});
@@ -185,7 +196,5 @@ $().ready(function() {
 		}
 
 	});
-
-
 
 });
