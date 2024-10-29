@@ -51,24 +51,15 @@ uri="http://www.springframework.org/tags/form" %>
               <div class="select-div">
                 <span class="red">*</span> 투어 지역 선택
               </div>
-              <input
-                id="region"
-                type="text"
-                data-filter="true"
-                placeholder="대륙 선택" />
-              <input
-                id="country"
-                type="text"
-                data-filter="true"
-                placeholder="국가 선택"
-                disabled="disabled" />
-              <input
-                id="city"
-                type="text"
-                data-filter="true"
-                placeholder="도시 선택"
-                disabled="disabled" />
-              <input id="hidden-ipt" type="hidden" name="trCtId" />
+              <select id="region">
+              	<option value="">대륙 선택</option>
+              </select>
+              <select id="country">
+              	<option value="">국가 선택</option>
+              </select>
+              <select id="city">
+              	<option value="">도시 선택</option>
+              </select>
             </div>
             <div class="all-select-div">
               <div class="select-div"><span class="red">*</span> 날짜 선택</div>

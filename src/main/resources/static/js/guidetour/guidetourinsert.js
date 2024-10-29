@@ -70,5 +70,15 @@ $().ready(function() {
 	$("#end-minutes").on("change", function() {
 
 	});
-
+	// 대륙 select
+	$.get(`/tour/regions`, {}, function(regionResult) {
+		
+		var regionCnt = regionResult.regionsCount;
+		
+		for (var i = 0; i < regionCnt; i++) {
+			var regionDom = $(`<option value=${regionResult.regions[i].regionId}>${regionResult.regions[i].regionName}</option>`);
+			$("#region").append(regionDom);
+		}
+	});
+	
 });
