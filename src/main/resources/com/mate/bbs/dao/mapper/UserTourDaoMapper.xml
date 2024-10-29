@@ -67,7 +67,7 @@
 		, USR_TR_ED_DT)
 		VALUES
 		 (#{usrTrPstId}
-		, '1'
+		, #{athrId}
 		, NULL
 		, #{usrTrTtl}
 		, TO_DATE(#{usrTrStDt}, 'YYYY-MM-DD HH24:MI')

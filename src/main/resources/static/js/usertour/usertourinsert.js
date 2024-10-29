@@ -1,4 +1,27 @@
 $().ready(function() {
+
+	$("#inputYear").on("change", function() {
+		// 현재 날짜(년월일)보다 느리면(이전이면) 안됨
+		// 현재 날짜를 가져옴
+		var today = new Date();
+
+		var year = today.getFullYear();
+		var month = ('0' + (today.getMonth() + 1)).slice(-2);
+		var day = ('0' + today.getDate()).slice(-2);
+		// 포맷 맞추기
+		var dateString = year + '-' + month + '-' + day
+		// 입력한 값 가져옴
+		var inputYear = $("#inputYear").val();
+		// Date 타입으로 변환
+		var nowDate = new Date(dateString);
+		var inputDate = new Date(inputYear);
+		// 만약 입력 한 시간이 현재 시간보다 느리다(이전이다)라면 입력 값 초기화
+		if (nowDate > inputDate) {
+			alert("현재 시간보다 빠른 날짜는 입력하실 수 없습니다!");
+			$(this).val("");
+		}
+	});
+
 	// 투어 희망 정보를 입력할 때 추가하기 버튼을 누르면 실행
 	$("#plus").on("click", function() {
 		// 가상 돔으로 추가되는 div의 길이를 구함 -> index를 알기 위해
@@ -293,6 +316,31 @@ $().ready(function() {
 		duration: 200,
 		appendTo: "body",
 	});
+	$("#start-hour").editableSelect({
+		effects: "slide",
+		duration: 200,
+		appendTo: "body",
+		filter: false,
+	});
+	$("#start-minutes").editableSelect({
+		effects: "slide",
+		duration: 200,
+		appendTo: "body",
+		filter: false,
+	});
+	$("#end-hour").editableSelect({
+		effects: "slide",
+		duration: 200,
+		appendTo: "body",
+		filter: false,
+	});
+	$("#end-minutes").editableSelect({
+		effects: "slide",
+		duration: 200,
+		appendTo: "body",
+		filter: false,
+	});
+
 	// 맨 처음 한번만 가져옴
 	$.get("/tour/regions", {}, function(regionsResult) {
 		// 대륙 수
@@ -355,5 +403,106 @@ $().ready(function() {
 		var cityId = li.val();
 		$("#hidden-ipt").attr('value', cityId)
 	});
-	
+
+	// 시작 시작 보다 빠른 시간을 선택할 수 없게 막아야 함. 어케하지?
+	for (var i = 0; i < 24; i++) {
+		$("#start-hour").editableSelect('add', function() {
+			$(this).attr('value', i);
+			$(this).text(i + ' 시');
+		});
+	}
+	$("#start-hour").editableSelect().on("select.editable-select", function(e, li) {
+		var startHour = li.val();
+		$("#hidden-start-hour").attr('value', startHour);
+	});
+	for (var i = 0; i < 60; i++) {
+		$("#start-minutes").editableSelect('add', function() {
+			if (i < 10) {
+				$(this).attr('value', '0' + i);
+				$(this).text(i + ' 분');
+			}
+			else {
+				$(this).attr('value', i);
+				$(this).text(i + ' 분');
+			}
+		});
+	}
+	$("#start-minutes").editableSelect().on("select.editable-select", function(e, li) {
+		var startMinutes = li.val();
+		if (startMinutes < 10) {
+			$("#hidden-start-minutes").attr('value', '0' + startMinutes);
+		}
+		else {
+			$("#hidden-start-minutes").attr('value', startMinutes);
+		}
+		$("#end-hour").removeAttr("disabled");
+		$("#end-minutes").removeAttr("disabled");
+	});
+	for (var i = 0; i < 24; i++) {
+		$("#end-hour").editableSelect('add', function() {
+			$(this).attr('value', i);
+			$(this).text(i + ' 시');
+		});
+	}
+	$("#end-hour").editableSelect().on("select.editable-select", function(e, li) {
+		var startHour = li.val();
+		$("#hidden-end-hour").attr('value', startHour);
+	});
+	for (var i = 0; i < 60; i++) {
+		$("#end-minutes").editableSelect('add', function() {
+			if (i < 10) {
+				$(this).attr('value', '0' + i);
+				$(this).text(i + ' 분');
+			}
+			else {
+				$(this).attr('value', i);
+				$(this).text(i + ' 분');
+			}
+		});
+	}
+	$("#end-minutes").editableSelect().on("select.editable-select", function(e, li) {
+		var startHour = li.val();
+		if (startHour < 10) {
+			$("#hidden-end-minutes").attr('value', '0' + startHour);
+		}
+		else {
+			$("#hidden-end-minutes").attr('value', startHour);
+		}
+		var startTime = $("#hidden-start-hour").val() + $("#hidden-start-minutes").val();
+		var endTime = $("#hidden-end-hour").val() + $("#hidden-end-minutes").val();
+		checkTourTime(startTime, endTime);
+	});
+
 });
+
+
+function checkTourTime(startTime, endTime) {
+	var start = parseInt(startTime);
+	var end = parseInt(endTime);
+	// 만약 종료 시간을 더 빠르게 입력했다면
+	if (start >= end) {
+		alert("시작 시간보다 빠르게 선택하실 수 없습니다!");
+		// 초기화 시킨 후 다시 append
+		$("#end-hour").editableSelect('clear');
+		for (var i = 0; i < 24; i++) {
+			$("#end-hour").editableSelect('add', function() {
+				$(this).attr('value', i);
+				$(this).text(i + ' 시');
+			});
+		}
+		$("#end-minutes").editableSelect('clear');
+		for (var i = 0; i < 60; i++) {
+			$("#end-minutes").editableSelect('add', function() {
+				if (i < 10) {
+					$(this).attr('value', '0' + i);
+					$(this).text(i + ' 분');
+				}
+				else {
+					$(this).attr('value', i);
+					$(this).text(i + ' 분');
+				}
+			});
+		}
+	}
+
+}
