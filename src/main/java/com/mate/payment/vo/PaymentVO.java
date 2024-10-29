@@ -8,9 +8,14 @@ public class PaymentVO {
 	private String payId;
 
 	/**
-	 * 여행자의 회원아이디(로그인 아이디임)
+	 * 여행자의 회원아이디
 	 */
 	private String trstId;
+	
+	/**
+	 * 여행자의 이름
+	 */
+	private String trstName;
 
 	/**
 	 * 가이드 아이디
@@ -63,10 +68,15 @@ public class PaymentVO {
 	private String payCmpltDt;
 
 	/**
-	 * 포트원 식별번호
+	 * 포트원 식별번호(iam_uid)
 	 */
-	private String payKey;
+	private String iamUid;
 
+	/**
+	 * 포트원에 부여한 식별번호
+	 */
+	private String iamMid;
+	
 	/**
 	 * 결제를 한 수단 (CARD, ACCOUNT 등)
 	 */
@@ -81,7 +91,8 @@ public class PaymentVO {
 	 * 결제 수수료
 	 */
 	private double payCmmssn;
-
+	
+	
 	public String getPayId() {
 		return payId;
 	}
@@ -90,12 +101,36 @@ public class PaymentVO {
 		this.payId = payId;
 	}
 
+	public String getTrstId() {
+		return trstId;
+	}
+
+	public void setTrstId(String trstId) {
+		this.trstId = trstId;
+	}
+
+	public String getTrstName() {
+		return trstName;
+	}
+
+	public void setTrstName(String trstName) {
+		this.trstName = trstName;
+	}
+
 	public String getGdId() {
 		return gdId;
 	}
 
 	public void setGdId(String gdId) {
 		this.gdId = gdId;
+	}
+
+	public String getGdFnm() {
+		return gdFnm;
+	}
+
+	public void setGdFnm(String gdFnm) {
+		this.gdFnm = gdFnm;
 	}
 
 	public String getPayTrTp() {
@@ -112,6 +147,22 @@ public class PaymentVO {
 
 	public void setPayTrId(String payTrId) {
 		this.payTrId = payTrId;
+	}
+
+	public String getUsrTrTtl() {
+		return usrTrTtl;
+	}
+
+	public void setUsrTrTtl(String usrTrTtl) {
+		this.usrTrTtl = usrTrTtl;
+	}
+
+	public String getGdTrTtl() {
+		return gdTrTtl;
+	}
+
+	public void setGdTrTtl(String gdTrTtl) {
+		this.gdTrTtl = gdTrTtl;
 	}
 
 	public double getPayCsh() {
@@ -146,12 +197,20 @@ public class PaymentVO {
 		this.payCmpltDt = payCmpltDt;
 	}
 
-	public String getPayKey() {
-		return payKey;
+	public String getIamUid() {
+		return iamUid;
 	}
 
-	public void setPayKey(String payKey) {
-		this.payKey = payKey;
+	public void setIamUid(String iamUid) {
+		this.iamUid = iamUid;
+	}
+
+	public String getIamMid() {
+		return iamMid;
+	}
+
+	public void setIamMid(String iamMid) {
+		this.iamMid = iamMid;
 	}
 
 	public String getPayMthd() {
@@ -178,39 +237,6 @@ public class PaymentVO {
 		this.payCmmssn = payCmmssn;
 	}
 
-	public String getUsrTrTtl() {
-		return usrTrTtl;
-	}
-
-	public void setUsrTrTtl(String usrTrTtl) {
-		this.usrTrTtl = usrTrTtl;
-	}
-
-	public String getGdTrTtl() {
-		return gdTrTtl;
-	}
-
-	public void setGdTrTtl(String gdTrTtl) {
-		this.gdTrTtl = gdTrTtl;
-	}
-
-	public String getTrstId() {
-		return trstId;
-	}
-
-	public void setTrstId(String trstId) {
-		this.trstId = trstId;
-	}
-
-
-
-	public String getGdFnm() {
-		return gdFnm;
-	}
-
-	public void setGdFnm(String gdFnm) {
-		this.gdFnm = gdFnm;
-	}
-
+	
 
 }

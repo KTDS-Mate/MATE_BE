@@ -26,7 +26,7 @@ public class PaymentController {
 	public String viewOrderInfo(@RequestParam String usrId
 							  , @RequestParam String payId, Model model) {
 		PaymentVO paymentVO = this.paymentService.getPaymentDetail(payId);
-		if(paymentVO.getTrstId().equals(usrId)) {
+		if(paymentVO.getTrstId().equals(usrId)) {	// 결제 내역 소유자 확인
 			model.addAttribute("paymentVO", paymentVO);
 			return "payment/PaymentDetail";
 		}
@@ -53,7 +53,7 @@ public class PaymentController {
 	
 	@PostMapping("/prepare")
 	public void preparePayment(@RequestBody PrePaymentEntity request) {
-		
+		int sum = 5;
 	}
 	
 	
