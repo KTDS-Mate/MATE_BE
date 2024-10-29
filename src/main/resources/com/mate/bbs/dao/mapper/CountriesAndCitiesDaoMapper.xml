@@ -26,6 +26,7 @@
 		     , REGION_ID 
 		  FROM COUNTRIES
 		 WHERE REGION_ID = #{_parameter}
+		 ORDER BY COUNTRY_NAME
 	</select>
 	
 	<select id="selectCountriesCount"
@@ -44,6 +45,7 @@
 		     , COUNTRY_ID 
 		  FROM CITIES
 		 WHERE COUNTRY_ID = #{_parameter}
+		 ORDER BY CITY_NAME
 	</select>
 	
 	<select id="selectCitiesCount"
