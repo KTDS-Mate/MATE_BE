@@ -11,7 +11,7 @@ public class GuideTourDetailInfoVO {
     */
    private String gdTrPstId;
    /**
-    * 투어 일정에 대한 정보
+    * 투어 일정에 대한 상세 정보
     */
    private String trDtlInf;
    

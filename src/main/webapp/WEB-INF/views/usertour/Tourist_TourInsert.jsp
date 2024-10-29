@@ -68,7 +68,7 @@ uri="http://www.springframework.org/tags/form" %>
                 data-filter="true"
                 placeholder="도시 선택"
                 disabled="disabled" />
-              <input id="hidden-ipt" type="hidden" name="trCtId" />
+              <input id="hidden-ipt" type="hidden" name="trIncldId" />
             </div>
             <div class="all-select-div">
               <div class="select-div"><span class="red">*</span> 날짜 선택</div>
@@ -127,12 +127,12 @@ uri="http://www.springframework.org/tags/form" %>
             </div>
             <div class="all-select-div">
               <div class="select-div"><span class="red">*</span> 인원 선택</div>
-              <form:errors path="usrTrNp" element="div" cssClass="errors" />
+              <form:errors path="gdTrMxNp" element="div" cssClass="errors" />
               <div class="person-flex-div">
                 <input
                   type="number"
-                  name="usrTrNp"
-                  value="${userTourWriteVO.usrTrNp}" />
+                  name="gdTrMxNp"
+                  value="${guideTourWriteVO.gdTrMxNp}" />
                 <div>명</div>
               </div>
             </div>

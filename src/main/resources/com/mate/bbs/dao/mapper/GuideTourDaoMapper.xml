@@ -129,40 +129,40 @@
 	</select>
 	<insert id="insertNewGuideTour" 
 			parameterType="com.mate.bbs.vo.GuideTourWriteVO">
-		INSERT INTO GD_TR_RCRT
-			 (GD_TR_PST_ID
-			, ATHR_ID
-			, USR_ID
-			, GD_TR_TTL
-			, GD_TR_ST_DT
-			, GD_TR_PRPS
-			, GD_TR_MP
-			, GD_TR_PRC
-			, GD_TR_SMRY
-			, GD_TR_RSTR_DT
-			, GD_TR_MDFY_DT
-			, GD_TR_DLT_DT
-			, GD_TR_IS_DLT
-			, TR_CT_ID
-			, GD_TR_ED_DT
-			, GD_TR_MX_NP)
-			VALUES
-			 ('GT-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_GD_TR_RCRT_PK.NEXTVAL, 6, 0)
-			, '7'
-			, NULL
-			, #{gdTrTtl}
-			, TO_DATE(#{gdTrStDt}, 'YYYY-MM-DD')
-			, #{gdTrPrps}
-			, #{gdTrMp}
-			, #{gdTrPrc}
-			, #{gdTrSmry}
-			, TO_DATE(#{gdTrRstrDt}, 'YYYY-MM-DD')
-			, NULL
-			, NULL
-			, 'N'
-			, #{trCtId}
-			, #{gdTrEdDt}
-			, #{gdTrMxNp})
+		INSERT INTO GD_TR_RCRT GTR
+		 (GD_TR_PST_ID
+		, ATHR_ID
+		, USR_ID
+		, GD_TR_TTL
+		, GD_TR_ST_DT
+		, GD_TR_PRPS
+		, GD_TR_MP
+		, GD_TR_PRC
+		, GD_TR_SMRY
+		, GD_TR_RSTR_DT
+		, GD_TR_MDFY_DT
+		, GD_TR_DLT_DT
+		, GD_TR_IS_DLT
+		, TR_CT_ID
+		, GD_TR_ED_DT
+		, GD_TR_MX_NP)
+		VALUES
+		 ('GT-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_GD_TR_RCRT_PK.NEXTVAL, 6, 0)
+		, 'USR-20241029-000090'
+		, NULL
+		, #{gdTrTtl}
+		, TO_DATE(#{gdTrStDt}, 'YYYY-MM-DD HH24:MI') 
+		, #{gdTrPrps}
+		, #{gdTrMp}
+		, #{gdTrPrc}
+		, #{gdTrSmry}
+		, SYSDATE
+		, NULL
+		, NULL
+		, 'N'
+		, #{trCtId}
+		, TO_DATE(#{gdTrEdDt}, 'YYYY-MM-DD HH24:MI') 
+		, #{gdTrMxNp})
 	</insert>
 	<update id="updateGuideTour"
 			parameterType="com.mate.bbs.vo.GuideTourModifyVO">

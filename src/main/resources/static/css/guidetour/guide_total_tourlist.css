@@ -127,7 +127,7 @@ div.my-tour {
     margin-top: 1rem;
 }
 
-.tour-contents {
+.tour-box > .tour-contents {
     text-align: left;
     padding-top: 2rem;
     padding-left: 2rem;
