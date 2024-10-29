@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -22,7 +24,7 @@ public class PaymentController {
 	
 	@GetMapping("/payment/detail")
 	public String viewOrderInfo(@RequestParam String usrId
-			, @RequestParam String payId, Model model) {
+							  , @RequestParam String payId, Model model) {
 		PaymentVO paymentVO = this.paymentService.getPaymentDetail(payId);
 		if(paymentVO.getTrstId().equals(usrId)) {
 			model.addAttribute("paymentVO", paymentVO);
@@ -47,6 +49,11 @@ public class PaymentController {
 			return true; 
 		}
 		return false;
+	}
+	
+	@PostMapping("/prepare")
+	public void preparePayment(@RequestBody PrePaymentEntity request) {
+		
 	}
 	
 	

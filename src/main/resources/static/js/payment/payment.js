@@ -17,12 +17,22 @@ $().ready(function () {
   const buyerName = $('.trstId').text();
   console.log("결제자 유저 UID " + buyerName)
   
+  $.ajax({		// 사전 등록한다.
+	url: "/prepare",
+	method: "post",
+	contentType: "application/json",
+	data: JSON.stringify({
+		merchant_uid: merchantUid,
+		amount: amount
+	})
+  });
+  
+  
   
   var pg = "kakaopay"	// 얜 나중에 바꿀 수 있도록 함수를 만들 예정이다.
   var payMethod = "card";	// 위의 pg와 마찬가지 
   var mRedirectUrl = "www.naver.com";
   
-	  // 결제에 성공하면 이 uid로 다시 결제 못한다. PK처럼 중복이 안되는 값을 넣어야한다.
   // pay_inf의 pk
   $('.getToken').on('click', function() {
 	$.ajax({
@@ -65,15 +75,16 @@ $().ready(function () {
   
 
   $("button.kakaopay-btn").on("click", function () {
+	
+	
     IMP.request_pay(
       {
         pg: "kakaopay",
         pay_method: payMethod,
         amount: amount, // 구매가격
         name: name, // 구매물품 이름
-        merchant_uid: merchantUid, // 결제에 대한 PK값 우리는 결제내역 ID가져오면 됨
+        merchant_uid: merchantUid + new Date().getTime() % 10000, // 결제에 대한 PK값 우리는 결제내역 ID가져오면 됨
 		buyer_name: buyerName,	//이름대신 아이디긴 함
-		
       },
       function (rsp) {
 		if (rsp.success) {
@@ -85,7 +96,7 @@ $().ready(function () {
 			$.ajax({
 				type: 'get',
 				url : '/verifyPayment',
-				data : {"payId": rsp.merchant_uid, "amount": rsp.paid_amount },
+				data : {"payId": merchantUid, "amount": rsp.paid_amount },
 				success: function(result) {
 					console.log("변조 검사를 실시합니다.");
 					if (result == true){
