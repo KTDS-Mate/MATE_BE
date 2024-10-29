@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -71,4 +72,19 @@ public class UserTourController {
 		
 		return "redirect:/usertour/list";
 	}
+	
+	@GetMapping("/usertour/modify/{usrTrPstId}")
+	public String viewUserTourModifyPage(@PathVariable String usrTrPstId
+									   , Model model
+									   , @SessionAttribute("_LOGIN_USER_") UserVO loginUserVO) {
+		UserTourVO userTourVO = this.userTourService.getOneUserTour(usrTrPstId);
+		if (!userTourVO.getAthrId().equals(loginUserVO.getUsrLgnId())) {
+			throw new IllegalArgumentException("잘못된 접근입니다.");
+		}
+		
+		model.addAttribute("userTourVO", userTourVO);
+		
+		return "usertour/Tourist_Modify";
+	}
+	
 }

@@ -5,16 +5,21 @@ uri="http://www.springframework.org/tags/form" %>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>여행자 투어 등록</title>
+    <title>여행자 투어 수정</title>
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link
       rel="stylesheet"
       type="text/css"
-      href="/css/usertour/Tourist_TourInsert.css" />
+      href="/css/usertour/Tourist_Modify.css" />
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script
       type="text/javascript"
-      src="/js/usertour/usertourinsert.js"></script>
+      src="/js/usertour/usertourmodify.js"></script>
+    <!-- <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.js"></script>
+    <link
+      href="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css"
+      rel="stylesheet" /> -->
   </head>
   <body>
     <div class="grid">
@@ -24,6 +29,7 @@ uri="http://www.springframework.org/tags/form" %>
       </div>
       <div class="content">
         <form:form modelAttribute="userTourWriteVO" method="post">
+          <input />
           <div class="insert-main">
             <div class="flex-main-img">
               <div>
@@ -39,7 +45,7 @@ uri="http://www.springframework.org/tags/form" %>
                 name="usrTrTtl"
                 type="text"
                 placeholder="제목을 입력해주세요."
-                value="${userTourWriteVO.usrTrTtl}" />
+                value="${userTourVO.usrTrTtl}" />
             </div>
             <div class="all-select-div">
               <div class="select-div">
@@ -62,21 +68,21 @@ uri="http://www.springframework.org/tags/form" %>
                 name="inputYear"
                 type="date"
                 data-placeholder="투어 날짜를 골라주세요."
-                value="${userTourWriteVO.inputYear}" />
+                value="${userTourVO.inputYear}" />
             </div>
             <div class="all-select-div">
               <div class="select-div"><span class="red">*</span> 시간 선택</div>
               <div class="flex-hour-div">
                 <div class="time-select">
-                  <label for="start-time">시작 시간</label>
-                  <input id="start-time" name="inputStartHour" type="time" disabled="disabled" />
+                	<label for="start-time">시작 시간</label>
+                	<input id="start-time" type="time" disabled="disabled" />
                 </div>
                 <div class="inline-margin">
                   <img src="/img/tourboard/~.png" />
                 </div>
                 <div class="time-select">
                   <label for="end-time">종료 시간</label>
-                  <input id="end-time" name="inputEndHour" type="time" disabled="disabled" />
+                  <input id="end-time" type="time" disabled="disabled" />
                 </div>
               </div>
             </div>
@@ -88,14 +94,14 @@ uri="http://www.springframework.org/tags/form" %>
                   id="tourNp"
                   type="number"
                   name="usrTrNp"
-                  value="${userTourWriteVO.usrTrNp}" />
+                  value="${userTourVO.usrTrNp}" />
                 <div>명</div>
               </div>
             </div>
             <div class="all-select-div">
               <div class="select-div"><span class="red">*</span> 투어 목적</div>
               <form:errors path="usrTrPrps" element="div" cssClass="errors" />
-              <textarea name="usrTrPrps">${userTourWriteVO.usrTrPrps}</textarea>
+              <textarea name="usrTrPrps">${userTourVO.usrTrPrps}</textarea>
             </div>
             <div class="all-select-div">
               <div class="select-div">
@@ -116,7 +122,7 @@ uri="http://www.springframework.org/tags/form" %>
               </div>
               <form:errors path="usrTrRqDtl" element="div" cssClass="errors" />
               <textarea name="usrTrRqDtl">
-${userTourWriteVO.usrTrRqDtl}</textarea
+${userTourVO.usrTrRqDtl}</textarea
               >
             </div>
             <div class="all-select-div">
@@ -165,7 +171,7 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
               </div>
               <div>
                 <div class="select-div">가이드에게 원하는 사항</div>
-                <textarea name="gdWntRq">${userTourWriteVO.gdWntRq}</textarea>
+                <textarea name="gdWntRq">${userTourVO.gdWntRq}</textarea>
               </div>
               <div class="price-submit-btn">
                 <div class="select-div">
@@ -177,15 +183,15 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
                   cssClass="errors" />
                 <div class="price-flex-div">
                   <input
-                    id="trPrc"
+                  	id="trPrc"
                     name="usrTrGdHrPrc"
                     type="number"
-                    value="${userTourWriteVO.usrTrGdHrPrc}"
+                    value="${userTourVO.usrTrGdHrPrc}"
                     step="0.01" />
                   <div>$</div>
                 </div>
                 <div class="right-align">
-                  <input type="submit" value="투어 등록" />
+                  <input id="submit-btn" type="submit" value="수정 완료" disabled="disabled" />
                 </div>
               </div>
             </div>
