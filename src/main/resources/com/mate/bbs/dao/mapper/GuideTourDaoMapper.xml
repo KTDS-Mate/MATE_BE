@@ -184,4 +184,17 @@
 		   SET GD_TR_IS_DLT = 'Y'
 		 WHERE GD_TR_PST_ID = #{_parameter}
 	</update>
+	
+	<select id="selectAttachStartHour"
+			parameterType="com.mate.bbs.vo.GuideTourWriteVO">
+		
+	
+	</select>
+	
+	<select id="selectAttachEndHour"
+			parameterType="com.mate.bbs.vo.GuideTourWriteVO">
+		
+	
+	</select>
+	
 </mapper>

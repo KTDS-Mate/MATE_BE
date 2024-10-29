@@ -12,10 +12,11 @@ uri="http://www.springframework.org/tags/form" %>
       type="text/css"
       href="/css/guidetour/Guide_TourInsert.css" />
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
-    <script
+    <!--<script
       type="text/javascript"
       src="/js/usertour/usertourinsert.js"></script>
-    <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>-->
+    <script type="text/javascript" src="/js/guidetour/guidetourinsert.js"></script>
     <script src="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.js"></script>
     <link
       href="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css"
@@ -80,50 +81,22 @@ uri="http://www.springframework.org/tags/form" %>
             </div>
             <div class="all-select-div">
               <div class="select-div"><span class="red">*</span> 시간 선택</div>
-              <div class="flex-hour-div">
-                <div class="time-select">
-                  <input
-                    id="start-hour"
-                    type="text"
-                    placeholder="시작 시간 선택" />
-                  <input
-                    id="start-minutes"
-                    type="text"
-                    placeholder="시작 분 선택" />
-                  <input
-                    id="hidden-start-hour"
-                    type="hidden"
-                    name="inputStartHour" />
-                  <input
-                    id="hidden-start-minutes"
-                    type="hidden"
-                    name="inputStartMinute" />
-                </div>
-                <div class="inline-margin">
-                  <img src="/img/tourboard/~.png" />
-                </div>
-                <div class="time-select">
-                  <input
-                    id="end-hour"
-                    type="text"
-                    placeholder="종료 시간 선택"
-                    disabled="disabled" />
-                  <input
-                    id="end-minutes"
-                    type="text"
-                    placeholder="종료 분 선택"
-                    disabled="disabled" />
-                  <input
-                    id="hidden-end-hour"
-                    type="hidden"
-                    name="inputEndHour" />
-                  <input
-                    id="hidden-end-minutes"
-                    type="hidden"
-                    name="inputEndMinute" />
-                </div>
-              </div>
-            </div>
+						<div class="flex-hour-div">
+							<div class="flex-hour">
+								<div class="time-select">
+									<input id="start-minutes" type="time" placeholder="시작 분 선택" 
+										disabled="disabled"/>
+								</div>
+								<div class="inline-margin">
+									<img src="/img/tourboard/~.png" />
+								</div>
+								<div class="time-select">
+									<input id="end-minutes" type="time" placeholder="종료 분 선택"
+										disabled="disabled" />
+								</div>
+							</div>
+						</div>
+					</div>
             <div class="all-select-div">
               <div class="select-div"><span class="red">*</span> 최대 인원 선택</div>
               <form:errors path="gdTrMxNp" element="div" cssClass="errors" />
