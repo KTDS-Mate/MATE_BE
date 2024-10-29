@@ -11,21 +11,21 @@
   </head>
   <body>
 	<ul>
-  		<li> ${paymentVO.payId} </li>
-  		<li> ${paymentVO.trstId} </li>
-  		<li> ${paymentVO.gdId} </li>
-  		<li> ${paymentVO.gdFnm} </li>
-  		<li> ${paymentVO.payTrTp} </li>
-  		<li> ${paymentVO.payTrId} </li>
-  		<li> ${paymentVO.usrTrTtl} </li>
-  		<li> ${paymentVO.gdTrTtl} </li>	<!-- 얘 없음 > 가이드 투어니까 -->
-  		<li> ${paymentVO.payCsh} </li>
-  		<li> ${paymentVO.payCrtDt} </li>
-  		<li> ${paymentVO.payCmpltDt} </li>	<!-- 얘 없음 -->
-  		<li> ${paymentVO.payKey} </li>
-  		<li> ${paymentVO.payMthd} </li>	<!-- 얘 없음 -->
-  		<li> ${paymentVO.payCrrnc} </li>
-  		<li> ${paymentVO.payStt} </li>
+  		<li class="payId">${paymentVO.payId}</li>
+  		<li class=trstId>${paymentVO.trstId}</li>
+  		<li class="gdId">${paymentVO.gdId}</li>
+  		<li class="gdFnm">${paymentVO.gdFnm}</li>
+  		<li class="payTrTp">${paymentVO.payTrTp}</li>
+  		<li class="payTrId">${paymentVO.payTrId}</li>
+  		<li class="usrTrTtl">${paymentVO.usrTrTtl}</li>
+  		<li class="gdTrTtl">${paymentVO.gdTrTtl}</li>	<!-- 얘 없음 > 지금 여행자 투어니까 -->
+  		<li class="payCsh">${paymentVO.payCsh}</li>
+  		<li class="payCrtDt">${paymentVO.payCrtDt}</li>
+  		<li class="payCmpltDt">${paymentVO.payCmpltDt}</li>	<!-- 얘 없음 -->
+  		<li class="payKey">${paymentVO.payKey}</li>
+  		<li class="payMthd">${paymentVO.payMthd}</li>	<!-- 얘 없음 -->
+  		<li class="payCrrnc">${paymentVO.payCrrnc}</li>
+  		<li class="payStt">${paymentVO.payStt}</li>
 	</ul>
 
   	<button class="getToken">Access Token 받기</button>

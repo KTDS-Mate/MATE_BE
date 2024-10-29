@@ -48,14 +48,20 @@ public class PaymentController {
 		return result;
 	}
 	
-	@GetMapping("/getImp_uid")
-	
+	@GetMapping("/getPayment")
 	@ResponseBody
-	@RequestMapping(value="/verifyiamport/{impUid}", method = RequestMethod.POST)
-	public IamportResponse<Payment> patmentByImpUid(Model model, Locale locale, HttpSession session
-			, @PathVariable(value=" impUid")String impUid) {	
-		return this.portOneService.verifyIamport(impUid);
+	public PaymentVO getPaymentDetail(String usrId) {
+		PaymentVO result = this.paymentService.getPaymentDetail(usrId);
+		return result;
 	}
+	
+	
+//	@ResponseBody
+//	@RequestMapping(value="/verifyiamport/{impUid}", method = RequestMethod.POST)
+//	public IamportResponse<Payment> patmentByImpUid(Model model, Locale locale, HttpSession session
+//			, @PathVariable(value=" impUid")String impUid) {	
+//		return this.portOneService.verifyIamport(impUid);
+//	}
 	
 	
 	
