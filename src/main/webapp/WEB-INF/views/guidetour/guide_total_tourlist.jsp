@@ -36,37 +36,46 @@
               </div>
             </form>
           </div>
-          <div class="tour"><a href="/guidetour/insert">투어 등록하기</a></div>
           <div class="list-view-option">
-            <div><a href="">높은 비용순</a></div>
-            <div><a href="">낮은 비용순</a></div>
-            <div><a href="">최신순</a></div>
-            <div><a href="">평점 높은순</a></div>
+            <div class="tour"><a href="/guidetour/insert">투어 등록하기</a></div>
+            <div>
+              <div><a href="">높은 비용순</a></div>
+              <div><a href="">낮은 비용순</a></div>
+              <div><a href="">최신순</a></div>
+              <div><a href="">평점 높은순</a></div>
+            </div>
           </div>
           <div class="my-tour">
             <c:forEach items="${guideTourListVO.guideTourList}" var="guideTourVO">
               <div class="tour-box">
                 <input class="hide" type="hidden" data-gdpst-id="${guideTourVO.gdTrPstId}" />
-                <c:choose>
-                  <c:when
-                    test="${not empty guideTourVO.guideTourImgList && not empty guideTourVO.guideTourImgList[0].gdTrImgUrl}">
-                    <div class="tour-img">
-                      <img src="${guideTourVO.guideTourImgList[0].gdTrImgUrl}" />
-                    </div>
-                  </c:when>
-                  <c:otherwise>
-                    <div class="tour-img">
-                      <img src="/img/tourlist/베니스.jpg" alt="mate 기본이미지" />
-                    </div>
-                  </c:otherwise>
-                </c:choose>
+                <div class="img-box">
+                  <c:choose>
+                    <c:when
+                      test="${not empty guideTourVO.guideTourImgList && not empty guideTourVO.guideTourImgList[0].gdTrImgUrl}">
+                      <div class="tour-img">
+                        <img src="${guideTourVO.guideTourImgList[0].gdTrImgUrl}" />
+                      </div>
+                    </c:when>
+                    <c:otherwise>
+                      <div class="tour-img">
+                        <img src="/img/tourlist/베니스.jpg" alt="mate 기본이미지" />
+                      </div>
+                    </c:otherwise>
+                  </c:choose>
+                </div>
                 <div class="tour-contents">
+                  <div><img class="star-icon"
+                      src="https://img.freepik.com/premium-vector/shiny-golden-star-icon-yellow-stars-glossy-colors-vector-illustration_230920-3112.jpg">
+                    <span class="star-review">4.8</span>
+                  </div>
                   <h2>${guideTourVO.gdTrTtl}</h2>
                   <p class="tour-contents-text"><span>나라 :</span> ${guideTourVO.citiesVO.cityName}</p>
                   <p class="tour-contents-text"><span>날짜 :</span> ${guideTourVO.gdTrStDt} ~ ${guideTourVO.gdTrEdDt}</p>
                   <p class="tour-contents-text"><span>투어 최대인원 :</span> ${guideTourVO.gdTrMxNp}명</p>
                   <p class="tour-contents-text"><span>비용 :</span> ${guideTourVO.gdTrPrc}$</p>
                   <p class="tour-contents-text"><span>가이드 평점 :</span> ${guideTourVO.avgRvw}</p>
+                  <p class="tour-contents-text"><span>상세 정보 :</span> ${guideTourVO.avgRvw}</p>
                 </div>
               </div>
             </c:forEach>

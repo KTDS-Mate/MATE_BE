@@ -160,7 +160,7 @@ uri="http://www.springframework.org/tags/form" %>
               </div>
               <form:errors path="usrTrRqDtl" element="div" cssClass="errors" />
               <textarea name="usrTrRqDtl">
-${userTourWriteVO.usrTrRqDtl}</textarea
+				${userTourWriteVO.usrTrRqDtl}</textarea
               >
             </div>
             <div class="all-select-div">

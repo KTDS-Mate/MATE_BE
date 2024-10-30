@@ -93,6 +93,7 @@ uri="http://www.springframework.org/tags/form" %>
               <form:errors path="gdTrMxNp" element="div" cssClass="errors" />
               <div class="person-flex-div">
                 <input
+                  id="maxNp"
                   type="number"
                   name="gdTrMxNp"
                   value="${guideTourWriteVO.gdTrMxNp}" />
@@ -106,7 +107,7 @@ uri="http://www.springframework.org/tags/form" %>
             </div>
             <div class="all-select-div">
               <div class="select-div">
-                투어 정보<span class="font-we"
+                투어 추가 일정<span class="font-we"
                   >원하는 일정을 추가해주세요.</span
                 >
               </div>
@@ -114,7 +115,7 @@ uri="http://www.springframework.org/tags/form" %>
                 <!-- jquery를 사용해 여러 개를 호출 받는 곳 -->
               </div>
               <div class="hope-btn">
-                <input id="plus" type="button" value="일정/장소 추가하기" />
+                <input id="plus" type="button" value="장소/일정 추가하기" />
               </div>
             </div>
             <div class="all-select-div">
@@ -155,6 +156,7 @@ uri="http://www.springframework.org/tags/form" %>
                   cssClass="errors" />
                 <div class="price-flex-div">
                   <input
+                  	id="trPrc"
                     name="gdTrPrc"
                     type="number"
                     value="${guideTourWriteVO.gdTrPrc}"

@@ -104,6 +104,8 @@ public class GuideTourVO {
 	 */
 	private List<GuideTourReviewVO> guideTourReviewList;
 	
+	private List<GuideTourAdditionInfoVO> guideTourAdditionInfoList;
+	
 	/**
 	 * 가이드 투어 즐겨찾기 리스트 VO
 	 */
@@ -264,7 +266,13 @@ public class GuideTourVO {
 	public void setGuideTourReviewList(List<GuideTourReviewVO> guideTourReviewList) {
 		this.guideTourReviewList = guideTourReviewList;
 	}
-//	public List<GuideTourFavoriteVO> getGuideTourFavoriteList() {
+	public List<GuideTourAdditionInfoVO> getGuideTourAdditionInfoList() {
+		return guideTourAdditionInfoList;
+	}
+	public void setGuideTourAdditionInfoList(List<GuideTourAdditionInfoVO> guideTourAdditionInfoList) {
+		this.guideTourAdditionInfoList = guideTourAdditionInfoList;
+	}
+	//	public List<GuideTourFavoriteVO> getGuideTourFavoriteList() {
 //		return guideTourFavoriteList;
 //	}
 //	public void setGuideTourFavoriteList(List<GuideTourFavoriteVO> guideTourFavoriteList) {
