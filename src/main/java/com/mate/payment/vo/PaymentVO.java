@@ -15,7 +15,7 @@ public class PaymentVO {
 	/**
 	 * 여행자의 이름
 	 */
-	private String trstName;
+	private String trstFnm;
 
 	/**
 	 * 가이드 아이디
@@ -109,12 +109,12 @@ public class PaymentVO {
 		this.trstId = trstId;
 	}
 
-	public String getTrstName() {
-		return trstName;
+	public String getTrstFnm() {
+		return trstFnm;
 	}
 
-	public void setTrstName(String trstName) {
-		this.trstName = trstName;
+	public void setTrstFnm(String trstFnm) {
+		this.trstFnm = trstFnm;
 	}
 
 	public String getGdId() {

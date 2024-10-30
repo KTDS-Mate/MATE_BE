@@ -13,6 +13,7 @@
 	<ul>
   		<li class="payId">${paymentVO.payId}</li>
   		<li class=trstId>${paymentVO.trstId}</li>
+  		<li class="gdFnm">${paymentVO.trstFnm}</li>
   		<li class="gdId">${paymentVO.gdId}</li>
   		<li class="gdFnm">${paymentVO.gdFnm}</li>
   		<li class="payTrTp">${paymentVO.payTrTp}</li>
@@ -22,7 +23,8 @@
   		<li class="payCsh">${paymentVO.payCsh}</li>
   		<li class="payCrtDt">${paymentVO.payCrtDt}</li>
   		<li class="payCmpltDt">${paymentVO.payCmpltDt}</li>	<!-- 얘 없음 -->
-  		<li class="payKey">${paymentVO.payKey}</li>
+  		<li class="payKey">${paymentVO.iamUid}</li>
+  		<li class="payKey">${paymentVO.iamMid}</li>
   		<li class="payMthd">${paymentVO.payMthd}</li>	<!-- 얘 없음 -->
   		<li class="payCrrnc">${paymentVO.payCrrnc}</li>
   		<li class="payStt">${paymentVO.payStt}</li>

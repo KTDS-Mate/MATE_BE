@@ -13,5 +13,7 @@ public interface PaymentService {
 	
 	public double getPayAmount(String payId);
 	
+	public boolean successPayment(PaymentVO paymentVO);
+	
 	
 }

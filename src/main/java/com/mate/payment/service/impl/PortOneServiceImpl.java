@@ -1,7 +1,6 @@
 package com.mate.payment.service.impl;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,9 +9,6 @@ import org.springframework.stereotype.Service;
 import com.mate.payment.service.PortOneService;
 import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
-import com.siot.IamportRestClient.request.PrepareData;
-
-import okhttp3.internal.http2.ErrorCode;
 
 @Service
 public class PortOneServiceImpl implements PortOneService {
@@ -42,16 +38,6 @@ public class PortOneServiceImpl implements PortOneService {
 			e.printStackTrace();
 		}
 		return null;
-	}
-	
-	@Override
-	public void prepare(String mid, BigDecimal price) throws Exception {
-		try {
-			this.iamportClient.postPrepare(new PrepareData(String.valueOf(mid), price));
-		} catch (Exception e) {
-			throw new Exception(e.getMessage());
-		}
-		
 	}
 	
 	

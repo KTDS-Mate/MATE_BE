@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -26,7 +25,7 @@ public class PaymentController {
 	public String viewOrderInfo(@RequestParam String usrId
 							  , @RequestParam String payId, Model model) {
 		PaymentVO paymentVO = this.paymentService.getPaymentDetail(payId);
-		if(paymentVO.getTrstId().equals(usrId)) {	// 결제 내역 소유자 확인
+		if(paymentVO.getTrstId().equals(usrId)) {
 			model.addAttribute("paymentVO", paymentVO);
 			return "payment/PaymentDetail";
 		}
@@ -43,7 +42,8 @@ public class PaymentController {
 	
 	@ResponseBody
 	@GetMapping("/verifyPayment")
-	public Boolean verifyPayment(@RequestParam("payId") String payId, @RequestParam("amount") double amount)  {
+	public Boolean verifyPayment(@RequestParam("payId") String payId,
+								 @RequestParam("amount") double amount)  {
 		double payAmount = this.paymentService.getPayAmount(payId);
 		if (amount == payAmount) {
 			return true; 
@@ -51,9 +51,19 @@ public class PaymentController {
 		return false;
 	}
 	
-	@PostMapping("/prepare")
-	public void preparePayment(@RequestBody PrePaymentEntity request) {
-		int sum = 5;
+	@PostMapping("/successPayment")
+	public String successPayment(@RequestParam("payId") String payId, @RequestParam("iam_uid") String iamUid,
+			 					 @RequestParam("iam_mid") String iamMid, @RequestParam("pay_mthd") String payMthd) {
+		PaymentVO paymentVO = new PaymentVO();
+		paymentVO.setPayId(payId);
+		paymentVO.setIamUid(iamUid);
+		paymentVO.setIamMid(iamMid);
+		paymentVO.setPayMthd(payMthd);
+		this.paymentService.successPayment(paymentVO);
+		
+		return null;
+		
+		
 	}
 	
 	

@@ -20,6 +20,7 @@ public interface PaymentDao {
 	
 	public double selectOnePaymentAmount(String payId);
 	
+	public int updateSuccessPayment(PaymentVO paymentVO);
 	
 	
 	

@@ -130,6 +130,16 @@
 	 WHERE PAY_ID = #{_parameter}
 </select>
 
+<update id="updateSuccessPayment" parameterType="com.mate.payment.vo.PaymentVO">
+UPDATE PAY_INF
+   SET PAY_STT = 'COMPLETE'
+     , PAY_CMPLT_DT = SYSDATE
+     , IAM_UID = #{iamUid}
+     , IAM_MID = #{iamMid}
+     , PAY_MTHD = #{payMthd}
+ WHERE PAY_ID = #{payId}
+</update>
+
 
 
 </mapper>
