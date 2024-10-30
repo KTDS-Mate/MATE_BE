@@ -21,7 +21,8 @@ public class MainController {
 		return "footer";
 		}
 
-		
+		@GetMapping("sample")
+		public String viewSample() {return "all/GuideProfile copy";}
 
 	@GetMapping("/guide/tourlist")
 	public String viewGuideTotalList() {

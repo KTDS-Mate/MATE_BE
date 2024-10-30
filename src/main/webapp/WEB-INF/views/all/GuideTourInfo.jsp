@@ -13,6 +13,8 @@ pageEncoding="UTF-8" %>
       rel="stylesheet"
     />
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="/js/tourReviewCarousel.js"></script>
+    <script type="text/javascript" src="/js/guideReviewCarousel.js"></script>
   </head>
   <body>
     <div class="grid">
@@ -195,8 +197,12 @@ pageEncoding="UTF-8" %>
             <div class="tourReviewArea">
               <div class="tourReviewTitleArea">
                 <span>투어 평점 및 후기</span>
-                <h2 class="writeReview btn-open-review-modal">후기 작성</h2>
-                <h3 class="showDetail btn-open-review-list-modal">상세보기</h3>
+                <div class="titleButtons">
+                  <h2 class="writeReview btn-open-review-modal">후기 작성</h2>
+                  <h3 class="showDetail btn-open-review-list-modal">
+                    모두 보기
+                  </h3>
+                </div>
               </div>
               <div class="tourReviewDetailArea">
                 <div class="tourReviewRatingArea">
@@ -204,7 +210,7 @@ pageEncoding="UTF-8" %>
                     <img
                       src="/public/Star.png"
                       alt="별점 아이콘"
-                      class="star"
+                      class="bigStar"
                     />
                     <span class="averageRating">4.8</span>
                   </div>
@@ -266,43 +272,198 @@ pageEncoding="UTF-8" %>
                     </div>
                   </div>
                 </div>
-                <div class="reviewArea">
-                  <div class="smallReviewArea">
-                    <div class="someoneReviewFirstArea">
-                      <img
-                        src="/public/Star.png"
-                        alt="별점 아이콘"
-                        class="starTwo"
-                      />
-                      <img
-                        src="/public/Star.png"
-                        alt="별점 아이콘"
-                        class="starTwo"
-                      />
-                      <img
-                        src="/public/Star.png"
-                        alt="별점 아이콘"
-                        class="starTwo"
-                      />
-                      <img
-                        src="/public/Star.png"
-                        alt="별점 아이콘"
-                        class="starTwo"
-                      />
-                      <img
-                        src="/public/Star.png"
-                        alt="별점 아이콘"
-                        class="starTwo"
-                      />
-                      <span class="someoneReviewTitleArea">Amazing Day!</span>
+                <div class="reviewsArea">
+                  <div class="reviewCarouselArea">
+                    <img
+                      src="/public/forward.png"
+                      alt="이전 버튼"
+                      class="reviewForwardButton"
+                    />
+                    <div class="reviewCarousel">
+                      <div class="reviewArea">
+                        <div class="smallReviewArea">
+                          <div class="someoneReviewFirstArea">
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <span class="someoneReviewTitleArea"
+                              >Amazing Day!</span
+                            >
+                          </div>
+                          <div class="someoneReviewSecondArea">
+                            <span class="reviewWriterArea">RainyMoon</span>
+                            <span class="reviewWritingDate">SEP.2024</span>
+                          </div>
+                        </div>
+                        <div class="reviewTextArea">
+                          <span>Harry is an Amazing Guide!!</span>
+                        </div>
+                      </div>
+                      <div class="reviewArea">
+                        <div class="smallReviewArea">
+                          <div class="someoneReviewFirstArea">
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <span class="someoneReviewTitleArea"
+                              >Amazing Day!</span
+                            >
+                          </div>
+                          <div class="someoneReviewSecondArea">
+                            <span class="reviewWriterArea">RainyMoon</span>
+                            <span class="reviewWritingDate">SEP.2024</span>
+                          </div>
+                        </div>
+                        <div class="reviewTextArea">
+                          <span>Harry is an Amazing Guide!!</span>
+                        </div>
+                      </div>
+                      <div class="reviewArea">
+                        <div class="smallReviewArea">
+                          <div class="someoneReviewFirstArea">
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <span class="someoneReviewTitleArea"
+                              >Amazing Day!</span
+                            >
+                          </div>
+                          <div class="someoneReviewSecondArea">
+                            <span class="reviewWriterArea">RainyMoon</span>
+                            <span class="reviewWritingDate">SEP.2024</span>
+                          </div>
+                        </div>
+                        <div class="reviewTextArea">
+                          <span>Harry is an Amazing Guide!!</span>
+                        </div>
+                      </div>
+                      <div class="reviewArea">
+                        <div class="smallReviewArea">
+                          <div class="someoneReviewFirstArea">
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <span class="someoneReviewTitleArea"
+                              >Amazing Day!</span
+                            >
+                          </div>
+                          <div class="someoneReviewSecondArea">
+                            <span class="reviewWriterArea">RainyMoon</span>
+                            <span class="reviewWritingDate">SEP.2024</span>
+                          </div>
+                        </div>
+                        <div class="reviewTextArea">
+                          <span>Harry is an Amazing Guide!!</span>
+                        </div>
+                      </div>
+                      <div
+                        class="moreReviewListButtonArea btn-open-review-list-modal"
+                      >
+                        <div class="smallReviewArea">
+                          <img
+                            src="/public/plusicon.png"
+                            alt="더 보기 버튼"
+                            class="moreReviewButton"
+                          />
+                        </div>
+                        <div class="moreReviewTextArea">
+                          <span>모든 리뷰 목록 보기</span>
+                        </div>
+                      </div>
                     </div>
-                    <div class="someoneReviewSecondArea">
-                      <span class="reviewWriterArea">RainyMoon</span>
-                      <span class="reviewWritingDate">SEP.2024</span>
-                    </div>
-                  </div>
-                  <div class="reviewTextArea">
-                    <span>Harry is an Amazing Guide!!</span>
+                    <img
+                      src="/public/backward.png"
+                      alt="다음 버튼"
+                      class="reviewBackwardButton"
+                    />
                   </div>
                 </div>
               </div>
@@ -312,8 +473,12 @@ pageEncoding="UTF-8" %>
             <div class="guideReviewArea">
               <div class="guideReviewTitleArea">
                 <span>가이드 평점 및 후기</span>
-                <h2 class="writeReview btn-open-review-modal">후기 작성</h2>
-                <h3 class="showDetail btn-open-review-list-modal">상세보기</h3>
+                <div class="titleButtons">
+                  <h2 class="writeReview btn-open-review-modal">후기 작성</h2>
+                  <h3 class="showDetail btn-open-review-list-modal">
+                    모두 보기
+                  </h3>
+                </div>
               </div>
               <div class="guideReviewDetailArea">
                 <div class="guideReviewRatingArea">
@@ -321,7 +486,7 @@ pageEncoding="UTF-8" %>
                     <img
                       src="/public/Star.png"
                       alt="별점 아이콘"
-                      class="star"
+                      class="bigStar"
                     />
                     <span class="averageRating">4.8</span>
                   </div>
@@ -383,43 +548,157 @@ pageEncoding="UTF-8" %>
                     </div>
                   </div>
                 </div>
-                <div class="reviewArea">
-                  <div class="smallReviewArea">
-                    <div class="someoneReviewFirstArea">
-                      <img
-                        src="/public/Star.png"
-                        alt="별점 아이콘"
-                        class="starTwo"
-                      />
-                      <img
-                        src="/public/Star.png"
-                        alt="별점 아이콘"
-                        class="starTwo"
-                      />
-                      <img
-                        src="/public/Star.png"
-                        alt="별점 아이콘"
-                        class="starTwo"
-                      />
-                      <img
-                        src="/public/Star.png"
-                        alt="별점 아이콘"
-                        class="starTwo"
-                      />
-                      <img
-                        src="/public/Star.png"
-                        alt="별점 아이콘"
-                        class="starTwo"
-                      />
-                      <span class="someoneReviewTitleArea">Amazing Day!</span>
+                <div class="guideReviewsArea">
+                  <div class="guideReviewCarouselArea">
+                    <img
+                      src="/public/forward.png"
+                      alt="이전 버튼"
+                      class="guideReviewForwardButton"
+                    />
+                    <div class="guideReviewCarousel">
+                      <div class="guideReviewOneArea">
+                        <div class="smallReviewArea">
+                          <div class="someoneReviewFirstArea">
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <span class="someoneReviewTitleArea"
+                              >Amazing Day!</span
+                            >
+                          </div>
+                          <div class="someoneReviewSecondArea">
+                            <span class="reviewWriterArea">RainyMoon</span>
+                            <span class="reviewWritingDate">SEP.2024</span>
+                          </div>
+                        </div>
+                        <div class="reviewTextArea">
+                          <span>Harry is an Amazing Guide!!</span>
+                        </div>
+                      </div>
+                      <div class="guideReviewOneArea">
+                        <div class="smallReviewArea">
+                          <div class="someoneReviewFirstArea">
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <span class="someoneReviewTitleArea"
+                              >Amazing Day!</span
+                            >
+                          </div>
+                          <div class="someoneReviewSecondArea">
+                            <span class="reviewWriterArea">RainyMoon</span>
+                            <span class="reviewWritingDate">SEP.2024</span>
+                          </div>
+                        </div>
+                        <div class="reviewTextArea">
+                          <span>Harry is an Amazing Guide!!</span>
+                        </div>
+                      </div>
+                      <div class="guideReviewOneArea">
+                        <div class="smallReviewArea">
+                          <div class="someoneReviewFirstArea">
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <span class="someoneReviewTitleArea"
+                              >Amazing Day!</span
+                            >
+                          </div>
+                          <div class="someoneReviewSecondArea">
+                            <span class="reviewWriterArea">RainyMoon</span>
+                            <span class="reviewWritingDate">SEP.2024</span>
+                          </div>
+                        </div>
+                        <div class="reviewTextArea">
+                          <span>Harry is an Amazing Guide!!</span>
+                        </div>
+                      </div>
+                      <div
+                        class="moreReviewListButtonArea btn-open-review-list-modal"
+                      >
+                        <div class="smallReviewArea">
+                          <img
+                            src="/public/plusicon.png"
+                            alt="더 보기 버튼"
+                            class="moreReviewButton"
+                          />
+                        </div>
+                        <div class="moreReviewTextArea">
+                          <span>모든 리뷰 목록 보기</span>
+                        </div>
+                      </div>
                     </div>
-                    <div class="someoneReviewSecondArea">
-                      <span class="reviewWriterArea">RainyMoon</span>
-                      <span class="reviewWritingDate">SEP.2024</span>
-                    </div>
-                  </div>
-                  <div class="reviewTextArea">
-                    <span>Harry is an Amazing Guide!!</span>
+                    <img
+                      src="/public/backward.png"
+                      alt="다음 버튼"
+                      class="guideReviewBackwardButton"
+                    />
                   </div>
                 </div>
               </div>
