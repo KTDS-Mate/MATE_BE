@@ -3,6 +3,7 @@ package com.mate.mypage.web;
 import com.mate.mypage.service.MyBoardService;
 import com.mate.mypage.vo.MyBoardListVO;
 import com.mate.mypage.vo.MyBoardVO;
+import com.mate.mypage.vo.SearchMyBoardVO;
 
 import java.util.List;
 
@@ -24,29 +25,40 @@ public class MyBoardController {
     //----------------------------------------------------등록 투어
 
     @GetMapping("/tr-mytour/{usrLgnId}")
-    public String viewTRMyTour(@PathVariable String usrLgnId, Model model) {
+    public String viewTRMyTour(@PathVariable String usrLgnId,SearchMyBoardVO searchMyBoardVO, Model model) {
 
-    	MyBoardListVO myWriteBoard = this.myBoardService.selectGDMyAllBoard(usrLgnId);
+    	MyBoardListVO boardListVO = this.myBoardService.selectGDMyAllBoard(usrLgnId , searchMyBoardVO);
     	
-        model.addAttribute("myWriteBoard", myWriteBoard);
+
+    	System.out.println("타입은 " + searchMyBoardVO.getSearchType());
+    	System.out.println("검색어는 " + searchMyBoardVO.getSearchKeyword());
+    	
+        model.addAttribute("boardListVO", boardListVO);
+        model.addAttribute("searchBoardVO", searchMyBoardVO);
+
 
         return "mypage/Mypage_Tourist_MyTour";
     }
 
     @GetMapping("/gd-mytour/{usrLgnId}")
-    public String viewGDMyTour(@PathVariable String usrLgnId, Model model) {
+    public String viewGDMyTour(@PathVariable String usrLgnId, SearchMyBoardVO searchMyBoardVO, Model model) {
 
-    	MyBoardListVO boardListVO = this.myBoardService.selectGDMyAllBoard(usrLgnId);
-        
-        System.out.println(boardListVO);
+    	MyBoardListVO boardListVO = this.myBoardService.selectGDMyAllBoard(usrLgnId , searchMyBoardVO);
+    	
+   
+  
+    	
+    	
         model.addAttribute("boardListVO", boardListVO);
+        model.addAttribute("searchBoardVO", searchMyBoardVO);
+        	
 
         return "mypage/Mypage_Guide_MyTour";
     }
     
 
-    @GetMapping("/gd-mytour/delete-{gdTrPstId}")
-    public String deleteBoard(@PathVariable String gdTrPstId 
+    @GetMapping("/gd-mytour/{usrLgnId}/delete-{gdTrPstId}")
+    public String deleteBoard(@PathVariable String usrLgnId , @PathVariable String gdTrPstId 
     						   			   ,Model model) {
     	
     	int success = this.myBoardService.deleteGDBoard(gdTrPstId);
@@ -54,7 +66,7 @@ public class MyBoardController {
     	model.addAttribute("success" , success);
     	
     	
-    	return "redirect:/mypage/mytour/gd-mytour?usrId=7";
+    	return "redirect:/mypage/mytour/gd-mytour/"+usrLgnId;
     }
     
     

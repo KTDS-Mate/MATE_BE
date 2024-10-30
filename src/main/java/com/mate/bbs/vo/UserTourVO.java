@@ -2,6 +2,8 @@ package com.mate.bbs.vo;
 
 import java.util.List;
 
+import com.mate.common.vo.CitiesVO;
+import com.mate.common.vo.CountriesVO;
 import com.mate.user.vo.UserVO;
 
 public class UserTourVO {
@@ -102,6 +104,31 @@ public class UserTourVO {
 	 */
 	private List<UserTourSchdlVO> userTourSchdlList;
 	
+	private CitiesVO citiesVO;
+	
+	private CountriesVO countriesVO;
+	
+	/**게시글 수정 시 보여줘야 하는 것**/
+	/**
+	 * 여행자가 입력한 input[date]의 값 받아오기
+	 */
+	private String inputYear;
+	/**
+	 * 여행자가 입력한 시작 시
+	 */
+	private String inputStartHour;
+	/**
+	 * 여행자가 입력한 시작 분
+	 */
+	private String inputStartMinute;
+	/**
+	 * 여행자가 입력한 종료 시
+	 */
+	private String inputEndHour;
+	/**
+	 * 여행자가 입력한 종료 분
+	 */
+	private String inputEndMinute;
 	/**컬럼은 존재하지 않음**/
 	private int deadline;
 	/**
@@ -307,5 +334,61 @@ public class UserTourVO {
 
 	public void setUsrTrEdDt(String usrTrEdDt) {
 		this.usrTrEdDt = usrTrEdDt;
+	}
+
+	public String getInputYear() {
+		return inputYear;
+	}
+
+	public void setInputYear(String inputYear) {
+		this.inputYear = inputYear;
+	}
+
+	public String getInputStartHour() {
+		return inputStartHour;
+	}
+
+	public void setInputStartHour(String inputStartHour) {
+		this.inputStartHour = inputStartHour;
+	}
+
+	public String getInputStartMinute() {
+		return inputStartMinute;
+	}
+
+	public void setInputStartMinute(String inputStartMinute) {
+		this.inputStartMinute = inputStartMinute;
+	}
+
+	public String getInputEndHour() {
+		return inputEndHour;
+	}
+
+	public void setInputEndHour(String inputEndHour) {
+		this.inputEndHour = inputEndHour;
+	}
+
+	public String getInputEndMinute() {
+		return inputEndMinute;
+	}
+
+	public void setInputEndMinute(String inputEndMinute) {
+		this.inputEndMinute = inputEndMinute;
+	}
+
+	public CitiesVO getCitiesVO() {
+		return citiesVO;
+	}
+
+	public void setCitiesVO(CitiesVO citiesVO) {
+		this.citiesVO = citiesVO;
+	}
+
+	public CountriesVO getCountriesVO() {
+		return countriesVO;
+	}
+
+	public void setCountriesVO(CountriesVO countriesVO) {
+		this.countriesVO = countriesVO;
 	}
 }
