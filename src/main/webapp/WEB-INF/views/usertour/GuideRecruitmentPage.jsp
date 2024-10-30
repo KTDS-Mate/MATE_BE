@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,13 +8,8 @@ pageEncoding="UTF-8" %>
     <link
       rel="stylesheet"
       type="text/css"
-      href="/css/usertour/GuideRecruitmentPage.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="/css/common.css"
-    />
+      href="/css/usertour/GuideRecruitmentPage.css" />
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
   </head>
   <body>
     <div class="grid">
@@ -34,19 +28,27 @@ pageEncoding="UTF-8" %>
           <div class="img-price">
             <div class="img-group">
               <div class="main-img">
-              	<img alt="main-img" src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}">
+                <img
+                  alt="main-img"
+                  src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}" />
               </div>
               <div class="second-img">
-              	<img alt="second-img" src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}">
+                <img
+                  alt="second-img"
+                  src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}" />
               </div>
               <div class="third-img">
-              	<img alt="third-img" src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}">
+                <img
+                  alt="third-img"
+                  src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}" />
               </div>
               <div class="plus-img">
-              	<img alt="plus-img" src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}">
-              	<div class="z-index">
-              		<button class="img-btn">+</button>
-              	</div>
+                <img
+                  alt="plus-img"
+                  src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}" />
+                <div class="z-index">
+                  <button class="img-btn">+</button>
+                </div>
               </div>
             </div>
             <div class="price-group">
@@ -57,6 +59,11 @@ pageEncoding="UTF-8" %>
                 <div class="price-ad-c">
                   <h2>${userTourVO.usrTrGdHrPrc}$</h2>
                 </div>
+                <c:if test="${sessionScope._LOGIN_USER_.usrIsGd eq 'Y'}">
+	                <div class="reserve-btn">
+	                	<button>예약하기</button>
+	                </div>
+	            </c:if>
               </div>
             </div>
           </div>
@@ -67,25 +74,31 @@ pageEncoding="UTF-8" %>
               </div>
               <div>
                 <ul class="guide-dtls-list">
-                  <li>성별 : ${userTourVO.gdGndr}</li>
                   <c:choose>
-                  	<c:when test="${userTourVO.gdAge == 0}">
-                  	 <li>나이 : 상관없음</li>
-                  	</c:when>
-                  	<c:otherwise>
-                  	 <li>나이 : ${userTourVO.gdAge}대</li>
-                  	</c:otherwise>
+                    <c:when test="${userTourVO.gdGndr == 'female'}">
+                      <li>성별 : 여자</li>
+                    </c:when>
+                    <c:otherwise>
+                      <li>성별 : 남자</li>
+                    </c:otherwise>
                   </c:choose>
-                 
                   <c:choose>
-                  	<c:when test="${userTourVO.gdCrr == 0}">
-                  	<li>가이드 경력 : 상관없음</li>
-                  	</c:when>
-                  	<c:otherwise>
-                  	<li>가이드 경력 : ${userTourVO.gdCrr}년 이상</li>
-                  	</c:otherwise>
+                    <c:when test="${userTourVO.gdAge == 0}">
+                      <li>나이 : 상관없음</li>
+                    </c:when>
+                    <c:otherwise>
+                      <li>나이 : ${userTourVO.gdAge}대</li>
+                    </c:otherwise>
                   </c:choose>
-                  
+
+                  <c:choose>
+                    <c:when test="${userTourVO.gdCrr == 0}">
+                      <li>가이드 경력 : 상관없음</li>
+                    </c:when>
+                    <c:otherwise>
+                      <li>가이드 경력 : ${userTourVO.gdCrr}년 이상</li>
+                    </c:otherwise>
+                  </c:choose>
                 </ul>
               </div>
             </div>
@@ -98,7 +111,7 @@ pageEncoding="UTF-8" %>
               <div>
                 <ol class="summation-list">
                   <c:if test="${not empty userTourVO.usrTrRqDtl}">
-                  	<li>${userTourVO.usrTrRqDtl}</li>
+                    <li>${userTourVO.usrTrRqDtl}</li>
                   </c:if>
                 </ol>
               </div>
@@ -110,11 +123,11 @@ pageEncoding="UTF-8" %>
                 <h2>집결 희망 장소 / 시간</h2>
               </div>
               <div class="margin-left">
-                <h2>
-                  ${userTourVO.usrTrMp}
-                </h2>
+                <h2>${userTourVO.usrTrMp}</h2>
                 <div class="flex-div">
-                  <div><h3>${userTourVO.usrTrStDt} ~ ${userTourVO.usrTrEdDt}</h3></div>
+                  <div>
+                    <h3>${userTourVO.usrTrStDt} ~ ${userTourVO.usrTrEdDt}</h3>
+                  </div>
                   <div class="margin-right"><h4>Open In GoogleMap</h4></div>
                 </div>
               </div>
@@ -128,26 +141,27 @@ pageEncoding="UTF-8" %>
               <div>
                 <ul class="hope-info-list">
                   <c:choose>
-                  	<c:when test="${not empty userTourVO.userTourSchdlList}">
-				    	<c:forEach items="${userTourVO.userTourSchdlList}" 
-                  			 var="userTourSchdl"
-                  			 varStatus="index">
-                  			<li>
-	                    		<p class="list-item">
-	                      			<span class="background-num">${index.index + 1}</span>
-	                      				${userTourSchdl.trLctns}
-	                    		</p>
-	                    		<p class="border-left">
-	                      			${userTourSchdl.trRqst}
-	                    		</p>
-                  			</li>
-                  		</c:forEach>
-                  	</c:when>
-                  	<c:otherwise>
-                  		<li>
-                  			<p class="list-item">작성한 투어 희망 정보가 없습니다.</p>
-                  		</li>
-                  	</c:otherwise>
+                    <c:when test="${not empty userTourVO.userTourSchdlList && not empty userTourVO.userTourSchdlList[0].trLctns}">
+                      <c:forEach
+                        items="${userTourVO.userTourSchdlList}"
+                        var="userTourSchdl"
+                        varStatus="index">
+                        <li>
+                          <p class="list-item">
+                            <span class="background-num"
+                              >${index.index + 1}</span
+                            >
+                            ${userTourSchdl.trLctns}
+                          </p>
+                          <p class="border-left">${userTourSchdl.trRqst}</p>
+                        </li>
+                      </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                        <li>
+                          <p>작성된 투어가 없습니다.</p>
+                        </li>
+                    </c:otherwise>
                   </c:choose>
                 </ul>
               </div>
