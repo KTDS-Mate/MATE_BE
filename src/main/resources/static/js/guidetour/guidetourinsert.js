@@ -68,8 +68,10 @@ $().ready(function() {
 	//TODO : 10월 30일 , 국가 빠르면 평점
 	// 종료 시간이 시작시간보다 빠르면 안됨.
 	$("#end-minutes").on("change", function() {
-
+		
 	});
+	
+	
 	// 대륙 select
 	$.get(`/tour/regions`, {}, function(regionResult) {
 		
@@ -80,5 +82,23 @@ $().ready(function() {
 			$("#region").append(regionDom);
 		}
 	});
+	
+	$("#region").on("change", function() {
+		
+	});
+	
+	
+	
+	
+	$.get(`/tour/countries/{regionId}`, {}, function(countryResult) {
+		
+		var countryCnt = countryResult.countriesCount;
+		
+		for(var i = 0; i < countryCnt; i++) {
+			var countryDom = $(`<option value=${countryResult.countries[i].countryId}>${countryResult.countries[i].countryName}</option>`)
+			$("#country").append(countryDom);
+		}
+		
+	})
 	
 });
