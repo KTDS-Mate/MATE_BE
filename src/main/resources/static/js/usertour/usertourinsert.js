@@ -103,7 +103,8 @@ $().ready(function() {
 		// userTourWriteVO에 있는 List<UserTourSchdlVO> userTourSchdulList에게 리스트 형식으로 담아줌
 		// -> name="userTourSchdlList[index].컬럼명" -> 해당 컬럼에 리스트 형식으로 담음
 		// 해당 방법을 사용하기 위해서는 모든 input태그를 감싸고있는 div가 하나 필요함 -> <div class="locs">...</div>
-		var plusDom = $(`<div class="locs"><div>
+		var plusDom = $(`<div class="locs">
+						<div>
 							<label for="hope-location">장소</label>
 							<input id="hope-location" name="userTourSchdlList[${locsCnt}].trLctns" type="text"/>
 						</div>
@@ -115,6 +116,10 @@ $().ready(function() {
 		$(".loc-inf").append(plusDom);
 	});
 
+	$("#m-btn").on('click', function() {
+		$(".locs:last").remove();
+	});
+	
 	// 대륙은 기존 한번 만 가져옴(바뀌지 않음)
 	$.get("/tour/regions", {}, function(regionResult) {
 		var regionsCnt = regionResult.regionsCount;
@@ -140,10 +145,13 @@ $().ready(function() {
 		$("#city").attr("disabled", 'disabled');
 		// 대륙 ID를 가져옴
 		var regionId = $(this).val();
+		
 		// 만약 대륙아이디가 공백이다 => 대륙 선택을 클릭했다 면 국가 선택도 막음
 		if (regionId === "") {
 			$("#country").attr("disabled", 'disabled');
 		}
+		
+		
 		// 대륙 별 국가 정보를 가져옴
 		$.get(`/tour/countries/${regionId}`, {}, function(countryResult) {
 			var countriesCnt = countryResult.countriesCount;
@@ -166,10 +174,11 @@ $().ready(function() {
 		$("#city").append(`<option value="">도시 선택</option>`);
 
 		var countryId = $(this).val();
+	
 		// 국가 별 도시를 가져옴
 		$.get(`/tour/cities/${countryId}`, {}, function(cityResult) {
 			var citiesCnt = cityResult.citiesCount;
-
+			
 			for (var i = 0; i < citiesCnt; i++) {
 				var cityOption = $(`<option value="${cityResult.cities[i].cityId}">${cityResult.cities[i].cityName}</option>`);
 				$("#city").append(cityOption);
@@ -182,17 +191,18 @@ $().ready(function() {
 		var npVal = $(this).val();
 
 		if (npVal < 1) {
-			alert("음수를 지정할 수 없습니다!");
+			alert("0 또는 음수를 지정할 수 없습니다!");
 			$(this).val(1);
 		}
 	});
 
 	$("#trPrc").on('change', function() {
 		var trPrcVal = $(this).val();
-
-		if (trPrcVal < 30) {
+		var defaultPrc = 30;
+				
+		if (trPrcVal < defaultPrc) {
 			alert("최소 가격은 30$ 이상입니다!");
-			$(this).val(30);
+			$(this).val(defaultPrc);
 		}
 
 	});

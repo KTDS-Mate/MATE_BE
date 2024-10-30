@@ -121,6 +121,10 @@ input[type="submit"] {
   margin-bottom: 1rem;
 }
 
+.hope-btn input {
+	margin-right: 1rem;
+}
+
 input[type="file"] {
   border: 1px solid #ddd;
   border-radius: 0;
