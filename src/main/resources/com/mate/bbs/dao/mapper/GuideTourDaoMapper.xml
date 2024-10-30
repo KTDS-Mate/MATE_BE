@@ -79,6 +79,8 @@
 			 , UI.USR_GD_EXP 
 			 , TI.TR_INCLD 
 			 , TD.TR_DTL_INF 
+			 , TAI.TR_ADD_INF 
+			 , TAI.TR_ADD_PLC 
 			 , TRUNC(MONTHS_BETWEEN(TRUNC(SYSDATE), UI.USR_BD) / 12) AS GUIDE_AGE
 		  FROM GD_TR_RCRT GTR
 		  LEFT JOIN GD_TR_RCRT_IMG GTRI
@@ -91,6 +93,8 @@
 		    ON TI.GD_TR_PST_ID = GTR.GD_TR_PST_ID  
 		 INNER JOIN TR_DTL TD
 		    ON TD.GD_TR_PST_ID = GTR.GD_TR_PST_ID
+		 INNER JOIN TR_ADDTNL_INF TAI
+		    ON TAI.GD_TR_PST_ID = GTR.GD_TR_PST_ID 
 		 WHERE GTR.GD_TR_PST_ID = #{_parameter}
 	</select>
 	
@@ -128,6 +132,7 @@
 	       ON GTR.GD_TR_PST_ID = GTRV.GD_TR_PST_ID
 	     JOIN CITIES C
 	       ON C.CITY_ID = gtr.TR_CT_ID
+	    ORDER BY GTR.GD_TR_PST_ID DESC
 	    <if test="_parameter != null">
 			<include refid="Common.pagination_footer" />
 		</if>
@@ -191,15 +196,17 @@
 	</update>
 	
 	<select id="selectAttachStartHour"
-			parameterType="com.mate.bbs.vo.GuideTourWriteVO">
-		
-	
+			parameterType="com.mate.bbs.vo.GuideTourWriteVO"
+			resultType="string">
+		SELECT #{inputYear} || ' ' || #{inputStartHour}
+ 		  FROM DUAL
 	</select>
 	
 	<select id="selectAttachEndHour"
-			parameterType="com.mate.bbs.vo.GuideTourWriteVO">
-		
-	
+			parameterType="com.mate.bbs.vo.GuideTourWriteVO"
+			resultType="string">
+		SELECT #{inputYear} || ' ' || #{inputEndHour}
+ 		  FROM DUAL
 	</select>
 	
 </mapper>

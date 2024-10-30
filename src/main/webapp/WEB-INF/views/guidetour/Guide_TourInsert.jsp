@@ -57,7 +57,7 @@ uri="http://www.springframework.org/tags/form" %>
               <select id="country">
               	<option value="">국가 선택</option>
               </select>
-              <select id="city">
+              <select id="city" name="trCtId">
               	<option value="">도시 선택</option>
               </select>
             </div>
