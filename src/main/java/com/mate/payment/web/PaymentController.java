@@ -51,17 +51,22 @@ public class PaymentController {
 		return false;
 	}
 	
+	@ResponseBody
 	@PostMapping("/successPayment")
 	public String successPayment(@RequestParam("payId") String payId, @RequestParam("iam_uid") String iamUid,
 			 					 @RequestParam("iam_mid") String iamMid, @RequestParam("pay_mthd") String payMthd) {
+		System.out.println("여기까지는 오나?");
 		PaymentVO paymentVO = new PaymentVO();
 		paymentVO.setPayId(payId);
 		paymentVO.setIamUid(iamUid);
 		paymentVO.setIamMid(iamMid);
 		paymentVO.setPayMthd(payMthd);
-		this.paymentService.successPayment(paymentVO);
+		if (this.paymentService.successPayment(paymentVO) == true) {
+			System.out.println("업데이트 성공");
+			return "성공";
+		}
 		
-		return null;
+		return "실패";
 		
 		
 	}

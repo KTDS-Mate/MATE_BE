@@ -34,28 +34,21 @@ $().ready(function () {
   });
   
   $('.do').on("click", function(){
-	
 	$.ajax({
-		type: 'get',
-		url : '/verifyPayment',
-		data : {"payId": merchantUid, "amount": amount },
-		success: function(result) {
-			console.log("변조 검사를 실시합니다.");
-			if (result == true){
-				alert("올바른 결제입니다. 이용해주셔서 감사합니다.")
-				// 결제 완료 ajax 실행
-				
-				
-			} else {
-				alert("위조된 결제입니다. 결제를 취소합니다.")
-				// TODO 결제 취소
-			}
+		type:'POST',
+		url: '/successPayment',
+		data: {"payId":'31', "iam_uid": 'imp_6313',
+			 "iam_mid": '3121235', "pay_mthd": "card",}, 
+		success: function(rsp) {
+			console.log("pk" + '31' + "에게 결제 아이디 iam_uid(" + 'imp_405862966313' 
+				+ ")와 portOne에게 부여한 결제 아이디인 iam_mid(" + '312965' + ")를 결제수단" 
+				+ "card" + "을 이용한 데이터를 DB에 적용하였습니다.");
 		},
-		error : function() {
-			alert("결제 검증에 실패했습니다. 결제를 취소합니다.");
-			// TODO 여기에 결제 취소가 들어가야한다.(일단 취소되는지 확인을 먼저 해야함)
-		}
+		error: function(){
+			console.log("실패");
+		},
 	});
+	
   });
   
   
@@ -68,7 +61,7 @@ $().ready(function () {
 		url : '/verifyPayment',
 		data : {"payId": merchantUid, "amount": amount },	// 얘는 위에서 받아오는 amount값을 가지고 비교한다.
 		success: function(firstVerify) {
-			if (firstVerify == true){
+			if (firstVerify === true){
 				console.log("선검증 결과 : 안전");
 			    IMP.request_pay(
 				    {
@@ -88,21 +81,24 @@ $().ready(function () {
 								url : '/verifyPayment',
 								data : {"payId": merchantUid, "amount": rsp.paid_amount },	// 실제로 결제된 금액을 가지고 비교한다.
 								success: function(result) {
-									if (result == true){
+									if (result === true){
 										alert("올바른 결제입니다. 이용해주셔서 감사합니다.")
 										// 결제 완료 ajax 실행
 										// post로 update하면 됨
 										$.ajax({
-											type: 'post',
-											url: '/successPayment',
-											data: {"payId":merchantUid, "pay_mthd": rsp.pay_method,
-													 "iam_uid": rsp.iam_uid, "iam_mid": rsp.iam_mid}, 
-											success: function() {
-												console.log("pk" + merchantUid + "에게 결제 아이디 iam_uid(" + rsp.iam_uid 
-													+ ")와 portOne에게 부여한 결제 아이디인 iam_mid(" + rsp.iam_mid + ")를 결제수단" 
-													+ rsp.pay_method + "을 이용한 데이터를 DB에 적용하였습니다.");
-											},
-										});
+												type:'POST',
+												url: '/successPayment',
+												data: {"payId":merchantUid, "iam_uid": rsp.imp_uid,
+													 "iam_mid": rsp.merchant_uid, "pay_mthd": rsp.pay_method,}, 
+												success: function(r) {
+													console.log("pk" + merchantUid + "에게 결제 아이디 iam_uid(" + rsp.imp_uid 
+														+ ")와 portOne에게 부여한 결제 아이디인 iam_mid(" + rsp.merchant_uid + ")를 결제수단" 
+														+ rsp.pay_method + "을 이용한 데이터를 DB에 적용하였습니다.");
+												},
+												error: function(){
+													console.log("실패");
+												},
+											});
 										
 									} else {
 										alert("위조된 결제입니다. 결제를 취소합니다.")
@@ -158,7 +154,7 @@ $().ready(function () {
         if (err_msg) {
           alert(err_msg);
         }
-        if (status == "paid") {
+        if (status === "paid") {
           const { imp_uid } = rsp;
           verifyPayment(imp_uid);
         }
@@ -181,7 +177,7 @@ $().ready(function () {
         if (err_msg) {
           alert(err_msg);
         }
-        if (status == "paid") {
+        if (status === "paid") {
           const { imp_uid } = rsp;
           verifyPayment(imp_uid);
         }
@@ -204,7 +200,7 @@ $().ready(function () {
         if (err_msg) {
           alert(err_msg);
         }
-        if (status == "paid") {
+        if (status === "paid") {
           const { imp_uid } = rsp;
           verifyPayment(imp_uid);
         }
@@ -228,7 +224,7 @@ $().ready(function () {
         if (err_msg) {
           alert(err_msg);
         }
-        if (status == "paid") {
+        if (status === "paid") {
           const { imp_uid } = rsp;
           verifyPayment(imp_uid);
         }
@@ -245,7 +241,7 @@ function prepare(merchantUid, amount) {
 		url : '/verifyPayment',
 		data : {"payId": merchantUid, "amount": amount },
 		success: function(result) {
-			if (result == true){
+			if (result === true){
 				isSafe = true;
 				console.log("변조 안됐습니다. 안전합니다.");
 			} else {
