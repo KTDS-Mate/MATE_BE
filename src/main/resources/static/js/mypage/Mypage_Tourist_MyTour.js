@@ -30,13 +30,13 @@ function movePage(pageNo) {
     $(".page-no").val(pageNo);
     $(".search-form").attr({
         "method": "GET",
-        "action": `/mypage/mytour/gd-mytour/${loginId}`
+        "action": `/mypage/mytour/tr-mytour/${loginId}`
     }).submit();
 }
 
 function deleteTour(usrLgnId, gdTrPstId) {
 	if (confirm("정말 삭제하시겠습니까?")) {
-	       location.href = `/mypage/mytour/gd-mytour/${usrLgnId}/delete-${gdTrPstId}`;
+	       location.href = `/mypage/mytour/tr-mytour/${usrLgnId}/delete-${gdTrPstId}`;
 	   }
 }
 

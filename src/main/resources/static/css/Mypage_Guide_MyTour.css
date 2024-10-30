@@ -68,7 +68,7 @@ div.my-tour {
   width: 7rem;
 }
 
-#search-content {
+.search-keyword {
   margin-left: 1.5rem;
   height: 3rem;
   font-size:1.2rem;
@@ -82,7 +82,7 @@ input::placeholder {
   padding-left: 2rem;
 }
 
-.search-button {
+.search-btn {
 
   font-size: 18px;
   font-weight: bold;
@@ -90,6 +90,7 @@ input::placeholder {
   width: 5rem;
   border: 1px solid #333;
   border-radius: 5px;
+  cursor: pointer;
   margin-left: 1rem;
   text-align: center;
   background-color: #fff6ec;

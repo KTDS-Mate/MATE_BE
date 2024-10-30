@@ -47,13 +47,7 @@ public class EditProfileController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	//----------------------------------------------------Tourlist
 

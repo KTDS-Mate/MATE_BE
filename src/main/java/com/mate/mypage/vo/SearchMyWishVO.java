@@ -2,7 +2,7 @@ package com.mate.mypage.vo;
 
 import com.mate.common.vo.PaginationVO;
 
-public class SearchMyBoardVO extends PaginationVO{
+public class SearchMyWishVO extends PaginationVO{
 
 	
 	
