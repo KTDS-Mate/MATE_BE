@@ -19,6 +19,8 @@ public class MyBoardVO {
     private String trCtId;
     private int gdTrMxNp;
     
+    private SearchCityAndCountryVO searchCityAndCountryVO;
+    
     
     /*
      * GD_TR_PST_ID
@@ -45,6 +47,24 @@ public class MyBoardVO {
 	public String getGdTrPstId() {
 		return gdTrPstId;
 	}
+	
+	
+	
+	
+	public SearchCityAndCountryVO getSearchCityAndCountryVO() {
+		return searchCityAndCountryVO;
+	}
+
+
+
+
+	public void setSearchCityAndCountryVO(SearchCityAndCountryVO searchCityAndCountryVO) {
+		this.searchCityAndCountryVO = searchCityAndCountryVO;
+	}
+
+
+
+
 	public void setGdTrPstId(String gdTrPstId) {
 		this.gdTrPstId = gdTrPstId;
 	}

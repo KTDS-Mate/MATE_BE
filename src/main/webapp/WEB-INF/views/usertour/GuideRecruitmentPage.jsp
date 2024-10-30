@@ -59,6 +59,11 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                 <div class="price-ad-c">
                   <h2>${userTourVO.usrTrGdHrPrc}$</h2>
                 </div>
+                <c:if test="${sessionScope._LOGIN_USER_.usrIsGd eq 'Y'}">
+	                <div class="reserve-btn">
+	                	<button>예약하기</button>
+	                </div>
+	            </c:if>
               </div>
             </div>
           </div>
@@ -74,7 +79,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       <li>성별 : 여자</li>
                     </c:when>
                     <c:otherwise>
-                      <li>성병 : 남자</li>
+                      <li>성별 : 남자</li>
                     </c:otherwise>
                   </c:choose>
                   <c:choose>

@@ -9,6 +9,8 @@ public interface EditProfileDao {
     public int countUsers();
 
     public UserVO selectOneUser(String usrLgnId);
+    
+    public int updateOneUser(UserVO userVO);
 
 
 }
