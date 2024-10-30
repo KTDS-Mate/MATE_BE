@@ -42,7 +42,7 @@ uri="http://www.springframework.org/tags/form" %>
               <form:errors path="gdTrTtl" element="div" cssClass="errors" />
               <input
                 id="usrTrTtl"
-                name="usrTrTtl"
+                name="gdTrTtl"
                 type="text"
                 placeholder="제목을 입력해주세요."
                 value="${guideTourWriteVO.gdTrTtl}" />
@@ -75,14 +75,14 @@ uri="http://www.springframework.org/tags/form" %>
 						<div class="flex-hour-div">
 							<div class="flex-hour">
 								<div class="time-select">
-									<input id="start-minutes" type="time" placeholder="시작 분 선택" 
+									<input id="start-minutes" type="time" name="inputStartHour"
 										disabled="disabled"/>
 								</div>
 								<div class="inline-margin">
 									<img src="/img/tourboard/~.png" />
 								</div>
 								<div class="time-select">
-									<input id="end-minutes" type="time" placeholder="종료 분 선택"
+									<input id="end-minutes" type="time" name="inputEndHour"
 										disabled="disabled" />
 								</div>
 							</div>
@@ -103,7 +103,7 @@ uri="http://www.springframework.org/tags/form" %>
             <div class="all-select-div">
               <div class="select-div"><span class="red">*</span> 투어 목적</div>
               <form:errors path="gdTrPrps" element="div" cssClass="errors" />
-              <textarea name="usrTrPrps">${guideTourWriteVO.gdTrPrps}</textarea>
+              <textarea name="gdTrPrps">${guideTourWriteVO.gdTrPrps}</textarea>
             </div>
             <div class="all-select-div">
               <div class="select-div">
@@ -116,6 +116,7 @@ uri="http://www.springframework.org/tags/form" %>
               </div>
               <div class="hope-btn">
                 <input id="plus" type="button" value="장소/일정 추가하기" />
+                <input id="m-btn" type="button" value="장소/일정 삭제하기" />
               </div>
             </div>
             <div class="all-select-div">

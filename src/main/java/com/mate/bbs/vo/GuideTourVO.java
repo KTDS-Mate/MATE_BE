@@ -81,7 +81,6 @@ public class GuideTourVO {
 	 * 투어 최대 인원 수
 	 */
 	private int gdTrMxNp;
-	
 	/**
 	 * 리뷰 평점 알리아스
 	 */
@@ -103,7 +102,9 @@ public class GuideTourVO {
 	 * 가이드 투어 리뷰 리스트 VO
 	 */
 	private List<GuideTourReviewVO> guideTourReviewList;
-	
+	/**
+	 * 가이드 추가 정보 리스트 VO
+	 */
 	private List<GuideTourAdditionInfoVO> guideTourAdditionInfoList;
 	
 	/**

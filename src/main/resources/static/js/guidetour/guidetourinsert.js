@@ -2,6 +2,7 @@ $().ready(function() {
 	$("#inputYear").on("change", function() {
 		$("#start-minutes").val("");
 		$("#end-minutes").val("");
+		$("#end-minutes").attr("disabled", "disabled");
 		// 현재날짜보다 더 빠른 날짜를 선택할 수 없음.
 		var nowDate = new Date();
 		console.log(nowDate);
@@ -62,9 +63,11 @@ $().ready(function() {
 				alert("현재 시간보다 빠른 시간을 선택 할 수 없습니다.");
 				$(this).val("");
 			}
-			else {
-				$("#end-minutes").removeAttr("disabled");
+			
 			}
+		
+		else {
+			$("#end-minutes").removeAttr("disabled");
 		}
 	});
 	//TODO : 10월 30일 , 국가 빠르면 평점
@@ -98,7 +101,7 @@ $().ready(function() {
 		/** 사용자가 설정한 종료 시간 int 형변환 */
 		var intEndHour = parseInt(endInput);
 
-		if (intInputDate === intNowDate) {
+		if (intInputDate === intNowDate || intInputDate > intNowDate) {
 			if (intStartHour > intEndHour) {
 				alert("시작시간보다 빠른 시간을 선택 할 수 없습니다.");
 				$(this).val("");
@@ -171,7 +174,7 @@ $().ready(function() {
 		
 		var divPlus = $(`<div class="locs"><div>
 							<label for="hope-location">장소</label>
-							<input id="hope-location" name="guideTourSchdlList[${divCnt}].trLctns" type="text"/>
+							<input id="hope-location" name="guideTourAdditionInfoList[${divCnt}].trAddPlc" type="text"/>
 						 </div>
 						 <div>
 							<label for="hope-info">일정</label>

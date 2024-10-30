@@ -17,6 +17,10 @@ public class GuideTourAdditionInfoVO {
 	 * 투어에 대한 추가정보
 	 */
 	private String trAddInf;
+	/**
+	 * 투어에 대한 추가 장소 정보
+	 */
+	private String trAddPlc;
 	
 	public String getTrAddInfId() {
 		return trAddInfId;
@@ -35,5 +39,11 @@ public class GuideTourAdditionInfoVO {
 	}
 	public void setTrAddInf(String trAddInf) {
 		this.trAddInf = trAddInf;
+	}
+	public String getTrAddPlc() {
+		return trAddPlc;
+	}
+	public void setTrAddPlc(String trAddPlc) {
+		this.trAddPlc = trAddPlc;
 	}
 }

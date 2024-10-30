@@ -58,7 +58,10 @@ public class GuideTourServiceImpl implements GuideTourService{
 	@Transactional
 	@Override
 	public boolean createNewGuideTour(GuideTourWriteVO guideTourWriteVO) {
+		
+		
 		int guideTourInsertCount = this.guideTourDao.insertNewGuideTour(guideTourWriteVO);
+		
 		return guideTourInsertCount > 0;
 	}
 	@Transactional

@@ -22,10 +22,6 @@ public class GuideTourWriteVO {
 	 */
 	private String inputStartHour;
 	/**
-	 * 가이드가 입력한 시작 분
-	 */
-	private String inputStartMinute;
-	/**
 	 * 투어 시작 일자
 	 */
 	private String gdTrStDt;
@@ -37,10 +33,6 @@ public class GuideTourWriteVO {
 	 * 가이드가 입력한 종료 시
 	 */
 	private String inputEndHour;
-	/**
-	 * 가이드가 입력한 종료 분
-	 */
-	private String inputEndMinute;
 	/**
 	 * 투어 상세정보(목적)
 	 */
@@ -84,19 +76,6 @@ public class GuideTourWriteVO {
 	 * 가이드 투어 상세정보 리스트 VO
 	 */
 	private List<GuideTourDetailInfoVO> guideTourDetailInfoList;
-	
-	public String getGdTrStDt() {
-		return gdTrStDt;
-	}
-	public void setGdTrStDt(String gdTrStDt) {
-		this.gdTrStDt = gdTrStDt;
-	}
-	public String getGdTrEdDt() {
-		return gdTrEdDt;
-	}
-	public void setGdTrEdDt(String gdTrEdDt) {
-		this.gdTrEdDt = gdTrEdDt;
-	}
 	public String getGdTrTtl() {
 		return gdTrTtl;
 	}
@@ -115,23 +94,23 @@ public class GuideTourWriteVO {
 	public void setInputStartHour(String inputStartHour) {
 		this.inputStartHour = inputStartHour;
 	}
-	public String getInputStartMinute() {
-		return inputStartMinute;
+	public String getGdTrStDt() {
+		return gdTrStDt;
 	}
-	public void setInputStartMinute(String inputStartMinute) {
-		this.inputStartMinute = inputStartMinute;
+	public void setGdTrStDt(String gdTrStDt) {
+		this.gdTrStDt = gdTrStDt;
+	}
+	public String getGdTrEdDt() {
+		return gdTrEdDt;
+	}
+	public void setGdTrEdDt(String gdTrEdDt) {
+		this.gdTrEdDt = gdTrEdDt;
 	}
 	public String getInputEndHour() {
 		return inputEndHour;
 	}
 	public void setInputEndHour(String inputEndHour) {
 		this.inputEndHour = inputEndHour;
-	}
-	public String getInputEndMinute() {
-		return inputEndMinute;
-	}
-	public void setInputEndMinute(String inputEndMinute) {
-		this.inputEndMinute = inputEndMinute;
 	}
 	public String getGdTrPrps() {
 		return gdTrPrps;
@@ -193,6 +172,5 @@ public class GuideTourWriteVO {
 	public void setGuideTourDetailInfoList(List<GuideTourDetailInfoVO> guideTourDetailInfoList) {
 		this.guideTourDetailInfoList = guideTourDetailInfoList;
 	}
-	
 	
 }

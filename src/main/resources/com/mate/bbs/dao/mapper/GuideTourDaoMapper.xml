@@ -39,6 +39,11 @@
 						autoMapping="true">
 				<id column="CITY_ID" property="cityId"/>
 			</collection>
+			<collection property="guideTourAdditionInfoList"
+						ofType="com.mate.bbs.vo.GuideTourAdditionInfoVO"
+						autoMapping="true">
+				<id column="TR_ADD_INF_ID" property="trAddInfId"/>
+			</collection>
 		</resultMap>
 	
 	<select id="selectGuideTourAllCount" resultType="_int">
