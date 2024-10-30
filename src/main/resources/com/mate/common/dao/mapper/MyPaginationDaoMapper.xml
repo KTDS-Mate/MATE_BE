@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Common2">
+	<!-- 페이지네이션을 위한 Mapper -->
+	<sql id="pagination_header">
+		SELECT *
+		  FROM (SELECT ROWNUM RNUM
+		  			 , S.*
+		  	      FROM (	
+	</sql>
+	
+	<sql id="pagination_footer">
+					) S
+				WHERE ROWNUM <![CDATA[<=]]> (#{search.pageNo} + 1) * #{search.listSize} )
+		WHERE RNUM <![CDATA[>=]]> #{search.pageNo} * #{search.listSize} + 1
+	</sql>
+	
+</mapper>
