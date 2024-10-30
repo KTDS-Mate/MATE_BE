@@ -43,10 +43,10 @@ pageEncoding="UTF-8"%>
             </div>
             <div class="country-menu-area">
                 <div class="checked"><a href="">전체</a></div>
-                <div><a href="">일본</a></div>
-                <div><a href="">동남아</a></div>
+                <div><a href="">아시아</a></div>
                 <div><a href="">유럽</a></div>
-                <div><a href="">중국</a></div>
+                <div><a href="">오세아니아</a></div>
+                <div><a href="">북아메리카</a></div>
                 <div><a href="">그 외</a></div>
             </div>
             <div class="flex-list-insert-btn">
@@ -84,7 +84,8 @@ pageEncoding="UTF-8"%>
 	                    <div class="tourtime-deadline">
 		                    <div>
 		                    	<p class="tour-schedule">투어일 : ${userTourVO.usrTrStDt}</p>
-		                    	<div class="">소요시간 : ${userTourVO.usrTrTm}분</div>
+		                    	<div>지역 : ${userTourVO.countriesVO.countryName} / ${userTourVO.citiesVO.cityName}</div>
+		                    	<div>소요시간 : ${userTourVO.usrTrTm}분</div>
 		                    </div>
 		                    <p class="tour-deadline">마감 ${userTourVO.deadline}일전</p>
 	                    </div>

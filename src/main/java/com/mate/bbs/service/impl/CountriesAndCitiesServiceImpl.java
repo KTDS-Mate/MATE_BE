@@ -11,32 +11,54 @@ import com.mate.common.vo.CitiesListVO;
 import com.mate.common.vo.CitiesVO;
 import com.mate.common.vo.CountriesListVO;
 import com.mate.common.vo.CountriesVO;
+import com.mate.common.vo.RegionsListVO;
+import com.mate.common.vo.RegionsVO;
 
 @Service
 public class CountriesAndCitiesServiceImpl implements CountriesAndCitiesService {
 
 	@Autowired
 	private CountriesAndCitiesDao countriesAndCitiesDao;
-	
+
 	@Override
-	public CountriesListVO getAllCountries() {
-		List<CountriesVO> countriesList = this.countriesAndCitiesDao.selectAllCountries();
-		int countriesCount = this.countriesAndCitiesDao.selectCountriesCount();
+	public RegionsListVO getAllRegions() {
+		/**대륙 리스트와 대륙 수를 가져옴**/
+		List<RegionsVO> regionList = this.countriesAndCitiesDao.selectAllRegions();
+		int regionCount = this.countriesAndCitiesDao.selectRegionsCount();
+		RegionsListVO regionsListVO = new RegionsListVO();
+		
+		regionsListVO.setRegionsCount(regionCount);
+		regionsListVO.setRegionsList(regionList);
+		
+		return regionsListVO;
+	}
+
+	@Override
+	public CountriesListVO getCountries(int regionId) {
+		/**대륙 별 국가 리스트와 수를 가져옴**/
+		List<CountriesVO> countriesList = this.countriesAndCitiesDao.selectCountries(regionId);
+		int countriesCount = this.countriesAndCitiesDao.selectCountriesCount(regionId);
 		CountriesListVO countriesListVO = new CountriesListVO();
-		countriesListVO.setCountriesList(countriesList);
+		
 		countriesListVO.setCountriesCount(countriesCount);
+		countriesListVO.setCountriesList(countriesList);
 		
 		return countriesListVO;
 	}
-	
+
 	@Override
-	public CitiesListVO getAllCities(int countryId) {
+	public CitiesListVO getCities(int countryId) {
+		/**국가 별 도시 리스트와 수를 가져옴**/
 		List<CitiesVO> citiesList = this.countriesAndCitiesDao.selectCities(countryId);
+		int citiesCount = this.countriesAndCitiesDao.selectCitiesCount(countryId);
 		CitiesListVO citiesListVO = new CitiesListVO();
 		
+		citiesListVO.setCitiesCount(citiesCount);
 		citiesListVO.setCitiesList(citiesList);
 		
 		return citiesListVO;
 	}
+	
+	
 	
 }

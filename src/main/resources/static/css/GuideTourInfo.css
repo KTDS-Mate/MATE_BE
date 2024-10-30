@@ -28,6 +28,7 @@
   border-top-left-radius: 1.25rem;
   border-bottom-left-radius: 1.25rem;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .bigPicArea > img {
@@ -52,6 +53,7 @@
   width: 11rem;
   height: 7.3rem;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .smallPicArea > img {
@@ -69,10 +71,11 @@
   border-bottom-right-radius: 1.25rem;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .morePicArea > img {
-  width: 4.4rem;
+  width: 4.8rem;
   height: 6rem;
 }
 
@@ -92,13 +95,14 @@
 }
 
 .priceTitleArea > span {
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
 .priceDetailArea {
   width: 23.3rem;
-  height: 16.9rem;
+  min-height: 16.9rem;
+  max-height: auto;
   background-color: #ffeedb;
   display: flex;
   justify-content: center;
@@ -141,16 +145,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .adultPrice > span,
 .childPrice > span {
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
 .reserveButton > span {
-  font-size: 2rem;
+  font-size: 1.3rem;
 }
 
 .secondLayer {
@@ -177,13 +182,14 @@
 }
 
 .summaryTitleArea > span {
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
 .summaryDetailArea {
   width: 34.4rem;
-  height: 13.75rem;
+  min-height: 13.75rem;
+  max-height: auto;
   background-color: #ffeedb;
   display: flex;
   justify-content: center;
@@ -195,7 +201,7 @@
 }
 
 .summaryDetailArea > h1 {
-  font-size: 1.75rem;
+  font-size: 1rem;
   font-weight: 500;
   margin: 0 0 0.5rem 1rem;
 }
@@ -218,13 +224,14 @@
 }
 
 .profileTitleArea > span {
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
 .profileDetailArea {
   width: 34.4rem;
-  height: 13.75rem;
+  min-height: 13.75rem;
+  max-height: auto;
   background-color: #ffeedb;
   display: flex;
   justify-content: center;
@@ -248,7 +255,7 @@
 }
 
 .profileSummaryArea > h1 {
-  font-size: 1.75rem;
+  font-size: 1rem;
   font-weight: 500;
   margin: 0 0 0.5rem 1rem;
 }
@@ -277,13 +284,14 @@
 }
 
 .offerTitleArea > span {
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
 .offerDetailArea {
   width: 74.6rem;
-  height: 13.75rem;
+  min-height: 13.75rem;
+  max-height: auto;
   background-color: #ffeedb;
   display: flex;
   justify-content: center;
@@ -295,7 +303,7 @@
 }
 
 .offerDetailArea > h1 {
-  font-size: 1.75rem;
+  font-size: 1rem;
   font-weight: 500;
   margin: 0 0 0.5rem 1rem;
 }
@@ -324,13 +332,14 @@
 }
 
 .rallyPointTitleArea > span {
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
 .rallyPointDetailArea {
   width: 74.6rem;
-  height: auto;
+  min-height: 30.25rem;
+  max-height: auto;
   background-color: #ffeedb;
   display: flex;
   justify-content: space-between;
@@ -350,7 +359,7 @@
 }
 
 .rallyPointSummaryArea > h1 {
-  font-size: 1.75rem;
+  font-size: 1rem;
   font-weight: 500;
   margin: 0 0 0.5rem 1rem;
 }
@@ -363,7 +372,7 @@
 }
 
 .mapApiArea > span {
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
   margin: 2rem 0 2rem 0;
 }
@@ -401,13 +410,14 @@
 }
 
 .tourInfoTitleArea > span {
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
 .tourInfoDetailArea {
   width: 74.6rem;
-  height: 15rem;
+  min-height: 15rem;
+  max-height: auto;
   background-color: #ffeedb;
   display: flex;
   justify-content: space-between;
@@ -423,7 +433,7 @@
 }
 
 .tourInfoSummaryArea > h1 {
-  font-size: 1.75rem;
+  font-size: 1rem;
   font-weight: 500;
   margin: 0 0 0.5rem 1rem;
 }
@@ -452,13 +462,14 @@
 }
 
 .touristPicTitleArea > span {
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
 .touristPicDetailArea {
   width: 74.6rem;
-  height: 25rem;
+  min-height: 25rem;
+  max-height: auto;
   background-color: #ffeedb;
   display: flex;
   justify-content: center;
@@ -566,13 +577,14 @@
 }
 
 .tourReviewTitleArea > span {
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
 .tourReviewDetailArea {
   width: 74.6rem;
-  height: auto;
+  min-height: 45rem;
+  max-height: auto;
   background-color: #ffeedb;
   display: flex;
   justify-content: center;
@@ -613,13 +625,14 @@
 }
 
 .guideReviewTitleArea > span {
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
 .guideReviewDetailArea {
   width: 74.6rem;
-  height: auto;
+  min-height: 45rem;
+  max-height: auto;
   background-color: #ffeedb;
   display: flex;
   justify-content: center;
@@ -636,16 +649,16 @@
 }
 
 .writeReview {
-  margin: 2rem 4rem 0 0;
-  font-size: 1.5rem;
-  font-weight: 500;
+  margin: 2rem 0 0 50rem;
+  font-size: 1.2rem;
+  font-weight: bold;
   color: #ffeedb;
   cursor: pointer;
 }
 
 .showDetail {
   margin: 2rem 4rem 0 0;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 200;
   color: #868686;
   cursor: pointer;
@@ -661,19 +674,19 @@
 }
 
 .star {
-  width: 3.4375rem;
-  height: 3.4375rem;
-  margin: 0 1rem 0 0;
+  width: 2rem;
+  height: 2rem;
+  margin: 0.8rem 1rem 0 0;
 }
 
 .averageRating {
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
-  margin: 0.8rem 0 0 0;
+  margin: 1.2rem 0 0 0;
 }
 
 .ratingArea {
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
   margin: 1rem 0 0 2rem;
   display: flex;
@@ -725,13 +738,13 @@ meter.ratingGage::-webkit-meter-even-less-good-value {
 }
 
 .starTwo {
-  width: 2rem;
-  height: 2rem;
+  width: 1.3rem;
+  height: 1.3rem;
 }
 
 .someoneReviewTitleArea {
   margin: 0 0 0 2rem;
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
@@ -766,7 +779,7 @@ meter.ratingGage::-webkit-meter-even-less-good-value {
 
 .rating {
   width: 1.25rem;
-  margin: 0.8rem 1rem 0.8rem 1rem;
+  margin: 1.2rem 1rem 0.8rem 1rem;
 }
 
 .ratingCount {

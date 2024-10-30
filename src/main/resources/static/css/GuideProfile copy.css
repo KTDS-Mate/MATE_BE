@@ -71,7 +71,7 @@ div.footer {
 }
 
 .guideProfileTitleArea > span {
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
   margin: 1.5rem 0 0 2rem;
 }
@@ -98,7 +98,7 @@ div.footer {
   width: 25rem;
   height: auto;
   margin: 1rem 0 0 0;
-  font-size: 2rem;
+  font-size: 1.3rem;
 }
 
 .seperateLine > img {
@@ -123,7 +123,7 @@ div.footer {
 }
 
 .guideReviewTitleArea > span {
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
   margin: 1.5rem 0 0 2rem;
 }
@@ -154,13 +154,13 @@ div.footer {
 }
 
 .averageRating {
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
   margin: 0.8rem 0 0 0;
 }
 
 .ratingArea {
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
   margin: 1rem 0 0 2rem;
   display: flex;
@@ -210,7 +210,7 @@ meter.ratingGage::-webkit-meter-even-less-good-value {
 
 .showDetail {
   margin: 2rem 2rem 0 0;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 200;
   color: #868686;
 }

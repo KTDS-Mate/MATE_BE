@@ -8,6 +8,15 @@ div.my-page > ul.list > li.wishlist{
 	color: #333;
 }
 
+.gray {
+  color: gray;
+}
+
+.border {
+  margin: 0 auto;
+  width: 95%;
+  border-top: 1px solid #000;
+}
 
 div.main-content {
   border: 2px solid #ffeedb;

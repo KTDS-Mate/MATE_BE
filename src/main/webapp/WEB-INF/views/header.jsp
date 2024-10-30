@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
   <link rel="stylesheet" type="text/css" href="/css/Header.css" />
-  <div class="header-content">
+  
+  
+  <div class="header-content" data-loginId="${sessionScope._LOGIN_USER_.usrLgnId}">
     <div class="logo">
       <a href="/"><img src="/public/Logo.png" alt="로고" /></a>
     </div>
@@ -33,9 +35,6 @@
 					</div>
 				</c:when>
 				<c:otherwise>
-					<div>
-					${sessionScope._LOGIN_USER_.usrLgnId} 님 환영합니다
-					</div>
 					<div>
 						<a href="/user/logout">로그아웃</a>
 					</div>

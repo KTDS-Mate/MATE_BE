@@ -5,26 +5,53 @@
   
 <mapper namespace="com.mate.bbs.dao.CountriesAndCitiesDao">
 
-	<select id="selectAllCountries" 
+	<select id="selectAllRegions"
+			resultType="com.mate.common.vo.RegionsVO">
+		SELECT REGION_ID 
+			 , REGION_NAME 
+		  FROM REGIONS
+	</select>
+
+	<select id="selectRegionsCount"
+			resultType="_int">
+		SELECT COUNT(1)
+  		  FROM REGIONS
+	</select>
+
+	<select id="selectCountries"
+			parameterType="_int"
 			resultType="com.mate.common.vo.CountriesVO">
-		SELECT ID 
-		     , NAME 
-		     , KOR_NAME 
+		SELECT COUNTRY_ID 
+		     , COUNTRY_NAME 
+		     , REGION_ID 
 		  FROM COUNTRIES
-	     ORDER BY KOR_NAME 
+		 WHERE REGION_ID = #{_parameter}
+		 ORDER BY COUNTRY_NAME
 	</select>
 	
 	<select id="selectCountriesCount"
+			parameterType="_int"
 			resultType="_int">
 		SELECT COUNT(1)
-  		  FROM COUNTRIES		
+		  FROM COUNTRIES
+		 WHERE REGION_ID = #{_parameter}
 	</select>
-
+	
 	<select id="selectCities"
 			parameterType="_int"
 			resultType="com.mate.common.vo.CitiesVO">
-		SELECT ID 
-		     , NAME 
+		SELECT CITY_ID 
+		     , CITY_NAME 
+		     , COUNTRY_ID 
+		  FROM CITIES
+		 WHERE COUNTRY_ID = #{_parameter}
+		 ORDER BY CITY_NAME
+	</select>
+	
+	<select id="selectCitiesCount"
+			parameterType="_int"
+			resultType="_int">
+		SELECT COUNT(1)
 		  FROM CITIES
 		 WHERE COUNTRY_ID = #{_parameter}
 	</select>
