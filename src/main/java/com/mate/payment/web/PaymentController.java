@@ -28,7 +28,8 @@ public class PaymentController {
 	public String viewOrderInfo(@RequestParam String usrId
 							  , @RequestParam String payId, Model model) {
 		PaymentVO paymentVO = this.paymentService.getPaymentDetail(payId);
-		if(paymentVO.getTrstId().equals(usrId)) {
+		
+		if(paymentVO != null && paymentVO.getTrstId().equals(usrId)) {
 			model.addAttribute("paymentVO", paymentVO);
 			return "payment/PaymentDetail";
 		}
