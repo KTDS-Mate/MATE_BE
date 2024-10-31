@@ -781,7 +781,6 @@
 .star {
   width: 1.5rem;
   height: 1.5rem;
-  margin: 0 1rem 0 0;
 }
 
 .averageRating {
@@ -937,7 +936,7 @@ meter.ratingGage::-webkit-meter-even-less-good-value {
 
 .rating {
   width: 1.25rem;
-  margin: 1.2rem 1rem 0.8rem 1rem;
+  margin: 0rem 1rem;
 }
 
 .ratingCount {
