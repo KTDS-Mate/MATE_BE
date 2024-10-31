@@ -30,11 +30,11 @@
 	     , PAY_STT
 	     , TO_CHAR(PAY_CRT_DT  , 'YYYY-MM-DD HH24:MI') PAY_CRT_DT
 	     , TO_CHAR(PAY_CMPLT_DT, 'YYYY-MM-DD HH24:MI') PAY_CMPLT_DT
-	     , IAM_UID
+	     , IMP_UID
 	     , PAY_MTHD
 	     , PAY_CRRNC
 	     , PAY_CMMSSN
-	     , IAM_MID
+	     , IMP_MID
 	  FROM PAY_INF PI
 	  JOIN (SELECT *
 	  		  FROM USR_INF
@@ -66,11 +66,11 @@
 	     , PAY_STT
 	     , TO_CHAR(PAY_CRT_DT  , 'YYYY-MM-DD HH24:MI') PAY_CRT_DT
 	     , TO_CHAR(PAY_CMPLT_DT, 'YYYY-MM-DD HH24:MI') PAY_CMPLT_DT
-	     , IAM_UID
+	     , IMP_UID
 	     , PAY_MTHD
 	     , PAY_CRRNC
 	     , PAY_CMMSSN
-	     , IAM_MID
+	     , IMP_MID
 	  FROM PAY_INF PI
 	  JOIN (SELECT *
 	  		  FROM USR_INF
@@ -102,11 +102,11 @@
 	     , PAY_STT
 	     , TO_CHAR(PAY_CRT_DT  , 'YYYY-MM-DD HH24:MI') PAY_CRT_DT
 	     , TO_CHAR(PAY_CMPLT_DT, 'YYYY-MM-DD HH24:MI') PAY_CMPLT_DT
-	     , IAM_UID
+	     , IMP_UID
 	     , PAY_MTHD
 	     , PAY_CRRNC
 	     , PAY_CMMSSN
-	     , IAM_MID
+	     , IMP_MID
 	  FROM PAY_INF PI
 	  JOIN (SELECT *
 	  		  FROM USR_INF
@@ -134,8 +134,8 @@
 UPDATE PAY_INF
    SET PAY_STT = 'COMPLETE'
      , PAY_CMPLT_DT = SYSDATE
-     , IAM_UID = #{iamUid}
-     , IAM_MID = #{iamMid}
+     , IMP_UID = #{impUid}
+     , IMP_MID = #{impMid}
      , PAY_MTHD = #{payMthd}
  WHERE PAY_ID = #{payId}
 </update>

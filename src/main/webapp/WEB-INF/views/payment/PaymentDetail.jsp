@@ -23,8 +23,8 @@
   		<li class="payCsh">${paymentVO.payCsh}</li>
   		<li class="payCrtDt">${paymentVO.payCrtDt}</li>
   		<li class="payCmpltDt">${paymentVO.payCmpltDt}</li>	<!-- 얘 없음 -->
-  		<li class="payKey">${paymentVO.iamUid}</li>
-  		<li class="payKey">${paymentVO.iamMid}</li>
+  		<li class="payKey">${paymentVO.impUid}</li>
+  		<li class="payKey">${paymentVO.impMid}</li>
   		<li class="payMthd">${paymentVO.payMthd}</li>	<!-- 얘 없음 -->
   		<li class="payCrrnc">${paymentVO.payCrrnc}</li>
   		<li class="payStt">${paymentVO.payStt}</li>

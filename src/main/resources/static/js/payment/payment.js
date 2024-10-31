@@ -35,18 +35,21 @@ $().ready(function () {
   
   $('.do').on("click", function(){
 	$.ajax({
-		type:'POST',
-		url: '/successPayment',
-		data: {"payId":'31', "iam_uid": 'imp_6313',
-			 "iam_mid": '3121235', "pay_mthd": "card",}, 
-		success: function(rsp) {
-			console.log("pk" + '31' + "에게 결제 아이디 iam_uid(" + 'imp_405862966313' 
-				+ ")와 portOne에게 부여한 결제 아이디인 iam_mid(" + '312965' + ")를 결제수단" 
-				+ "card" + "을 이용한 데이터를 DB에 적용하였습니다.");
+		async: true,
+		crossDomain: true,
+		url: 'https://api.iamport.kr/payments/cancel',
+	  	method: 'post',
+	  	headers: {
+		    'Content-Type': 'application/json'
+	  	},
+		body: {
+		  // "imp_uid": "imp_uid",
+		  "merchant_uid": "31342",
+		  "amount": 0,
+		  "reason": "reason",
 		},
-		error: function(){
-			console.log("실패");
-		},
+	  	processData: false,
+	  	data: '{}'
 	});
 	
   });
@@ -79,37 +82,45 @@ $().ready(function () {
 							$.ajax({
 								type: 'get',
 								url : '/verifyPayment',
-								data : {"payId": merchantUid, "amount": rsp.paid_amount },	// 실제로 결제된 금액을 가지고 비교한다.
+								data : {"payId": merchantUid, "amount": 3000/*rsp.paid_amount*/ },	// 실제로 결제된 금액을 가지고 비교한다.
 								success: function(result) {
 									if (result === true){
 										alert("올바른 결제입니다. 이용해주셔서 감사합니다.")
-										// 결제 완료 ajax 실행
-										// post로 update하면 됨
 										$.ajax({
 												type:'POST',
 												url: '/successPayment',
-												data: {"payId":merchantUid, "iam_uid": rsp.imp_uid,
-													 "iam_mid": rsp.merchant_uid, "pay_mthd": rsp.pay_method,}, 
-												success: function(r) {
-													console.log("pk" + merchantUid + "에게 결제 아이디 iam_uid(" + rsp.imp_uid 
-														+ ")와 portOne에게 부여한 결제 아이디인 iam_mid(" + rsp.merchant_uid + ")를 결제수단" 
+												data: {"payId":merchantUid, "imp_uid": rsp.imp_uid,
+													 "imp_mid": rsp.merchant_uid, "pay_mthd": rsp.pay_method,}, 
+												success: function() {
+													console.log("pk" + merchantUid + "에게 결제 아이디 imp_uid(" + rsp.imp_uid 
+														+ ")와 portOne에게 부여한 결제 아이디인 imp_mid(" + rsp.merchant_uid + ")를 결제수단" 
 														+ rsp.pay_method + "을 이용한 데이터를 DB에 적용하였습니다.");
 												},
 												error: function(){
 													console.log("실패");
 												},
 											});
-										
 									} else {
 										alert("위조된 결제입니다. 결제를 취소합니다.")
-										// TODO 결제 취소
-										// 야르~~~
+										$.ajax({
+											type: 'POST',
+											url: '/cancelPayment',
+											data: { "imp_uid": rsp.imp_uid, "reason": "검증 실패", },
+											success: function(cancelRsp){
+												if (canelRsp=== true){
+													console.log("결제 취소하였습니다.");
+												}
+											},
+											error: function(cancelRsp){
+												console.log("cancelRsp");
+											},
+										});
+										
 									}
 								},
 								error : function() {
-									alert("결제 검증에 실패했습니다. 결제를 취소합니다.");
-									// TODO 여기에 결제 취소가 들어가야한다. (일단 취소되는지 확인을 먼저 해야함)
-									// 야르~~~
+									alert("위조 검사 실패. 결제를 취소합니다.")
+									// 방금 결제 항목을 취소(환불)
 								}
 							});
 							var result = {

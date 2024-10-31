@@ -1,5 +1,8 @@
 package com.mate.payment.web;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,13 +56,13 @@ public class PaymentController {
 	
 	@ResponseBody
 	@PostMapping("/successPayment")
-	public String successPayment(@RequestParam("payId") String payId, @RequestParam("iam_uid") String iamUid,
-			 					 @RequestParam("iam_mid") String iamMid, @RequestParam("pay_mthd") String payMthd) {
+	public String successPayment(@RequestParam("payId") String payId, @RequestParam("imp_uid") String impUid,
+			 					 @RequestParam("imp_mid") String impMid, @RequestParam("pay_mthd") String payMthd) {
 		System.out.println("여기까지는 오나?");
 		PaymentVO paymentVO = new PaymentVO();
 		paymentVO.setPayId(payId);
-		paymentVO.setIamUid(iamUid);
-		paymentVO.setIamMid(iamMid);
+		paymentVO.setImpUid(impUid);
+		paymentVO.setImpMid(impMid);
 		paymentVO.setPayMthd(payMthd);
 		if (this.paymentService.successPayment(paymentVO) == true) {
 			System.out.println("업데이트 성공");
@@ -68,6 +71,26 @@ public class PaymentController {
 		
 		return "실패";
 		
+		
+	}
+	
+	
+	@PostMapping("/cancelPayment")
+	public Map<String, Object> cancelPayment(@RequestParam("imp_uid") String impUid, @RequestParam("reason") String reason){
+		Map<String, Object> response = new HashMap<> ();
+		
+		try {
+			
+			
+			response.put("success", "true");
+			response.put("msg", "결제 취소에 성공하였습니다.");
+			
+		}catch (Exception e) {
+			
+		}
+		
+		
+		return null;
 		
 	}
 	

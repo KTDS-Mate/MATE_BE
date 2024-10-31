@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.mate.payment.service.PortOneService;
 import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
+import com.siot.IamportRestClient.request.CancelData;
 
 @Service
 public class PortOneServiceImpl implements PortOneService {
@@ -40,6 +41,15 @@ public class PortOneServiceImpl implements PortOneService {
 		return null;
 	}
 	
+	@Override
+	public void cancelPayment(String impUid, String reason) {
+		CancelData cancelData = new CancelData(impUid, true);
+		try {
+			System.out.println(this.iamportClient.cancelPaymentByImpUid(cancelData));
+		}catch (Exception e) {
+		}
+		
+	}
 	
 	
 	

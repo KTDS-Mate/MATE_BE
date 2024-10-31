@@ -68,14 +68,14 @@ public class PaymentVO {
 	private String payCmpltDt;
 
 	/**
-	 * 포트원 식별번호(iam_uid)
+	 * 포트원 식별번호(imp_uid)
 	 */
-	private String iamUid;
+	private String impUid;
 
 	/**
 	 * 포트원에 부여한 식별번호
 	 */
-	private String iamMid;
+	private String impMid;
 	
 	/**
 	 * 결제를 한 수단 (CARD, ACCOUNT 등)
@@ -197,20 +197,20 @@ public class PaymentVO {
 		this.payCmpltDt = payCmpltDt;
 	}
 
-	public String getIamUid() {
-		return iamUid;
+	public String getImpUid() {
+		return impUid;
 	}
 
-	public void setIamUid(String iamUid) {
-		this.iamUid = iamUid;
+	public void setImpUid(String impUid) {
+		this.impUid = impUid;
 	}
 
-	public String getIamMid() {
-		return iamMid;
+	public String getImpMid() {
+		return impMid;
 	}
 
-	public void setIamMid(String iamMid) {
-		this.iamMid = iamMid;
+	public void setImpMid(String impMid) {
+		this.impMid = impMid;
 	}
 
 	public String getPayMthd() {
