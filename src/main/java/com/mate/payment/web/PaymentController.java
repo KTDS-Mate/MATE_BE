@@ -67,10 +67,7 @@ public class PaymentController {
 			System.out.println("업데이트 성공");
 			return "성공";
 		}
-		
 		return "실패";
-		
-		
 	}
 	
 	@ResponseBody

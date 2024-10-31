@@ -12,10 +12,16 @@ $().ready(function () {
 	var title = $('.usrTrTtl').text();
   }
   const name = title;
-  console.log("결제할 이름 " + name)
+  console.log("결제할 이름 " + name);
   
   const buyerName = $('.trstId').text();
-  console.log("결제자 유저 UID " + buyerName)
+  console.log("결제자 유저 UID " + buyerName);
+  
+  const impMid = $('.impMid').text();
+  console.log("imp_merchant_id "+ impMid);
+
+  const impUid = $('.impUid').text();
+  console.log("imp_uid "+ impUid);
   
   
   // pay_inf의 pk
@@ -37,7 +43,7 @@ $().ready(function () {
 	$.ajax({
 		url: '/cancelPayment',
 		type: 'POST',
-		data: {"imp_uid": "imp_620788251595","reason": "검증 실패로 결제를 취소합니다.", },
+		data: {"imp_uid": impUid,"reason": "검증 실패로 결제를 취소합니다.", },
 		success: function(rsp){
 			console.log(rsp.message);
 		},
@@ -72,14 +78,14 @@ $().ready(function () {
 			      	function (rsp) {
 						if (rsp.success) {
 							console.log("결제 완료 결제 검증을 시작합니다.");
-							console.log(rsp.pay_method);
 							$.ajax({
 								type: 'get',
 								url : '/verifyPayment',
-								data : {"payId": merchantUid, "amount": 3000/*rsp.paid_amount*/ },	// 실제로 결제된 금액을 가지고 비교한다.
+								data : {"payId": merchantUid, "amount": rsp.paid_amount },
 								success: function(result) {
-									if (result === true){
-										alert("올바른 결제입니다. 이용해주셔서 감사합니다.")
+									if (result){
+										console.log(result);
+										alert("올바른 결제입니다. 이용해주셔서 감사합니다.");
 										$.ajax({
 												type:'POST',
 												url: '/successPayment',
@@ -94,46 +100,48 @@ $().ready(function () {
 													console.log("실패");
 												},
 											});
-									} else {
-										alert("위조된 결제입니다. 결제를 취소합니다.")
+									} else{
+										alert("위조된 결제입니다. 결제를 취소합니다.");
 										$.ajax({
-											type: 'POST',
 											url: '/cancelPayment',
+											type: 'POST',
 											data: { "imp_uid": rsp.imp_uid, "reason": "검증 실패", },
-											success: function(cancelRsp){
-												if (canelRsp=== true){
-													console.log("결제 취소하였습니다.");
-												}
+											success: function(rsp){
+													console.log("이거 왜 위조임?");
+													console.log(rsp.message);
 											},
-											error: function(cancelRsp){
-												console.log("cancelRsp");
+											error: function(){
+												console.log("실행처리중 오류가 생겼습니다. 고객센터에 문의해주세요.");
 											},
 										});
-										
 									}
 								},
 								error : function() {
 									alert("위조 검사 실패. 결제를 취소합니다.")
 									// 방금 결제 항목을 취소(환불)
+									$.ajax({
+										url: '/cancelPayment',
+										type: 'POST',
+										data: { "imp_uid": rsp.imp_uid, "reason": "검증 실패", },
+										success: function(rsp){
+												console.log(rsp.message);
+										},
+										error: function(){
+											console.log("취소처리중 오류가 생겼습니다. 고객센터에 문의해주세요.");
+										},
+									});
 								}
 							});
-							var result = {
-								"payId": rsp.merchant_uid, // 결제번호
-								//등등
-							};
 						}
 						else {
 							console.log("결제 실패");
 							var msg =  rsp.error_code + "    " + rsp.error_msg;
 							console.log(msg);
-							
-							var result = {
-								error_code : rsp.error_code,
-							}
 						}
 			        },
 			    );
-				
+				// IMP.Request_Pay 여기 위까지임
+				//아래부터는 선검증 실패부분
 			} else {
 	  			console.log("데이터가 변조되었습니다.");
 	  			}
