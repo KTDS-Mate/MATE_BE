@@ -56,7 +56,7 @@ div.sub-content {
   flex-direction: column;
   font-size: 1.1rem;
   margin: 1rem 0;
-  border: 1px solid #333;
+  /* border: 1px solid #333; */
   border-radius: 20px;
 }
 
@@ -64,8 +64,16 @@ div.sub-content {
 /* 항목당 간격(padding) 조절 */
 div.form-item {
   display: flex;
-  padding: 1rem 0 1rem 10rem;
+  padding: 1rem 0 1rem 0.5rem;
+  margin: auto;
+  width: 35rem;
   flex-direction: column;
+  border: 1px solid #333;
+  border-bottom: 0;
+}
+
+div.sub-content div.form-item:last-child {
+  border-bottom: 1px solid #333;
 }
 
 div.form-item label {
@@ -91,8 +99,8 @@ input[type="file"] {
 }
 
 textarea {
-  margin-right: 10rem;
   height: 10rem;
+  width: 30rem;
   font-size: 1rem;
 }
 

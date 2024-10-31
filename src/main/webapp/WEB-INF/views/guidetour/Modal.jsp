@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -55,7 +56,7 @@ pageEncoding="UTF-8" %>
         />
       </div>
       <div class="picArea">
-        <img src="/public/라스베가스 야경.jpg" alt="확대 사진" />
+        <img src="${guideTourVO.guideTourImgList[0].gdTrImgUrl}" alt="확대 사진" />
       </div>
     </dialog>
     <dialog id="viewAllReviewModal" class="viewAllReviewModal hidden">

@@ -28,14 +28,13 @@ public class MainController {
 
 	@GetMapping("/guide/tourinfo")
 	public String viewGuideTourInfoPage(){
-		return "all/GuideTourInfo";
+		return "guidetour/GuideTourInfo";
 		}
 
 	@GetMapping("/guide/guideprofile")
-	public String viewGuideProfilePage(){return "all/GuideProfile"; }
-
-
-
+	public String viewGuideProfilePage(){
+		return "all/GuideProfile"; 
+		}
 	
 	
 	@GetMapping("/guide/regist")
@@ -46,7 +45,7 @@ public class MainController {
 	
 	@GetMapping("/guide/tour/write")
 	public String viewGuideTourWrite() {
-		return "all/Guide_TourInsert";
+		return "guidetour/Guide_TourInsert";
 	}
 	
 	@GetMapping("/guide/recruitment")
@@ -56,7 +55,7 @@ public class MainController {
 	
 	@GetMapping("/tourist/tour/write")
 	public String viewTouristTourWrite() {
-		return "all/Tourist_TourInsert";
+		return "usertour/Tourist_TourInsert";
 	}
 	
 	@GetMapping("/message/receive")
