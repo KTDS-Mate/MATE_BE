@@ -135,7 +135,6 @@
 .summation {
   border: 2px solid #f5f6f7;
   width: 75rem;
-  height: 19rem;
   border-radius: 20px;
 }
 
@@ -175,7 +174,8 @@ a:hover {
 
 .guide-dtls-list li {
   display: inline-block;
-  margin-top: 2rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
 }
 
 .want-tour {
@@ -187,7 +187,6 @@ a:hover {
   border: 2px solid #f5f6f7;
   border-radius: 20px;
   width: 75rem;
-  height: 19rem;
 }
 
 .want-time {
@@ -281,4 +280,9 @@ a:hover {
 	border: 1px solid #ddd;
 	border-radius: 10px;
 	color: #333;
+}
+
+.tr-dtls-p {
+	margin-left: 2rem;
+	margin-right: 2rem;
 }

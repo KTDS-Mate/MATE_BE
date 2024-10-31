@@ -92,8 +92,6 @@ public class UserTourServiceImpl implements UserTourService{
 		userTourModifyVO.setUsrTrStDt(startDt);
 		userTourModifyVO.setUsrTrEdDt(endDt);
 		
-		
-		
 		int updateCount = this.userTourDao.updateUserTour(userTourModifyVO);
 		return updateCount > 0;
 	}

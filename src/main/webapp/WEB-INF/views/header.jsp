@@ -9,7 +9,7 @@
     </div>
 
     <div class="header-center-menu">
-      <div><a href="/usertour/list?usrLgnId=${sessionScope._LOGIN_USER_.usrLgnId}&usrIsGd=${sessionScope._LOGIN_USER_.usrIsGd}">투어 요청 목록</a></div>
+      <div><a href="/usertour/list?pageNo=0&listSize=9&usrLgnId=${sessionScope._LOGIN_USER_.usrLgnId}&usrIsGd=${sessionScope._LOGIN_USER_.usrIsGd}">투어 요청 목록</a></div>
       <div><a href="">가이드 투어 목록</a></div>
       <div><a href="">가이드 목록</a></div>
     </div>
