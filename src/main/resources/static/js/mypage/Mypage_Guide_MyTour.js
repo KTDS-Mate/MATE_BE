@@ -34,9 +34,9 @@ function movePage(pageNo) {
     }).submit();
 }
 
-function deleteTour(usrLgnId, gdTrPstId) {
+function deleteTour(usrLgnId, usrTrPstId) {
 	if (confirm("정말 삭제하시겠습니까?")) {
-	       location.href = `/mypage/mytour/gd-mytour/${usrLgnId}/delete-${gdTrPstId}`;
+	       location.href = `/mypage/mytour/gd-mytour/${usrLgnId}/delete-${usrTrPstId}`;
 	   }
 }
 
