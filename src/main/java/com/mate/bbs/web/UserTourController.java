@@ -29,7 +29,6 @@ public class UserTourController {
 	@GetMapping("/usertour/list")
 	public String viewAllUserTourPage(Model model
 									, SearchUserTourVO searchUserTourVO) {
-		System.out.println("대륙" + searchUserTourVO.getRegionName());
 		UserTourListVO userTourListVO = this.userTourService.getAllUserTour(searchUserTourVO);
 		model.addAttribute("userTourListVO", userTourListVO);
 		model.addAttribute("searchUserTourVO", searchUserTourVO);
@@ -71,7 +70,7 @@ public class UserTourController {
 		
 		this.userTourService.createNewUserTour(userTourWriteVO);
 		
-		return "redirect:/usertour/list";
+		return "redirect:/usertour/list?pageNo=0&listSize=9&regionName=전체&orderby=최신순";
 	}
 	
 	@GetMapping("/usertour/modify/{usrTrPstId}")
