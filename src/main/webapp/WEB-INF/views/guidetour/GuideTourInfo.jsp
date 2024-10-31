@@ -4,7 +4,11 @@ pageEncoding="UTF-8" %>
 <html>
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="/css/guidetour/GuideTourInfo.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/guidetour/GuideTourInfo.css"
+    />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -54,15 +58,21 @@ pageEncoding="UTF-8" %>
             </div>
             <div class="priceArea">
               <div class="priceTitleArea">
-                <span>Price for Person</span>
+                <span>Price for One Team</span>
               </div>
               <div class="priceDetailArea">
-                <div class="adultPrice">
+                <div class="hour">
+                  <span>6 Hours</span>
+                </div>
+                <div class="price">
+                  <span>300 $ per Team</span>
+                </div>
+                <!-- <div class="adultPrice">
                   <span>Adult : 300$</span>
                 </div>
                 <div class="childPrice">
                   <span>Child : 100$</span>
-                </div>
+                </div> -->
                 <div class="reserveButton">
                   <span onclick="location.href='index.html'">예약 요청</span>
                 </div>

@@ -1,7 +1,6 @@
 $(document).ready(function () {
   const $carouselList = $(".reviewCarousel");
   const width = $(".reviewArea").outerWidth(true) * 1; // true를 사용하여 마진 포함 너비 가져오기
-  // 수정 필요
   const carouselItemCount = $(".reviewArea").length + 2;
 
   const $forwardButton = $(".reviewForwardButton");
@@ -51,7 +50,7 @@ $(document).ready(function () {
       let newTranslateX = currentPos + dragAmount;
 
       // 경계 설정
-      if (newTranslateX < -width * (carouselItemCount - 1)) {
+      if (newTranslateX <= -width * (carouselItemCount - 1)) {
         newTranslateX = -width * (carouselItemCount - 1);
       } else if (newTranslateX > 0) {
         newTranslateX = 0;
@@ -85,10 +84,16 @@ $(document).ready(function () {
       currentTranslateX -= width;
       updateCarouselPosition(currentTranslateX);
       updateButtonState(); // 버튼 상태 업데이트
-      // Carousel 위치 업데이트
-      updateCarouselPosition();
+      // // Carousel 위치 업데이트
+      // updateCarouselPosition();
 
-      // 버튼 상태 업데이트
+      // // 버튼 상태 업데이트
+      // updateButtonState();
+    } else if ((currentTranslateX = 0)) {
+      updateCarouselPosition(currentTranslateX);
+      updateButtonState();
+    } else if ((currentTranslateX = -width * (carouselItemCount - 2))) {
+      updateCarouselPosition(currentTranslateX);
       updateButtonState();
     }
   });
