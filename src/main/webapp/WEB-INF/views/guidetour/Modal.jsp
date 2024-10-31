@@ -72,7 +72,7 @@ pageEncoding="UTF-8" %>
         <div class="reviewListArea">
           <div class="oneReview">
             <div class="oneReviewRating">
-              <img src="/public/Star.png" alt="별점 아이콘" class="star" />
+              <img src="/public/Star.png" alt="별점 아이콘" class="modal-star" />
               <span class="oneReviewRatingCount">5</span>
               <span class="reviewerNameArea">Gil-Dong Hong</span>
             </div>

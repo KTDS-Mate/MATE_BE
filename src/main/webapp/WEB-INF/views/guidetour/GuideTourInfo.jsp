@@ -4,7 +4,7 @@ pageEncoding="UTF-8" %>
 <html>
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="/css/guidetour/GuideTourInfo.css" />
+    <link rel="stylesheet" type="text/css" href="/css/guidetour/GuideTourInfo.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
