@@ -10,6 +10,9 @@ import com.mate.payment.service.PortOneService;
 import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.request.CancelData;
+import com.siot.IamportRestClient.response.AccessToken;
+import com.siot.IamportRestClient.response.IamportResponse;
+import com.siot.IamportRestClient.response.Payment;
 
 @Service
 public class PortOneServiceImpl implements PortOneService {
@@ -29,10 +32,9 @@ public class PortOneServiceImpl implements PortOneService {
 
     
 	@Override
-	public String getAccessToken() {
-//		String tokenUrl = BASE_URL + "/users/getToken"; // 포트	원 API설명에서는 post /users/getToken을 불러오라던데 뭔가 다르다... 웹에서 js로 사용할때만인가..?	
+	public IamportResponse<AccessToken> getAccessToken() {
 		try {
-			return iamportClient.getAuth().getResponse().getToken();
+			return iamportClient.getAuth();
 		} catch (IamportResponseException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -42,13 +44,18 @@ public class PortOneServiceImpl implements PortOneService {
 	}
 	
 	@Override
-	public void cancelPayment(String impUid, String reason) {
+	public IamportResponse<Payment> cancelPayment(String impUid, String reason) {
+		// 생성자에서 true를 주면 imp_uid false면 merchant_id이다.
 		CancelData cancelData = new CancelData(impUid, true);
+		cancelData.setReason(reason);
 		try {
-			System.out.println(this.iamportClient.cancelPaymentByImpUid(cancelData));
-		}catch (Exception e) {
+			return this.iamportClient.cancelPaymentByImpUid(cancelData);
+		} catch (IamportResponseException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		
+		return null;
 	}
 	
 	

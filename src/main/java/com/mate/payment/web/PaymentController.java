@@ -1,8 +1,5 @@
 package com.mate.payment.web;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +11,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mate.payment.service.PaymentService;
 import com.mate.payment.service.PortOneService;
 import com.mate.payment.vo.PaymentVO;
+import com.siot.IamportRestClient.response.AccessToken;
+import com.siot.IamportRestClient.response.IamportResponse;
+import com.siot.IamportRestClient.response.Payment;
 
 @Controller
 public class PaymentController {
@@ -36,12 +36,11 @@ public class PaymentController {
 		return "mypage/payment/list/" + usrId;
 	}
 	
+	// 토큰 발급
 	@ResponseBody
-	@GetMapping("/getAccessToken")
-	public String getAccessToken() {
-		String result = this.portOneService.getAccessToken();
-		System.out.println(result);
-		return result;
+	@PostMapping("/getAccessToken")
+	public IamportResponse<AccessToken> getAccessToken() {
+		return this.portOneService.getAccessToken();
 	}
 	
 	@ResponseBody
@@ -59,7 +58,6 @@ public class PaymentController {
 	@PostMapping("/successPayment")
 	public String successPayment(@RequestParam("payId") String payId, @RequestParam("imp_uid") String impUid,
 			 					 @RequestParam("imp_mid") String impMid, @RequestParam("pay_mthd") String payMthd) {
-		System.out.println("여기까지는 오나?");
 		PaymentVO paymentVO = new PaymentVO();
 		paymentVO.setPayId(payId);
 		paymentVO.setImpUid(impUid);
@@ -75,24 +73,10 @@ public class PaymentController {
 		
 	}
 	
-	
+	@ResponseBody
 	@PostMapping("/cancelPayment")
-	public Map<String, Object> cancelPayment(@RequestParam("imp_uid") String impUid, @RequestParam("reason") String reason){
-		Map<String, Object> response = new HashMap<> ();
-		
-		try {
-			
-			
-			response.put("success", "true");
-			response.put("msg", "결제 취소에 성공하였습니다.");
-			
-		}catch (Exception e) {
-			
-		}
-		
-		
-		return null;
-		
+	public IamportResponse<Payment> cancelPayment(@RequestParam("imp_uid") String impUid, @RequestParam("reason") String reason){
+		return this.portOneService.cancelPayment(impUid, reason);
 	}
 	
 	

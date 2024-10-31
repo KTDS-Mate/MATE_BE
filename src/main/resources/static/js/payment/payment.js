@@ -22,9 +22,9 @@ $().ready(function () {
   $('.getToken').on('click', function() {
 	$.ajax({
 	    url: '/getAccessToken',
-	    type: 'GET',
-	    success: function(result) {
-	        console.log("받아온 토큰 : " + result);
+	    type: 'POST',
+	    success: function(rsp) {
+	        console.log(rsp.token);
 	    },
 	    error: function(textStatus, errorThrown) {
 	        console.error("토큰 발급에 실패 했습니다 :", textStatus, errorThrown);
@@ -35,21 +35,15 @@ $().ready(function () {
   
   $('.do').on("click", function(){
 	$.ajax({
-		async: true,
-		crossDomain: true,
-		url: 'https://api.iamport.kr/payments/cancel',
-	  	method: 'post',
-	  	headers: {
-		    'Content-Type': 'application/json'
-	  	},
-		body: {
-		  // "imp_uid": "imp_uid",
-		  "merchant_uid": "31342",
-		  "amount": 0,
-		  "reason": "reason",
+		url: '/cancelPayment',
+		type: 'POST',
+		data: {"imp_uid": "imp_620788251595","reason": "검증 실패로 결제를 취소합니다.", },
+		success: function(rsp){
+			console.log(rsp.message);
 		},
-	  	processData: false,
-	  	data: '{}'
+		error: function(rsp){
+			console.log("실행도중 오류가 생겼습니다. 고객센터에 문의해주세요.")
+		},
 	});
 	
   });
