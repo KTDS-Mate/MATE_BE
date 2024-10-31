@@ -77,6 +77,8 @@
 			c.COUNTRY_ID = cn.COUNTRY_ID 
 		WHERE 
 			g.ATHR_ID = #{loginId}
+		AND 
+        	g.GD_TR_IS_DLT = 'N'
 		<if test="search != null">
 		    <include refid="com.mate.mypage.dao.MyBoardDao.countSelectAllBoardCondition"/>
 		</if>
@@ -125,7 +127,7 @@
 	<if test="search != null">
 		<include refid="com.mate.mypage.dao.MyBoardDao.selectAllBoardCondition"/>
 	</if>
-	ORDER BY GD_TR_ST_DT DESC 
+	ORDER BY g.GD_TR_ST_DT DESC 
 	<if test="search != null">
 			<include refid="Common2.pagination_footer"></include>					
     </if>

@@ -13,6 +13,8 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet">
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="/js/mypage/Mypage_Guide_Wishlist.js"></script>
 
   </head>
 
@@ -47,32 +49,42 @@
             <div class="border"></div>
 
             <div class="wishlist">
+            <input type="hidden" name="pageNo" class="page-no" value="${paginationVO.pageNo}">
               <!-- 즐겨찾기 전체 박스-->
               <div>
-                <!-- 즐겨찾기 하나 -->
+              
+              <c:choose>
+              <c:when test="${not empty wishlistVO.wishlist}">
+              <c:forEach  items="${wishlistVO.wishlist}" var="wish">
+              <!-- 즐겨찾기 하나 -->
                 <div class="one-wishlist">
                   <div class="right-element">
                     <div>
-                      <img class="check" src="/image/wishlist/check.png" alt="check" />
+                      <img class="check" src="/img/wishlist/check.png" alt="check" />
                     </div>
                     <div class="wishlist-info">
                       <div>
                         <div>제목 :</div>
-                        <div class="info-content">퀘백 안내해주실분~</div>
+                        <div class="info-content">${wish.myBoardVO.gdTrTtl}</div>
                       </div>
                       <div>
                         <div>날짜 :</div>
                         <div class="info-content">
-                          241020 14:00 ~ 241020 18:30
+                          ${wish.myBoardVO.gdTrStDt} ~ ${wish.myBoardVO.gdTrEdDt}
                         </div>
                       </div>
                       <div>
                         <div>지역 :</div>
-                        <div class="info-content">퀘백</div>
+                        <div class="info-content">
+                        ${wish.myBoardVO.searchCityAndCountryVO.countriesVO.countryName} /
+                                ${wish.myBoardVO.searchCityAndCountryVO.cityName}
+                        </div>
                       </div>
                       <div>
                         <div>가격 :</div>
-                        <div class="info-content">250,000 WON</div>
+                        <div class="info-content">
+                        ${wish.myBoardVO.gdTrPrc}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -81,12 +93,25 @@
                   </div>
                 </div>
                 <!-- 즐겨찾기 하나 -->
+              </c:forEach>
+              </c:when>
+              <c:otherwise>
+              <div class="one-wishlist">
+                        <div class="right-element">
+                          <div class="wishlist-info">
+                            <div>게시글이 없습니다.</div>
+                          </div>
+                        </div>
+                      </div>
+              </c:otherwise>
+              </c:choose>
+                
 
                 
               </div>
               <!-- pagenation-->
               <ul class="page-nav">
-                  <c:if test="${SearchMyWishVO.hesprevGroup}">
+                  <c:if test="${paginationVO.hesprevGroup}">
                     <li>
                       <!-- <a href="/board/list?pageNo=0&listSize=${searchMyBoardVO.listSize}"> -->
                       <a href="javascript:movePage(0)">
@@ -94,14 +119,14 @@
                       </a>
                     </li>
                     <li>
-                      <a href="javascript:movePage(${SearchMyWishVO.prevGroupStartPageNo})">
+                      <a href="javascript:movePage(${paginationVO.prevGroupStartPageNo})">
                         이전
                       </a>
                     </li>
                   </c:if>
-                  <c:forEach begin="${SearchMyWishVO.groupStartPageNo}" end="${searchMyBoardVO.groupEndPageNo}"
+                  <c:forEach begin="${paginationVO.groupStartPageNo}" end="${paginationVO.groupEndPageNo}"
                     step="1" var="p">
-                    <li class="${p eq SearchMyWishVO.pageNo ? 'active' : ''}">
+                    <li class="${p eq paginationVO.pageNo ? 'active' : ''}">
                       <!-- a href="/mypage/mytour/gd-mytour/${sessionScope._LOGIN_USER_.usrLgnId}?pageNo=${p}" -->
                       <a href="javascript:movePage(${p})">
 
@@ -110,14 +135,14 @@
                       </a>
                     </li>
                   </c:forEach>
-                  <c:if test="${SearchMyWishVO.hasNextGroup}">
+                  <c:if test="${paginationVO.hasNextGroup}">
                     <li>
-                      <a href="javascript:movePage(${SearchMyWishVO.nextGroupStartPageNo})">
+                      <a href="javascript:movePage(${paginationVO.nextGroupStartPageNo})">
                         다음
                       </a>
                     </li>
                     <li>
-                      <a href="javascript:movePage(${SearchMyWishVO.pageCount - 1})">
+                      <a href="javascript:movePage(${paginationVO.pageCount - 1})">
                         끝
                       </a>
                     </li>
