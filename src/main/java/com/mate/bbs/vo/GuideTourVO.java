@@ -9,7 +9,6 @@ import com.mate.user.vo.UserVO;
 
 public class GuideTourVO {
 
-
 	/**
 	 * 가이드 투어 게시글 아이디
 	 */
@@ -82,7 +81,6 @@ public class GuideTourVO {
 	 * 투어 최대 인원 수
 	 */
 	private int gdTrMxNp;
-	
 	/**
 	 * 리뷰 평점 알리아스
 	 */
@@ -104,6 +102,20 @@ public class GuideTourVO {
 	 * 가이드 투어 리뷰 리스트 VO
 	 */
 	private List<GuideTourReviewVO> guideTourReviewList;
+	/**
+	 * 가이드 추가 정보 리스트 VO
+	 */
+	private List<GuideTourAdditionInfoVO> guideTourAdditionInfoList;
+	
+	/**
+	 * 가이드 투어 즐겨찾기 리스트 VO
+	 */
+	// private List<GuideTourFavoriteVO> guideTourFavoriteList;
+	
+	/**
+	 * 가이드 투어 추가정보 리스트 VO
+	 */
+	// private List<GuideTourAdditionInfoVO> guideTourAdditionInfoList;
 	
 	/**
 	 * 게시글 작성자의 정보를 담은 VO
@@ -117,6 +129,12 @@ public class GuideTourVO {
 	 * 나라 정보를 담은 VO
 	 */
 	private CountriesVO countriesVO;
+	
+	/**
+	 * 해당 프로퍼티는 DB컬럼에 존재하지 않음
+	 */
+	private String guideAge;
+	
 	public String getGdTrPstId() {
 		return gdTrPstId;
 	}
@@ -249,6 +267,24 @@ public class GuideTourVO {
 	public void setGuideTourReviewList(List<GuideTourReviewVO> guideTourReviewList) {
 		this.guideTourReviewList = guideTourReviewList;
 	}
+	public List<GuideTourAdditionInfoVO> getGuideTourAdditionInfoList() {
+		return guideTourAdditionInfoList;
+	}
+	public void setGuideTourAdditionInfoList(List<GuideTourAdditionInfoVO> guideTourAdditionInfoList) {
+		this.guideTourAdditionInfoList = guideTourAdditionInfoList;
+	}
+	//	public List<GuideTourFavoriteVO> getGuideTourFavoriteList() {
+//		return guideTourFavoriteList;
+//	}
+//	public void setGuideTourFavoriteList(List<GuideTourFavoriteVO> guideTourFavoriteList) {
+//		this.guideTourFavoriteList = guideTourFavoriteList;
+//	}
+//	public List<GuideTourAdditionInfoVO> getGuideTourAdditionInfoList() {
+//		return guideTourAdditionInfoList;
+//	}
+//	public void setGuideTourAdditionInfoList(List<GuideTourAdditionInfoVO> guideTourAdditionInfoList) {
+//		this.guideTourAdditionInfoList = guideTourAdditionInfoList;
+//	}
 	public UserVO getUserVO() {
 		return userVO;
 	}
@@ -267,5 +303,10 @@ public class GuideTourVO {
 	public void setCountriesVO(CountriesVO countriesVO) {
 		this.countriesVO = countriesVO;
 	}
-	
+	public String getGuideAge() {
+		return guideAge;
+	}
+	public void setGuideAge(String guideAge) {
+		this.guideAge = guideAge;
+	}
 }
