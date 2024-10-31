@@ -100,18 +100,23 @@ $().ready(function() {
 	$("#plus").on("click", function() {
 		// 가상 돔으로 추가되는 div의 길이를 구함 -> index를 알기 위해
 		var locsCnt = $(".locs").length;
+		if (locsCnt > 9) {
+			alert("최대 10개 까지 작성할 수 있습니다!");
+			return
+		}
 		// userTourWriteVO에 있는 List<UserTourSchdlVO> userTourSchdulList에게 리스트 형식으로 담아줌
 		// -> name="userTourSchdlList[index].컬럼명" -> 해당 컬럼에 리스트 형식으로 담음
 		// 해당 방법을 사용하기 위해서는 모든 input태그를 감싸고있는 div가 하나 필요함 -> <div class="locs">...</div>
 		var plusDom = $(`<div class="locs">
 						<div>
 							<label for="hope-location">장소</label>
-							<input id="hope-location" name="userTourSchdlList[${locsCnt}].trLctns" type="text"/>
+							<input id="hope-location" name="userTourSchdlList[${locsCnt}].trLctns" type="text" required="required" />
 						</div>
 						<div>
 							<label for="hope-info">일정</label>
-							<input id="hope-info" name="userTourSchdlList[${locsCnt}].trRqst" type="text"/>
-						</div></div>`);
+							<input id="hope-info" name="userTourSchdlList[${locsCnt}].trRqst" type="text" required="required" />
+						</div>
+						</div>`);
 		// 인덱스가 담긴 가상 돔을 .loc-inf의 안쪽에 담아준다.
 		$(".loc-inf").append(plusDom);
 	});
@@ -207,4 +212,23 @@ $().ready(function() {
 
 	});
 
+	$("#add-file").on('click', function () {
+		var fileCnt = $(".file-group").length;
+
+		// 파일 첨부 개수 제한
+		if (fileCnt > 9) {
+			alert("파일은 최대 10개까지 첨부 가능합니다!");
+			return
+		}
+				
+		var fileDom = $(`<div class="file-group">
+						 	<input type="file" required="required" />
+						 </div>`);
+		$(".file-list").append(fileDom);
+	});
+	
+	$("#del-file").on('click', function() {
+		$(".file-group:last").remove();
+	});
+	
 });

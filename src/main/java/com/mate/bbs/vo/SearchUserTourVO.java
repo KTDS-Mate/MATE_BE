@@ -16,6 +16,8 @@ public class SearchUserTourVO extends PaginationVO {
 	/****클라이언트가 등록한 가이드 구인 게시글 목록 검색창****/
 	private String searchKeyword;
 
+	private String searchType;
+	
 	public String getRegionName() {
 		return regionName;
 	}
@@ -40,4 +42,11 @@ public class SearchUserTourVO extends PaginationVO {
 		this.searchKeyword = searchKeyword;
 	}
 
+	public String getSearchType() {
+		return searchType;
+	}
+
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
 }
