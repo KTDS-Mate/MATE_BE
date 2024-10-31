@@ -36,7 +36,21 @@ public class PaymentServiceImpl implements PaymentService{
 		return paymentListVO;
 	}
 	
+	@Override
+	public PaymentVO getPaymentDetail(String payId) {
+		return this.paymentDao.selectOnePayment(payId);
+	}
 	
+	@Override
+	public double getPayAmount(String payId) {
+		return this.paymentDao.selectOnePaymentAmount(payId);
+	}
+	
+	@Override
+	public boolean successPayment(PaymentVO paymentVO) {
+		int updateCnt = this.paymentDao.updateSuccessPayment(paymentVO);
+		return updateCnt > 0;
+	}
 	
 	
 	
