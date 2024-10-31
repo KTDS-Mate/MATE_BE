@@ -79,7 +79,14 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       <li>성별 : 여자</li>
                     </c:when>
                     <c:otherwise>
-                      <li>성별 : 남자</li>
+                    	<c:choose>
+                    		<c:when test="${userTourVO.gdGndr == 'male'}">
+                    			<li>성별 : 남자</li>
+                    		</c:when>
+                    		<c:otherwise>
+                    			<li>성별 : 상관없음</li>
+                    		</c:otherwise>
+                    	</c:choose>
                     </c:otherwise>
                   </c:choose>
                   <c:choose>
@@ -99,6 +106,9 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       <li>가이드 경력 : ${userTourVO.gdCrr}년 이상</li>
                     </c:otherwise>
                   </c:choose>
+                  <c:if test="${not empty userTourVO.gdWntRq}">
+                  	<li>가이드에게 원하는 것 : ${userTourVO.gdWntRq}</li>
+                  </c:if>
                 </ul>
               </div>
             </div>
@@ -109,11 +119,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                 <h2>투어에서 원하는 것</h2>
               </div>
               <div>
-                <ol class="summation-list">
-                  <c:if test="${not empty userTourVO.usrTrRqDtl}">
-                    <li>${userTourVO.usrTrRqDtl}</li>
-                  </c:if>
-                </ol>
+                 <p class="tr-dtls-p">${userTourVO.usrTrRqDtl}</p>
               </div>
             </div>
           </div>
