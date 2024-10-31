@@ -4,15 +4,16 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link rel="stylesheet" href="/css/GuideProfile.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
-      type="text/css"
-      href="/css/common.css"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="/js/guideReviewCarousel.js"></script>
   </head>
   <body>
     <div class="grid">
@@ -24,249 +25,418 @@
       <!--  -->
   
       <div class="content">
-        <div class="guideContentFrame">
-          <div class="group">
-            <h1 class="title">가이드 프로필 상세 조회</h1>
-            <div class="guidePicAndProfileArea">
-              <div class="guidePicAndAuthArea">
-                <div class="guidePicArea">
-                  <div class="picWrapper">
-                    <div class="pictureArea">
-                      <img
-                        class="guidePicture"
-                        src="/public/가이드 샘플 사진.jpg"
-                      />
+        <div class="container">
+          <div class="title">
+            <h1>가이드 프로필 상세 조회</h1>
+          </div>
+          <jsp:include page="Modal.jsp" />
+          <div class="firstLayer">
+            <div class="guidePicArea">
+              <img src="/public/가이드 샘플 사진.jpg" alt="가이드 사진" class="guidePicture">
+              <img src="/public/가이드 인증 마크.png" alt="가이드 인증 마크" class="guideAuthMark">
+            </div>
+            <div class="guideProfileArea">
+              <div class="guideProfileTitleArea">
+                <span>가이드 프로필</span>
+                <img src="/public/guide/ChatButton.png" alt="채팅 보내기 버튼" class="guideProfileChatButton">
+              </div>
+              <div class="guideProfileDetailArea">
+                <table class="profileTable">
+                  <tr>
+                    <th>Name : </th>
+                    <td>Yuki</td>
+                  </tr>
+                  <tr>
+                    <th>Gender : </th>
+                    <td>Female</td>
+                  </tr>
+                  <tr>
+                    <th>Age : </th>
+                    <td>24</td>
+                  </tr>
+                  <tr>
+                    <th>Language : </th>
+                    <td>Japanese<br>English</td>
+                  </tr>
+                </table>
+                <img class="profileAreaLine" src="/public/profileAreaLine.png" />
+                <table class="profileTable">
+                  <tr>
+                    <th>Experience : </th>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <th>Country : </th>
+                    <td>Japan</td>
+                  </tr>
+                  <tr>
+                    <th>License : </th>
+                    <td>International<br>Guide License</td>
+                  </tr>
+                  <tr>
+                    <th>Area : </th>
+                    <td>Japan<br>U.S.A</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="secondLayer">
+            <div class="guideReviewArea">
+              <div class="guideReviewTitleArea">
+                <span>가이드 평점 및 후기</span>
+                <div class="titleButtons">
+                  <h2 class="writeReview btn-open-review-modal">후기 작성</h2>
+                  <h3 class="showDetail btn-open-review-list-modal">
+                    모두 보기
+                  </h3>
+                </div>
+              </div>
+              <div class="guideReviewDetailArea">
+                <div class="guideReviewRatingArea">
+                  <div class="averageRatingArea">
+                    <img
+                      src="/public/Star.png"
+                      alt="별점 아이콘"
+                      class="bigStar"
+                    />
+                    <span class="averageRating">4.8</span>
+                  </div>
+                  <div class="ratingArea">
+                    <div class="ratingFiveArea">
+                      <img src="/public/Star.png" alt="별점 5점" class="star" />
+                      <span class="rating">5</span>
+                      <meter
+                        class="ratingGage"
+                        min="0"
+                        max="100"
+                        value="90"
+                      ></meter>
+                      <span class="ratingCount">4834</span>
+                    </div>
+                    <div class="ratingFourArea">
+                      <img src="/public/Star.png" alt="별점 4점" class="star" />
+                      <span class="rating">4</span>
+                      <meter
+                        class="ratingGage"
+                        min="0"
+                        max="100"
+                        value="4"
+                      ></meter>
+                      <span class="ratingCount">124</span>
+                    </div>
+                    <div class="ratingThreeArea">
+                      <img src="/public/Star.png" alt="별점 3점" class="star" />
+                      <span class="rating">3</span>
+                      <meter
+                        class="ratingGage"
+                        min="0"
+                        max="100"
+                        value="3"
+                      ></meter>
+                      <span class="ratingCount">50</span>
+                    </div>
+                    <div class="ratingTwoArea">
+                      <img src="/public/Star.png" alt="별점 2점" class="star" />
+                      <span class="rating">2</span>
+                      <meter
+                        class="ratingGage"
+                        min="0"
+                        max="100"
+                        value="2"
+                      ></meter>
+                      <span class="ratingCount">20</span>
+                    </div>
+                    <div class="ratingOneArea">
+                      <img src="/public/Star.png" alt="별점 1점" class="star" />
+                      <span class="rating">1</span>
+                      <meter
+                        class="ratingGage"
+                        min="0"
+                        max="100"
+                        value="1"
+                      ></meter>
+                      <span class="ratingCount">10</span>
                     </div>
                   </div>
                 </div>
-
-                <img class="authMark" src="/public/가이드 인증 마크.png" />
-              </div>
-              <div class="guideProfileArea">
-                <div class="guideProfileInArea">
-                  <div class="littleSubtitleArea">
-                    <div class="littleSubtitleInArea">
-                      <div class="littleSubtitleBackground"></div>
-                      <h2 class="textArea">가이드 프로필</h2>
-                      <img class="chatButton" src="/public/guide/ChatButton.png" />
-                    </div>
-                  </div>
-                  <div class="profileContentArea">
-                    <div class="profileContentInArea">
-                      <div class="nameArea">
-                        <input class="name" placeholder=" Name :" type="text" />
-                        <h3 class="guideName">Yuki</h3>
-                      </div>
-                      <div class="genderArea">
-                        <div class="gender">Gender :</div>
-                        <div class="sex">Female</div>
-                      </div>
-                      <div class="ageArea">
-                        <div class="element">24</div>
-                        <div class="age">Age :</div>
-                      </div>
-                      <div class="languageArea">
-                        <div class="language">Language :</div>
-                        <div class="japanese-english">Japanese<br />English</div>
-                      </div>
-                      <div class="experienceArea">
-                        <div class="experienceInArea">
-                          <div class="experienceCount">12</div>
-                          <div class="experience">Experience :</div>
+                <div class="guideReviewsArea">
+                  <div class="guideReviewCarouselArea">
+                    <img
+                      src="/public/forward.png"
+                      alt="이전 버튼"
+                      class="guideReviewForwardButton"
+                    />
+                    <div class="guideReviewCarousel">
+                      <div class="guideReviewOneArea">
+                        <div class="smallReviewArea">
+                          <div class="someoneReviewFirstArea">
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <span class="someoneReviewTitleArea"
+                              >Amazing Day!</span
+                            >
+                          </div>
+                          <div class="someoneReviewSecondArea">
+                            <span class="reviewWriterArea">RainyMoon</span>
+                            <span class="reviewWritingDate">SEP.2024</span>
+                          </div>
+                        </div>
+                        <div class="reviewTextArea">
+                          <span>Harry is an Amazing Guide!!</span>
                         </div>
                       </div>
-                      <div class="countryArea">
-                        <div class="country">Country :</div>
-                        <div class="bornCountry">Japan</div>
-                      </div>
-                      <div class="licenseArea">
-                        <div class="licenseNameArea">
-                          International<br />Guide License
+                      <div class="guideReviewOneArea">
+                        <div class="smallReviewArea">
+                          <div class="someoneReviewFirstArea">
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <span class="someoneReviewTitleArea"
+                              >Amazing Day!</span
+                            >
+                          </div>
+                          <div class="someoneReviewSecondArea">
+                            <span class="reviewWriterArea">RainyMoon</span>
+                            <span class="reviewWritingDate">SEP.2024</span>
+                          </div>
                         </div>
-                        <div class="license">License :</div>
+                        <div class="reviewTextArea">
+                          <span>Harry is an Amazing Guide!!</span>
+                        </div>
                       </div>
-                      <div class="activeAreaArea">
-                        <div class="area">Area :</div>
-                        <div class="activeCountry">Japan<br />U.S.A</div>
+                      <div class="guideReviewOneArea">
+                        <div class="smallReviewArea">
+                          <div class="someoneReviewFirstArea">
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <img
+                              src="/public/Star.png"
+                              alt="별점 아이콘"
+                              class="starTwo"
+                            />
+                            <span class="someoneReviewTitleArea"
+                              >Amazing Day!</span
+                            >
+                          </div>
+                          <div class="someoneReviewSecondArea">
+                            <span class="reviewWriterArea">RainyMoon</span>
+                            <span class="reviewWritingDate">SEP.2024</span>
+                          </div>
+                        </div>
+                        <div class="reviewTextArea">
+                          <span>Harry is an Amazing Guide!!</span>
+                        </div>
                       </div>
-                      <img class="profileAreaLine" src="/public/profileAreaLine.png" />
+                      <div
+                        class="moreReviewListButtonArea btn-open-review-list-modal"
+                      >
+                        <div class="smallReviewArea">
+                          <img
+                            src="/public/plusicon.png"
+                            alt="더 보기 버튼"
+                            class="moreReviewButton"
+                          />
+                        </div>
+                        <div class="moreReviewTextArea">
+                          <span>모든 리뷰 목록 보기</span>
+                        </div>
+                      </div>
                     </div>
+                    <img
+                      src="/public/backward.png"
+                      alt="다음 버튼"
+                      class="guideReviewBackwardButton"
+                    />
                   </div>
                 </div>
               </div>
             </div>
-            <div class="guideRatingAndReviewArea">
-              <div class="subtitleArea">
-                <div>
-                  <div class="subtitleInArea">
-                    <h2 class="textAreaTwo">가이드 평점 및 후기</h2>
+          </div>
+          <div class="thirdLayer">
+            <div class="reservableTourListArea">
+              <div class="reservableTourListTitleArea">
+                <span>현재 신청 가능한 투어 프로그램</span>
+                <div class="titleButtons">
+                  <h3 class="showDetail" onclick="location.href='index.html'">
+                    상세 보기
+                  </h3>
+                </div>
+              </div>
+              <div class="reservableTourListDetailArea">
+                <div class="oneTourArea" onclick="location.href='index.html'">
+                  <img src="/public/Prefix_2.png" alt="목차 아이콘" class="prefixIcon">
+                  <span class="oneTourTitle">Let's try Tokyo's famous Restaurant!</span>
+                  <div class="spendTime">
+                    <img src="/public/clock.png" alt="시계 아이콘" class="clock">
+                    <span class="howManyHour">6</span>
+                    <span>Hour</span>
                   </div>
                 </div>
-                <div class="viewMore">상세보기</div>
-              </div>
-              <div class="guideRatingArea">
-                <div class="guideRatingInArea"><div class="rectangle-3"></div></div>
-                <div class="main-area">
-                  <div class="ratingAvgArea">
-                    <img class="star" src="/public/Star.png" />
-                    <div class="text-wrapper-14">4.8</div>
+                <div class="oneTourArea" onclick="location.href='index.html'">
+                  <img src="/public/Prefix_2.png" alt="목차 아이콘" class="prefixIcon">
+                  <span class="oneTourTitle">Let's try Tokyo's famous Restaurant!</span>
+                  <div class="spendTime">
+                    <img src="/public/clock.png" alt="시계 아이콘" class="clock">
+                    <span class="howManyHour">6</span>
+                    <span>Hour</span>
                   </div>
-                  <div class="rating-one">
-                    <div class="div-2">
-                      <img class="star" src="/public/Star.png" />
-                      <div class="text-wrapper-14">1</div>
-                    </div>
-                    <div class="rating-count">0</div>
-                    <div class="rating-gage-yellow-wrapper">
-                      <div class="rating-gage-yellow"></div>
-                    </div>
+                </div>
+                <div class="oneTourArea" onclick="location.href='index.html'">
+                  <img src="/public/Prefix_2.png" alt="목차 아이콘" class="prefixIcon">
+                  <span class="oneTourTitle">Let's try Tokyo's famous Restaurant!</span>
+                  <div class="spendTime">
+                    <img src="/public/clock.png" alt="시계 아이콘" class="clock">
+                    <span class="howManyHour">6</span>
+                    <span>Hour</span>
                   </div>
-                  <div class="rating-two">
-                    <div class="div-2">
-                      <img class="star" src="/public/Star.png" />
-                      <div class="text-wrapper-14">2</div>
-                    </div>
-                    <div class="rating-count">0</div>
-                    <div class="rating-gage-yellow-wrapper">
-                      <div class="rating-gage-yellow"></div>
-                    </div>
+                </div>
+                <div class="oneTourArea" onclick="location.href='index.html'">
+                  <img src="/public/Prefix_2.png" alt="목차 아이콘" class="prefixIcon">
+                  <span class="oneTourTitle">Let's try Tokyo's famous Restaurant!</span>
+                  <div class="spendTime">
+                    <img src="/public/clock.png" alt="시계 아이콘" class="clock">
+                    <span class="howManyHour">6</span>
+                    <span>Hour</span>
                   </div>
-                  <div class="rating-three">
-                    <div class="div-2">
-                      <img class="star" src="/public/Star.png" />
-                      <div class="text-wrapper-14">3</div>
-                    </div>
-                    <div class="rating-count">1</div>
-                    <div class="rating-gage-yellow-wrapper">
-                      <div class="rating-gage-yellow-2"></div>
-                    </div>
+                </div>
+                <div class="oneTourArea" onclick="location.href='index.html'">
+                  <img src="/public/Prefix_2.png" alt="목차 아이콘" class="prefixIcon">
+                  <span class="oneTourTitle">Let's try Tokyo's famous Restaurant!</span>
+                  <div class="spendTime">
+                    <img src="/public/clock.png" alt="시계 아이콘" class="clock">
+                    <span class="howManyHour">6</span>
+                    <span>Hour</span>
                   </div>
-                  <div class="rating-four">
-                    <div class="div-2">
-                      <img class="star" src="/public/Star.png" />
-                      <div class="text-wrapper-14">4</div>
-                    </div>
-                    <div class="rating-count">124</div>
-                    <div class="rating-gage-yellow-wrapper">
-                      <div class="rating-gage-yellow-3"></div>
-                    </div>
+                </div>
+                <div class="oneTourArea" onclick="location.href='index.html'">
+                  <img src="/public/Prefix_2.png" alt="목차 아이콘" class="prefixIcon">
+                  <span class="oneTourTitle">Let's try Tokyo's famous Restaurant!</span>
+                  <div class="spendTime">
+                    <img src="/public/clock.png" alt="시계 아이콘" class="clock">
+                    <span class="howManyHour">6</span>
+                    <span>Hour</span>
                   </div>
-                  <div class="rating-five">
-                    <div class="div-2">
-                      <img class="star" src="/public/Star.png" />
-                      <div class="text-wrapper-14">5</div>
-                    </div>
-                    <div class="rating-count">4834</div>
-                    <div class="rating-gage-yellow-wrapper">
-                      <div class="rating-gage-yellow-4"></div>
-                    </div>
-                  </div>
-                  <div class="review-area">
-                    <div class="overlap-8">
-                      <div class="overlap-group-6">
-                        <div class="review-title">Amazing Day!</div>
-                        <div class="review-write-day">SEP. 2024</div>
-                      </div>
-                      <div class="review-rating">
-                        <img class="star-2" src="/public/Star.png" />
-                        <img class="star-3" src="/public/Star.png" />
-                        <img class="star-4" src="/public/Star.png" />
-                        <img class="star-5" src="/public/Star.png" />
-                        <img class="star-6" src="/public/Star.png" />
-                      </div>
-                      <div class="review-writer">RainyMoon</div>
-                      <p class="review-plot-area">Yuki is an Amazing Guide!!</p>
-                    </div>
+                </div>
+                <div class="oneTourArea" onclick="location.href='index.html'">
+                  <img src="/public/Prefix_2.png" alt="목차 아이콘" class="prefixIcon">
+                  <span class="oneTourTitle">Let's try Tokyo's famous Restaurant!</span>
+                  <div class="spendTime">
+                    <img src="/public/clock.png" alt="시계 아이콘" class="clock">
+                    <span class="howManyHour">6</span>
+                    <span>Hour</span>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="canReserveTourListArea">
-              <div class="subtitleArea">
-                <div class="overlap-group">
-                  <div class="rectangle"></div>
-                  <p class="text-wrapper">현재 신청 가능한 투어 프로그램</p>
-                  <img class="line" src="img/line-7-4.svg" />
-                </div>
-              </div>
-              <div class="overlap-wrapper">
-                <div class="overlap">
-                  <div class="tour-program-area">
-                    <div class="prefix-tourtitlearea">
-                      <p class="p">Let’s try Tokyo’s famous Restaurant!</p>
-                      <div class="prefix"></div>
-                    </div>
-                    <div class="spend-time-area">
-                      <img class="ic-search-time" src="/public/clock.png" />
-                      <div class="text-wrapper-2">6 Hour</div>
-                    </div>
-                  </div>
-                  <div class="tour-program-area-2">
-                    <div class="spend-time-area">
-                      <img
-                        class="ic-search-time"
-                        src="/public/clock.png"
-                      />
-                      <div class="text-wrapper-2">6 Hour</div>
-                    </div>
-                    <div class="prefix-tourtitlearea">
-                      <p class="p">
-                        Let’s make good memories with deer at Nara Park!
-                      </p>
-                      <div class="prefix"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          </div>
+          <div class="fourthLayer">
             <div class="contactArea">
-              <div class="div">
-                <div class="overlap-group">
-                  <div class="rectangle"></div>
-                  <h2 class="textAreaThree">Contact</h2>
-                  <img class="line" src="img/line-7.svg" />
-                </div>
+              <div class="contactTitleArea">
+                <span>Contact</span>
               </div>
-              <div class="overlap-group-wrapper">
-                <div class="overlap-2">
-                  <div class="e-mailarea">
-                    <div class="text-wrapper-5">E-mail :</div>
-                    <div class="text-wrapper-6">yuki01@gmail.com</div>
-                  </div>
-                  <div class="name-area">
-                    <div class="text-wrapper-5">SNS :</div>
-                    <p class="line-ID">LINE ID - yuki01</p>
-                    <p class="x-ID">X ID - @yuki01</p>
-                  </div>
-                  <div class="phone-num-area">
-                    <div class="overlap-group-2">
-                      <div class="phone-num">Phone-num:</div>
-                      <div class="text-wrapper-8">+8210-0000-0000</div>
-                    </div>
-                  </div>
-                </div>
+              <div class="contactDetailArea">
+                <table class="emmailAndPhoneNum">
+                  <tr>
+                    <th>E-mail : </th>
+                    <td>yuki01@gmail.com</td>
+                  </tr>
+                  <!-- <tr>
+                    <th>Phone-num : </th>
+                    <td>+82) 10-0000-0000</td>
+                  </tr> -->
+                </table>
+                <!-- <table class="SNS">
+                  <tr>
+                    <th>SNS : </th>
+                    <td>LINE ID - yuki01<br>X ID - @yuki01</td>
+                  </tr>
+                </table> -->
               </div>
             </div>
-            <div class="introductionArea">
-              <div class="div">
-                <div class="overlap-group">
-                  <div class="rectangle"></div>
-                  <h2 class="text-wrapper-3">소개글</h2>
-                  <img class="line" src="img/line-7-2.svg" />
-                </div>
+          </div>
+          <div class="fifthLayer">
+            <div class="informationArea">
+              <div class="informationTitleArea">
+                <span>소개글</span>
               </div>
-              <div class="overlap-wrapper">
-                <div class="overlap">
-                  <div class="introduction-writing-wrapper">
-                    <p class="introduction-writing">
-                      Hello!<br />
-                      My name is Yuki!<br /><br />
-                      I was born in Japan, and I’m native Japanese.<br />
-                      If you want imposing memory in Japan,<br />
-                      Please Contact me!<br /><br />
-                      Have a good day!
-                    </p>
-                  </div>
+              <div class="informationDetailArea">
+                <div class="informtaionTextArea">
+                  <span>
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s, when an unknown
+                    printer took a galley of type and scrambled it to make a type
+                    specimen book. It has survived not only five centuries, but also
+                    the leap into electronic typesetting, remaining essentially
+                    unchanged. It was popularised in the 1960s with the release of
+                    Letraset sheets containing Lorem Ipsum passages, and more
+                    recently with desktop publishing software like Aldus PageMaker
+                    including versions of Lorem Ipsum.
+                  </span>
                 </div>
               </div>
             </div>
@@ -277,6 +447,7 @@
       <div class="footer">
         <!-- footer 공통파일 -->
         <jsp:include page="../footer.jsp"></jsp:include>
+      </div>
     </div>
   </div>
   
