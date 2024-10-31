@@ -41,6 +41,18 @@ select {
   border-radius: 10px;
 }
 
+#region {
+  width: 6rem;
+}
+
+#country {
+  width: 20rem;
+}
+
+#city {
+  width: 28.5rem;
+}
+
 .flex-hour-div {
   display: flex;
 }
@@ -51,9 +63,9 @@ select {
 }
 
 .inline-margin img {
-    margin-top: 0.3rem;
-    width: 1rem;
-    height: 1rem;
+  margin-top: 0.3rem;
+  width: 1rem;
+  height: 1rem;
 }
 
 #usrTrTtl {
@@ -95,9 +107,9 @@ input[type="submit"] {
 }
 
 .font-we {
-	font-size: x-small;
-	color: #aaa;
-	margin-left: 1rem;
+  font-size: x-small;
+  color: #aaa;
+  margin-left: 1rem;
 }
 
 .hope-btn {
@@ -218,25 +230,25 @@ input {
 }
 
 .time-select {
-	display: flex;
-	justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .flex-hour {
-	display: flex;
-	margin-bottom: 0.5rem;
-    padding: 0.5rem;
-    height: 2.5rem;
+  display: flex;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  height: 2.5rem;
 }
 
 .time-select > input {
-	text-align: center;
+  text-align: center;
 }
 
 #start-minutes {
-	margin-right : 0.5rem;
+  margin-right: 0.5rem;
 }
 
 #end-minutes {
-	margin-left : 0.5rem;
+  margin-left: 0.5rem;
 }
