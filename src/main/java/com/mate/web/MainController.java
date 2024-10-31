@@ -47,7 +47,6 @@ public class MainController {
 	public String viewGuideTourWrite() {
 		return "guidetour/Guide_TourInsert";
 	}
-	
 	@GetMapping("/guide/recruitment")
 	public String viewGuideRecruitment() {
 		return "all/GuideRecruitmentPage";
