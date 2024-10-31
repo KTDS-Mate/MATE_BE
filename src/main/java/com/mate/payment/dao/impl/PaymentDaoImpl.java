@@ -55,6 +55,11 @@ public class PaymentDaoImpl extends SqlSessionDaoSupport implements PaymentDao {
 		return this.getSqlSession().update(NAMESPACE + ".updateSuccessPayment", paymentVO);
 	}
 	
+	@Override
+	public int updateRefundPayment(String payId) {
+		return this.getSqlSession().update(NAMESPACE+".updateRefundPayment", payId);
+	}
+	
 	
 	
 }

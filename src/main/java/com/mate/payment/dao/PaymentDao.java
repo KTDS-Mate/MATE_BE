@@ -22,7 +22,7 @@ public interface PaymentDao {
 	
 	public int updateSuccessPayment(PaymentVO paymentVO);
 	
-	
+	public int updateRefundPayment(String payId);
 	
 	
 }

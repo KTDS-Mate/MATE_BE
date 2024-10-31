@@ -52,6 +52,12 @@ public class PaymentServiceImpl implements PaymentService{
 		return updateCnt > 0;
 	}
 	
+	@Override
+	public boolean refundPayment(String payId) {
+		int updateCnt = this.paymentDao.updateRefundPayment(payId);
+		return updateCnt > 0;
+	}
+	
 	
 	
 	

@@ -29,12 +29,12 @@
   		<li class="payCrrnc">${paymentVO.payCrrnc}</li>
   		<li class="payStt">${paymentVO.payStt}</li>
 	</ul>
-	<button class="do">변조 검사</button>
   	<button class="getToken">Access Token 받기</button>
     <button class="kakaopay-btn">카카오페이 결제</button>
     <button class="tosspayment-btn">토스페이 통합 결제</button>
     <button class="KG-payment">KG이니시스 통합 결제</button>
     <button class="paypal-payment">페이팔 결제</button>
     <button class="only-tosspay">토스페이 결제</button>
+	<div><button class="refund">환불하기</button></div>
   </body>
 </html>

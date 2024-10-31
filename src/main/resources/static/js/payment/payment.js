@@ -39,16 +39,31 @@ $().ready(function () {
 	});
   });
   
-  $('.do').on("click", function(){
+  $('.refund').on("click", function(){
 	$.ajax({
 		url: '/cancelPayment',
 		type: 'POST',
-		data: {"imp_uid": impUid,"reason": "검증 실패로 결제를 취소합니다.", },
+		data: {"imp_uid": impUid,"reason": "환불", },
 		success: function(rsp){
-			console.log(rsp.message);
+			$.ajax({
+				url: '/refundPayment',
+				type: 'POST',
+				data: {"payId": merchantUid,},
+				success: function(rsp){
+					if (rsp){
+						alert("정상적으로 환불처리 되었습니다.");
+					}else {
+					alert("데이터베이스 처리에 실패하였습니다. 고객센터에 문의해주세요.");
+					}
+				},
+				error: function (){
+					alert("데이터베이스 처리에 실패하였습니다. 고객센터에 문의해주세요.");
+				}
+			});
+			
 		},
 		error: function(rsp){
-			console.log("실행도중 오류가 생겼습니다. 고객센터에 문의해주세요.")
+			console.log("환불 처리도중에 오류가 생겼습니다. 고객센터에 문의해주세요.");
 		},
 	});
 	
@@ -91,13 +106,17 @@ $().ready(function () {
 												url: '/successPayment',
 												data: {"payId":merchantUid, "imp_uid": rsp.imp_uid,
 													 "imp_mid": rsp.merchant_uid, "pay_mthd": rsp.pay_method,}, 
-												success: function() {
+												success: function(result) {
+													if (result){
 													console.log("pk" + merchantUid + "에게 결제 아이디 imp_uid(" + rsp.imp_uid 
 														+ ")와 portOne에게 부여한 결제 아이디인 imp_mid(" + rsp.merchant_uid + ")를 결제수단" 
 														+ rsp.pay_method + "을 이용한 데이터를 DB에 적용하였습니다.");
+													} else {
+														alert("데이터베이스 등록에 실패하였습니다. 고객센터에 문의해주세요.");
+													}
 												},
 												error: function(){
-													console.log("실패");
+													alert("데이터베이스 등록에 실패하였습니다. 고객센터에 문의해주세요.");
 												},
 											});
 									} else{
@@ -107,7 +126,6 @@ $().ready(function () {
 											type: 'POST',
 											data: { "imp_uid": rsp.imp_uid, "reason": "검증 실패", },
 											success: function(rsp){
-													console.log("이거 왜 위조임?");
 													console.log(rsp.message);
 											},
 											error: function(){
@@ -127,7 +145,7 @@ $().ready(function () {
 												console.log(rsp.message);
 										},
 										error: function(){
-											console.log("취소처리중 오류가 생겼습니다. 고객센터에 문의해주세요.");
+											alert("취소 처리중 오류가 생겼습니다. 고객센터에 문의해주세요.");
 										},
 									});
 								}
@@ -143,11 +161,11 @@ $().ready(function () {
 				// IMP.Request_Pay 여기 위까지임
 				//아래부터는 선검증 실패부분
 			} else {
-	  			console.log("데이터가 변조되었습니다.");
+	  			alert("데이터가 변조되었습니다.");
 	  			}
 	  		},
 	  		error : function() {
-	  			console.log("결제 선검증에 실패했습니다. 결제를 취소합니다.");
+	  			alert("해당 결제의 선검증에 실패했습니다. 결제를 취소합니다.");
 	  		},
 		});
 	});

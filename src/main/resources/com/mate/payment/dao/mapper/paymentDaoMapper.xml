@@ -140,6 +140,14 @@ UPDATE PAY_INF
  WHERE PAY_ID = #{payId}
 </update>
 
+<update id="updateRefundPayment" parameterType="String">
+UPDATE PAY_INF
+   SET PAY_STT = 'REFUND'
+     , PAY_CMPLT_DT = NULL
+ WHERE PAY_ID = #{_parameter}
+   AND PAY_STT = 'COMPLETE'
+</update>
+
 
 
 </mapper>

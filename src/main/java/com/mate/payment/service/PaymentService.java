@@ -15,5 +15,6 @@ public interface PaymentService {
 	
 	public boolean successPayment(PaymentVO paymentVO);
 	
+	public boolean refundPayment(String payId);
 	
 }

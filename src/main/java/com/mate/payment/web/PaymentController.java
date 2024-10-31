@@ -56,24 +56,32 @@ public class PaymentController {
 	
 	@ResponseBody
 	@PostMapping("/successPayment")
-	public String successPayment(@RequestParam("payId") String payId, @RequestParam("imp_uid") String impUid,
+	public boolean successPayment(@RequestParam("payId") String payId, @RequestParam("imp_uid") String impUid,
 			 					 @RequestParam("imp_mid") String impMid, @RequestParam("pay_mthd") String payMthd) {
 		PaymentVO paymentVO = new PaymentVO();
 		paymentVO.setPayId(payId);
 		paymentVO.setImpUid(impUid);
 		paymentVO.setImpMid(impMid);
 		paymentVO.setPayMthd(payMthd);
-		if (this.paymentService.successPayment(paymentVO) == true) {
-			System.out.println("업데이트 성공");
-			return "성공";
-		}
-		return "실패";
+		
+		return this.paymentService.successPayment(paymentVO);
 	}
 	
 	@ResponseBody
 	@PostMapping("/cancelPayment")
 	public IamportResponse<Payment> cancelPayment(@RequestParam("imp_uid") String impUid, @RequestParam("reason") String reason){
 		return this.portOneService.cancelPayment(impUid, reason);
+	}
+	
+	
+	/**
+	 * 환불
+	 * @return
+	 */
+	@ResponseBody
+	@PostMapping("/refundPayment")
+	public boolean refundPayment(@RequestParam("payId") String payId) {
+		return this.paymentService.refundPayment(payId);
 	}
 	
 	
