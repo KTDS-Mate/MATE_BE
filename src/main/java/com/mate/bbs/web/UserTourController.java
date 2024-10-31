@@ -28,7 +28,8 @@ public class UserTourController {
 	/**클라이언트가 등록한 가이드 구인 게시글 목록 조회 페이지**/
 	@GetMapping("/usertour/list")
 	public String viewAllUserTourPage(Model model
-									 , SearchUserTourVO searchUserTourVO) {
+									, SearchUserTourVO searchUserTourVO) {
+		System.out.println("대륙" + searchUserTourVO.getRegionName());
 		UserTourListVO userTourListVO = this.userTourService.getAllUserTour(searchUserTourVO);
 		model.addAttribute("userTourListVO", userTourListVO);
 		model.addAttribute("searchUserTourVO", searchUserTourVO);

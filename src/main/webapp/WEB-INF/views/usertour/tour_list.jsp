@@ -6,7 +6,7 @@ pageEncoding="UTF-8"%>
 
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>투어 요청 목록</title>
     <link rel="stylesheet" type="text/css" href="/css/usertour/tour_list.css">
     <link
       rel="stylesheet"
@@ -41,24 +41,25 @@ pageEncoding="UTF-8"%>
                 	</div>
             	</form>
             </div>
-            <div class="country-menu-area">
-                <div class="checked"><a href="">전체</a></div>
-                <div><a href="">아시아</a></div>
-                <div><a href="">유럽</a></div>
-                <div><a href="">오세아니아</a></div>
-                <div><a href="">북아메리카</a></div>
-                <div><a href="">그 외</a></div>
-            </div>
+            <form class="country-form">
+           		<div class="country-menu-area">
+           			<input id="all" class="${searchUserTourVO.regionName eq '전체' ? 'checked' : ''}" type="button" value="전체" />
+	                <input id="asia" class="${searchUserTourVO.regionName eq '아시아' ? 'checked' : ''}" type="button" value="아시아" />
+	                <input id="eu" class="${searchUserTourVO.regionName eq '유럽' ? 'checked' : ''}" type="button" value="유럽" />
+	                <input id="ose" class="${searchUserTourVO.regionName eq '오세아니아' ? 'checked' : ''}" type="button" value="오세아니아" />
+	                <input id="n-ame" class="${searchUserTourVO.regionName eq '북아메리카' ? 'checked' : ''}" type="button" value="북아메리카" />
+	                <input id="s-ame" class="${searchUserTourVO.regionName eq '남아메리카' ? 'checked' : ''}" type="button" value="남아메리카" />
+            	</div>
+            </form>
             <div class="flex-list-insert-btn">
             	<div>
             		<a class="insert-tour-btn" href="/usertour/insert">투어 등록</a>
             	</div>
 	            <div class="list-view-option">
-	                <div class="checked2"><a href="">최신순</a></div>
-	                <div><a href="">Mate 랭킹순</a></div>
-	                <div><a href="">높은 가격순</a></div>
-	                <div><a href="">낮은 가격순</a></div>
-	                <div><a href="">마감 임박순</a></div>
+	            	<input id="latest" class="checked2" type="button" value="최신순" />
+	            	<input id="high-price" type="button" value="높은 가격순" />
+	            	<input id="low-price" type="button" value="낮은 가격순" />
+	            	<input id="deadline" type="button" value="마감 임박순" />
 	            </div>
             </div>
             <div class="tour-list-area">
