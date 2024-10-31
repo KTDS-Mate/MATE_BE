@@ -108,14 +108,14 @@ uri="http://www.springframework.org/tags/form" %>
               <div class="select-div">
                 투어 희망 정보<span class="font-we"
                   >원하는 일정을 추가해주세요.</span
-                >
-              </div>
-              <div class="loc-inf">
-                <!-- jquery를 사용해 여러 개를 호출 받는 곳 -->
+                ><span class="font-we">&lt;최대 10개까지 넣을 수 있습니다.&gt;</span>
               </div>
               <div class="hope-btn">
                 <input tabindex="10" id="plus" type="button" value="일정 추가하기" />
                 <input tabindex="11" id="m-btn" type="button" value="일정 삭제하기" />
+              </div>
+              <div class="loc-inf">
+                <!-- jquery를 사용해 여러 개를 호출 받는 곳 -->
               </div>
             </div>
             <div class="all-select-div">
@@ -128,19 +128,22 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
               >
             </div>
             <div class="all-select-div">
-              <div class="inline">
+              <div>
                 <div class="select-div">투어 이미지 추가<span class="font-we"
                   >&lt;img, png, svc 파일만 넣을 수 있습니다.&gt;</span
-                ></div>
-                <input tabindex="13" type="file" multiple="multiple" />
+                ><span class="font-we">&lt;최대 10개까지 넣을 수 있습니다.&gt;</span></div>
+                <input id="add-file" type="button" value="파일 추가" />
+                <input id="del-file" type="button" value="파일 삭제" />
                 <div class="file-list"></div>
               </div>
-              <div class="inline margin-left-location">
-                <div class="select-div">
-                  <span class="red">*</span> 집결 장소 선택
-                </div>
-                <div id="googleMap"></div>
-              </div>
+            </div>
+            <div class="all-select-div">
+	            <div>
+	                <div class="select-div">
+	                  <span class="red">*</span> 집결 장소 선택
+	                </div>
+	                <div id="googleMap"></div>
+	              </div>
             </div>
             <div class="all-select-div">
               <div class="select-div">원하는 가이드</div>

@@ -40,11 +40,21 @@
 		</collection>
 	</resultMap>
 	
-	<!-- 검색기능에 사용 -->
+	<!-- 지역 검색기능에 사용 -->
 	<sql id="selectSubjectAndContent">
 	<if test='searchKeyword != null and searchKeyword != ""'>
-		  AND (UTR.USR_TR_TTL LIKE '%' || #{searchKeyword} || '%'
-		   OR UTR.USR_TR_PRPS LIKE '%' || #{searchKeyword} || '%')
+		<if test='searchType == "country"'>
+			AND CR.COUNTRY_NAME LIKE '%' || #{searchKeyword} || '%'
+		</if>
+		<if test='searchType == "city"'>
+			AND C.CITY_NAME LIKE '%' || #{searchKeyword} || '%'
+		</if>
+		<if test='searchType == "title"'>
+			AND UTR.USR_TR_TTL LIKE '%' || #{searchKeyword} || '%'
+		</if>
+		<if test='searchType == "price"'>
+			AND UTR.USR_TR_GD_HR_PRC = #{searchKeyword}
+		</if>
 	</if>
 	</sql>
 	<!-- 대륙별로 볼 때 사용 -->
@@ -53,7 +63,7 @@
 			AND (R.REGION_NAME = #{regionName})
 		</if>
 	</sql>
-	
+	<!-- ~순 정렬에 사용 -->
 	<sql id="order">
 		<choose>
 			<when test='"높은 가격순".equals(orderby)'>
@@ -102,7 +112,8 @@
 		, GD_AGE
 		, GD_CRR
 		, GD_WNT_RQ
-		, USR_TR_ED_DT)
+		, USR_TR_ED_DT
+		, USR_TR_STTS)
 		VALUES
 		 (#{usrTrPstId}
 		, #{athrId}
@@ -121,7 +132,8 @@
 		, #{gdAge}
 		, #{gdCrr}
 		, #{gdWntRq}
-		, TO_DATE(#{usrTrEdDt}, 'YYYY-MM-DD HH24:MI'))
+		, TO_DATE(#{usrTrEdDt}, 'YYYY-MM-DD HH24:MI')
+		, 'N')
 	</insert>
 	
 	<select id="selectOneUserTour"
@@ -144,8 +156,8 @@
 		     , UTR.GD_AGE 
 		     , UTR.GD_CRR 
 		     , UTR.GD_WNT_RQ 
-		     , TO_CHAR(UTR.USR_TR_ST_DT, 'YYYY-MM-DD') USR_TR_ST_DT
-		     , TO_CHAR(UTR.USR_TR_ED_DT, 'YYYY-MM-DD') USR_TR_ED_DT
+		     , TO_CHAR(UTR.USR_TR_ST_DT, 'YYYY-MM-DD HH24:MI') USR_TR_ST_DT
+		     , TO_CHAR(UTR.USR_TR_ED_DT, 'YYYY-MM-DD HH24:MI') USR_TR_ED_DT
 		     , UTRI.USR_TR_RQ_IMG_ID_URL
 		     , UI.USR_LNM 
 		     , UI.USR_FNM 
