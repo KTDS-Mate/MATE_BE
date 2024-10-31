@@ -18,7 +18,8 @@
 
 <select id="selectAllPayment" resultType="com.mate.payment.vo.PaymentVO">
 	SELECT PAY_ID
-	     , TRST_ID
+	     , PI.TRST_ID AS TRST_ID
+	     , TRST.USR_FNM AS TRST_FNM
 	     , PI.GD_ID AS GD_ID
 	     , GD.USR_FNM AS GD_FNM
 	     , PAY_TR_TP
@@ -29,28 +30,32 @@
 	     , PAY_STT
 	     , TO_CHAR(PAY_CRT_DT  , 'YYYY-MM-DD HH24:MI') PAY_CRT_DT
 	     , TO_CHAR(PAY_CMPLT_DT, 'YYYY-MM-DD HH24:MI') PAY_CMPLT_DT
-	     , PAY_KEY
+	     , IMP_UID
 	     , PAY_MTHD
 	     , PAY_CRRNC
 	     , PAY_CMMSSN
+	     , IMP_MID
 	  FROM PAY_INF PI
 	  JOIN (SELECT *
 	  		  FROM USR_INF
 	  		 WHERE USR_IS_GD = 'Y') GD
 	    ON GD.USR_ID = PI.GD_ID
+	  JOIN USR_INF TRST
+	    ON PI.TRST_ID = TRST.USR_ID 
 	  LEFT JOIN USR_TR_RQST UTR
 	    ON PI.PAY_TR_ID = UTR.USR_TR_PST_ID
 	  LEFT JOIN GD_TR_RCRT GTR
 	    ON PI.PAY_TR_ID = GTR.GD_TR_PST_ID
 	 WHERE USR_TR_TTL IS NOT NULL
-    	OR GD_TR_TTL IS NOT NULL
+		OR GD_TR_TTL IS NOT NULL
 	<!-- TODO 자기 것만 나와야하니까 그것도 만들어야 함. -->
   
 </select>
 
 <select id="selectAllMyPayment" parameterType="String" resultType="com.mate.payment.vo.PaymentVO">
 	SELECT PAY_ID
-	     , TRST_ID
+	     , PI.TRST_ID AS TRST_ID
+	     , TRST.USR_FNM AS TRST_FNM
 	     , PI.GD_ID AS GD_ID
 	     , GD.USR_FNM AS GD_FNM
 	     , PAY_TR_TP
@@ -61,15 +66,18 @@
 	     , PAY_STT
 	     , TO_CHAR(PAY_CRT_DT  , 'YYYY-MM-DD HH24:MI') PAY_CRT_DT
 	     , TO_CHAR(PAY_CMPLT_DT, 'YYYY-MM-DD HH24:MI') PAY_CMPLT_DT
-	     , PAY_KEY
+	     , IMP_UID
 	     , PAY_MTHD
 	     , PAY_CRRNC
 	     , PAY_CMMSSN
+	     , IMP_MID
 	  FROM PAY_INF PI
 	  JOIN (SELECT *
 	  		  FROM USR_INF
 	  		 WHERE USR_IS_GD = 'Y') GD
 	    ON GD.USR_ID = PI.GD_ID
+	  JOIN USR_INF TRST
+	    ON PI.TRST_ID = TRST.USR_ID	    
 	  LEFT JOIN USR_TR_RQST UTR
 	    ON PI.PAY_TR_ID = UTR.USR_TR_PST_ID
 	  LEFT JOIN GD_TR_RCRT GTR
@@ -77,10 +85,60 @@
 	 WHERE (USR_TR_TTL IS NOT NULL
     	OR GD_TR_TTL IS NOT NULL)
        AND TRST_ID = #{_parameter}
-	<!-- TODO 자기 것만 나와야하니까 그것도 만들어야 함. -->
-  
+   
+</select>
+<select id="selectOnePayment" parameterType="String"
+		 resultType="com.mate.payment.vo.PaymentVO">
+	SELECT PAY_ID
+	     , PI.TRST_ID AS TRST_ID
+	     , TRST.USR_FNM AS TRST_FNM
+	     , PI.GD_ID AS GD_ID
+	     , GD.USR_FNM AS GD_FNM
+	     , PAY_TR_TP
+	     , PAY_TR_ID
+		 , UTR.USR_TR_TTL AS USR_TR_TTL
+	     , GTR.GD_TR_TTL AS GD_TR_TTL
+	     , PAY_CSH
+	     , PAY_STT
+	     , TO_CHAR(PAY_CRT_DT  , 'YYYY-MM-DD HH24:MI') PAY_CRT_DT
+	     , TO_CHAR(PAY_CMPLT_DT, 'YYYY-MM-DD HH24:MI') PAY_CMPLT_DT
+	     , IMP_UID
+	     , PAY_MTHD
+	     , PAY_CRRNC
+	     , PAY_CMMSSN
+	     , IMP_MID
+	  FROM PAY_INF PI
+	  JOIN (SELECT *
+	  		  FROM USR_INF
+	  		 WHERE USR_IS_GD = 'Y') GD
+	    ON GD.USR_ID = PI.GD_ID
+	  JOIN USR_INF TRST
+	    ON PI.TRST_ID = TRST.USR_ID	    
+	  LEFT JOIN USR_TR_RQST UTR
+	    ON PI.PAY_TR_ID = UTR.USR_TR_PST_ID
+	  LEFT JOIN GD_TR_RCRT GTR
+	    ON PI.PAY_TR_ID = GTR.GD_TR_PST_ID
+	 WHERE (USR_TR_TTL IS NOT NULL
+    	OR GD_TR_TTL IS NOT NULL)
+       AND PAY_ID = #{_parameter}
 </select>
 
+<select id="selectOnePaymentAmount" parameterType="String"
+	resultType="_double">
+	SELECT PAY_CSH 
+	  FROM PAY_INF
+	 WHERE PAY_ID = #{_parameter}
+</select>
+
+<update id="updateSuccessPayment" parameterType="com.mate.payment.vo.PaymentVO">
+UPDATE PAY_INF
+   SET PAY_STT = 'COMPLETE'
+     , PAY_CMPLT_DT = SYSDATE
+     , IMP_UID = #{impUid}
+     , IMP_MID = #{impMid}
+     , PAY_MTHD = #{payMthd}
+ WHERE PAY_ID = #{payId}
+</update>
 
 
 
