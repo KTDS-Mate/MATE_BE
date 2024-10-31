@@ -1,7 +1,7 @@
 .container {
-  width: 80rem;
+  width: 62.5rem;
   /* height: auto; */
-  justify-content: center;
+  margin: 0 auto;
 }
 
 .title {
@@ -15,43 +15,44 @@
 }
 
 .tourPicArea {
-  width: 46.5rem;
-  height: 21.9rem;
+  width: 36.3rem;
+  height: 17.1rem;
   border: 2px solid #000;
   border-radius: 1.25rem;
   display: flex;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 .bigPicArea {
-  width: 35.5rem;
-  height: 21.9rem;
-  border-top-left-radius: 1.25rem;
-  border-bottom-left-radius: 1.25rem;
+  width: 27.7rem;
+  height: 17.1rem;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
   overflow: hidden;
   cursor: pointer;
 }
 
 .bigPicArea > img {
-  width: 35.5rem;
-  height: 21.9rem;
+  width: 27.7rem;
+  height: 17.1rem;
 }
 
 .smallPicAreas {
   display: flex;
-  width: 11rem;
+  width: 8.5rem;
   flex-direction: column;
 }
 
 .smallPicArea:first-child {
-  border-top-right-radius: 1.25rem;
+  border-top-right-radius: 1rem;
   overflow: hidden;
 }
 
 .smallPicArea {
   margin: 0;
   padding: 0;
-  width: 11rem;
-  height: 7.3rem;
+  width: 8.6rem;
+  height: 5.7rem;
   overflow: hidden;
   cursor: pointer;
 }
@@ -59,64 +60,70 @@
 .smallPicArea > img {
   margin: 0;
   padding: 0;
-  width: 11rem;
-  height: 7.3rem;
+  width: 8.6rem;
+  height: 5.7rem;
 }
 
 .morePicArea {
-  width: 11rem;
-  height: 7.3rem;
+  width: 8.6rem;
+  height: 5.7rem;
   background-color: #cccaca;
   display: flex;
-  border-bottom-right-radius: 1.25rem;
+  border-bottom-right-radius: 1rem;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 }
 
 .morePicArea > img {
-  width: 4.8rem;
-  height: 6rem;
+  width: 3.75rem;
+  height: 4.6875rem;
 }
 
 .priceArea {
-  width: 23.3rem;
-  height: 21.9rem;
+  width: 18.2rem;
+  height: 17.1rem;
   border: 2px solid #ffeedb;
   border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 .priceTitleArea {
-  width: 23.3rem;
-  height: 5rem;
+  width: 18.2rem;
+  height: 3.9rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #ffeedb;
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
 }
 
 .priceTitleArea > span {
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   font-weight: bold;
 }
 
 .priceDetailArea {
-  width: 23.3rem;
-  min-height: 16.9rem;
+  width: 18.2rem;
+  min-height: 13.2rem;
   max-height: auto;
-  background-color: #ffeedb;
+  margin: 0 auto;
+  /* background-color: #ffeedb; */
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 2px solid #ffeedb;
+  border: 1px solid #ffeedb;
   border-bottom-left-radius: 1.25rem;
   border-bottom-right-radius: 1.25rem;
 }
 
 .adultPrice {
-  width: 20rem;
+  width: 15.625rem;
   height: 3.75rem;
-  background-color: #ffe6cc;
+  /* background-color: #ffe6cc; */
+  border: 2px solid #ffe6cc;
   border-radius: 1.25rem;
   margin: 0.5rem 0 0.5rem 0;
   display: flex;
@@ -125,9 +132,34 @@
 }
 
 .childPrice {
-  width: 20rem;
-  height: 3.75rem;
-  background-color: #ffe6cc;
+  width: 15.625rem;
+  height: 2.92rem;
+  /* background-color: #ffe6cc; */
+  border: 2px solid #ffe6cc;
+  border-radius: 1.25rem;
+  margin: 0.5rem 0 0.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.price {
+  width: 15.625rem;
+  height: 3.3rem;
+  /* background-color: #ffe6cc; */
+  border: 2px solid #ffe6cc;
+  border-radius: 1.25rem;
+  margin: 0.5rem 0 0.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hour {
+  width: 15.625rem;
+  height: 3.3rem;
+  /* background-color: #ffe6cc; */
+  border: 2px solid #ffe6cc;
   border-radius: 1.25rem;
   margin: 0.5rem 0 0.5rem 0;
   display: flex;
@@ -136,9 +168,9 @@
 }
 
 .reserveButton {
-  width: 11.1rem;
-  height: 3rem;
-  margin: 1rem 0 0 0;
+  width: 8.67rem;
+  height: 2.34375rem;
+  margin: 0.5rem 0 0.5rem 0;
   background-color: #fff;
   border: 2px solid #000;
   border-radius: 1.25rem;
@@ -148,6 +180,8 @@
   cursor: pointer;
 }
 
+.price > span,
+.hour > span,
 .adultPrice > span,
 .childPrice > span {
   font-size: 1.3rem;
@@ -165,37 +199,43 @@
 }
 
 .tourSummaryArea {
-  width: 34.4rem;
-  height: 18.75rem;
+  width: 26.875rem;
+  height: 14.64rem;
   margin: 2rem 0 0 0;
   border: 2px solid #ffeedb;
   border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 .summaryTitleArea {
-  width: 34.4rem;
-  height: 5rem;
+  width: 26.875rem;
+  height: 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  /* padding: 0 2rem; */
+  background-color: #ffeedb;
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
 }
 
 .summaryTitleArea > span {
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   font-weight: bold;
+  margin: 0 0 0 2rem;
 }
 
 .summaryDetailArea {
-  width: 34.4rem;
-  min-height: 13.75rem;
+  width: 26.875rem;
+  min-height: 11.64rem;
   max-height: auto;
-  background-color: #ffeedb;
+  margin: 0 auto;
+  /* background-color: #ffeedb; */
   display: flex;
   justify-content: center;
   align-items: left;
   flex-direction: column;
-  border: 2px solid #ffeedb;
+  border: 1px solid #ffeedb;
   border-bottom-left-radius: 1.25rem;
   border-bottom-right-radius: 1.25rem;
 }
@@ -207,51 +247,61 @@
 }
 
 .guideProfileArea {
-  width: 34.4rem;
-  height: 18.75rem;
+  width: 26.875rem;
+  height: 14.64rem;
   margin: 2rem 0 0 0;
   border: 2px solid #ffeedb;
   border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 .profileTitleArea {
-  width: 34.4rem;
-  height: 5rem;
+  width: 26.875rem;
+  height: 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  /* padding: 0 2rem; */
+  background-color: #ffeedb;
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
 }
 
 .profileTitleArea > span {
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   font-weight: bold;
+  margin: 0 0 0 2rem;
 }
 
 .profileDetailArea {
-  width: 34.4rem;
-  min-height: 13.75rem;
+  width: 26.875rem;
+  min-height: 11.64rem;
   max-height: auto;
-  background-color: #ffeedb;
+  margin: 0 auto;
+  /* background-color: #ffeedb; */
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   flex-direction: row;
-  border: 2px solid #ffeedb;
+  border: 1px solid #ffeedb;
   border-bottom-left-radius: 1.25rem;
   border-bottom-right-radius: 1.25rem;
 }
 
 .profileDetailArea > img {
-  width: 8.8rem;
-  height: 13rem;
+  width: 10rem;
+  height: 10.15625rem;
+  /* margin: 0 4rem 0 0; */
   border: 2px solid #ffeedb;
   border-radius: 1.25rem;
   object-fit: cover;
 }
 
 .profileSummaryArea {
-  margin: 0 0 0 2rem;
+  width: 12rem;
+  /* height: 10.15625rem; */
+
+  margin: 0 2rem 0 0;
 }
 
 .profileSummaryArea > h1 {
@@ -267,37 +317,43 @@
 }
 
 .tourOfferArea {
-  width: 74.6rem;
-  height: 18.75rem;
+  width: 58.2rem;
+  height: 14.64rem;
   margin: 2rem 0 0 0;
   border: 2px solid #ffeedb;
   border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 .offerTitleArea {
-  width: 74.6rem;
-  height: 5rem;
+  width: 58.2rem;
+  height: 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  /* padding: 0 2rem; */
+  background-color: #ffeedb;
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
 }
 
 .offerTitleArea > span {
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   font-weight: bold;
+  margin: 0 0 0 2rem;
 }
 
 .offerDetailArea {
-  width: 74.6rem;
-  min-height: 13.75rem;
+  width: 58.2rem;
+  min-height: 11.64rem;
   max-height: auto;
-  background-color: #ffeedb;
+  margin: 0 auto;
+  /* background-color: #ffeedb; */
   display: flex;
   justify-content: center;
   align-items: left;
   flex-direction: column;
-  border: 2px solid #ffeedb;
+  border: 1px solid #ffeedb;
   border-bottom-left-radius: 1.25rem;
   border-bottom-right-radius: 1.25rem;
 }
@@ -315,37 +371,43 @@
 }
 
 .rallyPointArea {
-  width: 74.6rem;
+  width: 58.2rem;
   height: auto;
   margin: 2rem 0 0 0;
   border: 2px solid #ffeedb;
   border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 .rallyPointTitleArea {
-  width: 74.6rem;
-  height: 5rem;
+  width: 58.2rem;
+  height: 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  /* padding: 0 2rem; */
+  background-color: #ffeedb;
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
 }
 
 .rallyPointTitleArea > span {
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   font-weight: bold;
+  margin: 0 0 0 2rem;
 }
 
 .rallyPointDetailArea {
-  width: 74.6rem;
-  min-height: 30.25rem;
+  width: 58.2rem;
+  min-height: 23.63rem;
   max-height: auto;
-  background-color: #ffeedb;
+  margin: 0 auto;
+  /* background-color: #ffeedb; */
   display: flex;
   justify-content: space-between;
   align-items: left;
   flex-direction: row;
-  border: 2px solid #ffeedb;
+  border: 1px solid #ffeedb;
   border-bottom-left-radius: 1.25rem;
   border-bottom-right-radius: 1.25rem;
 }
@@ -365,8 +427,8 @@
 }
 
 .mapApiArea {
-  width: 35.5rem;
-  height: 30rem;
+  width: 27.7rem;
+  height: 23.4375rem;
   display: flex;
   flex-direction: column;
 }
@@ -378,12 +440,13 @@
 }
 
 .apiArea {
-  width: 35.5rem;
-  height: 20rem;
+  width: 27.7rem;
+  height: 15.625rem;
   margin: -1rem;
   background-color: #fff;
-  border: 2px solid #fff;
+  border: 2px solid #ffeedb;
   border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 .fifthLayer {
@@ -393,37 +456,43 @@
 }
 
 .tourInfoArea {
-  width: 74.6rem;
-  height: 20rem;
+  width: 58.2rem;
+  height: 15.625rem;
   margin: 2rem 0 0 0;
   border: 2px solid #ffeedb;
   border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 .tourInfoTitleArea {
-  width: 74.6rem;
-  height: 5rem;
+  width: 58.2rem;
+  height: 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  /* padding: 0 2rem; */
+  background-color: #ffeedb;
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
 }
 
 .tourInfoTitleArea > span {
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   font-weight: bold;
+  margin: 0 0 0 2rem;
 }
 
 .tourInfoDetailArea {
-  width: 74.6rem;
-  min-height: 15rem;
+  width: 58.2rem;
+  min-height: 12.625rem;
   max-height: auto;
-  background-color: #ffeedb;
+  margin: 0 auto;
+  /* background-color: #ffeedb; */
   display: flex;
   justify-content: space-between;
   align-items: left;
   flex-direction: column;
-  border: 2px solid #ffeedb;
+  border: 1px solid #ffeedb;
   border-bottom-left-radius: 1.25rem;
   border-bottom-right-radius: 1.25rem;
 }
@@ -445,104 +514,113 @@
 }
 
 .touristPicArea {
-  width: 74.6rem;
+  width: 58.2rem;
   height: auto;
   margin: 2rem 0 0 0;
   border: 2px solid #ffeedb;
   border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 .touristPicTitleArea {
-  width: 74.6rem;
-  height: 5rem;
+  width: 58.2rem;
+  height: 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  /* padding: 0 2rem; */
+  background-color: #ffeedb;
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
 }
 
 .touristPicTitleArea > span {
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   font-weight: bold;
+  margin: 0 0 0 2rem;
 }
 
 .touristPicDetailArea {
-  width: 74.6rem;
-  min-height: 25rem;
+  width: 58.2rem;
+  min-height: 19.53rem;
   max-height: auto;
-  background-color: #ffeedb;
+  margin: 0 auto;
+  /* background-color: #ffeedb; */
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 2px solid #ffeedb;
+  border: 1px solid #ffeedb;
   border-bottom-left-radius: 1.25rem;
   border-bottom-right-radius: 1.25rem;
 }
 
 .touristPicturesArea {
-  width: 68.8rem;
-  height: 18.8rem;
+  width: 53.75rem;
+  height: 14.6875rem;
   display: flex;
   justify-content: space-between;
   align-items: left;
   flex-direction: row;
   border: 2px solid #000;
   border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 .touristBigPicArea {
-  width: 34.4rem;
-  height: 18.8rem;
+  width: 26.875rem;
+  height: 14.6875rem;
   background-color: #fff;
-  border: 2px solid #000;
-  border-top-left-radius: 1.25rem;
-  border-bottom-left-radius: 1.25rem;
+  border: 1px solid #000;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
 }
 
 .touristBigPicArea > img {
-  width: 34.4rem;
-  height: 18.8rem;
+  width: 26.875rem;
+  height: 14.6875rem;
   object-fit: cover;
-  border-top-left-radius: 1.25rem;
-  border-bottom-left-radius: 1.25rem;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
 }
 
 .touristSmallPicAreas {
-  width: 34.4rem;
-  height: 18.8rem;
+  width: 27rem;
+  height: 15rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
 }
 
 .touristSmallPicAreas > .touristSmallPicArea:nth-child(2) {
-  border-top-right-radius: 1.25rem;
+  border-top-right-radius: 1rem;
   overflow: hidden;
 }
 
 .touristSmallPicArea {
-  width: 17rem;
-  height: 9.25rem;
+  width: 13.28rem;
+  height: 7.25rem;
+  margin-bottom: -0.3rem;
   background-color: #fff;
-  border: 2px solid #000;
+  border: 1px solid #000;
 }
 
 .touristSmallPicArea > img {
-  width: 17rem;
-  height: 9.25rem;
+  width: 13.28rem;
+  height: 7.25rem;
   overflow: hidden;
 }
 
 .touristMorePicArea {
-  width: 17rem;
-  height: 9.25rem;
+  width: 13.28rem;
+  height: 7.22rem;
   display: flex;
+  margin-bottom: 0.3rem;
   justify-content: center;
   align-items: center;
   background-color: #a29a9a;
-  border: 2px solid #000;
-  border-bottom-right-radius: 1.25rem;
+  border: 1px solid #000;
+  border-bottom-right-radius: 1rem;
 }
 
 .touristMorePicArea > h1 {
@@ -558,44 +636,59 @@
 }
 
 .tourReviewArea {
-  width: 74.6rem;
+  width: 58.2rem;
   height: auto;
   margin: 2rem 0 0 0;
   display: flex;
   flex-direction: column;
   border: 2px solid #ffeedb;
   border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 .tourReviewTitleArea {
-  width: 74.6rem;
-  height: 5rem;
+  width: 58.2rem;
+  height: 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  /* padding: 0 2rem; */
+  background-color: #ffeedb;
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
 }
 
 .tourReviewTitleArea > span {
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   font-weight: bold;
+  margin: 0 0 0 2rem;
 }
 
 .tourReviewDetailArea {
-  width: 74.6rem;
-  min-height: 45rem;
+  width: 58.2rem;
+  min-height: 35.15rem;
   max-height: auto;
-  background-color: #ffeedb;
+  margin: 0 auto;
+  /* background-color: #ffeedb; */
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 2px solid #ffeedb;
+  border: 1px solid #ffeedb;
   border-bottom-left-radius: 1.25rem;
   border-bottom-right-radius: 1.25rem;
+
+  overflow: hidden;
+
+  /* 글자 드래그 막기 */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .tourReviewRatingArea {
+  height: 15.15rem;
   display: flex;
   flex-direction: row;
 }
@@ -608,75 +701,113 @@
 }
 
 .guideReviewArea {
-  width: 74.6rem;
+  width: 58.2rem;
   height: auto;
   margin: 2rem 0 0 0;
+  display: flex;
+  flex-direction: column;
   border: 2px solid #ffeedb;
   border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 .guideReviewTitleArea {
-  width: 74.6rem;
-  height: 5rem;
+  width: 58.2rem;
+  height: 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  /* padding: 0 2rem; */
+  background-color: #ffeedb;
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
 }
 
 .guideReviewTitleArea > span {
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   font-weight: bold;
+  margin: 0 0 0 2rem;
 }
 
 .guideReviewDetailArea {
-  width: 74.6rem;
-  min-height: 45rem;
+  width: 58.2rem;
+  min-height: 35.15rem;
   max-height: auto;
-  background-color: #ffeedb;
+  margin: 0 auto;
+  /* background-color: #ffeedb; */
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 2px solid #ffeedb;
+  border: 1px solid #ffeedb;
   border-bottom-left-radius: 1.25rem;
   border-bottom-right-radius: 1.25rem;
+
+  overflow: hidden;
+
+  /* 글자 드래그 막기 */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .guideReviewRatingArea {
+  height: 15.15rem;
   display: flex;
   flex-direction: row;
 }
 
-.writeReview {
-  margin: 2rem 0 0 50rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #ffeedb;
-  cursor: pointer;
+.titleButtons {
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .showDetail {
-  margin: 2rem 4rem 0 0;
-  font-size: 1.2rem;
-  font-weight: 200;
+  margin: 0 2rem 0 0;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #868686;
+  cursor: pointer;
+}
+
+.titleButtons > .writeReview {
+  margin: 0 1rem 0 0;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #868686;
+  cursor: pointer;
+}
+
+.titleButtons > .showDetail {
+  margin: 0 2rem 0 0;
+  font-size: 0.9rem;
+  font-weight: bold;
   color: #868686;
   cursor: pointer;
 }
 
 .averageRatingArea {
   width: auto;
-  height: 3.4375rem;
+  height: 2.6855rem;
   display: flex;
   justify-content: center;
-  vertical-align: middle;
-  margin: 1rem 0 0 2rem;
+  align-items: center;
+  margin: 1rem 2rem 0 2rem;
+}
+
+.bigStar {
+  width: 3rem;
+  height: 3rem;
+  margin: 0.8rem 1rem 0 0;
 }
 
 .star {
-  width: 2rem;
-  height: 2rem;
-  margin: 0.8rem 1rem 0 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0 1rem 0 0;
 }
 
 .averageRating {
@@ -686,7 +817,7 @@
 }
 
 .ratingArea {
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: bold;
   margin: 1rem 0 0 2rem;
   display: flex;
@@ -699,12 +830,14 @@
 .ratingFourArea,
 .ratingFiveArea {
   display: flex;
-  margin: 0 0 0.5rem 0;
+  height: 2rem;
+  margin: 0;
+  align-items: center;
 }
 
 meter.ratingGage {
-  width: 47.5rem;
-  height: 4rem;
+  width: 18rem;
+  height: 1.5rem;
 }
 
 meter.ratingGage::-webkit-meter-bar {
@@ -721,15 +854,64 @@ meter.ratingGage::-webkit-meter-optimum-value {
 /* 게이지 높이 맞추기 */
 meter.ratingGage::-webkit-meter-suboptimum-value,
 meter.ratingGage::-webkit-meter-even-less-good-value {
-  height: 100%; /* 세로폭 맞추기 */
+  height: 10%; /* 세로폭 맞추기 */
+}
+
+.reviewsArea {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+.reviewCarouselArea {
+  display: flex;
+  width: fit-content;
+  flex-direction: row;
+  align-items: center;
+}
+
+.reviewCarousel {
+  display: flex;
+  width: 27rem;
+  flex-direction: row;
+  align-items: center;
+  transform: translateX(0); /* 초기 위치 설정 */
+}
+
+.reviewCarouselTransition {
+  transition: 0.6s ease-out;
+}
+
+.reviewForwardButton,
+.reviewBackwardButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4rem;
+  height: 4rem;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.reviewForwardButton {
+  right: calc(100% + 2rem);
+}
+
+.reviewBackwardButton {
+  left: calc(100% + 2rem);
 }
 
 .reviewArea {
-  width: 72rem;
+  position: relative;
+  width: 27rem;
   height: auto;
-  margin: 0 0 2rem 0;
+  margin: 0.5rem;
   background-color: #fff;
+  border: 2px solid #ffeedb;
   border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  z-index: 1;
 }
 
 .someoneReviewFirstArea {
@@ -743,8 +925,8 @@ meter.ratingGage::-webkit-meter-even-less-good-value {
 }
 
 .someoneReviewTitleArea {
-  margin: 0 0 0 2rem;
-  font-size: 1.3rem;
+  margin: 0 0 0 1rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 
@@ -754,26 +936,28 @@ meter.ratingGage::-webkit-meter-even-less-good-value {
 }
 
 .reviewWriterArea {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
+  color: rgb(93, 93, 255);
 }
 
 .reviewWritingDate {
-  margin: 0 0 0 4rem;
-  font-size: 1.5rem;
+  margin: 0 0 0 3rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 
 .reviewTextArea {
-  width: 72rem;
-  height: 13rem;
+  width: 27rem;
+  height: 10.15rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .reviewTextArea > span {
-  font-size: 1.5rem;
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
   font-weight: bold;
 }
 
@@ -783,6 +967,93 @@ meter.ratingGage::-webkit-meter-even-less-good-value {
 }
 
 .ratingCount {
-  margin: 1rem 0 0 0;
+  margin: 0.2rem 0 0 0;
   padding: 0 0 0 1rem;
+}
+
+.guideReviewsArea {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+.guideReviewCarouselArea {
+  display: flex;
+  width: fit-content;
+  flex-direction: row;
+  align-items: center;
+}
+
+.guideReviewCarousel {
+  display: flex;
+  width: 27rem;
+  flex-direction: row;
+  align-items: center;
+  transform: translateX(0); /* 초기 위치 설정 */
+}
+
+.guideReviewOneArea {
+  position: relative;
+  width: 27rem;
+  height: auto;
+  margin: 0.5rem;
+  background-color: #fff;
+  border: 2px solid #ffeedb;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  z-index: 1;
+}
+
+.guideReviewForwardButton,
+.guideReviewBackwardButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4rem;
+  height: 4rem;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.guideReviewForwardButton {
+  right: calc(100% + 2rem);
+}
+
+.guideReviewBackwardButton {
+  left: calc(100% + 2rem);
+}
+
+.moreReviewListButtonArea {
+  position: relative;
+  width: 27rem;
+  height: 15.6rem;
+  margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border: 2px solid #ffeedb;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  z-index: 1;
+}
+
+.moreReviewButton {
+  width: 5rem;
+  height: 5rem;
+  margin: 3rem 0 0 0;
+}
+
+.moreReviewTextArea {
+  width: 27rem;
+  height: 5.4rem;
+  margin: 2rem 0 0 0;
+  text-align: center;
+}
+
+.moreReviewTextArea > span {
+  font-size: 1rem;
+  font-weight: bold;
 }

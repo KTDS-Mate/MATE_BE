@@ -58,7 +58,14 @@ public class GuideTourServiceImpl implements GuideTourService{
 	@Transactional
 	@Override
 	public boolean createNewGuideTour(GuideTourWriteVO guideTourWriteVO) {
+		String startHour = this.guideTourDao.selectAttachStartHour(guideTourWriteVO);
+		String endHour = this.guideTourDao.selectAttachEndHour(guideTourWriteVO);
+		
+		guideTourWriteVO.setGdTrStDt(startHour);
+		guideTourWriteVO.setGdTrEdDt(endHour);
+		
 		int guideTourInsertCount = this.guideTourDao.insertNewGuideTour(guideTourWriteVO);
+		
 		return guideTourInsertCount > 0;
 	}
 	@Transactional

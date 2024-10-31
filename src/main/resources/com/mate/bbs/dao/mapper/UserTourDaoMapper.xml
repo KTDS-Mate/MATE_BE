@@ -23,6 +23,11 @@
 					 autoMapping="true">
 			<id column="COUNTRY_ID" property="countryId" />
 		</association>
+		<association property="regionsVO"
+					 javaType="com.mate.common.vo.RegionsVO"
+					 autoMapping="true">
+			<id column="REGION_ID" property="regionId" />
+		</association>
 		<collection property="userTourImgList"
 					ofType="com.mate.bbs.vo.UserTourImgVO"
 					autoMapping="true">
@@ -41,6 +46,12 @@
 		  AND (UTR.USR_TR_TTL LIKE '%' || #{searchKeyword} || '%'
 		   OR UTR.USR_TR_PRPS LIKE '%' || #{searchKeyword} || '%')
 	</if>
+	</sql>
+	<!-- 대륙별로 볼 때 사용 -->
+	<sql id="selectRegions">
+		<if test='regionName !="전체" and regionName != null and regionName != ""'>
+			AND (R.REGION_NAME = #{regionName})
+		</if>
 	</sql>
 	
 	<insert id="insertNewUserTour"
@@ -169,7 +180,12 @@
 		    ON UTR.TR_CT_ID = C.CITY_ID
 		  JOIN COUNTRIES CR
 		    ON CR.COUNTRY_ID = C.COUNTRY_ID
+		  JOIN REGIONS R
+		    ON R.REGION_ID = CR.REGION_ID
 		 WHERE UTR.USR_TR_ST_DT > SYSDATE
+		<if test="_parameter != null">
+		 	<include refid="com.mate.bbs.dao.UserTourDao.selectRegions" />
+		</if>
 		<if test="_parameter != null">
 			<include refid="com.mate.bbs.dao.UserTourDao.selectSubjectAndContent" />
 		</if>
