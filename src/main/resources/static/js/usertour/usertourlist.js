@@ -6,11 +6,54 @@ $().ready(function() {
 
 	$(".tour-box").on("click", function() {
 		var usrTrPstId = $(this).find(".hide").data("pst-id");
-		console.log(usrTrPstId);
 		location.href = "/usertour/view?usrTrPstId=" + usrTrPstId
 	});
 
+	$("#all").on('click', function() {
+		$(".country-menu-area").children().removeClass("checked");
+		$(".country-form").attr({
+			"method": "GET",
+			"action": 'list?regionName=' + $(this).val()
+		}).submit();
+	});
+	$("#asia").on('click', function() {
+		$(".country-menu-area").children().removeClass("checked");
+		$(".country-form").attr({
+			"method": "GET",
+			"action": 'list?regionName=' + $(this).val()
+		}).submit();
+	});
+	$("#eu").on('click', function() {
+		$(".country-menu-area").children().removeClass("checked");
+		$(".country-form").attr({
+			"method": "GET",
+			"action": 'list?regionName=' + $(this).val()
+		}).submit();
+	});
+	$("#ose").on('click', function() {
+		$(".country-menu-area").children().removeClass("checked");
+		$(".country-form").attr({
+			"method": "GET",
+			"action": 'list?regionName=' + $(this).val()
+		}).submit();
+	});
+	$("#n-ame").on('click', function() {
+		$(".country-menu-area").children().removeClass("checked");
+		$(".country-form").attr({
+			"method": "GET",
+			"action": 'list?regionName=' + $(this).val()
+		}).submit();
+	});
+	$("#s-ame").on('click', function() {
+		$(".country-menu-area").children().removeClass("checked");
+		$(".country-form").attr({
+			"method": "GET",
+			"action": 'list?regionName=' + $(this).val()
+		}).submit();
+	});
+
 	changeColor();
+
 });
 
 function movepage(pageNo) {
@@ -18,36 +61,11 @@ function movepage(pageNo) {
 
 	$(".search-form").attr({
 		"method": "GET",
-		"action": "usertour/list"
+		"action": "list"
 	}).submit();
 }
 
-
 function changeColor() {
-	$("#all").on('click', function() {
-		$(".country-menu-area").children().removeClass("checked");
-		$("#all").addClass("checked");
-	});
-	$("#asia").on('click', function() {
-		$(".country-menu-area").children().removeClass("checked");
-		$("#asia").addClass("checked");
-	});
-	$("#eu").on('click', function() {
-		$(".country-menu-area").children().removeClass("checked");
-		$("#eu").addClass("checked");
-	});
-	$("#ose").on('click', function() {
-		$(".country-menu-area").children().removeClass("checked");
-		$("#ose").addClass("checked");
-	});
-	$("#n-ame").on('click', function() {
-		$(".country-menu-area").children().removeClass("checked");
-		$("#n-ame").addClass("checked");
-	});
-	$("#s-ame").on('click', function() {
-		$(".country-menu-area").children().removeClass("checked");
-		$("#s-ame").addClass("checked");
-	});
 
 	$("#latest").on('click', function() {
 		$(".list-view-option").children().removeClass("checked2");

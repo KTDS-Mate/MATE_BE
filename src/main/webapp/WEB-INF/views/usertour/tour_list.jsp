@@ -43,12 +43,12 @@ pageEncoding="UTF-8"%>
             </div>
             <form class="country-form">
            		<div class="country-menu-area">
-           			<input id="all" class="checked" type="button" value="전체" />
-	                <input id="asia" type="button" value="아시아" />
-	                <input id="eu" type="button" value="유럽" />
-	                <input id="ose" type="button" value="오세아니아" />
-	                <input id="n-ame" type="button" value="북아메리카" />
-	                <input id="s-ame" type="button" value="남아메리카" />
+           			<input id="all" class="${searchUserTourVO.regionName eq '전체' ? 'checked' : ''}" type="button" value="전체" />
+	                <input id="asia" class="${searchUserTourVO.regionName eq '아시아' ? 'checked' : ''}" type="button" value="아시아" />
+	                <input id="eu" class="${searchUserTourVO.regionName eq '유럽' ? 'checked' : ''}" type="button" value="유럽" />
+	                <input id="ose" class="${searchUserTourVO.regionName eq '오세아니아' ? 'checked' : ''}" type="button" value="오세아니아" />
+	                <input id="n-ame" class="${searchUserTourVO.regionName eq '북아메리카' ? 'checked' : ''}" type="button" value="북아메리카" />
+	                <input id="s-ame" class="${searchUserTourVO.regionName eq '남아메리카' ? 'checked' : ''}" type="button" value="남아메리카" />
             	</div>
             </form>
             <div class="flex-list-insert-btn">

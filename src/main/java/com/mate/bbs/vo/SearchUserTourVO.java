@@ -8,13 +8,14 @@ public class SearchUserTourVO extends PaginationVO {
 	 * 대륙 별 검색에 사용
 	 */
 	private String regionName;
+	/**
+	 * ~ 순 정렬에 사용
+	 */
+	private String orderby;
 	
 	/****클라이언트가 등록한 가이드 구인 게시글 목록 검색창****/
-	private String searchType;
-	
 	private String searchKeyword;
 
-	
 	public String getRegionName() {
 		return regionName;
 	}
@@ -23,12 +24,12 @@ public class SearchUserTourVO extends PaginationVO {
 		this.regionName = regionName;
 	}
 
-	public String getSearchType() {
-		return searchType;
+	public String getOrderby() {
+		return orderby;
 	}
 
-	public void setSearchType(String searchType) {
-		this.searchType = searchType;
+	public void setOrderby(String orderby) {
+		this.orderby = orderby;
 	}
 
 	public String getSearchKeyword() {
@@ -38,5 +39,5 @@ public class SearchUserTourVO extends PaginationVO {
 	public void setSearchKeyword(String searchKeyword) {
 		this.searchKeyword = searchKeyword;
 	}
-	
+
 }

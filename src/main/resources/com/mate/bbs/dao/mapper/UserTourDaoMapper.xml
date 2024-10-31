@@ -49,8 +49,8 @@
 	</sql>
 	<!-- 대륙별로 볼 때 사용 -->
 	<sql id="selectRegions">
-		<if test='searchKeyword != null and searchKeyword != ""'>
-			AND (R.REGION_NAME = #{searchKeyword})
+		<if test='regionName !="전체" and regionName != null and regionName != ""'>
+			AND (R.REGION_NAME = #{regionName})
 		</if>
 	</sql>
 	
