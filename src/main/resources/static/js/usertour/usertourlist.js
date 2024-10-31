@@ -9,50 +9,58 @@ $().ready(function() {
 		location.href = "/usertour/view?usrTrPstId=" + usrTrPstId
 	});
 
+	/**대륙 필터링에 사용 됨**/
 	$("#all").on('click', function() {
 		$(".country-menu-area").children().removeClass("checked");
-		$(".country-form").attr({
-			"method": "GET",
-			"action": 'list?regionName=' + $(this).val()
-		}).submit();
+		location.href = "/usertour/list?regionName=" + $(this).val(); + "&orderby=최신순"
 	});
 	$("#asia").on('click', function() {
 		$(".country-menu-area").children().removeClass("checked");
-		$(".country-form").attr({
-			"method": "GET",
-			"action": 'list?regionName=' + $(this).val()
-		}).submit();
+		location.href = "/usertour/list?regionName=" + $(this).val(); + "&orderby=최신순"
 	});
 	$("#eu").on('click', function() {
 		$(".country-menu-area").children().removeClass("checked");
-		$(".country-form").attr({
-			"method": "GET",
-			"action": 'list?regionName=' + $(this).val()
-		}).submit();
+		location.href = "/usertour/list?regionName=" + $(this).val(); + "&orderby=최신순"
 	});
 	$("#ose").on('click', function() {
 		$(".country-menu-area").children().removeClass("checked");
-		$(".country-form").attr({
-			"method": "GET",
-			"action": 'list?regionName=' + $(this).val()
-		}).submit();
+		location.href = "/usertour/list?regionName=" + $(this).val(); + "&orderby=최신순"
 	});
 	$("#n-ame").on('click', function() {
 		$(".country-menu-area").children().removeClass("checked");
-		$(".country-form").attr({
-			"method": "GET",
-			"action": 'list?regionName=' + $(this).val()
-		}).submit();
+		location.href = "/usertour/list?regionName=" + $(this).val(); + "&orderby=최신순"
 	});
 	$("#s-ame").on('click', function() {
 		$(".country-menu-area").children().removeClass("checked");
-		$(".country-form").attr({
-			"method": "GET",
-			"action": 'list?regionName=' + $(this).val()
-		}).submit();
+		location.href = "/usertour/list?regionName=" + $(this).val(); + "&orderby=최신순"
+	});
+	$("#af").on('click', function() {
+		$(".country-menu-area").children().removeClass("checked");
+		location.href = "/usertour/list?regionName=" + $(this).val(); + "&orderby=최신순"
 	});
 
-	changeColor();
+	/**정렬에 사용**/
+	$("#latest").on('click', function() {
+		$(".list-view-option").children().removeClass("checked2");
+		var regionName = $("#region-hide").val();
+		location.href = "/usertour/list?regionName=" + regionName + "&orderby=" + $(this).val();
+	});
+	$("#high-price").on('click', function() {
+		$(".list-view-option").children().removeClass("checked2");
+		var regionName = $("#region-hide").val();
+		location.href = "/usertour/list?regionName=" + regionName + "&orderby=" + $(this).val();
+	});
+	$("#low-price").on('click', function() {
+		$(".list-view-option").children().removeClass("checked2");
+		var regionName = $("#region-hide").val();
+		location.href = "/usertour/list?regionName=" + regionName + "&orderby=" + $(this).val();
+	});
+	$("#deadline").on('click', function() {
+		$(".list-view-option").children().removeClass("checked2");
+		var regionName = $("#region-hide").val();
+		location.href = "/usertour/list?regionName=" + regionName + "&orderby=" + $(this).val();
+	});
+
 
 });
 
@@ -63,24 +71,4 @@ function movepage(pageNo) {
 		"method": "GET",
 		"action": "list"
 	}).submit();
-}
-
-function changeColor() {
-
-	$("#latest").on('click', function() {
-		$(".list-view-option").children().removeClass("checked2");
-		$("#latest").addClass("checked2");
-	});
-	$("#high-price").on('click', function() {
-		$(".list-view-option").children().removeClass("checked2");
-		$("#high-price").addClass("checked2");
-	});
-	$("#low-price").on('click', function() {
-		$(".list-view-option").children().removeClass("checked2");
-		$("#low-price").addClass("checked2");
-	});
-	$("#deadline").on('click', function() {
-		$(".list-view-option").children().removeClass("checked2");
-		$("#deadline").addClass("checked2");
-	});
 }

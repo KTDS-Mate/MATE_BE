@@ -143,6 +143,30 @@
   align-items: center;
 }
 
+.price {
+  width: 15.625rem;
+  height: 3.3rem;
+  /* background-color: #ffe6cc; */
+  border: 2px solid #ffe6cc;
+  border-radius: 1.25rem;
+  margin: 0.5rem 0 0.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hour {
+  width: 15.625rem;
+  height: 3.3rem;
+  /* background-color: #ffe6cc; */
+  border: 2px solid #ffe6cc;
+  border-radius: 1.25rem;
+  margin: 0.5rem 0 0.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .reserveButton {
   width: 8.67rem;
   height: 2.34375rem;
@@ -156,6 +180,8 @@
   cursor: pointer;
 }
 
+.price > span,
+.hour > span,
 .adultPrice > span,
 .childPrice > span {
   font-size: 1.3rem;
