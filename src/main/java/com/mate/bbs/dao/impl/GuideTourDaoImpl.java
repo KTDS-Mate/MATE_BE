@@ -63,4 +63,12 @@ public class GuideTourDaoImpl extends SqlSessionDaoSupport implements GuideTourD
 	public int updateGuideTourIsDtl(String gdTrPstId) {
 		return this.getSqlSession().update(NAMESPACE + ".updateGuideTourIsDtl", gdTrPstId);
 	}
+	@Override
+	public String selectAttachStartHour(GuideTourWriteVO guideTourWriteVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachStartHour", guideTourWriteVO);
+	}
+	@Override
+	public String selectAttachEndHour(GuideTourWriteVO guideTourWriteVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachEndHour", guideTourWriteVO);
+	}
 }
