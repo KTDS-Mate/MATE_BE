@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mate.mypage.dao.WishlistDao">
+	
+	<resultMap  id="MyWishVOMap" 
+				type="com.mate.mypage.vo.MyWishVO"
+				autoMapping="true">
+		<id column="FAV_ID" property="favId" />
+		
+		<association property="myBoardVO"
+						 javaType="com.mate.mypage.vo.MyBoardVO"
+						 autoMapping="true">
+			<id column="GD_TR_PST_ID" property="gdTrPstId" />			
+		
+		<association property="searchCityAndCountryVO" 
+					 javaType="com.mate.mypage.vo.SearchCityAndCountryVO"
+					 autoMapping="true">		 
+			<id column="CITY_ID" property="cityId" />
+			
+			<association property="countriesVO"
+						 javaType="com.mate.common.vo.CountriesVO"
+						 autoMapping="true">
+			<id column="COUNTRY_ID" property="countryId" />	
+					
+				</association>
+			</association>
+		</association>
+	</resultMap>
+	
+	
+
+
+	<select id="countWish" parameterType="string" resultType="_int">
+		SELECT 
+			COUNT(1)
+		FROM
+		     FVRTS f
+		INNER JOIN 
+		     GD_TR_RCRT g
+		ON 
+			f.GD_TR_PST_ID =g.GD_TR_PST_ID  
+		INNER JOIN 
+			CITIES c 
+		ON 
+			g.TR_CT_ID = c.CITY_ID 
+		INNER JOIN 
+			COUNTRIES cn
+		ON 
+			c.COUNTRY_ID = cn.COUNTRY_ID 
+		WHERE 
+			g.ATHR_ID = #{loginId}
+		AND 
+        	g.GD_TR_IS_DLT = 'N'
+	</select>
+
+
+	<select id="selectAllWish" parameterType="map" resultMap="MyWishVOMap">
+	<if test="search != null">
+    	 <include refid="Common2.pagination_header"></include>
+    </if>
+	SELECT 
+		f.FAV_ID
+		,f.FAV_CR_AT
+		,f.FAV_IS_DLT
+		,f.FAV_DLT_AT
+		,f.USR_LGN_ID
+		,f.GD_TR_PST_ID 
+		,g.TR_CT_ID 
+		,g.ATHR_ID
+		,g.USR_ID
+		,g.GD_TR_TTL 
+		,TO_CHAR(g.GD_TR_ST_DT , 'YYYY-MM-DD HH24:MI') GD_TR_ST_DT
+		,TO_CHAR(g.GD_TR_ED_DT , 'YYYY-MM-DD HH24:MI') GD_TR_ED_DT
+		,g.GD_TR_PRPS 
+		,g.GD_TR_MP 
+		,g.GD_TR_PRC 
+		,g.GD_TR_SMRY 
+		,TO_CHAR(g.GD_TR_RSTR_DT , 'YYYY-MM-DD HH24:MI') GD_TR_RSTR_DT
+		,TO_CHAR(g.GD_TR_MDFY_DT , 'YYYY-MM-DD HH24:MI') GD_TR_MDFY_DT
+		,TO_CHAR(g.GD_TR_DLT_DT , 'YYYY-MM-DD HH24:MI') GD_TR_DLT_DT
+		,g.GD_TR_IS_DLT  
+		,g.GD_TR_MX_NP 
+		,c.CITY_ID 
+		,c.CITY_NAME 
+		,c.COUNTRY_ID 
+	  	,cn.COUNTRY_NAME 
+	  	,cn.REGION_ID  
+	FROM 
+		FVRTS f
+	INNER JOIN 
+		GD_TR_RCRT g
+	ON 
+		f.GD_TR_PST_ID = g.GD_TR_PST_ID 
+	INNER JOIN 
+		CITIES c  
+	ON 
+		g.TR_CT_ID = c.CITY_ID 
+	INNER JOIN 
+		COUNTRIES cn
+	ON 
+		c.COUNTRY_ID = cn.COUNTRY_ID
+	WHERE
+        	g.ATHR_ID = #{loginId}
+        AND 
+        	g.GD_TR_IS_DLT = 'N'
+	ORDER BY g.GD_TR_ST_DT DESC 
+	<if test="search != null">
+			<include refid="Common2.pagination_footer"></include>					
+    </if>
+    </select>
+
+</mapper>
