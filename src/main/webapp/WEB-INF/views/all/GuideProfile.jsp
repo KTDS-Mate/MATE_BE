@@ -29,7 +29,7 @@
           <div class="title">
             <h1>가이드 프로필 상세 조회</h1>
           </div>
-          <jsp:include page="Modal.jsp" />
+          <jsp:include page="../guidetour/Modal.jsp" />
           <div class="firstLayer">
             <div class="guidePicArea">
               <img src="/public/가이드 샘플 사진.jpg" alt="가이드 사진" class="guidePicture">
