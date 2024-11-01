@@ -105,7 +105,7 @@ public class GuideTourVO {
 	/**
 	 * 가이드 추가 정보 리스트 VO
 	 */
-	private List<GuideTourAdditionInfoVO> guideTourAdditionInfoList;
+	private List<GuideTourScheduleInfoVO> guideTourScheduleInfoList;
 	
 	/**
 	 * 가이드 투어 즐겨찾기 리스트 VO
@@ -134,6 +134,9 @@ public class GuideTourVO {
 	 * 해당 프로퍼티는 DB컬럼에 존재하지 않음
 	 */
 	private String guideAge;
+	
+	
+	
 	
 	public String getGdTrPstId() {
 		return gdTrPstId;
@@ -267,11 +270,11 @@ public class GuideTourVO {
 	public void setGuideTourReviewList(List<GuideTourReviewVO> guideTourReviewList) {
 		this.guideTourReviewList = guideTourReviewList;
 	}
-	public List<GuideTourAdditionInfoVO> getGuideTourAdditionInfoList() {
-		return guideTourAdditionInfoList;
+	public List<GuideTourScheduleInfoVO> getGuideTourScheduleInfoList() {
+		return guideTourScheduleInfoList;
 	}
-	public void setGuideTourAdditionInfoList(List<GuideTourAdditionInfoVO> guideTourAdditionInfoList) {
-		this.guideTourAdditionInfoList = guideTourAdditionInfoList;
+	public void setGuideTourScheduleInfoList(List<GuideTourScheduleInfoVO> guideTourScheduleInfoList) {
+		this.guideTourScheduleInfoList = guideTourScheduleInfoList;
 	}
 	//	public List<GuideTourFavoriteVO> getGuideTourFavoriteList() {
 //		return guideTourFavoriteList;

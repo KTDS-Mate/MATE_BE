@@ -2,6 +2,7 @@ package com.mate.bbs.dao;
 
 import java.util.List;
 
+import com.mate.bbs.vo.GuideTourDetailInfoVO;
 import com.mate.bbs.vo.GuideTourModifyVO;
 import com.mate.bbs.vo.GuideTourVO;
 import com.mate.bbs.vo.GuideTourWriteVO;
@@ -63,5 +64,10 @@ public interface GuideTourDao {
      * @return
      */
     public String selectAttachEndHour(GuideTourWriteVO guideTourWriteVO);
-    
+    /**
+     * 가이드 투어 등록 폼에서 상세 정보를 담는 메소드.
+     * @param guideTourDetailInfoVO
+     * @return
+     */
+    public int insertDetailInfo(GuideTourDetailInfoVO guideTourDetailInfoVO);
 }

@@ -9,6 +9,10 @@ import jakarta.validation.constraints.PositiveOrZero;
 public class GuideTourWriteVO {
 	
 	/**
+	 * 가이드 투어 게시글 아이디
+	 */
+	private String gdTrPstId;
+	/**
 	 * 가이드가 등록한 투어 제목
 	 */
 	@NotBlank(message = "제목을 작성해주세요!")
@@ -76,6 +80,23 @@ public class GuideTourWriteVO {
 	 * 가이드 투어 상세정보 리스트 VO
 	 */
 	private List<GuideTourDetailInfoVO> guideTourDetailInfoList;
+	/**
+	 * 투어 작성자의 ID VO
+	 */
+	private String athrId;
+	
+	public String getGdTrPstId() {
+		return gdTrPstId;
+	}
+	public void setGdTrPstId(String gdTrPstId) {
+		this.gdTrPstId = gdTrPstId;
+	}
+	public String getAthrId() {
+		return athrId;
+	}
+	public void setAthrId(String athrId) {
+		this.athrId = athrId;
+	}
 	public String getGdTrTtl() {
 		return gdTrTtl;
 	}

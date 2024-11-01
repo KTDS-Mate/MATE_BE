@@ -20,7 +20,7 @@
 }
 
 .select-div {
-  margin-top: 2rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
   font-weight: bold;
 }
@@ -227,6 +227,14 @@ input {
 
 .locs:last-child {
   border: 0;
+}
+
+.locs2 {
+	border-bottom: 1px solid #ddd;
+}
+
+.locs2:last-child {
+	border: 0;
 }
 
 .time-select {

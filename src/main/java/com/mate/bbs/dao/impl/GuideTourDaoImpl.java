@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mate.bbs.dao.GuideTourDao;
+import com.mate.bbs.vo.GuideTourDetailInfoVO;
 import com.mate.bbs.vo.GuideTourModifyVO;
 import com.mate.bbs.vo.GuideTourVO;
 import com.mate.bbs.vo.GuideTourWriteVO;
@@ -70,5 +71,9 @@ public class GuideTourDaoImpl extends SqlSessionDaoSupport implements GuideTourD
 	@Override
 	public String selectAttachEndHour(GuideTourWriteVO guideTourWriteVO) {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachEndHour", guideTourWriteVO);
+	}
+	@Override
+	public int insertDetailInfo(GuideTourDetailInfoVO guideTourDetailInfoVO) {
+		return this.getSqlSession().insert(NAMESPACE + ".insertDetailInfo", guideTourDetailInfoVO);
 	}
 }

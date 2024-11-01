@@ -118,16 +118,26 @@ $().ready(function() {
 		for (var i = 0; i < regionCnt; i++) {
 			var regionDom = $(`<option value="${regionResult.regions[i].regionId}">${regionResult.regions[i].regionName}</option>`);
 			$("#region").append(regionDom);
+			
 		}
 	});
 
 	$("#region").on("change", function() {
+		
+		$("#country").removeAttr("disabled");
+		$("#city").attr("disabled", "disabled");
 		$("#country").empty();
 		$("#city").empty();
 		$("#country").append(`<option value="">국가 선택</option>`);
 		$("#city").append(`<option value="">도시 선택</option>`);
-
+		
+		
 		var regionId = $(this).val();
+		
+		if(regionId === "") {
+			$("#country").attr("disabled", "disabled");
+		}
+		
 		$.get(`/tour/countries/${regionId}`, {}, function(countryResult) {
 			var countryCnt = countryResult.countriesCount;
 
@@ -138,6 +148,7 @@ $().ready(function() {
 		});
 	});
 	$("#country").on("change", function() {
+		$("#city").removeAttr("disabled");
 		$("#city").empty();
 		$("#city").append(`<option value="">도시 선택</option>`);
 		var countryId = $(this).val();
@@ -172,14 +183,48 @@ $().ready(function() {
 		
 		var divCnt = $(".locs").length;
 		
-		var divPlus = $(`<div class="locs"><div>
-							<label for="hope-location">장소</label>
-							<input id="hope-location" name="guideTourAdditionInfoList[${divCnt}].trAddPlc" type="text"/>
-						 </div>
+		var divPlus = $(`<div class="locs">
+							<div>
+								<label for="hope-location">장소</label>
+								<input id="hope-location" name="guideTourAdditionInfoList[${divCnt}].trAddPlc" type="text"/>
+						 	</div>
 						 <div>
 							<label for="hope-info">일정</label>
 							<input id="hope-info" name="guideTourAdditionInfoList[${divCnt}].trAddInf" type="text"/>
-						 </div></div>`);
-		$(".loc-inf").append(divPlus);
+						 </div>
+						 </div>`);
+		var domLength = $(".locs").length;
+		if(domLength < 10) {
+			$(".loc-inf").append(divPlus);
+		}
+		else {
+			alert("더 이상 투어 세부 일정을 추가할 수 없습니다.( 최대 10개 )");
+		}			 
+	});
+	
+	$("#info-plus").on("click", function() {
+		
+		var liCnt = $(".plus-inf").length;
+		var liPlusDom = $(`<div class="locs2">
+				        <ul>
+				            <li class="locs2-li"> 짜증나 </li>
+				        </ul>
+				  </div>`)
+		var domLength  = $('.locs2-li').length;
+		if(domLength < 10) {
+			$(".plus-inf").append(liPlus);
+			
+		}
+		else{
+			alert("더 이상 투어 정보를 추가 할 수 없습니다. ( 최대 10개 )");
+		}
+		
+	});
+	
+	$("#m-btn").on("click", function() {
+		$(".locs:last").remove();
+	});
+	$("#info-m-btn").on("click", function() {
+			$(".locs2:last").remove();
 	});
 });

@@ -14,33 +14,49 @@
 						autoMapping="true">
 				<id column="USR_ID" property="usrId" />	
 			</association>
+			
+			<association property="citiesVO"
+						javaType="com.mate.common.vo.CitiesVO"
+						autoMapping="true">
+				<id column="CITY_ID" property="cityId"/>
+			</association>
+			
+			<association property="countriesVO"
+						javaType="com.mate.common.vo.CountriesVO"
+						autoMapping="true">
+				<id column="COUNTRY_ID" property="countryId"/>
+			</association>
+			
+			
+			
 			<collection property="guideTourImgList" 
 						ofType="com.mate.bbs.vo.GuideTourImgVO"
 						autoMapping="true">
 				<id column="GD_TR_IMG_ID" property="gdTrImgId"/>
 			</collection>
+			
 			<collection property="guideTourDetailInfoList"
 						ofType="com.mate.bbs.vo.GuideTourDetailInfoVO"
 						autoMapping="true">
 				<id column="TR_DTL_ID" property="trDtlId"/>
 			</collection>
+			
 			<collection property="guideTourProvidedList"
 						ofType="com.mate.bbs.vo.GuideTourProvidedVO"
 						autoMapping="true">
 				<id column="TR_INCLD_ID" property="trIncldId"/>
 			</collection>
+			
 			 <collection property="guideTourReviewList"
 						ofType="com.mate.bbs.vo.GuideTourReviewVO"
 						autoMapping="true">
 				<id column="GD_TR_RVW_ID" property="gdTrRvwId"/>
 			</collection>
-			<collection property="citiesVO"
-						ofType="com.mate.common.vo.CitiesVO"
-						autoMapping="true">
-				<id column="CITY_ID" property="cityId"/>
-			</collection>
-			<collection property="guideTourAdditionInfoList"
-						ofType="com.mate.bbs.vo.GuideTourAdditionInfoVO"
+			
+			
+			
+			<collection property="guideTourScheduleInfoList"
+						ofType="com.mate.bbs.vo.GuideTourScheduleInfoVO"
 						autoMapping="true">
 				<id column="TR_ADD_INF_ID" property="trAddInfId"/>
 			</collection>
@@ -71,30 +87,31 @@
 			 , GTR.GD_TR_IS_DLT
 			 , GTR.TR_CT_ID
 			 , GTRI.GD_TR_IMG_URL 
-			 , UI.USR_FNM 
-			 , UI.USR_LNM 
-			 , UI.USR_GNDR 
-			 , UI.GD_PRFL_IMG 
-			 , UI.USR_BD 
-			 , UI.USR_GD_EXP 
+			 , ATHR.USR_FNM 
+			 , ATHR.USR_LNM 
+			 , ATHR.USR_GNDR 
+			 , ATHR.GD_PRFL_IMG 
+			 , ATHR.USR_BD 
+			 , ATHR.USR_GD_EXP 
+			 , ATHR.USR_GD_EXP
+			 , TSI.TR_DTL_LCT 
+			 , TSI.TR_DTL_SCHD 
 			 , TI.TR_INCLD 
 			 , TD.TR_DTL_INF 
-			 , TAI.TR_ADD_INF 
-			 , TAI.TR_ADD_PLC 
-			 , TRUNC(MONTHS_BETWEEN(TRUNC(SYSDATE), UI.USR_BD) / 12) AS GUIDE_AGE
+			 , TRUNC(MONTHS_BETWEEN(TRUNC(SYSDATE), ATHR.USR_BD) / 12) AS GUIDE_AGE
 		  FROM GD_TR_RCRT GTR
 		  LEFT JOIN GD_TR_RCRT_IMG GTRI
 		    ON GTR.GD_TR_PST_ID = GTRI.GD_TR_PST_ID 
 		  LEFT JOIN GD_TR_RVW GTRV
 		    ON GTR.GD_TR_PST_ID = GTRV.GD_TR_PST_ID 
-		 INNER JOIN USR_INF UI
-		    ON UI.USR_ID = GTR.USR_ID 
+		 INNER JOIN USR_INF ATHR
+		    ON GTR.ATHR_ID = ATHR.USR_LGN_ID 
 		 INNER JOIN TOUR_INCLD TI
 		    ON TI.GD_TR_PST_ID = GTR.GD_TR_PST_ID  
-		 INNER JOIN TR_DTL TD
+		  LEFT JOIN TR_DTL TD
 		    ON TD.GD_TR_PST_ID = GTR.GD_TR_PST_ID
-		 INNER JOIN TR_ADDTNL_INF TAI
-		    ON TAI.GD_TR_PST_ID = GTR.GD_TR_PST_ID 
+		  LEFT JOIN TR_SCHD_INF TSI
+		    ON TSI.GD_TR_PST_ID = GTR.GD_TR_PST_ID   
 		 WHERE GTR.GD_TR_PST_ID = #{_parameter}
 	</select>
 	
@@ -139,6 +156,17 @@
 	</select>
 	<insert id="insertNewGuideTour" 
 			parameterType="com.mate.bbs.vo.GuideTourWriteVO">
+		<!--
+		 PK를 먼저 발급 받음 
+		 keyProperty : VO에서 PK를 담당하는 프로퍼티 작성
+		 order : BEFORE - 쿼리를 실행하기 전에 먼저 실행
+		 		 AFTER - 쿼리를 실행한 후 실행
+		 resultType : 해당 쿼리의 반환 값
+		-->
+		<selectKey keyProperty="gdTrPstId" order="BEFORE" resultType="string">
+			SELECT 'GT-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_GD_TR_RCRT_PK.NEXTVAL, 6, 0)
+			  FROM DUAL
+		</selectKey>
 		INSERT INTO GD_TR_RCRT GTR
 		 (GD_TR_PST_ID
 		, ATHR_ID
@@ -157,8 +185,8 @@
 		, GD_TR_ED_DT
 		, GD_TR_MX_NP)
 		VALUES
-		 ('GT-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_GD_TR_RCRT_PK.NEXTVAL, 6, 0)
-		, 'USR-20241029-000090'
+		 (#{gdTrPstId}
+		, #{athrId}
 		, NULL
 		, #{gdTrTtl}
 		, TO_DATE(#{gdTrStDt}, 'YYYY-MM-DD HH24:MI') 
@@ -208,5 +236,17 @@
 		SELECT #{inputYear} || ' ' || #{inputEndHour}
  		  FROM DUAL
 	</select>
+	
+	<insert id="insertDetailInfo" 
+			parameterType="com.mate.bbs.vo.GuideTourDetailInfoVO">
+		INSERT INTO TR_DTL
+		 (TR_DTL_ID
+		, GD_TR_PST_ID
+		, TR_DTL_INF)
+		VALUES
+		 ('DI-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_TR_DTL_PK.NEXTVAL, 6, 0)
+		, #{gdTrPstId}
+		, #{trDtlInf})
+	</insert>
 	
 </mapper>
