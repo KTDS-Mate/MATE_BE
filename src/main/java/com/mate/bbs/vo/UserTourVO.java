@@ -9,87 +9,49 @@ import com.mate.user.vo.UserVO;
 
 public class UserTourVO {
 
-	/**
-	 * 게시글의 아이디. Pk
-	 */
+	/** 게시글의 아이디. Pk **/
 	private String usrTrPstId;
-	/**
-	 * 해당 투어를 작성한 여행자 FK
-	 */
+	/** 해당 투어를 작성한 여행자 FK **/
 	private String athrId;
-	/**
-	 * 투어를 예약한 가이드 FK
-	 */
+	/** 투어를 예약한 가이드 FK **/
 	private String gdId;
-	/**
-	 * 여행자가 등록한 투어 게시글의 제목
-	 */
+	/** 여행자가 등록한 투어 게시글의 제목 **/
 	private String usrTrTtl;
-	/**
-	 * 여행자가 입력한 투어 일시
-	 */
+	/** 여행자가 입력한 투어 일시 **/
 	private String usrTrStDt;
-	/**
-	 * 여행자가 입력한 투어의 목적
-	 */
+	/** 여행자가 입력한 투어의 목적 **/
 	private String usrTrPrps;
-	/**
-	 * 여행자가 등록한 가이드와 만날 지점에 대한 정보
-	 */
+	/** 여행자가 등록한 가이드와 만날 지점에 대한 정보 **/
 	private String usrTrMp;
-	/**
-	 * 여행자가 가이드에게 제시하는 고용 금액
-	 */
+	/** 여행자가 가이드에게 제시하는 고용 금액 **/
 	private double usrTrGdHrPrc;
-	/**
-	 * 여행자의 총 투어 인원
-	 */
+	/** 여행자의 총 투어 인원 **/
 	private int usrTrNp;
-	/**
-	 * 논리적 삭제를 위한 게시글 삭제 여부 (기본 값 : N)
-	 */
+	/** 논리적 삭제를 위한 게시글 삭제 여부 (기본 값 : N) **/
 	private int usrTrIsDlt;
-	/**
-	 * 여행자가 투어 요청 게시글을 등록한 일시
-	 */
+	/** 여행자가 투어 요청 게시글을 등록한 일시 **/
 	private String usrTrRstrDt;
-	/**
-	 * 여행자가 투어 요청 게시글을 수정한 일시
-	 */
+	/** 여행자가 투어 요청 게시글을 수정한 일시 **/
 	private String usrTrMdfyDt;
-	/**
-	 * 여행자가 투어 요청 게시글을 삭제한 일시
-	 */
+	/** 여행자가 투어 요청 게시글을 삭제한 일시 **/
 	private String usrTrDltDt;
-	/**
-	 * 여행자가 등록한 투어 지역의 도시명. FK
-	 */
+	/** 여행자가 등록한 투어 지역의 도시명. FK **/
 	private int trCtId;
-	/**
-	 * 여행자의 가이드 구인 게시글의 세부 요구사항 내용
-	 */
+	/** 여행자의 가이드 구인 게시글의 세부 요구사항 내용 **/
 	private String usrTrRqDtl;
-	/**
-	 * 원하는 가이드의 성별
-	 */
+	/** 원하는 가이드의 성별 **/
 	private String gdGndr;
-	/**
-	 * 원하는 가이드의 나이
-	 */
+	/** 원하는 가이드의 나이 **/
 	private String gdAge;
-	/**
-	 * 원하는 가이드의 경력
-	 */
+	/** 원하는 가이드의 경력 **/
 	private String gdCrr;
-	/**
-	 * 가이드에게 원하는 사항
-	 */
+	/** 가이드에게 원하는 사항 **/
 	private String gdWntRq;
-	
-	/**
-	 * 여행자가 입력한 투어 종료일시 
-	 */
+	/** 가이드 구인 게시글 예약 상태 **/
+	private String usrTrStts;
+	/** 여행자가 입력한 투어 종료일시 **/
 	private String usrTrEdDt;
+	
 	/**
 	 * 게시글 작성자의 정보를 담은 VO
 	 */
@@ -104,7 +66,13 @@ public class UserTourVO {
 	 * 투어 일정 리스트
 	 */
 	private List<UserTourSchdlVO> userTourSchdlList;
+	/**
+	 * 사용자가 즐겨찾기 한 즐겨찾기
+	 */
+	private FavoriteVO favoriteVO;
+	
 	/**대륙 별 검색에 사용**/
+	
 	private CitiesVO citiesVO;
 	
 	private CountriesVO countriesVO;
@@ -117,27 +85,27 @@ public class UserTourVO {
 	 */
 	private String inputYear;
 	/**
-	 * 여행자가 입력한 시작 시
+	 * 여행자가 입력한 시작 시 input[time] 값 받아오기
 	 */
 	private String inputStartHour;
 	/**
-	 * 여행자가 입력한 시작 분
-	 */
-	private String inputStartMinute;
-	/**
-	 * 여행자가 입력한 종료 시
+	 * 여행자가 입력한 종료 시 input[time] 값 받아오기
 	 */
 	private String inputEndHour;
-	/**
-	 * 여행자가 입력한 종료 분
-	 */
-	private String inputEndMinute;
-	/**컬럼은 존재하지 않음**/
+	
+	/**컬럼은 존재하지 않음 -> view 화면에서 보여주기 위해 알리아스명을 적어줌**/
+	/**마감일**/
 	private int deadline;
-	/**
-	 * 여행자의 투어 소요 시간(분 단위)
-	 */
+	/**투어 총 소요 시간**/
 	private String usrTrTm;
+	
+	
+	public FavoriteVO getFavoriteVO() {
+		return favoriteVO;
+	}
+	public void setFavoriteVO(FavoriteVO favoriteVO) {
+		this.favoriteVO = favoriteVO;
+	}
 	public String getUsrTrPstId() {
 		return usrTrPstId;
 	}
@@ -252,6 +220,12 @@ public class UserTourVO {
 	public void setGdWntRq(String gdWntRq) {
 		this.gdWntRq = gdWntRq;
 	}
+	public String getUsrTrStts() {
+		return usrTrStts;
+	}
+	public void setUsrTrStts(String usrTrStts) {
+		this.usrTrStts = usrTrStts;
+	}
 	public String getUsrTrEdDt() {
 		return usrTrEdDt;
 	}
@@ -306,23 +280,11 @@ public class UserTourVO {
 	public void setInputStartHour(String inputStartHour) {
 		this.inputStartHour = inputStartHour;
 	}
-	public String getInputStartMinute() {
-		return inputStartMinute;
-	}
-	public void setInputStartMinute(String inputStartMinute) {
-		this.inputStartMinute = inputStartMinute;
-	}
 	public String getInputEndHour() {
 		return inputEndHour;
 	}
 	public void setInputEndHour(String inputEndHour) {
 		this.inputEndHour = inputEndHour;
-	}
-	public String getInputEndMinute() {
-		return inputEndMinute;
-	}
-	public void setInputEndMinute(String inputEndMinute) {
-		this.inputEndMinute = inputEndMinute;
 	}
 	public int getDeadline() {
 		return deadline;
@@ -336,5 +298,5 @@ public class UserTourVO {
 	public void setUsrTrTm(String usrTrTm) {
 		this.usrTrTm = usrTrTm;
 	}
-
+	
 }

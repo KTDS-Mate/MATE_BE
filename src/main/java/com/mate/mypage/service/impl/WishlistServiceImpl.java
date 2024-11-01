@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mate.common.vo.PaginationVO;
 import com.mate.mypage.dao.WishlistDao;
 import com.mate.mypage.service.WishlistService;
-import com.mate.mypage.vo.SearchMyWishVO;
-import com.mate.mypage.vo.WishVO;
+import com.mate.mypage.vo.MyWishVO;
 import com.mate.mypage.vo.WishlistVO;
 
 @Service
@@ -19,9 +19,9 @@ public class WishlistServiceImpl implements WishlistService {
     private WishlistDao wishlistDao;
 
 	@Override
-	public WishlistVO selectAllWish(String usrLgnId , SearchMyWishVO searchMyWishVO) {
+	public WishlistVO selectAllWish(String usrLgnId , PaginationVO paginationVO) {
 		
-		int count = this.wishlistDao.countWish(usrLgnId , searchMyWishVO);
+		int count = this.wishlistDao.countWish(usrLgnId);
 		
 		if(count == 0) {
 			
@@ -31,24 +31,15 @@ public class WishlistServiceImpl implements WishlistService {
 			
 			return wishlistVO;	
 		}
-		
-		List<WishVO> MyWishList = null;
-    	if(searchMyWishVO == null) { 
-    				// 페이지 처리를 하지 않을경우 
-    		MyWishList = this.wishlistDao.selectAllWish(usrLgnId);
-    		}
-    		else {
-    		// 페이지네이션을 위한 게시글 조회
-    			MyWishList = this.wishlistDao.selectAllWish(usrLgnId ,searchMyWishVO);
+
+    	
+		 List<MyWishVO>	MyWishList = this.wishlistDao.selectAllWish(usrLgnId ,paginationVO);
     			//총 페이지 개수를 구한다
-    			searchMyWishVO.setPageCount(count);
-    			}
-		
+    	paginationVO.setPageCount(count);
+
 		WishlistVO wishlistVO = new WishlistVO();
-		
-		List<WishVO> wishlist = this.wishlistDao.selectAllWish(usrLgnId);
 		wishlistVO.setCountWish(count);
-		wishlistVO.setWishlist(wishlist);
+		wishlistVO.setWishlist(MyWishList);
 		
 		
 		

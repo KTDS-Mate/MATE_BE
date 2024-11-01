@@ -3,13 +3,13 @@
   <link rel="stylesheet" type="text/css" href="/css/Header.css" />
   
   
-  <div class="header-content" data-loginId="${sessionScope._LOGIN_USER_.usrLgnId}">
+  <div class="header-content" data-login-id="${sessionScope._LOGIN_USER_.usrLgnId}">
     <div class="logo">
       <a href="/"><img src="/public/Logo.png" alt="로고" /></a>
     </div>
 
     <div class="header-center-menu">
-      <div><a href="/usertour/list?pageNo=0&listSize=9&usrLgnId=${sessionScope._LOGIN_USER_.usrLgnId}&usrIsGd=${sessionScope._LOGIN_USER_.usrIsGd}">투어 요청 목록</a></div>
+      <div><a href="/usertour/list?pageNo=0&listSize=9&regionName=전체&orderby=최신순">투어 요청 목록</a></div>
       <div><a href="">가이드 투어 목록</a></div>
       <div><a href="">가이드 목록</a></div>
     </div>

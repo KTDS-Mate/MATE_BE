@@ -10,6 +10,8 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
       type="text/css"
       href="/css/usertour/GuideRecruitmentPage.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="/js/usertour/GuideRecruitmentPage.js"></script>
   </head>
   <body>
     <div class="grid">
@@ -20,10 +22,10 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
       <div class="content">
         <div class="grid-rows">
           <div class="subject">
-            <div>
-              <h3>${userTourVO.usrTrTtl}</h3>
+            <div class="ttl-wb" data-pst-id="${userTourVO.usrTrPstId}" >
+              <h1>${userTourVO.usrTrTtl}</h1>
+              <div class="wish-button"></div>
             </div>
-            <div class="wish-button"></div>
           </div>
           <div class="img-price">
             <div class="img-group">
@@ -131,7 +133,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
               <div class="margin-left">
                 <h2>${userTourVO.usrTrMp}</h2>
                 <div class="flex-div">
-                  <div>
+                  <div class="time-div">
                     <h3>${userTourVO.usrTrStDt} ~ ${userTourVO.usrTrEdDt}</h3>
                   </div>
                   <div class="margin-right"><h4>Open In GoogleMap</h4></div>
@@ -153,13 +155,13 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                         var="userTourSchdl"
                         varStatus="index">
                         <li>
-                          <p class="list-item">
+                          <div class="list-item">
                             <span class="background-num"
                               >${index.index + 1}</span
                             >
                             ${userTourSchdl.trLctns}
-                          </p>
-                          <p class="border-left">${userTourSchdl.trRqst}</p>
+                          </div>
+                          <div class="border-left">${userTourSchdl.trRqst}</div>
                         </li>
                       </c:forEach>
                     </c:when>

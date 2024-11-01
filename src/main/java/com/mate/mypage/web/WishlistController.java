@@ -6,10 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mate.common.vo.PaginationVO;
 import com.mate.mypage.service.WishlistService;
-import com.mate.mypage.vo.SearchMyWishVO;
 import com.mate.mypage.vo.WishlistVO;
 
 @Controller
@@ -23,26 +22,26 @@ public class WishlistController {
 
 	@GetMapping("/tr-wishlist/{usrLgnId}")
 	public String viewTrWish(@PathVariable String usrLgnId
-										  ,SearchMyWishVO searchMyWishVO
+										  ,PaginationVO paginationVO
 										  ,Model model) {
 		
-		WishlistVO wishlistVO = this.wishlistService.selectAllWish(usrLgnId , searchMyWishVO);
+		WishlistVO wishlistVO = this.wishlistService.selectAllWish(usrLgnId , paginationVO);
 		
-		model.addAttribute(wishlistVO);
-		model.addAttribute("searchBoardVO", searchMyWishVO);
+		model.addAttribute("wishlistVO" ,wishlistVO);
+		model.addAttribute("paginationVO", paginationVO);
 		
 		return "mypage/Mypage_Tourist_Wishlist";
 	}
 	
 	@GetMapping("/gd-wishlist/{usrLgnId}")
 	public String viewGdWish(@PathVariable String usrLgnId
-										  ,SearchMyWishVO searchMyWishVO
+										  ,PaginationVO paginationVO
 										  ,Model model) {
 		
-		WishlistVO wishlistVO = this.wishlistService.selectAllWish(usrLgnId , searchMyWishVO);
+		WishlistVO wishlistVO = this.wishlistService.selectAllWish(usrLgnId , paginationVO);
 		
-		model.addAttribute(wishlistVO);
-		model.addAttribute("searchBoardVO", searchMyWishVO);
+		model.addAttribute("wishlistVO" ,wishlistVO);
+		model.addAttribute("paginationVO", paginationVO);
 		
 		return "mypage/Mypage_Guide_Wishlist";
 	}

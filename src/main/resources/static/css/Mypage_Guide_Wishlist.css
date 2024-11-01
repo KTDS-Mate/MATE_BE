@@ -40,10 +40,12 @@ div.main-content {
 }
 
 div.wishlist {
+  display: flex;
+  flex-direction: column;
   border: 2px solid #ffeedb;
   border-radius: 20px;
   width: 60rem;
-  height: 120rem;
+  height: auto;
   margin: 2rem;
   padding: 1rem 0;
   justify-content: space-between;
@@ -59,10 +61,7 @@ img.check {
   height: 3rem;
 }
 
-div.wishlist {
-  display: flex;
-  flex-direction: column;
-}
+
 
 div.one-wishlist {
   display: flex;
@@ -83,6 +82,7 @@ div.wishlist-info {
 
 div.wishlist-info div {
   display: flex;
+  margin: 0.2rem 0;
   font-size: 1.2rem;
 }
 
@@ -132,3 +132,22 @@ p.page-plus {
   border-right: 1rem solid transparent;
   margin-left: 1rem;
 }
+
+.page-nav {
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+}
+
+.page-nav>li {
+	list-style: none;
+	padding: 0.5rem;
+}
+
+.page-nav > li.active > a {
+	color: #F00;
+	font-weight: 900;
+}
+
