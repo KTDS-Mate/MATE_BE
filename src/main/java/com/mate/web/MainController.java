@@ -8,7 +8,7 @@ public class MainController {
 	
 	@GetMapping("/")
 	public String viewMainPage(){
-		return "all/MT_M001";
+		return "all/MainPage";
 		}
 
 	@GetMapping("header")
@@ -55,11 +55,6 @@ public class MainController {
 	@GetMapping("/tourist/tour/write")
 	public String viewTouristTourWrite() {
 		return "usertour/Tourist_TourInsert";
-	}
-
-	@GetMapping("/sample")
-	public String viewSamplePage() {
-		return "all/MainPageSample";
 	}
 	
 	@GetMapping("/message/receive")
