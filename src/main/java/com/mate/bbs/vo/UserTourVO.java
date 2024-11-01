@@ -66,6 +66,10 @@ public class UserTourVO {
 	 * 투어 일정 리스트
 	 */
 	private List<UserTourSchdlVO> userTourSchdlList;
+	/**
+	 * 사용자가 즐겨찾기 한 즐겨찾기
+	 */
+	private FavoriteVO favoriteVO;
 	
 	/**대륙 별 검색에 사용**/
 	
@@ -95,6 +99,13 @@ public class UserTourVO {
 	/**투어 총 소요 시간**/
 	private String usrTrTm;
 	
+	
+	public FavoriteVO getFavoriteVO() {
+		return favoriteVO;
+	}
+	public void setFavoriteVO(FavoriteVO favoriteVO) {
+		this.favoriteVO = favoriteVO;
+	}
 	public String getUsrTrPstId() {
 		return usrTrPstId;
 	}
