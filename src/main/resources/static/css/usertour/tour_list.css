@@ -16,9 +16,15 @@ div.tour-request-list {
   display: flex;
   width: 30rem;
   height: 3.5rem;
-  border: 2px solid #333;
-  border-radius: 22px;
+  border: 1px solid #aaa;
+  border-radius: 22px 22px 22px 5px;
   justify-content: space-between;
+}
+
+.search-area > select {
+	border: 0;
+	border-radius: 22px;
+	outline: none;
 }
 /* 입력창의 너비 */
 .search-input {
@@ -26,7 +32,6 @@ div.tour-request-list {
   width: 300px;
   border-radius: 20px;
   border: none;
-  margin-left: 1rem;
   outline: none;
 }
 
@@ -44,13 +49,13 @@ div.tour-request-list {
   background-color: #d3c5b5;
 }
 
-.country-menu-area {
+.region-menu-area {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   align-items: center;
 }
 
-.country-menu-area input {
+.region-menu-area input {
   padding: 1.5rem 0;
   text-align: center;
   font-size: 1.2rem;
@@ -60,12 +65,12 @@ div.tour-request-list {
   color: #333;
 }
 
-.country-menu-area input:hover {
-	color: #00a;
-	cursor: pointer;
+.region-menu-area input:hover {
+  color: #00a;
+  cursor: pointer;
 }
 
-.country-menu-area input.checked {
+.region-menu-area input.checked {
   border: 2px solid #333;
   border-bottom: 0px;
   color: #00aa;
@@ -113,7 +118,7 @@ input.checked2 {
 }
 
 .list-view-option input:first-child {
-	border: 0;
+  border: 0;
 }
 
 .list-view-option input:hover {
@@ -237,4 +242,11 @@ a:link {
 .page-nav > li.active > a {
   color: #f00a;
   font-weight: 900;
+}
+
+.isempty {
+  display: flex;
+  grid-column: 1 / -1;
+  justify-content: center;
+  color: red;
 }

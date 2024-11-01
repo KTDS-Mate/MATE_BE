@@ -6,7 +6,7 @@ public class WishlistVO {
 
 	private int countWish;
 	
-	private List<WishVO> wishlist;
+	private List<MyWishVO> wishlist;
 
 	public int getCountWish() {
 		return countWish;
@@ -16,11 +16,11 @@ public class WishlistVO {
 		this.countWish = countWish;
 	}
 
-	public List<WishVO> getWishlist() {
+	public List<MyWishVO> getWishlist() {
 		return wishlist;
 	}
 
-	public void setWishlist(List<WishVO> wishlist) {
+	public void setWishlist(List<MyWishVO> wishlist) {
 		this.wishlist = wishlist;
 	}
 	
