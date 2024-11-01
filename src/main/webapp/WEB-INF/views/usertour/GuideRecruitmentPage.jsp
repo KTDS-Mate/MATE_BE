@@ -10,6 +10,8 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
       type="text/css"
       href="/css/usertour/GuideRecruitmentPage.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="/js/usertour/GuideRecruitmentPage.js"></script>
   </head>
   <body>
     <div class="grid">
