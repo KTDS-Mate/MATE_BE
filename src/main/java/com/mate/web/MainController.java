@@ -56,6 +56,11 @@ public class MainController {
 	public String viewTouristTourWrite() {
 		return "usertour/Tourist_TourInsert";
 	}
+
+	@GetMapping("/sample")
+	public String viewSamplePage() {
+		return "all/MainPageSample";
+	}
 	
 	@GetMapping("/message/receive")
 	public String viewReceiveMessage(){return "all/receive_message";}
