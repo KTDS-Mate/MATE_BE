@@ -96,5 +96,15 @@ public class MypageController {
         return "guide/Guide_TourInsert";
     }
 
+    //    --------------------------------------------- 나의 신청 투어
+    @GetMapping("/tr-apply-tour")
+    public String viewTouristMyApplyTour() {
+    	return "mypage/Mypage_Tourist_Apply";
+    }
+    
+    @GetMapping("/gd-apply-tour")
+    public String viewGuideMyApplyTour() {
+    	return "mypage/Mypage_Guide_Apply";
+    }
     
 }

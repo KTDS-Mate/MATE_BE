@@ -161,6 +161,14 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                         ${userTourVO.countriesVO.countryName}
                       </div>
                       <div>소요시간 : ${userTourVO.usrTrTm}분</div>
+                      <c:choose>
+                      	<c:when test="${userTourVO.usrTrStts eq 'N'}">
+                      		<div>예약 상태 : 모집 중</div>
+                      	</c:when>
+                      	<c:otherwise>
+                      		<div>예약 상태 : 예약 완료</div>
+                      	</c:otherwise>
+                      </c:choose>
                     </div>
                     <p class="tour-deadline">마감 ${userTourVO.deadline}일전</p>
                   </div>
