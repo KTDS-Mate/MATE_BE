@@ -1,0 +1,282 @@
+/* 전체 그리드 레이아웃 설정 */
+div.grid {
+  display: grid;
+  grid-template-columns: 1fr 80rem 1fr;
+  row-gap: 1rem;
+}
+
+div.header {
+  grid-column: 2 / 2;
+}
+
+div.content {
+  grid-column: 2 / 2;
+  grid-row: 2 / 2;
+}
+
+div.footer {
+  grid-column: 1 / -1;
+}
+
+/* 외부 박스 */
+div.main-content {
+  border-radius: 20px;
+  width: 50rem;
+  margin: auto;
+}
+
+/* 제목 부분 */
+div.content-title {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+div.content-title div h2 {
+  margin: 0;
+}
+
+/* 내부 폼 컨테이너 */
+div.regist-form {
+  display: flex;
+  border-radius: 20px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 1rem 0;
+  justify-content: center;
+}
+
+div.regist-content {
+  display: flex;
+  padding: 0 2rem;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+div.section-box {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.1rem;
+  margin: 1rem 0;
+  border: 2px solid #444; 
+  border-radius: 20px;
+  padding: 2rem;
+  width: 80%;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 서브 타이틀 */
+div.sub-title {
+  display: flex;
+  width: 100%;
+  margin-bottom: 1rem;
+  justify-content: center;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  font-size: 1.5rem;
+}
+
+/* 항목당 간격 조절 및 그리드 레이아웃 적용 */
+div.form-item {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  width: 100%;
+  margin: 1rem 0;
+  padding: 1rem 0;
+  align-items: center;
+}
+
+/* 레이블 스타일 */
+div.form-item span,
+div.form-item label {
+  justify-self: end;
+  padding-right: 1rem;
+}
+
+/* 자기소개 textarea 스타일 */
+.self-int {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  width: 100%;
+  margin: 1rem 0;
+  padding: 1rem 0;
+  align-items: center;
+}
+
+textarea {
+  width: 90%;
+  height: 8rem;
+  font-size: 1rem;
+  resize: none;
+  outline: none;
+  margin-top: 0.5rem;
+}
+
+/* 선택박스 */
+div.active-city-form select {
+  font-size: 1rem;
+  text-align: center;
+  text-align-last: center;
+  height: 2rem;
+  width: 14rem;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+/* 파일 업로드 부분 */
+div.filebox {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+div.filebox input.filename {
+  width: 10rem;
+  height: 2rem;
+  padding: 0 0.5rem;
+}
+
+/* 파일찾기 버튼 스타일 */
+div.filebox label.file-search {
+color: #333;
+    border: 1px solid #333;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0.3rem;
+    border-radius: 5px;
+    height: 2rem;
+    width: 5.5rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 지역추가나 라이센스 추가 버튼 */
+button.plus-item {
+  color: #333;
+    border: 1px solid #333;
+    cursor: pointer;
+    font-size: 0.9rem;
+    height: 1.3rem;
+    border-radius: 5px;
+    background-color: #fff;
+  padding: 0.3rem;
+  width: 4rem;
+  margin-left: 1rem;
+}
+
+/* 선택된 도시들 리스트 */
+div.form-item.selected-cities {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+ul#addedCitiesList {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul#addedCitiesList li {
+  background: none;
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  display: flex;
+  gap: 10px;
+  border: 1px solid #333;
+  font-size: 0.8rem;
+  align-items: center;
+  flex-direction: row;
+}
+
+ul#addedCitiesList li button {
+  background: none;
+  border: none;
+  color: #ff0000;
+  cursor: pointer;
+  font-size: 0.6rem;
+}
+
+/* 최종 버튼 정렬 */
+div.select-btn {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 2rem;
+}
+
+button.regist-button,
+button.cancel-button {
+  color: #fff;
+  background-color: #333;
+  width: 10rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px;
+  margin: 0 0.5rem;
+}
+
+button.cancel-button {
+  background-color: #bbb;
+}
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  border: 1px solid #444;
+  background: #fff;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 1000; 
+  border-radius: 8px;
+  margin-top: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.dropdown-list li {
+  padding: 8px 12px;
+  cursor: pointer;
+  list-style: none;
+  font-size: 0.8rem;
+}
+
+.dropdown-list li:hover {
+  background-color: #f5f5f5;
+}
+
+.selected-option {
+  padding: 8px 12px;
+  border: 1px solid #444;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #fff;
+  position: relative;
+  min-width: 200px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.custom-select-box {
+  position: relative;
+  display: inline-block;
+}
+
+.placeholder-option {
+  color: #888;
+  font-style: italic;
+}
+
+.hidden {
+	display: none;
+}

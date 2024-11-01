@@ -1,5 +1,7 @@
 package com.mate.common.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class LicenseVO {
 
 	/**
@@ -21,6 +23,8 @@ public class LicenseVO {
 	 * 라이센스 이미지
 	 */
 	private String lcnImg;
+	
+	private MultipartFile lcnImgFile;
 
 	public String getLcnId() {
 		return lcnId;
@@ -52,5 +56,13 @@ public class LicenseVO {
 
 	public void setLcnImg(String lcnImg) {
 		this.lcnImg = lcnImg;
+	}
+
+	public MultipartFile getLcnImgFile() {
+		return lcnImgFile;
+	}
+
+	public void setLcnImgFile(MultipartFile lcnImgFile) {
+		this.lcnImgFile = lcnImgFile;
 	}
 }

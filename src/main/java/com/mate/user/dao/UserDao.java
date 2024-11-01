@@ -1,5 +1,8 @@
 package com.mate.user.dao;
 
+import java.util.List;
+
+import com.mate.common.vo.CountriesVO;
 import com.mate.user.vo.LoginUserVO;
 import com.mate.user.vo.RegistUserVO;
 import com.mate.user.vo.UserVO;
@@ -14,6 +17,8 @@ public interface UserDao {
 	
 	public int getEmailCount(String email);
 	
+	public int getPaypalEmailCount(String payPalEmail);
+	
 	public int getPhnCount(String usrPhn);
 	
 	public String selectSalt(String usrId);
@@ -27,4 +32,12 @@ public interface UserDao {
 	public int upadateLoginSuccessState(LoginUserVO loginUserVO);
 	
 	public int softDeleteOneUser(String usrLgnId);
+	
+	public int updateUserPhoneNumber(UserVO userVO);
+	
+	public int upadateUserPaypalEmail(UserVO userVO);
+	
+	public int updateUserPassword(UserVO userVO);
+	
+	public List<CountriesVO> selectAllCountries();
 }

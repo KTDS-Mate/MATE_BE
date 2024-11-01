@@ -36,12 +36,10 @@ public class MainController {
 		return "all/GuideProfile"; 
 		}
 	
-	
 	@GetMapping("/guide/regist")
 	public String viewGuideRegistPage () {
-		return "all/reigst_Guide";
+		return "user/reigstguide";
 	}
-	
 	
 	@GetMapping("/guide/tour/write")
 	public String viewGuideTourWrite() {
