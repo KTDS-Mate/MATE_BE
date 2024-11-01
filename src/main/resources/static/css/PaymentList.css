@@ -42,7 +42,7 @@ div.my-tour {
     flex-grow: 0;
     margin: 0 80px 37px 62px;
     font-family: Inter;
-    font-size: 25px;
+    font-size: 1.3rem;
     font-weight: 600;
     font-stretch: normal;
     font-style: normal;
@@ -55,8 +55,7 @@ div.my-tour {
 .filter-box {
     border: 2px solid #ffeedb;
     border-radius: 20px;
-    height: 15.6rem;
-    margin: 2.3rem 2rem;
+    margin: 0 2rem;
     flex-grow: 0;
     padding: 39px 95px 37px 78px;
 }
@@ -70,15 +69,15 @@ div.my-tour {
     font-size: 1rem;
     text-align: center;
     width: 7.1rem;
-    height: 3.7rem;
     flex-grow: 0;
-    padding: 0 5px;
+    padding: 1rem 5px;
     border: solid 2px #000;
     background-color: #fff;
 }
 
 .date-buttons {
     display: flex;
+    justify-content: center;
 }
 
 .payment-table {
@@ -100,13 +99,11 @@ tr {
     text-align: center;
 }
 td {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
-
-
 .guide-text{
-    margin: 3.1rem auto;
+    margin: 1.5rem auto;
     text-align: center;
 }

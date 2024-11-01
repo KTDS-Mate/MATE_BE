@@ -1,30 +1,21 @@
 $().ready(function () {
   IMP.init("imp22850400");
   const merchantUid = $('.payId').text();
-  console.log("payId는 " + merchantUid);
-
   const amount = $('.payCsh').text();	// 결제금액 못 바꾸도록 고정
-  console.log("가격은 " + amount);
-  
   if ($('.payTrTp').text() === "GUIDE"){
   	var title = $('.gdTrTtl').text();
   } else if($('.payTrTp').text() === "TOURIST") {
 	var title = $('.usrTrTtl').text();
   }
   const name = title;
-  console.log("결제할 이름 " + name);
-  
-  const buyerName = $('.trstId').text();
-  console.log("결제자 유저 UID " + buyerName);
-  
+  const buyerName = $('.trstFnm').text();
   const impMid = $('.impMid').text();
-  console.log("imp_merchant_id "+ impMid);
-
   const impUid = $('.impUid').text();
-  console.log("imp_uid "+ impUid);
   
-  
+  var pg = "";
+  const payMethod = "card";
   // pay_inf의 pk
+  
   $('.getToken').on('click', function() {
 	$.ajax({
 	    url: '/getAccessToken',
@@ -69,11 +60,7 @@ $().ready(function () {
 	
   });
   
-  
-
-  $("button.kakaopay-btn").on("click", function () {
-	const pg = "kakaopay";
-	const payMethod = "card";
+  $(".doPay").on("click", function () {
 	$.ajax({	// 선검증
 		type: 'get',
 		url : '/verifyPayment',
@@ -169,119 +156,25 @@ $().ready(function () {
 	  		},
 		});
 	});
-
+  $("button.kakaopay-btn").on("click", function () {
+	pg = "kakaopay";
+  });
+	
+	
   $("button.tosspayment-btn").on("click", function () {
-    IMP.request_pay(
-      {
-        pg: "tosspayments",
-        pay_method: pay_method,
-        amount: amount, // 구매가격
-        name: name, // 구매물품 이름
-        merchant_uid: merchant_uid, // 결제에 대한 PK값 우리는 결제내역 ID가져오면 됨
-        // 여기에 추가적인 내용을 추가할 수 있음, 자세한 것은 포트원 API페이지 참조
-      },
-      function (rsp) {
-        const { status, err_msg } = rsp;
-        if (err_msg) {
-          alert(err_msg);
-        }
-        if (status === "paid") {
-          const { imp_uid } = rsp;
-          verifyPayment(imp_uid);
-        }
-      }
-    );
+	pg = "tosspayments";
   });
 
   $("button.KG-payment").on("click", function () {
-    IMP.request_pay(
-      {
-        pg: "html5_inicis",
-        pay_method: pay_method,
-        amount: amount, // 구매가격
-        name: name, // 구매물품 이름
-        merchant_uid: merchant_uid, // 결제에 대한 PK값 우리는 결제내역 ID가져오면 됨
-        // 여기에 추가적인 내용을 추가할 수 있음, 자세한 것은 포트원 API페이지 참조
-      },
-      function (rsp) {
-        const { status, err_msg } = rsp;
-        if (err_msg) {
-          alert(err_msg);
-        }
-        if (status === "paid") {
-          const { imp_uid } = rsp;
-          verifyPayment(imp_uid);
-        }
-      }
-    );
+    pg = "html5_inicis"
   });
 
   $("button.paypal-payment").on("click", function () {
-    IMP.request_pay(
-      {
-        pg: "paypal",
-        pay_method: pay_method,
-        amount: amount, // 구매가격
-        name: name, // 구매물품 이름
-        merchant_uid: merchant_uid, // 결제에 대한 PK값 우리는 결제내역 ID가져오면 됨
-        // 여기에 추가적인 내용을 추가할 수 있음, 자세한 것은 포트원 API페이지 참조
-      },
-      function (rsp) {
-        const { status, err_msg } = rsp;
-        if (err_msg) {
-          alert(err_msg);
-        }
-        if (status === "paid") {
-          const { imp_uid } = rsp;
-          verifyPayment(imp_uid);
-        }
-      }
-    );
+	pg = "paypal";
   });
 
   $("button.only-tosspay").on("click", function () {
-    IMP.request_pay(
-      {
-        pg: "tosspay",
-        pay_method: pay_method,
-        amount: amount, // 구매가격
-        name: name, // 구매물품 이름
-        merchant_uid: merchant_uid, // 결제에 대한 PK값 우리는 결제내역 ID가져오면 됨
-        // 여기에 추가적인 내용을 추가할 수 있음, 자세한 것은 포트원 API페이지 참조
-      },
-      function (rsp) {
-		console.log(rsp);
-        const { status, err_msg } = rsp;
-        if (err_msg) {
-          alert(err_msg);
-        }
-        if (status === "paid") {
-          const { imp_uid } = rsp;
-          verifyPayment(imp_uid);
-        }
-      }
-    );
-  });  
+  	pg = "tosspay"
+  });
+  
 });
-
-
-function prepare(merchantUid, amount) {
-	var isSafe = false;
-	$.ajax({	// 사전 검사
-		type: 'get',
-		url : '/verifyPayment',
-		data : {"payId": merchantUid, "amount": amount },
-		success: function(result) {
-			if (result === true){
-				isSafe = true;
-				console.log("변조 안됐습니다. 안전합니다.");
-			} else {
-				console.log("데이터가 변조되었습니다.");
-			}
-		},
-		error : function() {
-			console.log("결제 검증에 실패했습니다. 결제를 취소합니다.");
-		},
-	});
-	return isSafe;
-}

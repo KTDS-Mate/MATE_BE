@@ -1,53 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
     <title>Mypage_Tourist_MyTour</title>
-    <link rel="stylesheet" type="text/css" href="/css/MyPageLayout_PaymentDetails.css" />
+    <link rel="stylesheet" type="text/css" href="/css/PaymentList.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
       type="text/css"
       href="/css/MyPageLayout_PaymentDetails.css"
     />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="/css/common.css"
-    />
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="/js/mypage/paymentList.js"></script>
   </head>
 
   <body>
     <div class="grid">
-      <!--  -->
       <div class="header">
-        <!-- header 공통파일 -->
         <jsp:include page="../header.jsp"></jsp:include>
-
       </div>
-      <!--  -->
-
       <div class="content">
         <div class="content-grid">
-          <!-- side-bar 공통파일 -->
           <jsp:include page="../Tourist_Sidebar.jsp"></jsp:include>
-          <!-- <div class="my-page">
-            <ul class="list">
-              <li>캘린더</li>
-              <li>즐겨찾기</li>
-              <li>나의 등록 투어</li>
-              <li>나의 리뷰</li>
-              <li>결제 내역</li>
-              <li>내 정보 수정</li>
-              <li>메세지</li>
-            </ul>
-          </div> -->
           <div class="my-tour">
             <div class="tour-list-top">
               <div>
@@ -69,18 +49,26 @@ pageEncoding="UTF-8"%>
                 <!-- 날짜 버튼들 -->
 
                 <div class="date-buttons">
-                  <div class="align-button">
-                    <span class="sample1"> 최근일주일</span>
-                  </div>
-                  <div class="align-button">
-                    <span class="sample1"> 1개월</span>
-                  </div>
-                  <div class="align-button">
-                    <span class="sample1"> 3개월</span>
-                  </div>
-                  <div class="align-button">
-                    <span class="sample1"> 6개월</span>
-                  </div>
+                  <a>
+                    <div class="align-button" value = "1week">
+                      <span class="sample1"> 최근일주일</span>
+                    </div>
+                  </a>
+                  <a>
+                    <div class="align-button" value = "1mon">
+                      <span class="sample1"> 1개월</span>
+                    </div>
+                  </a>
+                  <a>
+                    <div class="align-button" value="3mon">
+                      <span class="sample1"> 3개월</span>
+                    </div>
+                  </a>
+                  <a href="https://www.naver.com/">
+                    <div class="align-button" value="6mon">
+                      <span class="sample1"> 6개월</span>
+                    </div>
+                  </a>
                 </div>
 
                 <!-- 날짜 입력란 -->
@@ -115,31 +103,34 @@ pageEncoding="UTF-8"%>
                   <th>결제상태</th>
                   <th>투어금액</th>
                 </thead>
-                <tbody>
+                <tbody class="elements-list" >
                   <c:choose>
                     <c:when test="${not empty paymentListVO.paymentList}">
-                      <c:forEach items="${paymentListVO.paymentList}" var="payInfo">
+                      <c:forEach
+                        items="${paymentListVO.paymentList}"
+                        var="payInfo"
+                      >
                         <tr>
-		                  <td>${payInfo.payId}</td>
-		                  <td>${payInfo.payCrtDt}</td>
-		                  <td>${payInfo.payTrTp}</td>
-		                  <!-- if문을 이용하여 payTrTp이 어느 게시글인지에 따라 출력 -->
-			                <c:if test="${payInfo.payTrTp eq 'TOURIST'}">
-			                  <td>${payInfo.usrTrTtl}</td>
-			                </c:if>
-			                <c:if test="${payInfo.payTrTp eq 'GUIDE'}">
-			                  <td>${payInfo.gdTrTtl}</td>
-			                </c:if>
-		                  <td>${payInfo.gdFnm}</td>
-		                  <td>${payInfo.payStt}</td>
-		                  <td>${payInfo.payCsh}</td>
-		                </tr>
+                          <td>${payInfo.payId}</td>
+                          <td>${payInfo.payCrtDt}</td>
+                          <td>${payInfo.payTrTp}</td>
+                          <!-- if문을 이용하여 payTrTp이 어느 게시글인지에 따라 출력 -->
+                          <c:if test="${payInfo.payTrTp eq 'TOURIST'}">
+                            <td>${payInfo.usrTrTtl}</td>
+                          </c:if>
+                          <c:if test="${payInfo.payTrTp eq 'GUIDE'}">
+                            <td>${payInfo.gdTrTtl}</td>
+                          </c:if>
+                          <td>${payInfo.gdFnm}</td>
+                          <td>${payInfo.payStt}</td>
+                          <td>${payInfo.payCsh}</td>
+                        </tr>
                       </c:forEach>
                     </c:when>
                     <c:otherwise>
                       <tr>
-		                <td colspan="7">결제 내역이 존재하지 않습니다.</td>
-		              </tr>
+                        <td colspan="7">결제 내역이 존재하지 않습니다.</td>
+                      </tr>
                     </c:otherwise>
                   </c:choose>
                 </tbody>
@@ -155,5 +146,4 @@ pageEncoding="UTF-8"%>
       </div>
     </div>
   </body>
-
-  </html>
+</html>

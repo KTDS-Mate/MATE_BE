@@ -45,8 +45,8 @@ public class PaymentController {
 	
 	@ResponseBody
 	@GetMapping("/verifyPayment")
-	public Boolean verifyPayment(@RequestParam("payId") String payId,
-								 @RequestParam("amount") double amount)  {
+	public Boolean verifyPayment(@RequestParam String payId,
+								 @RequestParam double amount)  {
 		double payAmount = this.paymentService.getPayAmount(payId);
 		if (amount == payAmount) {
 			return true; 
@@ -56,8 +56,8 @@ public class PaymentController {
 	
 	@ResponseBody
 	@PostMapping("/successPayment")
-	public boolean successPayment(@RequestParam("payId") String payId, @RequestParam("imp_uid") String impUid,
-			 					 @RequestParam("imp_mid") String impMid, @RequestParam("pay_mthd") String payMthd) {
+	public boolean successPayment(@RequestParam String payId, @RequestParam String impUid,
+			 					 @RequestParam String impMid, @RequestParam String payMthd) {
 		PaymentVO paymentVO = new PaymentVO();
 		paymentVO.setPayId(payId);
 		paymentVO.setImpUid(impUid);
@@ -69,7 +69,7 @@ public class PaymentController {
 	
 	@ResponseBody
 	@PostMapping("/cancelPayment")
-	public IamportResponse<Payment> cancelPayment(@RequestParam("imp_uid") String impUid, @RequestParam("reason") String reason){
+	public IamportResponse<Payment> cancelPayment(@RequestParam String impUid, @RequestParam String reason){
 		return this.portOneService.cancelPayment(impUid, reason);
 	}
 	
@@ -80,7 +80,7 @@ public class PaymentController {
 	 */
 	@ResponseBody
 	@PostMapping("/refundPayment")
-	public boolean refundPayment(@RequestParam("payId") String payId) {
+	public boolean refundPayment(@RequestParam String payId) {
 		return this.paymentService.refundPayment(payId);
 	}
 	

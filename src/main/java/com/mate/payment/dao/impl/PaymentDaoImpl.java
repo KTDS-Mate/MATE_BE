@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mate.payment.dao.PaymentDao;
 import com.mate.payment.vo.PaymentVO;
+import com.mate.payment.vo.SearchPaymentVO;
 
 @Repository
 public class PaymentDaoImpl extends SqlSessionDaoSupport implements PaymentDao {
@@ -60,6 +61,14 @@ public class PaymentDaoImpl extends SqlSessionDaoSupport implements PaymentDao {
 		return this.getSqlSession().update(NAMESPACE+".updateRefundPayment", payId);
 	}
 	
+	@Override
+	public List<PaymentVO> selectSearchMyPayment(SearchPaymentVO searchPaymentVO) {
+		return this.getSqlSession().selectList(NAMESPACE + ".selectSearchMyPayment", searchPaymentVO);
+	}
 	
+	@Override
+	public int selectSearchMyPaymentCount(SearchPaymentVO searchPaymentVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectSearchMyPaymentCount", searchPaymentVO);
+	}
 	
 }

@@ -9,6 +9,7 @@ import com.mate.payment.dao.PaymentDao;
 import com.mate.payment.service.PaymentService;
 import com.mate.payment.vo.PaymentListVO;
 import com.mate.payment.vo.PaymentVO;
+import com.mate.payment.vo.SearchPaymentVO;
 
 @Service
 public class PaymentServiceImpl implements PaymentService{
@@ -29,9 +30,12 @@ public class PaymentServiceImpl implements PaymentService{
 	@Override
 	public PaymentListVO getAllMyPayment(String trstId) {
 		PaymentListVO paymentListVO = new PaymentListVO();
-		List<PaymentVO> paymentList = this.paymentDao.selectAllMyPayment(trstId);
 		int cnt = this.paymentDao.selectAllMyPaymentCount(trstId);
 		paymentListVO.setPaymentCnt(cnt);
+		if (cnt == 0) {
+			return paymentListVO;
+		}
+		List<PaymentVO> paymentList = this.paymentDao.selectAllMyPayment(trstId);
 		paymentListVO.setPaymentList(paymentList);
 		return paymentListVO;
 	}
@@ -58,6 +62,19 @@ public class PaymentServiceImpl implements PaymentService{
 		return updateCnt > 0;
 	}
 	
+	
+	@Override
+	public PaymentListVO getSearchMyPayment(SearchPaymentVO searchPaymentVO) {
+		PaymentListVO paymentListVO = new PaymentListVO();
+		int cnt = this.paymentDao.selectSearchMyPaymentCount(searchPaymentVO);
+		paymentListVO.setPaymentCnt(cnt);
+		if (cnt == 0 ) {
+			return paymentListVO;
+		}
+		List<PaymentVO> paymentList = this.paymentDao.selectSearchMyPayment(searchPaymentVO);
+		paymentListVO.setPaymentList(paymentList);
+		return paymentListVO;
+	}
 	
 	
 	
