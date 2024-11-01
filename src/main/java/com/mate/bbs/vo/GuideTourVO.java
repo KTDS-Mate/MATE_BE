@@ -105,7 +105,6 @@ public class GuideTourVO {
 	 * 가이드 추가 정보 리스트 VO
 	 */
 	private List<GuideTourScheduleInfoVO> guideTourScheduleInfoList;
-	
 	/**
 	 * 가이드 투어 즐겨찾기 리스트 VO
 	 */

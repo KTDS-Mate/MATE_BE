@@ -121,6 +121,7 @@ uri="http://www.springframework.org/tags/form" %>
             </div>
             <div class="all-select-div">
               <div class="select-div">
+              <span class="red">*</span>
                 투어 세부 일정<span class="font-we"
                   >원하는 일정을 추가해주세요.</span
                 >
@@ -187,7 +188,7 @@ uri="http://www.springframework.org/tags/form" %>
                   <div>$</div>
                 </div>
                 <div class="right-align">
-                  <input type="submit" value="투어 등록" />
+                  <input id="submit-regi" type="submit" value="투어 등록" />
                 </div>
               </div>
             </div>

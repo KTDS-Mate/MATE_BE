@@ -70,52 +70,45 @@
 	<select id="selectOneGuideTour" 
 			parameterType="string"
 			resultMap="guideTourVOMap">
-		SELECT GTR.GD_TR_PST_ID
-			 , GTR.ATHR_ID
-			 , GTR.USR_ID
-			 , GTR.GD_TR_TTL
-			 , GTR.GD_TR_MX_NP
-			 , GTR.GD_TR_PRC
-			 , GTR.GD_TR_SMRY
-			 , TO_CHAR(GTR.GD_TR_ST_DT, 'YYYY-MM-DD HH24:MI') GD_TR_ST_DT 
-			 , TO_CHAR(GTR.GD_TR_ED_DT, 'YYYY-MM-DD HH24:MI') GD_TR_ED_DT
-			 , GTR.GD_TR_PRPS
-			 , ATHR.GD_PRFL_IMG
-			 , ATHR.USR_GNDR
-			 , ATHR.USR_FNM 
-			 , ATHR.USR_LNM 
-			 , ATHR.USR_BD 
-			 , ATHR.USR_GD_EXP
-			 , TI.TR_INCLD 
-			 , GTR.GD_TR_MP
-			 , TSI.TR_DTL_LCT
-			 , TSI.TR_DTL_SCHD 
-			 , TD.TR_DTL_INF 
-			 , GTR.GD_TR_RSTR_DT
-			 , GTR.GD_TR_MDFY_DT
-			 , GTR.GD_TR_DLT_DT
-			 , GTR.GD_TR_IS_DLT
-			 , GTR.TR_CT_ID
-			 , GTRI.GD_TR_IMG_URL 
-			 , TRUNC(MONTHS_BETWEEN(TRUNC(SYSDATE), ATHR.USR_BD) / 12) AS GUIDE_AGE
-		  FROM GD_TR_RCRT GTR
-		  LEFT JOIN GD_TR_RCRT_IMG GTRI
-		    ON GTR.GD_TR_PST_ID = GTRI.GD_TR_PST_ID 
-		  JOIN USR_INF ATHR
-		    ON GTR.ATHR_ID = ATHR.USR_LGN_ID 
-		  LEFT JOIN TOUR_INCLD TI
-		    ON TI.GD_TR_PST_ID = GTR.GD_TR_PST_ID  
-		  LEFT JOIN TR_DTL TD
-		    ON TD.GD_TR_PST_ID = GTR.GD_TR_PST_ID
-		  LEFT JOIN TR_SCHD_INF TSI
-		    ON TSI.GD_TR_PST_ID = GTR.GD_TR_PST_ID
-		  LEFT JOIN GD_TR_RVW GTRV
-		    ON GTR.GD_TR_PST_ID = GTRV.GD_TR_PST_ID 
-		  LEFT JOIN GD_TR_RVW_IMG GTRVI
-		    ON GTRV.GD_TR_RVW_ID = GTRVI.GD_TR_RVW_ID 
-		 WHERE GTR.GD_TR_PST_ID = #{_parameter}
+		SELECT G.GD_TR_TTL 
+		     , G.ATHR_ID 
+		     , G.GD_TR_ST_DT 
+		     , G.GD_TR_ED_DT 
+		     , G.GD_TR_PRPS 
+		     , G.GD_TR_MP 
+		     , G.GD_TR_PRC 
+		     , G.GD_TR_SMRY 
+		     , G.GD_TR_MX_NP 
+		     , G.TR_AVG_RTNG 
+		     , GTI.GD_TR_IMG_URL 
+		     , GR.ATHR_ID 
+		     , GR.GD_TR_RVW_TTL 
+		     , GR.GD_TR_RVW_CNTNT 
+		     , GR.GD_TR_RVW_RTNG 
+		     , GRI.GD_TR_RVW_IMG_URL 
+		     , UI.USR_LNM 
+		     , UI.USR_FNM 
+		     , UI.USR_GNDR 
+		     , UI.USR_SLF_INTDCTN 
+		     , UI.USR_GD_EXP 
+		  FROM GD_TR_RCRT G
+		  LEFT JOIN GD_TR_RCRT_IMG GTI
+		    ON G.GD_TR_PST_ID = GTI.GD_TR_PST_ID
+		  LEFT JOIN GD_TR_RVW GR
+		    ON G.GD_TR_PST_ID = GR.GD_TR_PST_ID 
+		  LEFT JOIN GD_TR_RVW_IMG GRI
+		    ON GR.GD_TR_RVW_ID = GRI.GD_TR_RVW_ID
+		  JOIN USR_INF UI
+		    ON G.ATHR_ID = UI.USR_LGN_ID 
+		 WHERE G.GD_TR_PST_ID = #{_parameter}
 	</select>
-	
+	<select id="selectTourDetailInfoList"
+			parameterType="string"
+			resultType="com.mate.bbs.vo.GuideTourDetailInfoVO">
+		SELECT TR_DTL_INF
+  FROM TR_DTL
+ WHERE GD_TR_PST_ID = #{_parameter}
+	</select>
 	<select id="selectAllGuideTour" 
 			resultMap="guideTourVOMap"
 			parameterType="com.mate.bbs.vo.SearchGuideTourVO">
@@ -253,6 +246,7 @@
 		, #{gdTrPstId}
 		, #{trDtlInf})
 	</insert>
+	
 	<insert id="insertNewSchdInfo"
 			parameterType="com.mate.bbs.vo.GuideTourScheduleInfoVO">
 		INSERT INTO TR_SCHD_INF
@@ -266,6 +260,7 @@
 		, #{trDtlLct}
 		, #{trDtlSchd})	
 	</insert>
+	
 	<insert id="insertNewProvidedInfo"
 			parameterType="com.mate.bbs.vo.GuideTourProvidedVO">
 	 INSERT INTO TOUR_INCLD

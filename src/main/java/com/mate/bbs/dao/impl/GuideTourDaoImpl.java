@@ -86,4 +86,10 @@ public class GuideTourDaoImpl extends SqlSessionDaoSupport implements GuideTourD
 	public int insertNewProvidedInfo(GuideTourProvidedVO guideTourProvidedVO) {
 		return this.getSqlSession().insert(NAMESPACE + ".insertNewProvidedInfo", guideTourProvidedVO);
 	}
+	
+	@Override
+	public List<GuideTourDetailInfoVO> selectTourDetailInfoList(String gdTrPstId) {
+		return this.getSqlSession().selectList(NAMESPACE + ".selectTourDetailInfoList", gdTrPstId);
+	}
+	
 }

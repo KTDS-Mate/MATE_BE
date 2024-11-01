@@ -84,4 +84,9 @@ public interface GuideTourDao {
      * @return
      */
     public int insertNewProvidedInfo(GuideTourProvidedVO guideTourProvidedVO);
+    
+    public List<GuideTourDetailInfoVO> selectTourDetailInfoList(String gdTrPstId);
+    
+    // 나머지 두개도 만듬
+    
 }

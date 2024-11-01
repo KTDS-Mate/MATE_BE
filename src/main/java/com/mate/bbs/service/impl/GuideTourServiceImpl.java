@@ -54,7 +54,11 @@ public class GuideTourServiceImpl implements GuideTourService{
 	
 	@Override
 	public GuideTourVO getOneGuideTour(String gdTrPstId) {
+		
 		GuideTourVO guideTourVO = this.guideTourDao.selectOneGuideTour(gdTrPstId);
+		List<GuideTourDetailInfoVO> tourDetailInfoList = this.guideTourDao.selectTourDetailInfoList(gdTrPstId);
+		guideTourVO.setGuideTourDetailInfoList(tourDetailInfoList);
+		
 		return guideTourVO;
 	}
 	
