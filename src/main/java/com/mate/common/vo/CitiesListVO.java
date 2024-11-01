@@ -5,21 +5,20 @@ import java.util.List;
 public class CitiesListVO {
 
 	/**
-	 * 국가 별 도시 수
-	 */
-	private int citiesCount;
-	
-	/**
 	 * 국가 별 도시 리스트
 	 */
-	private List<CitiesVO> citiesList;
+	private List<CitiesVO> cities;
 
-	public int getCitiesCount() {
-		return citiesCount;
+	private List<CitiesVO> citiesList;
+	
+	private int citiesCount;
+	
+	public List<CitiesVO> getCities() {
+		return cities;
 	}
 
-	public void setCitiesCount(int citiesCount) {
-		this.citiesCount = citiesCount;
+	public void setCities(List<CitiesVO> cities) {
+		this.cities = cities;
 	}
 
 	public List<CitiesVO> getCitiesList() {
@@ -29,5 +28,12 @@ public class CitiesListVO {
 	public void setCitiesList(List<CitiesVO> citiesList) {
 		this.citiesList = citiesList;
 	}
-	
+
+	public int getCitiesCount() {
+		return citiesCount;
+	}
+
+	public void setCitiesCount(int citiesCount) {
+		this.citiesCount = citiesCount;
+	}
 }

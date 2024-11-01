@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mate.common.vo.CitiesVO;
@@ -15,33 +16,54 @@ import com.mate.user.vo.RegistGuideVO;
 @Repository
 public class GuideDaoImpl extends SqlSessionDaoSupport implements GuideDao{
 	
+	@Autowired
 	@Override
 	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
 		super.setSqlSessionTemplate(sqlSessionTemplate);
 	}
 
 	@Override
-	public int updateGuideInfo(RegistGuideVO registGuideVO) {
-		return getSqlSession().update(NAMESPACE + ".updateGuideInfo", registGuideVO);
-	}
+    public RegistGuideVO selectGuideInfo(String usrId) {
+        return getSqlSession().selectOne(NAMESPACE + ".selectGuideInfo", usrId);
+    }
 
-	@Override
-	public int insertGuideCities(List<CitiesVO> CitiesVOList) {
-		return getSqlSession().insert(NAMESPACE + ".insertGuideCities", CitiesVOList);
-	}
+    @Override
+    public int insertGuideProfile(RegistGuideVO registGuideVO) {
+        return getSqlSession().insert(NAMESPACE + ".insertGuideProfile", registGuideVO);
+    }
 
-	@Override
-	public Integer selectCityIdByName(String cityName) {
-		return getSqlSession().selectOne(NAMESPACE + ".insertGuideCities", cityName);
-	}
-	
-	@Override
-	public int insertGuideCountry(CountriesVO countriesVO) {
-		return getSqlSession().insert(NAMESPACE + ".insertGuideCountry", countriesVO);
-	}
+    @Override
+    public int insertGuideCity(CitiesVO citiesVO) {
+        return getSqlSession().insert(NAMESPACE + ".insertGuideCity", citiesVO);
+    }
 
-	@Override
-	public int insertGuideLicense(List<LicenseVO> licenseVOList) {
-		return getSqlSession().insert(NAMESPACE + ".insertGuideLicense", licenseVOList);
-	}
+    @Override
+    public int insertGuideLicense(LicenseVO licenseVO) {
+        return getSqlSession().insert(NAMESPACE + ".insertGuideLicense", licenseVO);
+    }
+
+    @Override
+    public int updateGuideProfile(RegistGuideVO registGuideVO) {
+        return getSqlSession().update(NAMESPACE + ".updateGuideProfile", registGuideVO);
+    }
+    
+    @Override
+    public List<CitiesVO> selectCitiesByCountry(String countryId) {
+    	return getSqlSession().selectList(NAMESPACE + ".selectCitiesByCountry", countryId);
+    }
+    
+    @Override
+    public List<CountriesVO> selectAllCountries() {
+    	return getSqlSession().selectList(NAMESPACE + ".selectAllCountries");
+    }
+    
+    @Override
+    public String getNextLicenseId() {
+    	return getSqlSession().selectOne(NAMESPACE + ".getNextLicenseId");
+    }
+    
+    @Override
+    public String getNextCityId() {
+    	return getSqlSession().selectOne(NAMESPACE + ".getNextCityId");
+    }
 }

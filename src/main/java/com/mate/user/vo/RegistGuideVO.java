@@ -2,16 +2,26 @@ package com.mate.user.vo;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.mate.common.vo.CitiesVO;
+import com.mate.common.vo.CountriesVO;
 import com.mate.common.vo.LicenseVO;
 
 public class RegistGuideVO {
+	/**
+	 * 회원의 아이디(PK)
+	 */
+	private String usrId;
+	/**
+	 * 회원의 로그인 아이디
+	 */
+	private String usrLgnId;
 	
 	/**
 	 * 가이드의 성
 	 */
     private String usrLnm;
-    
     /**
      * 가이드의 이름
      */
@@ -26,31 +36,39 @@ public class RegistGuideVO {
      * 휴대전화번호
      */
     private String usrPhn;
-
     /**
      * 이메일
      */
     private String usrEml;
-
+    /**
+     * 성별
+     */
+    private String usrGndr;
     /**
      * 가이드 프로필 이미지 
      */
     private String gdPrflImg;
-
     /**
      * 가이드 자기소개
      */
     private String usrSlfIntdctn;
-
-    /**
-     * 가이드의 대표 국적 : COUNTRIES 테이블
-     */
-    private String countryName;;
-
     /**
      * 가이드 활동 도시 : CITIES 테이블, GD_ACT_CT는 완충 테이블
      */
     private List<CitiesVO> cities;
+    
+    /**
+     * 가이드 활동 국가 리스트: COUNTRIES 테이블.
+     */
+    private List<CountriesVO> coutries;
+    /**
+     * 가이드가 활동하는 도시의 PK
+     */
+    private String cityId;
+    /**
+     * 가이드가 활동하는 도시
+     */
+    private String cityName;
     /**
      * 가이드의 신분증 사진
      */
@@ -60,12 +78,24 @@ public class RegistGuideVO {
      * 가이드의 범죄경력 조회서 사진
      */
     private String gdCbcImg;
-
+    /**
+     * 국가 아이디 PK
+     */
+	private String gdRpCntId;
     /**
      * 라이센스 이름, 이미지 : GD_LCN 테이블
      */
-    private List<LicenseVO> licenses;
-    
+
+	private List<LicenseVO> licenses;
+	
+	/**
+     * 가이드 라이센스명
+     */
+    private String gdLcnNm;
+    /**
+     * 가이드 라이센스 이미지
+     */
+    private String gdLcnImg;
     /**
      * 페이팔 이메일(정산계좌)
      */
@@ -75,7 +105,43 @@ public class RegistGuideVO {
      * 가이드 경력
      */
     private String usrGdExp;
+    /**
+     * 가이드가 활동하는 국가
+     */
+    private String countryName;
+    /**
+     * 가이드 등록일
+     */
+    private String gdRgstDt;
+    /**
+     * FE에서 선택된 도시들 DB에 저장하기 위한 변수
+     */
+    private List<String> selectedCities;
     
+    
+    /**
+     * 파일 업로드를 위한 이미지 파일 변수 생성
+     */
+    private MultipartFile gdPrflImgFile;
+    private MultipartFile gdIdImgFile;
+    private MultipartFile gdCbcImgFile;
+    
+	public String getUsrId() {
+		return usrId;
+	}
+
+	public void setUsrId(String usrId) {
+		this.usrId = usrId;
+	}
+
+	public String getUsrLgnId() {
+		return usrLgnId;
+	}
+
+	public void setUsrLgnId(String usrLgnId) {
+		this.usrLgnId = usrLgnId;
+	}
+
 	public String getUsrLnm() {
 		return usrLnm;
 	}
@@ -90,6 +156,14 @@ public class RegistGuideVO {
 
 	public void setUsrFnm(String usrFnm) {
 		this.usrFnm = usrFnm;
+	}
+
+	public String getUsrGndr() {
+		return usrGndr;
+	}
+
+	public void setUsrGndr(String usrGndr) {
+		this.usrGndr = usrGndr;
 	}
 
 	public String getUsrBd() {
@@ -116,44 +190,12 @@ public class RegistGuideVO {
 		this.usrEml = usrEml;
 	}
 
-	public String getGdPrflImg() {
-		return gdPrflImg;
-	}
-
-	public void setGdPrflImg(String gdPrflImg) {
-		this.gdPrflImg = gdPrflImg;
-	}
-
 	public String getUsrSlfIntdctn() {
 		return usrSlfIntdctn;
 	}
 
 	public void setUsrSlfIntdctn(String usrSlfIntdctn) {
 		this.usrSlfIntdctn = usrSlfIntdctn;
-	}
-	
-	public String getCountryName() {
-		return countryName;
-	}
-
-	public void setCountryName(String countryName) {
-		this.countryName = countryName;
-	}
-
-	public String getGdIdImg() {
-		return gdIdImg;
-	}
-
-	public void setGdIdImg(String gdIdImg) {
-		this.gdIdImg = gdIdImg;
-	}
-
-	public String getGdCbcImg() {
-		return gdCbcImg;
-	}
-
-	public void setGdCbcImg(String gdCbcImg) {
-		this.gdCbcImg = gdCbcImg;
 	}
 
 	public String getUsrPypEml() {
@@ -186,5 +228,125 @@ public class RegistGuideVO {
 
 	public void setLicenses(List<LicenseVO> licenses) {
 		this.licenses = licenses;
+	}
+
+	public String getGdRpCntId() {
+		return gdRpCntId;
+	}
+
+	public void setGdRpCntId(String gdRpCntId) {
+		this.gdRpCntId = gdRpCntId;
+	}
+
+	public String getCountryName() {
+		return countryName;
+	}
+
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
+	}
+
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+	public String getGdLcnNm() {
+		return gdLcnNm;
+	}
+
+	public void setGdLcnNm(String gdLcnNm) {
+		this.gdLcnNm = gdLcnNm;
+	}
+
+	public String getCityId() {
+		return cityId;
+	}
+
+	public void setCityId(String cityId) {
+		this.cityId = cityId;
+	}
+
+	public String getGdRgstDt() {
+		return gdRgstDt;
+	}
+
+	public void setGdRgstDt(String gdRgstDt) {
+		this.gdRgstDt = gdRgstDt;
+	}
+
+	public List<CountriesVO> getCoutries() {
+		return coutries;
+	}
+
+	public void setCoutries(List<CountriesVO> coutries) {
+		this.coutries = coutries;
+	}
+
+	public List<String> getSelectedCities() {
+		return selectedCities;
+	}
+
+	public void setSelectedCities(List<String> selectedCities) {
+		this.selectedCities = selectedCities;
+	}
+
+	public String getGdPrflImg() {
+		return gdPrflImg;
+	}
+
+	public void setGdPrflImg(String gdPrflImg) {
+		this.gdPrflImg = gdPrflImg;
+	}
+
+	public String getGdIdImg() {
+		return gdIdImg;
+	}
+
+	public void setGdIdImg(String gdIdImg) {
+		this.gdIdImg = gdIdImg;
+	}
+
+	public String getGdCbcImg() {
+		return gdCbcImg;
+	}
+
+	public void setGdCbcImg(String gdCbcImg) {
+		this.gdCbcImg = gdCbcImg;
+	}
+
+	public String getGdLcnImg() {
+		return gdLcnImg;
+	}
+
+	public void setGdLcnImg(String gdLcnImg) {
+		this.gdLcnImg = gdLcnImg;
+	}
+
+	public MultipartFile getGdPrflImgFile() {
+		return gdPrflImgFile;
+	}
+
+	public void setGdPrflImgFile(MultipartFile gdPrflImgFile) {
+		this.gdPrflImgFile = gdPrflImgFile;
+	}
+
+	public MultipartFile getGdIdImgFile() {
+		return gdIdImgFile;
+	}
+
+	public void setGdIdImgFile(MultipartFile gdIdImgFile) {
+		this.gdIdImgFile = gdIdImgFile;
+	}
+
+	public MultipartFile getGdCbcImgFile() {
+		return gdCbcImgFile;
+	}
+
+	public void setGdCbcImgFile(MultipartFile gdCbcImgFile) {
+		this.gdCbcImgFile = gdCbcImgFile;
 	}
 }

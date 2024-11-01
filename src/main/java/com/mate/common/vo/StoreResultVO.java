@@ -2,7 +2,6 @@ package com.mate.common.vo;
 
 public class StoreResultVO {
 
-	
 	private String originFileName;
 	private String obfuscatedFileName;
 	

@@ -1,5 +1,7 @@
 package com.mate.user.service.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import com.mate.access.dao.AccessLogDao;
 import com.mate.access.vo.AccessLogVO;
 import com.mate.common.beans.Sha;
 import com.mate.common.utils.RequestUtil;
+import com.mate.common.vo.CountriesVO;
 import com.mate.user.dao.UserDao;
 import com.mate.user.service.UserService;
 import com.mate.user.vo.LoginUserVO;
@@ -48,11 +51,11 @@ public class UserServiceImpl implements UserService {
 		String salt = this.sha.generateSalt();
 		
 		// user 비밀번호 암호화
-		String password = registUserVO.getUsrPw();
+		String password = registUserVO.getUsrPwd();
 		password = this.sha.getEncrypt(password, salt);
 		
 		// salt DB에 저장.(비밀번호 찾기용)
-		registUserVO.setUsrPw(password);
+		registUserVO.setUsrPwd(password);
 		registUserVO.setSalt(salt);
 		
 		int insertCount = this.userDao.insertNewUser(registUserVO);
@@ -64,6 +67,11 @@ public class UserServiceImpl implements UserService {
 		return this.userDao.getEmailCount(email) == 0;
 	}
 
+	@Override
+	public boolean checkAvailablePaypalEmail(String paypalEmail) {
+		return this.userDao.getPaypalEmailCount(paypalEmail) == 0;
+	}
+	
 	@Override
 	public boolean checkAvailableId(String usrId) {
 		return this.userDao.getIdCount(usrId) == 0;
@@ -160,5 +168,58 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean softDeleteUser(String usrLgnId) {
 		return this.userDao.softDeleteOneUser(usrLgnId) > 0;
+	}
+	
+	@Override
+	public boolean updateUserPhoneNumber(String usrLgnId, String newPhn) {
+
+		if (!checkAvailablePhn(newPhn)) {
+			throw new IllegalArgumentException("이미 사용중인 휴대전화번호입니다.");
+		}
+		
+		UserVO userVO = new UserVO();
+		userVO.setUsrLgnId(usrLgnId);
+		userVO.setUsrPhn(newPhn);
+		return userDao.updateUserPhoneNumber(userVO) > 0;
+	}
+	
+	@Override
+	public boolean updateUserPaypalEmail(String usrLgnId, String usrPypEml) {
+		
+		if(!checkAvailablePaypalEmail(usrPypEml)) {
+			throw new IllegalArgumentException("이미 사용중인 Paypal 이메일입니다.");
+		}
+		
+		UserVO userVO = new UserVO();
+		userVO.setUsrLgnId(usrLgnId);
+		userVO.setUsrPypEml(usrPypEml);
+		log.debug("usrPypEml 값 확인: {}", usrPypEml);
+		
+		return userDao.upadateUserPaypalEmail(userVO) > 0;
+	}
+	
+	@Override
+	public boolean updateUserPassword(UserVO userVO, String newPassword) {
+
+		// salt 생성 및 사용자가 입력한 새로운 비밀번호 암호화
+		String salt = sha.generateSalt();
+		String encryptedPassword = sha.getEncrypt(newPassword, salt);
+		
+		// 암호화된 비밀번호를 DB에 저장.
+		userVO.setUsrPwd(encryptedPassword);
+		userVO.setSalt(salt);
+		
+		int updateCount = userDao.updateUserPassword(userVO);
+		
+		return updateCount > 0;
+	}
+	
+	/**
+	 * 모든 국가 정보를 조회함.
+	 * @return 국가 정보를 담은 List
+	 */
+	@Override
+	public List<CountriesVO> getAllCountries() {
+		return userDao.selectAllCountries();
 	}
 }

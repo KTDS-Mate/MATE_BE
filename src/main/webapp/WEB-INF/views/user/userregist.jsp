@@ -33,15 +33,15 @@
             </div>
             
             <div class="form-group">
-                <label for="usrPw">비밀번호</label>
-                <form:password path="usrPw" id="usrPw" />
-                <div class="error" id="usrPw-error"></div>
+                <label for="usrPwd">비밀번호</label>
+                <form:password path="usrPwd" id="usrPwd" />
+                <div class="error" id="usrPwd-error"></div>
             </div>
             
             <div class="form-group">
-                <label for="confirmPw">비밀번호 확인</label>
-                <form:password path="confirmPw" id="confirmPw" />
-                <div class="error" id="confirmPw-error"></div>
+                <label for="confirmPwd">비밀번호 확인</label>
+                <form:password path="confirmPwd" id="confirmPwd" />
+                <div class="error" id="confirmPwd-error"></div>
             </div>
             
             <div class="form-group">
@@ -58,8 +58,13 @@
             
             <div class="form-group">
                 <label for="name">대표국적</label>
-                <form:input path="country" id="country" />
-                <form:errors path="country" element="div" cssClass="error" />
+                <form:select path="gdRpCntId" id="gdRpCntId">
+                <form:option value="">선택하세요.</form:option>
+                	<c:forEach items="${countriesList}" var="country">
+                		<form:option value="${country.countryId}">${country.countryName}</form:option>
+               		</c:forEach>
+              		</form:select>
+                <form:errors path="gdRpCntId" element="div" cssClass="error" />
             </div>
             
 			<div class="form-group">
@@ -100,7 +105,7 @@
             
             <!-- 인증 여부 서버 전송 -->
             <input type="hidden" id="authVerified" name="authVerified" value="false" />
-            
+           
             <div class="form-group submit-btn">
                 <input type="submit" value="회가입" />
             </div>

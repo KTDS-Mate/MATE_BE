@@ -93,25 +93,26 @@ public class UserVO {
      */
     private String gdCbcImg;
     /**
-     * 가이드 대표 국적 아이디
+     * 가이드 대표 국적 아이디(fk)
      */
     private String gdRpCntId;
-
     /**
      * 가이드 활동 도시 (여러개 선택 가능)
      */
     private List<CitiesVO> citiesVO;
-    
     /**
      * 가이드 활동 국가
      */
     private String countryName;
-    
     /**
      * 국가 번호 코드
      */
 	private String usrCntCode;
 
+	private String salt;
+	
+	private String confirmPwd;
+	
     public String getUsrId() {
         return usrId;
     }
@@ -302,5 +303,21 @@ public class UserVO {
 
 	public void setCountryName(String countryName) {
 		this.countryName = countryName;
+	}
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
+	public String getConfirmPwd() {
+		return confirmPwd;
+	}
+
+	public void setConfirmPwd(String confirmPwd) {
+		this.confirmPwd = confirmPwd;
 	}
 }

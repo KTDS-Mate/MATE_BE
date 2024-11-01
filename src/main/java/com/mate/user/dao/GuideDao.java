@@ -8,19 +8,24 @@ import com.mate.common.vo.LicenseVO;
 import com.mate.user.vo.RegistGuideVO;
 
 public interface GuideDao {
+	
+	String NAMESPACE = "com.mate.user.dao.GuideDao";
 
-	public String NAMESPACE = "com.mate.user.dao.GuideDao";
-	
-	public int updateGuideInfo(RegistGuideVO registGuideVO);
-	
-	// 도시명으로 CITY_ID 조회
-	public Integer selectCityIdByName(String cityName);
-	
-	// GD_ACT_CT에 데이터 삽입
-	public int insertGuideCities(List<CitiesVO> CitiesVOList);
-	
-	public int insertGuideCountry(CountriesVO countriesVO);
-	
-	public int insertGuideLicense(List<LicenseVO> licenseVOList);
-	
+	public RegistGuideVO selectGuideInfo(String usrId);
+
+	public int insertGuideProfile(RegistGuideVO registGuideVO);
+
+    public int insertGuideCity(CitiesVO citiesVO);
+
+    public int insertGuideLicense(LicenseVO licenseVO);
+
+    public int updateGuideProfile(RegistGuideVO registGuideVO);
+    
+    public List<CitiesVO> selectCitiesByCountry(String countryId);
+    
+    public List<CountriesVO> selectAllCountries();
+    
+    public String getNextLicenseId();
+    
+    public String getNextCityId();
 }
