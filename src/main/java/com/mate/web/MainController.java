@@ -8,7 +8,7 @@ public class MainController {
 	
 	@GetMapping("/")
 	public String viewMainPage(){
-		return "all/MT_M001";
+		return "all/MainPage";
 		}
 
 	@GetMapping("header")
