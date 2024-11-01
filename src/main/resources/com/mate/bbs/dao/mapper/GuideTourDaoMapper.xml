@@ -74,44 +74,45 @@
 			 , GTR.ATHR_ID
 			 , GTR.USR_ID
 			 , GTR.GD_TR_TTL
-			 , GTR.GD_TR_ST_DT
-			 , GTR.GD_TR_ED_DT
-			 , GTR.GD_TR_MX_NP 
-			 , GTR.GD_TR_PRPS
-			 , GTR.GD_TR_MP
+			 , GTR.GD_TR_MX_NP
 			 , GTR.GD_TR_PRC
 			 , GTR.GD_TR_SMRY
+			 , TO_CHAR(GTR.GD_TR_ST_DT, 'YYYY-MM-DD HH24:MI') GD_TR_ST_DT 
+			 , TO_CHAR(GTR.GD_TR_ED_DT, 'YYYY-MM-DD HH24:MI') GD_TR_ED_DT
+			 , GTR.GD_TR_PRPS
+			 , ATHR.GD_PRFL_IMG
+			 , ATHR.USR_GNDR
+			 , ATHR.USR_FNM 
+			 , ATHR.USR_LNM 
+			 , ATHR.USR_BD 
+			 , ATHR.USR_GD_EXP
+			 , TI.TR_INCLD 
+			 , GTR.GD_TR_MP
+			 , TSI.TR_DTL_LCT
+			 , TSI.TR_DTL_SCHD 
+			 , TD.TR_DTL_INF 
 			 , GTR.GD_TR_RSTR_DT
 			 , GTR.GD_TR_MDFY_DT
 			 , GTR.GD_TR_DLT_DT
 			 , GTR.GD_TR_IS_DLT
 			 , GTR.TR_CT_ID
 			 , GTRI.GD_TR_IMG_URL 
-			 , ATHR.USR_FNM 
-			 , ATHR.USR_LNM 
-			 , ATHR.USR_GNDR 
-			 , ATHR.GD_PRFL_IMG 
-			 , ATHR.USR_BD 
-			 , ATHR.USR_GD_EXP 
-			 , ATHR.USR_GD_EXP
-			 , TSI.TR_DTL_LCT 
-			 , TSI.TR_DTL_SCHD 
-			 , TI.TR_INCLD 
-			 , TD.TR_DTL_INF 
 			 , TRUNC(MONTHS_BETWEEN(TRUNC(SYSDATE), ATHR.USR_BD) / 12) AS GUIDE_AGE
 		  FROM GD_TR_RCRT GTR
 		  LEFT JOIN GD_TR_RCRT_IMG GTRI
 		    ON GTR.GD_TR_PST_ID = GTRI.GD_TR_PST_ID 
-		  LEFT JOIN GD_TR_RVW GTRV
-		    ON GTR.GD_TR_PST_ID = GTRV.GD_TR_PST_ID 
-		 INNER JOIN USR_INF ATHR
+		  JOIN USR_INF ATHR
 		    ON GTR.ATHR_ID = ATHR.USR_LGN_ID 
-		 INNER JOIN TOUR_INCLD TI
+		  LEFT JOIN TOUR_INCLD TI
 		    ON TI.GD_TR_PST_ID = GTR.GD_TR_PST_ID  
 		  LEFT JOIN TR_DTL TD
 		    ON TD.GD_TR_PST_ID = GTR.GD_TR_PST_ID
 		  LEFT JOIN TR_SCHD_INF TSI
-		    ON TSI.GD_TR_PST_ID = GTR.GD_TR_PST_ID   
+		    ON TSI.GD_TR_PST_ID = GTR.GD_TR_PST_ID
+		  LEFT JOIN GD_TR_RVW GTRV
+		    ON GTR.GD_TR_PST_ID = GTRV.GD_TR_PST_ID 
+		  LEFT JOIN GD_TR_RVW_IMG GTRVI
+		    ON GTRV.GD_TR_RVW_ID = GTRVI.GD_TR_RVW_ID 
 		 WHERE GTR.GD_TR_PST_ID = #{_parameter}
 	</select>
 	
@@ -141,7 +142,7 @@
 			 , C.CITY_NAME 
 			 , ( SELECT AVG(gtr2.GD_TR_RVW_RTNG)
 			       FROM GD_TR_RVW gtr2
-			 	  WHERE gtr2.GD_TR_PST_ID = GTR.GD_TR_PST_ID) AS AVG_RVW
+			 	  WHERE gtr2.GD_TR_PST_ID = GTR.GD_TR_PST_ID ) AS AVG_RVW
 	     FROM GD_TR_RCRT GTR
 	     LEFT JOIN GD_TR_RCRT_IMG GTRI
 	       ON GTR.GD_TR_PST_ID = GTRI.GD_TR_PST_ID 
@@ -167,7 +168,7 @@
 			SELECT 'GT-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_GD_TR_RCRT_PK.NEXTVAL, 6, 0)
 			  FROM DUAL
 		</selectKey>
-		INSERT INTO GD_TR_RCRT GTR
+		INSERT INTO GD_TR_RCRT
 		 (GD_TR_PST_ID
 		, ATHR_ID
 		, USR_ID
@@ -183,24 +184,28 @@
 		, GD_TR_IS_DLT
 		, TR_CT_ID
 		, GD_TR_ED_DT
-		, GD_TR_MX_NP)
+		, GD_TR_MX_NP
+		, GD_TR_STTS
+		, TR_AVG_RTNG)
 		VALUES
 		 (#{gdTrPstId}
 		, #{athrId}
 		, NULL
 		, #{gdTrTtl}
-		, TO_DATE(#{gdTrStDt}, 'YYYY-MM-DD HH24:MI') 
+		, TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI')
 		, #{gdTrPrps}
-		, #{gdTrMp}
-		, #{gdTrPrc}
-		, #{gdTrSmry}
-		, SYSDATE
+		, NULL
+		, 100
+		, NULL
+		, TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI')
 		, NULL
 		, NULL
 		, 'N'
-		, #{trCtId}
-		, TO_DATE(#{gdTrEdDt}, 'YYYY-MM-DD HH24:MI') 
-		, #{gdTrMxNp})
+		, 628
+		, TO_DATE(#{gdTrEdDt}, 'YYYY-MM-DD HH24:MI')
+		, 10
+		, 'N'
+		, NULL)
 	</insert>
 	<update id="updateGuideTour"
 			parameterType="com.mate.bbs.vo.GuideTourModifyVO">
@@ -237,7 +242,7 @@
  		  FROM DUAL
 	</select>
 	
-	<insert id="insertDetailInfo" 
+	<insert id="insertNewDetailInfo" 
 			parameterType="com.mate.bbs.vo.GuideTourDetailInfoVO">
 		INSERT INTO TR_DTL
 		 (TR_DTL_ID
@@ -248,5 +253,28 @@
 		, #{gdTrPstId}
 		, #{trDtlInf})
 	</insert>
-	
+	<insert id="insertNewSchdInfo"
+			parameterType="com.mate.bbs.vo.GuideTourScheduleInfoVO">
+		INSERT INTO TR_SCHD_INF
+		 (TR_ADD_INF_ID
+		, GD_TR_PST_ID
+		, TR_DTL_LCT
+		, TR_DTL_SCHD)
+		VALUES
+		 ('AI-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_TR_SCHDL_PK.NEXTVAL, 6, 0)
+		, #{gdTrPstId}
+		, #{trDtlLct}
+		, #{trDtlSchd})	
+	</insert>
+	<insert id="insertNewProvidedInfo"
+			parameterType="com.mate.bbs.vo.GuideTourProvidedVO">
+	 INSERT INTO TOUR_INCLD
+		 (TR_INCLD_ID
+		, TR_INCLD
+		, GD_TR_PST_ID)
+		VALUES
+		 ('TI-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_TOUR_INCLD_PK.NEXTVAL, 6, 0) 
+		, #{trIncld}
+		, #{gdTrPstId})
+	</insert>
 </mapper>

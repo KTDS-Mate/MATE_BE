@@ -63,7 +63,7 @@ pageEncoding="UTF-8" %>
               </div>
               <div class="priceDetailArea">
                 <div class="hour">
-                  <span>6 Hours</span>
+              	  <h4 class="maxNp">최대 인원 : ${guideTourVO.gdTrMxNp} 명</h4>
                 </div>
                 <div class="price">
                   <span>${guideTourVO.gdTrPrc} $</span>
@@ -89,7 +89,8 @@ pageEncoding="UTF-8" %>
                 </h3>
               </div>
               <div class="summaryDetailArea">
-                <h1> ${guideTourVO.gdTrSmry} </h1>
+              	<h4>투어 날짜 :  ${guideTourVO.gdTrStDt} ~ ${guideTourVO.gdTrEdDt}</h4>
+                <h1> ${guideTourVO.gdTrSmry}</h1>
               </div>
             </div>
             <div class="guideProfileArea">
@@ -100,7 +101,7 @@ pageEncoding="UTF-8" %>
                 </h3>
               </div>
               <div class="profileDetailArea">
-                <img src="/public/가이드 샘플 사진.jpg" alt="가이드 사진" />
+                <img src="${guideTourVO.userVO.gdPrflImg}" alt="가이드 사진" />
                 <div class="profileSummaryArea">
                   <c:choose>
                   	<c:when test="${guideTourVO.userVO.usrGndr == 'male'}">
@@ -110,7 +111,7 @@ pageEncoding="UTF-8" %>
                   		<h1>성별 : 여자</h1>
                   	</c:otherwise>
                   </c:choose>
-                  
+                  <h1>이름 : ${guideTourVO.userVO.usrLnm} ${guideTourVO.userVO.usrFnm} </h1>
                   <h1>나이 : 만 ${guideTourVO.guideAge} 세</h1>
                   <h1>가이드 경력 : ${guideTourVO.userVO.usrGdExp} 번</h1>
                 </div>
@@ -162,11 +163,29 @@ pageEncoding="UTF-8" %>
                 </h3>
               </div>
               <div class="tourInfoDetailArea">
-                <div class="tourInfoSummaryArea">
-	                <c:forEach items="${guideTourVO.guideTourDetailInfoList}" var="guideTourDetailInfoVO">
-	                  <h1>${guideTourDetailInfoVO.trDtlInf}</h1>
-	                </c:forEach>
-                </div>
+                <ul class="hope-info-list">
+                	<c:choose>
+                		<c:when test="${not empty guideTourVO.guideTourScheduleInfoList && not empty guideTourVO.guideTourScheduleInfoList[0].trDtlLct}">
+			                <c:forEach items="${guideTourVO.guideTourScheduleInfoList}"
+			                		   var="guideTourScheduleInfoVO"
+			                		   varStatus="index">
+			                		   <li>
+			                		   	  <div class="list-item">
+			                		   	  	<span class="background-num">
+			                		   	  		${index.index + 1}</span>
+			                		   	  		${guideTourScheduleInfoVO.trDtlLct}
+			                		   	  </div>
+			                		   	  <div class="border-left">${guideTourScheduleInfoVO.trDtlSchd}</div>
+			                		   </li>
+			                </c:forEach>
+                		</c:when>
+                		<c:otherwise>
+                			<li>
+                				<p>작성된 세부 일정이 없습니다.</p>
+                			</li>
+                		</c:otherwise>
+	                </c:choose>
+                </ul>
               </div>
             </div>
           </div>
@@ -180,7 +199,11 @@ pageEncoding="UTF-8" %>
               </div>
               <div class="tourInfoDetailArea">
                 <div class="tourInfoSummaryArea">
-	                <!-- LI 형식으로 추가 -->
+	                <ul class="plus-inf">
+	                <c:forEach items="${guideTourVO.guideTourDetailInfoList}" var="guideTourDetailInfoVO">
+	                	<li>${guideTourDetailInfoVO.trDtlInf}</li>
+	                </c:forEach>
+	                </ul>
                 </div>
               </div>
             </div>

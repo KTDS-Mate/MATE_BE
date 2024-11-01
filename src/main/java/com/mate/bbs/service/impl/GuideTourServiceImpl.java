@@ -13,6 +13,8 @@ import com.mate.bbs.service.GuideTourService;
 import com.mate.bbs.vo.GuideTourDetailInfoVO;
 import com.mate.bbs.vo.GuideTourListVO;
 import com.mate.bbs.vo.GuideTourModifyVO;
+import com.mate.bbs.vo.GuideTourProvidedVO;
+import com.mate.bbs.vo.GuideTourScheduleInfoVO;
 import com.mate.bbs.vo.GuideTourVO;
 import com.mate.bbs.vo.GuideTourWriteVO;
 import com.mate.bbs.vo.SearchGuideTourVO;
@@ -67,10 +69,10 @@ public class GuideTourServiceImpl implements GuideTourService{
 		guideTourWriteVO.setGdTrStDt(startHour);
 		guideTourWriteVO.setGdTrEdDt(endHour);
 		
-		// 리스트 형식으로 form에서 데이터를 받아와 새로운 리스트에 담아준다.
-		List<GuideTourDetailInfoVO> detailInfoList = guideTourWriteVO.getGuideTourDetailInfoList();
 		// PK를 먼저 발급받기 위해 호출
 		int guideTourInsertCount = this.guideTourDao.insertNewGuideTour(guideTourWriteVO);
+		// 리스트 형식으로 form에서 데이터를 받아와 새로운 리스트에 담아준다.
+		List<GuideTourDetailInfoVO> detailInfoList = guideTourWriteVO.getGuideTourDetailInfoList();
 		
 		// 투어 상세정보를 작성하지 않으면 NullPointerException이 발생함으로 null 체크 해준다.
 		if(detailInfoList != null) {
@@ -79,7 +81,25 @@ public class GuideTourServiceImpl implements GuideTourService{
 				// PK를 VO에 할당한다.
 				guideTourDetailInfoVO.setGdTrPstId(guideTourWriteVO.getGdTrPstId());
 				// listSize만큼 INSERT문 반복한다.
-				this.guideTourDao.insertDetailInfo(guideTourDetailInfoVO);
+				this.guideTourDao.insertNewDetailInfo(guideTourDetailInfoVO);
+			}
+		}
+		
+		List<GuideTourScheduleInfoVO> tourScheduleInfoList = guideTourWriteVO.getGuideTourScheduleInfoList();
+		
+		if(tourScheduleInfoList != null) {
+			for (GuideTourScheduleInfoVO guideTourScheduleInfoVO : tourScheduleInfoList) {
+				guideTourScheduleInfoVO.setGdTrPstId(guideTourWriteVO.getGdTrPstId());
+				this.guideTourDao.insertNewSchdInfo(guideTourScheduleInfoVO);
+			}
+		}
+		
+		List<GuideTourProvidedVO> tourProvidedList = guideTourWriteVO.getGuideTourProvidedList();
+		
+		if (tourProvidedList != null) {
+			for (GuideTourProvidedVO guideTourProvidedVO : tourProvidedList) {
+				guideTourProvidedVO.setGdTrPstId(guideTourWriteVO.getGdTrPstId());
+				this.guideTourDao.insertNewProvidedInfo(guideTourProvidedVO);
 			}
 		}
 		

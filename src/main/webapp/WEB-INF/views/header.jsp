@@ -10,7 +10,7 @@
 
     <div class="header-center-menu">
       <div><a href="/usertour/list?pageNo=0&listSize=9&regionName=전체&orderby=최신순">투어 요청 목록</a></div>
-      <div><a href="">가이드 투어 목록</a></div>
+      <div><a href="/guidetour/list?pageNo=0&listSize=5">가이드 투어 목록</a></div>
       <div><a href="">가이드 목록</a></div>
     </div>
     <div class="header-right-menu">

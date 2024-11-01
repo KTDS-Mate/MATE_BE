@@ -69,6 +69,10 @@ public class GuideTourWriteVO {
 	 */
 	private String gdTrSmry;
 	/**
+	 * 투어 등록일
+	 */
+	private String gdTrRstrDt;
+	/**
 	 *  투어제공항목 리스트
 	 */
 	private List<GuideTourProvidedVO> guideTourProvidedList;
@@ -81,6 +85,10 @@ public class GuideTourWriteVO {
 	 */
 	private List<GuideTourDetailInfoVO> guideTourDetailInfoList;
 	/**
+	 * 가이드 투어 세부일정 리스트 VO
+	 */
+	private List<GuideTourScheduleInfoVO> guideTourScheduleInfoList;
+	/**
 	 * 투어 작성자의 ID VO
 	 */
 	private String athrId;
@@ -90,12 +98,6 @@ public class GuideTourWriteVO {
 	}
 	public void setGdTrPstId(String gdTrPstId) {
 		this.gdTrPstId = gdTrPstId;
-	}
-	public String getAthrId() {
-		return athrId;
-	}
-	public void setAthrId(String athrId) {
-		this.athrId = athrId;
 	}
 	public String getGdTrTtl() {
 		return gdTrTtl;
@@ -175,6 +177,12 @@ public class GuideTourWriteVO {
 	public void setGdTrSmry(String gdTrSmry) {
 		this.gdTrSmry = gdTrSmry;
 	}
+	public String getGdTrRstrDt() {
+		return gdTrRstrDt;
+	}
+	public void setGdTrRstrDt(String gdTrRstrDt) {
+		this.gdTrRstrDt = gdTrRstrDt;
+	}
 	public List<GuideTourProvidedVO> getGuideTourProvidedList() {
 		return guideTourProvidedList;
 	}
@@ -192,6 +200,18 @@ public class GuideTourWriteVO {
 	}
 	public void setGuideTourDetailInfoList(List<GuideTourDetailInfoVO> guideTourDetailInfoList) {
 		this.guideTourDetailInfoList = guideTourDetailInfoList;
+	}
+	public List<GuideTourScheduleInfoVO> getGuideTourScheduleInfoList() {
+		return guideTourScheduleInfoList;
+	}
+	public void setGuideTourScheduleInfoList(List<GuideTourScheduleInfoVO> guideTourScheduleInfoList) {
+		this.guideTourScheduleInfoList = guideTourScheduleInfoList;
+	}
+	public String getAthrId() {
+		return athrId;
+	}
+	public void setAthrId(String athrId) {
+		this.athrId = athrId;
 	}
 	
 }

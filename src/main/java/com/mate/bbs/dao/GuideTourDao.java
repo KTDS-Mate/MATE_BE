@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.mate.bbs.vo.GuideTourDetailInfoVO;
 import com.mate.bbs.vo.GuideTourModifyVO;
+import com.mate.bbs.vo.GuideTourProvidedVO;
+import com.mate.bbs.vo.GuideTourScheduleInfoVO;
 import com.mate.bbs.vo.GuideTourVO;
 import com.mate.bbs.vo.GuideTourWriteVO;
 import com.mate.bbs.vo.SearchGuideTourVO;
@@ -65,9 +67,21 @@ public interface GuideTourDao {
      */
     public String selectAttachEndHour(GuideTourWriteVO guideTourWriteVO);
     /**
-     * 가이드 투어 등록 폼에서 상세 정보를 담는 메소드.
+     * 가이드 투어 등록 폼에서 추가 정보를 담는 메소드.
      * @param guideTourDetailInfoVO
      * @return
      */
-    public int insertDetailInfo(GuideTourDetailInfoVO guideTourDetailInfoVO);
+    public int insertNewDetailInfo(GuideTourDetailInfoVO guideTourDetailInfoVO);
+    /**
+     * 가이드 투어 등록 폼에서 세부 일정 정보를 담는 메소드.
+     * @param guideTourScheduleInfoVO
+     * @return
+     */
+    public int insertNewSchdInfo(GuideTourScheduleInfoVO guideTourScheduleInfoVO);
+    /**
+     * 가이드 투어 등록 폼에서 추가 제공 요소를 담는 메소드.
+     * @param guideTourScheduleInfoVO
+     * @return
+     */
+    public int insertNewProvidedInfo(GuideTourProvidedVO guideTourProvidedVO);
 }

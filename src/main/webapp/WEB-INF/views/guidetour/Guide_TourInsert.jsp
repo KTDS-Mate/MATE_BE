@@ -147,12 +147,15 @@ uri="http://www.springframework.org/tags/form" %>
             </div>
             <div class="all-select-div">
               <div class="select-div">
-                <span class="red">*</span> 투어 제공 정보
+                <span class="red">*</span> 투어 제공 요소
               </div>
-              <textarea name="trIncld">
-              <!-- 수정 필요 할 수 있음. -->
-				${guideTourWriteVO.guideTourProvidedList.trIncld}</textarea
-              >
+              <div class="incl-div">
+              	<!-- jquery를 사용해 여러 개를 호출 받는 곳 -->
+              </div>
+              <div class="hope-btn">
+                	<input id="incl-plus" type="button" value="투어 정보 추가하기" />
+                	<input id="incl-m-btn" type="button" value="투어 정보 삭제하기" />
+              </div>
             </div>
             <div class="all-select-div">
               <div class="inline">

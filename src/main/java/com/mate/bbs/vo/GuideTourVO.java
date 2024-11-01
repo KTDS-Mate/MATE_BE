@@ -50,7 +50,6 @@ public class GuideTourVO {
 	 * 투어 요약
 	 */
 	private String gdTrSmry;
-
 	/**
 	 * 투어 등록일
 	 */
@@ -129,15 +128,21 @@ public class GuideTourVO {
 	 * 나라 정보를 담은 VO
 	 */
 	private CountriesVO countriesVO;
-	
 	/**
 	 * 해당 프로퍼티는 DB컬럼에 존재하지 않음
 	 */
 	private String guideAge;
+	/**
+	 * 가이드 투어 게시글에 대한 평균 별점
+	 */
+	private int trAvgRtng;
 	
-	
-	
-	
+	public int getTrAvgRtng() {
+		return trAvgRtng;
+	}
+	public void setTrAvgRtng(int trAvgRtng) {
+		this.trAvgRtng = trAvgRtng;
+	}
 	public String getGdTrPstId() {
 		return gdTrPstId;
 	}

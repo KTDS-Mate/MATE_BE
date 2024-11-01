@@ -2,10 +2,23 @@ package com.mate.bbs.vo;
 
 public class GuideTourScheduleInfoVO {
 
+	/**
+	 * 가이드 등록 투어에 대한 추가정보 pk
+	 */
 	private String trAddInfId;
+	/**
+	 * 가이드가 등록한 투어 게시글 아이디
+	 */
 	private String gdTrPstId;
+	/**
+	 * 투어세부 일정에 대한 세부 장소
+	 */
 	private String trDtlLct;
+	/**
+	 * 투어 세부 일정
+	 */
 	private String trDtlSchd;
+	
 	public String getTrAddInfId() {
 		return trAddInfId;
 	}
