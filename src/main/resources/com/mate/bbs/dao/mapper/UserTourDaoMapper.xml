@@ -28,6 +28,11 @@
 					 autoMapping="true">
 			<id column="REGION_ID" property="regionId" />
 		</association>
+		<association property="favoriteVO"
+					javaType="com.mate.bbs.vo.FavoriteVO"
+					autoMapping="true">
+			<id column="FAV_ID" property="favId" />
+		</association>
 		<collection property="userTourImgList"
 					ofType="com.mate.bbs.vo.UserTourImgVO"
 					autoMapping="true">
@@ -176,6 +181,8 @@
 		    ON UTR.TR_CT_ID = C.CITY_ID
 		  JOIN COUNTRIES CR
 		    ON CR.COUNTRY_ID = C.COUNTRY_ID
+		  LEFT JOIN FVRTS F
+		    ON UTR.USR_TR_PST_ID = F.USR_TR_PST_ID
 		 WHERE UTR.USR_TR_PST_ID = #{_parameter}
 	</select>
 	

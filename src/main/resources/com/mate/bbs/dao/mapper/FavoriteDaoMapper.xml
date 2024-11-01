@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.mate.bbs.dao.FavoriteDao">
+
+	<resultMap id="favoriteVOMap"
+			   type="com.mate.bbs.vo.FavoriteVO"
+			   autoMapping="true">
+		<id column="FAV_ID" property="favId" />
+		<association property="userVO"
+					 javaType="com.mate.user.vo.UserVO"
+					 autoMapping="true">
+			<id column="USR_ID" property="usrId" />
+		</association>
+	</resultMap>
+
+	<insert id="insertNewUserTourFavorite"
+			parameterType="com.mate.bbs.vo.FavoriteWriteVO">
+		INSERT INTO FVRTS
+		 (FAV_ID
+		, FAV_CR_AT
+		, FAV_IS_DLT
+		, FAV_DLT_AT
+		, USR_LGN_ID
+		, GD_TR_PST_ID
+		, USR_TR_PST_ID)
+		VALUES
+		 ('FVRTS' || '-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_FVRTS_PK.NEXTVAL, 6, 0)
+		, SYSDATE
+		, 'N'
+		, NULL
+		, #{usrLgnId}
+		, NULL
+		, #{usrTrPstId})
+	</insert>
+
+	<insert id="insertNewGuideTourFavorite"
+			parameterType="com.mate.bbs.vo.FavoriteWriteVO">
+		INSERT INTO FVRTS
+		 (FAV_ID
+		, FAV_CR_AT
+		, FAV_IS_DLT
+		, FAV_DLT_AT
+		, USR_LGN_ID
+		, GD_TR_PST_ID
+		, USR_TR_PST_ID)
+		VALUES
+		 ('FVRTS' || '-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_FVRTS_PK.NEXTVAL, 6, 0)
+		, SYSDATE
+		, 'N'
+		, NULL
+		, #{usrLgnId}
+		, #{gdTrPstId}
+		, NULL)
+	</insert>
+
+	<select id="selectAllFavoriteList"
+			parameterType="string"
+			resultMap="favoriteVOMap">
+		SELECT FAV_ID
+			 , FAV_CR_AT
+			 , FAV_IS_DLT
+			 , FAV_DLT_AT
+			 , USR_LGN_ID
+			 , GD_TR_PST_ID
+			 , USR_TR_PST_ID
+		  FROM FVRTS
+		 WHERE USR_TR_PST_ID = #{_parameter}
+	</select>
+
+	<select id="selectAllFavoriteCount"
+			parameterType="string"
+			resultType="_int">
+		SELECT COUNT(1)
+		  FROM FVRTS
+		 WHERE USR_TR_PST_ID = #{_parameter}
+	</select>
+
+</mapper>
