@@ -1,21 +1,32 @@
 package com.mate.mypage.vo;
 
-public class WishVO {
+public class MyWishVO {
 
 	
-	private String usrId;
 	private String favId;
 	private String favCrAt;
 	private String favIsDlt;
 	private String favDltAt;
+	private String usrLgnId;
 	private String gdTrPstId;
 	
+	private MyBoardVO myBoardVO;
 	
 	
 	
 	
 	
 	
+	
+	
+	
+
+	public MyBoardVO getMyBoardVO() {
+		return myBoardVO;
+	}
+	public void setMyBoardVO(MyBoardVO myBoardVO) {
+		this.myBoardVO = myBoardVO;
+	}
 	public String getFavId() {
 		return favId;
 	}
@@ -40,11 +51,12 @@ public class WishVO {
 	public void setFavDltAt(String favDltAt) {
 		this.favDltAt = favDltAt;
 	}
-	public String getUsrId() {
-		return usrId;
+
+	public String getUsrLgnId() {
+		return usrLgnId;
 	}
-	public void setUsrId(String usrId) {
-		this.usrId = usrId;
+	public void setUsrLgnId(String usrLgnId) {
+		this.usrLgnId = usrLgnId;
 	}
 	public String getGdTrPstId() {
 		return gdTrPstId;
