@@ -37,6 +37,7 @@ public class PaginationVO {
 	
 	public PaginationVO() {
 		this.pageCountInGroup = 10;
+		this.listSize = 10;
 	}
 
 	public int getPageNo() {

@@ -27,4 +27,11 @@ public class EditProfileDaoImpl extends SqlSessionDaoSupport implements EditProf
     public UserVO selectOneUser(String usrLgnId) {
         return this.getSqlSession().selectOne(NAMESPACE + ".selectOneUser" , usrLgnId);
     }
+
+
+	@Override
+	public int updateOneUser(UserVO userVO) {
+		
+		return this.getSqlSession().update(NAMESPACE + ".updateOneUser" , userVO);
+	}
 }

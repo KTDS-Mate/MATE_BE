@@ -51,4 +51,17 @@ public interface GuideTourDao {
      */
     public int updateGuideTourIsDtl(String gdTrPstId);
 
+    /**
+     * 투어 등록폼에서 사용할 시작 날짜 이어붙이기.
+     * @param guideTourWriteVO
+     * @return
+     */
+    public String selectAttachStartHour(GuideTourWriteVO guideTourWriteVO);
+    /**
+     * 투어 등록폼에서 사용할 종료 날짜 이어붙이기.
+     * @param guideTourWriteVO
+     * @return
+     */
+    public String selectAttachEndHour(GuideTourWriteVO guideTourWriteVO);
+    
 }

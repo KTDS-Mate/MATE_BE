@@ -14,8 +14,8 @@
 }
 
 .reviewWritingArea {
-  width: 60rem;
-  height: 50rem;
+  width: 30rem;
+  height: 30rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,16 +33,24 @@
 }
 
 .reviewWritingArea > form {
-  width: 50rem;
-  height: 40rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: -4rem 0 0 0;
 }
 
 .starRating {
-  width: 50rem;
+  width: 30rem;
   height: 7rem;
   display: flex;
   justify-content: center;
-  margin: 2rem 0 2rem 0;
+  margin: 0 0 2rem 0;
+}
+
+.star {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 1rem 0.5rem 0 0;
 }
 
 .starThree {
@@ -63,11 +71,11 @@
 }
 
 .starBox {
-  width: 50rem;
-  height: 13rem;
+  width: 25rem;
+  min-height: 12rem;
   box-sizing: border-box;
   display: inline-block;
-  margin: 15px 0;
+  margin: -1rem 0 2rem 0;
   background: #f3f4f8;
   border: 0;
   border-radius: 10px;
@@ -76,11 +84,12 @@
   padding: 15px;
   font-size: 13px;
   font-family: sans-serif;
+  overflow: auto;
 }
 
 .reviewSubmitButton {
   display: block;
-  width: 50rem;
+  width: 25rem;
   font-weight: bold;
   border: 0;
   border-radius: 10px;
@@ -108,13 +117,13 @@
 }
 
 .picArea {
-  width: 60rem;
-  height: 50rem;
+  width: 30rem;
+  height: 25rem;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #fff;
+  background-color: none;
   border-bottom-left-radius: 1.25rem; /* 모서리 둥글게 */
   border-bottom-right-radius: 1.25rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* 그림자 추가 */
@@ -158,6 +167,7 @@
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* 그림자 추가 */
   position: relative; /* 부모 요소 내에서 배치 */
   text-align: center;
+  overflow: auto;
 }
 
 .reviewListArea {
@@ -176,11 +186,22 @@
 }
 
 .closeButtonArea {
-  width: 60rem;
+  width: 30rem;
   height: auto;
   margin: 0;
   padding: 0;
   background-color: #fff;
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
+  text-align: right;
+}
+
+.picCloseButtonArea {
+  width: 60rem;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  background-color: none;
   border-top-left-radius: 1.25rem;
   border-top-right-radius: 1.25rem;
   text-align: right;
@@ -214,6 +235,15 @@ img.closeButton {
   cursor: pointer;
 }
 
+img.picCloseButton {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0 2rem 5rem 0;
+  cursor: pointer;
+  filter: invert(100%) sepia(93%) saturate(22%) hue-rotate(344deg)
+    brightness(105%) contrast(100%);
+}
+
 .oneReview {
   width: 90%;
   height: auto;
@@ -230,6 +260,7 @@ img.closeButton {
 .oneReviewRating {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .oneReviewRatingCount {
@@ -259,10 +290,11 @@ img.closeButton {
   height: auto;
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .reviewerPicArea {
-  width: 50%;
+  width: 55%;
   height: auto;
   margin: 1rem 0.25rem 1rem 0.25rem;
   object-fit: cover;
@@ -277,11 +309,13 @@ img.closeButton {
 
 .oneReviewTextArea {
   width: 80%;
-  height: auto;
+  height: 25%;
   margin: 1rem;
   padding: 1rem;
   background-color: #f3f4f8;
+  outline-style: none;
   border-radius: 0.25rem;
+  overflow: auto;
 }
 
 .oneReviewTextArea > span {

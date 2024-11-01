@@ -14,6 +14,9 @@ public class CitiesVO {
 	 * 국가 아이디
 	 */
 	private int countryId;
+	
+	
+	
 	public int getCityId() {
 		return cityId;
 	}
