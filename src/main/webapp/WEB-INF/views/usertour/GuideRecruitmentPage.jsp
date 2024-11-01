@@ -10,6 +10,8 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
       type="text/css"
       href="/css/usertour/GuideRecruitmentPage.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="/js/usertour/GuideRecruitmentPage.js"></script>
   </head>
   <body>
     <div class="grid">
@@ -20,11 +22,9 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
       <div class="content">
         <div class="grid-rows">
           <div class="subject">
-            <div class="ttl-wb">
+            <div class="ttl-wb" data-pst-id="${userTourVO.usrTrPstId}" >
               <h1>${userTourVO.usrTrTtl}</h1>
-              <div class="wish-button">
-            	<img alt="즐겨찾기" src="/img/tourboard/WishButton.png">
-            </div>
+              <div class="wish-button"></div>
             </div>
           </div>
           <div class="img-price">
