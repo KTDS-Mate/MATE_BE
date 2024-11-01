@@ -39,6 +39,11 @@
 						autoMapping="true">
 				<id column="CITY_ID" property="cityId"/>
 			</collection>
+			<collection property="guideTourAdditionInfoList"
+						ofType="com.mate.bbs.vo.GuideTourAdditionInfoVO"
+						autoMapping="true">
+				<id column="TR_ADD_INF_ID" property="trAddInfId"/>
+			</collection>
 		</resultMap>
 	
 	<select id="selectGuideTourAllCount" resultType="_int">
@@ -70,6 +75,13 @@
 			 , UI.USR_LNM 
 			 , UI.USR_GNDR 
 			 , UI.GD_PRFL_IMG 
+			 , UI.USR_BD 
+			 , UI.USR_GD_EXP 
+			 , TI.TR_INCLD 
+			 , TD.TR_DTL_INF 
+			 , TAI.TR_ADD_INF 
+			 , TAI.TR_ADD_PLC 
+			 , TRUNC(MONTHS_BETWEEN(TRUNC(SYSDATE), UI.USR_BD) / 12) AS GUIDE_AGE
 		  FROM GD_TR_RCRT GTR
 		  LEFT JOIN GD_TR_RCRT_IMG GTRI
 		    ON GTR.GD_TR_PST_ID = GTRI.GD_TR_PST_ID 
@@ -77,6 +89,13 @@
 		    ON GTR.GD_TR_PST_ID = GTRV.GD_TR_PST_ID 
 		 INNER JOIN USR_INF UI
 		    ON UI.USR_ID = GTR.USR_ID 
+		 INNER JOIN TOUR_INCLD TI
+		    ON TI.GD_TR_PST_ID = GTR.GD_TR_PST_ID  
+		 INNER JOIN TR_DTL TD
+		    ON TD.GD_TR_PST_ID = GTR.GD_TR_PST_ID
+		 INNER JOIN TR_ADDTNL_INF TAI
+		    ON TAI.GD_TR_PST_ID = GTR.GD_TR_PST_ID 
+		 WHERE GTR.GD_TR_PST_ID = #{_parameter}
 	</select>
 	
 	<select id="selectAllGuideTour" 
@@ -102,7 +121,7 @@
 			 , GTR.TR_CT_ID
 			 , GTRI.GD_TR_IMG_URL
 			 , GTR.GD_TR_MX_NP
-			 , C.CT_NM 
+			 , C.CITY_NAME 
 			 , ( SELECT AVG(gtr2.GD_TR_RVW_RTNG)
 			       FROM GD_TR_RVW gtr2
 			 	  WHERE gtr2.GD_TR_PST_ID = GTR.GD_TR_PST_ID) AS AVG_RVW
@@ -111,50 +130,49 @@
 	       ON GTR.GD_TR_PST_ID = GTRI.GD_TR_PST_ID 
 	     LEFT JOIN GD_TR_RVW GTRV
 	       ON GTR.GD_TR_PST_ID = GTRV.GD_TR_PST_ID
-	     JOIN CT C
-	       ON C.CT_ID = gtr.TR_CT_ID
+	     JOIN CITIES C
+	       ON C.CITY_ID = gtr.TR_CT_ID
+	    ORDER BY GTR.GD_TR_PST_ID DESC
 	    <if test="_parameter != null">
 			<include refid="Common.pagination_footer" />
 		</if>
 	</select>
 	<insert id="insertNewGuideTour" 
 			parameterType="com.mate.bbs.vo.GuideTourWriteVO">
-		INSERT INTO GD_TR_RCRT
-			 (GD_TR_PST_ID
-			, ATHR_ID
-			, USR_ID
-			, GD_TR_TTL
-			, GD_TR_ST_DT
-			, GD_TR_PRPS
-			, GD_TR_MP
-			, GD_TR_PRC
-			, GD_TR_SMRY
-			, GD_TR_RSTR_DT
-			, GD_TR_MDFY_DT
-			, GD_TR_DLT_DT
-			, GD_TR_IS_DLT
-			, TR_CNT_ID
-			, TR_CT_ID
-			, GD_TR_ED_DT
-			, GD_TR_MX_NP)
-			VALUES
-			 ('GT-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_GD_TR_RCRT_PK.NEXTVAL, 6, 0)
-			, '7'
-			, NULL
-			, #{gdTrTtl}
-			, TO_DATE(#{gdTrStDt}, 'YYYY-MM-DD')
-			, #{gdTrPrps}
-			, #{gdTrMp}
-			, #{gdTrPrc}
-			, #{gdTrSmry}
-			, TO_DATE(#{gdTrRstrDt}, 'YYYY-MM-DD')
-			, NULL
-			, NULL
-			, 'N'
-			, #{trCntId}
-			, #{trCtId}
-			, #{gdTrEdDt}
-			, #{gdTrMxNp})
+		INSERT INTO GD_TR_RCRT GTR
+		 (GD_TR_PST_ID
+		, ATHR_ID
+		, USR_ID
+		, GD_TR_TTL
+		, GD_TR_ST_DT
+		, GD_TR_PRPS
+		, GD_TR_MP
+		, GD_TR_PRC
+		, GD_TR_SMRY
+		, GD_TR_RSTR_DT
+		, GD_TR_MDFY_DT
+		, GD_TR_DLT_DT
+		, GD_TR_IS_DLT
+		, TR_CT_ID
+		, GD_TR_ED_DT
+		, GD_TR_MX_NP)
+		VALUES
+		 ('GT-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_GD_TR_RCRT_PK.NEXTVAL, 6, 0)
+		, 'USR-20241029-000090'
+		, NULL
+		, #{gdTrTtl}
+		, TO_DATE(#{gdTrStDt}, 'YYYY-MM-DD HH24:MI') 
+		, #{gdTrPrps}
+		, #{gdTrMp}
+		, #{gdTrPrc}
+		, #{gdTrSmry}
+		, SYSDATE
+		, NULL
+		, NULL
+		, 'N'
+		, #{trCtId}
+		, TO_DATE(#{gdTrEdDt}, 'YYYY-MM-DD HH24:MI') 
+		, #{gdTrMxNp})
 	</insert>
 	<update id="updateGuideTour"
 			parameterType="com.mate.bbs.vo.GuideTourModifyVO">
@@ -176,4 +194,19 @@
 		   SET GD_TR_IS_DLT = 'Y'
 		 WHERE GD_TR_PST_ID = #{_parameter}
 	</update>
+	
+	<select id="selectAttachStartHour"
+			parameterType="com.mate.bbs.vo.GuideTourWriteVO"
+			resultType="string">
+		SELECT #{inputYear} || ' ' || #{inputStartHour}
+ 		  FROM DUAL
+	</select>
+	
+	<select id="selectAttachEndHour"
+			parameterType="com.mate.bbs.vo.GuideTourWriteVO"
+			resultType="string">
+		SELECT #{inputYear} || ' ' || #{inputEndHour}
+ 		  FROM DUAL
+	</select>
+	
 </mapper>

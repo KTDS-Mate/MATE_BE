@@ -38,6 +38,7 @@ public class UserTourServiceImpl implements UserTourService{
 		// PK를 먼저 발급받기 위해 호출
 		int createCount = this.userTourDao.insertNewUserTour(userTourWriteVO);
 		
+		// 투어 희망정보를 작성하지 않으면 nullPointerException이 발생함으로 null 체크
 		if (schdlList != null) {
 			// 게시글이 작성 된 후 PK를 가져와 forEach문으로 INSERT문 반복
 			for (UserTourSchdlVO userTourSchdlVO : schdlList) {
@@ -84,6 +85,13 @@ public class UserTourServiceImpl implements UserTourService{
 	@Transactional
 	@Override
 	public boolean modifyUserTour(UserTourModifyVO userTourModifyVO) {
+		// 사용자가 입력한 날짜를 받아와서 포멧에 맞춤
+		String startDt = this.userTourDao.selectAttachStartHour2(userTourModifyVO);
+		String endDt = this.userTourDao.selectAttachEndHour2(userTourModifyVO);
+		// 포멧에 맞춘 시간을 담아줌
+		userTourModifyVO.setUsrTrStDt(startDt);
+		userTourModifyVO.setUsrTrEdDt(endDt);
+		
 		int updateCount = this.userTourDao.updateUserTour(userTourModifyVO);
 		return updateCount > 0;
 	}

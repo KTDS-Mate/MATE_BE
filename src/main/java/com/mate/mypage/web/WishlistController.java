@@ -4,9 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mate.common.vo.PaginationVO;
 import com.mate.mypage.service.WishlistService;
 import com.mate.mypage.vo.WishlistVO;
 
@@ -19,24 +20,28 @@ public class WishlistController {
 	private WishlistService wishlistService;
 
 
-	@GetMapping("/tr-wishlist")
-	public String viewTrWish(@RequestParam String usrId
+	@GetMapping("/tr-wishlist/{usrLgnId}")
+	public String viewTrWish(@PathVariable String usrLgnId
+										  ,PaginationVO paginationVO
 										  ,Model model) {
 		
-		WishlistVO wishlistVO = this.wishlistService.selectTLAllWish(usrId);
+		WishlistVO wishlistVO = this.wishlistService.selectAllWish(usrLgnId , paginationVO);
 		
-		model.addAttribute(wishlistVO);
+		model.addAttribute("wishlistVO" ,wishlistVO);
+		model.addAttribute("paginationVO", paginationVO);
 		
-		return "mypage/Mypage_Tourist_MyReview";
+		return "mypage/Mypage_Tourist_Wishlist";
 	}
 	
-	@GetMapping("/gd-wishlist")
-	public String viewGdWish(@RequestParam String usrId
-			,Model model) {
+	@GetMapping("/gd-wishlist/{usrLgnId}")
+	public String viewGdWish(@PathVariable String usrLgnId
+										  ,PaginationVO paginationVO
+										  ,Model model) {
 		
-		WishlistVO wishlistVO = this.wishlistService.selectTLAllWish(usrId);
+		WishlistVO wishlistVO = this.wishlistService.selectAllWish(usrLgnId , paginationVO);
 		
-		model.addAttribute(wishlistVO);
+		model.addAttribute("wishlistVO" ,wishlistVO);
+		model.addAttribute("paginationVO", paginationVO);
 		
 		return "mypage/Mypage_Guide_Wishlist";
 	}

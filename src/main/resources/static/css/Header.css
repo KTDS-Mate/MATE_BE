@@ -4,8 +4,11 @@ div.header-content {
   justify-content: space-between;
   width: 80rem;
   height: 8rem;
-  border-bottom: 1px solid #000;
+}
 
+a {
+  text-decoration: none;
+  color: black;
 }
 
 div.logo {
@@ -29,7 +32,8 @@ div.header-center-menu {
 
 .header-center-menu div {
   padding: 0 2.5rem;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: bold;
 }
 .header-center-menu div a {
   text-decoration: none;
@@ -44,10 +48,10 @@ div.header-center-menu {
 
 img.alram-icon {
   width: auto;
-  height: 3.5rem;
+  height: 2.5rem;
 }
 
 img.message-icon {
   width: auto;
-  height: 3.5rem;
+  height: 2.5rem;
 }

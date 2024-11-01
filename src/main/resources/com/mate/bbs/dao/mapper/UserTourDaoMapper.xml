@@ -13,6 +13,26 @@
 					 autoMapping="true">
 			<id column="USR_ID" property="usrId" />
 		</association>
+		<association property="citiesVO"
+					 javaType="com.mate.common.vo.CitiesVO"
+					 autoMapping="true">
+			<id column="CITY_ID" property="cityId" />
+		</association>
+		<association property="countriesVO"
+					 javaType="com.mate.common.vo.CountriesVO"
+					 autoMapping="true">
+			<id column="COUNTRY_ID" property="countryId" />
+		</association>
+		<association property="regionsVO"
+					 javaType="com.mate.common.vo.RegionsVO"
+					 autoMapping="true">
+			<id column="REGION_ID" property="regionId" />
+		</association>
+		<association property="favoriteVO"
+					javaType="com.mate.bbs.vo.FavoriteVO"
+					autoMapping="true">
+			<id column="FAV_ID" property="favId" />
+		</association>
 		<collection property="userTourImgList"
 					ofType="com.mate.bbs.vo.UserTourImgVO"
 					autoMapping="true">
@@ -25,12 +45,45 @@
 		</collection>
 	</resultMap>
 	
-	<!-- 검색기능에 사용 -->
+	<!-- 지역 검색기능에 사용 -->
 	<sql id="selectSubjectAndContent">
 	<if test='searchKeyword != null and searchKeyword != ""'>
-		  AND (UTR.USR_TR_TTL LIKE '%' || #{searchKeyword} || '%'
-		   OR UTR.USR_TR_PRPS LIKE '%' || #{searchKeyword} || '%')
+		<if test='searchType == "country"'>
+			AND CR.COUNTRY_NAME LIKE '%' || #{searchKeyword} || '%'
+		</if>
+		<if test='searchType == "city"'>
+			AND C.CITY_NAME LIKE '%' || #{searchKeyword} || '%'
+		</if>
+		<if test='searchType == "title"'>
+			AND UTR.USR_TR_TTL LIKE '%' || #{searchKeyword} || '%'
+		</if>
+		<if test='searchType == "price"'>
+			AND UTR.USR_TR_GD_HR_PRC = #{searchKeyword}
+		</if>
 	</if>
+	</sql>
+	<!-- 대륙별로 볼 때 사용 -->
+	<sql id="selectRegions">
+		<if test='regionName !="전체" and regionName != null and regionName != ""'>
+			AND (R.REGION_NAME = #{regionName})
+		</if>
+	</sql>
+	<!-- ~순 정렬에 사용 -->
+	<sql id="order">
+		<choose>
+			<when test='"높은 가격순".equals(orderby)'>
+				ORDER BY UTR.USR_TR_GD_HR_PRC DESC
+			</when>
+			<when test='"낮은 가격순".equals(orderby)'>
+				ORDER BY UTR.USR_TR_GD_HR_PRC
+			</when>
+			<when test='"마감 임박순".equals(orderby)'>
+				ORDER BY DEADLINE
+			</when>
+			<otherwise>
+				ORDER BY UTR.USR_TR_PST_ID DESC
+			</otherwise>
+		</choose>
 	</sql>
 	
 	<insert id="insertNewUserTour"
@@ -64,7 +117,8 @@
 		, GD_AGE
 		, GD_CRR
 		, GD_WNT_RQ
-		, USR_TR_ED_DT)
+		, USR_TR_ED_DT
+		, USR_TR_STTS)
 		VALUES
 		 (#{usrTrPstId}
 		, #{athrId}
@@ -83,7 +137,8 @@
 		, #{gdAge}
 		, #{gdCrr}
 		, #{gdWntRq}
-		, TO_DATE(#{usrTrEdDt}, 'YYYY-MM-DD HH24:MI'))
+		, TO_DATE(#{usrTrEdDt}, 'YYYY-MM-DD HH24:MI')
+		, 'N')
 	</insert>
 	
 	<select id="selectOneUserTour"
@@ -106,13 +161,15 @@
 		     , UTR.GD_AGE 
 		     , UTR.GD_CRR 
 		     , UTR.GD_WNT_RQ 
-		     , TO_CHAR(UTR.USR_TR_ST_DT, 'YYYY-MM-DD') USR_TR_ST_DT
-		     , TO_CHAR(UTR.USR_TR_ED_DT, 'YYYY-MM-DD') USR_TR_ED_DT
+		     , TO_CHAR(UTR.USR_TR_ST_DT, 'YYYY-MM-DD HH24:MI') USR_TR_ST_DT
+		     , TO_CHAR(UTR.USR_TR_ED_DT, 'YYYY-MM-DD HH24:MI') USR_TR_ED_DT
 		     , UTRI.USR_TR_RQ_IMG_ID_URL
 		     , UI.USR_LNM 
 		     , UI.USR_FNM 
 		     , TS.TR_LCTNS 
 		     , TS.TR_RQST 
+		     , C.CITY_NAME
+		     , CR.COUNTRY_NAME
 		  FROM USR_TR_RQST UTR
 		  LEFT JOIN USR_TR_RQST_IMG UTRI
 		    ON UTR.USR_TR_PST_ID = UTRI.USR_TR_PST_ID
@@ -120,6 +177,12 @@
 		    ON UTR.ATHR_ID = UI.USR_ID 
 		  LEFT JOIN TR_SCHDL TS
 		    ON UTR.USR_TR_PST_ID = TS.USR_TR_PST_ID 
+		  JOIN CITIES C
+		    ON UTR.TR_CT_ID = C.CITY_ID
+		  JOIN COUNTRIES CR
+		    ON CR.COUNTRY_ID = C.COUNTRY_ID
+		  LEFT JOIN FVRTS F
+		    ON UTR.USR_TR_PST_ID = F.USR_TR_PST_ID
 		 WHERE UTR.USR_TR_PST_ID = #{_parameter}
 	</select>
 	
@@ -144,14 +207,27 @@
 		     , CEIL (UTR.USR_TR_ST_DT - SYSDATE) AS DEADLINE
 		     , TRUNC((UTR.USR_TR_ED_DT - UTR.USR_TR_ST_DT) * 24 * 60) AS USR_TR_TM
 		     , UTRI.USR_TR_RQ_IMG_ID_URL 
+		     , C.CITY_NAME
+		     , CR.COUNTRY_NAME
 		  FROM USR_TR_RQST UTR
 		  LEFT JOIN USR_TR_RQST_IMG UTRI
-		    ON UTR.USR_TR_PST_ID = UTRI.USR_TR_PST_ID 
+		    ON UTR.USR_TR_PST_ID = UTRI.USR_TR_PST_ID
+		  JOIN CITIES C
+		    ON UTR.TR_CT_ID = C.CITY_ID
+		  JOIN COUNTRIES CR
+		    ON CR.COUNTRY_ID = C.COUNTRY_ID
+		  JOIN REGIONS R
+		    ON R.REGION_ID = CR.REGION_ID
 		 WHERE UTR.USR_TR_ST_DT > SYSDATE
+		<if test="_parameter != null">
+		 	<include refid="com.mate.bbs.dao.UserTourDao.selectRegions" />
+		</if>
 		<if test="_parameter != null">
 			<include refid="com.mate.bbs.dao.UserTourDao.selectSubjectAndContent" />
 		</if>
-		 ORDER BY UTR.USR_TR_PST_ID DESC
+		<if test="_parameter != null">
+		 	<include refid="com.mate.bbs.dao.UserTourDao.order" />
+		</if>
 		<if test="_parameter != null">
 			<include refid="Common.pagination_footer" />
 		</if>
@@ -180,14 +256,30 @@
 	</update>
 	
 	<select id="selectAttachStartHour"
-			parameterType="com.mate.bbs.vo.UserTourWriteVO">
-		SELECT #{inputYear} || ' ' || #{inputStartHour} || ':' || #{inputStartMinute}
+			parameterType="com.mate.bbs.vo.UserTourWriteVO"
+			resultType="string">
+		SELECT #{inputYear} || ' ' || #{inputStartHour}
+ 		  FROM DUAL
+	</select>
+	
+	<select id="selectAttachStartHour2"
+			parameterType="com.mate.bbs.vo.UserTourModifyVO"
+			resultType="string">
+		SELECT #{inputYear} || ' ' || #{inputStartHour}
  		  FROM DUAL
 	</select>
 	
 	<select id="selectAttachEndHour"
-			parameterType="com.mate.bbs.vo.UserTourWriteVO">
-		SELECT #{inputYear} || ' ' || #{inputEndHour} || ':' || #{inputEndMinute}
+			parameterType="com.mate.bbs.vo.UserTourWriteVO"
+			resultType="string">
+		SELECT #{inputYear} || ' ' || #{inputEndHour}
+ 		  FROM DUAL
+	</select>
+	
+	<select id="selectAttachEndHour2"
+			parameterType="com.mate.bbs.vo.UserTourModifyVO"
+			resultType="string">
+		SELECT #{inputYear} || ' ' || #{inputEndHour}
  		  FROM DUAL
 	</select>
 	

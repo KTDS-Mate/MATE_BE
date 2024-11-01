@@ -5,15 +5,29 @@
 }
 
 .subject {
-  display: grid;
-  grid-template-columns: 1fr 4rem;
-  padding: 1rem;
+  padding-top: 1rem;
 }
 
 .wish-button {
   width: 42px;
   height: 40px;
-  background-image: url(../img/tourboard/WishButton.png);
+  background-image: url(/img/tourboard/WishButton.png);
+}
+
+.wish-button:hover {
+	background-image: url(/img/tourboard/CheckedWishButton.png);
+	background-size: 2.6rem;
+	cursor: pointer;
+}
+
+.ttl-wb {
+	display: flex;
+	align-items: center;
+    justify-content: space-between;
+}
+
+.ttl-wb h1 {
+	margin: 0;
 }
 
 .img-price {
@@ -114,7 +128,8 @@
 
 .price-person {
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+    align-items: center;
 }
 
 .price-ad-c {
@@ -134,7 +149,6 @@
 .summation {
   border: 2px solid #f5f6f7;
   width: 75rem;
-  height: 19rem;
   border-radius: 20px;
 }
 
@@ -174,7 +188,8 @@ a:hover {
 
 .guide-dtls-list li {
   display: inline-block;
-  margin-top: 2rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
 }
 
 .want-tour {
@@ -186,7 +201,6 @@ a:hover {
   border: 2px solid #f5f6f7;
   border-radius: 20px;
   width: 75rem;
-  height: 19rem;
 }
 
 .want-time {
@@ -236,11 +250,14 @@ a:hover {
 .list-item {
   display: flex;
   align-items: center;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .background-num {
   display: flex;
-  background-color: #d9d9d9;
+  background-color: #ddd;
+  color: #333;
   width: 40px;
   height: 40px;
   text-align: center;
@@ -249,12 +266,13 @@ a:hover {
   justify-content: center;
   align-items: center;
   margin-right: 1rem;
+  font-weight: bold;
 }
 
 .border-left {
   border-left: 2px solid #333;
   margin-left: 1.2rem;
-  padding-left: 2rem;
+  padding: 0.5rem 0rem 0.5rem 2rem;
 }
 
 .margin-left {
@@ -271,4 +289,18 @@ a:hover {
   border-radius: 20px;
   width: 75rem;
   height: 15rem;
+}
+
+.reserve-btn > button {
+	padding: 1rem;
+	margin-top: 2rem;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	color: #333;
+}
+
+.tr-dtls-p {
+	margin-left: 2rem;
+	margin-right: 2rem;
 }

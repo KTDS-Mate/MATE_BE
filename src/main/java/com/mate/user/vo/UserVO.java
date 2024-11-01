@@ -113,6 +113,11 @@ public class UserVO {
 	
 	private String confirmPwd;
 	
+	/**
+	 * 가이드 경력
+	 */
+	private int usrGdExp;
+
     public String getUsrId() {
         return usrId;
     }

@@ -17,6 +17,7 @@ public class CitiesVO {
 	 */
 	private int countryId;
 	
+
 	private CountriesVO country;
 	
 	private String actCtId;
@@ -27,6 +28,7 @@ public class CitiesVO {
 	public void setUsrId(String usrId) {
 		this.usrId = usrId;
 	}
+
 	public int getCityId() {
 		return cityId;
 	}
@@ -57,6 +59,4 @@ public class CitiesVO {
 	public void setActCtId(String actCtId) {
 		this.actCtId = actCtId;
 	}
-	
-	
 }

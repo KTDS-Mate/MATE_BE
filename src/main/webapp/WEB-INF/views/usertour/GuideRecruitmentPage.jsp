@@ -10,6 +10,8 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
       type="text/css"
       href="/css/usertour/GuideRecruitmentPage.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="/js/usertour/GuideRecruitmentPage.js"></script>
   </head>
   <body>
     <div class="grid">
@@ -20,10 +22,10 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
       <div class="content">
         <div class="grid-rows">
           <div class="subject">
-            <div>
-              <h3>${userTourVO.usrTrTtl}</h3>
+            <div class="ttl-wb" data-pst-id="${userTourVO.usrTrPstId}" >
+              <h1>${userTourVO.usrTrTtl}</h1>
+              <div class="wish-button"></div>
             </div>
-            <div class="wish-button"></div>
           </div>
           <div class="img-price">
             <div class="img-group">
@@ -59,6 +61,11 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                 <div class="price-ad-c">
                   <h2>${userTourVO.usrTrGdHrPrc}$</h2>
                 </div>
+                <c:if test="${sessionScope._LOGIN_USER_.usrIsGd eq 'Y'}">
+	                <div class="reserve-btn">
+	                	<button>예약하기</button>
+	                </div>
+	            </c:if>
               </div>
             </div>
           </div>
@@ -74,7 +81,14 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       <li>성별 : 여자</li>
                     </c:when>
                     <c:otherwise>
-                      <li>성병 : 남자</li>
+                    	<c:choose>
+                    		<c:when test="${userTourVO.gdGndr == 'male'}">
+                    			<li>성별 : 남자</li>
+                    		</c:when>
+                    		<c:otherwise>
+                    			<li>성별 : 상관없음</li>
+                    		</c:otherwise>
+                    	</c:choose>
                     </c:otherwise>
                   </c:choose>
                   <c:choose>
@@ -94,6 +108,9 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       <li>가이드 경력 : ${userTourVO.gdCrr}년 이상</li>
                     </c:otherwise>
                   </c:choose>
+                  <c:if test="${not empty userTourVO.gdWntRq}">
+                  	<li>가이드에게 원하는 것 : ${userTourVO.gdWntRq}</li>
+                  </c:if>
                 </ul>
               </div>
             </div>
@@ -104,11 +121,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                 <h2>투어에서 원하는 것</h2>
               </div>
               <div>
-                <ol class="summation-list">
-                  <c:if test="${not empty userTourVO.usrTrRqDtl}">
-                    <li>${userTourVO.usrTrRqDtl}</li>
-                  </c:if>
-                </ol>
+                 <p class="tr-dtls-p">${userTourVO.usrTrRqDtl}</p>
               </div>
             </div>
           </div>
@@ -120,7 +133,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
               <div class="margin-left">
                 <h2>${userTourVO.usrTrMp}</h2>
                 <div class="flex-div">
-                  <div>
+                  <div class="time-div">
                     <h3>${userTourVO.usrTrStDt} ~ ${userTourVO.usrTrEdDt}</h3>
                   </div>
                   <div class="margin-right"><h4>Open In GoogleMap</h4></div>
@@ -142,13 +155,13 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                         var="userTourSchdl"
                         varStatus="index">
                         <li>
-                          <p class="list-item">
+                          <div class="list-item">
                             <span class="background-num"
                               >${index.index + 1}</span
                             >
                             ${userTourSchdl.trLctns}
-                          </p>
-                          <p class="border-left">${userTourSchdl.trRqst}</p>
+                          </div>
+                          <div class="border-left">${userTourSchdl.trRqst}</div>
                         </li>
                       </c:forEach>
                     </c:when>

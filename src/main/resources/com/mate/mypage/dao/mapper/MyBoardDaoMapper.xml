@@ -4,45 +4,312 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mate.mypage.dao.MyBoardDao">
 
-	<select id="selectBoardCount" parameterType="string" resultType="_int">
+	<resultMap  id="MyBoardVOMap" 
+				type="com.mate.mypage.vo.MyBoardVO"
+				autoMapping="true">
+		<id column="GD_TR_PST_ID" property="gdTrPstId" />
+		
+		<association property="searchCityAndCountryVO" 
+					 javaType="com.mate.mypage.vo.SearchCityAndCountryVO"
+					 autoMapping="true">		 
+			<id column="CITY_ID" property="cityId" />
+			
+			<association property="countriesVO"
+						 javaType="com.mate.common.vo.CountriesVO"
+						 autoMapping="true">
+			<id column="COUNTRY_ID" property="countryId" />			
+			</association>
+		</association>
+	</resultMap>
+	
+	<resultMap  id="TrMyBoardVOMap" 
+				type="com.mate.mypage.vo.TrMyBoardVO"
+				autoMapping="true">
+		<id column="USR_TR_PST_ID" property="usrTrPstId" />
+		
+		<association property="searchCityAndCountryVO" 
+					 javaType="com.mate.mypage.vo.SearchCityAndCountryVO"
+					 autoMapping="true">		 
+			<id column="CITY_ID" property="cityId" />
+			
+			<association property="countriesVO"
+						 javaType="com.mate.common.vo.CountriesVO"
+						 autoMapping="true">
+			<id column="COUNTRY_ID" property="countryId" />			
+			</association>
+		</association>
+	</resultMap>
+	
+	
+	<sql id="selectAllBoardCondition">
+	<if test='search.searchKeyword != null and search.searchKeyword != ""'>
+	
+		<if test="search.searchType == 'gdTrTtl'">
+		AND g.GD_TR_TTL LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+		
+		<if test="search.searchType == 'cityName'">
+		AND c.CITY_NAME LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+
+		
+		<if test="search.searchType == 'countryName'">
+		AND cn.COUNTRY_NAME LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+		
+	</if> 
+	</sql>
+
+	<sql id="countSelectAllBoardCondition">
+	<if test='search.searchKeyword != null and search.searchKeyword != ""'>
+	
+		<if test="search.searchType == 'gdTrTtl'">
+		AND g.GD_TR_TTL LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+		
+		<if test="search.searchType == 'cityName'">
+		AND c.CITY_NAME LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+
+		
+		<if test="search.searchType == 'countryName'">
+		AND cn.COUNTRY_NAME LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+		
+	</if> 
+	</sql>
+	
+	
+	<sql id="selectTrAllBoardCondition">
+	<if test='search.searchKeyword != null and search.searchKeyword != ""'>
+	
+		<if test="search.searchType == 'usrTrTtl'">
+		AND u.USR_TR_TTL LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+		
+		<if test="search.searchType == 'cityName'">
+		AND c.CITY_NAME LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+
+		
+		<if test="search.searchType == 'countryName'">
+		AND cn.COUNTRY_NAME LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+		
+	</if> 
+	</sql>
+
+	<sql id="countTrSelectAllBoardCondition">
+	<if test='search.searchKeyword != null and search.searchKeyword != ""'>
+	
+		<if test="search.searchType == 'usrTrTtl'">
+		AND u.USR_TR_TTL LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+		
+		<if test="search.searchType == 'cityName'">
+		AND c.CITY_NAME LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+
+		
+		<if test="search.searchType == 'countryName'">
+		AND cn.COUNTRY_NAME LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+		
+	</if> 
+	</sql>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+<!-- ===========================================================================================투어리스트파트 -->
+
+<select id="selectTrBoardCount" parameterType="map" resultType="_int">
 		SELECT 
 			COUNT(1)
-		FROM 
-			GD_TR_RCRT 
+		FROM
+		     USR_TR_RQST u
+		INNER JOIN 
+			CITIES c 
+		ON 
+			u.TR_CT_ID = c.CITY_ID 
+		INNER JOIN 
+			COUNTRIES cn
+		ON 
+			c.COUNTRY_ID = cn.COUNTRY_ID 
 		WHERE 
-			ATHR_ID = #{_parameter}
+			u.ATHR_ID = #{loginId}
+		AND 
+        	u.USR_TR_IS_DLT = 'N'
+		<if test="search != null">
+		    <include refid="com.mate.mypage.dao.MyBoardDao.countTrSelectAllBoardCondition"/>
+		</if>
 	</select>
 
 
-    <select id="selectGDMyAllBoard" parameterType="string" resultType="com.mate.mypage.vo.MyBoardVO">
+    <select id="selectTrMyAllBoard" 
+    parameterType="map" 
+    resultMap="TrMyBoardVOMap">
+    
+    <if test="search != null">
+    	 <include refid="Common2.pagination_header"></include>
+    </if>
+    
+    
+    <!-- 
+    USR_TR_PST_ID
+	 ATHR_ID
+	 USR_TR_TTL
+	 USR_TR_ST_DT
+	 USR_TR_IS_DLT
+	 TR_CT_ID
+	 USR_TR_ED_DT
+	 USR_TR_STTS
+     -->
         SELECT
-	        GD_TR_PST_ID
-			,ATHR_ID
-			,USR_ID
-			,GD_TR_TTL
-			,TO_CHAR(GD_TR_ST_DT , 'YYYY-MM-DD HH24:MI') GD_TR_ST_DT
-			,TO_CHAR(GD_TR_ED_DT , 'YYYY-MM-DD HH24:MI') GD_TR_ED_DT
-			,GD_TR_PRPS
-			,GD_TR_MP
-			,GD_TR_PRC
-			,GD_TR_SMRY
-			,TO_CHAR(GD_TR_RSTR_DT , 'YYYY-MM-DD HH24:MI') GD_TR_RSTR_DT
-			,TO_CHAR(GD_TR_MDFY_DT , 'YYYY-MM-DD HH24:MI') GD_TR_MDFY_DT
-			,TO_CHAR(GD_TR_DLT_DT , 'YYYY-MM-DD HH24:MI') GD_TR_DLT_DT
-			,GD_TR_IS_DLT
-			,TR_CT_ID
-			,GD_TR_MX_NP
+	        u.USR_TR_PST_ID 
+			,u.ATHR_ID 
+			,u.USR_TR_TTL 
+			,TO_CHAR(u.USR_TR_ST_DT , 'YYYY-MM-DD HH24:MI') USR_TR_ST_DT
+			,TO_CHAR(u.USR_TR_ED_DT , 'YYYY-MM-DD HH24:MI') USR_TR_ED_DT
+			,u.USR_TR_PRPS 
+			,u.USR_TR_IS_DLT 
+			,u.TR_CT_ID  
+			,c.CITY_ID 
+			,c.CITY_NAME 
+			,c.COUNTRY_ID 
+	  		,cn.COUNTRY_NAME 
+	  		,cn.REGION_ID 
         FROM
-        	GD_TR_RCRT
+        	USR_TR_RQST u
+        INNER JOIN CITIES c 
+				ON u.TR_CT_ID = c.CITY_ID 
+		INNER JOIN COUNTRIES cn
+				ON c.COUNTRY_ID = cn.COUNTRY_ID 
         WHERE
-        	ATHR_ID = #{_parameter}  
+        	u.ATHR_ID = #{loginId}
+        AND 
+        	u.USR_TR_IS_DLT = 'N'  
+	<if test="search != null">
+		<include refid="com.mate.mypage.dao.MyBoardDao.selectTrAllBoardCondition"/>
+	</if>
+	ORDER BY u.USR_TR_ST_DT DESC 
+	<if test="search != null">
+			<include refid="Common2.pagination_footer"></include>					
+    </if>
     </select>
     
 
+	 
+	<update id="deleteTrBoard" parameterType="string">
+	UPDATE 
+		USR_TR_RQST 
+	SET 
+		USR_TR_MDFY_DT = SYSDATE 
+		,USR_TR_DLT_DT = SYSDATE 
+		,USR_TR_IS_DLT = 'Y'
+	WHERE 
+		USR_TR_PST_ID = #{_parameter}
+	</update>
+<!-- ===========================================================================================가이드파트 -->
+
+	<select id="selectBoardCount" parameterType="map" resultType="_int">
+		SELECT 
+			COUNT(1)
+		FROM
+		     GD_TR_RCRT g
+		INNER JOIN 
+			CITIES c 
+		ON 
+			g.TR_CT_ID = c.CITY_ID 
+		INNER JOIN 
+			COUNTRIES cn
+		ON 
+			c.COUNTRY_ID = cn.COUNTRY_ID 
+		WHERE 
+			g.ATHR_ID = #{loginId}
+		AND 
+        	g.GD_TR_IS_DLT = 'N'
+		<if test="search != null">
+		    <include refid="com.mate.mypage.dao.MyBoardDao.countSelectAllBoardCondition"/>
+		</if>
+	</select>
+
+
+    <select id="selectGDMyAllBoard" 
+    parameterType="map" 
+    resultMap="MyBoardVOMap">
+    
+    <if test="search != null">
+    	 <include refid="Common2.pagination_header"></include>
+    </if>
+        SELECT
+	        g.GD_TR_PST_ID 
+			,g.ATHR_ID 
+			,g.USR_ID 
+			,g.GD_TR_TTL 
+			,TO_CHAR(g.GD_TR_ST_DT , 'YYYY-MM-DD HH24:MI') GD_TR_ST_DT
+			,TO_CHAR(g.GD_TR_ED_DT , 'YYYY-MM-DD HH24:MI') GD_TR_ED_DT
+			,g.GD_TR_PRPS 
+			,g.GD_TR_MP 
+			,g.GD_TR_PRC 
+			,g.GD_TR_SMRY 
+			,TO_CHAR(g.GD_TR_RSTR_DT , 'YYYY-MM-DD HH24:MI') GD_TR_RSTR_DT
+			,TO_CHAR(g.GD_TR_MDFY_DT , 'YYYY-MM-DD HH24:MI') GD_TR_MDFY_DT
+			,TO_CHAR(g.GD_TR_DLT_DT , 'YYYY-MM-DD HH24:MI') GD_TR_DLT_DT
+			,g.GD_TR_IS_DLT 
+			,g.TR_CT_ID 
+			,g.GD_TR_MX_NP 
+			,c.CITY_ID 
+			,c.CITY_NAME 
+			,c.COUNTRY_ID 
+	  		,cn.COUNTRY_NAME 
+	  		,cn.REGION_ID 
+        FROM
+        	GD_TR_RCRT g
+        INNER JOIN CITIES c 
+				ON g.TR_CT_ID = c.CITY_ID 
+		INNER JOIN COUNTRIES cn
+				ON c.COUNTRY_ID = cn.COUNTRY_ID 
+        WHERE
+        	g.ATHR_ID = #{loginId}
+        AND 
+        	g.GD_TR_IS_DLT = 'N'  
+	<if test="search != null">
+		<include refid="com.mate.mypage.dao.MyBoardDao.selectAllBoardCondition"/>
+	</if>
+	ORDER BY g.GD_TR_ST_DT DESC 
+	<if test="search != null">
+			<include refid="Common2.pagination_footer"></include>					
+    </if>
+    </select>
+    
+	<!-- 
 	<delete id="deleteGDBoard" parameterType="string">
 	DELETE  
 		FROM GD_TR_RCRT
 	WHERE 
 		GD_TR_PST_ID = #{_parameter}
 	</delete>
+	 -->
+	 
+	<update id="deleteGDBoard" parameterType="string">
+	UPDATE 
+		GD_TR_RCRT 
+	SET 
+		GD_TR_MDFY_DT = SYSDATE 
+		,GD_TR_DLT_DT = SYSDATE 
+		,GD_TR_IS_DLT = 'Y'
+	WHERE 
+		GD_TR_PST_ID = #{_parameter}
+	</update>
 </mapper>
