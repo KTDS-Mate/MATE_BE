@@ -10,11 +10,6 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="/css/MyPageLayout_PaymentDetails.css"
-    />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="/js/mypage/paymentList.js"></script>
@@ -47,7 +42,11 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
             <div class="filter-box">
               <div class="filter-grid">
                 <!-- 날짜 버튼들 -->
-
+				<input
+	              	type="hidden"
+              		name="pageNo"
+              		class="page-no"
+              		value="${searchUserTourVO.pageNo}" />
                 <div class="date-buttons">
                   <a>
                     <div class="align-button" value = "1week">

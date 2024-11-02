@@ -8,7 +8,7 @@ public interface PaymentService {
 	
 	public PaymentListVO getAllPayment();
 	
-	public PaymentListVO getAllMyPayment(String trstId);
+	public PaymentListVO getAllMyPayment(SearchPaymentVO searchPaymentVO);
 	
 	public PaymentVO getPaymentDetail(String payId);
 	

@@ -1,6 +1,8 @@
 package com.mate.payment.vo;
 
-public class SearchPaymentVO {
+import com.mate.common.vo.PaginationVO;
+
+public class SearchPaymentVO extends PaginationVO {
 	
 	private String trstId;
 
@@ -61,8 +63,8 @@ public class SearchPaymentVO {
 	public void setSearchType(String searchType) {
 		this.searchType = searchType;
 	}
-	
-	
+
+
 	
 	
 	

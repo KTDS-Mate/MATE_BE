@@ -1,5 +1,6 @@
 package com.mate.payment.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +29,19 @@ public class PaymentServiceImpl implements PaymentService{
 	}
 	
 	@Override
-	public PaymentListVO getAllMyPayment(String trstId) {
+	public PaymentListVO getAllMyPayment(SearchPaymentVO searchPaymentVO) {
 		PaymentListVO paymentListVO = new PaymentListVO();
-		int cnt = this.paymentDao.selectAllMyPaymentCount(trstId);
+		int cnt = this.paymentDao.selectAllMyPaymentCount(searchPaymentVO);
 		paymentListVO.setPaymentCnt(cnt);
 		if (cnt == 0) {
+			paymentListVO.setPaymentList(new ArrayList<>());
 			return paymentListVO;
 		}
-		List<PaymentVO> paymentList = this.paymentDao.selectAllMyPayment(trstId);
+		// 페이지를 구분하기 위한 listSize 설정
+		searchPaymentVO.setPageCount(10);
+		List<PaymentVO> paymentList = this.paymentDao.selectAllMyPayment(searchPaymentVO);
 		paymentListVO.setPaymentList(paymentList);
+		
 		return paymentListVO;
 	}
 	
@@ -61,7 +66,6 @@ public class PaymentServiceImpl implements PaymentService{
 		int updateCnt = this.paymentDao.updateRefundPayment(payId);
 		return updateCnt > 0;
 	}
-	
 	
 	@Override
 	public PaymentListVO getSearchMyPayment(SearchPaymentVO searchPaymentVO) {
