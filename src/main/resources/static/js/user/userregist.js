@@ -51,25 +51,25 @@ $().ready(function () {
 	});
 	
 	// 정규식을 사용한 사용자 입력 비밀번호값 유효성 검사
-	$("#usrPw").keyup(function() {
-		var usrPw = $(this).val();
-		var confirmPw = $("#confirmPw").val();
+	$("#usrPwd").keyup(function() {
+		var usrPwd = $(this).val();
+		var confirmPwd = $("#confirmPwd").val();
 		
-		if (!passwordRegex.test(usrPw)) {
-			$("#usrPw-error").text("비밀번호: 8~16자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.");
-			$("#usrPw").removeClass("available").addClass("unusable input-error");
+		if (!passwordRegex.test(usrPwd)) {
+			$("#usrPwd-error").text("비밀번호: 8~16자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.");
+			$("#usrPwd").removeClass("available").addClass("unusable input-error");
 		} else {
-			$("#usrPw-error").text("");
-			$("#usrPw").removeClass("unusable input-error").addClass("available");
+			$("#usrPwd-error").text("");
+			$("#usrPwd").removeClass("unusable input-error").addClass("available");
 			
 			// 비밀번호 확인 값이 있을 경우 일치여부 확인
-			if (confirmPw) {
-				if (usrPw !== confirmPw) {
-					$("#confirmPw-error").text("비밀번호가 일치하지 않습니다.");
-					$("#confirmPw").removeClass("available").addClass("unusable input-error");
+			if (confirmPwd) {
+				if (usrPwd !== confirmPwd) {
+					$("#confirmPwd-error").text("비밀번호가 일치하지 않습니다.");
+					$("#confirmPwd").removeClass("available").addClass("unusable input-error");
 				} else {
-					$("#confirmPw-error").text("");
-					$("#confirmPw").removeClass("unusable input-error").addClass("available");
+					$("#confirmPwd-error").text("");
+					$("#confirmPwd").removeClass("unusable input-error").addClass("available");
 				}
 			}
 		}
@@ -77,21 +77,21 @@ $().ready(function () {
 	});
 	
 	// 실시간 비밀번호 입력값 교차 검증
-	$("#confirmPw").keyup(function() {
-		var usrPw = $("#usrPw").val();
-		var confirmPw = $(this).val();
+	$("#confirmPwd").keyup(function() {
+		var usrPwd = $("#usrPwd").val();
+		var confirmPwd = $(this).val();
 		
-		if (!usrPw) {
-			$("#confirmPw-error").text("비밀번호를 입력하세요.");
-			$("#confirmPw").removeClass("available").addClass("unusable input-error");
+		if (!usrPwd) {
+			$("#confirmPwd-error").text("비밀번호를 입력하세요.");
+			$("#confirmPwd").removeClass("available").addClass("unusable input-error");
 			//$("input[type=submit]").attr("disabled", "disabled");
-		} else if (usrPw !== confirmPw){
-			$("#confirmPw-error").text("비밀번호가 일치하지 않습니다.");
-			$("#confirmPw").removeClass("available").addClass("unusable input-error");
+		} else if (usrPwd !== confirmPwd){
+			$("#confirmPwd-error").text("비밀번호가 일치하지 않습니다.");
+			$("#confirmPwd").removeClass("available").addClass("unusable input-error");
 			//$("input[type=submit]").removeAttr("disabled");
 		} else {
-			$("#confirmPw-error").text("");
-			$("#confirmPw").removeClass("unusable input-error").addClass("available");
+			$("#confirmPwd-error").text("");
+			$("#confirmPwd").removeClass("unusable input-error").addClass("available");
 		}
 		toggleSubmitButton();
 	});
@@ -183,12 +183,24 @@ $().ready(function () {
 		$(this).val(fullNumber);
 	});
 	
+	$("#country").change(function () {
+	    // 대표 국적 선택 유효성 검사
+		if ($(this).val() === "") {
+			$("#country-error").text("대표 국적을 선택해주세요.");
+			$(this).addClass("input-error");
+		} else {
+			$("#country-error").text("");
+			$(this).removeClass("input-error");
+		}
+		toggleSubmitButton();
+	});
+	
+	
     // 아이디, 비밀번호, 이메일, 휴대전화번호가 모두 사용 가능한 경우에만 제출 버튼 활성화
     function toggleSubmitButton() {
-        if ($("#usrLgnId").hasClass("available") && $("#usrPw").hasClass("available") 
-			&& $("#usrEml").hasClass("available") && $("#confirmPw").hasClass("available")
-			&& $("#usrPhn").hasClass("available")) 
-			{
+        if ($("#usrLgnId").hasClass("available") && $("#usrPwd").hasClass("available") 
+			&& $("#usrEml").hasClass("available") && $("#confirmPwd").hasClass("available")
+			&& $("#usrPhn").hasClass("available") && $("#country").val() !== "") {
             $("input[type=submit]").removeAttr("disabled");
         
 		} else {

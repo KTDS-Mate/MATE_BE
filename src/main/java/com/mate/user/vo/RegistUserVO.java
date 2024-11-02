@@ -14,10 +14,10 @@ public class RegistUserVO {
 
 	@NotBlank(message = "영문, 숫자, 특수 문자를 포함해서 8자 이상 16자 이하로 입력해주세요.")
 	@Size(min=8, max=16)
-	private String usrPw;
+	private String usrPwd;
 	
 	@NotBlank(message = "비밀번호를 다시 한번 입력해주세요.")
-	private String confirmPw;
+	private String confirmPwd;
 	
 	@NotBlank(message = "성을 입력해주세요.")
 	private String usrLnm;
@@ -38,13 +38,14 @@ public class RegistUserVO {
 	
 	private String salt;
 	
-	@NotBlank(message = "국적을 입력하세요.")
-	private String country;
 	
 	private String authVerified;
 	
 	// 국가 번호 코드
 	private String usrCntCode;
+
+	@NotBlank(message ="국적을 입력하세요.")
+	private String gdRpCntId;
 	
 	public String getAuthVerified() {
 		return authVerified;
@@ -70,12 +71,12 @@ public class RegistUserVO {
 		this.usrLgnId = usrLgnId;
 	}
 
-	public String getUsrPw() {
-		return usrPw;
+	public String getUsrPwd() {
+		return usrPwd;
 	}
 
-	public void setUsrPw(String usrPw) {
-		this.usrPw = usrPw;
+	public void setUsrPwd(String usrPwd) {
+		this.usrPwd = usrPwd;
 	}
 
 	public String getUsrLnm() {
@@ -126,12 +127,12 @@ public class RegistUserVO {
 		this.usrEml = usrEml;
 	}
 
-	public String getConfirmPw() {
-		return confirmPw;
+	public String getConfirmPwd() {
+		return confirmPwd;
 	}
 
 	public void setConfirmPw(String confirmPw) {
-		this.confirmPw = confirmPw;
+		this.confirmPwd = confirmPw;
 	}
 
 	public String getSalt() {
@@ -142,19 +143,23 @@ public class RegistUserVO {
 		this.salt = salt;
 	}
 
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
 	public String getUsrCntCode() {
 		return usrCntCode;
 	}
 
 	public void setUsrCntCode(String usrCntCode) {
 		this.usrCntCode = usrCntCode;
+	}
+
+	public String getGdRpCntId() {
+		return gdRpCntId;
+	}
+
+	public void setGdRpCntId(String gdRpCntId) {
+		this.gdRpCntId = gdRpCntId;
+	}
+
+	public void setConfirmPwd(String confirmPwd) {
+		this.confirmPwd = confirmPwd;
 	}
 }

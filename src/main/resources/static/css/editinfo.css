@@ -1,0 +1,123 @@
+body {
+    background-color: #f7f7f7;
+}
+
+.container {
+    width: 27rem;
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.logo h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.9rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+    width: calc(100% - 10px);
+    padding: 0.6rem;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-group input[type="date"] {
+    padding: 8px 10px;
+}
+
+.form-group .check-btn,
+.form-group .send-code-btn {
+    margin-top: 10px;
+    background-color: #f5c9ae;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.form-group .error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.gender-birth {
+    display: flex;
+    justify-content: space-between;
+}
+
+.gender-birth label {
+    width: 48%;
+}
+
+.gender-birth input,
+.gender-birth select {
+    width: 48%;
+}
+
+.submit-btn {
+    text-align: center;
+}
+
+.submit-btn {
+    background-color: #f5c9ae;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.error {
+  font-size: 0.8rem;
+  color: #a00;
+}
+
+.input-error {
+    border: 2px solid #ff0000 !important; 
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.2); 
+}
+.iti {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 48px; 
+    position: relative;
+}
+
+.iti .iti__flag-container {
+    height: 100%;
+    margin-right: 0.8rem; 
+}
+
+#usrPhn {
+    flex: 1;
+    margin: 0;
+    padding: 0.6rem;
+    height: 100%;
+    box-sizing: border-box; 
+    padding-left: 2.5rem;
+}
