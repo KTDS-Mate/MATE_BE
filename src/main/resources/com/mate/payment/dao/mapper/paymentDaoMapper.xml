@@ -61,6 +61,7 @@
 	 WHERE (USR_TR_TTL IS NOT NULL
     	OR GD_TR_TTL IS NOT NULL)
        AND TRST_ID = #{trstId}
+       AND PAY_CRT_DT > ADD_MONTHS(SYSDATE, -24)       
 	<if test="_parameter != null">
     	<include refid="com.mate.payment.dao.PaymentDao.selectPeriodPayment" />
     	<include refid="com.mate.payment.dao.PaymentDao.selectStatePayment" />
@@ -131,6 +132,7 @@
 	 WHERE (USR_TR_TTL IS NOT NULL
     	OR GD_TR_TTL IS NOT NULL)
        AND TRST_ID = #{trstId}
+       AND PAY_CRT_DT > ADD_MONTHS(SYSDATE, -24)
 	<if test="_parameter != null">
     	<include refid="com.mate.payment.dao.PaymentDao.selectPeriodPayment" />
     	<include refid="com.mate.payment.dao.PaymentDao.selectStatePayment" />

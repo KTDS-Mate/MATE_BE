@@ -108,6 +108,13 @@ td {
     text-align: center;
 }
 
+div.date-buttons > input[type="button"].checked {
+	border: 1px solid #f00;
+	color: #f00
+}
+
+
+
 .page-nav {
 	margin : 0px;
 	padding : 0px;

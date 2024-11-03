@@ -59,6 +59,9 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       type="hidden" 
                       value= "${searchPaymentVO.searchType}"
                       name = "searchType" />
+                    <button
+                      type="button"
+                      onclick="window.location.href='/mypage/payment/list?trstId='+ '${searchPaymentVO.trstId}' ">전체조회</button>
                     <input 
                       id="one-week"
                       class="${searchPaymentVO.searchType eq '일주일' ? 'checked' : ''}"
