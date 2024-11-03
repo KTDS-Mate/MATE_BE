@@ -40,7 +40,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
             <!-- 필터 박스 --------------------------------------------------------------->
             <div class="filter-box">
-              <form class="filter-form">
+              <form class="search-form">
 			  	<input
 	                	type="hidden"
                 		name="trstId"

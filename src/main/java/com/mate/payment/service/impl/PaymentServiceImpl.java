@@ -37,7 +37,7 @@ public class PaymentServiceImpl implements PaymentService{
 			paymentListVO.setPaymentList(new ArrayList<>());
 			return paymentListVO;
 		}
-		// 페이지를 구분하기 위한 listSize 설정
+		// 조회된 항목의 갯수 설정
 		searchPaymentVO.setPageCount(cnt);
 		
 		List<PaymentVO> paymentList = this.paymentDao.selectAllMyPayment(searchPaymentVO);
