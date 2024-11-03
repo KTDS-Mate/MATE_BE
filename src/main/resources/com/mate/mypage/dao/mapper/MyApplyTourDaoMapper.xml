@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mate.mypage.dao.MyApplyTourDao">
+	
+	<select id="selectAllMyTours"
+			parameterType="string"
+			resultType="com.mate.bbs.vo.UserTourVO">
+		SELECT USR_TR_TTL
+		     , GD_ID
+		     , USR_TR_ST_DT
+		     , USR_TR_STTS
+		  FROM USR_TR_RQST
+		 WHERE ATHR_ID = #{_parameter}
+	</select>
+
+	<select id="selectMyTourCount"
+			parameterType="string"
+			resultType="_int">
+		SELECT COUNT(1)
+		  FROM USR_TR_RQST
+		 WHERE ATHR_ID = #{_parameter}
+	</select>
+
+	<update id="updateUserTourStts"
+			parameterType="string">
+		UPDATE USR_TR_RQST 
+		   SET USR_TR_STTS = 'CMPLT'
+		 WHERE USR_TR_PST_ID = #{_parameter}
+	</update>
+
+</mapper>

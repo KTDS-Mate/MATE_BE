@@ -1,17 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/css/common.css" />
-<link rel="stylesheet" type="text/css" href="/css/Mypage_Tourist_Apply.css" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="stylesheet" type="text/css" href="/css/common.css" />
+	<link rel="stylesheet" type="text/css" href="/css/Mypage_Tourist_Apply.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet">
+	<script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="/js/mypage/Mypage_Tourist_Apply.js"></script>
 </head>
 <body>
 	<div class="grid">
@@ -54,150 +57,32 @@
           				</tr>
           			</thead>
           			<tbody>
-          				<tr>
-          					<td>송다함과 함께 하늘로 야르여행입니당당당당당당.</td>
-          					<td>응우옌 똥뿌직쌈</td>
-          					<td>24.11.02</td>
-          					<td>Complete</td>
-          					<td>24.11.06 11:50</td>
-          					<td><input type="button" value="투어 완료" /></td>
-          				</tr>
-          				<tr>
-          					<td>송다함과 함께 하늘로 야르여행입니당당당당당당.</td>
-          					<td>응우옌 응가디우</td>
-          					<td>24.11.02</td>
-          					<td>Complete</td>
-          					<td>24.11.06 11:50</td>
-          					<td><input type="button" value="투어 완료" /></td>
-          				</tr>
-          				<tr>
-          					<td>송다함과 함께 하늘로 야르여행입니당당당당당당.</td>
-          					<td>야르상</td>
-          					<td>24.11.02</td>
-          					<td>Complete</td>
-          					<td>24.11.06 11:50</td>
-          					<td><input type="button" value="투어 완료" /></td>
-          				</tr>
-          				<tr>
-          					<td>송다함과 함께 하늘로 야르여행입니당당당당당당.</td>
-          					<td>응우옌 똥뿌직쌈</td>
-          					<td>24.11.02</td>
-          					<td>Complete</td>
-          					<td>24.11.06 11:50</td>
-          					<td><input type="button" value="투어 완료" /></td>
-          				</tr>
-          				<tr>
-          					<td>송다함과 함께 하늘로 야르여행입니당당당당당당.</td>
-          					<td>응우옌 똥뿌직쌈</td>
-          					<td>24.11.02</td>
-          					<td>Complete</td>
-          					<td>24.11.06 11:50</td>
-          					<td><input type="button" value="투어 완료" /></td>
-          				</tr>
-          				<tr>
-          					<td>송다함과 함께 하늘로 야르여행입니당당당당당당.</td>
-          					<td>응우옌 똥뿌직쌈</td>
-          					<td>24.11.02</td>
-          					<td>Complete</td>
-          					<td>24.11.06 11:50</td>
-          					<td><input type="button" value="투어 완료" /></td>
-          				</tr>
-          				<tr>
-          					<td>송다함과 함께 하늘로 야르여행입니당당당당당당.</td>
-          					<td>응우옌 똥뿌직쌈</td>
-          					<td>24.11.02</td>
-          					<td>Complete</td>
-          					<td>24.11.06 11:50</td>
-          					<td><input type="button" value="투어 완료" /></td>
-          				</tr>
-          				<tr>
-          					<td>송다함과 함께 하늘로 야르여행입니당당당당당당.</td>
-          					<td>응우옌 똥뿌직쌈</td>
-          					<td>24.11.02</td>
-          					<td>Complete</td>
-          					<td>24.11.06 11:50</td>
-          					<td><input type="button" value="투어 완료" /></td>
-          				</tr>
-          				<tr>
-          					<td>송다함과 함께 하늘로 야르여행입니당당당당당당.</td>
-          					<td>응우옌 똥뿌직쌈</td>
-          					<td>24.11.02</td>
-          					<td>Complete</td>
-          					<td>24.11.06 11:50</td>
-          					<td><input type="button" value="투어 완료" /></td>
-          				</tr>
-          				<tr>
-          					<td>송다함과 함께 하늘로 야르여행입니당당당당당당.</td>
-          					<td>응우옌 똥뿌직쌈</td>
-          					<td>24.11.02</td>
-          					<td>Complete</td>
-          					<td>24.11.06 11:50</td>
-          					<td><input type="button" value="투어 완료" /></td>
-          				</tr>
-          				<tr>
-          					<td>송다함과 함께 하늘로 야르여행입니당당당당당당.</td>
-          					<td>응우옌 똥뿌직쌈</td>
-          					<td>24.11.02</td>
-          					<td>Complete</td>
-          					<td>24.11.06 11:50</td>
-          					<td><input type="button" value="투어 완료" /></td>
-          				</tr>
-          				<tr>
-          					<td>송다함과 함께 하늘로 야르여행입니당당당당당당.</td>
-          					<td>응우옌 똥뿌직쌈</td>
-          					<td>24.11.02</td>
-          					<td>Complete</td>
-          					<td>24.11.06 11:50</td>
-          					<td><input type="button" value="투어 완료" /></td>
-          				</tr>
-          				<tr>
-          					<td>송다함과 함께 하늘로 야르여행입니당당당당당당.</td>
-          					<td>응우옌 똥뿌직쌈</td>
-          					<td>24.11.02</td>
-          					<td>Complete</td>
-          					<td>24.11.06 11:50</td>
-          					<td><input type="button" value="투어 완료" /></td>
-          				</tr>
-          				<tr>
-          					<td>송다함과 함께 하늘로 야르여행입니당당당당당당.</td>
-          					<td>응우옌 똥뿌직쌈</td>
-          					<td>24.11.02</td>
-          					<td>Complete</td>
-          					<td>24.11.06 11:50</td>
-          					<td><input type="button" value="투어 완료" /></td>
-          				</tr>
-          				<tr>
-          					<td>송다함과 함께 하늘로 야르여행입니당당당당당당.</td>
-          					<td>응우옌 똥뿌직쌈</td>
-          					<td>24.11.02</td>
-          					<td>Complete</td>
-          					<td>24.11.06 11:50</td>
-          					<td><input type="button" value="투어 완료" /></td>
-          				</tr>
-          				<tr>
-          					<td>송다함과 함께 하늘로 야르여행입니당당당당당당.</td>
-          					<td>응우옌 똥뿌직쌈</td>
-          					<td>24.11.02</td>
-          					<td>Complete</td>
-          					<td>24.11.06 11:50</td>
-          					<td><input type="button" value="투어 완료" /></td>
-          				</tr>
-          				<tr>
-          					<td>송다함과 함께 하늘로 야르여행입니당당당당당당.</td>
-          					<td>응우옌 똥뿌직쌈</td>
-          					<td>24.11.02</td>
-          					<td>Complete</td>
-          					<td>24.11.06 11:50</td>
-          					<td><input type="button" value="투어 완료" /></td>
-          				</tr>
-          				<tr>
-          					<td>송다함과 함께 하늘로 야르여행입니당당당당당당.</td>
-          					<td>응우옌 똥뿌직쌈</td>
-          					<td>24.11.02</td>
-          					<td>Complete</td>
-          					<td>24.11.06 11:50</td>
-          					<td><input type="button" value="투어 완료" /></td>
-          				</tr>
+          				<c:forEach items="${myApplyTourListVO.myApplyTourList}" var="myApplyTourVO">
+          					<tr class="result-sum">
+	          					<td>
+	          						${myApplyTourVO.usrTrTtl}
+	          						<input class="apply-hide" type="hidden" data-stts="${myApplyTourVO.usrTrStts}" />
+	          					</td>
+	          					<td>${myApplyTourVO.gdId}</td>
+	          					<td>${myApplyTourVO.usrTrStDt}</td>
+	          					<c:choose>
+			                      	<c:when test="${myApplyTourVO.usrTrStts eq 'RSRVT'}">
+			                      		<td>예약 중</td>
+			                      	</c:when>
+			                      	<c:when test="${myApplyTourVO.usrTrStts eq 'PRG'}">
+			                      		<td>투어 진행중</td>
+			                      	</c:when>
+			                      	<c:when test="${myApplyTourVO.usrTrStts eq 'CMPLT'}">
+			                      		<td>투어 완료</td>
+			                      	</c:when>
+			                      	<c:otherwise>
+			                      		<td>모집 중</td>
+			                      	</c:otherwise>
+			                      </c:choose>
+	          					<td>?</td>
+	          					<td><input id="success-btn" type="button" value="투어 완료" /></td>
+          					</tr>
+          				</c:forEach>
           			</tbody>
           		</table>
           	</div>

@@ -4,4 +4,5 @@ public class MyApplyTourVO {
 
 	private String pstId;
 	
+	
 }
