@@ -47,8 +47,25 @@
 <select id="selectAllMyPaymentCount" parameterType="com.mate.payment.vo.SearchPaymentVO"
  resultType="_int">
 	SELECT COUNT(1)
-	  FROM PAY_INF
-	 WHERE TRST_ID = #{trstId}
+	  FROM PAY_INF PI
+	 JOIN (SELECT *
+	  		  FROM USR_INF
+	  		 WHERE USR_IS_GD = 'Y') GD
+	    ON GD.USR_ID = PI.GD_ID
+	  JOIN USR_INF TRST
+	    ON PI.TRST_ID = TRST.USR_ID
+	  LEFT JOIN USR_TR_RQST UTR
+	    ON PI.PAY_TR_ID = UTR.USR_TR_PST_ID
+	  LEFT JOIN GD_TR_RCRT GTR
+	    ON PI.PAY_TR_ID = GTR.GD_TR_PST_ID
+	 WHERE (USR_TR_TTL IS NOT NULL
+    	OR GD_TR_TTL IS NOT NULL)
+       AND TRST_ID = #{trstId}
+	<if test="_parameter != null">
+    	<include refid="com.mate.payment.dao.PaymentDao.selectPeriodPayment" />
+    	<include refid="com.mate.payment.dao.PaymentDao.selectStatePayment" />
+    	<include refid="com.mate.payment.dao.PaymentDao.selectTourTypePayment" />
+    </if>
 </select>
 
 <select id="selectAllPayment" resultType="com.mate.payment.vo.PaymentVO">

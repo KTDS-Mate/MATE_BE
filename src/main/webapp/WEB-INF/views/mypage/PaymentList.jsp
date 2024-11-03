@@ -40,54 +40,78 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
             <!-- 필터 박스 --------------------------------------------------------------->
             <div class="filter-box">
-              <div class="filter-grid">
-                <!-- 날짜 버튼들 -->
-				<input
-	              	type="hidden"
-              		name="pageNo"
-              		class="page-no"
-              		value="${searchUserTourVO.pageNo}" />
-                <div class="date-buttons">
-                  <a>
-                    <div class="align-button" value = "1week">
-                      <span class="sample1"> 최근일주일</span>
-                    </div>
-                  </a>
-                  <a>
-                    <div class="align-button" value = "1mon">
-                      <span class="sample1"> 1개월</span>
-                    </div>
-                  </a>
-                  <a>
-                    <div class="align-button" value="3mon">
-                      <span class="sample1"> 3개월</span>
-                    </div>
-                  </a>
-                  <a href="https://www.naver.com/">
-                    <div class="align-button" value="6mon">
-                      <span class="sample1"> 6개월</span>
-                    </div>
-                  </a>
-                </div>
+              <form class="filter-form">
+			  	<input
+	                	type="hidden"
+                		name="trstId"
+                		class="page-no"
+                		value="${searchPaymentVO.trstId}" />
+			  	<input
+	                	type="hidden"
+                		name="pageNo"
+                		class="page-no"
+                		value="${searchPaymentVO.pageNo}" />
+                <div class="filter-grid">
+                  <!-- 날짜 버튼들 -->
+                  <div class="date-buttons">
+                    <input 
+                      id="date-hidden"
+                      type="hidden" 
+                      value= "${searchPaymentVO.searchType}"
+                      name = "searchType" />
+                    <input 
+                      id="one-week"
+                      class="${searchPaymentVO.searchType eq '일주일' ? 'checked' : ''}"
+                      type="button" 
+                      value= "일주일" />
+                    <input 
+                      id="one-month"
+                      class="${searchPaymentVO.searchType eq '1개월' ? 'checked' : ''}"
+                      type="button" 
+                      value= "1개월" />
+                    <input 
+                      id="three-month"
+                      class="${searchPaymentVO.searchType eq '3개월' ? 'checked' : ''}"
+                      type="button" 
+                      value= "3개월" />
+                    <input 
+                      id="six-month"
+                      class="${searchPaymentVO.searchType eq '6개월' ? 'checked' : ''}"
+                      type="button" 
+                      value= "6개월" />
+                    <input 
+                      id="custom-period"
+                      class="${searchPaymentVO.searchType eq '기간검색' ? 'checked' : ''}"
+                      type="button" 
+                      value= "기간검색" />
+                  </div>
+              
+                  <!-- 날짜 입력란 -->
+                  <div class="date-range">
+                    <input id="startDate" type="date" class="startDate" value="${searchPaymentVO.startDate}" name="startDate" />
+                    ~
+                    <input id="endDate" type="date" class="endDate" value="${searchPaymentVO.endDate}" name="endDate"/>
+                  </div>
+              
+                  <!-- 투어 타입 선택 -->
+                    <select class="select-form" name ="tourType">
+                      <option value="" ${"" eq searchPaymentVO.tourType ? "selected" : ""}>투어타입</option>
+                      <option value="TOURIST" ${"TOURIST" eq searchPaymentVO.tourType ? "selected" : ""}>여행자</option>
+                      <option value="GUIDE" ${"GUIDE" eq searchPaymentVO.tourType ? "selected" : ""}>가이드</option>
+                    </select>
 
-                <!-- 날짜 입력란 -->
-                <div class="date-range">
-                  <input type="date" value="2023-09-18" />
-                  ~
-                  <input type="date" value="2024-09-18" />
+                    <select class="select-form" name ="payState">
+                      <option value="" ${"" eq searchPaymentVO.payState ? "selected" : ""}>결제 상태</option>
+                      <option value="WAITING" ${"WAITING" eq searchPaymentVO.payState ? "selected" : ""}>결제대기</option>
+                      <option value="COMPLETE" ${"COMPLETE" eq searchPaymentVO.payState ? "selected" : ""}>완료</option>
+                      <option value="REFUND" ${"REFUND" eq searchPaymentVO.payState ? "selected" : ""}>환불</option>
+                      <option value="CANCEL" ${"CANCEL" eq searchPaymentVO.payState ? "selected" : ""}>취소</option>
+                    </select>
+              		
+                  <!-- 조회 버튼 -->
+                  <button>조회</button>
                 </div>
-
-                <!-- 투어명 선택 -->
-                <div class="tour-name">
-                  <select>
-                    <option value="">투어명</option>
-                    <!-- 추가 옵션 -->
-                  </select>
-                </div>
-
-                <!-- 조회 버튼 -->
-                <button>조회</button>
-              </div>
+              </form>
             </div>
             <!-------------------------------------------------------------->
 
@@ -134,6 +158,44 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                   </c:choose>
                 </tbody>
               </table>
+              <!--  페이지네이션 -->
+              <ul class="page-nav">
+	      		<c:if test="${searchPaymentVO.hesprevGroup}">
+	      			<li>
+		      			<a href="javascript:movePage(0);">
+		      				처음
+		      			</a>
+		      		</li>
+	      			<li>
+	      				<a href="javascript:movePage(${searchPaymentVO.prevGroupStartPageNo});">
+	      					이전
+	      				</a>
+	      			</li>
+	      		</c:if>
+	      		<c:forEach begin="${searchPaymentVO.groupStartPageNo}"
+	      			   end="${searchPaymentVO.groupEndPageNo}"
+	      			   step="1"
+	      			   var="p">
+	      			<li class="${p eq searchPaymentVO.pageNo ? 'active': ''}">
+	      				<a href="javascript:movePage(${p});">
+		      				${p + 1}
+	      				</a>
+		      		</li>
+	      		</c:forEach>
+	      		<c:if test="${searchPaymentVO.hasNextGroup}">
+	      			<li>
+	      				<a href="javascript:movePage(${searchPaymentVO.nextGroupStartPageNo});">
+	      					다음
+		      			</a>
+	      			</li>
+	      			<li>
+	      				<a href="javascript:movePage(${searchPaymentVO.pageCount-1 });">
+		      				마지막
+		      			</a>
+		      		</li>
+	      	    </c:if>
+	      	  </ul>
+      </div>
             </div>
           </div>
         </div>

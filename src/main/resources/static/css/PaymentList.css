@@ -107,3 +107,22 @@ td {
     margin: 1.5rem auto;
     text-align: center;
 }
+
+.page-nav {
+	margin : 0px;
+	padding : 0px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+}
+
+.page-nav > li {
+	list-style:none;
+	padding: 0.5rem;
+}
+
+
+.page-nav > li.active > a{
+	color: #f00;
+	font-weight: 900;
+}
