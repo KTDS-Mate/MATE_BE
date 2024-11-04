@@ -13,7 +13,7 @@
       rel="stylesheet"
     />
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
-    <script type="text/javascript" src="/js/guideReviewCarousel.js"></script>
+    <script type="text/javascript" src="/js/guidetour/guideReviewCarousel.js"></script>
   </head>
   <body>
     <div class="grid">
