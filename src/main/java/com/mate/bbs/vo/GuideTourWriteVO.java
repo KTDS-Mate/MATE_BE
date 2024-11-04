@@ -60,10 +60,7 @@ public class GuideTourWriteVO {
 	 * 투어를 진행할 도시 아이디 fk
 	 */
 	private int trCtId;
-	/**
-	 * 투어 날짜
-	 */
-	private String gdTrDt;
+	
 	/**
 	 * 투어 요약(요구사항)
 	 */
@@ -92,7 +89,11 @@ public class GuideTourWriteVO {
 	 * 투어 작성자의 ID VO
 	 */
 	private String athrId;
-	
+	/**
+	 * 리뷰 평점 알리아스
+	 */
+	private double avgRvw;
+
 	public String getGdTrPstId() {
 		return gdTrPstId;
 	}
@@ -165,12 +166,6 @@ public class GuideTourWriteVO {
 	public void setTrCtId(int trCtId) {
 		this.trCtId = trCtId;
 	}
-	public String getGdTrDt() {
-		return gdTrDt;
-	}
-	public void setGdTrDt(String gdTrDt) {
-		this.gdTrDt = gdTrDt;
-	}
 	public String getGdTrSmry() {
 		return gdTrSmry;
 	}
@@ -213,5 +208,10 @@ public class GuideTourWriteVO {
 	public void setAthrId(String athrId) {
 		this.athrId = athrId;
 	}
-	
+	public double getAvgRvw() {
+		return avgRvw;
+	}
+	public void setAvgRvw(double avgRvw) {
+		this.avgRvw = avgRvw;
+	}
 }

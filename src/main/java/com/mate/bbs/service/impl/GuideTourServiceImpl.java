@@ -41,9 +41,8 @@ public class GuideTourServiceImpl implements GuideTourService{
 		}
 		List<GuideTourVO> guideTourList = this.guideTourDao.selectAllGuideTour(searchGuideTourVO);
 		
-		searchGuideTourVO.setPageCount(guideTourListCount);
-		
 		searchGuideTourVO.setListSize(5);
+		searchGuideTourVO.setPageCount(guideTourListCount);
 		
 		GuideTourListVO guideTourListVO = new GuideTourListVO();
 		guideTourListVO.setGdTrPstCnt(guideTourListCount);
@@ -57,7 +56,11 @@ public class GuideTourServiceImpl implements GuideTourService{
 		
 		GuideTourVO guideTourVO = this.guideTourDao.selectOneGuideTour(gdTrPstId);
 		List<GuideTourDetailInfoVO> tourDetailInfoList = this.guideTourDao.selectTourDetailInfoList(gdTrPstId);
+		List<GuideTourScheduleInfoVO> tourScheduleInfoList = this.guideTourDao.selectTourScheduleList(gdTrPstId);
+		List<GuideTourProvidedVO> tourProvidedInfoList = this.guideTourDao.selectTourProvidedList(gdTrPstId);
 		guideTourVO.setGuideTourDetailInfoList(tourDetailInfoList);
+		guideTourVO.setGuideTourScheduleInfoList(tourScheduleInfoList);
+		guideTourVO.setGuideTourProvidedList(tourProvidedInfoList);
 		
 		return guideTourVO;
 	}
@@ -111,7 +114,14 @@ public class GuideTourServiceImpl implements GuideTourService{
 	}
 	@Transactional
 	@Override
-	public boolean modifyGuideTourModify(GuideTourModifyVO guideTourModifyVO) {
+	public boolean modifyGuideTour(GuideTourModifyVO guideTourModifyVO) {
+		// 가이드가 입력한 날짜를 받아와서 포멧에 맞춤
+		String startHour = this.guideTourDao.selectAttachModifyStartHour(guideTourModifyVO);
+		String endHour = this.guideTourDao.selectAttachModifyEndHour(guideTourModifyVO);
+		// 포멧에 맞춘 시간을 담아준다.
+		guideTourModifyVO.setGdTrRstrDt(startHour);
+		guideTourModifyVO.setGdTrEdDt(endHour);
+		
 		int guideTourUpdateCount = this.guideTourDao.updateGuideTour(guideTourModifyVO);
 		return guideTourUpdateCount > 0;
 	}

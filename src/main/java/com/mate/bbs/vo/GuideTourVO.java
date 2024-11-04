@@ -18,7 +18,7 @@ public class GuideTourVO {
 	 */
 	private String athrId;
 	/**
-	 * 예약한 회원 아이디
+	 * 투어를 예약한 여행자 아이디
 	 */
 	private String usrId;
 	/**

@@ -56,6 +56,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
       >투어 요청 목록</a
     >
   </div>
-  <div><a href="">가이드 투어 목록</a></div>
+  <div><a href="/guidetour/list?pageNo=0&listSize=5&usrLgnId=${sessionScope._LOGIN_USER_.usrLgnId}&usrIsGd=${sessionScope._LOGIN_USER_.usrIsGd}"
+  	  >가이드 투어 목록</a></div>
   <div><a href="">가이드 목록</a></div>
 </div>

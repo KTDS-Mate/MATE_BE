@@ -13,6 +13,31 @@ img {
   padding: 2rem;
 }
 
+input.checked2 {
+  color: #00a8;
+  font-weight: bold;
+}
+
+
+.flex-list-insert-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.insert-tour-btn {
+  background-color: #fefae0;
+  padding: 0.5rem;
+  font-size: small;
+  border-radius: 10px;
+  margin-left: 14rem;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.insert-tour-btn:hover {
+  background-color: #faedcd;
+}
+
 div.my-tour {
   text-align: center;
   display: flex;
@@ -38,6 +63,14 @@ div.my-tour {
   border-radius: 22px;
   justify-content: space-between;
 }
+
+.search-area > select {
+	border: 0;
+	border-radius: 22px;
+	outline: none;
+	margin-left: 0.5rem;
+}
+
 /* 입력창의 너비 */
 .search-input {
   font-size: 16px;
@@ -83,7 +116,6 @@ div.my-tour {
 
 .list-view-option {
   display: flex;
-  gap: 10px; /* Space between each item */
   font-family: Arial, sans-serif;
   font-size: 14px;
   margin-top: 2rem;
@@ -91,26 +123,32 @@ div.my-tour {
   margin-left: 13rem;
   margin-bottom: 1rem;
   justify-content: space-between;
+  
 }
 
-.list-view-option > div:first-child:after {
-  content: "";
+.list-view-option input {
+	border: none;
+	background-color: #FFF;
+	
+}
+
+.list-view-option input:first-child {
+	border: 0;
+}
+
+.list-view-option input:hover {
+	color: #00a;
+  	cursor: pointer;
 }
 
 .tour {
   margin-left: 1rem;
 }
 
-.list-view-option div {
-  color: #333;
-  display: flex;
-  margin-left: 1rem;
-}
-
 .list-view-option div::after {
   content: "|";
-  margin-left: 0.8rem;
   color: #333;
+  margin-right: 0.2rem;
 }
 
 .list-view-option div:last-child::after {

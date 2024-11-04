@@ -68,15 +68,11 @@ pageEncoding="UTF-8" %>
                 <div class="price">
                   <span>${guideTourVO.gdTrPrc} $</span>
                 </div>
-                <!-- <div class="adultPrice">
-                  <span>Adult : 300$</span>
-                </div>
-                <div class="childPrice">
-                  <span>Child : 100$</span>
-                </div> -->
-                <div class="reserveButton">
-                  <span onclick="location.href='index.html'">예약 요청</span>
-                </div>
+                <c:if test="${sessionScope._LOGIN_USER_.usrIsGd eq 'N'}">
+	                <div class="reserveButton">
+	                  <span onclick="location.href='index.html'">예약 요청</span>
+	                </div>
+                </c:if>
               </div>
             </div>
           </div>

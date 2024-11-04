@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -14,6 +15,7 @@ import com.mate.bbs.vo.GuideTourListVO;
 import com.mate.bbs.vo.GuideTourVO;
 import com.mate.bbs.vo.GuideTourWriteVO;
 import com.mate.bbs.vo.SearchGuideTourVO;
+import com.mate.bbs.vo.UserTourVO;
 import com.mate.user.vo.UserVO;
 
 import jakarta.validation.Valid;
@@ -32,6 +34,9 @@ public class GuideTourController {
 		GuideTourListVO guideTourListVO = this.guideTourService.getAllGuideTour(searchGuideTourVO);
 		model.addAttribute("guideTourListVO", guideTourListVO);
 		model.addAttribute("searchGuideTourVO", searchGuideTourVO);
+		
+		System.out.println("타입" + searchGuideTourVO.getSearchType());
+		System.out.println("키워드" + searchGuideTourVO.getSearchKeyword());
 		
 		return "guidetour/guide_total_tourlist";
 	}
@@ -65,5 +70,17 @@ public class GuideTourController {
 		this.guideTourService.createNewGuideTour(guideTourWriteVO);
 		
 		return "redirect:/guidetour/list";
+	}
+	@GetMapping("/guidetour/Modify/{gdTrPstId}")
+	public String viewGuideTourModifyPage(@PathVariable String gdTrPstId
+										, Model model
+										, @SessionAttribute("_LOGIN_USER_") UserVO loginUserVO) {
+		GuideTourVO guideTourVO = this.guideTourService.getOneGuideTour(gdTrPstId);
+		if(!guideTourVO.getAthrId().equals(loginUserVO.getUsrLgnId())) {
+			throw new IllegalArgumentException("잘못된 접근입니다.");
+		}
+		model.addAttribute("guideTourVO", guideTourVO);
+		
+		return "guidetour/Tourist_Modify";
 	}
 }

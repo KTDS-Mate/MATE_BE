@@ -71,8 +71,16 @@ public class GuideTourDaoImpl extends SqlSessionDaoSupport implements GuideTourD
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachStartHour", guideTourWriteVO);
 	}
 	@Override
+	public String selectAttachModifyStartHour(GuideTourModifyVO guideTourModifyVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachModifyStartHour", guideTourModifyVO);
+	}
+	@Override
 	public String selectAttachEndHour(GuideTourWriteVO guideTourWriteVO) {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachEndHour", guideTourWriteVO);
+	}
+	@Override
+	public String selectAttachModifyEndHour(GuideTourModifyVO guideTourModifyVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachModifyEndHour", guideTourModifyVO);
 	}
 	@Override
 	public int insertNewDetailInfo(GuideTourDetailInfoVO guideTourDetailInfoVO) {
@@ -90,6 +98,14 @@ public class GuideTourDaoImpl extends SqlSessionDaoSupport implements GuideTourD
 	@Override
 	public List<GuideTourDetailInfoVO> selectTourDetailInfoList(String gdTrPstId) {
 		return this.getSqlSession().selectList(NAMESPACE + ".selectTourDetailInfoList", gdTrPstId);
+	}
+	@Override
+	public List<GuideTourProvidedVO> selectTourProvidedList(String gdTrPstId) {
+		return this.getSqlSession().selectList(NAMESPACE + ".selectTourProvidedList", gdTrPstId);
+	}
+	@Override
+	public List<GuideTourScheduleInfoVO> selectTourScheduleList(String gdTrPstId) {
+		return this.getSqlSession().selectList(NAMESPACE + ".selectTourScheduleList", gdTrPstId);
 	}
 	
 }
