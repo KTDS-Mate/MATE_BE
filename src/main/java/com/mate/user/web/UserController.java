@@ -1,8 +1,11 @@
 package com.mate.user.web;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.mate.common.vo.CountriesVO;
 import com.mate.user.service.UserService;
 import com.mate.user.vo.LoginUserVO;
 import com.mate.user.vo.RegistUserVO;
@@ -25,17 +29,26 @@ import jakarta.validation.Valid;
 @Controller
 public class UserController {
 
+	Logger logger = LoggerFactory.getLogger(UserController.class);
+	
 	@Autowired
 	UserService userService;
 	
 	@GetMapping("/user/regist")
 	public String viewCreateUserPage(Model model) {
 		model.addAttribute("registUserVO", new RegistUserVO());
+		
+		// countries 리스트 추가
+		List<CountriesVO> countriesList = userService.getAllCountries();
+		model.addAttribute("countriesList", countriesList);
+		
 		return "user/userregist";
 	}
 	
 	@PostMapping("/user/regist")
 	public String doCreateUser(@Valid RegistUserVO registUserVO, BindingResult bindingResult, Model model) {
+		
+		logger.debug("countryId Pk값 들어오는지 확인 (gdRpCntId): {}", registUserVO.getGdRpCntId());
 		
 		// 이메일 인증이 되지 않을 경우 회원가입 진행 불가 설정
 		if (!"true".equals(registUserVO.getAuthVerified())) {
@@ -44,8 +57,8 @@ public class UserController {
 		}
 		
 		// 비밀번호가 불일치될 경우 회원 가입 진행 불가 설정
-		if (!registUserVO.getUsrPw().trim().equals(registUserVO.getConfirmPw().trim())) {
-			bindingResult.rejectValue("confirmPw", "error_password", "비밀번호가 일치하지 않습니다.");
+		if (!registUserVO.getUsrPwd().trim().equals(registUserVO.getConfirmPwd().trim())) {
+			bindingResult.rejectValue("confirmPwd", "error_password", "비밀번호가 일치하지 않습니다.");
 			model.addAttribute("registUserVO", registUserVO);
 			return "user/userregist";
 		}
@@ -140,6 +153,107 @@ public class UserController {
 	public String doLogout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/";
+	}
+	
+	// 휴대전화번호 수정
+	@GetMapping("/user/editphone")
+	public String viewEditPhonePage(@SessionAttribute(name = "_LOGIN_USER_", required= false) UserVO userVO, Model model) {
+		
+		logger.debug("UserVO null check: {}", userVO);
+		
+		if (userVO == null) {
+			return "redirect:/user/login";
+		}
+		model.addAttribute("userVO", userVO);
+		return "user/editphn";
+	}
+	
+	@PostMapping("/user/editphone")
+	public String doEditPhone(@SessionAttribute(name = "_LOGIN_USER_", required= false) UserVO userVO , 
+							  @RequestParam String newPhn, Model model) {
+		
+		if (userVO == null ) {
+			return "redirect:/user/login";
+		}
+		
+		try {
+			boolean isUpdated = userService.updateUserPhoneNumber(userVO.getUsrLgnId(), newPhn);
+
+			if (isUpdated) {
+				userVO.setUsrPhn(newPhn);
+				model.addAttribute("success", "휴대전화번호가 성공적으로 변경되었습니다.");
+			} else {
+				model.addAttribute("errorMessage", "휴대전화번호 변경에 실패하였습니다.");
+			}
+		} catch(IllegalArgumentException e) {
+			model.addAttribute("phoneError", e.getMessage());
+		}
+		return "mypage/editinfo";
+	}
+	
+	@GetMapping("/user/editpypeml")
+	public String viewEditPaypalPage(@SessionAttribute(name="_LOGIN_USER_", required=false) UserVO userVO, Model model) {
+		
+		if (userVO == null) {
+			return "redirect:/user/login";
+		}
+		model.addAttribute("userVO", userVO);
+		return "user/editpypeml";
+		
+	}	
+	
+	@PostMapping("/user/editpypeml")
+	public String doEditPaypalEmail(@SessionAttribute(name = "_LOGIN_USER_", required= false) UserVO userVO, 
+									@RequestParam String usrPypEml, Model model) {
+		if (userVO == null) {
+			return "redirect:/user/login";
+		}
+		
+		try {
+			boolean isUpdated = userService.updateUserPaypalEmail(userVO.getUsrLgnId(), usrPypEml);
+			
+			if (isUpdated) {
+				userVO.setUsrPypEml(usrPypEml);
+				model.addAttribute("success", "페이팔 이메일이 성공적으로 변경되었습니다.");
+			} else {
+				model.addAttribute("errorMessage", "휴대전화번호 변경에 실패하였습니다.");
+			}
+		} catch(IllegalArgumentException e) {
+			model.addAttribute("paypalEmailError", e.getMessage());
+		}
+		return "redirect:mypage/edit-profile/choice";
+	}
+	
+	@GetMapping("/user/editpwd")
+	public String viewEditPassword(@SessionAttribute(name = "_LOGIN_USER_", required= false) UserVO userVO, Model model) {
+		if (userVO == null) {
+			return "redirect:/user/login";
+		}
+		model.addAttribute("userVO", userVO);
+		return "user/editpwd";
+	}
+	
+	@PostMapping("/user/editpwd")
+	public String viewEditPassword(@SessionAttribute(name = "_LOGIN_USER_", required=false) UserVO userVO, 
+								   @RequestParam String newPassword,
+								   @RequestParam String confirmPassword, Model model) {
+		// 비밀번호와 비밀번호 확인 입력값 대조
+		if (!newPassword.equals(confirmPassword)) {
+			model.addAttribute("errorMessage", "비밀번호가 일치하지 않습니다.");
+			return "/user/editpwd";
+		}
+		
+		try {
+			boolean isUpdated = userService.updateUserPassword(userVO, newPassword);
+			if (isUpdated) {
+				model.addAttribute("successMessage", "비밀번호가 변경되었습니다.");
+			} else {
+				model.addAttribute("errorMessage", "비밀번호 변경에 실패했습니다.");
+			}
+		} catch (IllegalArgumentException e) {
+			model.addAttribute("errorMessage", "오류가 발생했습니다: " + e.getMessage());
+		}
+		return "user/editinfo";
 	}
 	
 	/*

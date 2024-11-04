@@ -1,0 +1,211 @@
+div.my-page > ul.list > li.payment {
+  color: #333;
+}
+
+div.content-grid {
+  display: grid;
+  grid-template-columns: 13rem 1fr;
+  column-gap: 3rem;
+}
+
+div.my-tour {
+  border: 2px solid #ffeedb;
+  border-radius: 20px;
+}
+
+.tour-list-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.border {
+  margin: 0 auto;
+  width: 60rem;
+  border-top: 1px solid #000;
+}
+
+.tour-list-top div {
+  margin-left: 2rem;
+}
+
+.tour-list {
+  margin: 1rem auto;
+  width: fit-content;
+}
+
+.sample {
+  width: 768px;
+  height: 35px;
+  flex-grow: 0;
+  margin: 0 80px 37px 62px;
+  font-family: Inter;
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #c6c6c6;
+}
+
+.filter-box {
+  border: 2px solid #333;
+  border-radius: 20px;
+  margin: 0 2rem;
+  flex-grow: 0;
+  padding: 1rem 1rem;
+}
+
+.align-button {
+  font-size: 1rem;
+  text-align: center;
+  width: 7.1rem;
+  flex-grow: 0;
+  padding: 1rem 5px;
+  border: solid 2px #000;
+  background-color: #fff;
+}
+
+.search-block {
+  display: flex;
+  margin: 0.5rem 0;
+  justify-content: space-between;
+}
+
+.date-buttons {
+  display: flex;
+}
+.search-block div input {
+  outline: none;
+  border: 1px solid #222;
+  background-color: #fff;
+  padding: 0.5rem;
+  margin-left: -1px;
+}
+
+.search-block div select {
+  outline: none;
+  border: 1px solid #222;
+  background-color: #fff;
+  padding: 0.5rem;
+  width: 7rem;
+}
+
+.date-buttons input:nth-child(2) {
+  margin-left: 0;
+  border-radius: 4px 0 0 4px;
+}
+
+.date-buttons input:nth-child(7) {
+  border-radius: 0 4px 4px 0;
+}
+
+input:hover {
+  cursor: pointer;
+}
+
+div.date-buttons > input[type="button"].checked {
+  border: 1px solid #f00;
+  color: #f00;
+  position: relative;
+  z-index: 1;
+}
+
+.search-submit-btn {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.search-submit-btn button {
+  outline: none;
+  border: 1px solid #222;
+  background-color: #c4e1f6;
+  padding: 0.5rem;
+  width: 7rem;
+}
+
+.search-submit-btn button:hover {
+  background-color: #b7e0ff;
+  cursor: pointer;
+}
+
+.payment-table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-align: center;
+  width: 60rem;
+}
+
+.payment-table th {
+  border: 1px solid #87a2ff;
+  border-right: 0;
+  padding: 1rem 0.5rem 1rem 0.5rem;
+  background-color: #c4d7ff;
+  color: #333;
+}
+.payment-table tbody {
+  font-size: 0.8rem;
+}
+.elements-list tr:hover {
+  cursor: pointer;
+}
+.payment-table th:last-child {
+  border-right: 1px solid #87a2ff;
+}
+.payment-table td {
+  border: 1px solid #87a2ff;
+  border-right: 0;
+  padding: 1rem 0.5rem;
+  background-color: #fff;
+  color: #333;
+}
+
+.payment-table td:last-child {
+  border-right: 1px solid #87a2ff;
+}
+.payment-table tbody td:nth-child(1) {
+  width: 7rem;
+}
+.payment-table tbody td:nth-child(2) {
+  width: 6rem;
+}
+.payment-table tbody td:nth-child(3) {
+  width: 5rem;
+}
+.payment-table tbody td:nth-child(4) {
+  width: 20rem;
+}
+.payment-table tbody td:nth-child(5) {
+  width: 6rem;
+}
+.payment-table tbody td:nth-child(6) {
+  width: 5rem;
+}
+.payment-table tbody td:nth-child(7) {
+  width: 5rem;
+}
+
+.guide-text {
+  margin: 1.5rem auto;
+  text-align: center;
+}
+
+.page-nav {
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.page-nav > li {
+  list-style: none;
+  padding: 0.5rem;
+}
+
+.page-nav > li.active > a {
+  color: #f00;
+  font-weight: 900;
+}

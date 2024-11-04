@@ -7,11 +7,18 @@
   <head>
     <meta charset="UTF-8" />
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="/css/userlogin.css" />
+    <link rel="stylesheet" type="text/css" href="/css/user/userlogin.css" />
+    <link rel="stylesheet" type="text/css" href="/css/user/common.css" />
+    <link rel="stylesheet" type="text/css" href="/css/MainPage.css" />
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="/js/user/userlogin.js"></script>
   </head>
   <body>
+      <div class="header">
+        <!-- 헤더 공통파일 -->
+        <jsp:include page="../header.jsp"></jsp:include>
+      </div>
+      
     <div class="login-container">
       <div class="login-box">
         <form:form class="login-form" modelAttribute="loginUserVO" method="post" action="/user/login">
@@ -42,11 +49,16 @@
           <button type="submit" class="login-btn">로그인</button>
         
         <div class="login-options">
-          <a href="#">회원 가입</a> | 
+          <a href="/user/regist">회원 가입</a> | 
           <a href="#">아이디 찾기</a> | 
           <a href="#">비밀번호 찾기</a>
         </div>
 		</form:form>
       </div>
+    </div>
+    
+   <div class="footer">
+      <!-- footer 공통파일 -->
+      <jsp:include page="../footer.jsp"></jsp:include>
     </div>
   </body>

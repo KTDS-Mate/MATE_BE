@@ -2,15 +2,14 @@ div.header-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 80rem;
-  height: 8rem;
-  border-bottom: 1px solid #000;
-
+  width: 100%;
+  height: 5rem;
+  border-bottom: 2px solid lightgray;
 }
 
-a{
-	text-decoration: none;
-	color: black;
+a {
+  text-decoration: none;
+  color: black;
 }
 
 div.logo {
@@ -19,17 +18,20 @@ div.logo {
 
 div.logo img {
   width: auto;
-  height: 5rem;
+  height: 10rem;
 }
 
 div.header-center-menu {
   display: flex;
   align-items: center;
+  height: 5rem;
+  border-bottom: 2px solid lightgray;
 }
 
 .header-right-menu {
   display: flex;
   align-items: center;
+  margin-right: 1rem;
 }
 
 .header-center-menu div {
@@ -50,10 +52,10 @@ div.header-center-menu {
 
 img.alram-icon {
   width: auto;
-  height: 2.5rem;
+  height: 1.5rem;
 }
 
 img.message-icon {
   width: auto;
-  height: 2.5rem;
+  height: 1.5rem;
 }

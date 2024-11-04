@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>회원가입</title>
-    <link rel="stylesheet" type="text/css" href="/css/userregist.css">
+    <link rel="stylesheet" type="text/css" href="/css/user/userregist.css">
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="/js/user/userlogin.js"></script>
     <script type="text/javascript" src="/js/user/userregist.js"></script>
@@ -16,6 +16,12 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.min.js"></script>
 </head>
 <body>
+
+    <div class="header">
+      <!-- 헤더 공통파일 -->
+      <jsp:include page="../header.jsp"></jsp:include>
+    </div>
+
     <div class="container">
         <div class="logo">
         </div>
@@ -32,15 +38,15 @@
             </div>
             
             <div class="form-group">
-                <label for="usrPw">비밀번호</label>
-                <form:password path="usrPw" id="usrPw" />
-                <div class="error" id="usrPw-error"></div>
+                <label for="usrPwd">비밀번호</label>
+                <form:password path="usrPwd" id="usrPwd" />
+                <div class="error" id="usrPwd-error"></div>
             </div>
             
             <div class="form-group">
-                <label for="confirmPw">비밀번호 확인</label>
-                <form:password path="confirmPw" id="confirmPw" />
-                <div class="error" id="confirmPw-error"></div>
+                <label for="confirmPwd">비밀번호 확인</label>
+                <form:password path="confirmPwd" id="confirmPwd" />
+                <div class="error" id="confirmPwd-error"></div>
             </div>
             
             <div class="form-group">
@@ -56,9 +62,14 @@
             </div>
             
             <div class="form-group">
-                <label for="name">국적</label>
-                <form:input path="country" id="country" />
-                <form:errors path="country" element="div" cssClass="error" />
+                <label for="name">대표국적</label>
+                <form:select path="gdRpCntId" id="gdRpCntId">
+                <form:option value="">선택하세요.</form:option>
+                	<c:forEach items="${countriesList}" var="country">
+                		<form:option value="${country.countryId}">${country.countryName}</form:option>
+               		</c:forEach>
+              		</form:select>
+                <form:errors path="gdRpCntId" element="div" cssClass="error" />
             </div>
             
 			<div class="form-group">
@@ -99,11 +110,16 @@
             
             <!-- 인증 여부 서버 전송 -->
             <input type="hidden" id="authVerified" name="authVerified" value="false" />
-            
+           
             <div class="form-group submit-btn">
                 <input type="submit" value="회가입" />
             </div>
         </form:form>
     </div>
+    <div class="footer">
+      <!-- footer 공통파일 -->
+      <jsp:include page="../footer.jsp"></jsp:include>
+    </div>
+    
 </body>
 </html>

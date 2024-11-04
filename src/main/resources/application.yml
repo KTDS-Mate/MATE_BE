@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: dev
   application:
     name: mate
   datasource:
@@ -18,24 +20,46 @@ spring:
       "mail.smtp.starttls.enable": true
       "mail.smtp.starttls.required": true
 
+
+  servlet:
+    multipart:
+      # 애플리케이션이 받을 수 있는 최대 업로드 용량에 대한 설정(100MB)
+      max-file-size: 104857600
+      # 한 사용자가 업로드 할 수 있는 최대 업로드 용량에 대한 설정(10MB)
+      max-request-size: 10485760
+app:
+  multipart:
+    base-dir: /Users/moomin/Downloads/uploadfiles
+    obfuscation:
+      enable: true
+      hide-ext:
+        enable: false
+
 # 아래는 포트원 API키와 시크릿 키인데 절대 공개되면 안된다.
 portone:
   api:
     key: 8408511610228667
     secret: fWQcZ0aEmO4NgPxu2cs8gNe8ODxM9YHf0A7FwlkxmtlMa6rvaXQ5RrBBqcQvfMOmUv0EsxfzTMYNF5Ts
 
+
 mybatis:
   # mybatis-config.xml 파일의 위치를 지정
   config-location: classpath:mybatis/mybatis-config.xml
   # classpath -> target 폴더의 classes 폴더
   mapper-locations: classpath:com/mate/**/dao/mapper/*Mapper.xml  
-  
-#    servlet:
-#       multipart:
-#         # 애플리케이션이 받을 수 있는 최대 업로드 용량에 대한 설정(100MB)
-#         max-file-size: 104857600
-#         # 한 사용자가 업로드 할 수 있는 최대 업로드 용량에 대한 설정(10MB)
-#         max-request-size: 10485760
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+# prod profile 전용 설정
+app:
+  multipart:
+#   base-dir: /Users/moomin/Downloads/uploadfiles
+    base-dir: /usr/local/src/tomcat/apache-tomcat-10.1.31/uploadfiles 
+
 #     # mybatis 설정 파일의 경로 지정
 #   mybatis:
 #     # mybatis-config.xml 파일의 위치를 지정

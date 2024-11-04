@@ -10,11 +10,11 @@ body {
 div.grid {
   display: grid;
   grid-template-columns: 1fr 80rem 1fr;
-  row-gap: 1rem;
+  /* row-gap: 1rem; */
 }
 
 div.header {
-  grid-column: 2 / 2;
+  grid-column: 2 / 3;
 }
 
 div.content {

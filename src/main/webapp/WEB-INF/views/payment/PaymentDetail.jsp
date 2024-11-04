@@ -13,7 +13,7 @@
 	<ul>
   		<li class="payId">${paymentVO.payId}</li>
   		<li class=trstId>${paymentVO.trstId}</li>
-  		<li class="gdFnm">${paymentVO.trstFnm}</li>
+  		<li class="trstFnm">${paymentVO.trstFnm}</li>
   		<li class="gdId">${paymentVO.gdId}</li>
   		<li class="gdFnm">${paymentVO.gdFnm}</li>
   		<li class="payTrTp">${paymentVO.payTrTp}</li>
@@ -23,18 +23,21 @@
   		<li class="payCsh">${paymentVO.payCsh}</li>
   		<li class="payCrtDt">${paymentVO.payCrtDt}</li>
   		<li class="payCmpltDt">${paymentVO.payCmpltDt}</li>	<!-- 얘 없음 -->
-  		<li class="payKey">${paymentVO.impUid}</li>
-  		<li class="payKey">${paymentVO.impMid}</li>
+  		<li class="impUid">${paymentVO.impUid}</li>
+  		<li class="impMid">${paymentVO.impMid}</li>
   		<li class="payMthd">${paymentVO.payMthd}</li>	<!-- 얘 없음 -->
   		<li class="payCrrnc">${paymentVO.payCrrnc}</li>
   		<li class="payStt">${paymentVO.payStt}</li>
 	</ul>
-	<button class="do">변조 검사</button>
+	<div>
+    <button class="doPay">결제 시작</button>
   	<button class="getToken">Access Token 받기</button>
+  	</div>
     <button class="kakaopay-btn">카카오페이 결제</button>
     <button class="tosspayment-btn">토스페이 통합 결제</button>
     <button class="KG-payment">KG이니시스 통합 결제</button>
     <button class="paypal-payment">페이팔 결제</button>
     <button class="only-tosspay">토스페이 결제</button>
+	<div><button class="refund">환불하기</button></div>
   </body>
 </html>

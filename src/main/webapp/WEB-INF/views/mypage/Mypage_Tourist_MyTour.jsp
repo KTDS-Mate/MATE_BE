@@ -82,11 +82,24 @@
                               <div>날짜 : ${board.usrTrStDt} ~ ${board.usrTrEdDt}</div>
                               <div>지역 : ${board.searchCityAndCountryVO.countriesVO.countryName} /
                                 ${board.searchCityAndCountryVO.cityName}</div>
-                              <div>예약 상태 : 예약중</div>
+                              <c:choose>
+			                      	<c:when test="${board.usrTrStts eq 'RSRVT'}">
+			                      		<div>예약 상태 : 예약 중</div>
+			                      	</c:when>
+			                      	<c:when test="${board.usrTrStts eq 'PRG'}">
+			                      		<div>예약 상태 : 투어 진행중</div>
+			                      	</c:when>
+			                      	<c:when test="${board.usrTrStts eq 'CMPLT'}">
+			                      		<div>예약 상태 : 투어 완료</div>
+			                      	</c:when>
+			                      	<c:otherwise>
+			                      		<div>예약 상태 : 모집 중</div>
+			                      	</c:otherwise>
+			                  </c:choose>
                             </div>
 
                             <div class="right-align">
-                              <a href="">수정</a>
+                              <a href="/usertour/modify/${board.usrTrPstId}">수정</a>
                               /
                               <a
                                 href="javascript:deleteTour('${sessionScope._LOGIN_USER_.usrLgnId}', '${board.usrTrPstId}')">삭제</a>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mate.mypage.dao.MyApplyTourDao">
+	
+	<resultMap id="myApplyUserVOMap"
+			   type="com.mate.mypage.vo.MyApplyUserTourVO"
+			   autoMapping="true">
+		<id column="GD_TR_PST_ID" property="gdTrPstId" />
+		<association property="userVO"
+					 javaType="com.mate.user.vo.UserVO"
+					 autoMapping="true">
+			<id column="USR_ID" property="usrId" />
+		</association>
+		<association property="paymentVO"
+					 javaType="com.mate.payment.vo.PaymentVO"
+					 autoMapping="true">
+			<id column="PAY_ID" property="payId" />
+		</association>
+	</resultMap>
+	<!-- 가이드 -->
+	<resultMap id="myApplyGuideVOMap"
+			   type="com.mate.mypage.vo.MyApplyGuideTourVO"
+			   autoMapping="true">
+		<id column="USR_TR_PST_ID" property="usrTrPstId" />
+		<association property="userVO"
+					 javaType="com.mate.user.vo.UserVO"
+					 autoMapping="true">
+			<id column="USR_ID" property="usrId" />
+		</association>
+		<association property="paymentVO"
+					 javaType="com.mate.payment.vo.PaymentVO"
+					 autoMapping="true">
+			<id column="PAY_ID" property="payId" />
+		</association>
+	</resultMap>
+	
+	<sql id="user-searchCondition">
+		<if test='search.searchKeyword != null and search.searchKeyword != ""'>
+			AND GT.GD_TR_TTL LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+	</sql>
+	
+	<sql id="guide-searchCondition">
+		<if test='search.searchKeyword != null and search.searchKeyword != ""'>
+			AND UT.USR_TR_TTL LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+	</sql>
+
+	
+	
+	
+	
+	<select id="selectAllMyApplyTours"
+			parameterType="map"
+			resultMap="myApplyUserVOMap">
+	<if test="search != null">
+    	 <include refid="Common2.pagination_header"></include>
+    </if>
+		SELECT GT.GD_TR_PST_ID
+			 , GT.GD_TR_TTL 
+		     , GT.ATHR_ID 
+		     , GT.GD_TR_ST_DT 
+		     , GT.GD_TR_STTS
+		     , U.USR_LNM 
+		     , U.USR_FNM
+		     , PIF.PAY_TR_TP 
+		     , PIF.PAY_STT 
+		     , PIF.PAY_CMPLT_DT 
+		  FROM GD_TR_RCRT GT
+		  LEFT JOIN USR_INF U
+		    ON GT.ATHR_ID = U.USR_LGN_ID
+		  LEFT JOIN PAY_INF PIF
+		    ON GT.GD_TR_PST_ID = PIF.PAY_TR_ID 
+		 WHERE GT.USR_ID = #{usrId}
+	<if test="search != null">
+		<include refid="com.mate.mypage.dao.MyApplyTourDao.user-searchCondition"/>
+	</if>
+	<if test="search != null">
+			<include refid="Common2.pagination_footer"></include>					
+    </if>
+	</select>
+
+
+
+
+
+
+
+
+
+
+	<select id="selectMyTourCount"
+			parameterType="map"
+			resultType="_int">
+		SELECT COUNT(1)
+		  FROM GD_TR_RCRT
+		 WHERE USR_ID = #{athrId}
+	<if test="search != null">
+		<include refid="com.mate.mypage.dao.MyApplyTourDao.user-searchCondition"/>
+	</if>
+	</select>
+
+
+
+
+
+
+
+	<update id="updateGuideTourStts"
+			parameterType="string">
+		UPDATE GD_TR_RCRT 
+		   SET GD_TR_STTS = 'CMPLT'
+		 WHERE GD_TR_PST_ID = #{_parameter}
+	</update>
+
+
+
+
+
+	<select id="selectAllMyApplyToursForGuide"
+			parameterType="map"
+			resultMap="myApplyGuideVOMap">
+	<if test="search != null">
+    	 <include refid="Common2.pagination_header"></include>
+    </if>
+		SELECT UT.USR_TR_PST_ID
+			 , UT.USR_TR_TTL
+		     , UT.GD_ID
+		     , UT.USR_TR_ST_DT
+		     , UT.USR_TR_STTS
+		     , UI.USR_LNM
+		     , UI.USR_FNM 
+		     , PIF.PAY_TR_TP 
+		     , PIF.PAY_STT 
+		     , PIF.PAY_CMPLT_DT 
+		  FROM USR_TR_RQST UT
+		  LEFT JOIN USR_INF UI
+		    ON UT.ATHR_ID = UI.USR_LGN_ID
+		  LEFT JOIN PAY_INF PIF
+		    ON UT.USR_TR_PST_ID = PIF.PAY_TR_ID 
+		 WHERE UT.GD_ID = #{usrId}
+	<if test="search != null">
+		<include refid="com.mate.mypage.dao.MyApplyTourDao.guide-searchCondition"/>
+	</if>
+	<if test="search != null">
+			<include refid="Common2.pagination_footer"></include>					
+    </if>
+	</select>
+
+
+
+
+
+
+	<select id="selectMyTourCountForGuide"
+			parameterType="string"
+			resultType="_int">
+		SELECT COUNT(1)
+		  FROM USR_TR_RQST
+		 WHERE GD_ID = #{athrId}
+	<if test="search != null">
+		<include refid="com.mate.mypage.dao.MyApplyTourDao.guide-searchCondition"/>
+	</if>
+	</select>
+
+
+
+
+
+
+	<update id="updateUserTourStts"
+			parameterType="string">
+		UPDATE USR_TR_RQST 
+		   SET USR_TR_STTS = 'CMPLT'
+		 WHERE USR_TR_PST_ID = #{_parameter}
+	</update>
+
+</mapper>

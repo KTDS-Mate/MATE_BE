@@ -47,14 +47,11 @@ public class UserTourVO {
 	private String gdCrr;
 	/** 가이드에게 원하는 사항 **/
 	private String gdWntRq;
-	/** 가이드 구인 게시글 예약 상태 **/
+	/** 가이드 구인 게시글 투어 상태 (RCRTNG : 모집 중, RSRVT : 예약 중, PRG : 투어 진행중, CMPLT: 투어 완료) **/
 	private String usrTrStts;
 	/** 여행자가 입력한 투어 종료일시 **/
 	private String usrTrEdDt;
 	
-	/**
-	 * 게시글 작성자의 정보를 담은 VO
-	 */
 	private UserVO userVO;
 	
 	/**
@@ -66,6 +63,10 @@ public class UserTourVO {
 	 * 투어 일정 리스트
 	 */
 	private List<UserTourSchdlVO> userTourSchdlList;
+	/**
+	 * 사용자가 즐겨찾기 한 즐겨찾기
+	 */
+	private FavoriteVO favoriteVO;
 	
 	/**대륙 별 검색에 사용**/
 	
@@ -95,6 +96,13 @@ public class UserTourVO {
 	/**투어 총 소요 시간**/
 	private String usrTrTm;
 	
+	
+	public FavoriteVO getFavoriteVO() {
+		return favoriteVO;
+	}
+	public void setFavoriteVO(FavoriteVO favoriteVO) {
+		this.favoriteVO = favoriteVO;
+	}
 	public String getUsrTrPstId() {
 		return usrTrPstId;
 	}

@@ -32,10 +32,10 @@ public interface GuideTourService {
      * @param guideTourModifyVO : 가이드 투어 수정 VO
      * @return
      */
-    public boolean modifyGuideTourModify(GuideTourModifyVO guideTourModifyVO);
+    public boolean modifyGuideTour(GuideTourModifyVO guideTourModifyVO);
     
     /**
-     * 가이드 투어 삭제하는 메서드 ( 소프트 딜리트 )
+     * 가이드 투어 삭제 ( 소프트 딜리트, gdTrIsDlt -> 'Y')
      * @param gdTrPstId : 가이드 투어 게시글 아이디
      * @return
      */

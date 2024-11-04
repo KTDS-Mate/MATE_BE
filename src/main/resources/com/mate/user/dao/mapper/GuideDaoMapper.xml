@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mate.user.dao.GuideDao">
+
+	<resultMap id="GuideInfoResultMap" type="com.mate.user.vo.RegistGuideVO" >
+		<id property="usrId" column="USR_ID"/>
+		<result property="usrLnm" column="USR_LNM"/>
+		<result property="usrFnm" column="USR_FNM"/>
+		<result property="usrBd" column="USR_BD"/>
+		<result property="usrPhn" column="USR_PHN"/>
+		<result property="usrGndr" column="USR_GNDR"/>
+		<result property="usrIsGd" column="USR_IS_GD" />
+		<result property="usrEml" column="USR_EML"/>
+		<result property="usrSlfIntdctn" column="USR_SLF_INTDCTN"/>
+		<result property="usrAvgRtng" column="USR_AVG_RTNG"/>
+		<result property="usrGdExp" column="USR_GD_EXP"/>
+		<result property="gdRpCntId" column="GD_RP_CNT_ID"/>
+		<result property="countryName" column="COUNTRY_NAME"/>
+		<result property="gdPrflImg" column="GD_PRFL_IMG"/>
+		<result property="gdIdImg" column="GD_ID_IMG"/>
+		<result property="gdCbcImg" column="GD_CBC_IMG"/>
+		<result property="usrPypEml" column="USR_PYP_EML"/>
+
+		<collection property="cities" ofType="com.mate.common.vo.CitiesVO" >
+			<id property="cityId" column="CITY_CITY_ID"/>
+			<result property="cityName" column="CITY_CITY_NAME"/>
+				
+			<association property="country" javaType="com.mate.common.vo.CountriesVO">
+				<id property="countryId" column="CITY_COUNTRY_ID"/>
+				<result property="countryName" column="CITY_COUNTRY_NAME"/>
+			</association>
+		</collection>
+		
+		<collection property="licenses" ofType="com.mate.common.vo.LicenseVO">
+			<id property="lcnId" column="LICENSE_GD_LCN_ID"></id>
+			<result property="lcnNm" column="LICENSE_GD_LCN_NM"></result>
+			<result property="lcnImg" column="LICENSE_GD_LCN_IMG"></result>
+		</collection>
+	</resultMap>
+
+    <!-- 가이드 정보와 활동 도시/국가를 가져옴 -->
+	<select id="selectGuideInfo" parameterType="String" resultMap="GuideInfoResultMap" resultOrdered="true">
+		 SELECT U.USR_ID AS USR_ID 
+		      , U.USR_LGN_ID AS USR_LGN_ID 
+		      , U.USR_LNM AS USR_LNM 
+		      , U.USR_FNM AS USR_FNM 
+		      , U.USR_GNDR AS USR_GNDR
+		      , U.USR_IS_GD AS USR_IS_GD
+		      , U.USR_EML AS USR_EML 
+		      , U.USR_PHN AS USR_PHN 
+		      , TO_CHAR(U.USR_BD, 'YYYY-MM-DD') AS USR_BD
+		      , U.USR_SLF_INTDCTN AS USR_SLF_INTDCTN
+		      , U.USR_AVG_RTNG AS USR_AVG_RTNG
+		      , U.USR_GD_EXP AS USR_GD_EXP
+		      , U.GD_RP_CNT_ID AS GD_RP_CNT_ID
+		      , U.GD_PRFL_IMG AS GD_PRFL_IMG 
+		      , U.GD_ID_IMG AS GD_ID_IMG 
+		      , U.GD_CBC_IMG AS GD_CBC_IMG 
+		      , U.USR_PYP_EML AS USR_PYP_EML
+		      , C.COUNTRY_NAME AS COUNTRY_NAME
+		      , L.GD_LCN_ID AS LICENSE_GD_LCN_ID
+		      , L.GD_LCN_NM AS LICENSE_GD_LCN_NM
+		      , L.GD_LCN_IMG AS LICENSE_GD_LCN_IMG
+		      , CT.CITY_ID AS CITY_CITY_ID
+		      , CT.CITY_NAME AS CITY_CITY_NAME
+		      , CNT.COUNTRY_ID AS CITY_COUNTRY_ID
+		      , CNT.COUNTRY_NAME AS CITY_COUNTRY_NAME
+		   FROM USR_INF U
+		   LEFT JOIN COUNTRIES C
+		     ON U.GD_RP_CNT_ID = C.COUNTRY_ID
+		   LEFT JOIN GD_LCN L
+		     ON U.USR_ID = L.USR_ID
+		   LEFT JOIN GD_ACT_CT GAC
+		     ON U.USR_ID = GAC.USR_ID
+		   LEFT JOIN CITIES CT
+		     ON GAC.CITY_ID = CT.CITY_ID
+		   LEFT JOIN COUNTRIES CNT
+		     ON CT.COUNTRY_ID = CNT.COUNTRY_ID
+		  WHERE U.USR_ID = #{usrId}
+		  ORDER BY U.USR_ID, L.GD_LCN_ID, CT.CITY_ID
+    </select>
+
+    <!-- 가이드 프로필 정보 삽입 -->
+	<update id="insertGuideProfile" parameterType="com.mate.user.vo.RegistGuideVO">
+		<!-- 가이드 프로필 정보 삽입 -->
+		UPDATE USR_INF 
+		   SET GD_PRFL_IMG = #{gdPrflImg}
+		     , USR_SLF_INTDCTN = #{usrSlfIntdctn}
+		     , USR_PYP_EML = #{usrPypEml}
+		     , USR_GD_EXP = #{usrGdExp}
+		     , GD_CBC_IMG = #{gdCbcImg}
+		     , GD_ID_IMG = #{gdIdImg}
+		     , USR_IS_GD = 'Y'
+		     , GD_RGST_DT = SYSDATE
+		     , USR_MDFY_DT = SYSDATE
+		 WHERE USR_ID = #{usrId}
+	</update>
+	
+	<!-- 가이드 라이센스 삽입 -->
+	<insert id="insertGuideLicense" parameterType="com.mate.common.vo.LicenseVO">
+		INSERT INTO GD_LCN
+			 ( GD_LCN_ID
+			 , GD_LCN_NM
+			 , GD_LCN_IMG
+			 , USR_ID)
+		VALUES
+			 ( #{lcnId}
+			 , NVL(#{lcnNm}, '라이센스 없음')
+			 , NVL(#{lcnImg}, '라이센스 없음')
+			 , #{usrId})
+	</insert>
+	
+	<update id="updateGuideLicense" parameterType="com.mate.common.vo.LicenseVO">
+		UPDATE GD_LCN
+		   SET 
+			   GD_LCN_NM = NVL(#{lcnNm}, '라이센스 없음')
+		     , GD_LCN_IMG = NVL(#{lcnImg}, '라이센스 없음')
+		 WHERE GD_LCN_ID = #{lcnId}
+	</update>
+	
+	<!-- 도시정보 삽입 -->
+	<insert id="insertGuideCity" parameterType="com.mate.common.vo.CitiesVO">
+		INSERT INTO GD_ACT_CT
+			 ( ACT_CT_ID
+			 , CITY_ID
+			 , USR_ID)
+		VALUES
+			 ( #{actCtId}
+			 , #{cityId}
+			 , #{usrId})
+	</insert>
+ 
+    <!-- 가이드 프로필 정보 수정 -->
+    <update id="updateGuideProfile" parameterType="com.mate.user.vo.RegistGuideVO">
+		UPDATE USR_INF
+		   SET GD_PRFL_IMG = #{gdPrflImg}
+		     , USR_SLF_INTDCTN = #{usrSlfIntdctn}
+		     , USR_PYP_EML = #{usrPypEml}
+		     , USR_GD_EXP = #{usrGdExp}
+		     , USR_LNM = #{usrLnm}
+		     , USR_FNM = #{usrFnm}
+		     , USR_BD = #{usrBd}
+		     , USR_PHN = #{usrPhn}
+		     , GD_CBC_IMG = #{gdCbcImg}
+		     , GD_ID_IMG = #{gdIdImg}
+		 WHERE USR_ID = #{usrId}
+    </update>
+
+	<select id="selectCitiesByCountry" parameterType="String" resultType="com.mate.common.vo.CitiesVO">
+		SELECT CITY_ID
+ 		     , CITY_NAME
+		  FROM CITIES
+		 WHERE COUNTRY_ID = #{countryId}
+	</select>
+	
+	<select id="selectAllCountries" parameterType="String" resultType="com.mate.common.vo.CountriesVO">
+		 SELECT COUNTRY_NAME
+		      , COUNTRY_ID
+		   FROM COUNTRIES
+	</select>
+
+	<select id="getNextLicenseId" resultType="String">
+		SELECT 'LCN-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_GD_LCN_PK.NEXTVAL, 6, '0') AS LCN_ID FROM DUAL
+	</select>
+
+	<select id="getNextCityId" resultType="String">
+		SELECT 'CT-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_GD_ACT_CT_PK.NEXTVAL, 6, '0') AS ACT_CT_ID FROM DUAL
+	</select>
+	
+</mapper>
