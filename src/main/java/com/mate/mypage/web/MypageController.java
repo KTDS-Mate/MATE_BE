@@ -30,20 +30,6 @@ public class MypageController {
     }
 
 
-//-----------------------------------------------즐겨찾기
-
-    @GetMapping("/tr-wishlist")
-    public String viewTRWishlist() {
-
-        return "mypage/Mypage_Tourist_Wishlist";
-    }
-
-
-    @GetMapping("/gd-wishlist")
-    public String viewGDWishlist() {
-
-        return "mypage/Mypage_Guide_Wishlist";
-    }
 
 
 //--------------------------------------------------고객 등록 리뷰

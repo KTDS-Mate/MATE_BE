@@ -29,8 +29,33 @@
 		</association>
 	</resultMap>
 	
+	<resultMap  id="TrMyWishVOMap" 
+				type="com.mate.mypage.vo.TrMyWishVO"
+				autoMapping="true">
+		<id column="FAV_ID" property="favId" />
+		
+		<association property="trMyBoardVO"
+						 javaType="com.mate.mypage.vo.TrMyBoardVO"
+						 autoMapping="true">
+			<id column="GD_TR_PST_ID" property="gdTrPstId" />			
+		
+		<association property="searchCityAndCountryVO" 
+					 javaType="com.mate.mypage.vo.SearchCityAndCountryVO"
+					 autoMapping="true">		 
+			<id column="CITY_ID" property="cityId" />
+			
+			<association property="countriesVO"
+						 javaType="com.mate.common.vo.CountriesVO"
+						 autoMapping="true">
+			<id column="COUNTRY_ID" property="countryId" />	
+					
+				</association>
+			</association>
+		</association>
+	</resultMap>
 	
-
+	
+<!-- ===========================================================가이드파트 -->
 
 	<select id="countWish" parameterType="string" resultType="_int">
 		SELECT 
@@ -52,7 +77,7 @@
 		WHERE 
 			g.ATHR_ID = #{loginId}
 		AND 
-        	g.GD_TR_IS_DLT = 'N'
+    		f.FAV_IS_DLT = 'N'
 	</select>
 
 
@@ -103,12 +128,107 @@
 		c.COUNTRY_ID = cn.COUNTRY_ID
 	WHERE
         	g.ATHR_ID = #{loginId}
-        AND 
-        	g.GD_TR_IS_DLT = 'N'
+    AND 
+    		f.FAV_IS_DLT = 'N'
 	ORDER BY g.GD_TR_ST_DT DESC 
 	<if test="search != null">
 			<include refid="Common2.pagination_footer"></include>					
     </if>
     </select>
+    
+    <update id="deleteWish" parameterType="string">
+    UPDATE 
+    	FVRTS 
+	SET 
+		FAV_IS_DLT = 'Y'
+		,FAV_DLT_AT = SYSDATE
+	WHERE 
+		FAV_ID = #{_parameter}
+    </update>
+    
+    
+    
+    <!-- ===========================================================투어리스트파트 -->
 
+
+	<select id="countTrWish" parameterType="string" resultType="_int">
+		SELECT 
+			COUNT(1)
+		FROM
+		     FVRTS f
+		INNER JOIN 
+		     USR_TR_RQST u
+		ON 
+			f.USR_TR_PST_ID =u.USR_TR_PST_ID  
+		INNER JOIN 
+			CITIES c 
+		ON 
+			u.TR_CT_ID = c.CITY_ID 
+		INNER JOIN 
+			COUNTRIES cn
+		ON 
+			c.COUNTRY_ID = cn.COUNTRY_ID 
+		WHERE 
+			u.ATHR_ID = #{loginId}
+		AND 
+    		f.FAV_IS_DLT = 'N'
+	</select>
+
+
+	<select id="selectTrAllWish" parameterType="map" resultMap="TrMyWishVOMap">
+	<if test="search != null">
+    	 <include refid="Common2.pagination_header"></include>
+    </if>
+	SELECT 
+		f.FAV_ID
+		,f.FAV_CR_AT
+		,f.FAV_IS_DLT
+		,f.FAV_DLT_AT
+		,f.USR_LGN_ID
+		,f.USR_TR_PST_ID  
+		,u.ATHR_ID
+		,u.USR_TR_TTL 
+		,TO_CHAR(u.USR_TR_ST_DT , 'YYYY-MM-DD HH24:MI') USR_TR_ST_DT
+		,TO_CHAR(u.USR_TR_ED_DT , 'YYYY-MM-DD HH24:MI') USR_TR_ED_DT
+		,u.USR_TR_GD_HR_PRC 
+		,u.USR_TR_IS_DLT  
+		,u.USR_TR_STTS 
+		,u.TR_CT_ID 
+		,c.CITY_NAME 
+		,c.COUNTRY_ID 
+	  	,cn.COUNTRY_NAME 
+	  	,cn.REGION_ID  
+	FROM 
+		FVRTS f
+	INNER JOIN 
+		USR_TR_RQST u
+	ON 
+		f.USR_TR_PST_ID = u.USR_TR_PST_ID 
+	INNER JOIN 
+		CITIES c  
+	ON 
+		u.TR_CT_ID = c.CITY_ID 
+	INNER JOIN 
+		COUNTRIES cn
+	ON 
+		c.COUNTRY_ID = cn.COUNTRY_ID
+	WHERE
+        	u.ATHR_ID = #{loginId}
+    AND 
+    		f.FAV_IS_DLT = 'N'
+	ORDER BY u.USR_TR_ST_DT DESC 
+	<if test="search != null">
+			<include refid="Common2.pagination_footer"></include>					
+    </if>
+    </select>
+    
+    <update id="deleteTrWish" parameterType="string">
+    UPDATE 
+    	FVRTS 
+	SET 
+		FAV_IS_DLT = 'Y'
+		,FAV_DLT_AT = SYSDATE
+	WHERE 
+		FAV_ID = #{_parameter}
+    </update>
 </mapper>

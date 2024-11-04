@@ -1,4 +1,3 @@
-@charset "UTF-8";
 div.content-grid {
   display: grid;
   grid-template-columns: 13rem 1fr;
@@ -34,7 +33,6 @@ div.my-tour {
   border: 2px solid #f5f6f7;
   border-radius: 20px;
   width: 95%;
-  height: 110rem;
   margin: 2rem;
 }
 
@@ -50,59 +48,76 @@ div.my-tour {
   margin-bottom: 2rem;
 }
 
-.sort-button {
-  height: 3.9rem;
+
+
+.search-type {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  height: 3rem;
   border: 1px solid #333;
-  border-radius: 10px;
+  border-radius: 5px;
   margin-left: 2rem;
   text-align: center;
   width: 7rem;
 }
 
-#search-content {
-  margin-left: 3rem;
-  height: 3.9rem;
+
+.search-keyword {
+  margin-left: 1.5rem;
+  height: 3rem;
+  font-size:1.2rem;
   width: 30rem;
   outline: none;
-  border-radius: 10px;
+  border-radius: 5px;
 }
+
+.search-btn {
+  font-size: 18px;
+  font-weight: bold;
+  height: 3rem;
+  width: 5rem;
+  border: 1px solid #333;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 1rem;
+  text-align: center;
+  background-color: #fff6ec;
+}
+
 
 input::placeholder {
   font-weight: bold;
   padding-left: 2rem;
 }
 
-.search-button {
-  height: 3.9rem;
-  width: 5rem;
-  border: 1px solid #333;
-  border-radius: 10px;
-  margin-left: 1rem;
-  text-align: center;
-  background-color: #fff6ec;
-}
+
 
 .list-area {
   border: 2px solid #f5f6f7;
   border-radius: 20px;
   width: 95%;
-  height: 90rem;
   margin: 0 auto;
 }
 
 .list-item {
   border: 2px solid #f5f6f7;
   border-radius: 20px;
-  width: 90%;
+  width: 95%;
+  height: 9rem;
   margin: 0 auto;
   margin-top: 2rem;
-  padding: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .right-align {
   text-align: right;
+  margin-right: 1rem;
+  margin-top: 0.5rem;
   font-weight: bold;
-  color: #ee8888;
+  color: black;
 }
 
 .flex {
@@ -110,6 +125,7 @@ input::placeholder {
   flex-direction: column;
   justify-content: space-evenly;
   font-weight: bold;
+  margin-left: 2rem;
 }
 
 .grid-item {
@@ -118,15 +134,22 @@ input::placeholder {
   height: 100%;
 }
 
-.page {
-  display: flex;
-  width: 95%;
-  height: 8rem;
-  align-items: flex-end;
-  justify-content: center;
+
+
+.page-nav {
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
 }
 
-.page > div {
-  margin-left: 2rem;
-  margin-right: 2rem;
+.page-nav>li {
+	list-style: none;
+	padding: 0.5rem;
+}
+
+.page-nav > li.active > a {
+	color: #F00;
+	font-weight: 900;
 }

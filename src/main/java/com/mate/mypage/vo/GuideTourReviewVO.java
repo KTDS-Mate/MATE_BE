@@ -1,44 +1,39 @@
 package com.mate.mypage.vo;
 
-public class MyReviewVO {
+public class GuideTourReviewVO {
 
 	/**
-	 * 가이드 투어 리뷰 PK id
+	 * GD_TR_RVW_ID
+		ATHR_ID
+		GD_TR_PST_ID
+		GD_TR_RVW_TTL
+		GD_TR_RVW_CNTNT
+		GD_TR_RVW_IS_DLT
+		GD_TR_RVW_RTNG
 	 */
+	
 	private String gdTrRvwId;
-	/**
-	 * 리뷰작성자 PK id
-	 */
 	private String athrId;
-	/**
-	 * 가이드가 등록한 투어의 게시글 id
-	 */
 	private String gdTrPstId;
-	/**
-	 * 리뷰 제목
-	 */
 	private String gdTrRvwTtl;
-	/**
-	 * 리뷰 내용
-	 */
 	private String gdTrRvwCntnt;
-	/**
-	 * 리뷰 작성 일자
-	 */
-	private String gdTrRvwCrtdat;
-	/**
-	 * 리뷰 삭제 일자
-	 */
-	private String gdTrRvwDltAt;
-	/**
-	 * 리뷰 삭제 여부
-	 */
 	private String gdTrRvwIsDlt;
-	/**
-	 * 투어에 대한 평점
-	 */
 	private int gdTrRvwRtng;
 	
+	
+	private MyBoardVO myBoardVO;
+	
+	
+	
+	
+	
+	
+	public MyBoardVO getMyBoardVO() {
+		return myBoardVO;
+	}
+	public void setMyBoardVO(MyBoardVO myBoardVO) {
+		this.myBoardVO = myBoardVO;
+	}
 	public String getGdTrRvwId() {
 		return gdTrRvwId;
 	}
@@ -69,18 +64,6 @@ public class MyReviewVO {
 	public void setGdTrRvwCntnt(String gdTrRvwCntnt) {
 		this.gdTrRvwCntnt = gdTrRvwCntnt;
 	}
-	public String getGdTrRvwCrtdat() {
-		return gdTrRvwCrtdat;
-	}
-	public void setGdTrRvwCrtdat(String gdTrRvwCrtdat) {
-		this.gdTrRvwCrtdat = gdTrRvwCrtdat;
-	}
-	public String getGdTrRvwDltAt() {
-		return gdTrRvwDltAt;
-	}
-	public void setGdTrRvwDltAt(String gdTrRvwDltAt) {
-		this.gdTrRvwDltAt = gdTrRvwDltAt;
-	}
 	public String getGdTrRvwIsDlt() {
 		return gdTrRvwIsDlt;
 	}
@@ -93,4 +76,15 @@ public class MyReviewVO {
 	public void setGdTrRvwRtng(int gdTrRvwRtng) {
 		this.gdTrRvwRtng = gdTrRvwRtng;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -4,23 +4,365 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mate.mypage.dao.MyReviewDao">
 
-<select id="selectMyReviewAllCount" resultType="_int">
-	SELECT COUNT(1)
-	  FROM GD_TR_RVW
-</select>
+	<resultMap  id="MyReviewVOMap" 
+				type="com.mate.mypage.vo.GuideReviewVO"
+				autoMapping="true">
+		<id column="GD_RVW_ID" property="gdRvwId" />
+		
+		<association property="guideInfoVO" 
+					 javaType="com.mate.mypage.vo.GuideInfoVO"
+					 autoMapping="true">		 
+			<id column="USR_ID" property="usrId" />
+		
+		</association>
+		
+		<association property="searchCityAndCountryVO" 
+					 javaType="com.mate.mypage.vo.SearchCityAndCountryVO"
+					 autoMapping="true">		 
+			<id column="CITY_ID" property="cityId" />
+			
+			<association property="countriesVO"
+						 javaType="com.mate.common.vo.CountriesVO"
+						 autoMapping="true">
+			<id column="COUNTRY_ID" property="countryId" />			
+			</association>
+		</association>
+		
+	</resultMap>
+	
+	
+	
+	<resultMap  id="GuideTourReviewVOMap" 
+				type="com.mate.mypage.vo.GuideTourReviewVO"
+				autoMapping="true">
+		<id column="GD_TR_RVW_ID" property="gdTrRvwId" />
+		
+		<association property="myBoardVO" 
+					 javaType="com.mate.mypage.vo.MyBoardVO"
+					 autoMapping="true">		 
+			<id column="GD_TR_PST_ID" property="gdTrPstId" />
+		
+		
+			<association property="searchCityAndCountryVO" 
+						 javaType="com.mate.mypage.vo.SearchCityAndCountryVO"
+						 autoMapping="true">		 
+				<id column="CITY_ID" property="cityId" />
+				
+				<association property="countriesVO"
+							 javaType="com.mate.common.vo.CountriesVO"
+							 autoMapping="true">
+				<id column="COUNTRY_ID" property="countryId" />			
+				</association>
+			</association>
+		</association>
+		
+	</resultMap>
+	
 
-<select id="selectAllMyReview" resultType="com.mate.mypage.vo.MyReviewVO">
-	SELECT GD_TR_RVW_ID
-		 , ATHR_ID
-		 , GD_TR_PST_ID
-		 , GD_TR_RVW_TTL
-		 , GD_TR_RVW_CNTNT
-		 , GD_TR_RVW_CRTDAT
-		 , GD_TR_RVW_DLT_AT
-		 , GD_TR_RVW_IS_DLT
-		 , GD_TR_RVW_RTNG
-	  FROM GD_TR_RVW
-</select>
+	
+
+	
+	
+	<sql id="selectTrAllReviewCondition">
+	<if test='search.searchKeyword != null and search.searchKeyword != ""'>
+	
+		<if test="search.searchType == 'gdRvwTtl'">
+		AND gr.GD_RVW_TTL LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+		
+		<if test="search.searchType == 'gdRvwCntnt'">
+		AND gr.GD_RVW_CNTNT LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+		
+		<if test="search.searchType == 'usrFnm'">
+		AND ui.USR_LNM LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+		
+		<if test="search.searchType == 'usrLnm'">
+		AND ui.USR_FNM LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+		
+		<if test="search.searchType == 'cityName'">
+		AND c.CITY_NAME LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+
+		
+		<if test="search.searchType == 'countryName'">
+		AND cn.COUNTRY_NAME LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+		
+	</if> 
+	</sql>
+
+	<sql id="countTrSelectAllReviewCondition">
+	<if test='search.searchKeyword != null and search.searchKeyword != ""'>
+	
+		<if test="search.searchType == 'gdRvwTtl'">
+		AND gr.GD_RVW_TTL LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+		
+		<if test="search.searchType == 'gdRvwCntnt'">
+		AND gr.GD_RVW_CNTNT LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+	
+		<if test="search.searchType == 'usrFnm'">
+		AND ui.USR_LNM LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+		
+		<if test="search.searchType == 'usrLnm'">
+		AND ui.USR_FNM LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+		
+		<if test="search.searchType == 'cityName'">
+		AND c.CITY_NAME LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+
+		
+		<if test="search.searchType == 'countryName'">
+		AND cn.COUNTRY_NAME LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+		
+	</if> 
+	</sql>
+	
+	<sql id="SelectAllGuideTourReviewCondition">
+	<if test='search.searchKeyword != null and search.searchKeyword != ""'>
+	
+		<if test="search.searchType == 'gdTrRvwTtl'">
+		AND gtrv.GD_TR_RVW_TTL LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+		
+		<if test="search.searchType == 'gdTrRvwCntnt'">
+		AND gtrv.GD_TR_RVW_CNTNT LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+	
+		
+		<if test="search.searchType == 'cityName'">
+		AND c.CITY_NAME LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+
+		
+		<if test="search.searchType == 'countryName'">
+		AND cn.COUNTRY_NAME LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+		
+	</if> 
+	</sql>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+<!-- ===========================================================================================가이드리뷰파트 -->
+
+<select id="countGuideReview" parameterType="map" resultType="_int">
+		SELECT 
+			COUNT(1)
+		FROM 
+			GD_RVW gr 
+		INNER JOIN 
+			USR_INF ui 
+		ON 
+			gr.ATHR_ID = ui.USR_LGN_ID 
+		INNER JOIN 
+			CITIES c 
+		ON 
+			gr.TR_CT_ID = c.CITY_ID 
+		INNER JOIN 
+			COUNTRIES cn
+		ON 
+			c.COUNTRY_ID = cn.COUNTRY_ID
+		WHERE 
+			gr.ATHR_ID = #{loginId}
+		AND 
+			GD_RVW_IS_DLT = 'N'
+		<if test="search != null">
+		    <include refid="com.mate.mypage.dao.MyReviewDao.countTrSelectAllReviewCondition"/>
+		</if>
+	</select>
+
+
+    <select id="selectAllGuideReview" 
+    parameterType="map" 
+    resultMap="MyReviewVOMap">
+    
+    <if test="search != null">
+    	 <include refid="Common2.pagination_header"></include>
+    </if>
+    
+    
+    <!-- 
+    USR_TR_PST_ID
+	 ATHR_ID
+	 USR_TR_TTL
+	 USR_TR_ST_DT
+	 USR_TR_IS_DLT
+	 TR_CT_ID
+	 USR_TR_ED_DT
+	 USR_TR_STTS
+     -->
+        SELECT 
+			gr.GD_RVW_ID
+			,gr.ATHR_ID
+			,gr.GD_ID
+			,gr.GD_RVW_TTL
+			,gr.GD_RVW_CNTNT
+			,gr.GD_RVW_CRTDAT
+			,gr.GD_RVW_IS_DLT
+			,gr.GD_RVW_RTNG
+			,gr.TR_CT_ID
+			,TO_CHAR(gr.GD_RVW_ST_DT , 'YYYY-MM-DD HH24:MI') GD_RVW_ST_DT
+			,TO_CHAR(gr.GD_RVW_ED_DT , 'YYYY-MM-DD HH24:MI') GD_RVW_ED_DT
+			,ui.USR_ID
+			,ui.USR_LGN_ID
+			,ui.USR_LNM
+			,ui.USR_FNM
+			,c.CITY_ID 
+			,c.CITY_NAME 
+			,c.COUNTRY_ID 
+			,cn.COUNTRY_NAME 
+			,cn.REGION_ID 
+		FROM 
+			GD_RVW gr 
+		INNER JOIN 
+			USR_INF ui 
+		ON 
+			gr.ATHR_ID = ui.USR_LGN_ID 
+		INNER JOIN 
+			CITIES c 
+		ON 
+			gr.TR_CT_ID = c.CITY_ID 
+		INNER JOIN 
+			COUNTRIES cn
+		ON 
+			c.COUNTRY_ID = cn.COUNTRY_ID
+		WHERE 
+			gr.ATHR_ID = #{loginId}
+		AND 
+			GD_RVW_IS_DLT = 'N'  
+	<if test="search != null">
+		<include refid="com.mate.mypage.dao.MyReviewDao.selectTrAllReviewCondition"/>
+	</if>
+	ORDER BY gr.GD_RVW_CRTDAT DESC 
+	<if test="search != null">
+			<include refid="Common2.pagination_footer"></include>					
+    </if>
+    </select>
+    
+
+	 
+	<update id="deleteGuideReview" parameterType="string">
+	UPDATE 
+		GD_RVW 
+	SET 
+		 GD_RVW_MDFY_DT = SYSDATE 
+		,GD_RVW_DLT_DT = SYSDATE 
+		,GD_RVW_IS_DLT = 'Y'
+	WHERE 
+		GD_RVW_ID = #{_parameter}
+	</update>
+<!-- ===========================================================================================가이드투어리뷰파트 -->
+
+	<select id="countGuideTourReview" parameterType="map" resultType="_int">
+		SELECT 
+			COUNT(1)
+		FROM 
+			GD_TR_RVW gtrv 
+		INNER JOIN 
+			GD_TR_RCRT gtr
+		ON 
+			gtrv.GD_TR_PST_ID = gtr.GD_TR_PST_ID 
+		INNER JOIN 
+			CITIES c 
+		ON 
+			gtr.TR_CT_ID = c.CITY_ID 
+		INNER JOIN 
+			COUNTRIES cn
+		ON 
+			c.COUNTRY_ID = cn.COUNTRY_ID
+		WHERE 
+			gtrv.ATHR_ID = #{loginId}
+		AND 
+			gtrv.GD_TR_RVW_IS_DLT = 'N'
+		<if test="search != null">
+		    <include refid="com.mate.mypage.dao.MyReviewDao.SelectAllGuideTourReviewCondition"/>
+		</if>
+	</select>
+
+
+    <select id="selectAllGuideTourReview" 
+    parameterType="map" 
+    resultMap="GuideTourReviewVOMap">
+    
+    <if test="search != null">
+    	 <include refid="Common2.pagination_header"></include>
+    </if>
+    
+    
+    SELECT 
+		gtrv.GD_TR_RVW_ID
+		,gtrv.ATHR_ID
+		,gtrv.GD_TR_PST_ID
+		,gtrv.GD_TR_RVW_TTL
+		,gtrv.GD_TR_RVW_CNTNT
+		,gtrv.GD_TR_RVW_IS_DLT
+		,gtrv.GD_TR_RVW_RTNG
+		,gtr.USR_ID
+		,gtr.GD_TR_TTL
+		,TO_CHAR(gtr.GD_TR_ST_DT , 'YYYY-MM-DD HH24:MI') GD_TR_ST_DT
+		,TO_CHAR(gtr.GD_TR_ED_DT , 'YYYY-MM-DD HH24:MI') GD_TR_ED_DT
+		,gtr.GD_TR_IS_DLT
+		,gtr.TR_CT_ID 
+		,c.CITY_NAME 
+		,c.COUNTRY_ID 
+		,cn.COUNTRY_NAME 
+		,cn.REGION_ID 
+	FROM 
+		GD_TR_RVW gtrv
+	INNER JOIN 
+		GD_TR_RCRT gtr
+	ON 
+		gtrv.GD_TR_PST_ID = gtr.GD_TR_PST_ID 
+	INNER JOIN 
+		CITIES c 
+	ON 
+		gtr.TR_CT_ID = c.CITY_ID 
+	INNER JOIN 
+		COUNTRIES cn
+	ON 
+		c.COUNTRY_ID = cn.COUNTRY_ID
+	WHERE 
+		gtrv.ATHR_ID = #{loginId}
+	AND 
+		gtrv.GD_TR_RVW_IS_DLT = 'N'  
+	<if test="search != null">
+		<include refid="com.mate.mypage.dao.MyReviewDao.SelectAllGuideTourReviewCondition"/>
+	</if>
+	ORDER BY gtrv.GD_TR_RVW_CRTDAT DESC 
+	<if test="search != null">
+			<include refid="Common2.pagination_footer"></include>					
+    </if>
+    </select>
+    
+
+	 
+	<update id="deleteGuideTourReview" parameterType="string">
+	UPDATE 
+		GD_TR_RVW 
+	SET 
+		 GD_TR_RVW_MDFY_DT = SYSDATE 
+		,GD_TR_RVW_DLT_DT = SYSDATE 
+		,GD_TR_RVW_IS_DLT = 'Y'
+	WHERE 
+		GD_TR_RVW_ID = #{_parameter}
+	</update>
 
 
 
