@@ -47,12 +47,14 @@ $().ready(function() {
 
 
 function movePage(pageNo) {
-    var loginId = $(".header-content").attr("data-loginId");
-
+	
+	var loginId = $(".header-content").data("login-id");
+	
     $(".page-no").val(pageNo);
 	
     $(".search-form").attr({
         "method": "GET",
         "action": `/mypage/tr-apply-tour/${loginId}`
     }).submit();
+	
 }
