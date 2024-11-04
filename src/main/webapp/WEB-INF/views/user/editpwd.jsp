@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>MATE</title>
-    <link rel="stylesheet" type="text/css" href="/css/editinfo.css">
+    <link rel="stylesheet" type="text/css" href="/css/user/editinfo.css">
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="/js/user/userlogin.js"></script>
     <script type="text/javascript" src="/js/user/userregist.js"></script>
@@ -27,13 +27,13 @@
             </div>
             
             <div class="form-group">
-                <form:input type="password" path="confirmPwd" placeholder="새 비밀번호를 입력하세요." />
-                <form:errors path="confirmPwd" element="div" cssClass="error" />
+                <form:input type="password" path="usrPwd" placeholder="새 비밀번호를 입력하세요." />
+                <form:errors path="usrPwd" element="div" cssClass="usrPwd-error" />
             </div>
             
             <div class="form-group">
                 <form:input type="password" path="confirmPwd" placeholder="새 비밀번호를 한번 더 입력하세요." />
-                <form:errors path="confirmPwd" element="div" cssClass="error" />
+                <form:errors path="confirmPwd" element="div" cssClass="confirmPwd-error" />
             </div>
             
             <div class="form-group">

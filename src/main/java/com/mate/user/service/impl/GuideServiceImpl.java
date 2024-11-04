@@ -102,6 +102,43 @@ public class GuideServiceImpl implements GuideService {
     
     @Transactional
     @Override
+    public boolean updateGuideLicense(RegistGuideVO registGuideVO) {
+    	List<LicenseVO> licenseList = registGuideVO.getLicenses();
+    	String usrId = registGuideVO.getUsrId();
+    	
+    	if (licenseList != null || !licenseList.isEmpty()) {
+    		return false;
+    	}
+    	
+    	for (LicenseVO licenseVO : licenseList) {
+    		licenseVO.setUsrId(usrId);
+    		
+    		if (licenseVO.getLcnId() == null || licenseVO.getLcnId().isEmpty()) {
+    			// 새로운 라이센스인 경우 등록
+    			String newLcnId = guideDao.getNextLicenseId();
+    			licenseVO.setLcnId(newLcnId);
+    			
+    			// 새로운 라이센스 이미지 저장
+    			StoreResultVO licenseImgResult = filehandler.storeFile(licenseVO.getLcnImgFile());
+    			if (licenseImgResult != null ) {
+    				licenseVO.setLcnImg(licenseImgResult.getObfuscatedFileName());
+    			}
+    			
+    			guideDao.insertGuideLicense(licenseVO);
+    		} else {
+    			// 기존에 존재하는 라이센스면 업데이트
+    			StoreResultVO licenseImgResult = filehandler.storeFile(licenseVO.getLcnImgFile());
+    			if (licenseImgResult != null) {
+    				licenseVO.setLcnImg(licenseImgResult.getObfuscatedFileName());
+    			}
+    			guideDao.updateGuideLicense(registGuideVO);
+    		}
+    	}
+    	return true;
+    }
+    
+    @Transactional
+    @Override
     public boolean updateGuideProfile(RegistGuideVO registGuideVO) {
     	
     	int updateResult = guideDao.updateGuideProfile(registGuideVO);

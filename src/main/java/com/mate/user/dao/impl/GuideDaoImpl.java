@@ -66,4 +66,9 @@ public class GuideDaoImpl extends SqlSessionDaoSupport implements GuideDao{
     public String getNextCityId() {
     	return getSqlSession().selectOne(NAMESPACE + ".getNextCityId");
     }
+    @Override
+    public int updateGuideLicense(RegistGuideVO registGuideVO) {
+    	return getSqlSession().update(NAMESPACE + ".updateGuideLicense", registGuideVO);
+    }
+    
 }

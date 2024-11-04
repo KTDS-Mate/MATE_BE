@@ -5,12 +5,12 @@ body {
 }
 
 .container {
-    width: 27rem;
-    margin: 0 auto;
-    padding: 1rem;
-    background-color: #fff;
-    border-radius: 10px;
-    text-align: center;
+  width: 27rem;
+  margin: 0 auto;
+  padding: 5rem 10rem 10rem 10rem;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  text-align: center;
 }
 
 .logo h1 {

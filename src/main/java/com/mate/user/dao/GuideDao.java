@@ -28,4 +28,6 @@ public interface GuideDao {
     public String getNextLicenseId();
     
     public String getNextCityId();
+    
+    public int updateGuideLicense(RegistGuideVO registGuideVO);
 }

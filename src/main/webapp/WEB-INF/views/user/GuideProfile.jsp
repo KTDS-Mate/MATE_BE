@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
-    <link rel="stylesheet" href="/css/GuideProfile.css" />
+    <link rel="stylesheet" href="/css/user/GuideProfile.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,7 +13,7 @@
       rel="stylesheet"
     />
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
-    <script type="text/javascript" src="/js/guideReviewCarousel.js"></script>
+    <script type="text/javascript" src="/js/guidetour/guideReviewCarousel.js"></script>
   </head>
   <body>
     <div class="grid">

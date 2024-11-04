@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
@@ -28,6 +29,9 @@ import com.mate.user.vo.UserVO;
 public class GuideController {
 
 	Logger log = LoggerFactory.getLogger(getClass());
+	
+	private static final String NON_GUIDE_REDIRECT_URL = "/mypage/edit-profile/tr-profile/";
+    private static final String GUIDE_PROFILE_REDIRECT_URL = "/mypage/edit-profile/gd-profile/";
 	
     @Autowired
     private GuideService guideService;
@@ -93,12 +97,59 @@ public class GuideController {
     	userVO.setUsrIsGd("Y");
         
         if ("Y".equals(isGd)) {
-        	return "redirect:/mypage/edit-profile/gd-profile/" + userVO.getUsrLgnId();
+        	return "redirect:" + NON_GUIDE_REDIRECT_URL + userVO.getUsrLgnId();
         }else {
-        	return "redirect:/mypage/edit-profile/tr-profile/" + userVO.getUsrLgnId();
+        	return "redirect:" + GUIDE_PROFILE_REDIRECT_URL + userVO.getUsrLgnId();
         }
     }
 
+    @GetMapping("/editlicense/{usrid}")
+    public String viewLicenseModifyPage(@RequestParam(required=false) String usrId,
+    								    @SessionAttribute(name = "_LOGIN_USER_", required=false) UserVO userVO, Model model) {
+    	if (userVO == null) {
+    		return "redirect:/login";
+    	}
+
+    	if (usrId == null) {
+    		usrId = userVO.getUsrId();
+    	}
+    	
+    	log.debug("usrId: {}", usrId);
+    	
+    	RegistGuideVO guideInfo = guideService.getGuideInfo(usrId);
+    	
+    	if (guideInfo == null ) {
+    		log.error("guideInfo null. usrId를 찾지 못한 경우: {}", guideInfo, usrId);
+    		model.addAttribute("errorMessage", "가이드 정보를 찾을 수 없음.");
+    		return "redirect:/";
+    		
+    	}
+    	
+    	if (!"Y".equals(guideInfo.getUsrIsGd())) {
+    		return "redirect:" + NON_GUIDE_REDIRECT_URL + guideInfo.getUsrId();
+    	}
+    	
+    	model.addAttribute("guideInfo", guideInfo);
+    	return "user/editlicense";
+    }
+    
+    @PostMapping("/user/editlicense")
+    public String modifyLicense(@ModelAttribute("guideInfo") RegistGuideVO registGuideVO,
+    							@SessionAttribute UserVO userVO) {
+    	
+    	if (!"Y".equals(registGuideVO.getUsrIsGd())) {
+    		return "redirect:" + NON_GUIDE_REDIRECT_URL + registGuideVO.getUsrId(); 
+    	}
+    	
+    	boolean isUpdated = guideService.updateGuideLicense(registGuideVO);
+    	
+    	if (isUpdated) {
+    		return GUIDE_PROFILE_REDIRECT_URL + userVO.getUsrId();
+    	} else {
+    		return "redirect:/user/editlicense?usrId=" + registGuideVO.getUsrId() + "&error=true";
+    	}
+    }
+    
     @GetMapping("/info/{usrId}")
     public String viewGuideInfo(@PathVariable String usrId, Model model) {
         RegistGuideVO guideInfo = guideService.getGuideInfo(usrId);

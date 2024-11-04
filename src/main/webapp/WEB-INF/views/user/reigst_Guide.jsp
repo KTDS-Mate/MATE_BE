@@ -5,8 +5,8 @@
   <head>
     <meta charset="UTF-8" />
     <title>가이드 등록</title>
-    <link rel="stylesheet" type="text/css" href="/css/common.css" />
-    <link rel="stylesheet" type="text/css" href="/css/reigst_Guide.css" /> <!-- 여기일단 기본css경로할게요 -->
+    <link rel="stylesheet" type="text/css" href="/css/user/common.css" />
+    <link rel="stylesheet" type="text/css" href="/css/user/reigst_Guide.css" /> <!-- 여기일단 기본css경로할게요 -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

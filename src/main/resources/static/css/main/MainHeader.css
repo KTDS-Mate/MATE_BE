@@ -1,3 +1,7 @@
+div.header {
+  grid-column: 1 / -1;
+}
+
 div.header-content {
   display: flex;
   align-items: center;
