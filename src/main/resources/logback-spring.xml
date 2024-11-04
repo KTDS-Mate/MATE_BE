@@ -1,13 +1,9 @@
 <configuration>
-
+	
 	<springProfile name="prod">
-		<property name="rolling-path" value="/Users/moomin/Downloads/logs-prod" />
-		
-		<!-- mate -->
-		<property name="rolling-path" value="/usr/local/src/tomcat/apache-tomcat-10.1.31/logs" />
-	
+		<property name= "rolling-path" value="/usr/local/src/tomcat/apache-tomcat-10.1.31/logs" />
 	</springProfile>
-	
+
 	<appender name="STDOUT"
 		class="ch.qos.logback.core.ConsoleAppender">
 		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder 

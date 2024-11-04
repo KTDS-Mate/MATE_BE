@@ -1,5 +1,6 @@
 package com.mate.payment.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import com.mate.payment.dao.PaymentDao;
 import com.mate.payment.service.PaymentService;
 import com.mate.payment.vo.PaymentListVO;
 import com.mate.payment.vo.PaymentVO;
+import com.mate.payment.vo.SearchPaymentVO;
 
 @Service
 public class PaymentServiceImpl implements PaymentService{
@@ -27,12 +29,20 @@ public class PaymentServiceImpl implements PaymentService{
 	}
 	
 	@Override
-	public PaymentListVO getAllMyPayment(String trstId) {
+	public PaymentListVO getAllMyPayment(SearchPaymentVO searchPaymentVO) {
 		PaymentListVO paymentListVO = new PaymentListVO();
-		List<PaymentVO> paymentList = this.paymentDao.selectAllMyPayment(trstId);
-		int cnt = this.paymentDao.selectAllMyPaymentCount(trstId);
+		int cnt = this.paymentDao.selectAllMyPaymentCount(searchPaymentVO);
 		paymentListVO.setPaymentCnt(cnt);
+		if (cnt == 0) {
+			paymentListVO.setPaymentList(new ArrayList<>());
+			return paymentListVO;
+		}
+		// 조회된 항목의 갯수 설정
+		searchPaymentVO.setPageCount(cnt);
+		
+		List<PaymentVO> paymentList = this.paymentDao.selectAllMyPayment(searchPaymentVO);
 		paymentListVO.setPaymentList(paymentList);
+		
 		return paymentListVO;
 	}
 	
@@ -52,6 +62,24 @@ public class PaymentServiceImpl implements PaymentService{
 		return updateCnt > 0;
 	}
 	
+	@Override
+	public boolean refundPayment(String payId) {
+		int updateCnt = this.paymentDao.updateRefundPayment(payId);
+		return updateCnt > 0;
+	}
+	
+	@Override
+	public PaymentListVO getSearchMyPayment(SearchPaymentVO searchPaymentVO) {
+		PaymentListVO paymentListVO = new PaymentListVO();
+		int cnt = this.paymentDao.selectSearchMyPaymentCount(searchPaymentVO);
+		paymentListVO.setPaymentCnt(cnt);
+		if (cnt == 0 ) {
+			return paymentListVO;
+		}
+		List<PaymentVO> paymentList = this.paymentDao.selectSearchMyPayment(searchPaymentVO);
+		paymentListVO.setPaymentList(paymentList);
+		return paymentListVO;
+	}
 	
 	
 	
