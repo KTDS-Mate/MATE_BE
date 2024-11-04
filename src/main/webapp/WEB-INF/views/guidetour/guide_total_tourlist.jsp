@@ -27,25 +27,30 @@
         <!--  -->
 
         <div class="content">
-          <div class="search-zone">
-            <form class="search-form">
-              <input type="hidden" name="pageNo" class="page-no" value="${searchGuideTourVO.pageNo}" />
-              <div class="search-area">
-              	<select class="search-type" name="searchType">
-              		<option value="region" ${"region" eq searchGuideTourVO.searchType ? "selected" : ""}>대륙</option>
-              		<option value="country" ${"country" eq searchGuideTourVO.searchType ? "selected" : "" }>국가</option>
-              		<option value="city" ${"city" eq searchGuideTourVO.searchType ? "selected" : "" }>도시</option>
-              		<option value="title" ${"title" eq searchGuideTourVO.searchType ? "selected" : "" }>제목</option>
-              	</select>
-	                <input type="text"
-	                	   class="search-input"
-	                	   name="searchKeyword" 
-	                	   placeholder="찾고싶은 나라를 입력하세요." 
-	                	   value="${searchGuideTourVO.searchKeyword}"/>
-	                <button class="search-button">검색</button>
-              </div>
-            </form>
-          </div>
+        <div class="search-title">
+        	<h1>가이드 투어 목록</h1>
+				<div class="search-zone">
+					<form class="search-form">
+						<input type="hidden" name="pageNo" class="page-no"
+							value="${searchGuideTourVO.pageNo}" />
+						<div class="search-area">
+							<select class="search-type" name="searchType">
+								<option value="region"
+									${"region" eq searchGuideTourVO.searchType ? "selected" : ""}>대륙</option>
+								<option value="country"
+									${"country" eq searchGuideTourVO.searchType ? "selected" : "" }>국가</option>
+								<option value="city"
+									${"city" eq searchGuideTourVO.searchType ? "selected" : "" }>도시</option>
+								<option value="title"
+									${"title" eq searchGuideTourVO.searchType ? "selected" : "" }>제목</option>
+							</select> <input type="text" class="search-input" name="searchKeyword"
+								placeholder="찾고싶은 나라를 입력하세요."
+								value="${searchGuideTourVO.searchKeyword}" />
+							<button class="search-button">검색</button>
+						</div>
+					</form>
+				</div>
+			</div>
           <form class="region-form">
           	<div class="region-menu-area">
           		<!--   선택한 대륙이 바뀌어도 값을 가져가기 위해 hidden에 담아둔다-->

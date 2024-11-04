@@ -3,6 +3,10 @@
   src: url("./font/Inter-VariableFont_opsz\,wght.ttf") format("truetype");
 }
 
+.search-title h1 {
+	text-align: center;
+}
+
 img {
   width: 20rem;
   height: 15rem;
