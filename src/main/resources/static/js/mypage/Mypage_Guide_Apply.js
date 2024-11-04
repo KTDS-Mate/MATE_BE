@@ -1,6 +1,6 @@
 $().ready(function() {
 
-	var usrLgnId = $(".header-content").data("loginid");
+	var usrLgnId = $(".header-content").data("login-id");
 
 	$(".order").on('change', function() {
 		var otpVal = $(this).val();

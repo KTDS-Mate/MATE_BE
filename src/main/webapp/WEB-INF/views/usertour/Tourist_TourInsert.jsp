@@ -121,11 +121,11 @@ uri="http://www.springframework.org/tags/form" %>
                 <div class="locs">
 						<div>
 							<label for="hope-location">장소</label>
-							<input id="hope-location" name="userTourSchdlList[${locsCnt}].trLctns" type="text" required="required" />
+							<input id="hope-location" name="userTourSchdlList[0].trLctns" type="text" required="required" />
 						</div>
 						<div>
 							<label for="hope-info">일정</label>
-							<input id="hope-info" name="userTourSchdlList[${locsCnt}].trRqst" type="text" required="required" />
+							<input id="hope-info" name="userTourSchdlList[0].trRqst" type="text" required="required" />
 						</div>
 						</div>
               </div>
