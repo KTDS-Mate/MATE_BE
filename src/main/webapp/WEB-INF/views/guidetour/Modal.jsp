@@ -5,7 +5,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
   <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
-    <link rel="stylesheet" type="text/css" href="/css/Modal.css" />
+    <link rel="stylesheet" type="text/css" href="/css/guidetour/Modal.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
