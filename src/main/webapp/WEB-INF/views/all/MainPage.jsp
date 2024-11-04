@@ -5,7 +5,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="/css/MainPage.css" />
+    <link rel="stylesheet" type="text/css" href="/css/main/MainPage.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,22 +13,22 @@
       rel="stylesheet"
     />
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
-    <script type="text/javascript" src="/js/mainPictureCarousel.js"></script>
-    <script type="text/javascript" src="/js/userTypeSelected.js"></script>
+    <script type="text/javascript" src="/js/main/mainPictureCarousel.js"></script>
+    <script type="text/javascript" src="/js/main/userTypeSelected.js"></script>
   </head>
   <body>
     <div class="grid">
       <!--  -->
       <div class="header">
           <!-- 헤더 공통파일 -->
-          <jsp:include page="../MainHeader.jsp"></jsp:include>
+          <jsp:include page="./MainHeader.jsp"></jsp:include>
       </div>
       <!--  -->
   
       <div class="content">
         <div class="container">
-            <jsp:include page="../destinationSelectModal.jsp" />
-            <jsp:include page="../calendarModal.jsp" />
+            <jsp:include page="./destinationSelectModal.jsp" />
+            <jsp:include page="./calendarModal.jsp" />
             <div class="firstLayer">
                 <div class="mainPictureCarouselArea" data-bs-ride="carousel"> <!-- wrapper -->
                     <div class="mainPicTextArea">

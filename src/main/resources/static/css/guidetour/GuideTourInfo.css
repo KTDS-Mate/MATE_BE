@@ -14,6 +14,10 @@
   justify-content: space-around;
 }
 
+.maxNp {
+	display: flex;
+}
+
 .tourPicArea {
   width: 36.3rem;
   height: 17.1rem;
@@ -226,13 +230,13 @@
 }
 
 .summaryDetailArea {
-  width: 26.875rem;
-  min-height: 11.64rem;
+  width: 24.775rem;
+  min-height: 9.5rem;
   max-height: auto;
   margin: 0 auto;
   /* background-color: #ffeedb; */
   display: flex;
-  justify-content: center;
+  padding: 1rem;
   align-items: left;
   flex-direction: column;
   border: 1px solid #ffeedb;
@@ -243,7 +247,11 @@
 .summaryDetailArea > h1 {
   font-size: 1rem;
   font-weight: 500;
-  margin: 0 0 0.5rem 1rem;
+  margin: 0.5rem 0 0.5rem 0.7rem;
+}
+
+.summaryDetailArea > h4 {
+	margin: 0.2rem;
 }
 
 .guideProfileArea {
@@ -318,7 +326,6 @@
 
 .tourOfferArea {
   width: 58.2rem;
-  height: 14.64rem;
   margin: 2rem 0 0 0;
   border: 2px solid #ffeedb;
   border-radius: 1.25rem;
@@ -347,7 +354,6 @@
   width: 58.2rem;
   min-height: 11.64rem;
   max-height: auto;
-  margin: 0 auto;
   /* background-color: #ffeedb; */
   display: flex;
   justify-content: center;
@@ -457,7 +463,6 @@
 
 .tourInfoArea {
   width: 58.2rem;
-  height: 15.625rem;
   margin: 2rem 0 0 0;
   border: 2px solid #ffeedb;
   border-radius: 1.25rem;
@@ -495,10 +500,6 @@
   border: 1px solid #ffeedb;
   border-bottom-left-radius: 1.25rem;
   border-bottom-right-radius: 1.25rem;
-}
-
-.tourInfoSummaryArea {
-  margin: 2rem 0 0 0;
 }
 
 .tourInfoSummaryArea > h1 {
@@ -807,7 +808,6 @@
 .star {
   width: 1.5rem;
   height: 1.5rem;
-  margin: 0 1rem 0 0;
 }
 
 .averageRating {
@@ -963,7 +963,7 @@ meter.ratingGage::-webkit-meter-even-less-good-value {
 
 .rating {
   width: 1.25rem;
-  margin: 1.2rem 1rem 0.8rem 1rem;
+  margin: 0rem 1rem;
 }
 
 .ratingCount {
@@ -1056,4 +1056,64 @@ meter.ratingGage::-webkit-meter-even-less-good-value {
 .moreReviewTextArea > span {
   font-size: 1rem;
   font-weight: bold;
+}
+
+
+.hope-info {
+  border: 2px solid #f5f6f7;
+  border-radius: 20px;
+  width: 75rem;
+}
+.hope-info-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.plus-inf {
+	display: grid;
+	grid-template-columns: 0.8fr 1fr; 
+	grid-column-gap: 1rem;
+}
+
+.plus-inf li {
+	margin-top: 1rem;
+	font-weight: bold;
+	font-size: large;
+	color : #000;
+}
+
+.hope-info-list li {
+  display: inline-block;
+}
+
+.hope-info-list li p {
+  margin-top: 0;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.background-num {
+  display: flex;
+  background-color: #ddd;
+  color: #333;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+  font-weight: bold;
+}
+
+.border-left {
+  border-left: 2px solid #333;
+  margin-left: 1.2rem;
+  padding: 0.5rem 0rem 0.5rem 2rem;
 }

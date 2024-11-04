@@ -1,9 +1,6 @@
 package com.mate.bbs.vo;
 
-/**
- * 가이드 투어 추가정보 VO
- */
-public class GuideTourAdditionInfoVO {
+public class GuideTourScheduleInfoVO {
 
 	/**
 	 * 가이드 등록 투어에 대한 추가정보 pk
@@ -14,13 +11,13 @@ public class GuideTourAdditionInfoVO {
 	 */
 	private String gdTrPstId;
 	/**
-	 * 투어에 대한 추가정보
+	 * 투어세부 일정에 대한 세부 장소
 	 */
-	private String trAddInf;
+	private String trDtlLct;
 	/**
-	 * 투어에 대한 추가 장소 정보
+	 * 투어 세부 일정
 	 */
-	private String trAddPlc;
+	private String trDtlSchd;
 	
 	public String getTrAddInfId() {
 		return trAddInfId;
@@ -34,16 +31,18 @@ public class GuideTourAdditionInfoVO {
 	public void setGdTrPstId(String gdTrPstId) {
 		this.gdTrPstId = gdTrPstId;
 	}
-	public String getTrAddInf() {
-		return trAddInf;
+	public String getTrDtlLct() {
+		return trDtlLct;
 	}
-	public void setTrAddInf(String trAddInf) {
-		this.trAddInf = trAddInf;
+	public void setTrDtlLct(String trDtlLct) {
+		this.trDtlLct = trDtlLct;
 	}
-	public String getTrAddPlc() {
-		return trAddPlc;
+	public String getTrDtlSchd() {
+		return trDtlSchd;
 	}
-	public void setTrAddPlc(String trAddPlc) {
-		this.trAddPlc = trAddPlc;
+	public void setTrDtlSchd(String trDtlSchd) {
+		this.trDtlSchd = trDtlSchd;
 	}
+	
+	
 }

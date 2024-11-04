@@ -47,14 +47,11 @@ public class UserTourVO {
 	private String gdCrr;
 	/** 가이드에게 원하는 사항 **/
 	private String gdWntRq;
-	/** 가이드 구인 게시글 예약 상태 **/
+	/** 가이드 구인 게시글 투어 상태 (RCRTNG : 모집 중, RSRVT : 예약 중, PRG : 투어 진행중, CMPLT: 투어 완료) **/
 	private String usrTrStts;
 	/** 여행자가 입력한 투어 종료일시 **/
 	private String usrTrEdDt;
 	
-	/**
-	 * 게시글 작성자의 정보를 담은 VO
-	 */
 	private UserVO userVO;
 	
 	/**

@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>가이드 등록</title>
-    <link rel="stylesheet" type="text/css" href="/css/guideregist.css" />
+    <link rel="stylesheet" type="text/css" href="/css/user/guideregist.css" />
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="/js/user/loadcities.js"></script>
 

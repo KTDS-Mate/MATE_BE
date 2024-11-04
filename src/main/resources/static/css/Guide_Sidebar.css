@@ -2,7 +2,7 @@ div.my-page {
   position: sticky;
   top: 10px;
   background-color: #fff6ec;
-  height: 30rem;
+  height: 33rem;
   /* 상하 고정 크기 말고 리스트 추가하면 더 늘어나도록 항목에 따른 패딩을 부여  */
   /* padding-top: 1rem; */
   /* padding-bottom: 1rem; */

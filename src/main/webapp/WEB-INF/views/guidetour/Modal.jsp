@@ -5,7 +5,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
   <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
-    <link rel="stylesheet" type="text/css" href="/css/Modal.css" />
+    <link rel="stylesheet" type="text/css" href="/css/guidetour/Modal.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -74,7 +74,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
         <div class="reviewListArea">
           <div class="oneReview">
             <div class="oneReviewRating">
-              <img src="/public/Star.png" alt="별점 아이콘" class="star" />
+              <img src="/public/Star.png" alt="별점 아이콘" class="modal-star" />
               <span class="oneReviewRatingCount">5</span>
               <span class="reviewerNameArea">Gil-Dong Hong</span>
             </div>
