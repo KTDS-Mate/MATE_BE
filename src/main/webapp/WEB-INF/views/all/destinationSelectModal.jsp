@@ -7,7 +7,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
     <link
       rel="stylesheet"
       type="text/css"
-      href="/css/destinationSelectModal.css"
+      href="/css/main/destinationSelectModal.css"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,7 +16,10 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
       rel="stylesheet"
     />
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
-    <script type="text/javascript" src="/js/destinationSelectModal.js"></script>
+    <script
+      type="text/javascript"
+      src="/js/main/destinationSelectModal.js"
+    ></script>
   </head>
   <body>
     <dialog id="destinationSelectModal" class="destinationSelectModal hidden">
