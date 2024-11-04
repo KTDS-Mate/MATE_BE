@@ -6,7 +6,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
   <head>
     <meta charset="UTF-8" />
     <title>Mypage_Tourist_MyTour</title>
-    <link rel="stylesheet" type="text/css" href="/css/PaymentList.css" />
+    <link rel="stylesheet" type="text/css" href="/css/mypage/PaymentList.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
