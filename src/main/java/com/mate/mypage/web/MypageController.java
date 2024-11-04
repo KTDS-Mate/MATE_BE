@@ -96,5 +96,4 @@ public class MypageController {
         return "guide/Guide_TourInsert";
     }
 
-
 }

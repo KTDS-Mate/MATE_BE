@@ -131,9 +131,11 @@ function addCity() {
 	cityIndex++;
 }
 
+// 다중 라이센스 입력(text, image) 동적 생성 및 추가
 var licenseIndex = 1;
 
 function addLicenseItem() {
+	
 	var additionalLicensesDiv = document.getElementById("additionalLicenses");
 	
 	var licenseDiv = document.createElement("div");
@@ -156,19 +158,30 @@ function addLicenseItem() {
 	licenseDiv.appendChild(label);
 	licenseDiv.appendChild(licenseInputDiv);
 	
+	// 파일 입력
+	// 컨테이너 역할 div 생성	
 	var fileDiv = document.createElement("div");
+	// form-Item 속성 적용
 	fileDiv.className = "form-item";
 	
+	// span 태그 생성
 	var span = document.createElement("span");
+	// span 태그에 라벨 설정
 	span.textContent = "라이센스 인증서류";
 	
+	// 파일 입력과 버튼을 감싸는 컨테이너 div 생성
 	var fileboxDiv = document.createElement("div");
 	fileboxDiv.className = "filebox";
 	
+	// 실제 파일을 업로드하는 필드 생성
 	var fileInput = document.createElement("input");
+	// fileinput 요소의 속성을 File로 설정해서 파일 입력할수 있도록 설정
 	fileInput.setAttribute("type", "file");
+	// id 설정. ex) lcnImgFile- 1, 2, 3 ..
 	fileInput.setAttribute("id", "lcnImgFile-" + licenseIndex);
+	// 파일을 구분하기 위해 name 속성 설정
 	fileInput.setAttribute("name", "licenses[" + licenseIndex + "].lcnImgFile");
+	// css 적용
 	fileInput.className = "licenseImg filename";
 	fileInput.setAttribute("placeholder", "(jpg, png, pdf..)");
 	
@@ -177,11 +190,14 @@ function addLicenseItem() {
 	labelFileSearch.setAttribute("for", "lcnImgFile-" + licenseIndex);
 	labelFileSearch.textContent = "파일 찾기";
 	
+	// fileboxDiv에 fileInput과 labelFileSearch를 자식 요소로 추가
 	fileboxDiv.appendChild(fileInput);
 	fileboxDiv.appendChild(labelFileSearch);
+	// fileDiv에 span과 fileboxDiv를 자식 요소로 추가. 이렇게 하면 fileDiv에 라벨, 파일 입력, 파일 찾기 버튼이 전부 다 포함됨.
 	fileDiv.appendChild(span);
 	fileDiv.appendChild(fileboxDiv);
 	
+	// 마지막으로 additionalLicensesDiv에 licenseDiv와 fileDiv추
 	additionalLicensesDiv.appendChild(licenseDiv);
 	additionalLicensesDiv.appendChild(fileDiv);
 	

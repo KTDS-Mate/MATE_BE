@@ -81,7 +81,7 @@ pageEncoding="UTF-8" %>
 
           <div class="profile-section">
             <h3>자격증 관리</h3>
-
+			
             <!-- 첫 번째 자격증 항목 -->
             <div class="profile-row">
               <div class="profile-placeholder">
@@ -95,7 +95,6 @@ pageEncoding="UTF-8" %>
               <div class="certificate-text">
                 <h4>관광 통역 안내사</h4>
               </div>
-              <button class="edit-btn">수정</button>
             </div>
 
             <!-- 두 번째 자격증 항목 -->
@@ -111,8 +110,10 @@ pageEncoding="UTF-8" %>
               <div class="certificate-text">
                 <h4>레크리에이션 지도사</h4>
               </div>
-              <button class="edit-btn">수정</button>
             </div>
+            <a href="/user/editlicense/${userVO.usrId}">
+            <button class="edit-btn"> 수정 </button>
+            </a>
           </div>
 
           <div class="profile-section">

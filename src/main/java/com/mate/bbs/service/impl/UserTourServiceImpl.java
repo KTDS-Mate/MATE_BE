@@ -15,6 +15,7 @@ import com.mate.bbs.vo.UserTourModifyVO;
 import com.mate.bbs.vo.UserTourSchdlVO;
 import com.mate.bbs.vo.UserTourVO;
 import com.mate.bbs.vo.UserTourWriteVO;
+import com.mate.common.beans.FileHandler;
 
 @Service
 public class UserTourServiceImpl implements UserTourService{
@@ -22,6 +23,9 @@ public class UserTourServiceImpl implements UserTourService{
 	@Autowired
 	private UserTourDao userTourDao;
 
+	@Autowired
+	private FileHandler fileHandler;
+	
 	@Transactional
 	@Override
 	public boolean createNewUserTour(UserTourWriteVO userTourWriteVO) {
@@ -71,10 +75,11 @@ public class UserTourServiceImpl implements UserTourService{
 		}
 		
 		List<UserTourVO> UserTourList = this.userTourDao.selectAllUserTour(searchUserTourVO);
-		// pagination 을 위해 listSize를 보내줌
-		searchUserTourVO.setPageCount(userTourCnt);
 		// 한 화면에 보여 줄 게시글 수 지정
 		searchUserTourVO.setListSize(9);
+		// pagination 을 위해 listSize를 보내줌
+		searchUserTourVO.setPageCount(userTourCnt);
+		
 		UserTourListVO userTourListVO = new UserTourListVO();
 		userTourListVO.setUserTourCount(userTourCnt);
 		userTourListVO.setUserTourList(UserTourList);

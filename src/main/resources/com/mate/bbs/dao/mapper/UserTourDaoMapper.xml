@@ -190,6 +190,16 @@
 			resultType="_int">
 		SELECT COUNT(1)
 		  FROM USR_TR_RQST
+		 WHERE USR_TR_ST_DT > SYSDATE
+		<if test="_parameter != null">
+		 	<include refid="com.mate.bbs.dao.UserTourDao.selectRegions" />
+		</if>
+		<if test="_parameter != null">
+			<include refid="com.mate.bbs.dao.UserTourDao.selectSubjectAndContent" />
+		</if>
+		<if test="_parameter != null">
+		 	<include refid="com.mate.bbs.dao.UserTourDao.order" />
+		</if>
 	</select>
 	
 	<select id="selectAllUserTour"
@@ -204,6 +214,7 @@
 		     , TO_CHAR(UTR.USR_TR_ST_DT, 'YYYY-MM-DD') USR_TR_ST_DT 
 		     , UTR.USR_TR_ED_DT 
 		     , UTR.USR_TR_GD_HR_PRC 
+		     , UTR.USR_TR_STTS 
 		     , CEIL (UTR.USR_TR_ST_DT - SYSDATE) AS DEADLINE
 		     , TRUNC((UTR.USR_TR_ED_DT - UTR.USR_TR_ST_DT) * 24 * 60) AS USR_TR_TM
 		     , UTRI.USR_TR_RQ_IMG_ID_URL 

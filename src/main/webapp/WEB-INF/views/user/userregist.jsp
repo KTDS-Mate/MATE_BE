@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>회원가입</title>
-    <link rel="stylesheet" type="text/css" href="/css/userregist.css">
+    <link rel="stylesheet" type="text/css" href="/css/user/userregist.css">
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="/js/user/userlogin.js"></script>
     <script type="text/javascript" src="/js/user/userregist.js"></script>
@@ -16,6 +16,12 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.min.js"></script>
 </head>
 <body>
+
+    <div class="header">
+      <!-- 헤더 공통파일 -->
+      <jsp:include page="../header.jsp"></jsp:include>
+    </div>
+
     <div class="container">
         <div class="logo">
         </div>
@@ -110,5 +116,10 @@
             </div>
         </form:form>
     </div>
+    <div class="footer">
+      <!-- footer 공통파일 -->
+      <jsp:include page="../footer.jsp"></jsp:include>
+    </div>
+    
 </body>
 </html>

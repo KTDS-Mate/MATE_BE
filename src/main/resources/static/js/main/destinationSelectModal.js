@@ -53,7 +53,6 @@ $().ready(function () {
     }
   });
 
-  // 검색 버튼 클릭 이벤트
   $("#searchButton").on("click", function () {
     console.log("검색 버튼 클릭됨");
 
@@ -61,9 +60,9 @@ $().ready(function () {
     console.log("입력된 도시 이름:", searchTerm); // 입력된 도시 이름을 콘솔에 출력
 
     if (searchTerm) {
-      // 도시 이름으로 AJAX 요청을 보냅니다.
+      // countryId가 설정되지 않았더라도, URL을 사용하도록 설정
       $.ajax({
-        url: countryId ? `/tour/cities/${countryId}` : `/tour/cities`, // 국가가 선택된 경우와 선택되지 않은 경우를 처리
+        url: `/tour/cities/${countryId || "default"}`, // countryId가 없을 경우 'default' 사용
         type: "GET",
         data: {
           term: searchTerm, // 입력된 도시 이름
@@ -77,8 +76,8 @@ $().ready(function () {
             // 수정된 데이터 구조에 맞춰 검사
             data.cities.forEach(function (city) {
               const $cityItem = $("<div></div>").text(
-                `${city.CITY_NAME}, ${city.COUNTRY_NAME}`
-              ); // 도시와 국가 이름을 모두 출력
+                `${city.CITY_NAME} (${city.COUNTRY_NAME})`
+              ); // 도시와 국가 이름 출력
               $searchResults.append($cityItem);
             });
           } else {
