@@ -6,7 +6,7 @@
     <head>
       <meta charset="UTF-8" />
       <title>Mypage_Guide_MyTour</title>
-      <link rel="stylesheet" type="text/css" href="/css/Mypage_Guide_MyTour.css" />
+      <link rel="stylesheet" type="text/css" href="/css/mypage/Mypage_Guide_MyTour.css" />
       <link rel="stylesheet" type="text/css" href="/css/common.css" />
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -6,7 +6,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>MATE 즐겨찾기</title>
-    <link rel="stylesheet" type="text/css" href="/css/Mypage_Guide_Wishlist.css" />
+    <link rel="stylesheet" type="text/css" href="/css/mypage/Mypage_Guide_Wishlist.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,7 +40,7 @@
               
               <div>
                   <h5>
-                    <span class="gray">즐겨찾기 등록한 게시글리스트입니다. (작성자가 삭제시 조회되지 않습니다)</span>
+                    <span class="gray">즐겨찾기 등록한 게시글리스트입니다. (하트 클릭시 즐겨찾기가 삭제됩니다)</span>
                   </h5>
                 </div>
                 
@@ -60,7 +60,7 @@
                 <div class="one-wishlist">
                   <div class="right-element">
                     <div>
-                      <img class="check" src="/img/wishlist/check.png" alt="check" />
+                      <a href="javascript:deleteTour('${sessionScope._LOGIN_USER_.usrLgnId}', '${wish.favId}')"><img class="check" src="/img/wishlist/check.png" alt="check"/></a>
                     </div>
                     <div class="wishlist-info">
                       <div>

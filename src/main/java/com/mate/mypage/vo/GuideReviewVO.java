@@ -1,49 +1,79 @@
 package com.mate.mypage.vo;
 
-public class MyReviewVO {
+public class GuideReviewVO {
 
 	/**
-	 * 가이드 투어 리뷰 PK id
+	GD_RVW_ID
+	ATHR_ID
+	GD_ID
+	GD_RVW_TTL
+	GD_RVW_CNTNT
+	GD_RVW_CRTDAT
+	GD_RVW_DLT_AT
+	GD_RVW_IS_DLT
+	GD_RVW_RTNG
 	 */
-	private String gdTrRvwId;
-	/**
-	 * 리뷰작성자 PK id
-	 */
-	private String athrId;
-	/**
-	 * 가이드가 등록한 투어의 게시글 id
-	 */
-	private String gdTrPstId;
-	/**
-	 * 리뷰 제목
-	 */
-	private String gdTrRvwTtl;
-	/**
-	 * 리뷰 내용
-	 */
-	private String gdTrRvwCntnt;
-	/**
-	 * 리뷰 작성 일자
-	 */
-	private String gdTrRvwCrtdat;
-	/**
-	 * 리뷰 삭제 일자
-	 */
-	private String gdTrRvwDltAt;
-	/**
-	 * 리뷰 삭제 여부
-	 */
-	private String gdTrRvwIsDlt;
-	/**
-	 * 투어에 대한 평점
-	 */
-	private int gdTrRvwRtng;
 	
-	public String getGdTrRvwId() {
-		return gdTrRvwId;
+	private String gdRvwId;
+	private String athrId;
+	private String gdId;
+	private String gdRvwTtl;
+	private String gdRvwCntnt;
+	private String gdRvwCrtdat;
+	private String gdRvwIsDlt;
+	private String gdRvwRtng;
+	private int trCtId;
+	private String gdRvwStDt;
+	private String gdRvwEdDt;
+	
+	
+	private GuideInfoVO guideInfoVO;
+	
+	private SearchCityAndCountryVO searchCityAndCountryVO;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public String getGdRvwStDt() {
+		return gdRvwStDt;
 	}
-	public void setGdTrRvwId(String gdTrRvwId) {
-		this.gdTrRvwId = gdTrRvwId;
+	public void setGdRvwStDt(String gdRvwStDt) {
+		this.gdRvwStDt = gdRvwStDt;
+	}
+	public String getGdRvwEdDt() {
+		return gdRvwEdDt;
+	}
+	public void setGdRvwEdDt(String gdRvwEdDt) {
+		this.gdRvwEdDt = gdRvwEdDt;
+	}
+	public int getTrCtId() {
+		return trCtId;
+	}
+	public void setTrCtId(int trCtId) {
+		this.trCtId = trCtId;
+	}
+	public GuideInfoVO getGuideInfoVO() {
+		return guideInfoVO;
+	}
+	public void setGuideInfoVO(GuideInfoVO guideInfoVO) {
+		this.guideInfoVO = guideInfoVO;
+	}
+	public SearchCityAndCountryVO getSearchCityAndCountryVO() {
+		return searchCityAndCountryVO;
+	}
+	public void setSearchCityAndCountryVO(SearchCityAndCountryVO searchCityAndCountryVO) {
+		this.searchCityAndCountryVO = searchCityAndCountryVO;
+	}
+	public String getGdRvwId() {
+		return gdRvwId;
+	}
+	public void setGdRvwId(String gdRvwId) {
+		this.gdRvwId = gdRvwId;
 	}
 	public String getAthrId() {
 		return athrId;
@@ -51,46 +81,47 @@ public class MyReviewVO {
 	public void setAthrId(String athrId) {
 		this.athrId = athrId;
 	}
-	public String getGdTrPstId() {
-		return gdTrPstId;
+	public String getGdId() {
+		return gdId;
 	}
-	public void setGdTrPstId(String gdTrPstId) {
-		this.gdTrPstId = gdTrPstId;
+	public void setGdId(String gdId) {
+		this.gdId = gdId;
 	}
-	public String getGdTrRvwTtl() {
-		return gdTrRvwTtl;
+	public String getGdRvwTtl() {
+		return gdRvwTtl;
 	}
-	public void setGdTrRvwTtl(String gdTrRvwTtl) {
-		this.gdTrRvwTtl = gdTrRvwTtl;
+	public void setGdRvwTtl(String gdRvwTtl) {
+		this.gdRvwTtl = gdRvwTtl;
 	}
-	public String getGdTrRvwCntnt() {
-		return gdTrRvwCntnt;
+	public String getGdRvwCntnt() {
+		return gdRvwCntnt;
 	}
-	public void setGdTrRvwCntnt(String gdTrRvwCntnt) {
-		this.gdTrRvwCntnt = gdTrRvwCntnt;
+	public void setGdRvwCntnt(String gdRvwCntnt) {
+		this.gdRvwCntnt = gdRvwCntnt;
 	}
-	public String getGdTrRvwCrtdat() {
-		return gdTrRvwCrtdat;
+	public String getGdRvwCrtdat() {
+		return gdRvwCrtdat;
 	}
-	public void setGdTrRvwCrtdat(String gdTrRvwCrtdat) {
-		this.gdTrRvwCrtdat = gdTrRvwCrtdat;
+	public void setGdRvwCrtdat(String gdRvwCrtdat) {
+		this.gdRvwCrtdat = gdRvwCrtdat;
 	}
-	public String getGdTrRvwDltAt() {
-		return gdTrRvwDltAt;
+	public String getGdRvwIsDlt() {
+		return gdRvwIsDlt;
 	}
-	public void setGdTrRvwDltAt(String gdTrRvwDltAt) {
-		this.gdTrRvwDltAt = gdTrRvwDltAt;
+	public void setGdRvwIsDlt(String gdRvwIsDlt) {
+		this.gdRvwIsDlt = gdRvwIsDlt;
 	}
-	public String getGdTrRvwIsDlt() {
-		return gdTrRvwIsDlt;
+	public String getGdRvwRtng() {
+		return gdRvwRtng;
 	}
-	public void setGdTrRvwIsDlt(String gdTrRvwIsDlt) {
-		this.gdTrRvwIsDlt = gdTrRvwIsDlt;
+	public void setGdRvwRtng(String gdRvwRtng) {
+		this.gdRvwRtng = gdRvwRtng;
 	}
-	public int getGdTrRvwRtng() {
-		return gdTrRvwRtng;
-	}
-	public void setGdTrRvwRtng(int gdTrRvwRtng) {
-		this.gdTrRvwRtng = gdTrRvwRtng;
-	}
+	
+	
+	
+	
+	
+	
+	
 }

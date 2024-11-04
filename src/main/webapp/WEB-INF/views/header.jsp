@@ -3,7 +3,7 @@
   <link rel="stylesheet" type="text/css" href="/css/Header.css" />
   
   
-  <div class="header-content" data-loginId="${sessionScope._LOGIN_USER_.usrLgnId}">
+  <div class="header-content" data-login-id="${sessionScope._LOGIN_USER_.usrLgnId}">
     <div class="logo">
       <a href="/"><img src="/public/Logo.png" alt="로고" /></a>
     </div>

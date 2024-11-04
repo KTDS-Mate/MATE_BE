@@ -7,7 +7,7 @@ pageEncoding="UTF-8"%>
   <head>
     <meta charset="UTF-8" />
     <title>Mypage_Tourist_MyTour</title>
-    <link rel="stylesheet" type="text/css" href="/css/MyPageLayout_PaymentDetails.css" />
+    <link rel="stylesheet" type="text/css" href="/css/mypage/MyPageLayout_PaymentDetails.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

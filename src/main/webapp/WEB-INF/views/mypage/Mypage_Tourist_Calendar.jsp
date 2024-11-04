@@ -5,7 +5,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>MATE 일정관리(변경예정)</title>
-    <link rel="stylesheet" type="text/css" href="/css/Mypage_Tourist_Calendar.css" />
+    <link rel="stylesheet" type="text/css" href="/css/mypage/Mypage_Tourist_Calendar.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

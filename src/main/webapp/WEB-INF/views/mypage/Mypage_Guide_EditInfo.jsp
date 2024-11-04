@@ -4,7 +4,7 @@
 
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" type="text/css" href="/css/Mypage_EditInfo.css" />
+    <link rel="stylesheet" type="text/css" href="/css/mypage/Mypage_EditInfo.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,11 +31,11 @@
           <div class="info-section">
             <h2>개인 정보 관리</h2>
             <div class="info-item">
-              <h3>아이디 : ${usrVO.usrLgnId}</h3>
-              <div class="factor">이메일 : ${usrVO.usrEml}</div>
+              <h3>아이디 : ${userVO.usrLgnId}</h3>
+              <div class="factor">이메일 : ${userVO.usrEml}</div>
               <div class="info-item">
                 <div class="info-row">
-                  <div class="factor">전화번호 : ${usrVO.usrPhn}</div>
+                  <div class="factor">전화번호 : ${userVO.usrPhn}</div>
                   <button class="edit-btn">수정</button>
                 </div>
                 <div class="info-row">
@@ -50,7 +50,7 @@
             <h2>결제 수단 관리</h2>
             <div class="info-item">
               <div class="info-row">
-                <div class="factor">결제이메일 :${usrVO.usrPypEml}</div>
+                <div class="factor">결제이메일 :${userVO.usrPypEml}</div>
                 <button class="edit-btn">수정</button>
               </div>
             </div>
