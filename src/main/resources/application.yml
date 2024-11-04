@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: dev
   application:
     name: mate
   datasource:
@@ -45,7 +47,18 @@ mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
   # classpath -> target 폴더의 classes 폴더
   mapper-locations: classpath:com/mate/**/dao/mapper/*Mapper.xml  
-  
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+# prod profile 전용 설정
+app:
+  multipart:
+#   base-dir: /Users/moomin/Downloads/uploadfiles
+    base-dir: /usr/local/src/tomcat/apache-tomcat-10.1.31/uploadfiles 
 
 #     # mybatis 설정 파일의 경로 지정
 #   mybatis:

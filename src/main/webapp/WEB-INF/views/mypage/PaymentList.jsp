@@ -41,17 +41,18 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
             <!-- 필터 박스 --------------------------------------------------------------->
             <div class="filter-box">
               <form class="search-form">
-			  	<input
+			  	      <input
 	                	type="hidden"
                 		name="trstId"
                 		class="page-no"
                 		value="${searchPaymentVO.trstId}" />
-			  	<input
+			  	      <input
 	                	type="hidden"
                 		name="pageNo"
                 		class="page-no"
                 		value="${searchPaymentVO.pageNo}" />
                 <div class="filter-grid">
+                  <div class="search-block">
                   <!-- 날짜 버튼들 -->
                   <div class="date-buttons">
                     <input 
@@ -59,9 +60,11 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       type="hidden" 
                       value= "${searchPaymentVO.searchType}"
                       name = "searchType" />
-                    <button
+                    <input
                       type="button"
-                      onclick="window.location.href='/mypage/payment/list?trstId='+ '${searchPaymentVO.trstId}' ">전체조회</button>
+                      onclick="window.location.href='/mypage/payment/list?trstId='+ '${searchPaymentVO.trstId}'"
+                      value="전체조회"
+                      />
                     <input 
                       id="one-week"
                       class="${searchPaymentVO.searchType eq '일주일' ? 'checked' : ''}"
@@ -87,32 +90,36 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       class="${searchPaymentVO.searchType eq '기간검색' ? 'checked' : ''}"
                       type="button" 
                       value= "기간검색" />
-                  </div>
-              
-                  <!-- 날짜 입력란 -->
-                  <div class="date-range">
-                    <input id="startDate" type="date" class="startDate" value="${searchPaymentVO.startDate}" name="startDate" />
-                    ~
-                    <input id="endDate" type="date" class="endDate" value="${searchPaymentVO.endDate}" name="endDate"/>
-                  </div>
-              
-                  <!-- 투어 타입 선택 -->
+                    </div>
+                    <!-- 날짜 입력란 -->
+                    <div class="date-range">
+                      <input id="startDate" type="date" class="startDate" value="${searchPaymentVO.startDate}" name="startDate" />
+                      ~
+                      <input id="endDate" type="date" class="endDate" value="${searchPaymentVO.endDate}" name="endDate"/>
+                    </div>
+
+                    <div class="select-area">
+                    <!-- 투어 타입 선택 -->
                     <select class="select-form" name ="tourType">
                       <option value="" ${"" eq searchPaymentVO.tourType ? "selected" : ""}>투어타입</option>
                       <option value="TOURIST" ${"TOURIST" eq searchPaymentVO.tourType ? "selected" : ""}>여행자</option>
                       <option value="GUIDE" ${"GUIDE" eq searchPaymentVO.tourType ? "selected" : ""}>가이드</option>
                     </select>
-
+  
                     <select class="select-form" name ="payState">
-                      <option value="" ${"" eq searchPaymentVO.payState ? "selected" : ""}>결제 상태</option>
+                      <option value="" ${"" eq searchPaymentVO.payState ? "selected" : ""}>결제상태</option>
                       <option value="WAITING" ${"WAITING" eq searchPaymentVO.payState ? "selected" : ""}>결제대기</option>
-                      <option value="COMPLETE" ${"COMPLETE" eq searchPaymentVO.payState ? "selected" : ""}>완료</option>
+                      <option value="COMPLETE" ${"COMPLETE" eq searchPaymentVO.payState ? "selected" : ""}>결제완료</option>
                       <option value="REFUND" ${"REFUND" eq searchPaymentVO.payState ? "selected" : ""}>환불</option>
-                      <option value="CANCEL" ${"CANCEL" eq searchPaymentVO.payState ? "selected" : ""}>취소</option>
+                      <option value="CANCEL" ${"CANCEL" eq searchPaymentVO.payState ? "selected" : ""}>예약취소</option>
                     </select>
+                  </div>
+                </div>
               		
                   <!-- 조회 버튼 -->
-                  <button>조회</button>
+                <div class="search-submit-btn">
+                  <button>조회하기</button>
+                </div>
                 </div>
               </form>
             </div>
@@ -136,7 +143,9 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                         items="${paymentListVO.paymentList}"
                         var="payInfo"
                       >
-                        <tr>
+                        <tr
+						 onclick="window.location.href='/payment/detail?usrId='+ '${searchPaymentVO.trstId}'
+						 +'&payId=' + '${payInfo.payId}' ">
                           <td>${payInfo.payId}</td>
                           <td>${payInfo.payCrtDt}</td>
                           <td>${payInfo.payTrTp}</td>
