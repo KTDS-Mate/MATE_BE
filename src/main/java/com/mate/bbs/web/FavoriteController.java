@@ -17,7 +17,7 @@ import com.mate.user.vo.UserVO;
 
 @RestController
 public class FavoriteController {
-
+	
 	@Autowired
 	private FavoriteService favoriteService;
 	

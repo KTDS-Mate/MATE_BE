@@ -98,7 +98,9 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
         </form>
         <div class="flex-list-insert-btn">
           <div>
-            <a class="insert-tour-btn" href="/usertour/insert">투어 등록</a>
+          	<c:if test="${not empty sessionScope._LOGIN_USER_}">
+            	<a class="insert-tour-btn" href="/usertour/insert">투어 등록</a>
+          	</c:if>
           </div>
           <div class="list-view-option">
             <input
@@ -161,6 +163,20 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                         ${userTourVO.countriesVO.countryName}
                       </div>
                       <div>소요시간 : ${userTourVO.usrTrTm}분</div>
+                      <c:choose>
+                      	<c:when test="${userTourVO.usrTrStts eq 'RSRVT'}">
+                      		<div>예약 상태 : 예약 중</div>
+                      	</c:when>
+                      	<c:when test="${userTourVO.usrTrStts eq 'PRG'}">
+                      		<div>예약 상태 : 투어 진행중</div>
+                      	</c:when>
+                      	<c:when test="${userTourVO.usrTrStts eq 'CMPLT'}">
+                      		<div>예약 상태 : 투어 완료</div>
+                      	</c:when>
+                      	<c:otherwise>
+                      		<div>예약 상태 : 모집 중</div>
+                      	</c:otherwise>
+                      </c:choose>
                     </div>
                     <p class="tour-deadline">마감 ${userTourVO.deadline}일전</p>
                   </div>

@@ -26,7 +26,7 @@ uri="http://www.springframework.org/tags/form" %>
         <jsp:include page="../header.jsp"></jsp:include>
       </div>
       <div class="content">
-        <form:form modelAttribute="userTourWriteVO" method="post">
+        <form:form modelAttribute="userTourWriteVO" method="post" enctype="multipart/form-data">
           <div class="insert-main">
             <div class="flex-main-img">
               <div>

@@ -1,4 +1,5 @@
 $().ready(function() {
+	
 	// 현재 모든 날짜와 시간을 가져옴
 	var nowDate = new Date();
 	// 현재 시간을 가져옴
@@ -222,7 +223,7 @@ $().ready(function() {
 		}
 				
 		var fileDom = $(`<div class="file-group">
-						 	<input type="file" required="required" />
+						 	<input id="img-file" type="file" name="userTourImgList[${fileCnt}].usrTrRqImgIdUrl}" required="required" accept=".jpg,.jpeg,.img,.png" />
 						 </div>`);
 		$(".file-list").append(fileDom);
 	});
@@ -230,5 +231,26 @@ $().ready(function() {
 	$("#del-file").on('click', function() {
 		$(".file-group:last").remove();
 	});
-	
+
+	// 파일 확장자 검증
+	$(document).on('change', "#img-file", function() {
+		// 현재 입력받은 파일
+		var fileVal = $(this).val();
+		// .앞에 있는 글자를 날리고 소문자로 변경 -> 확장자만 가져옴
+		var fileType = fileVal.split(".").pop().toLowerCase();
+		// 입력 가능한 확장자 리스트
+		var fileTypeArr = ['jpg', 'jpeg', 'img', 'png'];
+		
+		// inArray => 만약 fileTypeArr 안에 있는 파일이 아닌 다른 확장자를 받으면 -1을 내보냄
+		if ($.inArray(fileType, fileTypeArr) == -1) {
+			alert("이미지 파일만 등록 가능합니다!");
+			// 값 초기화
+			$(this).val("");
+		}
+		else {
+			$(this).val(fileVal);
+		}
+		
+	});
+		
 });

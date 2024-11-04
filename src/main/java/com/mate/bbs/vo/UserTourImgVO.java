@@ -2,6 +2,7 @@ package com.mate.bbs.vo;
 
 public class UserTourImgVO {
 
+	
 	/**
 	 * 여행자 등록 투어 게시글의 사진 PK
 	 */

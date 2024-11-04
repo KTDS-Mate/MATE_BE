@@ -1,71 +1,38 @@
 package com.mate.mypage.vo;
 
-public class MyBoardVO {
+import com.mate.payment.vo.PaymentVO;
+import com.mate.user.vo.UserVO;
 
-    private String gdTrPstId;
-    private String athrId; // 게시글 작성한 사람의 로그인 아이디 
-    private String usrId;
-    private String gdTrTtl;
-    private String gdTrStDt;
-    private String gdTrEdDt;
-    private String gdTrPrps;
-    private String gdTrMp;
-    private int gdTrPrc;
-    private String gdTrSmry;
-    private String gdTrRstrDt;
-    private String gdTrMdfyDt;
-    private String gdTrDltDt;
-    private char gdTrIsDlt;
-    private String trCtId;
-    private int gdTrMxNp;
-    private String usrTrStts;
-    
-    private SearchCityAndCountryVO searchCityAndCountryVO;
-    
-    
-    /*
-     * GD_TR_PST_ID
-		ATHR_ID
-		USR_ID
-		GD_TR_TTL
-		GD_TR_ST_DT
-		GD_TR_PRPS
-		GD_TR_MP
-		GD_TR_PRC
-		GD_TR_SMRY
-		GD_TR_RSTR_DT
-		GD_TR_MDFY_DT
-		GD_TR_DLT_DT
-		GD_TR_IS_DLT
-		TR_CNT_ID
-		TR_CT_ID
-		GD_TR_ED_DT
-		GD_TR_MX_NP
-     */
-    
-    
-    
+public class MyApplyUserTourVO {
+
+	private String gdTrPstId;
+	private String athrId;
+	private String usrId;
+	private String gdTrTtl;
+	private String gdTrStDt;
+	private String gdTrPrps;
+	private String gdTrMp;
+	private double gdTrPrc;
+	private String gdTrSmry;
+	private String gdTrRstrDt;
+	private String gdTrMdfyDt;
+	private String gdTrDltDt;
+	private String gdTrIsDlt;
+	private int trCtId;
+	private String gdTrEdDt;
+	private int gdTrMxNp;
+	private String gdTrStts;
+	private double trAvgRtng;
+	
+	private UserVO userVO;
+
+	private PaymentVO paymentVO;
+	
+	
+	
 	public String getGdTrPstId() {
 		return gdTrPstId;
 	}
-	
-	
-	
-	
-	public SearchCityAndCountryVO getSearchCityAndCountryVO() {
-		return searchCityAndCountryVO;
-	}
-
-
-
-
-	public void setSearchCityAndCountryVO(SearchCityAndCountryVO searchCityAndCountryVO) {
-		this.searchCityAndCountryVO = searchCityAndCountryVO;
-	}
-
-
-
-
 	public void setGdTrPstId(String gdTrPstId) {
 		this.gdTrPstId = gdTrPstId;
 	}
@@ -105,7 +72,12 @@ public class MyBoardVO {
 	public void setGdTrMp(String gdTrMp) {
 		this.gdTrMp = gdTrMp;
 	}
-
+	public double getGdTrPrc() {
+		return gdTrPrc;
+	}
+	public void setGdTrPrc(double gdTrPrc) {
+		this.gdTrPrc = gdTrPrc;
+	}
 	public String getGdTrSmry() {
 		return gdTrSmry;
 	}
@@ -130,20 +102,16 @@ public class MyBoardVO {
 	public void setGdTrDltDt(String gdTrDltDt) {
 		this.gdTrDltDt = gdTrDltDt;
 	}
-
-	
-	
-	public char getGdTrIsDlt() {
+	public String getGdTrIsDlt() {
 		return gdTrIsDlt;
 	}
-	public void setGdTrIsDlt(char gdTrIsDlt) {
+	public void setGdTrIsDlt(String gdTrIsDlt) {
 		this.gdTrIsDlt = gdTrIsDlt;
 	}
-
-	public String getTrCtId() {
+	public int getTrCtId() {
 		return trCtId;
 	}
-	public void setTrCtId(String trCtId) {
+	public void setTrCtId(int trCtId) {
 		this.trCtId = trCtId;
 	}
 	public String getGdTrEdDt() {
@@ -152,25 +120,35 @@ public class MyBoardVO {
 	public void setGdTrEdDt(String gdTrEdDt) {
 		this.gdTrEdDt = gdTrEdDt;
 	}
-	public int getGdTrPrc() {
-		return gdTrPrc;
-	}
-	public void setGdTrPrc(int gdTrPrc) {
-		this.gdTrPrc = gdTrPrc;
-	}
 	public int getGdTrMxNp() {
 		return gdTrMxNp;
 	}
 	public void setGdTrMxNp(int gdTrMxNp) {
 		this.gdTrMxNp = gdTrMxNp;
 	}
-	public String getUsrTrStts() {
-		return usrTrStts;
+	public String getGdTrStts() {
+		return gdTrStts;
 	}
-	public void setUsrTrStts(String usrTrStts) {
-		this.usrTrStts = usrTrStts;
+	public void setGdTrStts(String gdTrStts) {
+		this.gdTrStts = gdTrStts;
 	}
-
-
-    
+	public double getTrAvgRtng() {
+		return trAvgRtng;
+	}
+	public void setTrAvgRtng(double trAvgRtng) {
+		this.trAvgRtng = trAvgRtng;
+	}
+	public UserVO getUserVO() {
+		return userVO;
+	}
+	public void setUserVO(UserVO userVO) {
+		this.userVO = userVO;
+	}
+	public PaymentVO getPaymentVO() {
+		return paymentVO;
+	}
+	public void setPaymentVO(PaymentVO paymentVO) {
+		this.paymentVO = paymentVO;
+	}
+	
 }
