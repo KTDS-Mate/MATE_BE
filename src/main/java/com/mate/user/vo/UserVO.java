@@ -325,4 +325,13 @@ public class UserVO {
 	public void setConfirmPwd(String confirmPwd) {
 		this.confirmPwd = confirmPwd;
 	}
+
+	public int getUsrGdExp() {
+		return usrGdExp;
+	}
+
+	public void setUsrGdExp(int usrGdExp) {
+		this.usrGdExp = usrGdExp;
+	}
+	
 }
