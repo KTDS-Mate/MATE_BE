@@ -1,4 +1,3 @@
-
 div.content-grid {
   display: grid;
   grid-template-columns: 13rem 1fr;
@@ -7,8 +6,17 @@ div.content-grid {
 
 div.my-page > ul.list > li.wishlist{
 	color: #333;
-}  
+}
 
+.gray {
+  color: gray;
+}
+
+.border {
+  margin: 0 auto;
+  width: 95%;
+  border-top: 1px solid #000;
+}
 
 div.main-content {
   border: 2px solid #ffeedb;
@@ -32,10 +40,12 @@ div.main-content {
 }
 
 div.wishlist {
+  display: flex;
+  flex-direction: column;
   border: 2px solid #ffeedb;
   border-radius: 20px;
   width: 60rem;
-  height: 120rem;
+  height: auto;
   margin: 2rem;
   padding: 1rem 0;
   justify-content: space-between;
@@ -51,10 +61,7 @@ img.check {
   height: 3rem;
 }
 
-div.wishlist {
-  display: flex;
-  flex-direction: column;
-}
+
 
 div.one-wishlist {
   display: flex;
@@ -69,13 +76,13 @@ div.right-element {
   display: flex;
   align-items: center;
 }
-
 div.wishlist-info {
   padding: 0.5rem 2rem;
 }
 
 div.wishlist-info div {
   display: flex;
+  margin: 0.2rem 0;
   font-size: 1.2rem;
 }
 
@@ -83,12 +90,18 @@ div.info-content {
   padding-left: 1rem;
 }
 
-div.goto-button>button {
+div.goto-button{
+  padding: 1.8rem 0 1.8rem 2rem;
+  border-left: 2px solid #e5e5e5;
+}
+
+div.goto-button > button {
   border-radius: 15px;
   border: none;
   width: 13rem;
   height: 3.5rem;
   font-size: 1.2rem;
+
 }
 
 button.activate {
@@ -125,3 +138,22 @@ p.page-plus {
   border-right: 1rem solid transparent;
   margin-left: 1rem;
 }
+
+.page-nav {
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+}
+
+.page-nav>li {
+	list-style: none;
+	padding: 0.5rem;
+}
+
+.page-nav > li.active > a {
+	color: #F00;
+	font-weight: 900;
+}
+

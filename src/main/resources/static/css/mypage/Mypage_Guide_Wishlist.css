@@ -90,12 +90,18 @@ div.info-content {
   padding-left: 1rem;
 }
 
+div.goto-button{
+  padding: 1.8rem 0 1.8rem 2rem;
+  border-left: 2px solid #e5e5e5;
+}
+
 div.goto-button > button {
   border-radius: 15px;
   border: none;
   width: 13rem;
   height: 3.5rem;
   font-size: 1.2rem;
+
 }
 
 button.activate {
