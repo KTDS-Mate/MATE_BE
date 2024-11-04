@@ -1,11 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
-  <link rel="stylesheet" type="text/css" href="/css/Header.css" />
-  
-  
-  <div class="header-content" data-loginId="${sessionScope._LOGIN_USER_.usrLgnId}">
-    <div class="logo">
-      <a href="/"><img src="/public/Logo.png" alt="로고" /></a>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<link rel="stylesheet" type="text/css" href="/css/Header.css" />
+
+<div class="header-content" data-loginId="${sessionScope._LOGIN_USER_.usrLgnId}">
+  <div class="logo">
+    <a href="/"><img src="/public/Logo.png" alt="로고" /></a>
+  </div>
+
+  <div class="header-right-menu">
+    <div>
+      <a href="">
+        <img class="message-icon" src="/public/chat.png" alt="채팅버튼" />
+      </a>
     </div>
 
     <div class="header-center-menu">
@@ -44,4 +50,5 @@
 				</c:otherwise>
 			</c:choose>
     </div>
+  </div>
   </div>
