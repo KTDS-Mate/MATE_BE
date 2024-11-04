@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>MATE</title>
-    <link rel="stylesheet" type="text/css" href="/css/editinfo.css">
+    <link rel="stylesheet" type="text/css" href="/css/user/editinfo.css">
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="/js/user/userlogin.js"></script>
     <script type="text/javascript" src="/js/user/userregist.js"></script>
@@ -26,7 +26,6 @@
 	            <form:input type="tel" path="usrPhn" id="usrPhn" />
 	            <form:errors path="usrPhn" element="div" cssClass="error" />
 	            <div class="error" id="usrPhn-error"></div>
-	            
 	        </div>
 	        
             <div class="form-group">

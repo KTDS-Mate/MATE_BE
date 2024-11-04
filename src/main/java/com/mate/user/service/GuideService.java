@@ -18,4 +18,6 @@ public interface GuideService {
     
     public List<CountriesVO> getAllCountries();
     
+    public boolean updateGuideLicense(RegistGuideVO registGuideVO);
+    
 }

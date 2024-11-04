@@ -1,4 +1,8 @@
 spring:
+  # Spring default profile
+  profiles:
+    active: dev
+
   application:
     name: mate
   datasource:
@@ -38,7 +42,6 @@ portone:
   api:
     key: 8408511610228667
     secret: fWQcZ0aEmO4NgPxu2cs8gNe8ODxM9YHf0A7FwlkxmtlMa6rvaXQ5RrBBqcQvfMOmUv0EsxfzTMYNF5Ts
-
 
 mybatis:
   # mybatis-config.xml 파일의 위치를 지정
@@ -86,3 +89,16 @@ mybatis:
 #           /js/**,
 #           /css/**,
 #         /image/**
+
+# profile 분리
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+# prod profile 전용 설정
+app:
+  multipart:
+    # base-dir: /Users/moomin/Downloads/uploadfiles
+    # base-dir:/usr/local/src/tomcat/apache-tomcat-10.1.31/uploadfiles
