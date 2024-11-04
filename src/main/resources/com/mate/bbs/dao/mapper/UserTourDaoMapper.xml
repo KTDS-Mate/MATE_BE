@@ -190,6 +190,16 @@
 			resultType="_int">
 		SELECT COUNT(1)
 		  FROM USR_TR_RQST
+		 WHERE USR_TR_ST_DT > SYSDATE
+		<if test="_parameter != null">
+		 	<include refid="com.mate.bbs.dao.UserTourDao.selectRegions" />
+		</if>
+		<if test="_parameter != null">
+			<include refid="com.mate.bbs.dao.UserTourDao.selectSubjectAndContent" />
+		</if>
+		<if test="_parameter != null">
+		 	<include refid="com.mate.bbs.dao.UserTourDao.order" />
+		</if>
 	</select>
 	
 	<select id="selectAllUserTour"

@@ -81,7 +81,7 @@ div.content-grid {
 .apply-table td {
 	border: 1px solid #87a2ff;
 	border-right: 0;
-	padding: 1rem 1rem 1rem 1rem;
+	padding: 1rem 0.3rem 1rem 0.3rem;
 	background-color: #fff;
 	color: #333;
 }
@@ -91,7 +91,25 @@ div.content-grid {
 }
 
 .apply-table tbody td:nth-child(1) {
-	width: 15rem;
+	width: 10rem;
+}
+.apply-table tbody td:nth-child(2) {
+	width: 5rem;
+}
+.apply-table tbody td:nth-child(3) {
+	width: 7rem;
+}
+.apply-table tbody td:nth-child(4) {
+	width: 6rem;
+}
+.apply-table tbody td:nth-child(5) {
+	width: 6rem;
+}
+.apply-table tbody td:nth-child(6) {
+	width: 10rem;
+}
+.apply-table tbody td:nth-child(7) {
+	width: 4rem;
 }
 
 .apply-table tbody input {
@@ -107,4 +125,26 @@ div.content-grid {
 	background-color: #b7e0ff;
 	font-weight: bold;
 	cursor: pointer;
+}
+
+
+.page-nav {
+  margin: 0;
+  margin-top: 2rem;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-nav > li {
+  list-style: none;
+  padding: 0.5rem;
+  flex: 1, 1, 0;
+}
+
+.page-nav > li.active > a {
+  color: #f00a;
+  font-weight: 900;
 }

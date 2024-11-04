@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>여행자 나의 신청 투어 목록</title>
 	<link rel="stylesheet" type="text/css" href="/css/common.css" />
 	<link rel="stylesheet" type="text/css" href="/css/Mypage_Tourist_Apply.css" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,9 +38,8 @@
           		</div>
           		<div class="apply-filter-zone">
           			<select>
-          				<option>정렬 순서</option>
-          				<option>투어 일자 순</option>
-          				<option>결제 일자 순</option>
+          				<option value="tr">투어 일자 순</option>
+          				<option value="cr">결제 일자 순</option>
           			</select>
           		</div>
           	</div>
@@ -51,40 +50,105 @@
           					<th>투어 제목</th>
           					<th>가이드 명</th>
           					<th>투어 일자</th>
+          					<th>투어 상태</th>
           					<th>결제 상태</th>
           					<th>결제 일자</th>
           					<th>투어 완료 선택</th>
           				</tr>
           			</thead>
           			<tbody>
-          				<c:forEach items="${myApplyTourListVO.myApplyTourList}" var="myApplyTourVO">
-          					<tr class="result-sum">
+          				<c:choose>
+          				<c:when test="${not empty myApplyTourListVO.myApplyUserTourList}">
+          				<c:forEach items="${myApplyTourListVO.myApplyUserTourList}" var="myApplyTourVO" varStatus="sts">
+          					<tr id='re-${sts.index}' class="result-sum">
 	          					<td>
-	          						${myApplyTourVO.usrTrTtl}
-	          						<input class="apply-hide" type="hidden" data-stts="${myApplyTourVO.usrTrStts}" />
+	          						${myApplyTourVO.gdTrTtl}
+	          						<input class="apply-hide" type="hidden" 
+	          						data-stts="${myApplyTourVO.gdTrStts}" 
+	          						data-pay-stts="${myApplyTourVO.paymentVO.payStt}"
+	          						data-pst-id="${myApplyTourVO.gdTrPstId}" />
 	          					</td>
-	          					<td>${myApplyTourVO.gdId}</td>
-	          					<td>${myApplyTourVO.usrTrStDt}</td>
+	          					<td>${myApplyTourVO.userVO.usrLnm} ${myApplyTourVO.userVO.usrFnm}</td>
+	          					<td id="st">${myApplyTourVO.gdTrStDt}</td>
 	          					<c:choose>
-			                      	<c:when test="${myApplyTourVO.usrTrStts eq 'RSRVT'}">
+			                      	<c:when test="${myApplyTourVO.gdTrStts eq 'RSRVT'}">
 			                      		<td>예약 중</td>
 			                      	</c:when>
-			                      	<c:when test="${myApplyTourVO.usrTrStts eq 'PRG'}">
+			                      	<c:when test="${myApplyTourVO.gdTrStts eq 'PRG'}">
 			                      		<td>투어 진행중</td>
 			                      	</c:when>
-			                      	<c:when test="${myApplyTourVO.usrTrStts eq 'CMPLT'}">
+			                      	<c:when test="${myApplyTourVO.gdTrStts eq 'CMPLT'}">
 			                      		<td>투어 완료</td>
 			                      	</c:when>
 			                      	<c:otherwise>
 			                      		<td>모집 중</td>
 			                      	</c:otherwise>
+			                    </c:choose>
+	          					<c:choose>
+			                      	<c:when test="${myApplyTourVO.paymentVO.payStt eq 'CANCEL'}">
+			                      		<td>결제 취소</td>
+			                      	</c:when>
+			                      	<c:when test="${myApplyTourVO.paymentVO.payStt eq 'REFUND'}">
+			                      		<td>환불</td>
+			                      	</c:when>
+			                      	<c:when test="${myApplyTourVO.paymentVO.payStt eq 'COMPLETE'}">
+			                      		<td>결제 완료</td>
+			                      	</c:when>
+			                      	<c:otherwise>
+			                      		<td>결제 대기중</td>
+			                      	</c:otherwise>
 			                      </c:choose>
-	          					<td>?</td>
+	          					<td>${myApplyTourVO.paymentVO.payCmpltDt}</td>
 	          					<td><input id="success-btn" type="button" value="투어 완료" /></td>
           					</tr>
           				</c:forEach>
+          				</c:when>
+          				<c:otherwise>
+          					<tr>
+          						<td colspan="7">신청한 투어가 없습니다.</td>
+          					</tr>
+          				</c:otherwise>
+          				</c:choose>
           			</tbody>
           		</table>
+          		<ul class="page-nav">
+                  <c:if test="${searchMyApplyTourVO.hesprevGroup}">
+                    <li>
+                      <!-- <a href="/board/list?pageNo=0&listSize=${searchMyBoardVO.listSize}"> -->
+                      <a href="javascript:movePage(0)">
+                        처음
+                      </a>
+                    </li>
+                    <li>
+                      <a href="javascript:movePage(${searchMyApplyTourVO.prevGroupStartPageNo})">
+                        이전
+                      </a>
+                    </li>
+                  </c:if>
+                  <c:forEach begin="${searchMyApplyTourVO.groupStartPageNo}" end="${searchMyApplyTourVO.groupEndPageNo}"
+                    step="1" var="p">
+                    <li class="${p eq searchMyApplyTourVO.pageNo ? 'active' : ''}">
+                      <!-- a href="/mypage/mytour/gd-mytour/${sessionScope._LOGIN_USER_.usrLgnId}?pageNo=${p}" -->
+                      <a href="javascript:movePage(${p})">
+
+                        ${p+1}
+
+                      </a>
+                    </li>
+                  </c:forEach>
+                  <c:if test="${searchMyApplyTourVO.hasNextGroup}">
+                    <li>
+                      <a href="javascript:movePage(${searchMyApplyTourVO.nextGroupStartPageNo})">
+                        다음
+                      </a>
+                    </li>
+                    <li>
+                      <a href="javascript:movePage(${searchMyApplyTourVO.pageCount - 1})">
+                        끝
+                      </a>
+                    </li>
+                  </c:if>
+                </ul>
           	</div>
           </div>
         </div>

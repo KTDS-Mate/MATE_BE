@@ -1,11 +1,12 @@
 $().ready(function() {
+	
 	var usrLgnId = $(".header-content").data("loginid");
 	
 	$(".order").on('change', function () {
-			var otpVal = $(this).val();
-			
-			location.href = "/mypage/tr-apply-tour/" + usrLgnId + "&orderby=" + otpVal;
-		});
+		var otpVal = $(this).val();
+		
+		location.href = "/mypage/tr-apply-tour/" + usrLgnId + "&orderby=" + otpVal;
+	});
 	
 	// 등록한 게시글의 개수
 	var trLength = $(".result-sum").length;
@@ -38,13 +39,12 @@ $().ready(function() {
 		var usrTrPstId = $(this).closest(".result-sum").find(".apply-hide").data("pst-id");
 		
 		if (confirm("야르")) {
-			location.href = `/mypage/tr-apply-tour/complete/${usrTrPstId}/${usrLgnId}`;
+			location.href = `/mypage/gd-apply-tour/complete/${usrTrPstId}/${usrLgnId}`;
 		}
 		
 	});
 
 });
-
 
 function movePage(pageNo) {
     var loginId = $(".header-content").attr("data-loginId");
@@ -53,6 +53,6 @@ function movePage(pageNo) {
 	
     $(".search-form").attr({
         "method": "GET",
-        "action": `/mypage/tr-apply-tour/${loginId}`
+        "action": `/mypage/gd-apply-tour/${loginId}`
     }).submit();
 }

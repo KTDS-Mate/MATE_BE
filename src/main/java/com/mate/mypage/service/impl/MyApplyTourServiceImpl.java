@@ -1,14 +1,18 @@
 package com.mate.mypage.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mate.bbs.vo.UserTourVO;
 import com.mate.mypage.dao.MyApplyTourDao;
 import com.mate.mypage.service.MyApplyTourService;
-import com.mate.mypage.vo.MyApplyTourListVO;
+import com.mate.mypage.vo.MyApplyGuideTourListVO;
+import com.mate.mypage.vo.MyApplyGuideTourVO;
+import com.mate.mypage.vo.MyApplyUserTourListVO;
+import com.mate.mypage.vo.MyApplyUserTourVO;
+import com.mate.mypage.vo.SearchMyApplyTourVO;
 
 @Service
 public class MyApplyTourServiceImpl implements MyApplyTourService {
@@ -17,20 +21,63 @@ public class MyApplyTourServiceImpl implements MyApplyTourService {
 	private MyApplyTourDao myApplyTourDao;
 	
 	@Override
-	public MyApplyTourListVO getAllMyApplyTourList(String athrId) {
-		List<UserTourVO> myApplyTourList = this.myApplyTourDao.selectAllMyTours(athrId);
-		int myApplyTourCount = this.myApplyTourDao.selectMyTourCount(athrId);
+	public MyApplyUserTourListVO getAllMyApplyTourList(String usrId, SearchMyApplyTourVO searchMyApplyTourVO) {
+		int myApplyTourCount = this.myApplyTourDao.selectMyTourCount(usrId, searchMyApplyTourVO);
 		
-		MyApplyTourListVO myApplyTourListVO = new MyApplyTourListVO();
-		myApplyTourListVO.setMyApplyTourCount(myApplyTourCount);
-		myApplyTourListVO.setMyApplyTourList(myApplyTourList);
+		if (myApplyTourCount == 0) {
+			MyApplyUserTourListVO myApplyuserTourListVO = new MyApplyUserTourListVO();
+			myApplyuserTourListVO.setMyApplyUserTourCount(0);
+			myApplyuserTourListVO.setMyApplyUserTourList(new ArrayList<>());
+			
+			return myApplyuserTourListVO;
+		}
 		
-		return myApplyTourListVO;
+		List<MyApplyUserTourVO> myApplyTourList = this.myApplyTourDao.selectAllMyApplyTours(usrId, searchMyApplyTourVO);
+		
+		searchMyApplyTourVO.setListSize(5);
+		searchMyApplyTourVO.setPageCount(myApplyTourCount);
+		
+		MyApplyUserTourListVO myApplyuserTourListVO = new MyApplyUserTourListVO();
+		myApplyuserTourListVO.setMyApplyUserTourCount(myApplyTourCount);
+		myApplyuserTourListVO.setMyApplyUserTourList(myApplyTourList);
+		
+		return myApplyuserTourListVO;
 	}
 
 	@Override
-	public boolean updateTourStts(String usrTrPstId) {
-		return this.myApplyTourDao.updateUserTourStts(usrTrPstId) > 0;
+	public boolean updateUserTourStts(String gdTrPstId) {
+		return this.myApplyTourDao.updateGuideTourStts(gdTrPstId) > 0;
 	}
 
+	// ---------------------------------------------------------------------------
+	
+	@Override
+	public MyApplyGuideTourListVO getAllMyApplyTourListForGuide(String athrId, SearchMyApplyTourVO searchMyApplyTourVO) {
+		int myApplyTourCount = this.myApplyTourDao.selectMyTourCountForGuide(athrId, searchMyApplyTourVO);
+		
+		if (myApplyTourCount == 0) {
+			MyApplyGuideTourListVO myApplyGuideTourListVO = new MyApplyGuideTourListVO();
+			myApplyGuideTourListVO.setMyApplyGuideTourCount(0);
+			myApplyGuideTourListVO.setMyApplyGuideTourList(new ArrayList<>());
+			
+			return myApplyGuideTourListVO;
+		}
+		
+		List<MyApplyGuideTourVO> myApplyTourList =  this.myApplyTourDao.selectAllMyApplyToursForGuide(athrId, searchMyApplyTourVO);
+		searchMyApplyTourVO.setListSize(5);
+		searchMyApplyTourVO.setPageCount(myApplyTourCount);
+		
+		MyApplyGuideTourListVO myApplyGuideTourListVO = new MyApplyGuideTourListVO();
+		myApplyGuideTourListVO.setMyApplyGuideTourCount(myApplyTourCount);
+		myApplyGuideTourListVO.setMyApplyGuideTourList(myApplyTourList);
+		
+		return myApplyGuideTourListVO;
+	}
+
+	@Override
+	public boolean updateGuideTourStts(String gdTrPstId) {
+		return this.myApplyTourDao.updateUserTourStts(gdTrPstId) > 0;
+	}
+	
+	
 }

@@ -98,7 +98,9 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
         </form>
         <div class="flex-list-insert-btn">
           <div>
-            <a class="insert-tour-btn" href="/usertour/insert">투어 등록</a>
+          	<c:if test="${not empty sessionScope._LOGIN_USER_}">
+            	<a class="insert-tour-btn" href="/usertour/insert">투어 등록</a>
+          	</c:if>
           </div>
           <div class="list-view-option">
             <input
