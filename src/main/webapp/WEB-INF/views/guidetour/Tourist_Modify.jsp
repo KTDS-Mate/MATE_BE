@@ -5,23 +5,19 @@ uri="http://www.springframework.org/tags/form" %>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>가이드 투어 등록</title>
+    <title>가이드 투어 수정</title>
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link
       rel="stylesheet"
       type="text/css"
-      href="/css/guidetour/Guide_TourInsert.css"
+      href="/css/guidetour/Tourist_Modify.css"
     />
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script
       type="text/javascript"
       src="/js/guidetour/guidetourinsert.js"
     ></script>
-    <script src="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.js"></script>
-    <link
-      href="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css"
-      rel="stylesheet"
-    />
+   
   </head>
   <body>
     <div class="grid">

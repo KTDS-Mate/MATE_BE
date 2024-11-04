@@ -9,6 +9,10 @@ import jakarta.validation.constraints.PositiveOrZero;
 public class GuideTourWriteVO {
 	
 	/**
+	 * 가이드 투어 게시글 아이디
+	 */
+	private String gdTrPstId;
+	/**
 	 * 가이드가 등록한 투어 제목
 	 */
 	@NotBlank(message = "제목을 작성해주세요!")
@@ -56,14 +60,15 @@ public class GuideTourWriteVO {
 	 * 투어를 진행할 도시 아이디 fk
 	 */
 	private int trCtId;
-	/**
-	 * 투어 날짜
-	 */
-	private String gdTrDt;
+	
 	/**
 	 * 투어 요약(요구사항)
 	 */
 	private String gdTrSmry;
+	/**
+	 * 투어 등록일
+	 */
+	private String gdTrRstrDt;
 	/**
 	 *  투어제공항목 리스트
 	 */
@@ -76,6 +81,25 @@ public class GuideTourWriteVO {
 	 * 가이드 투어 상세정보 리스트 VO
 	 */
 	private List<GuideTourDetailInfoVO> guideTourDetailInfoList;
+	/**
+	 * 가이드 투어 세부일정 리스트 VO
+	 */
+	private List<GuideTourScheduleInfoVO> guideTourScheduleInfoList;
+	/**
+	 * 투어 작성자의 ID VO
+	 */
+	private String athrId;
+	/**
+	 * 리뷰 평점 알리아스
+	 */
+	private double avgRvw;
+
+	public String getGdTrPstId() {
+		return gdTrPstId;
+	}
+	public void setGdTrPstId(String gdTrPstId) {
+		this.gdTrPstId = gdTrPstId;
+	}
 	public String getGdTrTtl() {
 		return gdTrTtl;
 	}
@@ -142,17 +166,17 @@ public class GuideTourWriteVO {
 	public void setTrCtId(int trCtId) {
 		this.trCtId = trCtId;
 	}
-	public String getGdTrDt() {
-		return gdTrDt;
-	}
-	public void setGdTrDt(String gdTrDt) {
-		this.gdTrDt = gdTrDt;
-	}
 	public String getGdTrSmry() {
 		return gdTrSmry;
 	}
 	public void setGdTrSmry(String gdTrSmry) {
 		this.gdTrSmry = gdTrSmry;
+	}
+	public String getGdTrRstrDt() {
+		return gdTrRstrDt;
+	}
+	public void setGdTrRstrDt(String gdTrRstrDt) {
+		this.gdTrRstrDt = gdTrRstrDt;
 	}
 	public List<GuideTourProvidedVO> getGuideTourProvidedList() {
 		return guideTourProvidedList;
@@ -172,5 +196,22 @@ public class GuideTourWriteVO {
 	public void setGuideTourDetailInfoList(List<GuideTourDetailInfoVO> guideTourDetailInfoList) {
 		this.guideTourDetailInfoList = guideTourDetailInfoList;
 	}
-	
+	public List<GuideTourScheduleInfoVO> getGuideTourScheduleInfoList() {
+		return guideTourScheduleInfoList;
+	}
+	public void setGuideTourScheduleInfoList(List<GuideTourScheduleInfoVO> guideTourScheduleInfoList) {
+		this.guideTourScheduleInfoList = guideTourScheduleInfoList;
+	}
+	public String getAthrId() {
+		return athrId;
+	}
+	public void setAthrId(String athrId) {
+		this.athrId = athrId;
+	}
+	public double getAvgRvw() {
+		return avgRvw;
+	}
+	public void setAvgRvw(double avgRvw) {
+		this.avgRvw = avgRvw;
+	}
 }

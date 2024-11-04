@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -37,7 +38,7 @@ pageEncoding="UTF-8" %>
       <div class="content">
         <div class="container">
           <div class="title">
-            <h1>기요미즈데라 사원에서 진행하는 일본의 전통 참배 투어</h1>
+            <h1>${guideTourVO.gdTrTtl}</h1>
           </div>
           <!-- <div class="reviewWriteModal hidden"> -->
           <jsp:include page="Modal.jsp" />
@@ -68,20 +69,16 @@ pageEncoding="UTF-8" %>
               </div>
               <div class="priceDetailArea">
                 <div class="hour">
-                  <span>6 Hours</span>
+              	  <h4 class="maxNp">최대 인원 : ${guideTourVO.gdTrMxNp} 명</h4>
                 </div>
                 <div class="price">
-                  <span>300 $ per Team</span>
+                  <span>${guideTourVO.gdTrPrc} $</span>
                 </div>
-                <!-- <div class="adultPrice">
-                  <span>Adult : 300$</span>
-                </div>
-                <div class="childPrice">
-                  <span>Child : 100$</span>
-                </div> -->
-                <div class="reserveButton">
-                  <span onclick="location.href='index.html'">예약 요청</span>
-                </div>
+                <c:if test="${sessionScope._LOGIN_USER_.usrIsGd eq 'N'}">
+	                <div class="reserveButton">
+	                  <span onclick="location.href='index.html'">예약 요청</span>
+	                </div>
+                </c:if>
               </div>
             </div>
           </div>
@@ -94,10 +91,8 @@ pageEncoding="UTF-8" %>
                 </h3>
               </div>
               <div class="summaryDetailArea">
-                <h1>1. 즐겁고 재미난 투어</h1>
-                <h1>2. 현지 가이드와 함께하는 투어</h1>
-                <h1>3. 눈이 즐거운 투어</h1>
-                <h1>4. 음식이 맛있는 투어</h1>
+              	<h4>투어 날짜 :  ${guideTourVO.gdTrStDt} ~ ${guideTourVO.gdTrEdDt}</h4>
+                <h1> ${guideTourVO.gdTrSmry}</h1>
               </div>
             </div>
             <div class="guideProfileArea">
@@ -108,11 +103,19 @@ pageEncoding="UTF-8" %>
                 </h3>
               </div>
               <div class="profileDetailArea">
-                <img src="/public/가이드 샘플 사진.jpg" alt="가이드 사진" />
+                <img src="${guideTourVO.userVO.gdPrflImg}" alt="가이드 사진" />
                 <div class="profileSummaryArea">
-                  <h1>성별 : 여자</h1>
-                  <h1>나이 : 24세</h1>
-                  <h1>가이드 경력 : 12회</h1>
+                  <c:choose>
+                  	<c:when test="${guideTourVO.userVO.usrGndr == 'male'}">
+                  		<h1>성별 : 남자</h1>		
+                  	</c:when>
+                  	<c:otherwise>
+                  		<h1>성별 : 여자</h1>
+                  	</c:otherwise>
+                  </c:choose>
+                  <h1>이름 : ${guideTourVO.userVO.usrLnm} ${guideTourVO.userVO.usrFnm} </h1>
+                  <h1>나이 : 만 ${guideTourVO.guideAge} 세</h1>
+                  <h1>가이드 경력 : ${guideTourVO.userVO.usrGdExp} 번</h1>
                 </div>
               </div>
             </div>
@@ -126,10 +129,9 @@ pageEncoding="UTF-8" %>
                 </h3>
               </div>
               <div class="offerDetailArea">
-                <h1>1. 즐겁고 재미난 투어</h1>
-                <h1>2. 현지 가이드와 함께하는 투어</h1>
-                <h1>3. 눈이 즐거운 투어</h1>
-                <h1>4. 음식이 맛있는 투어</h1>
+              <c:forEach items="${guideTourVO.guideTourProvidedList}" var="guideTourProvidedVO">
+                <h1>${guideTourProvidedVO.trIncld}</h1>
+              </c:forEach>
               </div>
             </div>
           </div>
@@ -144,10 +146,7 @@ pageEncoding="UTF-8" %>
               <div class="rallyPointDetailArea">
                 <div class="summaryArea">
                   <div class="rallyPointSummaryArea">
-                    <h1>1. 즐겁고 재미난 투어</h1>
-                    <h1>2. 현지 가이드와 함께하는 투어</h1>
-                    <h1>3. 눈이 즐거운 투어</h1>
-                    <h1>4. 음식이 맛있는 투어</h1>
+                    <h1>${guideTourVO.gdTrMp}</h1>
                   </div>
                 </div>
                 <div class="mapApiArea">
@@ -160,17 +159,53 @@ pageEncoding="UTF-8" %>
           <div class="fifthLayer">
             <div class="tourInfoArea">
               <div class="tourInfoTitleArea">
-                <span>투어 상세 정보</span>
+                <span>투어 세부 일정</span>
+                <h3 class="showDetail" onclick="location.href='index.html'">
+                  상세보기
+                </h3>
+              </div>
+              <div class="tourInfoDetailArea">
+                <ul class="hope-info-list">
+                	<c:choose>
+                		<c:when test="${not empty guideTourVO.guideTourScheduleInfoList && not empty guideTourVO.guideTourScheduleInfoList[0].trDtlLct}">
+			                <c:forEach items="${guideTourVO.guideTourScheduleInfoList}"
+			                		   var="guideTourScheduleInfoVO"
+			                		   varStatus="index">
+			                		   <li>
+			                		   	  <div class="list-item">
+			                		   	  	<span class="background-num">
+			                		   	  		${index.index + 1}</span>
+			                		   	  		${guideTourScheduleInfoVO.trDtlLct}
+			                		   	  </div>
+			                		   	  <div class="border-left">${guideTourScheduleInfoVO.trDtlSchd}</div>
+			                		   </li>
+			                </c:forEach>
+                		</c:when>
+                		<c:otherwise>
+                			<li>
+                				<p>작성된 세부 일정이 없습니다.</p>
+                			</li>
+                		</c:otherwise>
+	                </c:choose>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="fifthLayer">
+            <div class="tourInfoArea">
+              <div class="tourInfoTitleArea">
+                <span>투어 추가 정보</span>
                 <h3 class="showDetail" onclick="location.href='index.html'">
                   상세보기
                 </h3>
               </div>
               <div class="tourInfoDetailArea">
                 <div class="tourInfoSummaryArea">
-                  <h1>1. 즐겁고 재미난 투어</h1>
-                  <h1>2. 현지 가이드와 함께하는 투어</h1>
-                  <h1>3. 눈이 즐거운 투어</h1>
-                  <h1>4. 음식이 맛있는 투어</h1>
+	                <ul class="plus-inf">
+	                <c:forEach items="${guideTourVO.guideTourDetailInfoList}" var="guideTourDetailInfoVO">
+	                	<li>${guideTourDetailInfoVO.trDtlInf}</li>
+	                </c:forEach>
+	                </ul>
                 </div>
               </div>
             </div>

@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mate.bbs.dao.GuideTourDao;
+import com.mate.bbs.vo.GuideTourDetailInfoVO;
 import com.mate.bbs.vo.GuideTourModifyVO;
+import com.mate.bbs.vo.GuideTourProvidedVO;
+import com.mate.bbs.vo.GuideTourScheduleInfoVO;
 import com.mate.bbs.vo.GuideTourVO;
 import com.mate.bbs.vo.GuideTourWriteVO;
 import com.mate.bbs.vo.SearchGuideTourVO;
@@ -68,7 +71,41 @@ public class GuideTourDaoImpl extends SqlSessionDaoSupport implements GuideTourD
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachStartHour", guideTourWriteVO);
 	}
 	@Override
+	public String selectAttachModifyStartHour(GuideTourModifyVO guideTourModifyVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachModifyStartHour", guideTourModifyVO);
+	}
+	@Override
 	public String selectAttachEndHour(GuideTourWriteVO guideTourWriteVO) {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachEndHour", guideTourWriteVO);
 	}
+	@Override
+	public String selectAttachModifyEndHour(GuideTourModifyVO guideTourModifyVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachModifyEndHour", guideTourModifyVO);
+	}
+	@Override
+	public int insertNewDetailInfo(GuideTourDetailInfoVO guideTourDetailInfoVO) {
+		return this.getSqlSession().insert(NAMESPACE + ".insertNewDetailInfo", guideTourDetailInfoVO);
+	}
+	@Override
+	public int insertNewSchdInfo(GuideTourScheduleInfoVO guideTourScheduleInfoVO) {
+		return this.getSqlSession().insert(NAMESPACE + ".insertNewSchdInfo", guideTourScheduleInfoVO);
+	}
+	@Override
+	public int insertNewProvidedInfo(GuideTourProvidedVO guideTourProvidedVO) {
+		return this.getSqlSession().insert(NAMESPACE + ".insertNewProvidedInfo", guideTourProvidedVO);
+	}
+	
+	@Override
+	public List<GuideTourDetailInfoVO> selectTourDetailInfoList(String gdTrPstId) {
+		return this.getSqlSession().selectList(NAMESPACE + ".selectTourDetailInfoList", gdTrPstId);
+	}
+	@Override
+	public List<GuideTourProvidedVO> selectTourProvidedList(String gdTrPstId) {
+		return this.getSqlSession().selectList(NAMESPACE + ".selectTourProvidedList", gdTrPstId);
+	}
+	@Override
+	public List<GuideTourScheduleInfoVO> selectTourScheduleList(String gdTrPstId) {
+		return this.getSqlSession().selectList(NAMESPACE + ".selectTourScheduleList", gdTrPstId);
+	}
+	
 }
