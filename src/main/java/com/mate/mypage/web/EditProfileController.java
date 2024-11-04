@@ -58,7 +58,7 @@ public class EditProfileController {
         UserVO userVO = this.editProfileService.selectOneUser(usrLgnId);
 
         System.out.println(count);
-        model.addAttribute("usrVO", userVO);
+        model.addAttribute("userVO", userVO);
     	return "mypage/Mypage_Tourist_EditInfo";
 
     }
@@ -89,7 +89,7 @@ public class EditProfileController {
         UserVO userVO = this.editProfileService.selectOneUser(usrLgnId);
         System.out.println(count);
 
-        model.addAttribute("usrVO", userVO);
+        model.addAttribute("userVO", userVO);
         return "mypage/Mypage_Guide_EditInfo";
 
     }

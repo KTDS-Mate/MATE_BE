@@ -1,16 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-  <!DOCTYPE html>
-  <html>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html>
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" type="text/css" href="/css/Mypage_EditInfo.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="/js/user/userlogin.js"></script>
+    <script type="text/javascript" src="/js/user/userregist.js"></script>
+    <script type="text/javascript" src="/js/user/emailauthverify.js"></script>
+    <script type="text/javascript" src="/js/user/emailauth.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet">
+      rel="stylesheet"
+    />
     <title>Mypage_Tourist_EditInfo</title>
   </head>
 
@@ -21,7 +27,6 @@
         <jsp:include page="../header.jsp"></jsp:include>
       </div>
       <div class="content">
-
         <!-- side-bar 공통파일 -->
         <!-- 사이드바 -->
 
@@ -31,17 +36,20 @@
         <div class="main-content">
           <div class="info-section">
             <h2>개인 정보 관리</h2>
+            <jsp:include page="../user/myPageModal.jsp" />
             <div class="info-item">
-              <h3>아이디 : ${usrVO.usrLgnId}</h3>
-              <div class="factor">이메일 : ${usrVO.usrEml}</div>
+              <h3>아이디 : ${userVO.usrLgnId}</h3>
+              <div class="factor">이메일 : ${userVO.usrEml}</div>
               <div class="info-item">
                 <div class="info-row">
-                  <div class="factor">전화번호 : ${usrVO.usrPhn}</div>
-                  <button class="edit-btn">수정</button>
+                  <div class="factor">전화번호 : ${userVO.usrPhn}</div>
+                  <button class="edit-btn btn-open-phoneNumEdit-modal">
+                    수정
+                  </button>
                 </div>
                 <div class="info-row">
                   <div class="factor">비밀번호 변경</div>
-                  <button class="edit-btn">수정</button>
+                  <button class="edit-btn btn-open-pwEdit-modal">수정</button>
                 </div>
               </div>
             </div>
@@ -51,8 +59,8 @@
             <h2>결제 수단 관리</h2>
             <div class="info-item">
               <div class="info-row">
-                <div class="factor">결제이메일 :${usrVO.usrPypEml}</div>
-                <button class="edit-btn">수정</button>
+                <div class="factor">결제이메일 :${userVO.usrPypEml}</div>
+                <button class="edit-btn btn-open-pypEdit-modal">수정</button>
               </div>
             </div>
           </div>
@@ -60,7 +68,9 @@
           <div class="guide-section">
             <div class="info-row">
               <h2>가이드 등록</h2>
-              <button class="edit-btn">등록</button>
+              <button class="edit-btn">
+                <a href="/user/guideregist">등록</a>
+              </button>
             </div>
           </div>
         </div>
@@ -71,5 +81,4 @@
       </div>
     </div>
   </body>
-
-  </html>
+</html>
