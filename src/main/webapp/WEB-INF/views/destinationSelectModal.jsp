@@ -4,7 +4,6 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <html>
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link
       rel="stylesheet"
       type="text/css"
@@ -21,18 +20,23 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
   </head>
   <body>
     <dialog id="destinationSelectModal" class="destinationSelectModal hidden">
-      <div id="searchModalArea" class="searchModalArea hidden">
-        <div class="searchmodalContent">
-          <h2>검색</h2>
-          <input type="text" id="searchInput" placeholder="검색어 입력" />
-          <img
-            src="/public/searchButton.png"
-            alt="검색 버튼"
-            id="searchButton"
-            class="searchButton"
-          />
-          <div id="searchResults"></div>
-          <button class="closeModal">닫기</button>
+      <div id="searchModalArea" class="searchModalArea">
+        <h2>검색</h2>
+        <div class="searchModalContent">
+          <div class="searchInputArea">
+            <div class="searchInput">
+              <input type="text" id="searchInput" placeholder="검색어 입력" />
+            </div>
+            <div class="searchButtonArea">
+              <img
+                src="/public/searchButton.png"
+                alt="검색 버튼"
+                id="searchButton"
+                class="searchButton"
+              />
+            </div>
+          </div>
+          <div id="searchResults" class="searchResults"></div>
         </div>
       </div>
     </dialog>
