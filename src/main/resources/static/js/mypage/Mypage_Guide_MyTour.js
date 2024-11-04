@@ -1,6 +1,6 @@
 $().ready(function () {
-    var loginId = $(".header-content").attr("data-loginId");
-
+	var loginId = $(".header-content").data("login-id");	
+	console.log(loginId);
 
     $(".search-btn").on("click", function () {
         console.log(loginId);
@@ -24,8 +24,9 @@ $().ready(function () {
 });
 
 function movePage(pageNo) {
-    var loginId = $(".header-content").attr("data-loginId");
+    var loginId = $(".header-content").data("login-id");
     console.log(loginId);
+	
 
     $(".page-no").val(pageNo);
     $(".search-form").attr({

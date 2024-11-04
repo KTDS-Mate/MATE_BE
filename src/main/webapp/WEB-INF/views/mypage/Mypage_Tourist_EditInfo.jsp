@@ -4,7 +4,7 @@ pageEncoding="UTF-8" %>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" type="text/css" href="/css/Mypage_EditInfo.css" />
+    <link rel="stylesheet" type="text/css" href="/css/mypage/Mypage_EditInfo.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="/js/user/userlogin.js"></script>

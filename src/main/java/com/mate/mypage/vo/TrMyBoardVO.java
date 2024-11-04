@@ -19,12 +19,28 @@ public class TrMyBoardVO {
 	private String athrId;
 	private String usrTrTtl;
 	private String usrTrStDt;
+	private String usrTrGdHrPrc;
 	private String usrTrIsDlt;
 	private String trCtId;
 	private String usrTrEdDt;
 	private String usrTrStts;
     
     private SearchCityAndCountryVO searchCityAndCountryVO;
+
+    
+    
+    
+    
+    
+    
+    
+	public String getUsrTrGdHrPrc() {
+		return usrTrGdHrPrc;
+	}
+
+	public void setUsrTrGdHrPrc(String usrTrGdHrPrc) {
+		this.usrTrGdHrPrc = usrTrGdHrPrc;
+	}
 
 	public String getUsrTrPstId() {
 		return usrTrPstId;
