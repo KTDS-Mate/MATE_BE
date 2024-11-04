@@ -1,4 +1,13 @@
 <configuration>
+
+	<springProfile name="prod">
+		<property name="rolling-path" value="/Users/moomin/Downloads/logs-prod" />
+		
+		<!-- mate -->
+		<property name="rolling-path" value="/usr/local/src/tomcat/apache-tomcat-10.1.31/logs" />
+	
+	</springProfile>
+	
 	<appender name="STDOUT"
 		class="ch.qos.logback.core.ConsoleAppender">
 		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder 
@@ -10,10 +19,10 @@
 
 	<appender name="FILE"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>C:\\logs\\hello-spring.log</file>
+		<file>${rolling-path}/hello-spring.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<!-- daily rollover -->
-			<fileNamePattern>C:\\logs\\hello-spring.%d{yyyy-MM-dd HH:mm}.log</fileNamePattern>
+			<fileNamePattern>${rolling-path}/hello-spring.%d{yyyy-MM-dd HH:mm}.log</fileNamePattern>
 
 			<!-- keep 30 days' worth of history capped at 3GB total size -->
 			<!-- 로그는 함부로 지우면 안되니 사용하지 않ㅇㅁ. 30일지나면 삭제, 3기가 넘어가면 오래된 순으로 삭제 -->

@@ -170,17 +170,17 @@ public class UserController {
 	
 	@PostMapping("/user/editphone")
 	public String doEditPhone(@SessionAttribute(name = "_LOGIN_USER_", required= false) UserVO userVO , 
-							  @RequestParam String newPhone, Model model) {
+							  @RequestParam String newPhn, Model model) {
 		
 		if (userVO == null ) {
 			return "redirect:/user/login";
 		}
 		
 		try {
-			boolean isUpdated = userService.updateUserPhoneNumber(userVO.getUsrLgnId(), newPhone);
+			boolean isUpdated = userService.updateUserPhoneNumber(userVO.getUsrLgnId(), newPhn);
 
 			if (isUpdated) {
-				userVO.setUsrPhn(newPhone);
+				userVO.setUsrPhn(newPhn);
 				model.addAttribute("success", "휴대전화번호가 성공적으로 변경되었습니다.");
 			} else {
 				model.addAttribute("errorMessage", "휴대전화번호 변경에 실패하였습니다.");

@@ -17,7 +17,10 @@ public class RegistGuideVO {
 	 * 회원의 로그인 아이디
 	 */
 	private String usrLgnId;
-	
+	/**
+	 * 가이드 여부
+	 */
+	private String usrIsGd;
 	/**
 	 * 가이드의 성
 	 */
@@ -140,6 +143,14 @@ public class RegistGuideVO {
 
 	public void setUsrLgnId(String usrLgnId) {
 		this.usrLgnId = usrLgnId;
+	}
+
+	public String getUsrIsGd() {
+		return usrIsGd;
+	}
+
+	public void setUsrIsGd(String usrIsGd) {
+		this.usrIsGd = usrIsGd;
 	}
 
 	public String getUsrLnm() {

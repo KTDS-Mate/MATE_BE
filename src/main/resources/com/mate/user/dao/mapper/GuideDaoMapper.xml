@@ -12,6 +12,7 @@
 		<result property="usrBd" column="USR_BD"/>
 		<result property="usrPhn" column="USR_PHN"/>
 		<result property="usrGndr" column="USR_GNDR"/>
+		<result property="usrIsGd" column="USR_IS_GD" />
 		<result property="usrEml" column="USR_EML"/>
 		<result property="usrSlfIntdctn" column="USR_SLF_INTDCTN"/>
 		<result property="usrAvgRtng" column="USR_AVG_RTNG"/>
@@ -46,7 +47,8 @@
 		      , U.USR_LGN_ID AS USR_LGN_ID 
 		      , U.USR_LNM AS USR_LNM 
 		      , U.USR_FNM AS USR_FNM 
-		      , U.USR_GNDR AS USR_GNDR 
+		      , U.USR_GNDR AS USR_GNDR
+		      , U.USR_IS_GD AS USR_IS_GD
 		      , U.USR_EML AS USR_EML 
 		      , U.USR_PHN AS USR_PHN 
 		      , TO_CHAR(U.USR_BD, 'YYYY-MM-DD') AS USR_BD
@@ -110,6 +112,14 @@
 			 , NVL(#{lcnImg}, '라이센스 없음')
 			 , #{usrId})
 	</insert>
+	
+	<update id="updateGuideLicense" parameterType="com.mate.common.vo.LicenseVO">
+		UPDATE GD_LCN
+		   SET 
+			   GD_LCN_NM = NVL(#{lcnNm}, '라이센스 없음')
+		     , GD_LCN_IMG = NVL(#{lcnImg}, '라이센스 없음')
+		 WHERE GD_LCN_ID = #{lcnId}
+	</update>
 	
 	<!-- 도시정보 삽입 -->
 	<insert id="insertGuideCity" parameterType="com.mate.common.vo.CitiesVO">
