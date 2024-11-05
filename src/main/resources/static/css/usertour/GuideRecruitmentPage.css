@@ -20,6 +20,12 @@
 	cursor: pointer;
 }
 
+.isAlready {
+	background-image: url(/img/tourboard/CheckedWishButton.png);
+	background-size: 2.6rem;
+	cursor: pointer;
+}
+
 .ttl-wb {
 	display: flex;
 	align-items: center;

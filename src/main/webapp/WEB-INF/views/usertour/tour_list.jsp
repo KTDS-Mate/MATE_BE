@@ -28,10 +28,9 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
         </div>
         <div class="search-zone">
           <form class="search-form">
-          	<input id="search-val-1" type="hidden" value="${searchUserTourVO.searchType}"  />
-          	<input id="search-val-2" type="hidden" value="${searchUserTourVO.searchKeyword}"  />
-          	<input id="search-val-3" type="hidden" value="${searchUserTourVO.regionName}"  />
-          	<input id="search-val-4" type="hidden" value="${searchUserTourVO.orderby}"  />
+          	<input id="search-val-1" type="hidden" name="searchType" value="${searchUserTourVO.searchType}"  />
+          	<input id="search-val-3" type="hidden" name="regionName" value="${searchUserTourVO.regionName}"  />
+          	<input id="search-val-4" type="hidden" name="orderby" value="${searchUserTourVO.orderby}"  />
             <input
               type="hidden"
               name="pageNo"

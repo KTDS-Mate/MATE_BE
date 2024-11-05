@@ -167,6 +167,11 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                           <div class="border-left">${userTourSchdl.trRqst}</div>
                         </li>
                       </c:forEach>
+                      	<li>
+                      		<div class="list-item">
+                      			<span class="background-num"></span>
+                      		</div>
+                      	</li>
                     </c:when>
                     <c:otherwise>
                       <li>

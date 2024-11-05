@@ -45,4 +45,16 @@ public class FavoriteController {
 		return resultMap;
 	}
 	
+	
+	@GetMapping("/favorite/delete/{usrPstId}/{usrLgnId}")
+	public Map<String, Object> doDeleteUserTourFavorite(@PathVariable String usrPstId
+													  , @PathVariable String usrLgnId) {
+		boolean isDeleted = this.favoriteService.deleteUserTourFavorite(usrPstId, usrLgnId);
+		Map<String,Object> resultMap = new HashMap<>();
+		resultMap.put("result", isDeleted);
+		
+		return resultMap;
+	}
+	
+	
 }
