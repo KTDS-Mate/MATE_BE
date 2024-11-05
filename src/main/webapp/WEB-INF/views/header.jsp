@@ -4,7 +4,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <div
   class="header-content"
-  data-loginId="${sessionScope._LOGIN_USER_.usrLgnId}"
+  data-login-id="${sessionScope._LOGIN_USER_.usrLgnId}"
 >
   <div class="logo">
     <a href="/"><img src="/public/Logo.png" alt="로고" /></a>

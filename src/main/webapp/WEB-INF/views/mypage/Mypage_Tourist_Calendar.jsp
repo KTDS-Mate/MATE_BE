@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
   <!DOCTYPE html>
   <html>
 
@@ -9,16 +10,8 @@
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="/css/Mypage_Tourist_Calendar.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="/css/common.css"
-    />
+
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
   </head>
 
   <body>
@@ -56,174 +49,40 @@
             <div class="border-line"></div>
             <!-- 캘린더 -->
             <div class="calendar">
-              <!-- 년도 선택 P태그는 추후에 바꿔야 한다. -->
-              <div class="year-flex">
-                <p class="year-minus"></p>
-                <span class="year">2024</span>
-                <p class="year-plus"></p>
-              </div>
-
-              <!-- 월 선택  마찬가지로 p 태그는 추후 바꿔야한다.-->
-              <div class="month-flex">
-                <p class="month-minus"></p>
-                <span class="month">09</span>
-                <p class="month-plus"></p>
-              </div>
-
-              <div class="weekname-flex">
-                <h3>Sun</h3>
-                <h3>Mon</h3>
-                <h3>Tue</h3>
-                <h3>Wed</h3>
-                <h3>Thu</h3>
-                <h3>Fri</h3>
-                <h3>Sat</h3>
-              </div>
-
-              <!-- flex버전 일정 보이기 위한 것에서 답이 안나와서 grid로 해보기로 함 -->
-              <!-- <div class="days">
-                <div class="week">
-                  <div class="day-cell"><div class="day">1</div></div>
-                  <div class="day-cell"><div class="day">2</div></div>
-                  <div class="day-cell"><div class="day">3</div></div>
-                  <div class="day-cell"><div class="day">4</div></div>
-                  <div class="day-cell"><div class="day">5</div></div>
-                  <div class="day-cell"><div class="day">6</div></div>
-                  <div class="day-cell"><div class="day">7</div></div>
-                </div>
-
-                <div class="week">
-                  <div class="day-cell"><div class="day">8</div></div>
-                  <div class="day-cell"><div class="day">9</div></div>
-                  <div class="day-cell"><div class="day">10</div></div>
-                  <div class="day-cell"><div class="day">11</div></div>
-                  <div class="day-cell"><div class="day">12</div></div>
-                  <div class="day-cell"><div class="day">13</div></div>
-                  <div class="day-cell"><div class="day">14</div></div>
-                </div>
-
-                <div class="week">
-                  <div class="day-cell"><div class="day">15</div></div>
-                  <div class="day-cell"><div class="day">16</div></div>
-                  <div class="day-cell"><div class="day">17</div></div>
-                  <div class="day-cell"><div class="day">18</div></div>
-                  <div class="day-cell"><div class="day">19</div></div>
-                  <div class="day-cell"><div class="day">20</div></div>
-                  <div class="day-cell"><div class="day">21</div></div>
-                </div>
-
-              <div class="week">
-                <div class="day-cell"><div class="day">22</div></div>
-                <div class="day-cell"><div class="day">23</div></div>
-                <div class="day-cell"><div class="day today">24</div></div>
-                <div class="day-cell"><div class="day">25</div></div>
-                <div class="day-cell"><div class="day">26</div></div>
-                <div class="day-cell"><div class="day">27</div></div>
-                <div class="day-cell"><div class="day">28</div></div>
-              </div>
-
-              <div class="week">
-                <div class="day-cell"><div class="day">29</div></div>
-                <div class="day-cell"><div class="day">30</div></div>
-                <div class="day-cell"><div class="day">31</div></div>
-                <div class="day-cell"><div class="day">1</div></div>
-                <div class="day-cell"><div class="day">2</div></div>
-                <div class="day-cell"><div class="day">3</div></div>
-                <div class="day-cell"><div class="day">4</div></div>
-              </div>
-
-              <div class="week">
-                <div class="day-cell"><div class="day">5</div></div>
-                <div class="day-cell"><div class="day">6</div></div>
-                <div class="day-cell"><div class="day">7</div></div>
-                <div class="day-cell"><div class="day">8</div></div>
-                <div class="day-cell"><div class="day">9</div></div>
-                <div class="day-cell"><div class="day">10</div></div>
-                <div class="day-cell"><div class="day">11</div></div>
-              </div>
-            </div> -->
-
-              <div class="days">
-                <div class="day">1</div>
-                <div class="day schedule1-start">2</div>
-                <div class="day schedule1">3</div>
-                <div class="day schedule1">4</div>
-                <div class="day schedule1-end">5</div>
-                <div class="day">6</div>
-                <div class="day">7</div>
-
-                <div class="day">8</div>
-                <div class="day">9</div>
-                <div class="day">10</div>
-                <div class="day">11</div>
-                <div class="day">12</div>
-                <div class="day">13</div>
-                <div class="day">14</div>
-
-                <div class="day">15</div>
-                <div class="day">16</div>
-                <div class="day">17</div>
-                <div class="day">18</div>
-                <div class="day">19</div>
-                <div class="day">20</div>
-                <div class="day">21</div>
-
-                <div class="day">22</div>
-                <div class="day">23</div>
-                <div class="day schedule2-start">
-                  <div class="today">24</div>
-                </div>
-                <div class="day schedule2">25</div>
-                <div class="day schedule2">26</div>
-                <div class="day schedule2">27</div>
-                <div class="day schedule2-endweek">28</div>
-
-                <div class="day schedule2-end">29</div>
-                <div class="day">30</div>
-                <div class="day">31</div>
-                <div class="day">1</div>
-                <div class="day">2</div>
-                <div class="day">3</div>
-                <div class="day">4</div>
-
-                <div class="day">5</div>
-                <div class="day">6</div>
-                <div class="day">7</div>
-                <div class="day">8</div>
-                <div class="day">9</div>
-                <div class="day">10</div>
-                <div class="day">11</div>
-              </div>
+              <jsp:include page="./TourristCalendar.jsp"></jsp:include>
             </div>
 
             <div class="border-line">
               <h2>일정 추가</h2>
             </div>
             <!-- 백엔드를 위해서 여기에 form 을 넣어야 함 -->
-            <form action="">
+            
+            
+            <form:form modelAttribute="writeBoardVO" method="post" enctype="multipart/form-data">
+            
               <div class="add-schedule">
                 <div class="schedule-flex">
                   <div>일정 시작</div>
 
                   <div class="schedule-content">
-                    <select name="start-year" id="start-year">
-                      년
+                    <select class="select" name="start-year" id="start-year">
+                      <option>2024</option>
                     </select>
                     <div>년</div>
-                    <select name="start-month" id="start-mointh">
-                      월
+                    <select class="select" name="start-month" id="start-mointh">
+                      <option>1</option>
                     </select>
                     <div>월</div>
-                    <select name="start-day" id="start-day">
-                      일
+                    <select class="select" name="start-day" id="start-day">
+                      <option>1</option>
                     </select>
                     <div>일</div>
-                    <select name="start-hour" id="start-hour">
-                      시
+                    <select class="select" name="start-hour" id="start-hour">
+                      <option>00</option>
                     </select>
                     <div>:</div>
-                    <select name="start-min" id="start-min">
-                      분
+                    <select class="select" name="start-min" id="start-min">
+                     <option>00</option>
                     </select>
                   </div>
                 </div>
@@ -232,23 +91,23 @@
 
                   <div class="schedule-content">
                     <select name="end-year" id="end-year">
-                      년
+                      <option>2024</option>
                     </select>
                     <div>년</div>
                     <select name="end-month" id="end-mointh">
-                      월
+                      <option>1</option>
                     </select>
                     <div>월</div>
                     <select name="end-day" id="end-day">
-                      일
+                      <option>1</option>
                     </select>
                     <div>일</div>
                     <select name="end-hour" id="end-hour">
-                      시
+                      <option>00</option>
                     </select>
                     <div>:</div>
                     <select name="end-min" id="end-min">
-                      분
+                      <option>00</option>
                     </select>
                   </div>
                 </div>
@@ -277,7 +136,7 @@
                   <input type="submit" class="schedule-submit" value="추가" />
                 </div>
               </div>
-            </form>
+            </form:form>
           </div>
         </div>
       </div>
