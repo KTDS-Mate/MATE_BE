@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mate.bbs.dao.UserTourDao;
 import com.mate.bbs.vo.SearchUserTourVO;
+import com.mate.bbs.vo.UserTourImgVO;
 import com.mate.bbs.vo.UserTourModifyVO;
 import com.mate.bbs.vo.UserTourSchdlVO;
 import com.mate.bbs.vo.UserTourVO;
@@ -34,8 +35,8 @@ public class UserTourDaoImpl extends SqlSessionDaoSupport implements UserTourDao
 	}
 
 	@Override
-	public int selectAllUserTourCount() {
-		return this.getSqlSession().selectOne(NAMESPACE + ".selectAllUserTourCount");
+	public int selectAllUserTourCount(SearchUserTourVO searchUserTourVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectAllUserTourCount", searchUserTourVO);
 	}
 	
 	@Override
@@ -79,7 +80,17 @@ public class UserTourDaoImpl extends SqlSessionDaoSupport implements UserTourDao
 	}
 	
 	@Override
-	public int updateUserTourScheduls(UserTourSchdlVO userTourSchdlVO) {
-		return this.getSqlSession().update(NAMESPACE + ".updateUserTourScheduls" + userTourSchdlVO);
-	}	
+	public List<UserTourSchdlVO> selectUserTourSchdls(String usrTrPstId) {
+		return this.getSqlSession().selectList(NAMESPACE + ".selectUserTourSchdls", usrTrPstId);
+	}
+	
+	@Override
+	public int insertNewUserTourImgs(UserTourImgVO userTourImgVO) {
+		return this.getSqlSession().insert(NAMESPACE + ".insertNewUserTourImgs", userTourImgVO);
+	}
+	
+	@Override
+	public int deleteUserTourSchdls(String usrTrPstId) {
+		return this.getSqlSession().delete(NAMESPACE + ".deleteUserTourSchdls", usrTrPstId);
+	}
 }

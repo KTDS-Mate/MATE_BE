@@ -147,9 +147,7 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
                 <input id="add-file" type="button" value="파일 추가" />
                 <input id="del-file" type="button" value="파일 삭제" />
                 <div class="file-list">
-                	<div class="file-group">
-						 	<input id="img-file" type="file" name="userTourImgList[0].usrTrRqImgIdUrl}" required="required" accept=".jpg,.jpeg,.img,.png" />
-					</div>
+                	<!-- Jquery를 이용해 파일 리스트가 추가되는 곳 -->
                 </div>
               </div>
             </div>
