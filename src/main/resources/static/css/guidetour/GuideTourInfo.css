@@ -253,6 +253,9 @@
 .summaryDetailArea > h4 {
 	margin: 0.2rem;
 }
+.summaryDetailArea > h5 {
+	margin: 0.2rem;
+}
 
 .guideProfileArea {
   width: 26.875rem;

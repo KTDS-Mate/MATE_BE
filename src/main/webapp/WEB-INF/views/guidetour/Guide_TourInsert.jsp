@@ -59,7 +59,7 @@ uri="http://www.springframework.org/tags/form" %>
               <select id="country" disabled>
                 <option value="">국가 선택</option>
               </select>
-              <select id="city" name="trCtId"  disabled>
+              <select id="city" name="trCtId" disabled>
                 <option value="">도시 선택</option>
               </select>
             </div>
@@ -115,9 +115,14 @@ uri="http://www.springframework.org/tags/form" %>
               </div>
             </div>
             <div class="all-select-div">
-              <div class="select-div"><span class="red">*</span> 투어 요약</div>
+              <div class="select-div"><span class="red">*</span> 투어 목적</div>
               <form:errors path="gdTrPrps" element="div" cssClass="errors" />
               <textarea name="gdTrPrps">${guideTourWriteVO.gdTrPrps}</textarea>
+            </div>
+            <div class="all-select-div">
+              <div class="select-div"><span class="red">*</span> 투어 요약</div>
+              <form:errors path="gdTrSmry" element="div" cssClass="errors" />
+              <textarea name="gdTrSmry">${guideTourWriteVO.gdTrSmry}</textarea>
             </div>
             <div class="all-select-div">
               <div class="select-div">
