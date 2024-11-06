@@ -9,7 +9,6 @@ div.content-grid {
 
 
 div.my-tour {
-  border: 2px solid #f5f6f7;
   border-radius: 20px;
 }
 
@@ -34,7 +33,6 @@ div.my-tour {
 }
 
 .tour-list {
-  border: 2px solid #f5f6f7;
   border-radius: 20px;
   width: 95%;
   margin: 2rem;
@@ -42,7 +40,6 @@ div.my-tour {
 
 .search-area {
   display: flex;
-  border: 2px solid #f5f6f7;
   border-radius: 20px;
   width: 95%;
   height: 6rem;
@@ -95,20 +92,20 @@ input::placeholder {
 }
 
 .list-area {
-  border: 2px solid #f5f6f7;
   border-radius: 20px;
   width: 95%;
   margin: 0 auto;
 }
 
 .list-item {
-  border: 2px solid #f5f6f7;
+  border: 2px solid #fff6ec;
   border-radius: 20px;
   width: 95%;
   height: 9rem;
   margin: 0 auto;
   margin-top: 2rem;
   margin-bottom: 2rem;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 .right-align {
