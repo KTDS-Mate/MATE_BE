@@ -2,6 +2,8 @@ package com.mate.bbs.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.mate.bbs.vo.FavoriteVO;
 import com.mate.bbs.vo.FavoriteWriteVO;
 
@@ -23,9 +25,10 @@ public interface FavoriteDao {
 	public int selectAllFavoriteCount(String pstId);
 	
 	/**
-	 * 선택 된 즐겨찾기의 상태를 삭제 상태로 업데이트
+	 * 선택 된 즐겨찾기를 삭제
 	 * @return
 	 */
-	public int updateFavIsDlt(String pstId);
+	public int deleteFavIsDlt(@Param("usrPstId") String usrPstId
+							, @Param("usrLgnId") String usrLgnId);
 	
 }

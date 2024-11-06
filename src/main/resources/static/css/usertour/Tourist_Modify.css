@@ -39,11 +39,24 @@ select {
   margin-bottom: 1rem;
   border: 1px solid #ddd;
   border-radius: 10px;
+  outline: none;
+}
+
+#region {
+	width: 6rem;
+}
+
+#country {
+	width: 20rem;
+}
+
+#city {
+	width: 28.5rem;
 }
 
 .flex-hour-div {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   margin-bottom: 1rem;
   align-items: center;
 }
@@ -70,6 +83,7 @@ textarea {
   border: 1px solid #ddd;
   border-radius: 10px;
   resize: none;
+  padding: 1rem;
 }
 
 input[type="number"] {
@@ -102,8 +116,21 @@ input[type="submit"] {
 	margin-left: 1rem;
 }
 
+.loc-inf {
+  border: 1px solid #ddd;
+  width: 85%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
 .hope-btn {
   margin-bottom: 1rem;
+}
+
+.hope-btn input {
+	margin-right: 1rem;
 }
 
 input[type="file"] {
@@ -114,11 +141,20 @@ input[type="file"] {
 
 .file-list {
   border: 1px solid #ddd;
-  height: 200px;
-  width: 250px;
+  width: 85%;
   margin-top: 1rem;
   margin-bottom: 1rem;
   padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.file-group {
+	display: flex;
+	margin-bottom: 1rem;
+}
+
+.file-group:last-child {
+	margin-bottom: 0;
 }
 
 .inline {
@@ -180,11 +216,11 @@ input {
 }
 
 #hope-location {
-  width: 50%;
+  width: 90%;
 }
 
 #hope-info {
-  width: 50%;
+  width: 90%;
 }
 
 #gender,
@@ -225,6 +261,10 @@ input {
 	padding-right: 1rem;
 	flex-direction: column;
     align-items: center;
+}
+
+.time-select:first-child {
+	padding-left: 0;
 }
 
 .time-select > input {

@@ -6,6 +6,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
 	
+	@GetMapping("/demo")
+	public String calendar() {
+		return "mypage/Calendar_demo";
+	}
+	@GetMapping("/test")
+	public String Testcalendar() {
+		return "mypage/Test_Tourist_Calendar";
+	}
+	
+	@GetMapping("/favicon.ico")
+    public String favicon() {
+        return "forward:/static/favicon.ico";
+    }
+	
 	@GetMapping("/")
 	public String viewMainPage(){
 		return "all/MainPage";
@@ -31,9 +45,9 @@ public class MainController {
 		return "guidetour/GuideTourInfo";
 		}
 
-	@GetMapping("/guide/guideprofile")
+	@GetMapping("/user/guideprofile")
 	public String viewGuideProfilePage(){
-		return "all/GuideProfile"; 
+		return "user/GuideProfile"; 
 		}
 	
 	@GetMapping("/guide/regist")

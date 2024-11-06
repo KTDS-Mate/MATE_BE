@@ -1,6 +1,8 @@
 package com.mate.bbs.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
@@ -10,8 +12,6 @@ import org.springframework.stereotype.Repository;
 import com.mate.bbs.dao.FavoriteDao;
 import com.mate.bbs.vo.FavoriteVO;
 import com.mate.bbs.vo.FavoriteWriteVO;
-import com.mate.bbs.vo.GuideTourVO;
-import com.mate.bbs.vo.UserTourVO;
 
 @Repository
 public class FavoriteDaoImpl extends SqlSessionDaoSupport implements FavoriteDao {
@@ -43,8 +43,12 @@ public class FavoriteDaoImpl extends SqlSessionDaoSupport implements FavoriteDao
 	}
 	
 	@Override
-	public int updateFavIsDlt(String pstId) {
-		return this.getSqlSession().update(NAMESPACE + ".updateFavIsDlt", pstId);
+	public int deleteFavIsDlt(String usrPstId, String usrLgnId) {
+		Map<String, Object> param = new HashMap<>();
+		param.put("usrPstId", usrPstId);
+		param.put("usrLgnId", usrLgnId);
+		
+		return this.getSqlSession().update(NAMESPACE + ".deleteFavIsDlt", param);
 	}
 
 }
