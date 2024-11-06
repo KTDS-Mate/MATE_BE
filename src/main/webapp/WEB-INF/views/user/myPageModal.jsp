@@ -30,7 +30,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       <h2>휴대폰 번호 변경</h2>
 
 		<form:form modelAttribute="userVO" method="post" action="/user/editphone" class="phone-update-form">
-
             <!-- 새 휴대전화번호 입력 필드 -->
             <div class="form-group">
                 <label for="newPhn">새 휴대전화번호</label>

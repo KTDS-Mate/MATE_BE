@@ -15,7 +15,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
   <body>
     <div class="container">
       <h2>비밀번호 변경</h2>
-
       <form:form modelAttribute="userVO" method="post" action="/user/editpwd" class="password-update-form" >
         <!-- 현재 비밀번호 입력 필드 -->
         <div class="form-group">
