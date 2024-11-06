@@ -158,6 +158,8 @@ $().ready(function () {
 		});
 	});
   $("button.kakaopay-btn").on("click", function () {
+	$(".date-buttons").find('input[type="button"]').removeClass("checked");
+	$(this).addClass("checked");
 	pg = "kakaopay";
   });
 	
