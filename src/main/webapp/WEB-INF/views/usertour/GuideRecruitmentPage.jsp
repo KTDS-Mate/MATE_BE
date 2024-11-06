@@ -4,6 +4,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <html>
   <head>
     <meta charset="UTF-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <title>가이드 투어 상세보기</title>
     <link
       rel="stylesheet"

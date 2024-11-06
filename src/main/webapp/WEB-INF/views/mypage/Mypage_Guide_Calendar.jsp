@@ -6,6 +6,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>MATE 일정관리(변경예정)</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <link rel="stylesheet" type="text/css" href="/css/mypage/Mypage_Guide_Calendar.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,8 +14,11 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet">
-      
+    
+    
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="/js/mypage/Mypage_Guide_Calendar.js"></script>
+      
   </head>
 
   <body>
@@ -119,7 +123,7 @@
                   <div>일정 내용</div>
 
                   <div class="schedule-content-text">
-                    <textarea name="content-text" id="content-text" class="content-text"></textarea>
+                    <textarea name="content-text" id="content-text" class="content-text" maxlength="20" placeholder="일정내용은 20자이내로 제한됩니다."></textarea>
                   </div>
                 </div>
 

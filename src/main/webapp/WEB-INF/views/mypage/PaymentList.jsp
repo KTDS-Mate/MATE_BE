@@ -5,6 +5,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <html>
   <head>
     <meta charset="UTF-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <title>Mypage_Tourist_MyTour</title>
     <link rel="stylesheet" type="text/css" href="/css/mypage/PaymentList.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
@@ -43,9 +44,9 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
               <form class="search-form">
 			  	      <input
 	                	type="hidden"
-                		name="trstId"
+                		name="trstLgnId"
                 		class="page-no"
-                		value="${searchPaymentVO.trstId}" />
+                		value="${searchPaymentVO.trstLgnId}" />
 			  	      <input
 	                	type="hidden"
                 		name="pageNo"
@@ -62,7 +63,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       name = "searchType" />
                     <input
                       type="button"
-                      onclick="window.location.href='/mypage/payment/list?trstId='+ '${searchPaymentVO.trstId}'"
+                      onclick="window.location.href='/mypage/payment/list?trstLgnId='+ '${searchPaymentVO.trstLgnId}'"
                       value="전체조회"
                       />
                     <input 
@@ -144,7 +145,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                         var="payInfo"
                       >
                         <tr
-						 onclick="window.location.href='/payment/detail?usrId='+ '${searchPaymentVO.trstId}'
+						 onclick="window.location.href='/payment/detail?trstLgnId='+ '${searchPaymentVO.trstLgnId}'
 						 +'&payId=' + '${payInfo.payId}' ">
                           <td>${payInfo.payId}</td>
                           <td>${payInfo.payCrtDt}</td>

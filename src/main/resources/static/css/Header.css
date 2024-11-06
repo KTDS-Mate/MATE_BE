@@ -1,3 +1,7 @@
+div.grid {
+  row-gap: 1rem;
+}
+
 div.header-content {
   display: flex;
   align-items: center;
@@ -17,8 +21,8 @@ div.logo {
 }
 
 div.logo img {
-  width: auto;
-  height: 10rem;
+  width: 8rem;
+  height: auto;
 }
 
 div.header-center-menu {

@@ -4,12 +4,39 @@
 div.footer-grid{
     display: grid;
     grid-template-columns: 1fr 80rem 1fr;
+    border-top: 1px solid #CACACA;
+    padding: 2rem 0;
 }
 
 .footer {
   background-color: #f5f6f7;
 }
+.footer-header{
+	font-weight: bold;
+}
+.footer-header-content {
+	padding-right: 1rem;
+	padding-left: 1rem;
+	font-weight: bold;
+	border-right: 1px solid #333;
+}
 
+.footer-header-content:first-child {
+	padding-left: 0;
+}
+
+.footer-header-content:last-child {
+	border: 0;
+}
+.fContent{
+	margin: 0.5rem 0;
+}
+.fContent-head {
+	font-weight: bold;
+}
+.last-fContent-head{
+	font-size: 1.2rem;
+}
 
 .test {
 	color:#333;
@@ -29,9 +56,9 @@ div.footer-left-padding{
 
 .footer-alpha ul li{
   list-style-type: none;
-  font-size: 1rem;
 
 }
+
 
 footer-left-padding > ul > li{
   width: 100%;

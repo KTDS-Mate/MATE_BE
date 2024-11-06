@@ -56,4 +56,23 @@
 		 WHERE COUNTRY_ID = #{_parameter}
 	</select>
 
+	<select id="selectTopDestinations"
+			resultType="com.mate.common.vo.TopDestinationVO">
+		SELECT *
+		FROM ( SELECT C.CITY_NAME AS "City Name",
+		COUNT(DISTINCT G.GD_TR_PST_ID) AS "Number of Tours",
+		COUNT(DISTINCT U.USR_TR_PST_ID) AS "Number of Requests",
+		(COUNT(DISTINCT G.GD_TR_PST_ID) + COUNT(DISTINCT U.USR_TR_PST_ID)) AS total_count
+		FROM CITIES C
+		LEFT JOIN GD_TR_RCRT G
+		ON C.CITY_ID = G.TR_CT_ID
+		LEFT JOIN USR_TR_RQST U
+		ON C.CITY_ID = U.TR_CT_ID
+		GROUP BY C.CITY_NAME
+		HAVING COUNT(DISTINCT G.GD_TR_PST_ID) > 0
+		OR COUNT(DISTINCT U.USR_TR_PST_ID) > 0
+		ORDER BY total_count DESC )
+		 WHERE <![CDATA[ROWNUM <= 10]]>
+	</select>
+
 </mapper>

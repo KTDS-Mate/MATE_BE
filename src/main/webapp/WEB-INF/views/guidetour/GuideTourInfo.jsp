@@ -10,6 +10,7 @@ pageEncoding="UTF-8" %>
       type="text/css"
       href="/css/guidetour/GuideTourInfo.css"
     />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

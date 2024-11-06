@@ -11,7 +11,7 @@
     <script type="text/javascript" src="/js/user/reissuepassword.js"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="container" data-message="${message}" data-message-type="${messageType}">
         <h2>비밀번호 찾기</h2>
         
         <form:form modelAttribute="userVO" method="post" action="/user/reissue-password" class="password-update-form">

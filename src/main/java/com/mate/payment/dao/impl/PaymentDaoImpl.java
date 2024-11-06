@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.mate.payment.dao.PaymentDao;
 import com.mate.payment.vo.PaymentVO;
 import com.mate.payment.vo.SearchPaymentVO;
+import com.mate.user.vo.UserVO;
 
 @Repository
 public class PaymentDaoImpl extends SqlSessionDaoSupport implements PaymentDao {
@@ -39,6 +40,11 @@ public class PaymentDaoImpl extends SqlSessionDaoSupport implements PaymentDao {
 	@Override
 	public int selectAllMyPaymentCount(SearchPaymentVO searchPaymentVO) {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectAllMyPaymentCount", searchPaymentVO);
+	}
+	
+	@Override
+	public String selectUserId(String usrLgnId) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectUserId", usrLgnId);
 	}
 	
 	@Override

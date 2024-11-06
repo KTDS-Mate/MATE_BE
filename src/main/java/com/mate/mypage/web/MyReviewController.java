@@ -42,13 +42,6 @@ public class MyReviewController {
     	int count = guideReviewListVO.getReviewCount();
     	List<GuideReviewVO> reviewListVO = guideReviewListVO.getReviewList();
     	
-    	System.out.println("갯수는 " + count);
-    	System.out.println("리스트는 " + reviewListVO.get(0));
-    	
-    	
-    	System.out.println("타입은 " + searchGuideReviewVO.getSearchType());
-    	System.out.println("검색어는 " + searchGuideReviewVO.getSearchKeyword());
-    	
         model.addAttribute("guideReviewListVO", guideReviewListVO);
         model.addAttribute("searchGuideReviewVO", searchGuideReviewVO);
 
@@ -64,7 +57,6 @@ public class MyReviewController {
     						   			   ,Model model) {
     	
     	int success = this.myReviewService.deleteGuideReview(gdRvwId);
-    	System.out.println("삭제결과는 " + success);
     	model.addAttribute("success" , success);
     	
     	
@@ -88,13 +80,6 @@ public class MyReviewController {
     	int myBoardListVO = guideTourReviewListVO.getReviewCount();
     	List<GuideTourReviewVO> reviewListVO = guideTourReviewListVO.getReviewList();
     	
-    	System.out.println("갯수는 " + myBoardListVO);
-//    	System.out.println("리스트는 " + reviewListVO.get(0));
-    	
-    	
-    	System.out.println("타입은 " + searchGuideTourReviewVO.getSearchType());
-    	System.out.println("검색어는 " + searchGuideTourReviewVO.getSearchKeyword());
-    	
         model.addAttribute("guideTourReviewListVO", guideTourReviewListVO);
         model.addAttribute("searchGuideTourReviewVO", searchGuideTourReviewVO);
     	
@@ -110,7 +95,6 @@ public class MyReviewController {
     						   			   ,Model model) {
     	
     	int success = this.myReviewService.deleteGuideTourReview(gdTrRvwId);
-    	System.out.println("삭제결과는 " + success);
     	model.addAttribute("success" , success);
     	
     	

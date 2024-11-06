@@ -5,6 +5,7 @@
 
   <head>
     <meta charset="UTF-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <title>MATE 일정관리(변경예정)</title>
     <link rel="stylesheet" type="text/css" href="/css/mypage/Mypage_Tourist_Calendar.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
@@ -116,12 +117,12 @@
                   <div>일정 내용</div>
 
                   <div class="schedule-content-text">
-                    <textarea name="content-text" id="content-text" class="content-text"></textarea>
+                    <textarea name="content-text" id="content-text" class="content-text" maxlength="20" placeholder="일정내용은 20자이내로 제한됩니다."></textarea>
                   </div>
                 </div>
 
                 <div class="color-flex">
-                  <div>캘린더 표시 색상</div>
+                  <div>테두리 표시 색상</div>
 
                   <div class="color-select">
                     <div class="yellow"></div>
