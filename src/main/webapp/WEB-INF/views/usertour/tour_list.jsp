@@ -113,30 +113,38 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
             	</div>
           	</c:if>
             <form class="order-form">
+            <div>
             <input
               id="latest"
               class="${searchUserTourVO.orderby eq '최신순' ? 'checked2' : ''}"
               name="orderby"
               type="button"
               value="최신순" />
+            </div>
+            <div>
             <input
               id="high-price"
               class="${searchUserTourVO.orderby eq '높은 가격순' ? 'checked2' : ''}"
               name="orderby"
               type="button"
               value="높은 가격순" />
+            </div>
+            <div>
             <input
               id="low-price"
               class="${searchUserTourVO.orderby eq '낮은 가격순' ? 'checked2' : ''}"
               name="orderby"
               type="button"
               value="낮은 가격순" />
+            </div>
+            <div>
             <input
               id="deadline"
               class="${searchUserTourVO.orderby eq '마감 임박순' ? 'checked2' : ''}"
               name="orderby"
               type="button"
               value="마감 임박순" />
+            </div>
             </form>
           </div>
         </div>
@@ -172,14 +180,10 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                   <c:if test="${userTourVO.deadline < 3}">
                   	<span class="deadline-come">마감임박!</span>
                   </c:if>
-                  <div class="tour-subject">
-                  ${userTourVO.usrTrTtl}
-                  </div>
+                  <div class="tour-subject">${userTourVO.usrTrTtl}</div>
                   <div class="tour-comment">${userTourVO.usrTrPrps}</div>
                   <div>
                     <div class="all-cont">
-                      
-                      
                       <c:choose>
                       	<c:when test="${userTourVO.usrTrStts eq 'RSRVT'}">
                       		<p>예약 상태 : 예약 중</p>

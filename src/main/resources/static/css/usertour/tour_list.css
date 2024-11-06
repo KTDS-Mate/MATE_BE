@@ -105,10 +105,21 @@ input.checked2 {
   justify-content: space-between;
 }
 
+.order-form {
+	display: flex;
+}
+
+.order-form div:after {
+	content: '|';
+}
+
+.order-form div:last-child:after {
+	content: '';
+}
+
 .list-view-option input {
   background-color: #fff;
   border: 0;
-  border-left: 1px solid #333;
   margin: 0;
   padding-right: 0.3rem;
   padding-left: 0.3rem;
@@ -160,7 +171,6 @@ input.checked2 {
 
 .tour-comment {
   width: 80%;
-  margin-top: 0.8rem;
   display: block;
   color: #4d4d4d;
   font-size: 0.8rem;
@@ -231,6 +241,9 @@ a:link {
 }
 
 .tour-cont {
+	display: flex;
+	flex-direction: column;
+    justify-content: space-around;
 	padding: 1rem;
 	padding-top: 0;
 	padding-left: 1.5rem;
