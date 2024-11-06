@@ -8,7 +8,6 @@ div.content-grid {
 }
 
 div.my-tour {
-  border: 2px solid #f5f6f7;
   border-radius: 20px;
 }
 
@@ -31,13 +30,11 @@ div.my-tour {
 
 .guide-style{
   font-size: 16px;
-  font-weight: bold;
   height: 2rem;
   width: 5rem;
-  border: 1px solid #333;
+  border: 0px solid #333;
   border-radius: 5px;
   cursor: pointer;
-  margin-left: 1rem;
   text-align: center;
   background-color: #fff6ec;
 }
@@ -45,14 +42,14 @@ div.my-tour {
 .guide-style-check{
   font-size: 16px;
   font-weight: bold;
+  color: #5e2bb8;
   height: 2rem;
   width: 5rem;
-  border: 1px solid #333;
+  border: 1px solid #5e2bb8;
   border-radius: 5px;
   cursor: pointer;
-  margin-left: 1rem;
   text-align: center;
-  background-color: purple;
+  background-color: #f6f2fb;
 }
 
 .tour-list-top div {
@@ -64,7 +61,6 @@ div.my-tour {
 }
 
 .tour-list {
-  border: 2px solid #f5f6f7;
   border-radius: 20px;
   width: 95%;
   margin: 2rem;
@@ -72,7 +68,6 @@ div.my-tour {
 
 .search-area {
   display: flex;
-  border: 2px solid #f5f6f7;
   border-radius: 20px;
   width: 95%;
   height: 6rem;
@@ -149,7 +144,6 @@ input::placeholder {
 }
 
 .list-area {
-  border: 2px solid #f5f6f7;
   border-radius: 20px;
   width: 95%;
   height: auto;
@@ -157,12 +151,13 @@ input::placeholder {
 }
 
 .list-item {
-  border: 2px solid #f5f6f7;
+  border: 2px solid #fff6ec;
   border-radius: 20px;
   width: 90%;
   margin: 0 auto;
   margin-top: 2rem;
   padding: 1.5rem;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 .right-align {
