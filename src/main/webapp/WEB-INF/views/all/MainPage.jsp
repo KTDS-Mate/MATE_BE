@@ -32,83 +32,88 @@
             <jsp:include page="./destinationSelectModal.jsp" />
             <jsp:include page="./calendarModal.jsp" />
             <div class="firstLayer">
-                <div class="mainPictureCarouselArea" data-bs-ride="carousel"> <!-- wrapper -->
-                    <div class="centerArea">
-                        <div class="mainPicTextArea">
-                            <div class="touristText">
-                                <span>Meet Your Guide</span>
-                                <h1>Make Your Tour</h1>
-                            </div>
-                            <div class="guideText hidden">
-                                <span>Find Your Tourist</span>
-                            </div>
-                        </div>
-                        <div class="menuArea">
-                            <div class="userTypeArea">
-                                <div class="touristButton">
-                                    <span onclick="selected">Tourist</span>
-                                </div>
-                                <div class="guideButton">
-                                    <span>Guide</span>
-                                </div>
-                            </div>
-                            <div class="whenWhereArea">
-                                <div class="where">
-                                    <h2>Where</h2>
-                                    <p></p>
-                                    <h3></h3>
-                                </div>
-                                <div class="when">
-                                    <h2>When</h2>
-                                    <div class="whenSelectArea">
-                                        <h3>  </h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tourSearchButton">
-                            <h2 class="tourSearchButtonText">Search</h2>
-                        </div>
-                    </div>
+                <div class="mainPictureCarouselArea" data-bs-ride="carousel">
                     <img
                     src="/public/mainForward.png"
                     alt="이전 버튼"
                     class="picForwardButton"
-                    />
-                    <div class="mainPictureCarousel"> <!-- carousel-list-->
-                        <div class="picArea"> <!-- carousel-container -->
-                            <div class="picAreaItem"> <!-- carousel-item -->
-                                <img src="/public/MainPic1.png" alt="대문사진1">
-                            </div>
+                  />
+                    <div class="centerArea">
+                      <div class="mainPicTextArea">
+                        <div class="touristText">
+                          <span>Meet Your Guide</span>
+                          <h1>Make Your Tour</h1>
                         </div>
-                        <div class="picArea">
-                            <div class="picAreaItem">
-                                <img src="/public/MainPic2.png" alt="대문사진2">
-                            </div>
+                        <div class="guideText hidden">
+                          <span>Find Your Tourist</span>
                         </div>
-                        <div class="picArea">
-                            <div class="picAreaItem">
-                                <img src="/public/MainPic3.png" alt="대문사진3">
-                            </div>
+                      </div>
+                      <div class="menuArea">
+
+                        <div class="userTypeArea">
+                          <div class="touristButton">
+                            <span onclick="selected">Tourist</span>
+                          </div>
+                          <div class="guideButton">
+                            <span>Guide</span>
+                          </div>
                         </div>
-                        <div class="picArea">
-                            <div class="picAreaItem">
-                                <img src="/public/MainPic4.png" alt="대문사진4">
+                        <div class="whenWhereArea">
+                          <div class="where">
+                            <h2>Where</h2>
+                            <p></p>
+                            <h3></h3>
+                          </div>
+                          <div class="when">
+                            <h2>When</h2>
+                            <div class="whenSelectArea">
+                              <h3> </h3>
                             </div>
+                          </div>
                         </div>
-                        <div class="picArea">
-                            <div class="picAreaItem">
-                                <img src="/public/MainPic5.png" alt="대문사진5">
-                            </div>
-                        </div>
+
+                      </div>
+                      <div class="tourSearchButton">
+                        <h2 class="tourSearchButtonText">Search</h2>
+                      </div>
                     </div>
                     <img
                     src="/public/mainBackward.png"
                     alt="다음 버튼"
                     class="picBackwardButton"
-                    />
+                  />
+                  <div class="mainPictureCarousel">
+                    <div class="picAreas">
+                      <div class="picArea">
+                        <div class="picAreaItem">
+                          <img src="/public/MainPic1.png" alt="대문사진1">
+                        </div>
+                      </div>
+                      <div class="picArea">
+                        <div class="picAreaItem">
+                          <img src="/public/MainPic2.png" alt="대문사진2">
+                        </div>
+                      </div>
+                      <div class="picArea">
+                        <div class="picAreaItem">
+                          <img src="/public/MainPic3.png" alt="대문사진3">
+                        </div>
+                      </div>
+                      <div class="picArea">
+                        <div class="picAreaItem">
+                          <img src="/public/MainPic4.png" alt="대문사진4">
+                        </div>
+                      </div>
+                      <div class="picArea">
+                        <div class="picAreaItem">
+                          <img src="/public/MainPic5.png" alt="대문사진5">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-            </div>
+              </div>
+              
             <div class="secondLayer">
                 <div class="reasonTextArea">
                     <span>Why MATE?</span>
@@ -149,10 +154,10 @@
         </div>
       </div>
   
-      <div class="footer">
-        <!-- footer 공통파일 -->
-        <jsp:include page="../footer.jsp"></jsp:include>
-      </div>
+    </div>
+    <div class="footer">
+      <!-- footer 공통파일 -->
+      <jsp:include page="../footer.jsp"></jsp:include>
     </div>
   </div>
   

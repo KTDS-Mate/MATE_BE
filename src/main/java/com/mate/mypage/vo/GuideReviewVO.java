@@ -21,7 +21,7 @@ public class GuideReviewVO {
 	private String gdRvwCntnt;
 	private String gdRvwCrtdat;
 	private String gdRvwIsDlt;
-	private String gdRvwRtng;
+	private double gdRvwRtng;
 	private int trCtId;
 	private String gdRvwStDt;
 	private String gdRvwEdDt;
@@ -111,17 +111,11 @@ public class GuideReviewVO {
 	public void setGdRvwIsDlt(String gdRvwIsDlt) {
 		this.gdRvwIsDlt = gdRvwIsDlt;
 	}
-	public String getGdRvwRtng() {
+	public double getGdRvwRtng() {
 		return gdRvwRtng;
 	}
-	public void setGdRvwRtng(String gdRvwRtng) {
+	public void setGdRvwRtng(double gdRvwRtng) {
 		this.gdRvwRtng = gdRvwRtng;
 	}
-	
-	
-	
-	
-	
-	
 	
 }

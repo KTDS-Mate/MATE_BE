@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "Inter";
-  src: url("./font/Inter-VariableFont_opsz\,wght.ttf") format("truetype");
+	font-family: "Inter";
+	src: url("./font/Inter-VariableFont_opsz\,wght.ttf") format("truetype");
 }
 
 .search-title h1 {
@@ -8,67 +8,80 @@
 }
 
 img {
-  width: 20rem;
-  height: 15rem;
-  border-radius: 20px;
+	width: 20rem;
+	height: 18rem;
+	border-radius: 10px;
 }
 
-.img-box {
-  padding: 2rem;
+.wave {
+	text-align: center;
+	margin-top : 0.2rem;
+}
+
+.inline-margin {
+  	display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    margin: 0 0.4rem 0 0.4rem;
+}
+
+.inline-margin img {
+    margin-top: 0.6rem;
+    width: 1rem;
+    height: 1rem;
 }
 
 input.checked2 {
-  color: #00a8;
-  font-weight: bold;
+	color: #00a8;
+	font-weight: bold;
 }
 
-
 .flex-list-insert-btn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .insert-tour-btn {
-  background-color: #fefae0;
-  padding: 0.5rem;
-  font-size: small;
-  border-radius: 10px;
-  margin-left: 14rem;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+	background-color: #fefae0;
+	padding: 0.5rem;
+	font-size: small;
+	border-radius: 10px;
+	margin-left: 5rem;
+	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .insert-tour-btn:hover {
-  background-color: #faedcd;
+	background-color: #faedcd;
 }
 
 div.my-tour {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  width: 70%;
-  margin-left: 15%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	width: 90%;
+	margin-left: 5%;
 }
 
 .search-zone {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 7rem;
-  justify-content: space-evenly;
-  margin-top: 2rem;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 7rem;
+	justify-content: space-evenly;
+	margin-top: 2rem;
 }
 
 .search-area {
-  display: flex;
-  width: 30rem;
-  height: 3.5rem;
-  border: 2px solid #333;
-  border-radius: 22px;
-  justify-content: space-between;
+	display: flex;
+	width: 30rem;
+	height: 3.5rem;
+	border: 2px solid #333;
+	border-radius: 22px;
+	justify-content: space-between;
 }
 
-.search-area > select {
+.search-area>select {
 	border: 0;
 	border-radius: 22px;
 	outline: none;
@@ -77,63 +90,61 @@ div.my-tour {
 
 /* 입력창의 너비 */
 .search-input {
-  font-size: 16px;
-  width: 300px;
-  border-radius: 20px;
-  border: none;
-  margin-left: 1rem;
-  outline: none;
+	font-size: 16px;
+	width: 300px;
+	border-radius: 20px;
+	border: none;
+	margin-left: 1rem;
+	outline: none;
 }
 
 /* 포커스 시 기본 윤곽선 제거 */
 .search-button {
-  background-color: #ffeedb;
-  color: #333;
-  border: none;
-  padding: 13px 25px;
-  border-radius: 20px;
+	background-color: #ffeedb;
+	color: #333;
+	border: none;
+	padding: 13px 25px;
+	border-radius: 20px;
 }
 
 /* 버튼 호버 시 색상 변경 */
 .search-button:hover {
-  background-color: #d3c5b5;
+	background-color: #d3c5b5;
 }
 
 .align-button {
-  margin-top: 5rem;
-  border: 1px solid black;
-  border-radius: 10px;
-  width: 29rem;
-  height: 3.7rem;
+	margin-top: 5rem;
+	border: 1px solid black;
+	border-radius: 10px;
+	width: 29rem;
+	height: 3.7rem;
 }
 
 .align-button-text {
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
+	padding-left: 2.5rem;
+	padding-right: 2.5rem;
 }
 
 .border {
-  margin: 0 auto;
-  width: 90rem;
-  border-top: 1px solid #000;
+	margin: 0 auto;
+	width: 90rem;
+	border-top: 1px solid #000;
 }
 
 .list-view-option {
-  display: flex;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  margin-top: 2rem;
-  margin-right: 12rem;
-  margin-left: 13rem;
-  margin-bottom: 1rem;
-  justify-content: space-between;
-  
+	display: flex;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	margin-top: 2rem;
+	margin-right: 5rem;
+	margin-left: 13rem;
+	margin-bottom: 1rem;
+	justify-content: space-between;
 }
 
 .list-view-option input {
 	border: none;
 	background-color: #FFF;
-	
 }
 
 .list-view-option input:first-child {
@@ -142,90 +153,200 @@ div.my-tour {
 
 .list-view-option input:hover {
 	color: #00a;
-  	cursor: pointer;
+	cursor: pointer;
 }
 
 .tour {
-  margin-left: 1rem;
+	margin-left: 1rem;
 }
 
 .list-view-option div::after {
-  content: "|";
-  color: #333;
-  margin-right: 0.2rem;
+	content: "|";
+	color: #333;
+	margin-right: 0.2rem;
 }
 
 .list-view-option div:last-child::after {
-  content: "";
+	content: "";
 }
 
 .list-view-option a {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 .list-view-option a:hover {
-  color: blue;
+	color: blue;
 }
 
 .tour-box {
-  display: flex;
-  border: 1px solid #bbbbbb;
-  border-radius: 20px;
-  margin-bottom: 2rem;
-  flex-grow: 0;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+	display: flex;
+	border: 1px solid #bbbbbb;
+	border-radius: 10px;
+	margin-bottom: 2rem;
+	flex-grow: 0;
+	padding: 1rem;
+	
 }
 
-.my-tour > .tour-box {
-  margin-top: 1rem;
+.tour-right-info {
+	display: flex;
+    flex-direction: column;
+    text-align: right;
 }
 
-.tour-box > .tour-contents {
-  text-align: left;
-  padding-top: 1rem;
+.tour-box-right-content {
+	display : flex;
+	width: 30rem;
+	text-align: right;
+	flex-direction: column;
+    justify-content: space-between;
+}
+
+.tour-box-right-content h3 {
+	margin-top: 0.3rem; 
+}
+
+.tour-time {
+	display: flex;
+	align-items: center;
+}
+
+.clock-img {
+	width: 1.2rem;
+	height: 1.2rem;
+	margin-right: 0.4rem;
+}
+
+.rating-area {
+	display: flex;
+	align-items: center;
+	height: 1rem;
+}
+
+.rating-area h5 {
+	margin-left: 0.4rem;
+	font-weight: bold;
+}
+
+.tour-box-content {
+	display: flex;
+	text-align: left;
+	width: 40rem;
+	margin-left: 1rem;
+}
+
+.my-tour>.tour-box {
+	margin-top: 1rem;
+}
+
+.tour-contents {
+	display: flex;
+	text-align: left;
+	flex-direction: column;
+    justify-content: space-between;
+    border-left: 1px solid #ddd;
+    padding-left: 1rem;
+    
 }
 
 .tour-box:hover {
-  transform: scale(1.01);
-  cursor: pointer;
+	cursor: pointer;
+}
+
+
+.rating-ttl{
+	width: 30rem;
+	overflow-wrap: break-word;
+}
+
+.rating-ttl h3 {
+	margin-top: 1rem;
+    margin-bottom: 1rem;
+      overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  /*몇 번째 줄부터 ...으로 표시할 것인지 설정 가능*/
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+}
+
+.tour-contents-info {
+	display: flex;
+	font-size: 0.8rem;
+	align-items: flex-end;
+    justify-content: flex-start;
+}
+
+.asd {
+	margin-left: 4rem;
+}
+
+.asd div {
+	margin-bottom: 0.5rem;
+}
+
+.tour-contents-ctr {
+	margin-left : 0.2rem;
+}
+
+.asd:first-child {
+	margin-left: 0;
 }
 
 .star-icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  margin-top: 0.8rem;
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.rating-ttl p {
+	color: #4d4d4d;
+	font-size: 0.8rem;
 }
 
 .star-review {
-  font-weight: bold;
-  margin-bottom: 0.4rem;
+	font-weight: bold;
+	margin-left: 0.4rem;
+}
+
+.tour-contents-prc {
+	font-weight: bold;
+}
+
+.tour-contents-prc	 > h2 {
+	margin-top: 0;
+}
+
+.tour-contents-info span {
+	font-weight: bold;
 }
 
 .tour-contents-text {
-  margin: 1rem;
-  margin-left: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  /*몇 번째 줄부터 ...으로 표시할 것인지 설정 가능*/
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 }
 
-.tour-contents-text > span {
-  font-weight: 600;
-}
 .page-nav {
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
 }
 
-.page-nav > li {
-  list-style: none;
-  padding: 0.5rem;
-  flex: 1, 1, 0;
+.page-nav>li {
+	list-style: none;
+	padding: 0.5rem;
+	flex: 1, 1, 0;
 }
 
-.page-nav > li.active > a {
-  color: #f00a;
-  font-weight: 900;
+.page-nav>li.active>a {
+	color: #f00a;
+	font-weight: 900;
 }

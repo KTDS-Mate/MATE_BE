@@ -166,11 +166,19 @@ $().ready(function() {
 	$("#maxNp").on("change", function() {
 		/** 선택한 인원 */
 		var inputValue = $(this).val();
+		
+		if(inputValue > 99) {
+			alert("최대 99명까지 가능합니다.");
+			$(this).val(1);
+		}
+		
 		if (inputValue < 1) {
 			alert("최대 인원을 올바르게 설정해주세요.");
 			$(this).val(1);
 		}
 	});
+	
+	
 	$("#trPrc").on("change", function() {
 		var inputValue = $(this).val();
 
