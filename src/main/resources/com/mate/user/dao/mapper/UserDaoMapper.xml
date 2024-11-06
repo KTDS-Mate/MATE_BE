@@ -136,14 +136,33 @@
 	<update id="updateUserPassword" parameterType="com.mate.user.vo.UserVO">
 		UPDATE USR_INF 
 		   SET USR_PWD = #{usrPwd}
-		     , SALT = ${salt} 
+		     , SALT = #{salt} 
 		 WHERE USR_LGN_ID = #{usrLgnId}
+	</update>
+	
+	<update id="getSalt" parameterType="String">
+		SELECT SALT
+ 		  FROM USR_INF
+ 		 WHERE USR_LGN_ID = #{usrLgnId}
 	</update>
 	
 	<select id="selectAllCountries" resultType="com.mate.common.vo.CountriesVO">
 		 SELECT COUNTRY_ID
 		      , COUNTRY_NAME 
 		   FROM COUNTRIES
+	</select>
+	
+	<select id="getPasswordByUserId" parameterType="String" resultType="String">
+		SELECT USR_PWD
+		  FROM USR_INF
+		 WHERE USR_LGN_ID = #{usrLgnId}
+	</select>
+	
+	<select id="selectOneMemberByIdAndEmail" parameterType="com.mate.user.vo.UserVO" resultType="com.mate.user.vo.UserVO">
+		SELECT *
+		  FROM USR_INF
+		 WHERE USR_LGN_ID = #{usrLgnId}
+		   AND USR_EML = #{usrEml}
 	</select>
 	
 </mapper>

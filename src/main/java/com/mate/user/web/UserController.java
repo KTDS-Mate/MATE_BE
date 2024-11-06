@@ -110,7 +110,12 @@ public class UserController {
 	}
 	
 	@GetMapping("/user/login")
-	public String viewLoginPage() {
+	public String viewLoginPage(HttpSession session) {
+		
+		if (session.getAttribute("_LOGIN_USER_") != null) {
+			return "redirect:/";
+		}
+		
 		return "user/userlogin";
 	}
 	
@@ -155,6 +160,36 @@ public class UserController {
 		return "redirect:/";
 	}
 	
+	@GetMapping("/user/reissue-password")
+	public String viewReissuePasswordPage(HttpSession session, Model model) {
+		if (session.getAttribute("_LOGIN_USER_") != null) {
+			return "redirect:/";
+		}
+		
+		model.addAttribute("userVO", new UserVO());
+		return "user/reissue-password";
+	}
+	
+	
+	@PostMapping("/user/reissue-password")
+	public String reissuePassword(@RequestParam String usrLgnId,
+								  @RequestParam String usrEml, Model model) {
+		UserVO userVO = new UserVO();
+		userVO.setUsrLgnId(usrLgnId);
+		userVO.setUsrEml(usrEml);
+		
+		boolean isReissued = userService.reissueUserPassword(userVO);
+		if (isReissued) {
+			model.addAttribute("message", "입력하신 이메일로 임시 비밀번호가 발급되었습니다.");
+			model.addAttribute("messageType", "success");
+			return "user/userlogin";
+		} else {
+			model.addAttribute("message", "일치하는 회원 정보가 없습니다.");
+			model.addAttribute("messageType", "error");
+			return "user/reissue-password";
+		}
+	}
+	
 	// 휴대전화번호 수정
 	@GetMapping("/user/editphone")
 	public String viewEditPhonePage(@SessionAttribute(name = "_LOGIN_USER_", required= false) UserVO userVO, Model model) {
@@ -188,7 +223,12 @@ public class UserController {
 		} catch(IllegalArgumentException e) {
 			model.addAttribute("phoneError", e.getMessage());
 		}
-		return "mypage/editinfo";
+		if(userVO.getUsrIsGd().equals("N")) {
+            return "redirect:/mypage/edit-profile/tr-profile/"+ userVO.getUsrLgnId();
+    	} else if(userVO.getUsrIsGd().equals("Y")) {
+    		return "redirect:/mypage/edit-profile/gd-profile/"+ userVO.getUsrLgnId();
+    	}
+    	return "";
 	}
 	
 	@GetMapping("/user/editpypeml")
@@ -234,28 +274,64 @@ public class UserController {
 	}
 	
 	@PostMapping("/user/editpwd")
-	public String viewEditPassword(@SessionAttribute(name = "_LOGIN_USER_", required=false) UserVO userVO, 
-								   @RequestParam String newPassword,
-								   @RequestParam String confirmPassword, Model model) {
-		// 비밀번호와 비밀번호 확인 입력값 대조
-		if (!newPassword.equals(confirmPassword)) {
-			model.addAttribute("errorMessage", "비밀번호가 일치하지 않습니다.");
-			return "/user/editpwd";
+	public String updatePassword(@SessionAttribute(name = "_LOGIN_USER_", required=false) UserVO userVO, 
+								@RequestParam String newPwd,
+								@RequestParam String currentPwd,
+								@RequestParam String confirmPwd,
+								Model model) {
+		if (userVO == null) {
+			return "redirect:/user/login";
+		}
+		
+		// 현재 비밀번호 확인
+		if (!userService.checkCurrentPassword(userVO.getUsrLgnId(), currentPwd)) {
+			model.addAttribute("currentPwdError", "현재 비밀번호가 일치하지 않습니다.");
+			return "user/editpwd";
+		}
+		
+		// 새 비밀번호와 확인 비밀번호 일치 확인
+		if (!newPwd.equals(confirmPwd)) {
+			model.addAttribute("confirmPwdError", "새 비밀번호가 일치하지 않습니다.");
+			return "user/editpwd";
 		}
 		
 		try {
-			boolean isUpdated = userService.updateUserPassword(userVO, newPassword);
+			boolean isUpdated = userService.updateUserPassword(userVO, newPwd);
 			if (isUpdated) {
 				model.addAttribute("successMessage", "비밀번호가 변경되었습니다.");
+				if(userVO.getUsrIsGd().equals("N")) {
+		            return "redirect:/mypage/edit-profile/tr-profile/"+ userVO.getUsrLgnId();
+		    	} else if(userVO.getUsrIsGd().equals("Y")) {
+		    		return "redirect:/mypage/edit-profile/gd-profile/"+ userVO.getUsrLgnId();
+		    	}
 			} else {
 				model.addAttribute("errorMessage", "비밀번호 변경에 실패했습니다.");
+				return "redirect:/user/editpwd";
 			}
 		} catch (IllegalArgumentException e) {
 			model.addAttribute("errorMessage", "오류가 발생했습니다: " + e.getMessage());
 		}
-		return "user/editinfo";
+		
+		return userVO.getUsrIsGd().equals("Y") ? 
+			"redirect:/mypage/edit-profile/tr-profile/"+ userVO.getUsrLgnId() : "redirect:/mypage/edit-profile/gd-profile/"+ userVO.getUsrLgnId();
 	}
 	
+	
+	@ResponseBody
+	@PostMapping("/user/checkCurrentPassword")
+	public Map<String, Object> checkCurrentPassword(@SessionAttribute(name = "_LOGIN_USER_", required = false) UserVO userVO,
+													@RequestParam String currentPwd) {
+	    Map<String, Object> response = new HashMap<>();
+	    if (userVO == null) {
+	        response.put("isValid", false);
+	        response.put("error", "로그인이 필요합니다.");
+	        return response;
+	    }
+	    boolean isValid = userService.checkCurrentPassword(userVO.getUsrLgnId(), currentPwd);
+	    response.put("isValid", isValid);
+	    return response;
+	}
+
 	/*
 	 * 회원탈퇴 기능 수행은 마이페이지
 	 */

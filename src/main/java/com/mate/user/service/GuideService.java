@@ -20,4 +20,11 @@ public interface GuideService {
     
     public boolean updateGuideLicense(RegistGuideVO registGuideVO);
     
+    public boolean deleteLicenseById(String licenseId);
+    
+    public boolean updateProfileImage(RegistGuideVO registGuideVO);
+    
+    public boolean updateIdImage(RegistGuideVO registGuideVO);
+    
+    boolean updateGuideLocation(RegistGuideVO registGuideVO);
 }

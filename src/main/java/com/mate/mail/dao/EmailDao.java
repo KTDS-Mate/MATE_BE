@@ -14,4 +14,6 @@ public interface EmailDao {
 
 	// 이전에 발급한 코드를 무효화
 	public int invalidatePrevAuthCode(String email);
+	
+	public int updateTempPassword(EmailVO emailVO);
 }
