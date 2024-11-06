@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <title>포트원 실습</title>
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>

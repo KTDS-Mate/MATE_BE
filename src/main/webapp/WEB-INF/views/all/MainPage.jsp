@@ -5,7 +5,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <link rel="stylesheet" type="text/css" href="/css/main/MainPage.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,7 +23,7 @@
       <!--  -->
       <div class="header">
           <!-- 헤더 공통파일 -->
-          <jsp:include page="../header.jsp"></jsp:include>
+          <jsp:include page="./MainHeader.jsp"></jsp:include>
       </div>
       <!--  -->
   
@@ -138,8 +138,8 @@
                 </div>
             </div>
             <div class="thirdLayer">
-                <!-- <h1>실시간 인기 여행지 TOP 10</h1>
-                <div class="topDestinations" id="topDestinations"></div> -->
+                <h1>실시간 인기 여행지 TOP 10</h1>
+                <div class="topDestinations" id="topDestinations"></div>
             <div class="fourthLayer">
 
             </div>

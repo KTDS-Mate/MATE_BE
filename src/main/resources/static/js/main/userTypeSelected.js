@@ -35,9 +35,7 @@ $().ready(function () {
     $.ajax({
       url: "/api/top-destinations", // 실제 데이터가 반환될 API 엔드포인트
       method: "GET",
-      success: function (data) {
-       
-        });
-      },
+      success: function (data) {},
+    });
   });
 });

@@ -5,6 +5,7 @@
 
   <head>
     <meta charset="UTF-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <title>MATE 일정관리(변경예정)</title>
     <link rel="stylesheet" type="text/css" href="/css/mypage/Mypage_Tourist_Calendar.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />

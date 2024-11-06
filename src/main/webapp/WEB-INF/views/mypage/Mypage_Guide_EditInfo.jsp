@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib prefix="form"
-uri="http://www.springframework.org/tags/form" %> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core" %>
+pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
     <link
       rel="stylesheet"
       type="text/css"
@@ -77,34 +76,25 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
           </div>
 
-          <div class="payment-section">
-            <h2>경력 및 활동 지역</h2>
-            <div class="info-item">
+          <div class="profile-section">
+            <div class="payment-section">
+              <h2>경력 및 활동 지역</h2>
               <!-- 경력 표시 -->
               <div class="info-row">
-                <div class="factor">경력 : ${registGuideVO.usrGdExp}</div>
+                <div class="factor">경력 : ${registGuideVO.usrGdExp} 년차</div>
                 <button class="edit-btn btn-open-locationEdit-modal">
                   수정
                 </button>
               </div>
-
               <div class="info-row">
                 <div class="factor">
                   대표 국적 : ${registGuideVO.countryName}
                 </div>
-                <button class="edit-btn btn-open-locationEdit-modal">
-                  수정
-                </button>
               </div>
-
               <div class="info-row">
                 <div class="factor">
                   활동 도시 :
-                  <c:forEach
-                    items="${registGuideVO.cities}"
-                    var="city"
-                    varStatus="status"
-                  >
+                  <c:forEach items="${registGuideVO.cities}" var="city" varStatus="status" >
                     <span>${city.cityName}(${city.country.countryName})</span>
                     <c:if test="${!status.last}">, </c:if>
                   </c:forEach>
@@ -113,100 +103,98 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                   수정
                 </button>
               </div>
-
-              <div class="profile-section">
-                <h3>프로필 사진 관리</h3>
-                <div class="profile-row">
-                  <div class="profile-placeholder">
-                    <!-- 이미지를 대체할 네모 박스 -->
-                    <img
-                      class="profile-img"
-                      src="/img/mypage/고양이.jpg"
-                      alt=""
-                    />
-                  </div>
-                  <button class="edit-btn btn-open-profilePhotoEdit-modal">
-                    수정
-                  </button>
+            </div>	
+            <div class="profile-section">
+              <h3>프로필 사진 관리</h3>
+              <div class="profile-row">
+                <div class="profile-placeholder">
+                  <!-- 이미지를 대체할 네모 박스 -->
+                  <img
+                    class="profile-img"
+                    src="/img/mypage/고양이.jpg"
+                    alt=""
+                  />
                 </div>
-              </div>
-
-              <div class="profile-section">
-                <h3>자격증 관리</h3>
-
-                <!-- 첫 번째 자격증 항목 -->
-                <div class="profile-row">
-                  <div class="profile-placeholder">
-                    <!-- 자격증 이미지를 대체할 네모 박스 -->
-                    <img
-                      src="img/mypage/관광통역안내사.jpg"
-                      alt=""
-                      class="certificate-img"
-                    />
-                  </div>
-                  <div class="certificate-text">
-                    <h4>관광 통역 안내사</h4>
-                  </div>
-                </div>
-
-                <!-- 두 번째 자격증 항목 -->
-                <div class="profile-row">
-                  <div class="profile-placeholder">
-                    <!-- 자격증 이미지를 대체할 네모 박스 -->
-                    <img
-                      src="img/mypage/레크리에이션지도사.jpg"
-                      alt=""
-                      class="certificate-img"
-                    />
-                  </div>
-                  <div class="certificate-text">
-                    <h4>레크리에이션 지도사</h4>
-                  </div>
-                </div>
-
-                <button class="edit-btn btn-open-certificateEdit-modal">
+                <button class="edit-btn btn-open-profilePhotoEdit-modal">
                   수정
                 </button>
               </div>
+            </div>
 
-              <div class="profile-section">
-                <h3>범죄 경력 조회서</h3>
-                <div class="profile-row">
-                  <div class="profile-placeholder">
-                    <!-- 이미지를 대체할 네모 박스 -->
-                    <img
-                      src="img/mypage/범죄경력증명서_영문.jpg"
-                      alt=""
-                      class="certificate-img"
-                    />
-                  </div>
-                  <button class="edit-btn btn-open-crimeEdit-modal">
-                    수정
-                  </button>
+            <div class="profile-section">
+              <h3>자격증 관리</h3>
+
+              <!-- 첫 번째 자격증 항목 -->
+              <div class="profile-row">
+                <div class="profile-placeholder">
+                  <!-- 자격증 이미지를 대체할 네모 박스 -->
+                  <img
+                    src="img/mypage/관광통역안내사.jpg"
+                    alt=""
+                    class="certificate-img"
+                  />
+                </div>
+                <div class="certificate-text">
+                  <h4>관광 통역 안내사</h4>
                 </div>
               </div>
 
-              <div class="profile-section">
-                <h3>신분증 관리</h3>
-                <div class="profile-row">
-                  <div class="profile-placeholder">
-                    <!-- 이미지를 대체할 네모 박스 -->
-                    <img
-                      src="img/mypage/범죄경력증명서_영문.jpg"
-                      alt=""
-                      class="certificate-img"
-                    />
-                  </div>
-                  <button class="edit-btn btn-open-idEdit-modal">수정</button>
+              <!-- 두 번째 자격증 항목 -->
+              <div class="profile-row">
+                <div class="profile-placeholder">
+                  <!-- 자격증 이미지를 대체할 네모 박스 -->
+                  <img
+                    src="img/mypage/레크리에이션지도사.jpg"
+                    alt=""
+                    class="certificate-img"
+                  />
                 </div>
+                <div class="certificate-text">
+                  <h4>레크리에이션 지도사</h4>
+                </div>
+              </div>
+
+              <button class="edit-btn btn-open-certificateEdit-modal">
+                수정
+              </button>
+            </div>
+
+            <div class="profile-section">
+              <h3>범죄 경력 조회서</h3>
+              <div class="profile-row">
+                <div class="profile-placeholder">
+                  <!-- 이미지를 대체할 네모 박스 -->
+                  <img
+                    src="img/mypage/범죄경력증명서_영문.jpg"
+                    alt=""
+                    class="certificate-img"
+                  />
+                </div>
+                <button class="edit-btn btn-open-crimeEdit-modal">
+                  수정
+                </button>
+              </div>
+            </div>
+
+            <div class="profile-section">
+              <h3>신분증 관리</h3>
+              <div class="profile-row">
+                <div class="profile-placeholder">
+                  <!-- 이미지를 대체할 네모 박스 -->
+                  <img
+                    src="img/mypage/범죄경력증명서_영문.jpg"
+                    alt=""
+                    class="certificate-img"
+                  />
+                </div>
+                <button class="edit-btn btn-open-idEdit-modal">수정</button>
               </div>
             </div>
           </div>
-          <div class="footer">
-            <!-- footer 공통파일-->
-            <jsp:include page="../footer.jsp"></jsp:include>
-          </div>
         </div>
+      <div class="footer">
+        <!-- footer 공통파일-->
+        <jsp:include page="../footer.jsp"></jsp:include>
       </div>
     </div>
   </body>
