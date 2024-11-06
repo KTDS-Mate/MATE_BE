@@ -6,6 +6,7 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="/css/user/userlogin.css" />
     <link rel="stylesheet" type="text/css" href="/css/user/common.css" />

@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
 <title>여행자 나의 신청 투어 목록</title>
 	<link rel="stylesheet" type="text/css" href="/css/common.css" />
 	<link rel="stylesheet" type="text/css" href="/css/Mypage_Tourist_Apply.css" />

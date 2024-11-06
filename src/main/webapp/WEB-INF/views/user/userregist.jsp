@@ -5,6 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <title>회원가입</title>
     <link rel="stylesheet" type="text/css" href="/css/user/userregist.css">
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
