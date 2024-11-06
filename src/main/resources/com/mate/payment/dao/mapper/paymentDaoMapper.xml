@@ -103,6 +103,13 @@
 		OR GD_TR_TTL IS NOT NULL
 </select>
 
+<select id="selectUserId" parameterType="String"
+	resultType="String">
+	SELECT USR_ID
+	  FROM USR_INF
+	 WHERE USR_LGN_ID = #{parameter}
+</select>
+
 
 
 <select id="selectAllMyPayment" parameterType="com.mate.payment.vo.SearchPaymentVO"

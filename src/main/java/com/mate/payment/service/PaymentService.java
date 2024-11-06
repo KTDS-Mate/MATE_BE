@@ -20,4 +20,5 @@ public interface PaymentService {
 	
 	public PaymentListVO getSearchMyPayment(SearchPaymentVO searchPaymentVO);
 	
+	public String getUsrId(String trstLgnId);
 }

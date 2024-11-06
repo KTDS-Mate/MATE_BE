@@ -1,18 +1,18 @@
 $().ready(function () {
   IMP.init("imp22850400");
-  const merchantUid = $('.payId').text();
-  const amount = $('.payCsh').text();	// 결제금액 못 바꾸도록 고정
-  if ($('.payTrTp').text() === "GUIDE"){
-  	var title = $('.gdTrTtl').text();
-  } else if($('.payTrTp').text() === "TOURIST") {
-	var title = $('.usrTrTtl').text();
+  const merchantUid = $('input.payId').val();
+  const amount = $('input.payCsh').val();	// 결제금액 못 바꾸도록 고정
+  if ($('input.payTrTp').text() === "GUIDE"){
+  	var title = $('input.gdTrTtl').val();
+  } else if($('input.payTrTp').val() === "TOURIST") {
+	var title = $('input.usrTrTtl').val();
   }
   const name = title;
-  const buyerName = $('.trstFnm').text();
-  const impMid = $('.impMid').text();
-  const impUid = $('.impUid').text();
+  const buyerName = $('input.trstFnm').val();
+  const impMid = $('input.impMid').val();
+  const impUid = $('input.impUid').val();
   
-  var pg = "";
+  var pg = "html5_inicis";
   const payMethod = "card";
   // pay_inf의 pk
   
@@ -34,7 +34,7 @@ $().ready(function () {
 	$.ajax({
 		url: '/cancelPayment',
 		type: 'POST',
-		data: {"imp_uid": impUid,"reason": "환불", },
+		data: {"impUid": impUid,"reason": "환불", },
 		success: function(rsp){
 			$.ajax({
 				url: '/refundPayment',
@@ -43,6 +43,7 @@ $().ready(function () {
 				success: function(rsp){
 					if (rsp){
 						alert("정상적으로 환불처리 되었습니다.");
+						location.reload();
 					}else {
 					alert("데이터베이스 처리에 실패하였습니다. 고객센터에 문의해주세요.");
 					}
@@ -91,19 +92,28 @@ $().ready(function () {
 										$.ajax({
 												type:'POST',
 												url: '/successPayment',
-												data: {"payId":merchantUid, "imp_uid": rsp.imp_uid,
-													 "imp_mid": rsp.merchant_uid, "pay_mthd": rsp.pay_method,}, 
+												data: {"payId":merchantUid, "impUid": rsp.imp_uid,
+													 "impMid": rsp.merchant_uid, "payMthd": rsp.pay_method,}, 
 												success: function(result) {
 													if (result){
-													console.log("pk" + merchantUid + "에게 결제 아이디 imp_uid(" + rsp.imp_uid 
-														+ ")와 portOne에게 부여한 결제 아이디인 imp_mid(" + rsp.merchant_uid + ")를 결제수단" 
-														+ rsp.pay_method + "을 이용한 데이터를 DB에 적용하였습니다.");
+														location.reload();
 													} else {
 														alert("데이터베이스 등록에 실패하였습니다. 고객센터에 문의해주세요.");
 													}
 												},
 												error: function(){
 													alert("데이터베이스 등록에 실패하였습니다. 고객센터에 문의해주세요.");
+													$.ajax({
+														url: '/cancelPayment',
+														type: 'POST',
+														data: { "impUid": rsp.imp_uid, "reason": "검증 실패", },
+														success: function(rsp){
+																console.log(rsp.message);
+														},
+														error: function(){
+															console.log("실행처리중 오류가 생겼습니다. 고객센터에 문의해주세요.");
+														},
+													});
 												},
 											});
 									} else{
@@ -111,7 +121,7 @@ $().ready(function () {
 										$.ajax({
 											url: '/cancelPayment',
 											type: 'POST',
-											data: { "imp_uid": rsp.imp_uid, "reason": "검증 실패", },
+											data: { "impUid": rsp.imp_uid, "reason": "검증 실패", },
 											success: function(rsp){
 													console.log(rsp.message);
 											},
@@ -127,7 +137,7 @@ $().ready(function () {
 									$.ajax({
 										url: '/cancelPayment',
 										type: 'POST',
-										data: { "imp_uid": rsp.imp_uid, "reason": "검증 실패", },
+										data: { "impUid": rsp.imp_uid, "reason": "검증 실패", },
 										success: function(rsp){
 												console.log(rsp.message);
 										},
@@ -157,23 +167,33 @@ $().ready(function () {
 		});
 	});
   $("button.kakaopay-btn").on("click", function () {
+	$(".payment-btn-area").find('button').removeClass("checked");
+	$(this).addClass("checked");
 	pg = "kakaopay";
   });
 	
 	
   $("button.tosspayment-btn").on("click", function () {
+	$(".payment-btn-area").find('button').removeClass("checked");
+	$(this).addClass("checked");
 	pg = "tosspayments";
   });
 
   $("button.KG-payment").on("click", function () {
+	$(".payment-btn-area").find('button').removeClass("checked");
+	$(this).addClass("checked");
     pg = "html5_inicis"
   });
 
   $("button.paypal-payment").on("click", function () {
+	$(".payment-btn-area").find('button').removeClass("checked");
+	$(this).addClass("checked");
 	pg = "paypal";
   });
 
-  $("button.only-tosspay").on("click", function () {
+  $("button.tosspay-btn").on("click", function () {
+	$(".payment-btn-area").find('button').removeClass("checked");
+	$(this).addClass("checked");
   	pg = "tosspay"
   });
   
