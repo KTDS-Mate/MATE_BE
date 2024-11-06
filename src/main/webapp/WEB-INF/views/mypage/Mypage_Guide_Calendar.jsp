@@ -6,6 +6,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>MATE 일정관리(변경예정)</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <link rel="stylesheet" type="text/css" href="/css/mypage/Mypage_Guide_Calendar.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">

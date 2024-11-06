@@ -5,6 +5,7 @@
 
   <head>
     <meta charset="UTF-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <title>MATE 즐겨찾기</title>
     <link rel="stylesheet" type="text/css" href="/css/mypage/Mypage_Guide_Wishlist.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
