@@ -19,10 +19,10 @@ img {
 }
 
 .inline-margin {
-  display: inline-block;
-  margin-top: 0.6rem;
+  	display: inline-block;
     width: 1rem;
     height: 1rem;
+    margin: 0 0.4rem 0 0.4rem;
 }
 
 .inline-margin img {
@@ -47,7 +47,7 @@ input.checked2 {
 	padding: 0.5rem;
 	font-size: small;
 	border-radius: 10px;
-	margin-left: 6rem;
+	margin-left: 5rem;
 	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -184,26 +184,48 @@ div.my-tour {
 	border-radius: 10px;
 	margin-bottom: 2rem;
 	flex-grow: 0;
-	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 	padding: 1rem;
+	
 }
 
-.tour-contents h3 {
-	margin-top: 0.4rem;
-	margin-bottom: 0.5rem;
-}
-
-.tour-contents p {
-	margin: 0.2rem 0 0.2rem 0;
+.tour-right-info {
+	display: flex;
+    flex-direction: column;
+    text-align: right;
 }
 
 .tour-box-right-content {
-	
+	display : flex;
+	width: 30rem;
+	text-align: right;
+	flex-direction: column;
+    justify-content: space-between;
+}
+
+.tour-box-right-content h3 {
+	margin-top: 0.3rem; 
+}
+
+.tour-time {
+	display: flex;
+	align-items: center;
+}
+
+.clock-img {
+	width: 1.2rem;
+	height: 1.2rem;
+	margin-right: 0.4rem;
 }
 
 .rating-area {
 	display: flex;
 	align-items: center;
+	height: 1rem;
+}
+
+.rating-area h5 {
+	margin-left: 0.4rem;
+	font-weight: bold;
 }
 
 .tour-box-content {
@@ -217,14 +239,59 @@ div.my-tour {
 	margin-top: 1rem;
 }
 
-.tour-box>.tour-contents {
+.tour-contents {
+	display: flex;
 	text-align: left;
-	padding-top: 1rem;
+	flex-direction: column;
+    justify-content: space-between;
+    border-left: 1px solid #ddd;
+    padding-left: 1rem;
+    
 }
 
 .tour-box:hover {
-	transform: scale(1.01);
 	cursor: pointer;
+}
+
+
+.rating-ttl{
+	width: 30rem;
+	overflow-wrap: break-word;
+}
+
+.rating-ttl h3 {
+	margin-top: 1rem;
+    margin-bottom: 1rem;
+      overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  /*몇 번째 줄부터 ...으로 표시할 것인지 설정 가능*/
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+}
+
+.tour-contents-info {
+	display: flex;
+	font-size: 0.8rem;
+	align-items: flex-end;
+    justify-content: flex-start;
+}
+
+.asd {
+	margin-left: 4rem;
+}
+
+.asd div {
+	margin-bottom: 0.5rem;
+}
+
+.tour-contents-ctr {
+	margin-left : 0.2rem;
+}
+
+.asd:first-child {
+	margin-left: 0;
 }
 
 .star-icon {
@@ -232,18 +299,35 @@ div.my-tour {
 	height: 1.5rem;
 }
 
+.rating-ttl p {
+	color: #4d4d4d;
+	font-size: 0.8rem;
+}
+
 .star-review {
 	font-weight: bold;
 	margin-left: 0.4rem;
 }
 
-.tour-contents-text {
-	margin: 1rem;
-	margin-left: 0;
+.tour-contents-prc {
+	font-weight: bold;
 }
 
-.tour-contents-text>span {
-	font-weight: 600;
+.tour-contents-prc	 > h2 {
+	margin-top: 0;
+}
+
+.tour-contents-info span {
+	font-weight: bold;
+}
+
+.tour-contents-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  /*몇 번째 줄부터 ...으로 표시할 것인지 설정 가능*/
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 }
 
 .page-nav {

@@ -42,23 +42,23 @@
 			     WHERE gtr2.GD_TR_PST_ID = #{_parameter}) AS REVIEW_AVG
 			 , (SELECT COUNT(1) 
 			      FROM GD_TR_RVW gtr
-			     WHERE gtr.GD_TR_PST_ID = 'GD-20241030-000299'
+			     WHERE gtr.GD_TR_PST_ID = #{_parameter}
 			       AND gtr.GD_TR_RVW_RTNG = 5) AS FIVE_COUNT
 			 , (SELECT COUNT(1) 
 			      FROM GD_TR_RVW gtr
-			     WHERE gtr.GD_TR_PST_ID = 'GD-20241030-000299'
+			     WHERE gtr.GD_TR_PST_ID = #{_parameter}
 			       AND gtr.GD_TR_RVW_RTNG = 4) AS FOUR_COUNT
 			 , (SELECT COUNT(1) 
 			      FROM GD_TR_RVW gtr
-			     WHERE gtr.GD_TR_PST_ID = 'GD-20241030-000299'
+			     WHERE gtr.GD_TR_PST_ID = #{_parameter}
 			       AND gtr.GD_TR_RVW_RTNG = 3) AS THREE_COUNT
 			 , (SELECT COUNT(1) 
 			      FROM GD_TR_RVW gtr
-			     WHERE gtr.GD_TR_PST_ID = 'GD-20241030-000299'
+			     WHERE gtr.GD_TR_PST_ID = #{_parameter}
 			       AND gtr.GD_TR_RVW_RTNG = 2) AS TWO_COUNT
 			 , (SELECT COUNT(1) 
 			      FROM GD_TR_RVW gtr
-			     WHERE gtr.GD_TR_PST_ID = 'GD-20241030-000299'
+			     WHERE gtr.GD_TR_PST_ID = #{_parameter}
 			       AND gtr.GD_TR_RVW_RTNG = 1) AS ONE_COUNT
 		  FROM GD_TR_RVW GR
 		  JOIN USR_INF U

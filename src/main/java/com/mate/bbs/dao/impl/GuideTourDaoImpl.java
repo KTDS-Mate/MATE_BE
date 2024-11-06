@@ -29,8 +29,8 @@ public class GuideTourDaoImpl extends SqlSessionDaoSupport implements GuideTourD
 	 * 가이드 투어 전체 수를 조회
 	 */
 	@Override
-	public int selectGuideTourAllCount() {
-		return this.getSqlSession().selectOne(NAMESPACE + ".selectGuideTourAllCount");
+	public int selectGuideTourAllCount(SearchGuideTourVO searchGuideTourVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectGuideTourAllCount", searchGuideTourVO);
 	}
 	
 	/**

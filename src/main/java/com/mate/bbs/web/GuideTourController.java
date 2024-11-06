@@ -14,6 +14,7 @@ import com.mate.bbs.service.GuideTourReviewService;
 import com.mate.bbs.service.GuideTourService;
 import com.mate.bbs.vo.GuideTourListVO;
 import com.mate.bbs.vo.GuideTourReviewListVO;
+import com.mate.bbs.vo.GuideTourReviewWriteVO;
 import com.mate.bbs.vo.GuideTourVO;
 import com.mate.bbs.vo.GuideTourWriteVO;
 import com.mate.bbs.vo.SearchGuideTourVO;
@@ -91,4 +92,18 @@ public class GuideTourController {
 		
 		return "guidetour/Tourist_Modify";
 	}
+	
+	@PostMapping("/guidetour/info")
+	public String doCreateNewGuideTourReview(@RequestParam String gdTrPstId
+										   , GuideTourReviewWriteVO guideTourReviewWriteVO
+										   , @SessionAttribute("_LOGIN_USER_") UserVO loginUserVO) {
+		guideTourReviewWriteVO.setGdTrPstId(gdTrPstId);
+		guideTourReviewWriteVO.setAthrId(loginUserVO.getUsrLgnId());
+		
+		this.guideTourReviewService.createNewGuideTourReview(guideTourReviewWriteVO);
+		
+		return "redirect:/guidetour/info?gdTrPstId=" + gdTrPstId;
+	}
+	
+	
 }

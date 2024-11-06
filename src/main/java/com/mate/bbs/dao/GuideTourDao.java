@@ -20,7 +20,7 @@ public interface GuideTourDao {
      * @param gdTrPstId : 가이드 투어 게시글 아이디
      * @return
      */
-    public int selectGuideTourAllCount();
+    public int selectGuideTourAllCount(SearchGuideTourVO searchGuideTourVO);
     
     
     /**

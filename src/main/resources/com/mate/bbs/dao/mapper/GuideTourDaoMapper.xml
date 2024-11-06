@@ -13,6 +13,11 @@
 		   				javaType="com.mate.user.vo.UserVO"
 						autoMapping="true">
 				<id column="USR_ID" property="usrId" />	
+				<association property="guideReviewVO" 
+							javaType="com.mate.mypage.vo.GuideReviewVO"
+							autoMapping="true">
+					<id column="GD_RVW_ID" property="gdRvwId" />
+				</association>
 			</association>
 			
 			<association property="citiesVO"
@@ -93,15 +98,24 @@
 		</choose>
 	</sql>
 	
-	<select id="selectGuideTourAllCount" resultType="_int">
+	<select id="selectGuideTourAllCount" 
+			parameterType="com.mate.bbs.vo.SearchGuideTourVO" 
+			resultType="_int">
 		SELECT COUNT(1)
-		  FROM GD_TR_RCRT
-		 WHERE GD_TR_ST_DT > SYSDATE
-		<if test="_parameter != null">
-	    	<include refid="com.mate.bbs.dao.GuideTourDao.selectTitleAndContent" />
-	    </if>
+		  FROM GD_TR_RCRT GTR
+	     LEFT JOIN GD_TR_RCRT_IMG GTRI
+	       ON GTR.GD_TR_PST_ID = GTRI.GD_TR_PST_ID 
+	     JOIN CITIES C
+	       ON C.CITY_ID = GTR.TR_CT_ID
+	     JOIN COUNTRIES CTR
+	       ON C.COUNTRY_ID = CTR.COUNTRY_ID
+	     JOIN REGIONS R
+	       ON R.REGION_ID = CTR.REGION_ID 
+	     JOIN USR_INF UI
+	       ON GTR.ATHR_ID = UI.USR_LGN_ID 
+	    WHERE GTR.GD_TR_ST_DT > SYSDATE
 	    <if test="_parameter != null">
-	    	<include refid="com.mate.bbs.dao.GuideTourDao.order" />
+	    	<include refid="com.mate.bbs.dao.GuideTourDao.selectTitleAndContent" />
 	    </if>
 	</select>
 	
@@ -192,7 +206,12 @@
 			 , GTRI.GD_TR_IMG_URL 
 			 , C.CITY_NAME 
 			 , CTR.COUNTRY_NAME
-			 , R.REGION_NAME 	
+			 , R.REGION_NAME
+			 , UI.USR_LNM 
+			 , UI.USR_FNM 
+			 , (SELECT AVG(GD_RVW_RTNG)
+			      FROM GD_RVW GR
+			     WHERE GR.GD_ID = GTR.ATHR_ID) AS AVG_GD_RVW
 			 , ( SELECT AVG(gtr2.GD_TR_RVW_RTNG)
 			       FROM GD_TR_RVW gtr2
 			 	  WHERE gtr2.GD_TR_PST_ID = GTR.GD_TR_PST_ID ) AS AVG_RVW
@@ -202,9 +221,11 @@
 	     JOIN CITIES C
 	       ON C.CITY_ID = GTR.TR_CT_ID
 	     JOIN COUNTRIES CTR
-	       ON C.COUNTRY_ID = CTR.COUNTRY_ID 
+	       ON C.COUNTRY_ID = CTR.COUNTRY_ID
 	     JOIN REGIONS R
 	       ON R.REGION_ID = CTR.REGION_ID 
+	     JOIN USR_INF UI
+	       ON GTR.ATHR_ID = UI.USR_LGN_ID 
 	    WHERE GTR.GD_TR_ST_DT > SYSDATE
 	    <if test="_parameter != null">
 	    	<include refid="com.mate.bbs.dao.GuideTourDao.selectTitleAndContent" />
@@ -260,7 +281,7 @@
 		, #{trCtId}
 		, TO_DATE(#{gdTrEdDt}, 'YYYY-MM-DD HH24:MI')
 		, #{gdTrMxNp}
-		, 'N')
+		, 'RCRTNG')
 	</insert>
 	<update id="updateGuideTour"
 			parameterType="com.mate.bbs.vo.GuideTourModifyVO">

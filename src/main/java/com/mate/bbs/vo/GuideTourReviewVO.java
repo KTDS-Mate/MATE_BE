@@ -51,6 +51,8 @@ public class GuideTourReviewVO {
 	 * 상위 리뷰 아이디(대댓글)
 	 */
 	private String prGdTrRvwId;
+	
+	// 컬럼 없음
 	/**
 	 * 별점의 개수.
 	 */
@@ -66,7 +68,7 @@ public class GuideTourReviewVO {
 	private GuideTourVO guideTourVO;
 	
 	/**별점 평균 컬럼 없음**/
-	private int reviewAvg;
+	private double reviewAvg;
 	
 	/**별점 개수 컬럼 없음**/
 	private int fiveCount;
@@ -74,8 +76,6 @@ public class GuideTourReviewVO {
 	private int threeCount;
 	private int twoCount;
 	private int oneCount;
-	
-	
 	public String getGdTrRvwId() {
 		return gdTrRvwId;
 	}
@@ -166,10 +166,10 @@ public class GuideTourReviewVO {
 	public void setGuideTourVO(GuideTourVO guideTourVO) {
 		this.guideTourVO = guideTourVO;
 	}
-	public int getReviewAvg() {
+	public double getReviewAvg() {
 		return reviewAvg;
 	}
-	public void setReviewAvg(int reviewAvg) {
+	public void setReviewAvg(double reviewAvg) {
 		this.reviewAvg = reviewAvg;
 	}
 	public int getFiveCount() {
