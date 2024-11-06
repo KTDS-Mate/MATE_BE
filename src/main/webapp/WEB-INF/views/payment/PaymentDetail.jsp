@@ -98,14 +98,14 @@
           <!-- 결제 플랫폼하고 기능 연결하기 -->
           <c:if test="${paymentVO.payStt eq 'WAITING'}">
           <div class="payment-btn-area">
-          	<button class="kakaopay-btn">
-				카카오페이          	
-          	</button>
           	<button class="tosspayment-btn">
 				토스 통합결제
           	</button>
-          	<button class="KG-payment">
+          	<button class="KG-payment checked">
 				이니시스 통합결제
+          	</button>
+          	<button class="kakaopay-btn">
+				카카오페이          	
           	</button>
           	<button class="tosspay-btn">
 				토스페이

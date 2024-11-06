@@ -92,7 +92,17 @@ div.btn-area {
 	background-color: #fff;
 	outline: none;
 	border: 1px solid #333;
+	padding: 1rem;
+	margin : 0 0.5rem;
+	
+	
 }
+
+button.checked{
+	color: red;
+	border: 1px solid red;
+}
+
 
 div.btn-area button {
   color: #333;

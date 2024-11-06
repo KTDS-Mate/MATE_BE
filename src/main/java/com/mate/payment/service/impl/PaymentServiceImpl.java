@@ -31,6 +31,10 @@ public class PaymentServiceImpl implements PaymentService{
 	@Override
 	public PaymentListVO getAllMyPayment(SearchPaymentVO searchPaymentVO) {
 		PaymentListVO paymentListVO = new PaymentListVO();
+    	String lgnId = searchPaymentVO.getTrstLgnId();
+    	String usrId = this.paymentDao.selectUserId(lgnId);
+    	searchPaymentVO.setTrstId(usrId);
+    	System.out.println(lgnId + "      asdfasdf     " + usrId );
 		int cnt = this.paymentDao.selectAllMyPaymentCount(searchPaymentVO);
 		paymentListVO.setPaymentCnt(cnt);
 		if (cnt == 0) {
@@ -49,6 +53,11 @@ public class PaymentServiceImpl implements PaymentService{
 	@Override
 	public PaymentVO getPaymentDetail(String payId) {
 		return this.paymentDao.selectOnePayment(payId);
+	}
+	
+	@Override
+	public String getUsrId(String trstLgnId) {
+		return this.paymentDao.selectUserId(trstLgnId);
 	}
 	
 	@Override
