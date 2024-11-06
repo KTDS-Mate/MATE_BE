@@ -6,6 +6,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
   <head>
     <meta charset="UTF-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <title>MATE</title>
     <link rel="stylesheet" type="text/css" href="/css/user/editinfo.css">
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
