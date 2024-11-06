@@ -5,6 +5,8 @@ import com.mate.common.vo.PaginationVO;
 public class SearchPaymentVO extends PaginationVO {
 	
 	private String trstId;
+	
+	private String trstLgnId;
 
 	private String tourType;
 	
@@ -24,6 +26,14 @@ public class SearchPaymentVO extends PaginationVO {
 		this.trstId = trstId;
 	}
 
+	public String getTrstLgnId() {
+		return trstLgnId;
+	}
+	
+	public void setTrstLgnId(String trstLgnId) {
+		this.trstLgnId = trstLgnId;
+	}
+	
 	public String getTourType() {
 		return tourType;
 	}
