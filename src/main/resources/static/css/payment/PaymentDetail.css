@@ -81,9 +81,14 @@ div.info-container > div {
 div.btn-area {
   display: flex;
   justify-content: flex-end;
+  margin: 1rem 1rem
+}
+payment-btn-area {
+	display:flex;
+	margin: 0 auto;
 }
 
-button {
+div.btn-area button {
   color: #333;
   border: 1px solid #333;
   cursor: pointer;

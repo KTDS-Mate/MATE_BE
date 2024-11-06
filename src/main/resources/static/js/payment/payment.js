@@ -1,21 +1,22 @@
 $().ready(function () {
   IMP.init("imp22850400");
-  const merchantUid = $('.payId').text();
-  const amount = $('.payCsh').text();	// 결제금액 못 바꾸도록 고정
-  if ($('.payTrTp').text() === "GUIDE"){
-  	var title = $('.gdTrTtl').text();
-  } else if($('.payTrTp').text() === "TOURIST") {
-	var title = $('.usrTrTtl').text();
+  const merchantUid = $('input.payId').val();
+  const amount = $('input.payCsh').val();	// 결제금액 못 바꾸도록 고정
+  if ($('input.payTrTp').text() === "GUIDE"){
+  	var title = $('input.gdTrTtl').val();
+  } else if($('input.payTrTp').val() === "TOURIST") {
+	var title = $('input.usrTrTtl').val();
   }
   const name = title;
-  const buyerName = $('.trstFnm').text();
-  const impMid = $('.impMid').text();
-  const impUid = $('.impUid').text();
+  const buyerName = $('input.trstFnm').val();
+  const impMid = $('input.impMid').val();
+  const impUid = $('input.impUid').val();
   
-  var pg = "";
+  //var pg = "html5_inicis";
+  var pg = "tosspayments";
   const payMethod = "card";
   // pay_inf의 pk
-  
+  console.log(impUid);
   $('.getToken').on('click', function() {
 	$.ajax({
 	    url: '/getAccessToken',
@@ -173,7 +174,7 @@ $().ready(function () {
 	pg = "paypal";
   });
 
-  $("button.only-tosspay").on("click", function () {
+  $("button.tosspay-btn").on("click", function () {
   	pg = "tosspay"
   });
   
