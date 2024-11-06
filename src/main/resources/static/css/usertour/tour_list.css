@@ -55,10 +55,10 @@ div.tour-request-list {
 }
 
 .region-menu-area input {
-  padding: 1.5rem 0;
-  width: 10rem;
+  padding: 1rem 0;
+  width: 9rem;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1rem;
   border: 2px solid #d7d7d7;
   border-bottom: 2px solid #333;
   background-color: #fff;
@@ -83,8 +83,9 @@ input.checked2 {
 }
 
 .insert-tour-btn {
-  background-color: #fefae0;
-  padding: 0.5rem;
+  background-color: #57a8f2;
+  color: #fff;
+  padding: 0.8rem 1rem;
   font-size: small;
   border-radius: 10px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
@@ -92,14 +93,14 @@ input.checked2 {
 }
 
 .insert-tour-btn:hover {
-  background-color: #faedcd;
+  background-color: #a8cff2;
 }
 
 .list-view-option {
   display: flex;
   font-family: Arial, sans-serif;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
   align-items: center;
   justify-content: space-between;
 }
@@ -111,9 +112,8 @@ input.checked2 {
   margin: 0;
   padding-right: 0.3rem;
   padding-left: 0.3rem;
+  font-size: 0.8rem;
 }
-
-
 
 .dollar h1 {
 	margin: 0;
@@ -136,32 +136,44 @@ input.checked2 {
 
 .tour-box {
   display: flex;
-  width: 80%;
-  margin: 1rem;
-  border: 1px solid #f4f4f4;
-  border-radius: 10px;
+  width: 78%;
+  margin-bottom: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
   padding: 1rem;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
   justify-content: space-between;
 }
 
-.tour-box:hover {
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
-  cursor: pointer;
-  transform: scale(1.01);
-}
-
 .tour-subject {
+  overflow-wrap: break-word;
   font-weight: bold;
   text-align: left;
   display: block;
-  font-size: x-large;
+  font-size: 1.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  /*몇 번째 줄부터 ...으로 표시할 것인지 설정 가능*/
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .tour-comment {
   width: 80%;
-  margin-top: 2rem;
+  margin-top: 0.8rem;
   display: block;
+  color: #4d4d4d;
+  font-size: 0.8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  /*몇 번째 줄부터 ...으로 표시할 것인지 설정 가능*/
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.all-cont {
+	font-size: 0.9rem;
 }
 
 .tour-time {
@@ -174,9 +186,30 @@ input.checked2 {
 	height: 1.2rem;
 }
 
+@keyframes blink {
+  0% {
+    color: #ff2a2a;
+    opacity: 1;
+  }
+  15% { color: #ff7a2a; }
+ 30% { color: #ffc52a; }
+ 45% { color: #43ff2a; }
+  50% {
+    opacity: 0;
+  }
+ 60% { color: #2a89ff; }
+ 75% { color: #202082; }
+ 90% { color: #6b2aff; } 
+  100% {
+    color: #e82aff;
+    opacity: 1;
+  }
+}
+
 .deadline-come {
-	color: #ffc8be;
+	color: #f00;
 	font-weight: bold;
+	animation: blink 1s infinite;
 }
 
 a:hover,
@@ -184,11 +217,10 @@ a:active,
 a:visited,
 a:link {
   text-decoration: none;
-  color: #333;
 }
 
 .flex-list-insert-btn {
-	width: 90%;
+	width: 80%;
 	margin: 0 auto;
 }
 
@@ -200,7 +232,10 @@ a:link {
 
 .tour-cont {
 	padding: 1rem;
-	width: 35rem;
+	padding-top: 0;
+	padding-left: 1.5rem;
+	width: 50%;
+	border-left: 1px solid #ddd;
 }
 
 .tourtime-deadline {
@@ -237,6 +272,7 @@ a:link {
 .page-nav {
   margin: 0;
   margin-top: 2rem;
+  margin-bottom: 2rem;
   padding: 0;
   text-align: center;
   display: flex;

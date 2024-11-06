@@ -88,7 +88,7 @@
                     </div>
                   </div>
                   <div class="goto-button">
-                    <button class="activate">페이지 이동</button>
+                    <button class="activate" data-pst-id="${wish.trMyBoardVO.usrTrPstId}">페이지 이동</button>
                   </div>
                 </div>
                 <!-- 즐겨찾기 하나 -->

@@ -12,6 +12,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="/js/usertour/usertourlist.js"></script>
   </head>
@@ -169,37 +170,41 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                   </c:choose>
                   <div class="tour-cont">
                   <c:if test="${userTourVO.deadline < 3}">
-                  	<span class="deadline-come">마감일이 얼마 남지 않았습니다!</span>
+                  	<span class="deadline-come">마감임박!</span>
                   </c:if>
-                  <div class="tour-subject">${userTourVO.usrTrTtl}</div>
+                  <div class="tour-subject">
+                  ${userTourVO.usrTrTtl}
+                  </div>
                   <div class="tour-comment">${userTourVO.usrTrPrps}</div>
                   <div>
-                    <div>
-                      <p>
-                        투어일 : ${userTourVO.usrTrStDt}
-                      </p>
+                    <div class="all-cont">
+                      
+                      
+                      <c:choose>
+                      	<c:when test="${userTourVO.usrTrStts eq 'RSRVT'}">
+                      		<p>예약 상태 : 예약 중</p>
+                      	</c:when>
+                      	<c:when test="${userTourVO.usrTrStts eq 'PRG'}">
+                      		<p>예약 상태 : 투어 진행중</p>
+                      	</c:when>
+                      	<c:when test="${userTourVO.usrTrStts eq 'CMPLT'}">
+                      		<p>예약 상태 : 투어 완료</p>
+                      	</c:when>
+                      	<c:otherwise>
+                      		<p>예약 상태 : 모집 중</p>
+                      	</c:otherwise>
+                      </c:choose>
                       <div>
                         지역 : ${userTourVO.citiesVO.cityName} /
                         ${userTourVO.countriesVO.countryName}
+                      </div>
+                      <div>
+                        투어일 : ${userTourVO.usrTrStDt}
                       </div>
                       <div class="tour-time">
                           <img class="clock-img" alt="시계" src="/img/tourboard/ClockImage.png">
                       		${userTourVO.usrTrTm}분
                       </div>
-                      <c:choose>
-                      	<c:when test="${userTourVO.usrTrStts eq 'RSRVT'}">
-                      		<div>예약 상태 : 예약 중</div>
-                      	</c:when>
-                      	<c:when test="${userTourVO.usrTrStts eq 'PRG'}">
-                      		<div>예약 상태 : 투어 진행중</div>
-                      	</c:when>
-                      	<c:when test="${userTourVO.usrTrStts eq 'CMPLT'}">
-                      		<div>예약 상태 : 투어 완료</div>
-                      	</c:when>
-                      	<c:otherwise>
-                      		<div>예약 상태 : 모집 중</div>
-                      	</c:otherwise>
-                      </c:choose>
                     </div>
                   </div>
                   </div>

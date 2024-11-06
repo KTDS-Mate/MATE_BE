@@ -14,31 +14,31 @@ $().ready(function() {
 		// 원래 다른 자식 요소에 걸려있는 클래스를 삭제함
 		$(".country-menu-area").children().removeClass("checked");
 		// URL에 파라미터를 담아서 전송
-		location.href = "/usertour/list?pageNo=0&listSize=9&regionName=" + $(this).val(); + "&orderby=최신순"
+		location.href = "/usertour/list?pageNo=0&listSize=9&orderby=최신순&regionName=" + $(this).val();
 	});
 	$("#asia").on('click', function() {
 		$(".country-menu-area").children().removeClass("checked");
-		location.href = "/usertour/list?pageNo=0&listSize=9&regionName=" + $(this).val(); + "&orderby=최신순"
+		location.href = "/usertour/list?pageNo=0&listSize=9&orderby=최신순&regionName=" + $(this).val();
 	});
 	$("#eu").on('click', function() {
 		$(".country-menu-area").children().removeClass("checked");
-		location.href = "/usertour/list?pageNo=0&listSize=9&regionName=" + $(this).val(); + "&orderby=최신순"
+		location.href = "/usertour/list?pageNo=0&listSize=9&orderby=최신순&regionName=" + $(this).val();
 	});
 	$("#ose").on('click', function() {
 		$(".country-menu-area").children().removeClass("checked");
-		location.href = "/usertour/list?pageNo=0&listSize=9&regionName=" + $(this).val(); + "&orderby=최신순"
+		location.href = "/usertour/list?pageNo=0&listSize=9&orderby=최신순&regionName=" + $(this).val();
 	});
 	$("#n-ame").on('click', function() {
 		$(".country-menu-area").children().removeClass("checked");
-		location.href = "/usertour/list?pageNo=0&listSize=9&regionName=" + $(this).val(); + "&orderby=최신순"
+		location.href = "/usertour/list?pageNo=0&listSize=9&orderby=최신순&regionName=" + $(this).val();
 	});
 	$("#s-ame").on('click', function() {
 		$(".country-menu-area").children().removeClass("checked");
-		location.href = "/usertour/list?pageNo=0&listSize=9&regionName=" + $(this).val(); + "&orderby=최신순"
+		location.href = "/usertour/list?pageNo=0&listSize=9&orderby=최신순&regionName=" + $(this).val();
 	});
 	$("#af").on('click', function() {
 		$(".country-menu-area").children().removeClass("checked");
-		location.href = "/usertour/list?pageNo=0&listSize=9&regionName=" + $(this).val(); + "&orderby=최신순"
+		location.href = "/usertour/list?pageNo=0&listSize=9&orderby=최신순&regionName=" + $(this).val();
 	});
 
 	/**정렬에 사용**/
