@@ -51,12 +51,15 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 </div>
 <div class="header-center-menu">
   <div>
-    <a
-      href="http://mate.com:8080/usertour/list?pageNo=0&listSize=9&regionName=전체&orderby=최신순"
+    <a href="/usertour/list?pageNo=0&listSize=10&regionName=전체&orderby=최신순"
       >투어 요청 목록</a
     >
   </div>
-  <div><a href="/guidetour/list?pageNo=0&listSize=5"
-  	  >가이드 투어 목록</a></div>
+  <div>
+    <a
+      href="/guidetour/list?pageNo=0&listSize=5&usrLgnId=${sessionScope._LOGIN_USER_.usrLgnId}&usrIsGd=${sessionScope._LOGIN_USER_.usrIsGd}"
+      >가이드 투어 목록</a
+    >
+  </div>
   <div><a href="">가이드 목록</a></div>
 </div>

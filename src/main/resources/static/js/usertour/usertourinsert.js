@@ -196,6 +196,10 @@ $().ready(function() {
 	$("#tourNp").on('change', function() {
 		var npVal = $(this).val();
 
+		if (npVal > 99) {
+			alert("최대 99명 까지 가능합니다!");
+			$(this).val(1);
+		}
 		if (npVal < 1) {
 			alert("0 또는 음수를 지정할 수 없습니다!");
 			$(this).val(1);
