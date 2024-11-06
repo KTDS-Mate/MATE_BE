@@ -151,20 +151,40 @@
                     </c:otherwise>
                   </c:choose>
                 </div>
-                <div class="tour-contents">
-                  <div><img class="star-icon"
-                      src="https://img.freepik.com/premium-vector/shiny-golden-star-icon-yellow-stars-glossy-colors-vector-illustration_230920-3112.jpg">
-                    <span class="star-review">4.8</span>
-                  </div>
-                  <h2>${guideTourVO.gdTrTtl}</h2>
-                  <p class="tour-contents-text"><span>나라 :</span> ${guideTourVO.citiesVO.cityName}</p>
-                  <p class="tour-contents-text"><span>날짜 :</span> ${guideTourVO.gdTrStDt} ~ ${guideTourVO.gdTrEdDt}</p>
-                  <p class="tour-contents-text"><span>투어 최대인원 :</span> ${guideTourVO.gdTrMxNp}명</p>
-                  <p class="tour-contents-text"><span>비용 :</span> ${guideTourVO.gdTrPrc}$</p>
-                  <p class="tour-contents-text"><span>가이드 평점 :</span> ${guideTourVO.avgRvw}</p>
-                  <p class="tour-contents-text"><span>상세 정보 :</span> ${guideTourVO.avgRvw}</p>
-                </div>
-              </div>
+					<div class="tour-box-content">
+						<div class="tour-contents">
+							<div class="rating-area">
+								<img class="star-icon"
+									src="https://img.freepik.com/premium-vector/shiny-golden-star-icon-yellow-stars-glossy-colors-vector-illustration_230920-3112.jpg">
+								<span class="star-review">4.8</span>
+							</div>
+							<h3>${guideTourVO.gdTrTtl}</h3>
+							<p class="tour-contents-text">
+								${guideTourVO.countriesVO.countryName} / ${guideTourVO.citiesVO.cityName}
+							</p>
+							<p class="tour-contents-text">
+								${guideTourVO.gdTrStDt} 
+								<img class="inline-margin" src="/img/tourboard/~.png" />
+								${guideTourVO.gdTrEdDt}
+							</p>
+							<p class="tour-contents-text">
+								<span>투어 최대인원 :</span> ${guideTourVO.gdTrMxNp}명
+							</p>
+							<p class="tour-contents-text">
+								<span>비용 :</span> ${guideTourVO.gdTrPrc}$
+							</p>
+							<p class="tour-contents-text">
+								<span>가이드 평점 :</span> ${guideTourVO.avgRvw}
+							</p>
+							<p class="tour-contents-text">
+								<span>상세 정보 :</span> ${guideTourVO.avgRvw}
+							</p>
+						</div>
+					</div>
+					<div class="tour-box-right-content">
+							김지훈 바보
+					</div>
+				</div>
             </c:forEach>
           </div>
           <!-------------------------------------------------------------->

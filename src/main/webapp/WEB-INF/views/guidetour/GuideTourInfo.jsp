@@ -269,7 +269,14 @@ pageEncoding="UTF-8" %>
                       alt="별점 아이콘"
                       class="bigStar"
                     />
-                    <span class="averageRating">${reviewList.guideTourReviewList[0].reviewAvg}</span>
+                    	<c:choose>
+                    		<c:when test="${not empty reviewList.guideTourReviewList && not empty reviewList.guideTourReviewList[0].reviewAvg}">
+			                    <span class="averageRating">${reviewList.guideTourReviewList[0].reviewAvg}</span>
+                    		</c:when>
+                    		<c:otherwise>
+                    			<span class="averageRating"> 0 </span>
+                    		</c:otherwise>
+                    	</c:choose>
                   </div>
                   <div class="ratingArea">
                     <div class="ratingFiveArea">
