@@ -32,5 +32,12 @@ $().ready(function () {
   $searchButton.on("click", function () {
     $searchButton.addClass("ishovered");
     $searchButtonText.addClass("ishovered");
+    $.ajax({
+      url: "/api/top-destinations", // 실제 데이터가 반환될 API 엔드포인트
+      method: "GET",
+      success: function (data) {
+       
+        });
+      },
   });
 });
