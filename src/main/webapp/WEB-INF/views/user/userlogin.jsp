@@ -51,7 +51,7 @@
         <div class="login-options">
           <a href="/user/regist">회원 가입</a> | 
           <a href="#">아이디 찾기</a> | 
-          <a href="#">비밀번호 찾기</a>
+          <a href="/user/reissue-password">비밀번호 찾기</a>
         </div>
 		</form:form>
       </div>

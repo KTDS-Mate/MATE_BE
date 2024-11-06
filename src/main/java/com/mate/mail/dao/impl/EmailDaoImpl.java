@@ -33,4 +33,9 @@ public class EmailDaoImpl extends SqlSessionDaoSupport implements EmailDao {
 	public int invalidatePrevAuthCode(String email) {
 		return getSqlSession().update(NAMESPACE + ".invalidatePrevAuthCode", email);
 	}
+	
+	@Override
+	public int updateTempPassword(EmailVO emailVO) {
+		return getSqlSession().update(NAMESPACE + ".updateTempPassword", emailVO);
+	}
 }

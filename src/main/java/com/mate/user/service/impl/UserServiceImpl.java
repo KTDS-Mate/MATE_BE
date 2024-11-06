@@ -1,6 +1,7 @@
 package com.mate.user.service.impl;
 
 import java.util.List;
+import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +13,8 @@ import com.mate.access.vo.AccessLogVO;
 import com.mate.common.beans.Sha;
 import com.mate.common.utils.RequestUtil;
 import com.mate.common.vo.CountriesVO;
+import com.mate.mail.service.EmailSendService;
+import com.mate.mail.vo.EmailVO;
 import com.mate.user.dao.UserDao;
 import com.mate.user.service.UserService;
 import com.mate.user.vo.LoginUserVO;
@@ -32,6 +35,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private AccessLogDao accessLogDao;
+	
+	@Autowired
+	private EmailSendService emailSendService;
 
 	@Override
 	public boolean createNewUser(RegistUserVO registUserVO) {
@@ -60,6 +66,53 @@ public class UserServiceImpl implements UserService {
 		return insertCount > 0;
 	}
 
+	// 비밀번호 재발급
+	@Override
+	public boolean reissueUserPassword(UserVO userVO) {
+		// 1. DB에 해당 회원이 존재하는지 확인
+		UserVO existUser = userDao.selectOneMemberByIdAndEmail(userVO);
+		if (existUser == null) {
+			return false;
+		}
+		
+		// 2. 임시 비밀번호와 새로운 salt 생성	
+		String tempPassword = generateTemporaryPassword();
+		String salt = sha.generateSalt();
+		String encryptedPassword = sha.getEncrypt(tempPassword, salt);
+		
+		// 3. 새 비밀번호와 salt를 DB에 업데이트
+		existUser.setUsrPwd(encryptedPassword);
+		existUser.setSalt(salt);
+		userDao.updateUserPassword(existUser);
+		
+		// 4. 임시비밀번호 이메일로 발송
+		sendTemporaryPasswordEmail(existUser.getUsrEml(), tempPassword);
+		
+		return true;
+	}
+	
+	// 임시 비밀번호 생성 메서드
+	private String generateTemporaryPassword() {
+		int length = 10;
+		String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		StringBuilder tempPassword = new StringBuilder();
+		Random random = new Random();
+		for (int i = 0; i < length; i++) {
+			tempPassword.append(chars.charAt(random.nextInt(chars.length())));
+		}
+		return tempPassword.toString();
+	}
+	
+	// 이메일 발송 메서드
+	private void sendTemporaryPasswordEmail(String email, String tempPassword) {
+		EmailVO emailVO = new EmailVO();
+		emailVO.setEmail(email);
+		emailVO.setAuthCode(tempPassword);
+		
+		emailSendService.sendPasswordAuthMail(emailVO);
+	}
+	
+
 	@Override
 	public boolean checkAvailableEmail(String email) {
 		return this.userDao.getEmailCount(email) == 0;
@@ -78,6 +131,24 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean checkAvailablePhn(String usrPhn) {
 		return this.userDao.getPhnCount(usrPhn) == 0;
+	}
+
+	// 현재 비밀번호 검증
+
+	@Override
+	public boolean checkCurrentPassword(String usrLgnId, String currentPassword) {
+		String storedPwd = userDao.getPasswordByUserId(usrLgnId);
+		String salt = userDao.getSalt(usrLgnId);
+		
+		if (storedPwd == null || salt == null) {
+			log.warn("사용자 {}의 비밀번호 또는 salt 정보를 찾을 수 없습니다.", usrLgnId);
+			return false;
+		}
+		// 현재 입력된 비밀번호를 암호화함
+		String ecryptedPassword = sha.getEncrypt(currentPassword, salt);
+		
+		// 암호화된 현재 입력된 비밀번호와 DB에 저장된 비밀번호를 비교함.
+		return storedPwd.equals(ecryptedPassword);
 	}
 	
 	@Override

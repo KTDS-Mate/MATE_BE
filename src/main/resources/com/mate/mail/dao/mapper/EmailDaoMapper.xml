@@ -36,4 +36,11 @@
 		  WHERE AUTH_MAIL_EMAIL = #{email}
 	</update>
 	
+	<update id="updateTempPassword" parameterType="com.mate.mail.vo.EmailVO">
+		UPDATE EMAIL_AUTH
+		   SET AUTH_MAIL_AUTHCODE = #{authCode}
+		     , AUTH_MAIL_ISSUETIME = #{issueTime}
+		 WHERE AUTH_MAIL_EMAIL = #{email}
+	</update>
+	
 </mapper> 
