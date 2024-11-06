@@ -51,11 +51,11 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <h2>개인 정보 관리</h2>
             <jsp:include page="../user/myPageModal.jsp" />
             <div class="info-item">
-              <h3>아이디 : ${userVO.usrLgnId}</h3>
-              <div class="factor">이메일 : ${userVO.usrEml}</div>
+              <div class="content-text">아이디 : ${userVO.usrLgnId}</div>
+              <div class="factor content-text">이메일 : ${userVO.usrEml}</div>
               <div class="info-item">
                 <div class="info-row">
-                  <div class="factor">전화번호 : ${userVO.usrPhn}</div>
+                  <div class="factor content-text">전화번호 : ${userVO.usrPhn}</div>
                   <button class="edit-btn btn-open-phoneNumEdit-modal">
                     수정
                   </button>
@@ -78,7 +78,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
           </div>
 
-          <div class="profile-section">
             <div class="payment-section">
               <h2>경력 및 활동 지역</h2>
               <!-- 경력 표시 -->
@@ -107,7 +106,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               </div>
             </div>	
             <div class="profile-section">
-              <h3>프로필 사진 관리</h3>
+              <h2>프로필 사진 관리</h2>
               <div class="profile-row">
                 <div class="profile-placeholder">
                   <!-- 이미지를 대체할 네모 박스 -->
@@ -124,7 +123,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
 
             <div class="profile-section">
-              <h3>자격증 관리</h3>
+              <h2>자격증 관리</h2>
 
               <!-- 첫 번째 자격증 항목 -->
               <div class="profile-row">
@@ -162,7 +161,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
 
             <div class="profile-section">
-              <h3>범죄 경력 조회서</h3>
+              <h2>범죄 경력 조회서</h2>
               <div class="profile-row">
                 <div class="profile-placeholder">
                   <!-- 이미지를 대체할 네모 박스 -->
@@ -179,7 +178,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
 
             <div class="profile-section">
-              <h3>신분증 관리</h3>
+              <h2>신분증 관리</h2>
               <div class="profile-row">
                 <div class="profile-placeholder">
                   <!-- 이미지를 대체할 네모 박스 -->
@@ -192,7 +191,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 <button class="edit-btn btn-open-idEdit-modal">수정</button>
               </div>
             </div>
-          </div>
         </div>
       </div>
       <div class="footer">
