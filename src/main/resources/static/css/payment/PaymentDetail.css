@@ -1,0 +1,115 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  
+}
+
+/* 전체 그리드 레이아웃 설정 */
+div.grid {
+  display: grid;
+  grid-template-columns: 1fr 80rem 1fr;
+  row-gap: 1rem;
+}
+
+div.header {
+  grid-column: 2 / 2;
+}
+
+div.content {
+  grid-column: 2 / 2;
+  grid-row: 2 / 2;
+  /*
+  background: rgb(224, 224, 224);
+  */
+}
+
+div.footer {
+  grid-column: 1 / -1;
+}
+
+/* 외부 박스 */
+div.main-content {
+  width: 50rem;
+  margin: 3rem auto;
+  border: 1px solid #333;
+  background-color: #fff;
+}
+
+/* 제목 부분 */
+div.content-title {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin: 2rem 0;
+}
+div.content-title div h2 {
+  margin: 0;
+}
+
+div.info-container {
+  display: flex;
+  margin: 1rem 5rem;
+  padding: 1rem 0;
+  flex-direction: column;
+  border: 1px solid #333;
+}
+
+/* 항목당 간격 조절 및 그리드 레이아웃 적용 */
+div.grid-info {
+  display: grid;
+  grid-template-columns: 2fr 6fr;
+  width: 30rem;
+  margin: 1rem 0;
+}
+
+div.grid-info span:first-child {
+  justify-self: end;
+  padding-right: 1rem;
+}
+div.grid-info span:nth-child(2) {
+  padding-left: 1rem;
+}
+
+div.info-container > div {
+  margin: 0 1rem;
+}
+
+div.btn-area {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1rem 1rem
+}
+
+.payment-btn-area {
+	display: flex;
+	margin: 2rem 4rem;
+}
+.payment-btn-area button{
+	background-color: #fff;
+	outline: none;
+	border: 1px solid #333;
+	padding: 1rem;
+	margin : 0 0.5rem;
+	
+	
+}
+
+button.checked{
+	color: red;
+	border: 1px solid red;
+}
+
+
+div.btn-area button {
+  color: #333;
+  border: 1px solid #333;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  background-color: #c4e1f6;
+}
