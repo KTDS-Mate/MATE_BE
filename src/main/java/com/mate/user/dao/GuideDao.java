@@ -29,5 +29,13 @@ public interface GuideDao {
     
     public String getNextCityId();
     
-    public int updateGuideLicense(RegistGuideVO registGuideVO);
+    public int updateGuideLicense(LicenseVO licenseVO);
+    
+    public int deleteLicneseById(String licenseId);
+    
+    public int updateProfileImage(RegistGuideVO registGuideVO);
+    
+    public int updateIdImage(RegistGuideVO registGuideVO);
+    
+    int deleteGuideCitiesByUserId(String usrId);
 }

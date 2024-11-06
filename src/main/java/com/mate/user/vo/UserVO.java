@@ -113,6 +113,8 @@ public class UserVO {
 	
 	private String confirmPwd;
 	
+	private String currentPwd;
+	
 	/**
 	 * 가이드 경력
 	 */
@@ -324,5 +326,21 @@ public class UserVO {
 
 	public void setConfirmPwd(String confirmPwd) {
 		this.confirmPwd = confirmPwd;
+	}
+
+	public int getUsrGdExp() {
+		return usrGdExp;
+	}
+
+	public void setUsrGdExp(int usrGdExp) {
+		this.usrGdExp = usrGdExp;
+	}
+
+	public String getCurrentPwd() {
+		return currentPwd;
+	}
+
+	public void setCurrentPwd(String currentPwd) {
+		this.currentPwd = currentPwd;
 	}
 }

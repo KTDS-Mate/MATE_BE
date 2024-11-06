@@ -8,5 +8,7 @@ public interface EmailSendService {
 
 	public String sendAuthMail(EmailVO emailVO);
 	
+	public String sendPasswordAuthMail(EmailVO emailVO);
+	
 	public Map<String, Object> verifyAuthCode(EmailVO emailVO);
 }

@@ -45,9 +45,9 @@ public class MainController {
 		return "guidetour/GuideTourInfo";
 		}
 
-	@GetMapping("/guide/guideprofile")
+	@GetMapping("/user/guideprofile")
 	public String viewGuideProfilePage(){
-		return "all/GuideProfile"; 
+		return "user/GuideProfile"; 
 		}
 	
 	@GetMapping("/guide/regist")
