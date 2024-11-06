@@ -9,7 +9,6 @@ div.my-page > ul.list > li.calendar {
 }
 
 div.main-content {
-  border: 2px solid #ffeedb;
   border-radius: 20px;
 }
 
@@ -34,7 +33,6 @@ div.main-content {
 }
 
 div.calendar {
-  border: 2px solid #ffeedb;
   border-radius: 20px;
   width: 60rem;
   margin: 2rem;
@@ -191,7 +189,6 @@ div.schedule2-end {
 
 div.add-schedule {
   padding: 0 3rem;
-  border: 2px solid #ffeedb;
   border-radius: 20px;
   width: 60rem;
   margin: 2rem;
@@ -204,10 +201,10 @@ div.schedule-flex {
   font-size: 1.5rem;
   justify-content: space-around;
   padding: 0.5rem 0;
+  align-items: center;
 }
 div.schedule-content {
   display: flex;
-  border: 2px solid #ffeedb;
   border-radius: 25px;
   font-size: 1.5rem;
   padding: 0.5rem;
@@ -225,17 +222,16 @@ div.schedule-content > select {
 }
 
 div.schedule-content-text {
-  border: 2px solid #ffeedb;
-  border-radius: 25px;
+  border: 1px solid #CACACA;
   font-size: 1rem;
 }
 
 .content-text {
-  border-radius: 25px;
   width: 48rem;
-  height: 20rem;
+  height: 5rem;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1rem;
+  resize: none;
 }
 .content-text:focus {
   outline: none;

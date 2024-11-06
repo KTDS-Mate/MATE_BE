@@ -10,6 +10,10 @@
   padding: 20px;
 }
 
+body{
+	background-color: white !important;
+}
+
 /* 바꾸기 */
 /* 본문(Main-content) 스타일 */
 .main-content {
