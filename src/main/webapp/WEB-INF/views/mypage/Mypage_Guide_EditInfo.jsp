@@ -95,7 +95,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                   수정
                 </button>
               </div>
-</div>	
+			</div>	
               <div class="profile-section">
                 <h3>프로필 사진 관리</h3>
                 <div class="profile-row">
