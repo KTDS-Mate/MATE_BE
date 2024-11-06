@@ -1,12 +1,25 @@
 $().ready(function() {
+	// 현재 보고있는 게시글의 아이디
+	var pstId = $(".ttl-wb").data("pst-id");
+	// 현재 로그인 한 유저의 로그인 아이디
+	var usrLgnId = $(".header-content").data("login-id");
+	// 즐겨찾기 추가 URL
+	var url = `/favorite/${pstId}`;
+	// 현재 예약 상태
+	var stts = $(".ttl-wb").data("pst-stts");
+	
+	$.get(url, {}, function(favoriteResult) {
+		var favoriteCnt = favoriteResult.favoriteCount;
+		for (var i = 0; i < favoriteCnt; i++) {
+			// 만약 즐겨찾기 리스트에 있는 누른 회원이 현재 로그인 한 회원과 같다면?
+			if (favoriteResult.favoriteList[i].usrLgnId === usrLgnId) {
+				$(".wish-button").addClass("isAlready");
+				break;
+			}
+		}
+	});
 
 	$(".wish-button").on('click', function() {
-		// 현재 보고있는 게시글의 아이디
-		var pstId = $(".ttl-wb").data("pst-id");
-		// 현재 로그인 한 유저의 로그인 아이디
-		var usrLgnId = $(".header-content").data("login-id");
-		// 즐겨찾기 추가 URL
-		var url = `/favorite/${pstId}`;
 		// 만약 로그인을 하지 않았다면?
 		if (usrLgnId == "") {
 			alert("로그인 후 사용 가능합니다.");
@@ -34,7 +47,16 @@ $().ready(function() {
 				}
 				// 만약 이미 있다면?
 				if (isAlready) {
-					alert("이미 즐겨찾기에 추가 된 게시글입니다!");
+					if (confirm("이미 즐겨찾기에 추가 된 게시글입니다. 삭제하시겠습니까?")) {
+						$.get(`/favorite/delete/${pstId}/${usrLgnId}`, {}, function() {
+							// 그냥 삭제 쿼리 실행
+						});
+						alert("삭제되었습니다!");
+						location.reload();
+					}
+					else {
+						alert("취소하였습니다.");
+					}
 				}
 				else {
 					// 즐겨찾기를 누르지 않았다면?
@@ -45,6 +67,7 @@ $().ready(function() {
 						, function(createdResult) {
 							if (createdResult.result) {
 								alert("즐겨찾기에 추가되었습니다!");
+								location.reload();
 							}
 							else {
 								alert("즐겨찾기에 추가에 실패하였습니다!");
@@ -62,5 +85,20 @@ $().ready(function() {
 	});
 
 
+	$(".reserve-btn").on('click', function() {
+		// 현재 예약중이라면?
+		if (stts === 'RSRVT') {
+			alert("이미 누군가가 예약 중 입니다!");
+			return
+		}
+		
+		if (confirm("예약하시겠습니까?")) {
+			// 예약으로 바꾸는 url
+			location.href = `/usertour/reserve/${pstId}/${usrLgnId}`;
+		}
+		else {
+			alert("취소하였습니다.");
+		}
+	});
 
 });

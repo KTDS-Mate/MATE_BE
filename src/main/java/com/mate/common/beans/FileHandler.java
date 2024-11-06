@@ -28,33 +28,39 @@ import com.mate.common.vo.StoreResultVO;
  */
 @Component
 public class FileHandler {
-	
+
 	public final Logger logger = LoggerFactory.getLogger(FileHandler.class);
-	
+
 	// application.yml 파일에서 "app.multipart.base-dir" 설정 값을 가져옴
 	// @Value는 Spring Bean에서만 사용 가능
 	// Spring Bean : @Controller, @Service, @Repository
 	// Spring Bean을 만들어 주는 Annotation : @Component
 	@Value("${app.multipart.base-dir}")
 	private String baseDirectory;
-	
+
 	/**
 	 * 난독화 할 것인가?
 	 */
 	@Value("${app.multipart.obfuscation.enable}")
 	private boolean enableObfuscation;
-	
+
 	/**
 	 * 확장자를 지울것인가?
 	 */
 	@Value("${app.multipart.obfuscation.hide-ext.enable}")
 	private boolean enableHideExtention;
-	
+
 	/**
 	 * 파일을 업로드해주는 Helper
+	 * 
 	 * @param multipartFile
 	 */
+	
+	// sudo mkdir -p /usr/local/src/tomcat/apache-tomcat-10.1.31/uploadfiles
+	// sudo chmod -R 777 /usr/local/src/tomcat/apache-tomcat-10.1.31/uploadfiles
+    // sudo chown -R tomcat:tomcat /usr/local/src/tomcat/apache-tomcat-10.1.31/uploadfiles
 	public StoreResultVO storeFile(MultipartFile multipartFile) {
+		logger.info("Base Directory: {}", this.baseDirectory);
 		// 1. 클라이언트가 파일을 전송했는 지 확인
 		// 2. 클라이언트가 파일을 전송했다면
 		if (multipartFile != null && !multipartFile.isEmpty()) {
@@ -63,21 +69,27 @@ public class FileHandler {
 			if (this.enableObfuscation) { // enableObfuscation이 True 라면 난수를 넣어줌
 				String ext = obfuscatedFileName.substring(obfuscatedFileName.lastIndexOf(".")); // 확장자만 분리
 				obfuscatedFileName = UUID.randomUUID().toString();
-				if ( ! this.enableHideExtention) { // enableHideExtention이 False라면 확장자를 붙여라
+				if (!this.enableHideExtention) { // enableHideExtention이 False라면 확장자를 붙여라
 					obfuscatedFileName += ext;
 				}
 			}
-			
+
 			File uploadFile = new File(this.baseDirectory, obfuscatedFileName);
 			if (!uploadFile.getParentFile().exists()) {
+				boolean dirsCreated = uploadFile.getParentFile().mkdirs();
+				if (!dirsCreated) {
+					logger.error("파일 dir을 생성할 수 없습니다: {}",this.baseDirectory);
+					throw new RuntimeException("dir생성 실패");
+				}
 				uploadFile.getParentFile().mkdirs(); // 만약 폴더가 없다면 만들어라 -> 없으면 IOException 발생
 			}
 			try {
+				logger.debug("파일 저장 경로: {}", uploadFile.getAbsolutePath());
 				multipartFile.transferTo(uploadFile); // 서버 컴퓨터에 저장
 			} catch (IllegalStateException | IOException e) { // 용량이 가득 찼을 때 IOException이 발생
 				// C드라이브에 접근하려 하면 IllegalStateException 발생
 				// e.printStackTrace();
-				logger.error(e.getMessage(), e);
+				logger.error("파일 저장 실패. 경로: {}", uploadFile.getAbsolutePath(), e);
 				throw new RuntimeException("예기치 못한 이유로 업로드에 실패했습니다. 잠시 후 다시 시도해주세요.");
 			}
 			return new StoreResultVO(multipartFile.getOriginalFilename(), obfuscatedFileName);
@@ -85,9 +97,10 @@ public class FileHandler {
 		// 파일을 업로드 하지 않았을 때는 아무 것도 들어가지 않게 null 반환
 		return null;
 	}
-	
+
 	/**
 	 * 난수로 바뀌어 있는 파일(fileName)을 originFileName로 바꿔서 반환
+	 * 
 	 * @param fileName
 	 * @param originFileName
 	 */
@@ -137,45 +150,49 @@ public class FileHandler {
 				// 파일을 응답 데이터에 전달
 				.body(resource);
 	}
-	
+
 	/**
 	 * 파라미터로 받아온 파일을 지워라
+	 * 
 	 * @param fileName 지워야 할 파일
 	 */
 	public void deleteFile(String fileName) {
-		
-		if(fileName == null) {
+
+		if (fileName == null) {
 			return;
 		}
-		
+
 		File file = new File(this.baseDirectory, fileName);
-		
-		if(file.exists() && file.isFile()) {
+
+		if (file.exists() && file.isFile()) {
 			file.delete();
 		}
 	}
-	
+
 	public String createXlsxFile(Workbook workbook) {
 		String fileName = "temporary_file_" + UUID.randomUUID().toString();
 		File xlsxFile = new File(this.baseDirectory, fileName);
-		
+
 		OutputStream os = null;
 		try {
 			os = new FileOutputStream(xlsxFile);
 			workbook.write(os);
-		} catch(IOException e) {
-			//e.printStackTrace();
+		} catch (IOException e) {
+			// e.printStackTrace();
 			logger.error(e.getMessage(), e);
-			 throw new IllegalArgumentException("엑셀 파일을 만들 수 없습니다.");
-			//throw new MakeXlsxFileException("엑셀 파일을 만들 수 없습니다.");
-		} finally { 
+			throw new IllegalArgumentException("엑셀 파일을 만들 수 없습니다.");
+			// throw new MakeXlsxFileException("엑셀 파일을 만들 수 없습니다.");
+		} finally {
 			try {
 				workbook.close();
-			} catch (IOException e){ }
-		} if (os != null) {
+			} catch (IOException e) {
+			}
+		}
+		if (os != null) {
 			try {
 				os.close();
-			} catch (IOException e) { }
+			} catch (IOException e) {
+			}
 		}
 		return fileName;
 	}

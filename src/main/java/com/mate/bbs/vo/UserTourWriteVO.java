@@ -2,6 +2,7 @@ package com.mate.bbs.vo;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -97,6 +98,10 @@ public class UserTourWriteVO {
 	 * 투어 일정 리스트
 	 */
 	private List<UserTourSchdlVO> userTourSchdlList;
+	/** 파일 업로드를 위한 이미지파일 변수 **/
+	private String imgFileName;
+	private MultipartFile usrTourImgFile;
+	
 	public String getUsrTrPstId() {
 		return usrTrPstId;
 	}
@@ -217,5 +222,16 @@ public class UserTourWriteVO {
 	public void setUserTourSchdlList(List<UserTourSchdlVO> userTourSchdlList) {
 		this.userTourSchdlList = userTourSchdlList;
 	}
-	
+	public MultipartFile getUsrTourImgFile() {
+		return usrTourImgFile;
+	}
+	public void setUsrTourImgFile(MultipartFile usrTourImgFile) {
+		this.usrTourImgFile = usrTourImgFile;
+	}
+	public String getImgFileName() {
+		return imgFileName;
+	}
+	public void setImgFileName(String imgFileName) {
+		this.imgFileName = imgFileName;
+	}
 }

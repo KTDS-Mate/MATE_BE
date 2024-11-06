@@ -9,4 +9,6 @@ public interface FavoriteService {
 	
 	public FavoriteListVO getAllFavoriteList(String pstId);
 	
+	public boolean deleteUserTourFavorite(String usrPstId, String usrLgnId);
+	
 }

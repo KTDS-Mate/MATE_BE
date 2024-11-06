@@ -1,6 +1,8 @@
 package com.mate.bbs.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mate.bbs.dao.UserTourDao;
 import com.mate.bbs.vo.SearchUserTourVO;
+import com.mate.bbs.vo.UserTourImgVO;
 import com.mate.bbs.vo.UserTourModifyVO;
 import com.mate.bbs.vo.UserTourSchdlVO;
 import com.mate.bbs.vo.UserTourVO;
@@ -34,8 +37,8 @@ public class UserTourDaoImpl extends SqlSessionDaoSupport implements UserTourDao
 	}
 
 	@Override
-	public int selectAllUserTourCount() {
-		return this.getSqlSession().selectOne(NAMESPACE + ".selectAllUserTourCount");
+	public int selectAllUserTourCount(SearchUserTourVO searchUserTourVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectAllUserTourCount", searchUserTourVO);
 	}
 	
 	@Override
@@ -53,6 +56,15 @@ public class UserTourDaoImpl extends SqlSessionDaoSupport implements UserTourDao
 		return this.getSqlSession().update(NAMESPACE + ".updateUserTourIsDtl", usrTrPstId);
 	}
 
+	@Override
+	public int updateGdId(String usrTrPstId, String usrLgnId) {
+		Map<String, Object> param = new HashMap<>();
+		param.put("usrTrPstId", usrTrPstId);
+		param.put("usrLgnId", usrLgnId);
+		
+		return this.getSqlSession().update(NAMESPACE + ".updateGdId", param);
+	}
+	
 	@Override
 	public String selectAttachStartHour(UserTourWriteVO userTourWriteVO) {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachStartHour", userTourWriteVO);
@@ -79,7 +91,17 @@ public class UserTourDaoImpl extends SqlSessionDaoSupport implements UserTourDao
 	}
 	
 	@Override
-	public int updateUserTourScheduls(UserTourSchdlVO userTourSchdlVO) {
-		return this.getSqlSession().update(NAMESPACE + ".updateUserTourScheduls" + userTourSchdlVO);
-	}	
+	public List<UserTourSchdlVO> selectUserTourSchdls(String usrTrPstId) {
+		return this.getSqlSession().selectList(NAMESPACE + ".selectUserTourSchdls", usrTrPstId);
+	}
+	
+	@Override
+	public int insertNewUserTourImgs(UserTourImgVO userTourImgVO) {
+		return this.getSqlSession().insert(NAMESPACE + ".insertNewUserTourImgs", userTourImgVO);
+	}
+	
+	@Override
+	public int deleteUserTourSchdls(String usrTrPstId) {
+		return this.getSqlSession().delete(NAMESPACE + ".deleteUserTourSchdls", usrTrPstId);
+	}
 }

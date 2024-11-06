@@ -23,7 +23,7 @@ public interface UserDao {
 	
 	public String selectSalt(String usrId);
 	
-	UserVO selectOneMember(LoginUserVO loginUserVO);
+	public UserVO selectOneMember(LoginUserVO loginUserVO);
 	
 	public int updateLoginFailState(LoginUserVO loginUserVO);
 	
@@ -37,7 +37,15 @@ public interface UserDao {
 	
 	public int upadateUserPaypalEmail(UserVO userVO);
 	
+	public List<CountriesVO> selectAllCountries();
+	
 	public int updateUserPassword(UserVO userVO);
 	
-	public List<CountriesVO> selectAllCountries();
+	public String getPasswordByUserId(String usrLgnId);
+	
+	public String getSalt(String usrLgnId);
+	
+	public int reissueNewPassword(UserVO userVO);
+	
+	public UserVO selectOneMemberByIdAndEmail(UserVO userVO);
 }

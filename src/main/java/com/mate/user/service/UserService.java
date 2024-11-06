@@ -27,7 +27,11 @@ public interface UserService {
 	
 	public boolean updateUserPaypalEmail(String usrLgnId, String usrEml);
 	
+	public List<CountriesVO> getAllCountries();
+	
+	public boolean checkCurrentPassword(String usrLgnId, String currentPassword);
+	
 	public boolean updateUserPassword(UserVO userVO, String newPassword);
 	
-	public List<CountriesVO> getAllCountries();
+	public boolean reissueUserPassword(UserVO userVO);
 }
