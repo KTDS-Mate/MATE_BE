@@ -77,25 +77,23 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
           </div>
 
+		<div class="profile-section">
           <div class="payment-section">
             <h2>경력 및 활동 지역</h2>
-            <div class="info-item">
               <!-- 경력 표시 -->
               <div class="info-row">
-                <div class="factor">경력 : ${registGuideVO.usrGdExp}</div>
+                <div class="factor">경력 : ${registGuideVO.usrGdExp} 년차</div>
                 <button class="edit-btn btn-open-locationEdit-modal">
                   수정
                 </button>
               </div>
-
-              <div class="info-row">
-                <div class="factor">
-                  대표 국적 : ${registGuideVO.countryName}
-                </div>
-                <button class="edit-btn btn-open-locationEdit-modal">
-                  수정
-                </button>
-              </div>
+			
+			
+           <div class="info-row">
+             <div class="factor">
+               대표 국적 : ${registGuideVO.countryName}
+             </div>
+           </div>
 
               <div class="info-row">
                 <div class="factor">
@@ -113,7 +111,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                   수정
                 </button>
               </div>
-
+</div>	
               <div class="profile-section">
                 <h3>프로필 사진 관리</h3>
                 <div class="profile-row">
@@ -207,7 +205,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <jsp:include page="../footer.jsp"></jsp:include>
           </div>
         </div>
-      </div>
     </div>
   </body>
 </html>
