@@ -43,7 +43,7 @@ public class UserDaoImpl extends SqlSessionDaoSupport implements UserDao {
 	}
 	
 	@Override
-	public int getPaypalEmailCount(String payPalEmail) {
+	public int getPaypalEmailCount(String payPalEmail) {		
 		return this.getSqlSession().selectOne(NAMESPACE + ".getPaypalEmailCount", payPalEmail);
 	}
 	
@@ -95,5 +95,25 @@ public class UserDaoImpl extends SqlSessionDaoSupport implements UserDao {
 	@Override
 	public List<CountriesVO> selectAllCountries() {
 		return getSqlSession().selectList(NAMESPACE + ".selectAllCountries");
+	}
+	
+	@Override
+	public String getPasswordByUserId(String usrLgnId) {
+		return getSqlSession().selectOne(NAMESPACE + ".getPasswordByUserId", usrLgnId);
+	}
+	
+	@Override
+	public String getSalt(String usrLgnId) {
+		return getSqlSession().selectOne(NAMESPACE + ".getSalt", usrLgnId);
+	}
+	
+	@Override
+	public int reissueNewPassword(UserVO userVO) {
+		return getSqlSession().insert(NAMESPACE + ".reissueNewPassword", userVO);
+	}
+	
+	@Override
+	public UserVO selectOneMemberByIdAndEmail(UserVO userVO) {
+		return getSqlSession().selectOne(NAMESPACE + ".selectOneMemberByIdAndEmail", userVO);
 	}
 }

@@ -78,4 +78,11 @@
 		 WHERE USR_TR_PST_ID = #{_parameter}
 	</select>
 
+	<delete id="deleteFavIsDlt"
+			parameterType="map">
+		DELETE FROM FVRTS 
+		 WHERE USR_TR_PST_ID = #{usrPstId}
+		   AND USR_LGN_ID = #{usrLgnId}
+	</delete>
+
 </mapper>

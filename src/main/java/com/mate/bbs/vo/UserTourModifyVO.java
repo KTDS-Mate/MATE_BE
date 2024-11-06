@@ -30,10 +30,6 @@ public class UserTourModifyVO {
 	 */
 	private String inputStartHour;
 	/**
-	 * 여행자가 입력한 시작 분
-	 */
-	private String inputStartMinute;
-	/**
 	 * 여행자가 입력한 투어 시작 일시(YYYY-MM-DD HH24:MI)
 	 */
 	private String usrTrStDt;
@@ -93,10 +89,6 @@ public class UserTourModifyVO {
 	 */
 	private String inputEndHour;
 	/**
-	 * 여행자가 입력한 종료 분
-	 */
-	private String inputEndMinute;
-	/**
 	 * 게시글 이미지 파일 정보 리스트
 	 */
 	private List<UserTourImgVO> userTourImgList;
@@ -104,6 +96,7 @@ public class UserTourModifyVO {
 	 * 투어 일정 리스트
 	 */
 	private List<UserTourSchdlVO> userTourSchdlList;
+	
 	public String getUsrTrPstId() {
 		return usrTrPstId;
 	}
@@ -133,12 +126,6 @@ public class UserTourModifyVO {
 	}
 	public void setInputStartHour(String inputStartHour) {
 		this.inputStartHour = inputStartHour;
-	}
-	public String getInputStartMinute() {
-		return inputStartMinute;
-	}
-	public void setInputStartMinute(String inputStartMinute) {
-		this.inputStartMinute = inputStartMinute;
 	}
 	public String getUsrTrStDt() {
 		return usrTrStDt;
@@ -217,12 +204,6 @@ public class UserTourModifyVO {
 	}
 	public void setInputEndHour(String inputEndHour) {
 		this.inputEndHour = inputEndHour;
-	}
-	public String getInputEndMinute() {
-		return inputEndMinute;
-	}
-	public void setInputEndMinute(String inputEndMinute) {
-		this.inputEndMinute = inputEndMinute;
 	}
 	public List<UserTourImgVO> getUserTourImgList() {
 		return userTourImgList;

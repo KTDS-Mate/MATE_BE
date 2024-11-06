@@ -118,7 +118,16 @@ uri="http://www.springframework.org/tags/form" %>
                 <input tabindex="11" id="m-btn" type="button" value="일정 삭제하기" />
               </div>
               <div class="loc-inf">
-                <!-- jquery를 사용해 여러 개를 호출 받는 곳 -->
+                <div class="locs">
+						<div>
+							<label for="hope-location">장소</label>
+							<input id="hope-location" name="userTourSchdlList[0].trLctns" type="text" required="required" />
+						</div>
+						<div>
+							<label for="hope-info">일정</label>
+							<input id="hope-info" name="userTourSchdlList[0].trRqst" type="text" required="required" />
+						</div>
+						</div>
               </div>
             </div>
             <div class="all-select-div">
@@ -137,7 +146,9 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
                 ><span class="font-we">&lt;최대 10개까지 넣을 수 있습니다.&gt;</span></div>
                 <input id="add-file" type="button" value="파일 추가" />
                 <input id="del-file" type="button" value="파일 삭제" />
-                <div class="file-list"></div>
+                <div class="file-list">
+                	<!-- Jquery를 이용해 파일 리스트가 추가되는 곳 -->
+                </div>
               </div>
             </div>
             <div class="all-select-div">

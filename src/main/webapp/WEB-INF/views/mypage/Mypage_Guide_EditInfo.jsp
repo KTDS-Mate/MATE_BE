@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -33,6 +34,7 @@ pageEncoding="UTF-8" %>
         <div class="main-content">
           <div class="info-section">
             <h2>개인 정보 관리</h2>
+            <jsp:include page="../user/myPageModal.jsp" />
             <div class="info-item">
               <h3>아이디 : ${userVO.usrLgnId}</h3>
               <div class="factor">이메일 : ${userVO.usrEml}</div>
@@ -45,7 +47,7 @@ pageEncoding="UTF-8" %>
                 </div>
                 <div class="info-row">
                   <div class="factor">비밀번호 변경</div>
-                  <button class="edit-btn">수정</button>
+                  <button class="edit-btn" >수정</button>
                 </div>
               </div>
             </div>
@@ -56,18 +58,36 @@ pageEncoding="UTF-8" %>
             <div class="info-item">
               <div class="info-row">
                 <div class="factor">결제이메일 :${userVO.usrPypEml}</div>
-                <button class="edit-btn">수정</button>
+                <button class="edit-btn btn-open-pwEdit-modal">수정</button>
               </div>
             </div>
           </div>
+          
+		<div class="payment-section">
+		    <h2>경력 및 활동 지역</h2>
+		    <div class="info-item">
+		        <!-- 경력 표시 -->
+		        <div class="info-row">
+		            <div class="factor">경력 : ${registGuideVO.usrGdExp}</div>
+		            <button class="edit-btn" onclick="location.href='/user/editexperience'">수정</button>
+		        </div>
+		
+			<div class="info-row">
+			    <div class="factor">대표 국적 : ${registGuideVO.countryName}</div>
+			    <button class="edit-btn" onclick="location.href='/user/editlocation'">수정</button>
+			</div>
+			
+			<div class="info-row">
+			    <div class="factor">활동 도시 : 
+			        <c:forEach items="${registGuideVO.cities}" var="city" varStatus="status">
+			            <span>${city.cityName}(${city.country.countryName})</span>
+			            <c:if test="${!status.last}">, </c:if>
+			        </c:forEach>
+			    </div>
+			    <button class="edit-btn" onclick="location.href='/user/editlocation'">수정</button>
+			</div>
 
-          <div class="guide-section">
-            <div class="info-row">
-              <h2>가이드 등록</h2>
-              <button class="edit-btn">등록</button>
-            </div>
-          </div>
-
+			
           <div class="profile-section">
             <h3>프로필 사진 관리</h3>
             <div class="profile-row">
@@ -111,7 +131,7 @@ pageEncoding="UTF-8" %>
                 <h4>레크리에이션 지도사</h4>
               </div>
             </div>
-            <a href="/user/editlicense/${userVO.usrId}">
+            <a href="/user/editlicense">
             <button class="edit-btn"> 수정 </button>
             </a>
           </div>
@@ -136,6 +156,8 @@ pageEncoding="UTF-8" %>
         <!-- footer 공통파일-->
         <jsp:include page="../footer.jsp"></jsp:include>
       </div>
+    </div>
+    </div>
     </div>
   </body>
 </html>
