@@ -1,8 +1,8 @@
 package com.mate.bbs.service;
 
-import com.mate.common.vo.CitiesListVO;
-import com.mate.common.vo.CountriesListVO;
-import com.mate.common.vo.RegionsListVO;
+import com.mate.common.vo.*;
+
+import java.util.List;
 
 public interface CountriesAndCitiesService {
 
@@ -23,5 +23,6 @@ public interface CountriesAndCitiesService {
 	 * @return
 	 */
 	public CitiesListVO getCities(int countryId);
-	
+
+	public TopDestinationsListVO getTopDestinations();
 }
