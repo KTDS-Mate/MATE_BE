@@ -36,6 +36,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <div class="main-content">
           <div class="info-section">
             <h2>개인 정보 관리</h2>
+            <jsp:include page="../user/myPageModal.jsp" />
             <div class="info-item">
               <h3>아이디 : ${userVO.usrLgnId}</h3>
               <div class="factor">이메일 : ${userVO.usrEml}</div>
