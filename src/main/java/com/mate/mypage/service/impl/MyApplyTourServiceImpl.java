@@ -32,10 +32,11 @@ public class MyApplyTourServiceImpl implements MyApplyTourService {
 			return myApplyuserTourListVO;
 		}
 		
-		List<MyApplyUserTourVO> myApplyTourList = this.myApplyTourDao.selectAllMyApplyTours(usrId, searchMyApplyTourVO);
 		
 		searchMyApplyTourVO.setListSize(5);
 		searchMyApplyTourVO.setPageCount(myApplyTourCount);
+		
+		List<MyApplyUserTourVO> myApplyTourList = this.myApplyTourDao.selectAllMyApplyTours(usrId, searchMyApplyTourVO);
 		
 		MyApplyUserTourListVO myApplyuserTourListVO = new MyApplyUserTourListVO();
 		myApplyuserTourListVO.setMyApplyUserTourCount(myApplyTourCount);
@@ -63,9 +64,10 @@ public class MyApplyTourServiceImpl implements MyApplyTourService {
 			return myApplyGuideTourListVO;
 		}
 		
-		List<MyApplyGuideTourVO> myApplyTourList =  this.myApplyTourDao.selectAllMyApplyToursForGuide(athrId, searchMyApplyTourVO);
 		searchMyApplyTourVO.setListSize(5);
 		searchMyApplyTourVO.setPageCount(myApplyTourCount);
+		
+		List<MyApplyGuideTourVO> myApplyTourList =  this.myApplyTourDao.selectAllMyApplyToursForGuide(athrId, searchMyApplyTourVO);
 		
 		MyApplyGuideTourListVO myApplyGuideTourListVO = new MyApplyGuideTourListVO();
 		myApplyGuideTourListVO.setMyApplyGuideTourCount(myApplyTourCount);

@@ -1,7 +1,6 @@
 div.tour-request-list {
   display: flex;
-  justify-content: space-around;
-  font-size: x-large;
+  justify-content: center;
 }
 
 .search-zone {
@@ -17,7 +16,7 @@ div.tour-request-list {
   width: 30rem;
   height: 3.5rem;
   border: 1px solid #aaa;
-  border-radius: 22px 22px 22px 5px;
+  border-radius: 22px;
   justify-content: space-between;
 }
 
@@ -50,13 +49,14 @@ div.tour-request-list {
 }
 
 .region-menu-area {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .region-menu-area input {
   padding: 1.5rem 0;
+  width: 10rem;
   text-align: center;
   font-size: 1.2rem;
   border: 2px solid #d7d7d7;
@@ -82,19 +82,13 @@ input.checked2 {
   font-weight: bold;
 }
 
-.flex-list-insert-btn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .insert-tour-btn {
   background-color: #fefae0;
   padding: 0.5rem;
   font-size: small;
   border-radius: 10px;
-  margin-left: 1rem;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  margin-right: 1rem;
 }
 
 .insert-tour-btn:hover {
@@ -105,7 +99,9 @@ input.checked2 {
   display: flex;
   font-family: Arial, sans-serif;
   margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .list-view-option input {
@@ -115,6 +111,12 @@ input.checked2 {
   margin: 0;
   padding-right: 0.3rem;
   padding-left: 0.3rem;
+}
+
+
+
+.dollar h1 {
+	margin: 0;
 }
 
 .list-view-option input:first-child {
@@ -127,19 +129,20 @@ input.checked2 {
 }
 
 .tour-list-area {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  row-gap: 2rem;
-  column-gap: 2rem;
+	display: flex;
+	flex-direction: column;
+    align-items: center;
 }
 
 .tour-box {
+  display: flex;
+  width: 80%;
   margin: 1rem;
   border: 1px solid #f4f4f4;
-  border-radius: 30px;
+  border-radius: 10px;
   padding: 1rem;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  justify-content: space-between;
 }
 
 .tour-box:hover {
@@ -149,10 +152,31 @@ input.checked2 {
 }
 
 .tour-subject {
-  color: rgb(104, 98, 227);
+  font-weight: bold;
   text-align: left;
-  margin-top: 1rem;
   display: block;
+  font-size: x-large;
+}
+
+.tour-comment {
+  width: 80%;
+  margin-top: 2rem;
+  display: block;
+}
+
+.tour-time {
+	display: flex;
+	align-items: center;
+}
+
+.clock-img {
+	width: 1.2rem;
+	height: 1.2rem;
+}
+
+.deadline-come {
+	color: #ffc8be;
+	font-weight: bold;
 }
 
 a:hover,
@@ -163,25 +187,20 @@ a:link {
   color: #333;
 }
 
-.tour-comment {
-  width: 80%;
-  height: 30px;
-  margin-top: 2rem;
-  font-weight: 700;
-  display: block;
-  font-size: small;
+.flex-list-insert-btn {
+	width: 90%;
+	margin: 0 auto;
 }
 
 .tour-country-image {
-  width: 100%;
-  height: 20rem;
-  border-radius: 20%;
+  width: 20rem;
+  height: 15rem;
+  border-radius: 10px;
 }
 
-.tour-schedule,
-.tour-deadline {
-  display: inline-block;
-  margin-top: 3rem;
+.tour-cont {
+	padding: 1rem;
+	width: 35rem;
 }
 
 .tourtime-deadline {
@@ -209,18 +228,10 @@ a:link {
   margin-top: 1rem;
 }
 
-.tour-cost {
-  font-weight: bold;
-}
-
-.tour-fee {
-  margin-left: 3.2rem;
-}
-
 .tour-cost-fee {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-end;
+  flex-direction: column;
 }
 
 .page-nav {

@@ -138,7 +138,7 @@
 		, #{gdCrr}
 		, #{gdWntRq}
 		, TO_DATE(#{usrTrEdDt}, 'YYYY-MM-DD HH24:MI')
-		, 'N')
+		, 'RCRTNG')
 	</insert>
 	
 	<select id="selectOneUserTour"
@@ -161,6 +161,7 @@
 		     , UTR.GD_AGE 
 		     , UTR.GD_CRR 
 		     , UTR.GD_WNT_RQ 
+		     , UTR.USR_TR_STTS
 		     , TO_CHAR(UTR.USR_TR_ST_DT, 'YYYY-MM-DD HH24:MI') USR_TR_ST_DT
 		     , TO_CHAR(UTR.USR_TR_ED_DT, 'YYYY-MM-DD HH24:MI') USR_TR_ED_DT
 		     , UTRI.USR_TR_RQ_IMG_ID_URL
@@ -187,18 +188,24 @@
 	</select>
 	
 	<select id="selectAllUserTourCount"
+			parameterType="com.mate.bbs.vo.SearchUserTourVO"
 			resultType="_int">
 		SELECT COUNT(1)
-		  FROM USR_TR_RQST
-		 WHERE USR_TR_ST_DT > SYSDATE
+		  FROM USR_TR_RQST UTR
+		  LEFT JOIN USR_TR_RQST_IMG UTRI
+		    ON UTR.USR_TR_PST_ID = UTRI.USR_TR_PST_ID
+		  JOIN CITIES C
+		    ON UTR.TR_CT_ID = C.CITY_ID
+		  JOIN COUNTRIES CR
+		    ON CR.COUNTRY_ID = C.COUNTRY_ID
+		  JOIN REGIONS R
+		    ON R.REGION_ID = CR.REGION_ID
+		 WHERE UTR.USR_TR_ST_DT > SYSDATE
 		<if test="_parameter != null">
 		 	<include refid="com.mate.bbs.dao.UserTourDao.selectRegions" />
 		</if>
 		<if test="_parameter != null">
 			<include refid="com.mate.bbs.dao.UserTourDao.selectSubjectAndContent" />
-		</if>
-		<if test="_parameter != null">
-		 	<include refid="com.mate.bbs.dao.UserTourDao.order" />
 		</if>
 	</select>
 	
@@ -211,7 +218,7 @@
 		SELECT UTR.USR_TR_PST_ID
 		     , UTR.USR_TR_TTL 
 		     , UTR.USR_TR_PRPS 
-		     , TO_CHAR(UTR.USR_TR_ST_DT, 'YYYY-MM-DD') USR_TR_ST_DT 
+		     , TO_CHAR(UTR.USR_TR_ST_DT, 'YYYY-MM-DD HH24:MI') USR_TR_ST_DT 
 		     , UTR.USR_TR_ED_DT 
 		     , UTR.USR_TR_GD_HR_PRC 
 		     , UTR.USR_TR_STTS 
@@ -248,14 +255,14 @@
 			parameterType="com.mate.bbs.vo.UserTourModifyVO">
 		UPDATE USR_TR_RQST 
 		   SET USR_TR_TTL = #{usrTrTtl}
-		   	 , USR_TR_DT = TO_DATE(#{usrTrDt}, 'YYYY-MM-DD HH24:MI')
+		   	 , USR_TR_ST_DT = TO_DATE(#{usrTrStDt}, 'YYYY-MM-DD HH24:MI')
 		   	 , USR_TR_PRPS = #{usrTrPrps}
 		   	 , USR_TR_MP = #{usrTrMp}
 		   	 , USR_TR_GD_HR_PRC = #{usrTrGdHrPrc}
 		   	 , USR_TR_NP = #{usrTrNp}
-		   	 , USR_TR_TM = #{usrTrTm}
 		   	 , USR_TR_MDFY_DT = SYSDATE
 		   	 , USR_TR_RQ_DTL = #{usrTrRqDtl}
+		   	 , USR_TR_ED_DT = TO_DATE(#{usrTrEdDt}, 'YYYY-MM-DD HH24:MI')
 		 WHERE USR_TR_PST_ID = #{usrTrPstId}
 	</update>
 	
@@ -307,5 +314,47 @@
 		, #{trLctns}
 		, #{trRqst})
 	</insert>
+	
+	<insert id="insertNewUserTourImgs"
+			parameterType="com.mate.bbs.vo.UserTourImgVO">
+		INSERT INTO USR_TR_RQST_IMG
+		 (USR_TR_RQ_IMG_ID
+		, USR_TR_PST_ID
+		, USR_TR_RQ_IMG_ID_URL
+		, USR_TR_RSTR_DT
+		, USR_TR_DLT_DT
+		, GD_TR_IMG_IS_DLT)
+		VALUES
+		 ('UG-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_USR_TR_RQST_IMG_PK.NEXTVAL, 6, 0)
+		, #{usrTrPstId}
+		, #{usrTrRqImgIdUrl}
+		, SYSDATE
+		, NULL
+		, 'N')
+	</insert>
+	
+	<select id="selectUserTourSchdls"
+			parameterType="string"
+			resultType="com.mate.bbs.vo.UserTourSchdlVO">
+		SELECT USR_TR_PST_ID 
+		     , TR_LCTNS 
+		     , TR_RQST 
+		  FROM TR_SCHDL
+		 WHERE USR_TR_PST_ID = #{_parameter}
+	</select>
+	
+	<delete id="deleteUserTourSchdls"
+			parameterType="string">
+		DELETE FROM TR_SCHDL 
+ 		 WHERE USR_TR_PST_ID = #{_parameter}
+	</delete>
+	
+	<update id="updateGdId"
+			parameterType="map">
+		UPDATE USR_TR_RQST
+		   SET GD_ID = #{usrLgnId}
+		     , USR_TR_STTS = 'RSRVT'
+		 WHERE USR_TR_PST_ID = #{usrTrPstId}
+	</update>
 	
 </mapper>
