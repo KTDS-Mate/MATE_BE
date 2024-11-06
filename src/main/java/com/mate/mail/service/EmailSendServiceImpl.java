@@ -124,7 +124,6 @@ public class EmailSendServiceImpl implements EmailSendService {
 	    }
 	    return tempPassword;
 	}
-
 	
 	@Override
 	public Map<String, Object> verifyAuthCode(EmailVO emailVO) { // 인증 코드 검증

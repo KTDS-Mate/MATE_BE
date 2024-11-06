@@ -16,7 +16,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       rel="stylesheet"
     />
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
-    <script type="text/javascript" src="/js/mypageModal.js"></script>
+    <script type="text/javascript" src="/js/myPageModal.js"></script>
 
     <title>Mypage_Tourist_EditInfo</title>
   </head>
