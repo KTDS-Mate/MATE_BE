@@ -232,7 +232,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
             <c:if test="${searchUserTourVO.hesprevGroup}">
               <li>
                   <!-- <a href="/board/list?pageNo=0&listSize=${searchMyBoardVO.listSize}"> -->
-                  <a href="javascript:movePage(0)">
+                  <a href="javascript:movepage(0);">
                     처음
                   </a>
               </li>
@@ -250,7 +250,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
               var="p">
               <li class="${p eq searchUserTourVO.pageNo ? 'active' : ''}">
                 <a
-                  href="javascript:movepage(${p})">
+                  href="javascript:movepage(${p});">
                   ${p + 1}
                 </a>
               </li>
@@ -263,7 +263,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                 </a>
               </li>
               <li>
-                <a href="javascript:movePage(${searchMyApplyTourVO.pageCount - 1})">
+                <a href="javascript:movepage(${searchUserTourVO.pageCount - 1});">
                  끝
                 </a>
               </li>

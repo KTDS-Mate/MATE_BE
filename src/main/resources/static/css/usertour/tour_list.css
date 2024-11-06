@@ -155,6 +155,10 @@ input.checked2 {
   justify-content: space-between;
 }
 
+.tour-box:hover {
+	cursor: pointer;
+}
+
 .tour-subject {
   overflow-wrap: break-word;
   font-weight: bold;
