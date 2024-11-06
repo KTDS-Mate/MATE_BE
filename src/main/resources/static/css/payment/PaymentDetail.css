@@ -83,9 +83,15 @@ div.btn-area {
   justify-content: flex-end;
   margin: 1rem 1rem
 }
-payment-btn-area {
-	display:flex;
-	margin: 0 auto;
+
+.payment-btn-area {
+	display: flex;
+	margin: 2rem 4rem;
+}
+.payment-btn-area button{
+	background-color: #fff;
+	outline: none;
+	border: 1px solid #333;
 }
 
 div.btn-area button {
