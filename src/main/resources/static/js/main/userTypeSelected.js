@@ -1,6 +1,10 @@
 $().ready(function () {
   const $touristButton = $(".touristButton");
   const $guideButton = $(".guideButton");
+  const $touristText = $(".touristText");
+  const $guideText = $(".guideText");
+  const $searchButton = $(".tourSearchButton");
+  const $searchButtonText = $(".tourSearchButtonText");
 
   function selectButton($selectedButton) {
     $touristButton.removeClass("selectedButton");
@@ -15,9 +19,18 @@ $().ready(function () {
 
   $touristButton.on("click", function () {
     selectButton($touristButton);
+    // $touristText.removeClass("hidden");
+    // $guideText.addClass("hidden");
   });
 
   $guideButton.on("click", function () {
     selectButton($guideButton);
+    // $touristButton.addClass("hidden");
+    // $guideText.removeClass("hidden");
+  });
+
+  $searchButton.on("click", function () {
+    $searchButton.addClass("ishovered");
+    $searchButtonText.addClass("ishovered");
   });
 });

@@ -1,3 +1,7 @@
+div.grid {
+  row-gap: 1rem;
+}
+
 div.header-content {
   display: flex;
   align-items: center;

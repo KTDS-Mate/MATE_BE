@@ -1,17 +1,17 @@
 package com.mate.bbs.web;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.mate.common.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mate.bbs.service.CountriesAndCitiesService;
-import com.mate.common.vo.CitiesListVO;
-import com.mate.common.vo.CountriesListVO;
-import com.mate.common.vo.RegionsListVO;
 
 
 @RestController
@@ -52,5 +52,23 @@ public class CountriesAndCitiesController {
 		
 		return resultMap;
 	}
-	
+
+	@GetMapping("/api/top-destinations")
+	public List<Map<String, Object>> getTopDestinations() {
+		TopDestinationsListVO topDestinationsListVO = this.countriesAndCitiesService.getTopDestinations();
+		List<Map<String, Object>> resultList = new ArrayList<>();
+
+		//  Each TopDestinationVO in the list
+		for(TopDestinationVO topDestinationVO : topDestinationsListVO.getTopDestinations()) {
+			Map<String, Object> resultMap = new HashMap<>();
+
+			resultMap.put("cityName", topDestinationVO.getCityName());
+			resultMap.put("numberOfTours", topDestinationVO.getNumberOfTours());
+			resultMap.put("numberOfRequests", topDestinationVO.getNumberOfRequests());
+
+			resultList.add(resultMap);
+		}
+
+		return resultList;
+	}
 }

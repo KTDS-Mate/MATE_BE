@@ -15,6 +15,7 @@
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="/js/main/mainPictureCarousel.js"></script>
     <script type="text/javascript" src="/js/main/userTypeSelected.js"></script>
+    <script type="text/javascript" src="/js/main/topDestinations.js"></script>
   </head>
   <body>
     <div class="grid">
@@ -31,13 +32,41 @@
             <jsp:include page="./calendarModal.jsp" />
             <div class="firstLayer">
                 <div class="mainPictureCarouselArea" data-bs-ride="carousel"> <!-- wrapper -->
-                    <div class="mainPicTextArea">
-                        <div class="touristText">
-                            <span>Meet Your Guide</span>
-                            <h1>Make Your Tour</h1>
+                    <div class="centerArea">
+                        <div class="mainPicTextArea">
+                            <div class="touristText">
+                                <span>Meet Your Guide</span>
+                                <h1>Make Your Tour</h1>
+                            </div>
+                            <div class="guideText hidden">
+                                <span>Find Your Tourist</span>
+                            </div>
                         </div>
-                        <div class="guideText hidden">
-                            <span>Find Your Tourist</span>
+                        <div class="menuArea">
+                            <div class="userTypeArea">
+                                <div class="touristButton">
+                                    <span onclick="selected">Tourist</span>
+                                </div>
+                                <div class="guideButton">
+                                    <span>Guide</span>
+                                </div>
+                            </div>
+                            <div class="whenWhereArea">
+                                <div class="where">
+                                    <h2>Where</h2>
+                                    <p></p>
+                                    <h3></h3>
+                                </div>
+                                <div class="when">
+                                    <h2>When</h2>
+                                    <div class="whenSelectArea">
+                                        <h3>  </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tourSearchButton">
+                            <h2 class="tourSearchButtonText">Search</h2>
                         </div>
                     </div>
                     <img
@@ -56,50 +85,27 @@
                                 <img src="/public/MainPic2.png" alt="대문사진2">
                             </div>
                         </div>
-                      <div class="picArea">
-                        <div class="picAreaItem">
-                            <img src="/public/MainPic3.png" alt="대문사진3">
-                        </div>
-                    </div>
-                    <div class="picArea">
-                        <div class="picAreaItem">
-                            <img src="/public/MainPic4.png" alt="대문사진4">
-                        </div>
-                    </div>
-                    <div class="picArea">
-                        <div class="picAreaItem">
-                            <img src="/public/MainPic5.png" alt="대문사진5">
-                        </div>
-                    </div>
-                </div>
-                <img
-                src="/public/mainBackward.png"
-                alt="다음 버튼"
-                class="picBackwardButton"
-                />
-                <div class="menuArea">
-                        <div class="userTypeArea">
-                            <div class="touristButton">
-                                <span onclick="selected">Tourist</span>
-                            </div>
-                            <div class="guideButton">
-                                <span>Guide</span>
+                        <div class="picArea">
+                            <div class="picAreaItem">
+                                <img src="/public/MainPic3.png" alt="대문사진3">
                             </div>
                         </div>
-                        <div class="whenWhereArea">
-                            <div class="where">
-                                <h2>Where</h2>
-                                <p></p>
-                                <h3></h3>
+                        <div class="picArea">
+                            <div class="picAreaItem">
+                                <img src="/public/MainPic4.png" alt="대문사진4">
                             </div>
-                            <div class="when">
-                                <h2>When</h2>
-                                <div class="whenSelectArea">
-                                    <h3>  </h3>
-                                </div>
+                        </div>
+                        <div class="picArea">
+                            <div class="picAreaItem">
+                                <img src="/public/MainPic5.png" alt="대문사진5">
                             </div>
                         </div>
                     </div>
+                    <img
+                    src="/public/mainBackward.png"
+                    alt="다음 버튼"
+                    class="picBackwardButton"
+                    />
                 </div>
             </div>
             <div class="secondLayer">
@@ -131,78 +137,13 @@
                 </div>
             </div>
             <div class="thirdLayer">
-                <div class="recommendTourAreaOne">
-                    <img class="forward" src="public/forward.png">
-                    <div class="firstRecommendTour">
-                        <img src="public/로마.jpg">
-                        <h1>로마</h1>
-                    </div>
-                    <div class="secondRecommendTour">
-                        <img src="public/일본.jpg">
-                        <h1>도쿄</h1>
-                    </div>
-                    <div class="thirdRecommendTour">
-                        <img src="public/파리.jpg">
-                        <h1>파리</h1>
-                    </div>
-                    <div class="fourthRecommendTour">
-                        <img src="public/다낭.jpg">
-                        <h1>다낭</h1>
-                    </div>
-                    <img class="backward" src="public/backward.png">
-                </div>
-            </div>
+                <!-- <h1>실시간 인기 여행지 TOP 10</h1>
+                <div class="topDestinations" id="topDestinations"></div> -->
             <div class="fourthLayer">
-                <div class="recommendTourAreaTwo">
-                    <h1>가이드를 직접 선택한 여행자들의 생생한 후기!</h1>
-                    <div class="recommendTourContainer">
-                        <img src="public/forward.png">
-                        <div class="recommendTourItem">
-                            <img src="public/로마.jpg">
-                            <h1>로마</h1>
-                        </div>
-                        <div class="recommendTourItem">
-                            <img src="public/일본.jpg">
-                            <h1>도쿄</h1>
-                        </div>
-                        <div class="recommendTourItem">
-                            <img src="public/파리.jpg">
-                            <h1>파리</h1>
-                        </div>
-                        <div class="recommendTourItem">
-                            <img src="public/다낭.jpg">
-                            <h1>다낭</h1>
-                        </div>
-                        <img src="public/backward.png">
-                    </div>
-                    <h3>1 | 3</h3>
-                </div>
+
             </div>
             <div class="fifthLayer">
-                <div class="recommendTourAreaThree">
-                    <h1>금강산도 식후경! 식도락 투어 코스!</h1>
-                    <div class="recommendTourContainer">
-                        <img src="public/forward.png">
-                        <div class="recommendTourItem">
-                            <img src="public/로마.jpg">
-                            <h1>로마</h1>
-                        </div>
-                        <div class="recommendTourItem">
-                            <img src="public/일본.jpg">
-                            <h1>도쿄</h1>
-                        </div>
-                        <div class="recommendTourItem">
-                            <img src="public/파리.jpg">
-                            <h1>파리</h1>
-                        </div>
-                        <div class="recommendTourItem">
-                            <img src="public/다낭.jpg">
-                            <h1>다낭</h1>
-                        </div>
-                        <img src="public/backward.png">
-                    </div>
-                    <h3>1 | 3</h3>
-                </div>
+
             </div>
         </div>
       </div>

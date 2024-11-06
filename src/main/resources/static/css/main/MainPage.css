@@ -63,6 +63,17 @@ div.footer {
   transform: translateX(0); /* 초기 위치 설정 */
 }
 
+.centerArea {
+  display: flex;
+  position: absolute;
+  width: 25rem;
+  height: auto;
+  flex-direction: column;
+  align-items: center;
+  top: 0;
+  right: 75%;
+}
+
 .mainPictureCarouselTransition {
   transition: 0.6s ease-out;
 }
@@ -80,13 +91,13 @@ div.footer {
 
 .picAreaItem {
   width: 100%;
-  height: 40rem;
+  height: 100%;
 }
 
 .picAreaItem img {
   display: flex;
   width: 100%;
-  height: 40rem;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -122,8 +133,8 @@ div.footer {
   width: 50rem;
   height: 10rem;
   margin: 0 auto;
-  top: 40vh;
-  left: 50vh;
+  top: 350px;
+  left: 450px;
   position: absolute;
   background-color: #e7e7e7;
   /* opacity: 0.9; */
@@ -193,12 +204,39 @@ div.footer {
   padding: 0 15px;
 }
 
+.tourSearchButton {
+  width: 16rem;
+  height: 3rem;
+  display: flex;
+  position: absolute;
+  top: 530px;
+  left: 725px;
+  background-color: lightslategray;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  z-index: 4;
+}
+
+.tourSearchButtonText {
+  color: white;
+  text-shadow: #000;
+}
+
+.ishovered {
+  background-color: #fff;
+  color: black;
+  text-shadow: #fff;
+}
+
 .mainPicTextArea {
   width: 60rem;
-  height: auto;
+  height: 12rem;
   margin: 0 auto;
-  top: 20vh;
-  left: 40vh;
+  top: 125px;
+  left: 365px;
   position: absolute;
   border-radius: 1.25rem;
   /* box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); */
@@ -208,6 +246,8 @@ div.footer {
 
 .touristText > span,
 .guideText > span {
+  top: 175px;
+  left: 365px;
   color: #fff;
   font-size: 5rem;
   font-weight: bold;
@@ -279,80 +319,9 @@ div.footer {
   width: 100%;
   display: flex;
   margin-bottom: 2rem;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.recommendTourAreaOne {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 1200px; /* 가로 크기 */
-  margin: 0 auto;
-  position: relative; /* 방향 버튼을 절대 위치시킬 수 있게 함 */
-}
-
-/* 개별 여행지 카드 설정 */
-.firstRecommendTour,
-.secondRecommendTour,
-.thirdRecommendTour,
-.fourthRecommendTour {
-  position: relative;
-  width: 240px; /* 카드 너비 */
-  height: 500px; /* 카드 높이 */
-  border-radius: 15px;
-  overflow: hidden;
-  margin: 0 10px; /* 카드 사이의 간격 */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
-  text-align: center;
-}
-
-/* 이미지 설정 */
-.firstRecommendTour img,
-.secondRecommendTour img,
-.thirdRecommendTour img,
-.fourthRecommendTour img {
-  height: 100%;
-  object-fit: cover; /* 이미지가 카드 내에서 잘리더라도 비율 유지 */
-  border-radius: 15px;
-}
-
-/* 텍스트 설정 (이미지 위에 위치) */
-.firstRecommendTour h1,
-.secondRecommendTour h1,
-.thirdRecommendTour h1,
-.fourthRecommendTour h1 {
-  position: absolute;
-  bottom: 10px; /* 텍스트를 아래에 고정 */
-  left: 10px;
-  margin: 0;
-  padding: 0;
-  color: white; /* 흰색 글자 */
-  font-size: 24px; /* 글자 크기 */
-  font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 텍스트 그림자 효과 */
-}
-
-/* 방향 버튼 설정 */
-.forward img {
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  position: absolute;
-  left: -60px; /* 왼쪽 버튼 위치 */
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.backward img {
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  position: absolute;
-  right: -60px; /* 오른쪽 버튼 위치 */
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 .fourthLayer {
@@ -364,64 +333,6 @@ div.footer {
   align-items: center;
 }
 
-.recommendTourAreaTwo {
-  width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-  margin-top: 5rem;
-}
-
-.recommendTourAreaTwo h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  text-align: left;
-}
-
-.recommendTourContainer {
-  display: flex;
-  justify-content: space-between; /* 이미지 간 간격 조정 */
-  align-items: center;
-  flex-direction: row; /* 이미지를 가로로 배치 */
-}
-
-.recommendTourAreaTwo .recommendTourItem {
-  position: relative;
-  width: 280px;
-  height: 180px;
-  overflow: hidden;
-  border-radius: 12px;
-  margin: 0 10px; /* 이미지 간의 간격 추가 */
-}
-
-.recommendTourAreaTwo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.recommendTourAreaTwo .recommendTourItem h1 {
-  position: absolute;
-  bottom: 0.5rem;
-  left: 80%;
-  transform: translateX(-50%);
-  color: white;
-  font-weight: bold;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
-}
-
-.recommendTourAreaTwo img[src="public/forward.png"],
-.recommendTourAreaTwo img[src="public/backward.png"] {
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-}
-
-.recommendTourAreaTwo h3 {
-  margin-top: 10px;
-  font-size: 18px;
-  text-align: right;
-}
-
 .fifthLayer {
   width: 100%;
   display: flex;
@@ -429,64 +340,6 @@ div.footer {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-}
-
-.recommendTourAreaThree {
-  width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-  margin-top: 5rem;
-}
-
-.recommendTourAreaThree h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  text-align: left;
-}
-
-.recommendTourContainer {
-  display: flex;
-  justify-content: space-between; /* 이미지 간 간격 조정 */
-  align-items: center;
-  flex-direction: row; /* 이미지를 가로로 배치 */
-}
-
-.recommendTourAreaThree .recommendTourItem {
-  position: relative;
-  width: 280px;
-  height: 180px;
-  overflow: hidden;
-  border-radius: 12px;
-  margin: 0 10px; /* 이미지 간의 간격 추가 */
-}
-
-.recommendTourAreaThree img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.recommendTourAreaThree .recommendTourItem h1 {
-  position: absolute;
-  bottom: 0.5rem;
-  left: 80%;
-  transform: translateX(-50%);
-  color: white;
-  font-weight: bold;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
-}
-
-.recommendTourAreaThree img[src="public/forward.png"],
-.recommendTourAreaThree img[src="public/backward.png"] {
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-}
-
-.recommendTourAreaThree h3 {
-  margin-top: 10px;
-  font-size: 18px;
-  text-align: right;
 }
 
 .hidden {
