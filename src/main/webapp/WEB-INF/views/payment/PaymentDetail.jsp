@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -34,61 +34,68 @@
 
               <div class="grid-info">
                 <span>결제자 이름</span>
-                <span>KwonHyeok</span>
+                <span class="trstFnm">${paymentVO.trstFnm}</span>
               </div>
               <div class="grid-info">
                 <span>가이드 이름</span>
-                <span>test1</span>
+                <span class="gdFnm">${paymentVO.gdFnm}</span>
               </div>
               <div class="grid-info">
                 <span>투어 타입</span>
-                <span>TOURIST</span>
+                <span class="payTrTp">${paymentVO.payTrTp}</span>
+                
               </div>
               <div class="grid-info">
                 <span>투어 제목</span>
-                <span>로그인 테스트</span>
+                <span class="usrTrTtl">${paymentVO.usrTrTtl}</span>
               </div>
               <div class="grid-info">
                 <span>가격</span>
-                <span>30000.0</span>
+                <span class="payCsh">${paymentVO.payCsh}</span>
               </div>
             </div>
           </div>
           <!-- 여기에 결제버튼부분이나 결제 내용 보여주면 됨 -->
+          <!--
+          <c:if test="${paymentVO.payStt eq not 'WAITING'}"> 
+          -->
           <div class="info-container">
             <div class="section-box">
-              <div class="sub-title"><h3>결제 완료 정보</h3></div>
+              <div class="sub-title"><h3>결제 세부 정보</h3></div>
 
               <div class="grid-info">
                 <span>결제 ID</span>
-                <span>imp_859182762619</span>
+                <span class="impUid">${paymentVO.impUid}</span>
               </div>
               <div class="grid-info">
                 <span>결제방식</span>
-                <span>point</span>
+                <span class="payMthd">${paymentVO.payMthd}</span>
               </div>
               <div class="grid-info">
                 <span>통화</span>
-                <span>WON</span>
+                <span class="payCrrnc">${paymentVO.payCrrnc}</span>
               </div>
               <div class="grid-info">
                 <span>결제 상태</span>
                 <span>COMPLETE</span>
               </div>
             </div>
-            <div class="btn-area">
-              <button class="refund">환불하기</button>
-            </div>
+            <c:if test="${paymentVO.payStt eq 'COMPLETE'}">
+	            <div class="btn-area">
+	              <button class="refund">환불하기</button>
+	            </div>
+            </c:if>
           </div>
+          <!-- 
+          </c:if>
+           -->
           <!-- 결제 플랫폼하고 기능 연결하기 -->
-          <div class="btn-area">
-            <button class="tosspayment-btn">토스페이 통합 결제</button>
-            <button class="KG-payment">KG이니시스 통합 결제</button>
-            <button class="paypal-payment">페이팔</button>
-            <button class="kakaopay-btn">카카오페이</button>
-            <button class="only-tosspay">토스페이</button>
-            <button class="doPay">결제하기</button>
-          </div>
+          <c:if test="${paymentVO.payStt eq 'WAITING'}">        
+	          <div class="btn-area">
+	            
+	            <button class="doPay">결제하기</button>
+	          </div>
+          </c:if>
         </div>
       </div>
 
@@ -98,16 +105,15 @@
       </div>
     </div>
 
-    <ul>
-      <li class="payId">${paymentVO.payId}</li>
-      <li class="trstId">${paymentVO.trstId}</li>
-      <li class="trstFnm">${paymentVO.trstFnm}</li>
-      <li class="gdId">${paymentVO.gdId}</li>
-      <li class="gdFnm">${paymentVO.gdFnm}</li>
-      <li class="payTrTp">${paymentVO.payTrTp}</li>
-      <li class="payTrId">${paymentVO.payTrId}</li>
-      <li class="usrTrTtl">${paymentVO.usrTrTtl}</li>
-      <li class="gdTrTtl">${paymentVO.gdTrTtl}</li>
+      <input type="hidden" class="payId" value ="${paymentVO.payId}" />
+      <input type="hidden" class="trstId" value ="${paymentVO.trstId}"/>
+      <input type="hidden" class="trstFnm" value ="${paymentVO.trstFnm}"/>
+      <input type="hidden" class="gdId" value ="${paymentVO.gdId}"/>
+      <input type="hidden" class="gdFnm" value ="${paymentVO.gdFnm}"/>
+      <input type="hidden" class="payTrTp" value ="${paymentVO.payTrTp}"/>
+      <input type="hidden" class="payTrId" value ="${paymentVO.payTrId}"/>
+      <input type="hidden" class="usrTrTtl" value ="${paymentVO.usrTrTtl}"/>
+      <input type="hidden" class="gdTrTtl" value ="${paymentVO.gdTrTtl}"/>
       <!-- 얘 없음 > 지금 여행자 투어니까 -->
       <li class="payCsh">${paymentVO.payCsh}</li>
       <li class="payCrtDt">${paymentVO.payCrtDt}</li>
@@ -119,6 +125,5 @@
       <!-- 얘 없음 -->
       <li class="payCrrnc">${paymentVO.payCrrnc}</li>
       <li class="payStt">${paymentVO.payStt}</li>
-    </ul>
   </body>
 </html>
