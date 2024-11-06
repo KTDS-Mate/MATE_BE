@@ -48,7 +48,7 @@ public class WishlistDaoImpl extends SqlSessionDaoSupport implements WishlistDao
 	public int deleteWish(String favId) {
 		
 		System.out.println("Dao 전" + favId);
-		return this.getSqlSession().update(NAMESPACE + ".deleteWish" , favId);
+		return this.getSqlSession().delete(NAMESPACE + ".deleteWish" , favId);
 	}
 	
 //  -------------------------------------------------------------------------투어리스트파트
@@ -82,7 +82,7 @@ public class WishlistDaoImpl extends SqlSessionDaoSupport implements WishlistDao
 	public int deleteTrWish(String favId) {
 		
 		System.out.println("Dao 전" + favId);
-		return this.getSqlSession().update(NAMESPACE + ".deleteTrWish" , favId);
+		return this.getSqlSession().delete(NAMESPACE + ".deleteTrWish" , favId);
 	}
 	
 

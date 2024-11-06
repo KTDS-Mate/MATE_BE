@@ -8,10 +8,12 @@ $().ready(function () {
     })
 	
 	$(".guide").on("click" , function() {
+		console.log(usrLgnId);
 		goToGuideReview(usrLgnId);
 	})
 	
 	$(".guide-tour").on("click" , function() {
+		console.log(usrLgnId);
 		goToGuideTourReview(usrLgnId);
 	})
 

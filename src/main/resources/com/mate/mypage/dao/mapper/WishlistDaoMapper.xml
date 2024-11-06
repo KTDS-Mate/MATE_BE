@@ -136,15 +136,12 @@
     </if>
     </select>
     
-    <update id="deleteWish" parameterType="string">
-    UPDATE 
+    <delete id="deleteWish" parameterType="string">
+    DELETE
     	FVRTS 
-	SET 
-		FAV_IS_DLT = 'Y'
-		,FAV_DLT_AT = SYSDATE
 	WHERE 
 		FAV_ID = #{_parameter}
-    </update>
+    </delete>
     
     
     
@@ -222,13 +219,10 @@
     </if>
     </select>
     
-    <update id="deleteTrWish" parameterType="string">
-    UPDATE 
+    <delete id="deleteTrWish" parameterType="string">
+    DELETE 
     	FVRTS 
-	SET 
-		FAV_IS_DLT = 'Y'
-		,FAV_DLT_AT = SYSDATE
 	WHERE 
 		FAV_ID = #{_parameter}
-    </update>
+    </delete>
 </mapper>

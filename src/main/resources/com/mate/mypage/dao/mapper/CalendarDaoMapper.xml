@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mate.mypage.dao.CalendarDao">
+
+    
+	<resultMap id="calenMap" 
+			   type="com.mate.mypage.vo.CalendarVO"
+			   autoMapping="true" >
+		<id column="CAL_ID" property="calId" />
+		<association property="calendarUserVO"
+					 javaType="com.mate.mypage.vo.CalendarUserVO"
+					 autoMapping="true">
+		
+		</association>
+	</resultMap>
+	
+	
+	<select id="calenList" parameterType="string" resultMap="calenMap">
+		SELECT 
+			c.CAL_ID
+			,c.CAL_GROUPID
+			,c.CAL_TITLE
+			,c.CAL_WRITER 
+			,TO_CHAR(c.CAL_START , 'YYYY-MM-DD"T"HH24:MI:SS') CAL_START
+			,TO_CHAR(c.CAL_END , 'YYYY-MM-DD"T"HH24:MI:SS') CAL_END
+			,c.CAL_ALLDAY 
+			,c.CAL_TEXTCOLOR 
+			,c.CAL_BACKCOLOR 
+			,c.CAL_BORDERCOLOR 
+		FROM 
+			CALENDAR c 
+		INNER JOIN 
+			USR_INF ui
+		ON 
+			c.CAL_WRITER = ui.USR_LGN_ID 
+		WHERE 
+			c.CAL_WRITER = #{_parameter}
+	</select>
+
+
+</mapper>

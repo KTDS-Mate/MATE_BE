@@ -89,7 +89,7 @@ public class MyReviewController {
     	List<GuideTourReviewVO> reviewListVO = guideTourReviewListVO.getReviewList();
     	
     	System.out.println("갯수는 " + myBoardListVO);
-    	System.out.println("리스트는 " + reviewListVO.get(0));
+//    	System.out.println("리스트는 " + reviewListVO.get(0));
     	
     	
     	System.out.println("타입은 " + searchGuideTourReviewVO.getSearchType());

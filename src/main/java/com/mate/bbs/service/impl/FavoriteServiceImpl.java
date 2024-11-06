@@ -34,6 +34,9 @@ public class FavoriteServiceImpl implements FavoriteService {
 		return favoriteListVO;
 	}
 	
-	
+	@Override
+	public boolean deleteUserTourFavorite(String usrPstId, String usrLgnId) {
+		return this.favoriteDao.deleteFavIsDlt(usrPstId, usrLgnId) > 0;
+	}
 	
 }

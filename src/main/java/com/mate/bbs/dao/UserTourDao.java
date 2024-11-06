@@ -2,7 +2,10 @@ package com.mate.bbs.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.mate.bbs.vo.SearchUserTourVO;
+import com.mate.bbs.vo.UserTourImgVO;
 import com.mate.bbs.vo.UserTourModifyVO;
 import com.mate.bbs.vo.UserTourSchdlVO;
 import com.mate.bbs.vo.UserTourVO;
@@ -26,7 +29,7 @@ public interface UserTourDao {
 	 */
 	public UserTourVO selectOneUserTour(String usrTrPstId);
 	
-	public int selectAllUserTourCount();
+	public int selectAllUserTourCount(SearchUserTourVO searchUserTourVO);
 	
 	/**
 	 * 모든 게시글 조회(페이지네이션)
@@ -47,6 +50,18 @@ public interface UserTourDao {
 	 * @return
 	 */
 	public int updateUserTourIsDtl(String usrTrPstId);
+	
+	/**
+	 * 예약 버튼을 클릭했을 때 해당 게시글의 예약 상태와 가이드 아이디를 변경
+	 * @param usrTrPstId 게시글 아이디
+	 * @param usrLgnId 가이드 아이디
+	 * @return
+	 */
+	public int updateGdId(@Param("usrTrPstId") String usrTrPstId, @Param("usrLgnId") String usrLgnId);
+	
+	
+	
+	
 	
 	/**
 	 * 사용자가 입력한 시작 날짜와 시간을 YYYY-MM-DD HH24:MI로 포멧을 맞춰주는 쿼리 실행
@@ -76,6 +91,9 @@ public interface UserTourDao {
 	 */
 	public String selectAttachEndHour2(UserTourModifyVO userTourModifyVO);
 	
+	
+	
+	
 	/**
 	 * 사용자가 입력한 투어 희망 정보를 저장
 	 * @param userTourSchdlVO
@@ -83,11 +101,11 @@ public interface UserTourDao {
 	 */
 	public int insertUserTourScheduls(UserTourSchdlVO userTourSchdlVO);
 	
-	/**
-	 * 사용자가 입력한 투어 희망 정보를 수정
-	 * @param userTourSchdlVO
-	 * @return
-	 */
-	public int updateUserTourScheduls(UserTourSchdlVO userTourSchdlVO);
+	public List<UserTourSchdlVO> selectUserTourSchdls(String usrTrPstId);
+	
+	public int insertNewUserTourImgs(UserTourImgVO userTourImgVO);
+	
+	/**게시글 수정 시 일정 리스트들을 추가 & 삭제 하게 될 경우가 있어서 삭제 후 다시 insert**/
+	public int deleteUserTourSchdls(String usrTrPstId);
 	
 }

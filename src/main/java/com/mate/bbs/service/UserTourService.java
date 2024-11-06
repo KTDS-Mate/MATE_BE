@@ -3,7 +3,6 @@ package com.mate.bbs.service;
 import com.mate.bbs.vo.SearchUserTourVO;
 import com.mate.bbs.vo.UserTourListVO;
 import com.mate.bbs.vo.UserTourModifyVO;
-import com.mate.bbs.vo.UserTourSchdlVO;
 import com.mate.bbs.vo.UserTourVO;
 import com.mate.bbs.vo.UserTourWriteVO;
 
@@ -42,5 +41,7 @@ public interface UserTourService {
 	 * @return
 	 */
 	public boolean softDeleteUserTour(String usrTrPstId);
+	
+	public boolean reserveUserTour(String usrTrPstId, String usrLgnId);
 	
 }
