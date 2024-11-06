@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,16 +25,16 @@ public class PaymentController {
 	@Autowired
 	private PortOneService portOneService;
 	
-	@GetMapping("/payment/detail")
-	public String viewOrderInfo(@RequestParam String usrId
+	@GetMapping("/payment/detail/{trstLgnId}")
+	public String viewOrderInfo(@PathVariable String trstLgnId
 							  , @RequestParam String payId, Model model) {
 		PaymentVO paymentVO = this.paymentService.getPaymentDetail(payId);
-		
+		String usrId = this.paymentService.getUsrId(trstLgnId);
 		if(paymentVO != null && paymentVO.getTrstId().equals(usrId)) {
 			model.addAttribute("paymentVO", paymentVO);
 			return "payment/PaymentDetail";
 		}
-		return "mypage/payment/list/" + usrId;
+		return "mypage/payment/list/" + trstLgnId;
 	}
 	
 	// 토큰 발급
