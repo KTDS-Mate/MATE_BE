@@ -15,30 +15,10 @@ public class MypageController {
     public EditProfileService mypageService;
 
 
-//------------------------------------------------------캘린더
-
-    @GetMapping("/calendar/tr-calendar")
-    public String viewTRCalendar() {
-
-        return "mypage/Mypage_Tourist_Calendar";
-    }
-
-    @GetMapping("/calendar/gd-calendar")
-    public String viewGDCalendar() {
-
-        return "mypage/Mypage_Guide_Calendar";
-    }
 
 
 
 
-//--------------------------------------------------고객 등록 리뷰
-
-    @GetMapping("/tr-review")
-    public String viewTRReview() {
-
-        return "mypage/Mypage_Tourist_MyReview";
-    }
 
 
 //-------------------------------------------------가이드 정산내역

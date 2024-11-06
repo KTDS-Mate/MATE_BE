@@ -7,8 +7,12 @@ spring:
     url: jdbc:oracle:thin:@43.201.83.116:1521:XE
     driver-class-name: oracle.jdbc.driver.OracleDriver
     username: MATE
-    password: MATE    
-
+    password: MATE
+ # favicon 아이콘 맵핑
+  web:
+   resources:
+    add-mappings:
+        true
 # SMTP 서버 설정(gmail)
   mail:
     host: smtp.gmail.com
