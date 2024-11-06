@@ -16,7 +16,7 @@ div.tour-request-list {
   width: 30rem;
   height: 3.5rem;
   border: 1px solid #aaa;
-  border-radius: 22px;
+  border-radius: 10px;
   justify-content: space-between;
 }
 
@@ -40,7 +40,7 @@ div.tour-request-list {
   color: #333;
   border: none;
   padding: 13px 25px;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 /* 버튼 호버 시 색상 변경 */
