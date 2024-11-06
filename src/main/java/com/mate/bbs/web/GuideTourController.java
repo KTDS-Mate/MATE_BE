@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.mate.bbs.service.GuideTourReviewService;
 import com.mate.bbs.service.GuideTourService;
 import com.mate.bbs.vo.GuideTourListVO;
+import com.mate.bbs.vo.GuideTourReviewListVO;
+import com.mate.bbs.vo.GuideTourReviewWriteVO;
 import com.mate.bbs.vo.GuideTourVO;
 import com.mate.bbs.vo.GuideTourWriteVO;
 import com.mate.bbs.vo.SearchGuideTourVO;
-import com.mate.bbs.vo.UserTourVO;
 import com.mate.user.vo.UserVO;
 
 import jakarta.validation.Valid;
@@ -25,6 +27,9 @@ public class GuideTourController {
 
 	@Autowired
 	private GuideTourService guideTourService;
+	
+	@Autowired
+	private GuideTourReviewService guideTourReviewService;
 	
 	/**
 	 * 가이드 투어 목록 조회하는 페이지
@@ -44,7 +49,11 @@ public class GuideTourController {
 	@GetMapping("/guidetour/info")
 	public String viewOneGuideTourPage(@RequestParam String gdTrPstId , Model model) {
 		GuideTourVO guideTourVO = this.guideTourService.getOneGuideTour(gdTrPstId);
+		GuideTourReviewListVO reviewList = this.guideTourReviewService.getAllGuideTourReview(gdTrPstId);
+		
 		model.addAttribute("guideTourVO",guideTourVO);
+		model.addAttribute("reviewList", reviewList);
+		
 		return "guidetour/GuideTourInfo";
 	}
 	/** 가이드가 가이드의 투어를 등록하는 페이지 */
@@ -58,12 +67,12 @@ public class GuideTourController {
 									   , BindingResult bindingResult
 									   , Model model
 									   , @SessionAttribute(value = "_LOGIN_USER_", required = false) UserVO loginUserVO) {
+		if(loginUserVO == null) {
+			return "redirect:/user/login";
+		}
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("guideTourWriteVO", guideTourWriteVO);
 			return "guidetour/Guide_TourInsert";
-		}
-		if(loginUserVO == null) {
-			return "redirect:/user/login";
 		}
 		guideTourWriteVO.setAthrId(loginUserVO.getUsrLgnId());
 		
@@ -83,4 +92,18 @@ public class GuideTourController {
 		
 		return "guidetour/Tourist_Modify";
 	}
+	
+	@PostMapping("/guidetour/info")
+	public String doCreateNewGuideTourReview(@RequestParam String gdTrPstId
+										   , GuideTourReviewWriteVO guideTourReviewWriteVO
+										   , @SessionAttribute("_LOGIN_USER_") UserVO loginUserVO) {
+		guideTourReviewWriteVO.setGdTrPstId(gdTrPstId);
+		guideTourReviewWriteVO.setAthrId(loginUserVO.getUsrLgnId());
+		
+		this.guideTourReviewService.createNewGuideTourReview(guideTourReviewWriteVO);
+		
+		return "redirect:/guidetour/info?gdTrPstId=" + gdTrPstId;
+	}
+	
+	
 }
