@@ -4,6 +4,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <html>
   <head>
     <meta charset="UTF-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <title>투어 요청 목록</title>
     <link rel="stylesheet" type="text/css" href="/css/usertour/tour_list.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />

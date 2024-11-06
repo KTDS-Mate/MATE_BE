@@ -7,6 +7,7 @@ uri="http://www.springframework.org/tags/form" %>
     <meta charset="UTF-8" />
     <title>가이드 투어 수정</title>
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <link
       rel="stylesheet"
       type="text/css"

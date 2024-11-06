@@ -170,7 +170,6 @@ public class UserController {
 		return "user/reissue-password";
 	}
 	
-	
 	@PostMapping("/user/reissue-password")
 	public String reissuePassword(@RequestParam String usrLgnId,
 								  @RequestParam String usrEml, Model model) {
