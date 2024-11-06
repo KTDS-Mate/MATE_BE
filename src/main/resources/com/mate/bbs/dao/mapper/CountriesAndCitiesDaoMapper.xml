@@ -57,7 +57,7 @@
 	</select>
 
 	<select id="selectTopDestinations"
-			resultType="com.mate.common.vo.TopDestinationsListVO">
+			resultType="com.mate.common.vo.TopDestinationVO">
 		SELECT *
 		FROM ( SELECT C.CITY_NAME AS "City Name",
 		COUNT(DISTINCT G.GD_TR_PST_ID) AS "Number of Tours",

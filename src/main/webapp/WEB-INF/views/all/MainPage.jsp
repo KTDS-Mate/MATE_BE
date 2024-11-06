@@ -23,7 +23,7 @@
       <!--  -->
       <div class="header">
           <!-- 헤더 공통파일 -->
-          <jsp:include page="../header.jsp"></jsp:include>
+          <jsp:include page="./MainHeader.jsp"></jsp:include>
       </div>
       <!--  -->
   
@@ -138,8 +138,8 @@
                 </div>
             </div>
             <div class="thirdLayer">
-                <!-- <h1>실시간 인기 여행지 TOP 10</h1>
-                <div class="topDestinations" id="topDestinations"></div> -->
+                <h1>실시간 인기 여행지 TOP 10</h1>
+                <div class="topDestinations" id="topDestinations"></div>
             <div class="fourthLayer">
 
             </div>
