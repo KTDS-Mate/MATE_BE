@@ -1,18 +1,14 @@
 package com.mate.bbs.service.impl;
 
+import java.util.Collections;
 import java.util.List;
 
+import com.mate.common.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mate.bbs.dao.CountriesAndCitiesDao;
 import com.mate.bbs.service.CountriesAndCitiesService;
-import com.mate.common.vo.CitiesListVO;
-import com.mate.common.vo.CitiesVO;
-import com.mate.common.vo.CountriesListVO;
-import com.mate.common.vo.CountriesVO;
-import com.mate.common.vo.RegionsListVO;
-import com.mate.common.vo.RegionsVO;
 
 @Service
 public class CountriesAndCitiesServiceImpl implements CountriesAndCitiesService {
@@ -58,7 +54,14 @@ public class CountriesAndCitiesServiceImpl implements CountriesAndCitiesService 
 		
 		return citiesListVO;
 	}
-	
-	
+
+	@Override
+	public TopDestinationsListVO getTopDestinations() {
+		TopDestinationsListVO topDestinationsList = this.countriesAndCitiesDao.selectTopDestinations();
+
+
+
+		return topDestinationsList;
+	}
 	
 }

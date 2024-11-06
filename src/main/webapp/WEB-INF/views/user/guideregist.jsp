@@ -71,6 +71,11 @@
                 </div>
                 
                 <div class="form-item">
+                  <span>가이드 경력</span>
+                  <input type="text" id="usrGdExp" name="usrGdExp" placeholder="년을 제외한 숫자만 입력해주세요." />
+                </div>
+                
+                <div class="form-item">
                   <span>프로필 사진</span>
                   <div class="filebox">
                      <input type="file" id="gdPrflImgFile" name="gdPrflImgFile" />

@@ -63,7 +63,7 @@ public class RegistGuideVO {
     /**
      * 가이드 활동 국가 리스트: COUNTRIES 테이블.
      */
-    private List<CountriesVO> coutries;
+    private List<CountriesVO> countries;
     /**
      * 가이드가 활동하는 도시의 PK
      */
@@ -288,13 +288,13 @@ public class RegistGuideVO {
 	public void setGdRgstDt(String gdRgstDt) {
 		this.gdRgstDt = gdRgstDt;
 	}
-
-	public List<CountriesVO> getCoutries() {
-		return coutries;
+	
+	public List<CountriesVO> getCountries() {
+		return countries;
 	}
 
-	public void setCoutries(List<CountriesVO> coutries) {
-		this.coutries = coutries;
+	public void setCountries(List<CountriesVO> countries) {
+		this.countries = countries;
 	}
 
 	public List<String> getSelectedCities() {

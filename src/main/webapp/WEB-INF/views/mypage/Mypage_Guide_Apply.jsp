@@ -33,10 +33,13 @@
           <div class="apply-content">
           	<div class="apply-ttl">나의 신청 투어 목록</div>
           	<div class="apply-search-area">
+          		<form class="search-form">
           		<div class="apply-search-zone">
           			<input type="text" placeholder="검색어를 입력해주세요." />
           			<input type="button" value="검색" />
           		</div>
+          		<input class="page-no" name="pageNo" type="hidden" />
+          		</form>
           		<div class="apply-filter-zone">
           			<select class="order">
           				<option value="tr">투어 일자 순</option>

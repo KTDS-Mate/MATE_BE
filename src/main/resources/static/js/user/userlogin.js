@@ -18,3 +18,18 @@ $().ready(function () {
 	// <input type="hidden" name="nextUrl" /> 얘의 nextUrl을 설정해주는 것.
 	$("input[name=nextUrl]").val(nextUrl);
 });
+
+$(document).ready(function() {
+
+    var message = $(".login-container").data("message");
+    var messageType = $(".login-container").data("message-type");
+
+    console.log("message:" + message);
+    console.log("messageType:" + message);
+
+    if (message) {
+        if (messageType === "success" || messageType === "error") {
+            alert(message);
+        }
+    }
+});
