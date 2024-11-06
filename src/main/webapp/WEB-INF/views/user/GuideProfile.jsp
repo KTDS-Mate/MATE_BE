@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link rel="stylesheet" href="/css/user/GuideProfile.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />

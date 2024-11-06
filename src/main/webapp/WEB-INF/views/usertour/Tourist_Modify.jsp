@@ -5,6 +5,7 @@ uri="http://www.springframework.org/tags/form" %>
 <html>
   <head>
     <meta charset="UTF-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <title>여행자 투어 수정</title>
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link
