@@ -1,6 +1,8 @@
 package com.mate.bbs.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
@@ -54,6 +56,15 @@ public class UserTourDaoImpl extends SqlSessionDaoSupport implements UserTourDao
 		return this.getSqlSession().update(NAMESPACE + ".updateUserTourIsDtl", usrTrPstId);
 	}
 
+	@Override
+	public int updateGdId(String usrTrPstId, String usrLgnId) {
+		Map<String, Object> param = new HashMap<>();
+		param.put("usrTrPstId", usrTrPstId);
+		param.put("usrLgnId", usrLgnId);
+		
+		return this.getSqlSession().update(NAMESPACE + ".updateGdId", param);
+	}
+	
 	@Override
 	public String selectAttachStartHour(UserTourWriteVO userTourWriteVO) {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachStartHour", userTourWriteVO);

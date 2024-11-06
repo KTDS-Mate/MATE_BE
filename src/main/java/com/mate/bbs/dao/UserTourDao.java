@@ -2,6 +2,8 @@ package com.mate.bbs.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.mate.bbs.vo.SearchUserTourVO;
 import com.mate.bbs.vo.UserTourImgVO;
 import com.mate.bbs.vo.UserTourModifyVO;
@@ -50,6 +52,18 @@ public interface UserTourDao {
 	public int updateUserTourIsDtl(String usrTrPstId);
 	
 	/**
+	 * 예약 버튼을 클릭했을 때 해당 게시글의 예약 상태와 가이드 아이디를 변경
+	 * @param usrTrPstId 게시글 아이디
+	 * @param usrLgnId 가이드 아이디
+	 * @return
+	 */
+	public int updateGdId(@Param("usrTrPstId") String usrTrPstId, @Param("usrLgnId") String usrLgnId);
+	
+	
+	
+	
+	
+	/**
 	 * 사용자가 입력한 시작 날짜와 시간을 YYYY-MM-DD HH24:MI로 포멧을 맞춰주는 쿼리 실행
 	 * @param userTourWriteVO 게시글 작성에 사용
 	 * @return
@@ -76,6 +90,9 @@ public interface UserTourDao {
 	 * @return
 	 */
 	public String selectAttachEndHour2(UserTourModifyVO userTourModifyVO);
+	
+	
+	
 	
 	/**
 	 * 사용자가 입력한 투어 희망 정보를 저장

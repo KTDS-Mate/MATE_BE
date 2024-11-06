@@ -24,7 +24,9 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
       <div class="content">
         <div class="grid-rows">
           <div class="subject">
-            <div class="ttl-wb" data-pst-id="${userTourVO.usrTrPstId}">
+            <div class="ttl-wb" 
+                 data-pst-id="${userTourVO.usrTrPstId}"
+                 data-pst-stts="${userTourVO.usrTrStts}">
               <h1>${userTourVO.usrTrTtl}</h1>
               <div class="wish-button"></div>
             </div>
@@ -64,8 +66,8 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                   <h2>${userTourVO.usrTrGdHrPrc}$</h2>
                 </div>
                 <c:if test="${sessionScope._LOGIN_USER_.usrIsGd eq 'Y'}">
-                  <div class="reserve-btn">
-                    <button>예약하기</button>
+                  <div class="reserve-btn-group">
+                    <button class="reserve-btn">예약하기</button>
                   </div>
                 </c:if>
               </div>

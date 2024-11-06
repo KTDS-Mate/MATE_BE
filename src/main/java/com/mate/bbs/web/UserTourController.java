@@ -104,5 +104,13 @@ public class UserTourController {
 		return "redirect:/mypage/mytour/tr-mytour/" + loginId;
 	}
 	
+	@GetMapping("/usertour/reserve/{usrTrPstId}/{usrLgnId}")
+	public String doReserveUserTour(@PathVariable String usrTrPstId
+								  , @PathVariable String usrLgnId) {
+		boolean isReserved = this.userTourService.reserveUserTour(usrTrPstId, usrLgnId);
+		
+		return "redirect:/usertour/view?usrTrPstId=" + usrTrPstId;
+	}
+	
 	
 }

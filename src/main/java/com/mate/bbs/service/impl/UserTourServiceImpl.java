@@ -95,8 +95,6 @@ public class UserTourServiceImpl implements UserTourService{
 			userTourListVO.setUserTourList( new ArrayList<>() );
 			return userTourListVO;
 		}
-		// 한 화면에 보여 줄 게시글 수 지정
-		searchUserTourVO.setListSize(9);
 		// pagination 을 위해 listSize를 보내줌
 		searchUserTourVO.setPageCount(userTourCnt);
 		
@@ -143,6 +141,12 @@ public class UserTourServiceImpl implements UserTourService{
 	public boolean softDeleteUserTour(String usrTrPstId) {
 		int updateCount = this.userTourDao.updateUserTourIsDtl(usrTrPstId);
 		return updateCount > 0;
+	}
+
+	@Transactional
+	@Override
+	public boolean reserveUserTour(String usrTrPstId, String usrLgnId) {
+		return this.userTourDao.updateGdId(usrTrPstId, usrLgnId) > 0;
 	}
 	
 }

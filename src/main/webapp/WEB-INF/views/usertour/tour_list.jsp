@@ -105,12 +105,12 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
           </div>
         </form>
         <div class="flex-list-insert-btn">
-          <div>
-          	<c:if test="${not empty sessionScope._LOGIN_USER_}">
-            	<a class="insert-tour-btn" href="/usertour/insert">투어 등록</a>
-          	</c:if>
-          </div>
           <div class="list-view-option">
+          	<c:if test="${not empty sessionScope._LOGIN_USER_}">
+          		<div>
+            	<a class="insert-tour-btn" href="/usertour/insert">투어 등록</a>
+            	</div>
+          	</c:if>
             <form class="order-form">
             <input
               id="latest"
@@ -153,30 +153,39 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                   <c:choose>
                     <c:when
                       test="${not empty userTourVO.userTourImgList && not empty userTourVO.userTourImgList[0].usrTrRqImgIdUrl}">
+                      <div>
                       <img
                         class="tour-country-image"
                         src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}" />
+                      </div>
                     </c:when>
                     <c:otherwise>
+                      <div>
                       <img
                         class="tour-country-image"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr0t3L6uYd0dlfnh5DF4JSbDvumbCUZbGhIg&s" />
+                        src="/img/tourboard/mateImg.png" />
+                      </div>
                     </c:otherwise>
                   </c:choose>
-                  <p>
-                    <h3 class="tour-subject">${userTourVO.usrTrTtl}</h3>
-                  </p>
+                  <div class="tour-cont">
+                  <c:if test="${userTourVO.deadline < 3}">
+                  	<span class="deadline-come">마감일이 얼마 남지 않았습니다!</span>
+                  </c:if>
+                  <div class="tour-subject">${userTourVO.usrTrTtl}</div>
                   <div class="tour-comment">${userTourVO.usrTrPrps}</div>
-                  <div class="tourtime-deadline">
+                  <div>
                     <div>
-                      <p class="tour-schedule">
+                      <p>
                         투어일 : ${userTourVO.usrTrStDt}
                       </p>
                       <div>
                         지역 : ${userTourVO.citiesVO.cityName} /
                         ${userTourVO.countriesVO.countryName}
                       </div>
-                      <div>소요시간 : ${userTourVO.usrTrTm}분</div>
+                      <div class="tour-time">
+                          <img class="clock-img" alt="시계" src="/img/tourboard/ClockImage.png">
+                      		${userTourVO.usrTrTm}분
+                      </div>
                       <c:choose>
                       	<c:when test="${userTourVO.usrTrStts eq 'RSRVT'}">
                       		<div>예약 상태 : 예약 중</div>
@@ -192,11 +201,13 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       	</c:otherwise>
                       </c:choose>
                     </div>
-                    <p class="tour-deadline">마감 ${userTourVO.deadline}일전</p>
+                  </div>
                   </div>
                   <div class="tour-cost-fee">
-                    <p class="tour-cost">총 가이드 비용</p>
-                    <h1 class="tour-fee">${userTourVO.usrTrGdHrPrc} $</h1>
+                  	<div class="dollar">
+                    	<h1>$${userTourVO.usrTrGdHrPrc}</h1>
+                    </div>
+                     <p>마감 ${userTourVO.deadline}일전</p>
                   </div>
                 </div>
               </c:forEach>

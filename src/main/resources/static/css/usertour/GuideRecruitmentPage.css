@@ -297,13 +297,17 @@ a:hover {
   height: 15rem;
 }
 
-.reserve-btn > button {
+.reserve-btn {
 	padding: 1rem;
 	margin-top: 2rem;
 	background-color: #fff;
 	border: 1px solid #ddd;
 	border-radius: 10px;
 	color: #333;
+}
+
+.reserve-btn:hover {
+	background-color: #ddd;
 }
 
 .tr-dtls-p {

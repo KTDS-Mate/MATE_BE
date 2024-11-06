@@ -42,4 +42,6 @@ public interface UserTourService {
 	 */
 	public boolean softDeleteUserTour(String usrTrPstId);
 	
+	public boolean reserveUserTour(String usrTrPstId, String usrLgnId);
+	
 }

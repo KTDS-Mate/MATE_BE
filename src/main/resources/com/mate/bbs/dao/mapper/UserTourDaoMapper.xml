@@ -161,6 +161,7 @@
 		     , UTR.GD_AGE 
 		     , UTR.GD_CRR 
 		     , UTR.GD_WNT_RQ 
+		     , UTR.USR_TR_STTS
 		     , TO_CHAR(UTR.USR_TR_ST_DT, 'YYYY-MM-DD HH24:MI') USR_TR_ST_DT
 		     , TO_CHAR(UTR.USR_TR_ED_DT, 'YYYY-MM-DD HH24:MI') USR_TR_ED_DT
 		     , UTRI.USR_TR_RQ_IMG_ID_URL
@@ -217,7 +218,7 @@
 		SELECT UTR.USR_TR_PST_ID
 		     , UTR.USR_TR_TTL 
 		     , UTR.USR_TR_PRPS 
-		     , TO_CHAR(UTR.USR_TR_ST_DT, 'YYYY-MM-DD') USR_TR_ST_DT 
+		     , TO_CHAR(UTR.USR_TR_ST_DT, 'YYYY-MM-DD HH24:MI') USR_TR_ST_DT 
 		     , UTR.USR_TR_ED_DT 
 		     , UTR.USR_TR_GD_HR_PRC 
 		     , UTR.USR_TR_STTS 
@@ -347,5 +348,13 @@
 		DELETE FROM TR_SCHDL 
  		 WHERE USR_TR_PST_ID = #{_parameter}
 	</delete>
+	
+	<update id="updateGdId"
+			parameterType="map">
+		UPDATE USR_TR_RQST
+		   SET GD_ID = #{usrLgnId}
+		     , USR_TR_STTS = 'RSRVT'
+		 WHERE USR_TR_PST_ID = #{usrTrPstId}
+	</update>
 	
 </mapper>
