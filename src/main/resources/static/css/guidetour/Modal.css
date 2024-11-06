@@ -58,7 +58,7 @@
   font-size: 3.4375rem; /* 별 크기 조정 */
   margin: 1rem;
   cursor: pointer;
-  background: url("/public/Star Off.png") no-repeat center;
+  background: url("/public/StarOff.png") no-repeat center;
   background-size: 3.4375rem;
 }
 

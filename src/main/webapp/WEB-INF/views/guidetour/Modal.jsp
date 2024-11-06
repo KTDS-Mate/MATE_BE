@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -25,7 +26,9 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
         />
       </div>
       <div class="reviewWritingArea">
-        <form>
+        <form:form modelAttribute="guideTourReviewWriteVO" method="post">
+        <input id="" type="hidden" data-gd-pst-id="${guideTourVO.gdTrPstId}" />
+        <input id="starCnt" name="gdTrRvwRtng" type="hidden" value="1" />
           <h2>리뷰 작성</h2>
           <div class="starRating">
             <span class="starThree on" value="1"></span>
@@ -35,15 +38,16 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
             <span class="starThree" value="5"></span>
           </div>
           <textarea
+            name="gdTrRvwCntnt"
             class="starBox"
             placeholder="리뷰 내용을 작성해주세요."
-          ></textarea>
+          >${GuideTourReviewVO.gdTrRvwCntnt}</textarea>
           <input
             type="submit"
             class="reviewSubmitButton btn-submit-review"
             value="리뷰 등록"
           />
-        </form>
+        </form:form>
       </div>
     </dialog>
     <dialog id="picModalArea" class="picModal hidden">

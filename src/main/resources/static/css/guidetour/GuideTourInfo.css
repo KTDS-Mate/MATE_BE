@@ -239,7 +239,6 @@
   padding: 1rem;
   align-items: left;
   flex-direction: column;
-  border: 1px solid #ffeedb;
   border-bottom-left-radius: 1.25rem;
   border-bottom-right-radius: 1.25rem;
 }
@@ -247,10 +246,19 @@
 .summaryDetailArea > h1 {
   font-size: 1rem;
   font-weight: 500;
-  margin: 0.5rem 0 0.5rem 0.7rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  /*몇 번째 줄부터 ...으로 표시할 것인지 설정 가능*/
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  margin: 0.7rem 0 0.5rem 0rem;
 }
 
 .summaryDetailArea > h4 {
+	margin: 0.2rem;
+}
+.summaryDetailArea > h5 {
 	margin: 0.2rem;
 }
 
@@ -291,7 +299,6 @@
   justify-content: space-evenly;
   align-items: center;
   flex-direction: row;
-  border: 1px solid #ffeedb;
   border-bottom-left-radius: 1.25rem;
   border-bottom-right-radius: 1.25rem;
 }
