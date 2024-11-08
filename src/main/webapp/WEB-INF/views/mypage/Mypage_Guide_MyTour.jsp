@@ -86,7 +86,7 @@
                             </div>
 
                             <div class="right-align">
-                              <a href="">수정</a>
+                              <a href="/guidetour/Modify/${board.gdTrPstId}">수정</a>
                               /
                               <a
                                 href="javascript:deleteTour('${sessionScope._LOGIN_USER_.usrLgnId}', '${board.gdTrPstId}')">삭제</a>

@@ -98,9 +98,15 @@
           </form> 
           <div class="flex-list-insert-btn">
             	<div>
-            		<a class="insert-tour-btn" href="/guidetour/insert">투어 등록하기</a>
+            		<a class="insert-tour-btn" href="/guidetour/insert">투어 등록</a>
             	</div>
             	<div class="list-view-option">
+            		<div class="input-option">
+		              	<input id="latest"
+		            		   class="${searchGuideTourVO.orderBy eq '최신순' ? 'checked2' : '' }" 
+		            		   type="button"
+		            		   value="최신순"/>
+	            	</div>
             		<div class="input-option">
 		            	<input id="high-price"
 		            		   class="${searchGuideTourVO.orderBy eq '높은 가격순' ? 'checked2' : ''}" 
@@ -118,12 +124,6 @@
 		            		   class="${searchGuideTourVO.orderBy eq '마감 임박순' ? 'checked2' : '' }" 
 		            		   type="button"
 		            		   value="마감 임박순"/>
-	            	</div>
-	            	<div class="input-option">
-		              	<input id="latest"
-		            		   class="${searchGuideTourVO.orderBy eq '최신순' ? 'checked2' : '' }" 
-		            		   type="button"
-		            		   value="최신순"/>
 	            	</div>
 	            	<div class="input-option">
 		              	<input id="high-rating"
@@ -152,20 +152,61 @@
                     </c:otherwise>
                   </c:choose>
                 </div>
-                <div class="tour-contents">
-                  <div><img class="star-icon"
-                      src="https://img.freepik.com/premium-vector/shiny-golden-star-icon-yellow-stars-glossy-colors-vector-illustration_230920-3112.jpg">
-                    <span class="star-review">4.8</span>
-                  </div>
-                  <h2>${guideTourVO.gdTrTtl}</h2>
-                  <p class="tour-contents-text"><span>나라 :</span> ${guideTourVO.citiesVO.cityName}</p>
-                  <p class="tour-contents-text"><span>날짜 :</span> ${guideTourVO.gdTrStDt} ~ ${guideTourVO.gdTrEdDt}</p>
-                  <p class="tour-contents-text"><span>투어 최대인원 :</span> ${guideTourVO.gdTrMxNp}명</p>
-                  <p class="tour-contents-text"><span>비용 :</span> ${guideTourVO.gdTrPrc}$</p>
-                  <p class="tour-contents-text"><span>가이드 평점 :</span> ${guideTourVO.avgRvw}</p>
-                  <p class="tour-contents-text"><span>상세 정보 :</span> ${guideTourVO.avgRvw}</p>
-                </div>
-              </div>
+					<div class="tour-box-content">
+						<div class="tour-contents">
+							<div class="rating-ttl">
+							<div class="rating-area">
+								<img class="star-icon"
+									src="https://img.freepik.com/premium-vector/shiny-golden-star-icon-yellow-stars-glossy-colors-vector-illustration_230920-3112.jpg">
+								<c:choose>
+		                    		<c:when test="${not empty guideTourVO.avgRvw}">
+					                    <h5 class="averageRating">${guideTourVO.avgRvw}</h5>
+		                    		</c:when>
+		                    		<c:otherwise>
+		                    			<h5 class="averageRating"> 0 </h5>
+		                    		</c:otherwise>
+                    			</c:choose>
+							</div>
+							<h3>${guideTourVO.gdTrTtl}</h3>
+							<p class="tour-contents-text">${guideTourVO.gdTrSmry}</p>
+							</div>
+							<div class="tour-contents-info">
+								<div class="asd">
+							    <div class="tour-contents-text">
+									<span>가이드 :</span> ${guideTourVO.userVO.usrLnm} ${guideTourVO.userVO.usrFnm}
+								</div>
+								<div class="tour-contents-text">
+									<span>최대인원 :</span> ${guideTourVO.gdTrMxNp}명
+								</div>
+								<div class="tour-contents-text">
+									<span>가이드 평점 :</span> ${guideTourVO.avgGdRvw}
+								</div>
+								</div>
+								<div class="asd">
+								<div class="tour-contents-ctr">
+									${guideTourVO.citiesVO.cityName} /
+									${guideTourVO.countriesVO.countryName}
+								</div>
+								<div class="tour-time">
+									<img class="clock-img" alt="시계"
+										src="/img/tourboard/ClockImage.png">
+									${userTourVO.usrTrTm} ${guideTourVO.gdTrStDt} <img
+										class="inline-margin" src="/img/tourboard/~.png" />
+									${guideTourVO.gdTrEdDt}
+								</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tour-box-right-content">
+						<div class="tour-contents-prc">
+							<h2><span>$</span>${guideTourVO.gdTrPrc}</h2>
+						</div>
+							<div class="tour-right-info">
+								
+							</div>
+					</div>
+				</div>
             </c:forEach>
           </div>
           <!-------------------------------------------------------------->

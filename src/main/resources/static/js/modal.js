@@ -88,6 +88,10 @@ $().ready(function () {
     // 'on' 클래스를 초기화하고, 클릭한 요소와 그 이전 요소에 'on' 클래스를 추가
     $(this).parent().children(".starThree").removeClass("on"); // span이 아니라 .star 클래스 선택
     $(this).addClass("on").prevAll(".starThree").addClass("on"); // span 대신 .star 사용
+	var starCnt = $(".on").length;
+	console.log(starCnt);
+	$("#starCnt").val(starCnt);
+	
   });
 
   // 초기화 함수 호출

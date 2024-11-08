@@ -12,7 +12,7 @@ public class TrMyWishVO {
 	
 	private TrMyBoardVO trMyBoardVO;
 	
-	
+	private String usrTrPstId;
 	
 	
 	
@@ -66,7 +66,12 @@ public class TrMyWishVO {
 	public void setGdTrPstId(String gdTrPstId) {
 		this.gdTrPstId = gdTrPstId;
 	}
-	
+	public String getUsrTrPstId() {
+		return usrTrPstId;
+	}
+	public void setUsrTrPstId(String usrTrPstId) {
+		this.usrTrPstId = usrTrPstId;
+	}
 	
 	
 	
