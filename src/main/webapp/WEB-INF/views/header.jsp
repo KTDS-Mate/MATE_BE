@@ -40,10 +40,8 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
           <a href="/user/logout">로그아웃</a>
         </div>
         <div>
-          <a
-            href="/mypage/edit-profile/choice?usrLgnId=${sessionScope._LOGIN_USER_.usrLgnId}&usrIsGd=${sessionScope._LOGIN_USER_.usrIsGd}"
-            >마이페이지</a
-          >
+          <a href="/mypage/edit-profile/choice?usrLgnId=${sessionScope._LOGIN_USER_.usrLgnId}&usrIsGd=${sessionScope._LOGIN_USER_.usrIsGd}">
+          마이페이지</a>
         </div>
       </c:otherwise>
     </c:choose>
