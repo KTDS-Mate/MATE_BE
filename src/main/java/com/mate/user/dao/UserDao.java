@@ -2,6 +2,8 @@ package com.mate.user.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.mate.common.vo.CountriesVO;
 import com.mate.user.vo.LoginUserVO;
 import com.mate.user.vo.RegistUserVO;
@@ -19,7 +21,7 @@ public interface UserDao {
 	
 	public int getPaypalEmailCount(String payPalEmail);
 	
-	public int getPhnCount(String usrPhn);
+	public int getPhnCount(@Param("usrPhn")String usrPhn, @Param("usrLgnId")String usrLgnId);
 	
 	public String selectSalt(String usrId);
 	

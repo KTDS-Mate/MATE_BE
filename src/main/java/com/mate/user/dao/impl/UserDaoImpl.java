@@ -2,6 +2,7 @@ package com.mate.user.dao.impl;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,7 @@ public class UserDaoImpl extends SqlSessionDaoSupport implements UserDao {
 	}
 	
 	@Override
-	public int getPhnCount(String usrPhn) {
+	public int getPhnCount(@Param("usrPhn")String usrPhn, @Param("usrLgnId")String usrLgnId) {
 		return this.getSqlSession().selectOne(NAMESPACE + ".getPhnCount", usrPhn);
 	}
 	
