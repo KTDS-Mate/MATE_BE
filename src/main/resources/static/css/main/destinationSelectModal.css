@@ -5,8 +5,8 @@ div.content {
 .destinationSelectModal {
   width: 24rem;
   height: 20rem;
-  top: 75.8vh;
-  right: 41vh;
+  top: 628px;
+  left: -400px;
   padding: 0.25rem;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -82,17 +82,43 @@ div.content {
 }
 
 .searchButton {
-  width: 1.5rem;
+  width: 3rem;
   height: 1.5rem;
   margin: 0 auto;
 }
 
-.hidden {
-  display: none;
+.searchArea {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 0.25rem;
 }
 
-.searchResults {
-  margin-top: 1rem;
-  max-height: 10rem;
-  overflow-y: auto;
+.searchForm {
+  width: 100%;
+}
+
+.searchType,
+.searchInput,
+.searchButton {
+  margin: 0.25rem;
+}
+
+.searchResultArea {
+  width: 100%;
+  height: calc(100% - 2rem);
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  text-align: center;
+  align-content: center;
+}
+
+.searchResultArea #text {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
 }

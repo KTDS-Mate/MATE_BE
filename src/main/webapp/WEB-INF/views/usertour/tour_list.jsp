@@ -28,31 +28,31 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
           <h1>투어 요청 목록</h1>
         </div>
         <div class="search-zone">
-          <form class="search-form">
-          	<input id="search-val-1" type="hidden" name="searchType" value="${searchUserTourVO.searchType}"  />
-          	<input id="search-val-3" type="hidden" name="regionName" value="${searchUserTourVO.regionName}"  />
-          	<input id="search-val-4" type="hidden" name="orderby" value="${searchUserTourVO.orderby}"  />
-            <input
-              type="hidden"
-              name="pageNo"
-              class="page-no"
-              value="${searchUserTourVO.pageNo}" />
-            <div class="search-area">
-          	<select class="search-type" name="searchType">
-          		<option value="country" class='${"country" eq searchUserTourVO.searchType ? "selected" : ""}'>국가</option>
-          		<option value="city" class='${"city" eq searchUserTourVO.searchType ? "selected" : ""}'>도시</option>
-          		<option value="title" class='${"title" eq searchUserTourVO.searchType ? "selected" : ""}'>제목</option>
-          		<option value="price" class='${"price" eq searchUserTourVO.searchType ? "selected" : ""}'>가격</option>
-          	</select>
-              <input
-                type="text"
-                name="searchKeyword"
-                class="search-input"
-                placeholder="국가를 입력해주세요."
-                value="${searchUserTourVO.searchKeyword}" />
-              <button class="search-button">검색</button>
-            </div>
-          </form>
+                              <form class="search-form">
+                                <input id="search-val-1" type="hidden" name="searchType" value="${searchUserTourVO.searchType}"  />
+                                <input id="search-val-3" type="hidden" name="regionName" value="${searchUserTourVO.regionName}"  />
+                                <input id="search-val-4" type="hidden" name="orderby" value="${searchUserTourVO.orderby}"  />
+                                <input
+                                  type="hidden"
+                                  name="pageNo"
+                                  class="page-no"
+                                  value="${searchUserTourVO.pageNo}" />
+                                <div class="search-area">
+                                <select class="search-type" name="searchType">
+                                  <option value="country" class='${"country" eq searchUserTourVO.searchType ? "selected" : ""}'>국가</option>
+                                  <option value="city" class='${"city" eq searchUserTourVO.searchType ? "selected" : ""}'>도시</option>
+                                  <option value="title" class='${"title" eq searchUserTourVO.searchType ? "selected" : ""}'>제목</option>
+                                  <option value="price" class='${"price" eq searchUserTourVO.searchType ? "selected" : ""}'>가격</option>
+                                </select>
+                                  <input
+                                    type="text"
+                                    name="searchKeyword"
+                                    class="search-input"
+                                    placeholder="국가를 입력해주세요."
+                                    value="${searchUserTourVO.searchKeyword}" />
+                                  <button class="search-button">검색</button>
+                                </div>
+                              </form>
         </div>
         <form class="region-form">
           <div class="region-menu-area">
