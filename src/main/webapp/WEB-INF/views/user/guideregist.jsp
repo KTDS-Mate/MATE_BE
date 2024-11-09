@@ -88,21 +88,24 @@
 			    <ul id="addedCitiesList"></ul>
 			</div>
 		</div>
+		
         <!-- 라이센스 -->
-        <div class="section-box">
-            <h2>라이센스</h2>
-            <div class="form-item">
-                <label for="license-0">라이센스명</label>
-                <input type="text" name="licenses[0].lcnNm" id="license-0" placeholder="라이센스 명">
-            </div>
-            <div class="form-item">
-                <label>라이센스 인증서류</label>
-                <input type="file" name="licenses[0].lcnImgFile" id="lcnImgFile-0">
-            </div>
-            <div id="additionalLicenses"></div>
-            <button type="button" onclick="addLicenseItem()">라이센스 추가</button>
-            
-        </div>
+		<div class="section-box">
+		    <h2>라이센스</h2>
+		    <div class="license-item" id="license-item-0">
+		        <div class="form-item">
+		            <label for="license-0">라이센스명</label>
+		            <input type="text" name="licenses[0].lcnNm" id="license-0" placeholder="라이센스 명">
+		        </div>
+		        <div class="form-item">
+		            <label>라이센스 인증서류</label>
+		            <input type="file" name="licenses[0].lcnImgFile" id="lcnImgFile-0">
+		        </div>
+		        <!-- 삭제 버튼 없음 -->
+		    </div>
+		    <div id="additionalLicenses"></div>
+		    <button type="button" onclick="addLicenseItem()">라이센스 추가</button>
+		</div>
 
         <!-- 정산 정보 -->
         <div class="section-box">
