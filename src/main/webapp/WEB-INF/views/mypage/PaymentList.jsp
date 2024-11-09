@@ -58,7 +58,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       name = "searchType" />
                     <input
                       type="button"
-                      onclick="window.location.href='/mypage/payment/list/${searchPaymentVO.trstLgnId}"
+                      onclick="window.location.href='/mypage/payment/list/${searchPaymentVO.trstLgnId}'"
                       value="전체조회"
                       />
                     <input 

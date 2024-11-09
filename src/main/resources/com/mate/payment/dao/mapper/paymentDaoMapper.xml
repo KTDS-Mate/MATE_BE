@@ -211,7 +211,30 @@
 	   AND PAY_STT = 'COMPLETE'
 </update>
 
-
+<insert id="insertPayment" parameterType="com.mate.payment.vo.PaymentVO">
+ INSERT INTO PAY_INF
+		PAY_ID
+		TRST_ID
+		GD_ID
+		PAY_TR_TP
+		PAY_TR_ID
+		PAY_CSH
+		PAY_STT
+		PAY_CRT_DT
+		PAY_CRRNC
+		PAY_CMMSSN
+	VALUES
+		('PI-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_PAY_INF_PK.NEXTVAL, 6, 0)
+		, #{trstId}
+		, #{gdId}
+		, #{payTrTp}
+		, #{payTrId}
+		, #{payCsh}
+		, 'WAITING'
+		, SYSDATE
+		, 'USD'
+		, #{payCmmssn}
+</insert>
 
 
 

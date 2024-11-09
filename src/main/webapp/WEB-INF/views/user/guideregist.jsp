@@ -114,7 +114,7 @@
         </div>
 		<div class="button-container">
 	        <button type="submit">등록</button>
-	        <button type="button" onclick="window.location.href='/cancel'">취소</button>
+	        <button type="button" onclick="window.location.href='/mypage/edit-profile/choice?usrLgnId=${sessionScope._LOGIN_USER_.usrLgnId}&usrIsGd=${sessionScope._LOGIN_USER_.usrIsGd}'">취소</button>
         </div>
     </form:form>
     </div>

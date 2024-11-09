@@ -102,6 +102,7 @@
     <!-- intl-tel-input utils.js -->
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.1/build/js/utils.js"></script>
     <script type="text/javascript" src="/js/user/modal.js"></script>
+    <script type="text/javascript" src="/js/user/editpwd-modal.js"></script>
 	
   </body>
 </html>
