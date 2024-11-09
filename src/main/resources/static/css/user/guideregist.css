@@ -1,282 +1,232 @@
-/* 전체 그리드 레이아웃 설정 */
-div.grid {
-  display: grid;
-  grid-template-columns: 1fr 80rem 1fr;
-  row-gap: 1rem;
+* {
+	box-sizing: border-box;
 }
 
-div.header {
-  grid-column: 2 / 2;
+/* 전체 컨테이너 스타일 */
+.container {
+    width: 60vw; /* 너비를 화면 너비의 80%로 설정 */
+    margin: auto;
+    margin-top: 6rem; /* 상단 여백 */
+    margin-bottom: 10rem; /* 하단 여백 */
 }
 
-div.content {
-  grid-column: 2 / 2;
-  grid-row: 2 / 2;
+/* 섹션 박스 스타일 */
+.section-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 1.3rem;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-div.footer {
-  grid-column: 1 / -1;
+/* 섹션 제목 스타일 */
+.section-box h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 1rem;
+    font-weight: bold;
 }
 
-/* 외부 박스 */
-div.main-content {
-  border-radius: 20px;
-  width: 50rem;
-  margin: auto;
-}
-
-/* 제목 부분 */
-div.content-title {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  margin-bottom: 2rem;
-}
-
-div.content-title div h2 {
-  margin: 0;
-}
-
-/* 내부 폼 컨테이너 */
-div.regist-form {
-  display: flex;
-  border-radius: 20px;
-  margin: 0 auto;
-  width: 100%;
-  padding: 1rem 0;
-  justify-content: center;
-}
-
-div.regist-content {
-  display: flex;
-  padding: 0 2rem;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-}
-
-div.section-box {
-  display: flex;
-  flex-direction: column;
-  font-size: 1.1rem;
-  margin: 1rem 0;
-  border: 2px solid #444; 
-  border-radius: 20px;
-  padding: 2rem;
-  width: 80%;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* 서브 타이틀 */
-div.sub-title {
-  display: flex;
-  width: 100%;
-  margin-bottom: 1rem;
-  justify-content: center;
-  padding-bottom: 1rem;
-  padding-top: 1rem;
-  font-size: 1.5rem;
-}
-
-/* 항목당 간격 조절 및 그리드 레이아웃 적용 */
-div.form-item {
-  display: grid;
-  grid-template-columns: 20% 80%;
-  width: 100%;
-  margin: 1rem 0;
-  padding: 1rem 0;
-  align-items: center;
-}
-
-/* 레이블 스타일 */
-div.form-item span,
-div.form-item label {
-  justify-self: end;
-  padding-right: 1rem;
-}
-
-/* 자기소개 textarea 스타일 */
-.self-int {
-  display: grid;
-  grid-template-columns: 20% 80%;
-  width: 100%;
-  margin: 1rem 0;
-  padding: 1rem 0;
-  align-items: center;
-}
-
-textarea {
-  width: 90%;
-  height: 8rem;
-  font-size: 1rem;
-  resize: none;
-  outline: none;
-  margin-top: 0.5rem;
-}
-
-/* 선택박스 */
-div.active-city-form select {
-  font-size: 1rem;
-  text-align: center;
-  text-align-last: center;
-  height: 2rem;
-  width: 14rem;
-  border-radius: 1rem;
-  padding: 0.5rem;
-}
-
-/* 파일 업로드 부분 */
-div.filebox {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  gap: 1rem;
-  justify-content: flex-end;
-}
-
-div.filebox input.filename {
-  width: 10rem;
-  height: 2rem;
-  padding: 0 0.5rem;
-}
-
-/* 파일찾기 버튼 스타일 */
-div.filebox label.file-search {
-color: #333;
-    border: 1px solid #333;
-    cursor: pointer;
-    font-size: 0.9rem;
-    padding: 0.3rem;
-    border-radius: 5px;
-    height: 2rem;
-    width: 5.5rem;
-    text-align: center;
+/* 폼 항목 스타일 */
+.form-item {
     display: flex;
     align-items: center;
-    justify-content: center;
+    margin-bottom: 1rem;
+    gap: 10px;
+    margin-left: 0.8rem;
 }
 
-/* 지역추가나 라이센스 추가 버튼 */
-button.plus-item {
-  color: #333;
-    border: 1px solid #333;
+/* 폼 항목 제목 스타일 */
+.form-item span, .form-item label {
+    width: 150px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* 텍스트, 이메일, 파일 입력 필드 스타일 */
+.form-item input[type="text"],
+.form-item input[type="email"],
+.form-item input[type="file"],
+.form-item select,
+.form-item textarea {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+/* 텍스트 영역 스타일 */
+.form-item textarea {
+    height: 5.5rem;
+    resize: vertical;
+}
+
+/* 파일 업로드 버튼 스타일 */
+.filebox {
+    display: flex;
+    align-items: center;
+}
+
+.filebox input[type="file"] {
+    display: none;
+}
+
+.filebox label {
+    padding: 8px 12px;
+    background-color: #f0e4d7;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 0.9rem;
-    height: 1.3rem;
-    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+.filebox label:hover {
+    background-color: #e0d4c7;
+}
+
+/* 활동 도시 선택 드롭다운 스타일 */
+.custom-select-box {
+    position: relative;
+    width: 100%;
+}
+
+/* 도시 선택 드롭다운 스타일 */
+#customDropdown {
+    position: absolute;
+    width: 20rem; 
+    height: 10rem; 
+    overflow-y: auto; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
     background-color: #fff;
-  padding: 0.3rem;
-  width: 4rem;
-  margin-left: 1rem;
+    z-index: 1000;
+    visibility: hidden;
 }
 
-/* 선택된 도시들 리스트 */
-div.form-item.selected-cities {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 1rem;
+
+.selected-option {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #fff;
 }
 
-ul#addedCitiesList {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-ul#addedCitiesList li {
-  background: none;
-  padding: 0.5rem 1rem;
-  border-radius: 15px;
-  display: flex;
-  gap: 10px;
-  border: 1px solid #333;
-  font-size: 0.8rem;
-  align-items: center;
-  flex-direction: row;
-}
-
-ul#addedCitiesList li button {
-  background: none;
-  border: none;
-  color: #ff0000;
-  cursor: pointer;
-  font-size: 0.6rem;
-}
-
-/* 최종 버튼 정렬 */
-div.select-btn {
-  display: flex;
-  justify-content: center;
-  padding: 1rem 2rem;
-}
-
-button.regist-button,
-button.cancel-button {
-  color: #fff;
-  background-color: #333;
-  width: 10rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 25px;
-  margin: 0 0.5rem;
-}
-
-button.cancel-button {
-  background-color: #bbb;
-}
 .dropdown-list {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  border: 1px solid #444;
-  background: #fff;
-  max-height: 150px;
-  overflow-y: auto;
-  z-index: 1000; 
-  border-radius: 8px;
-  margin-top: 4px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 10;
 }
 
 .dropdown-list li {
-  padding: 8px 12px;
-  cursor: pointer;
-  list-style: none;
-  font-size: 0.8rem;
+    padding: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
 .dropdown-list li:hover {
-  background-color: #f5f5f5;
-}
-
-.selected-option {
-  padding: 8px 12px;
-  border: 1px solid #444;
-  border-radius: 8px;
-  cursor: pointer;
-  background: #fff;
-  position: relative;
-  min-width: 200px;
-  font-size: 0.9rem;
-  text-align: center;
-}
-
-.custom-select-box {
-  position: relative;
-  display: inline-block;
-}
-
-.placeholder-option {
-  color: #888;
-  font-style: italic;
+    background-color: #f0e4d7;
 }
 
 .hidden {
-	display: none;
+    display: none;
+}
+
+/* 추가된 도시 목록 스타일 */
+.container .section-box .form-item #citySelection #addedCitiesList {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.container .section-box .form-item #citySelection #addedCitiesList li {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 5px 8px;
+    border-radius: 4px;
+    background-color: #fff6ec;
+    border: 1px solid #e0e0e0;
+    font-size: 1em;
+    min-height: 32px;
+}
+
+.container .section-box .form-item #citySelection #addedCitiesList li span {
+    display: inline-block;
+    margin-right: 5px;
+    line-height: 1;
+}
+
+.container .section-box .form-item #citySelection #addedCitiesList li button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ff0000; 
+    background: none;
+    border: none;
+    padding: 0 2px;
+    cursor: pointer;
+    font-weight: bold;
+    line-height: 1;
+    font-size: 1em;
+    min-width: 20px;
+    min-height: 20px;
+}
+
+.plus-item:hover {
+    background-color: #e0d4c7;
+}
+
+/* 등록 및 취소 버튼 스타일 */
+button[type="submit"], button[type="button"] {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: black;
+    border-color: #ccc;
+}
+
+button[type="submit"] {
+    background-color: white;
+    border: 1px solid #ccc;
+}
+
+button[type="button"] {
+    background-color: white;
+    border: 1px solid #ccc;
+}
+
+button[type="submit"]:hover {
+    background-color: #fff6ec;
+    border: 1px solid #fff6ec;
+}
+
+button[type="button"]:hover {
+    background-color: #fff6ec;
+    border: 1px solid #fff6ec;
+    
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; 
+    margin-top: 20px;
 }

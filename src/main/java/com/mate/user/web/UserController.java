@@ -99,10 +99,15 @@ public class UserController {
 	
 	@ResponseBody
 	@GetMapping("/user/regist/availablephn")
-	public Map<String, Object> doCheckAvailablePhn(@RequestParam String usrPhn) {
-		boolean isAvailablePhn = this.userService.checkAvailablePhn(usrPhn);
-		
+	public Map<String, Object> doCheckAvailablePhn(@RequestParam String usrPhn,
+												   @SessionAttribute(name = "_LOGIN_USER_", required= false) UserVO userVO) {
 		Map<String, Object> response = new HashMap<>();
+		
+		// 회원가입시 userVO가 null일 경우 항상 휴대전화번호가 이미 사용중인 번호라는 에러를 처리하기 위함. (AJAX 요청을 보내면 available이 항상 false이므로) 
+		String usrLgnId = (userVO != null) ? userVO.getUsrLgnId() : null;
+		
+		boolean isAvailablePhn = this.userService.checkAvailablePhn(usrPhn, usrLgnId);
+		
 		response.put("usrPhn", usrPhn);
 		response.put("available", isAvailablePhn);
 		
@@ -190,7 +195,7 @@ public class UserController {
 	}
 	
 	// 휴대전화번호 수정
-	@GetMapping("/user/editphone")
+	@GetMapping("/user/editphone/modal")
 	public String viewEditPhonePage(@SessionAttribute(name = "_LOGIN_USER_", required= false) UserVO userVO, Model model) {
 		
 		logger.debug("UserVO null check: {}", userVO);
@@ -199,35 +204,44 @@ public class UserController {
 			return "redirect:/user/login";
 		}
 		model.addAttribute("userVO", userVO);
-		return "user/editphn";
+		return "user/frag-editphn";
 	}
 	
+	@ResponseBody
 	@PostMapping("/user/editphone")
-	public String doEditPhone(@SessionAttribute(name = "_LOGIN_USER_", required= false) UserVO userVO , 
+	public Map<String, Object> doEditPhone(@SessionAttribute(name = "_LOGIN_USER_", required= false) UserVO userVO , 
 							  @RequestParam String newPhn, Model model) {
+		Map<String, Object> response = new HashMap<>();
+		if (userVO == null) {
+			response.put("success", false);
+			response.put("message", "로그인이 필요합니다.");
+			return response;
+		}
 		
-		if (userVO == null ) {
-			return "redirect:/user/login";
+		newPhn = newPhn.replaceAll("[^+0-9]", "");
+		
+		if (!newPhn.matches("^\\+?[0-9]{8,15}$")) {
+			response.put("success", false);
+			response.put("message", "휴대 전화번호를 올바르게 입력해 주세요.");
+			return response;
 		}
 		
 		try {
 			boolean isUpdated = userService.updateUserPhoneNumber(userVO.getUsrLgnId(), newPhn);
-
+			
 			if (isUpdated) {
 				userVO.setUsrPhn(newPhn);
-				model.addAttribute("success", "휴대전화번호가 성공적으로 변경되었습니다.");
+				response.put("success", true);
+				response.put("message", "휴대전화번호가 성공적으로 변경되었습니다.");
 			} else {
-				model.addAttribute("errorMessage", "휴대전화번호 변경에 실패하였습니다.");
+				response.put("success", false);
+				response.put("message", "휴대전화번호 변경에 실패했습니다.");
 			}
 		} catch(IllegalArgumentException e) {
-			model.addAttribute("phoneError", e.getMessage());
+			response.put("success", false);
+			response.put("message", e.getMessage());
 		}
-		if(userVO.getUsrIsGd().equals("N")) {
-            return "redirect:/mypage/edit-profile/tr-profile/"+ userVO.getUsrLgnId();
-    	} else if(userVO.getUsrIsGd().equals("Y")) {
-    		return "redirect:/mypage/edit-profile/gd-profile/"+ userVO.getUsrLgnId();
-    	}
-    	return "";
+		return response;
 	}
 	
 	@GetMapping("/user/editpypeml")
@@ -269,50 +283,65 @@ public class UserController {
 			return "redirect:/user/login";
 		}
 		model.addAttribute("userVO", userVO);
-		return "user/editpwd";
+		return "user/frag-editpwd";
 	}
 	
 	@PostMapping("/user/editpwd")
-	public String updatePassword(@SessionAttribute(name = "_LOGIN_USER_", required=false) UserVO userVO, 
+	@ResponseBody
+	public Map<String, Object> updatePassword(@SessionAttribute(name = "_LOGIN_USER_", required=false) UserVO userVO, 
 								@RequestParam String newPwd,
 								@RequestParam String currentPwd,
 								@RequestParam String confirmPwd,
 								Model model) {
+		Map<String, Object> response = new HashMap<>();
+		
 		if (userVO == null) {
-			return "redirect:/user/login";
+			response.put("success", false);
+			response.put("message", "로그인이 필요합니다.");
+			return response;
 		}
 		
 		// 현재 비밀번호 확인
 		if (!userService.checkCurrentPassword(userVO.getUsrLgnId(), currentPwd)) {
-			model.addAttribute("currentPwdError", "현재 비밀번호가 일치하지 않습니다.");
-			return "user/editpwd";
+			response.put("success", false);
+			response.put("message", "기존의 비밀번호가 일치하지 않습니다.");
+			return response;
 		}
 		
 		// 새 비밀번호와 확인 비밀번호 일치 확인
 		if (!newPwd.equals(confirmPwd)) {
-			model.addAttribute("confirmPwdError", "새 비밀번호가 일치하지 않습니다.");
-			return "user/editpwd";
+			response.put("success", false);
+			response.put("message", "새 비밀번호가 일치하지 않습니다.");
+			return response;
+		}
+		
+		// 비밀번호 정규식 검증
+		if (!isValidPassword(newPwd)) {
+			response.put("message", false);
+			response.put("message", "비밀번호 형식이 올바르지 않습니다.");
+			return response;
 		}
 		
 		try {
 			boolean isUpdated = userService.updateUserPassword(userVO, newPwd);
 			if (isUpdated) {
-				model.addAttribute("successMessage", "비밀번호가 변경되었습니다.");
-				if(userVO.getUsrIsGd().equals("N")) {
-		            return "redirect:/mypage/edit-profile/tr-profile/"+ userVO.getUsrLgnId();
-		    	} else if(userVO.getUsrIsGd().equals("Y")) {
-		    		return "redirect:/mypage/edit-profile/gd-profile/"+ userVO.getUsrLgnId();
-		    	}
-			} else {
-				model.addAttribute("errorMessage", "비밀번호 변경에 실패했습니다.");
-				return "redirect:/user/editpwd";
-			}
-		} catch (IllegalArgumentException e) {
-			model.addAttribute("errorMessage", "오류가 발생했습니다: " + e.getMessage());
+				response.put("success", true);
+				response.put("message", "비밀번호가 변경되었습니다.");
+	    	} else {
+	    		response.put("success", false);
+	    		response.put("message", "비밀번호 변경에 실패했습니다.");
+	    	}
+		} catch (Exception e) {
+			response.put("success", false);
+			response.put("message", "비밀번호 변경에 실패했습니다.");
 		}
-		
-		return userVO.getUsrIsGd().equals("Y") ? 
-			"redirect:/mypage/edit-profile/tr-profile/"+ userVO.getUsrLgnId() : "redirect:/mypage/edit-profile/gd-profile/"+ userVO.getUsrLgnId();
+		return response;
+	}
+	
+	// 비밀번호 유효성 검증 메서드
+	public boolean isValidPassword(String password) {
+		String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+{}\\[\\]:;<>,.?~\\-=/]).{8,16}$";
+		return password.matches(passwordRegex);
 	}
 	
 	
@@ -326,8 +355,13 @@ public class UserController {
 	        response.put("error", "로그인이 필요합니다.");
 	        return response;
 	    }
+	    
 	    boolean isValid = userService.checkCurrentPassword(userVO.getUsrLgnId(), currentPwd);
 	    response.put("isValid", isValid);
+	    
+	    if (!isValid) {
+	    	response.put("message", "현재 비밀번호가 일치하지 않습니다.");
+	    }
 	    return response;
 	}
 

@@ -33,7 +33,7 @@ spring:
       max-request-size: 10485760
 app:
   multipart:
-    base-dir: C:\matepic
+    base-dir: /Users/moomin/Downloads/uploadfiles
     obfuscation:
       enable: true
       hide-ext:
