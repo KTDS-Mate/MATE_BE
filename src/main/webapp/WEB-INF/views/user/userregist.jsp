@@ -98,11 +98,11 @@
             
             <!-- 아래 항목들은 ModelAttribute에 바인딩할 필요가 없으므로 form:input을 사용하지 않는다. (폼데이터 바인딩이 필요 없음) -->
             
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="authCode">인증번호입력</label>
                 <input type="text" id="authCode" name="authCode" value="" />
-                <button type="button" id="verify-btn" class="send-code-btn">인증 코드 확인</button>
-            </div>
+                <button type="button" id="verify-btn" class="send-code-btn" disabled>인증 코드 확인</button>
+            </div> -->
             
             <!-- 인증 여부 서버 전송 -->
             <input type="hidden" id="authVerified" name="authVerified" value="false" />

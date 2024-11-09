@@ -115,6 +115,7 @@ function addCity() {
             cityInput.parentNode.removeChild(cityInput);
         }
     };
+	
     newCity.appendChild(deleteButton);
 
     // 리스트에 추가
@@ -140,6 +141,11 @@ function addLicenseItem() {
     licenseIndex++;
 
     var additionalLicensesDiv = document.getElementById("additionalLicenses");
+
+    // 라이센스 항목을 감싸는 div 생성
+    var licenseItemDiv = document.createElement("div");
+    licenseItemDiv.className = "license-item";
+    licenseItemDiv.id = "license-item-" + licenseIndex;
 
     // 라이센스 명 입력
     var licenseDiv = document.createElement("div");
@@ -173,9 +179,46 @@ function addLicenseItem() {
     fileDiv.appendChild(fileLabel);
     fileDiv.appendChild(fileInput);
 
-	// 추가 라이센스 섹션의 끝에 항목 추가
-	additionalLicensesDiv.appendChild(licenseDiv);
-	additionalLicensesDiv.appendChild(fileDiv);
+    // 삭제 버튼 생성 (추가되는 라이센스 항목에만)
+    var deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.className = "delete-license-button";
+    deleteButton.textContent = "라이센스 삭제";
+    deleteButton.onclick = function() {
+        deleteLicenseItem(licenseIndex);
+    };
+
+    // 요소들을 라이센스 항목 div에 추가
+    licenseItemDiv.appendChild(licenseDiv);
+    licenseItemDiv.appendChild(fileDiv);
+    licenseItemDiv.appendChild(deleteButton);
+
+    // 추가 라이센스 섹션에 항목 추가
+    additionalLicensesDiv.appendChild(licenseItemDiv);
+}
+
+function deleteLicenseItem(index) {
+    var licenseItem = document.getElementById("license-item-" + index);
+    if (licenseItem) {
+        licenseItem.parentNode.removeChild(licenseItem);
+    }
+}
+
+function updateDeleteButtons() {
+    var deleteButtons = document.getElementsByClassName('delete-license-button');
+    var licenseItems = document.getElementsByClassName('license-item');
+
+    if (licenseItems.length <= 1) {
+        // 삭제 버튼 숨기기
+        for (var i = 0; i < deleteButtons.length; i++) {
+            deleteButtons[i].style.display = 'none';
+        }
+    } else {
+        // 삭제 버튼 보이기
+        for (var i = 0; i < deleteButtons.length; i++) {
+            deleteButtons[i].style.display = 'inline-block'; 
+        }
+    }
 }
 
 // 외부 클릭 시 드롭다운 닫기
