@@ -64,6 +64,7 @@ public class GuideTourWriteVO {
 	/**
 	 * 투어 요약(요구사항)
 	 */
+	@NotBlank(message = "투어 목적을 작성해주세요!")
 	private String gdTrSmry;
 	/**
 	 * 투어 등록일
@@ -89,11 +90,9 @@ public class GuideTourWriteVO {
 	 * 투어 작성자의 ID VO
 	 */
 	private String athrId;
-	/**
-	 * 리뷰 평점 알리아스
-	 */
-	private double avgRvw;
-
+	
+	
+	
 	public String getGdTrPstId() {
 		return gdTrPstId;
 	}
@@ -208,10 +207,5 @@ public class GuideTourWriteVO {
 	public void setAthrId(String athrId) {
 		this.athrId = athrId;
 	}
-	public double getAvgRvw() {
-		return avgRvw;
-	}
-	public void setAvgRvw(double avgRvw) {
-		this.avgRvw = avgRvw;
-	}
+	
 }

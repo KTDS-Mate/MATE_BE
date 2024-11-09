@@ -2,6 +2,8 @@ package com.mate.bbs.vo;
 
 import java.util.List;
 
+import com.mate.user.vo.UserVO;
+
 public class GuideTourReviewVO {
 
 	/**
@@ -39,8 +41,18 @@ public class GuideTourReviewVO {
 	/**
 	 * 투어에 대한 평점
 	 */
-	private String gdTrRvwRtng;
+	private int gdTrRvwRtng;
+	/**
+	 * 투어 리뷰 수정 날짜
+	 */
+	private String gdTrRvwMdfyDt;
 	
+	/**
+	 * 상위 리뷰 아이디(대댓글)
+	 */
+	private String prGdTrRvwId;
+	
+	// 컬럼 없음
 	/**
 	 * 별점의 개수.
 	 */
@@ -51,6 +63,19 @@ public class GuideTourReviewVO {
 	 */
 	private List<GuideTourReviewImgVO> guideTourReviewImgList;
 	
+	private UserVO userVO;
+	
+	private GuideTourVO guideTourVO;
+	
+	/**별점 평균 컬럼 없음**/
+	private double reviewAvg;
+	
+	/**별점 개수 컬럼 없음**/
+	private int fiveCount;
+	private int fourCount;
+	private int threeCount;
+	private int twoCount;
+	private int oneCount;
 	public String getGdTrRvwId() {
 		return gdTrRvwId;
 	}
@@ -99,11 +124,23 @@ public class GuideTourReviewVO {
 	public void setGdTrRvwIsDlt(String gdTrRvwIsDlt) {
 		this.gdTrRvwIsDlt = gdTrRvwIsDlt;
 	}
-	public String getGdTrRvwRtng() {
+	public int getGdTrRvwRtng() {
 		return gdTrRvwRtng;
 	}
-	public void setGdTrRvwRtng(String gdTrRvwRtng) {
+	public void setGdTrRvwRtng(int gdTrRvwRtng) {
 		this.gdTrRvwRtng = gdTrRvwRtng;
+	}
+	public String getGdTrRvwMdfyDt() {
+		return gdTrRvwMdfyDt;
+	}
+	public void setGdTrRvwMdfyDt(String gdTrRvwMdfyDt) {
+		this.gdTrRvwMdfyDt = gdTrRvwMdfyDt;
+	}
+	public String getPrGdTrRvwId() {
+		return prGdTrRvwId;
+	}
+	public void setPrGdTrRvwId(String prGdTrRvwId) {
+		this.prGdTrRvwId = prGdTrRvwId;
 	}
 	public int getReviewCount() {
 		return reviewCount;
@@ -117,4 +154,53 @@ public class GuideTourReviewVO {
 	public void setGuideTourReviewImgList(List<GuideTourReviewImgVO> guideTourReviewImgList) {
 		this.guideTourReviewImgList = guideTourReviewImgList;
 	}
+	public UserVO getUserVO() {
+		return userVO;
+	}
+	public void setUserVO(UserVO userVO) {
+		this.userVO = userVO;
+	}
+	public GuideTourVO getGuideTourVO() {
+		return guideTourVO;
+	}
+	public void setGuideTourVO(GuideTourVO guideTourVO) {
+		this.guideTourVO = guideTourVO;
+	}
+	public double getReviewAvg() {
+		return reviewAvg;
+	}
+	public void setReviewAvg(double reviewAvg) {
+		this.reviewAvg = reviewAvg;
+	}
+	public int getFiveCount() {
+		return fiveCount;
+	}
+	public void setFiveCount(int fiveCount) {
+		this.fiveCount = fiveCount;
+	}
+	public int getFourCount() {
+		return fourCount;
+	}
+	public void setFourCount(int fourCount) {
+		this.fourCount = fourCount;
+	}
+	public int getThreeCount() {
+		return threeCount;
+	}
+	public void setThreeCount(int threeCount) {
+		this.threeCount = threeCount;
+	}
+	public int getTwoCount() {
+		return twoCount;
+	}
+	public void setTwoCount(int twoCount) {
+		this.twoCount = twoCount;
+	}
+	public int getOneCount() {
+		return oneCount;
+	}
+	public void setOneCount(int oneCount) {
+		this.oneCount = oneCount;
+	}
+	
 }
