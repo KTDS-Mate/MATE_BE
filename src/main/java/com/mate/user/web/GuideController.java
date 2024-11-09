@@ -114,9 +114,9 @@ public class GuideController {
     	userVO.setUsrIsGd("Y");
         
         if ("Y".equals(isGd)) {
-        	return "redirect:" + NON_GUIDE_REDIRECT_URL + userVO.getUsrLgnId();
-        }else {
         	return "redirect:" + GUIDE_PROFILE_REDIRECT_URL + userVO.getUsrLgnId();
+        } else {
+        	return "redirect:" + NON_GUIDE_REDIRECT_URL + userVO.getUsrLgnId();
         }
     }
 

@@ -58,7 +58,8 @@
 	<select id="getPhnCount" parameterType="String" resultType="_int">
 		SELECT COUNT(1)
   		  FROM USR_INF
- 		 WHERE USR_PHN = #{_parameter}
+ 		 WHERE USR_LGN_ID != #{usrLgnId}
+ 		   AND USR_PHN = #{usrPhn}
 	</select>	
 	
 	<select id="selectSalt" parameterType="String" resultType="String">
