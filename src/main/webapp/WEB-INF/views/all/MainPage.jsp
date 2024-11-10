@@ -6,6 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+    <title>MATE</title>
     <link rel="stylesheet" type="text/css" href="/css/main/MainPage.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -119,24 +120,24 @@
                 </div>
                 <div class="reasonsArea">
                     <div class="reasonOneArea">
-                        <img src="/public/customerSupport.png" alt="이유사진1">
-                        <span>24/7 customer support</span>
+                        <img src="/public/1번여행사진.png" alt="이유사진1">
+                        <span>유니크한 투어</span>
                         <div class="reasonDetailArea">
-                            No matter the time zone, we're here to help.
+                            현지 가이드만이 제공하는<br>유니크한 투어를 경험해 보세요!
                         </div>
                     </div>
                     <div class="reasonOneArea">
-                        <img src="/public/Coin.png" alt="이유사진1">
-                        <span>Earn rewards</span>
+                        <img src="/public/2번여행사진.png" alt="이유사진1">
+                        <span>공정한 가격, 모두를 위한 혜택</span>
                         <div class="reasonDetailArea">
-                            Explore, earn, redeem, and repeat with our loyalty program.
+                            가이드, 여행자가 직접 투어 금액을 설정합니다.<br>투명하고 합리적인 여행을 경험하세요!
                         </div>
                     </div>
                     <div class="reasonOneArea">
-                        <img src="/public/Plan.png" alt="이유사진1">
-                        <span>Plan your way</span>
+                        <img src="/public/5번여행사진.png" alt="이유사진1">
+                        <span>나만의 특별한 여행</span>
                         <div class="reasonDetailArea">
-                            Stay felxible with free cancellation and the option to reserve now and pay later at no additional cost.
+                            여행자님의 취향과 일정이 반영된<br>나만의 특별한 여행을 설계해 보세요!
                         </div>
                     </div>
                 </div>

@@ -299,7 +299,7 @@ div.footer {
 }
 
 .reasonOneArea {
-  width: 20rem;
+  width: 25rem;
   height: auto;
   margin: 3rem;
   display: flex;
@@ -309,7 +309,7 @@ div.footer {
 }
 
 .reasonOneArea img {
-  width: 5rem;
+  width: 20rem;
   height: auto;
   margin: 1rem;
 }
@@ -363,6 +363,7 @@ div.footer {
   width: 20vw;
   border: 1px solid #ccc;
   margin: 0 auto;
+  margin-top: 6rem;
 }
 
 .thirdLayer h2,
