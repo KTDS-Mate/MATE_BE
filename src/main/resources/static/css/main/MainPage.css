@@ -283,7 +283,7 @@ div.footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 2rem 0 2rem 0;
+  margin: 2rem 0 0 0;
 }
 
 .reasonTextArea > span {
@@ -309,20 +309,20 @@ div.footer {
 }
 
 .reasonOneArea img {
-  width: 20rem;
+  width: 10rem;
   height: auto;
   margin: 1rem;
 }
 
 .reasonOneArea span {
-  font-size: 2rem;
+  font-size: 1.2rem;
   font-weight: bolder;
 }
 
 .reasonDetailArea {
   margin: 1rem 0 0 0;
   padding: 0 0.5rem 0 0.5rem;
-  font-size: 1.3rem;
+  font-size: 1rem;
   text-align: center;
 }
 
