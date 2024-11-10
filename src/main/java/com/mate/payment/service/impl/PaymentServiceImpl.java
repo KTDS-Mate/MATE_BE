@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mate.payment.dao.PaymentDao;
 import com.mate.payment.service.PaymentService;
@@ -64,12 +65,14 @@ public class PaymentServiceImpl implements PaymentService{
 		return this.paymentDao.selectOnePaymentAmount(payId);
 	}
 	
+	@Transactional
 	@Override
 	public boolean successPayment(PaymentVO paymentVO) {
 		int updateCnt = this.paymentDao.updateSuccessPayment(paymentVO);
 		return updateCnt > 0;
 	}
 	
+	@Transactional
 	@Override
 	public boolean refundPayment(String payId) {
 		int updateCnt = this.paymentDao.updateRefundPayment(payId);
