@@ -11,6 +11,12 @@
     <script type="text/javascript" src="/js/user/reissuepassword.js"></script>
 </head>
 <body>
+
+      <div class="header">
+        <!-- 헤더 공통파일 -->
+        <jsp:include page="../header.jsp"></jsp:include>
+      </div>
+
     <div class="container" data-message="${message}" data-message-type="${messageType}">
         <h2>비밀번호 찾기</h2>
         
@@ -35,6 +41,11 @@
                 <button type="submit" class="submit-btn">비밀번호 찾기</button>
             </div>
         </form:form>
+    </div>
+    
+       <div class="footer">
+      <!-- footer 공통파일 -->
+      <jsp:include page="../footer.jsp"></jsp:include>
     </div>
 </body>
 </html>
