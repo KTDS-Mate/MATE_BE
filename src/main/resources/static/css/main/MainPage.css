@@ -54,7 +54,7 @@ div.footer {
   width: 100%;
   height: 40rem;
   flex-direction: row;
-  /* overflow: visible; */
+  overflow: hidden;
 }
 
 .mainPictureCarousel {
@@ -213,7 +213,7 @@ div.footer {
 
 .centerArea > .tourSearchButton {
   width: 16rem;
-  height: 3rem;
+  height: 4rem;
   position: absolute;
   top: 80%;
   left: 50%;
@@ -336,7 +336,7 @@ div.footer {
   width: 100%;
   display: flex;
   margin-bottom: 2rem;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -345,9 +345,55 @@ div.footer {
   width: 100%;
   display: flex;
   margin-bottom: 2rem;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.thirdLayer h2,
+.fourthLayer h2,
+.fifthLayer h2 {
+  margin: 2rem;
+}
+
+.recommendCitiesAreaOne,
+.recommendCitiesAreaTwo,
+.recommendCitiesAreaThree {
+  width: 100%;
+  display: flex;
+  margin-bottom: 2rem;
+  flex-direction: row;
+  align-items: center;
+}
+
+.recommendGuideTourArea {
+  width: 23%;
+  height: 23%;
+  display: flex;
+  position: relative;
+  margin: 1rem;
+  border: 1px solid #fff;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.recommendGuideTourArea img {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.tourInfo {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  top: 200px;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 0 black;
 }
 
 .hidden {

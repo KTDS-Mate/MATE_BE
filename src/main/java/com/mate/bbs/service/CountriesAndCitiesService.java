@@ -24,5 +24,16 @@ public interface CountriesAndCitiesService {
 	 */
 	public CitiesListVO getCities(int countryId);
 
-	public TopDestinationsListVO getTopDestinations();
+	/**
+	 * 검색 타입과 검색어를 받아서 적절한 결과를 반환
+	 *
+	 * @param type  검색 타입 (예: country, city 등)
+	 * @param query 검색어
+	 * @return 검색 결과 리스트
+	 */
+	List<?> searchByType(String type, String query);
+
+
+
+//	public TopDestinationsListVO getTopDestinations();
 }

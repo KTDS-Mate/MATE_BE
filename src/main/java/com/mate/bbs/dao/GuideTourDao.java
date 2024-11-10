@@ -119,5 +119,7 @@ public interface GuideTourDao {
      * @return
      */
     public List<GuideTourScheduleInfoVO> selectTourScheduleList(String gdTrPstId);
-    
+
+    public List<GuideTourVO> getRandomGuideTours();
+
 }

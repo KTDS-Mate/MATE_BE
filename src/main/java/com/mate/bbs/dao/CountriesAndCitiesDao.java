@@ -47,5 +47,11 @@ public interface CountriesAndCitiesDao {
 	 */
 	public int selectCitiesCount(int countryId);
 
-	public TopDestinationsListVO selectTopDestinations();
+	List<CountriesVO> searchCountriesByName(String query);
+
+	List<CitiesVO> searchCitiesByName(String query);
+
+//	List<CitiesVO> selectRandomCities();
+
+//	public TopDestinationsListVO selectTopDestinations();
 }
