@@ -59,5 +59,5 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
       >가이드 투어 목록</a
     >
   </div>
-  <div><a href="">가이드 목록</a></div>
+  <div><a href="/guidelist/list?pageNo=0&listSize=10&regionName=전체&orderby=최신순">가이드 목록</a></div>
 </div>
