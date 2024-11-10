@@ -139,9 +139,9 @@ $().ready(function () {
     // 기본 검색 URL 설정
     var baseUrl = '';
     if ($touristButton.hasClass('selectedButton')) {
-      baseUrl = '/usertour/list?';
-    } else if ($guideButton.hasClass('selectedButton')) {
       baseUrl = '/guidetour/list?';
+    } else if ($guideButton.hasClass('selectedButton')) {
+      baseUrl = '/usertour/list?';
     }
 
     // URL 파라미터를 담을 변수
