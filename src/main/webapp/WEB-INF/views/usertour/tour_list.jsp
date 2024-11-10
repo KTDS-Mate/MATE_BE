@@ -30,38 +30,23 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
         </div>
         <div class="search-zone">
           <form class="search-form">
-          	<input id="search-val-1" type="hidden" name="searchType" value="${searchUserTourVO.searchType}"  />
           	<input id="search-val-3" type="hidden" name="regionName" value="${searchUserTourVO.regionName}"  />
           	<input id="search-val-4" type="hidden" name="orderby" value="${searchUserTourVO.orderby}"  />
-            <input
-              type="hidden"
-              name="pageNo"
-              class="page-no"
-              value="${searchUserTourVO.pageNo}" />
+            <input type="hidden" name="pageNo" class="page-no" value="${searchUserTourVO.pageNo}" />
             <div class="search-area">
           	<select class="search-type" name="searchType">
-          		<option value="country" class='${"country" eq searchUserTourVO.searchType ? "selected" : ""}'>국가</option>
-          		<option value="city" class='${"city" eq searchUserTourVO.searchType ? "selected" : ""}'>도시</option>
-          		<option value="title" class='${"title" eq searchUserTourVO.searchType ? "selected" : ""}'>제목</option>
-          		<option value="price" class='${"price" eq searchUserTourVO.searchType ? "selected" : ""}'>가격</option>
+          		<option value="country" ${"country" eq searchUserTourVO.searchType ? "selected" : ""}>국가</option>
+          		<option value="city" ${"city" eq searchUserTourVO.searchType ? "selected" : ""}>도시</option>
+          		<option value="title" ${"title" eq searchUserTourVO.searchType ? "selected" : ""}>제목</option>
+          		<option value="price" ${"price" eq searchUserTourVO.searchType ? "selected" : ""}>가격</option>
           	</select>
-              <input
-                type="text"
-                name="searchKeyword"
-                class="search-input"
-                placeholder="국가를 입력해주세요."
-                value="${searchUserTourVO.searchKeyword}" />
+          	   <input type="text" name="searchKeyword" class="search-input" placeholder="국가를 입력해주세요." value="${searchUserTourVO.searchKeyword}" />
               <button class="search-button">검색</button>
             </div>
           </form>
         </div>
-        <form class="region-form">
           <div class="region-menu-area">
             <!-- 선택 한 대륙이 바뀌어도 값을 가져가기 위해 hidden에 담아둠 -->
-            <input
-              id="region-hide"
-              type="hidden"
-              value="${searchUserTourVO.regionName}" />
             <input
               id="all"
               class="${searchUserTourVO.regionName eq '전체' ? 'checked' : ''}"
@@ -105,7 +90,6 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
               type="button"
               value="아프리카" />
           </div>
-        </form>
         <div class="flex-list-insert-btn">
           <div class="list-view-option">
           	<c:if test="${not empty sessionScope._LOGIN_USER_}">
@@ -113,7 +97,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
             	<a class="insert-tour-btn" href="/usertour/insert">투어 등록</a>
             	</div>
           	</c:if>
-            <form class="order-form">
+            <div class="order-form">
             <div>
             <input
               id="latest"
@@ -146,7 +130,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
               type="button"
               value="마감 임박순" />
             </div>
-            </form>
+            </div>
           </div>
         </div>
         <div class="tour-list-area">
@@ -215,9 +199,9 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                   </div>
                   <div class="tour-cost-fee">
                   	<div class="dollar">
-                    	<h1>$${userTourVO.usrTrGdHrPrc}</h1>
+                    	<h2>$${userTourVO.usrTrGdHrPrc}</h2>
                     </div>
-                     <p>마감 ${userTourVO.deadline}일전</p>
+                     <p><span class="end">마감 ${userTourVO.deadline}일전</span></p>
                   </div>
                 </div>
               </c:forEach>

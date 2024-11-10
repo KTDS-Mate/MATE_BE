@@ -7,7 +7,7 @@ $().ready(function() {
 	var url = `/favorite/${pstId}`;
 	// 현재 예약 상태
 	var stts = $(".ttl-wb").data("pst-stts");
-	
+
 	$.get(url, {}, function(favoriteResult) {
 		var favoriteCnt = favoriteResult.favoriteCount;
 		for (var i = 0; i < favoriteCnt; i++) {
@@ -87,17 +87,18 @@ $().ready(function() {
 
 	$(".reserve-btn").on('click', function() {
 		// 현재 예약중이라면?
-		if (stts === 'RSRVT') {
-			alert("이미 누군가가 예약 중 입니다!");
-			return
-		}
-		
-		if (confirm("예약하시겠습니까?")) {
-			// 예약으로 바꾸는 url
-			location.href = `/usertour/reserve/${pstId}/${usrLgnId}`;
+		if (stts === 'RCRTNG') {
+			if (confirm("예약하시겠습니까?")) {
+				// 예약으로 바꾸는 url
+				location.href = `/usertour/reserve/${pstId}/${usrLgnId}`;
+			}
+			else {
+				alert("취소하였습니다.");
+			}
 		}
 		else {
-			alert("취소하였습니다.");
+			alert("이미 누군가가 예약 중 입니다!");
+			return
 		}
 	});
 

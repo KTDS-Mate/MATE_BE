@@ -126,8 +126,12 @@ input.checked2 {
   font-size: 0.8rem;
 }
 
-.dollar h1 {
+.dollar h2 {
 	margin: 0;
+}
+
+.end {
+	font-size: 0.8rem;
 }
 
 .list-view-option input:first-child {
