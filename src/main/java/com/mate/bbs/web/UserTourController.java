@@ -96,6 +96,9 @@ public class UserTourController {
 		if (loginUserVO == null) {
 			return "redirect:/user/login";
 		}
+		if (!userTourModifyVO.getAthrId().equals(loginUserVO.getUsrLgnId())) {
+			throw new IllegalArgumentException("잘못된 접근입니다.");
+		}
 		
 		boolean isSuccess = this.userTourService.modifyUserTour(userTourModifyVO);
 		

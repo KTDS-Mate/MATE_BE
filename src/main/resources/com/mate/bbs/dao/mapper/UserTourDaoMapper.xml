@@ -201,6 +201,7 @@
 		  JOIN REGIONS R
 		    ON R.REGION_ID = CR.REGION_ID
 		 WHERE UTR.USR_TR_ST_DT > SYSDATE
+		   AND UTR.USR_TR_IS_DLT = 'N'
 		<if test="_parameter != null">
 		 	<include refid="com.mate.bbs.dao.UserTourDao.selectRegions" />
 		</if>
@@ -237,6 +238,7 @@
 		  JOIN REGIONS R
 		    ON R.REGION_ID = CR.REGION_ID
 		 WHERE UTR.USR_TR_ST_DT > SYSDATE
+		   AND UTR.USR_TR_IS_DLT = 'N'
 		<if test="_parameter != null">
 		 	<include refid="com.mate.bbs.dao.UserTourDao.selectRegions" />
 		</if>

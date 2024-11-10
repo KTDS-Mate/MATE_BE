@@ -38,7 +38,34 @@ app:
       enable: true
       hide-ext:
         enable: false
-
+  interceptors:
+    check-session:
+      path-patterns: 
+        /**
+      exclude-path-patterns: 
+        /js/**,
+        /css/**,
+        /img/**,
+        /font/**,
+        /public/**,
+        /user/login,
+        /user/regist/**,
+        /usertour/list,
+        /usertour/view,
+        /guidetour/list,
+        /guidetour/info,
+        /
+    check-dup-login:
+      path-patterns: 
+        /user/login,
+        /user/regist/**
+      exclude-path-patterns: 
+    add-access-log:
+      path-patterns: /**
+      exclude-path-patterns: 
+        /js/**,
+        /css/**,
+        /image/**
 # 아래는 포트원 API키와 시크릿 키인데 절대 공개되면 안된다.
 portone:
   api:
@@ -69,43 +96,3 @@ app:
       enable: true
       hide-ext:
         enable: false
-
-#     # mybatis 설정 파일의 경로 지정
-#   mybatis:
-#     # mybatis-config.xml 파일의 위치를 지정
-#     config-location: classpath:mybatis/mybatis-config.xml
-#     # classpath -> target 폴더의 classes 폴더
-#     mapper-locations: classpath:com/ktdsuniversity/edu/hello_spring/**/dao/mapper/*Mapper.xml
-#
-#   # Application 전용 설정 (Spring과 관계 없음)
-#   app:
-#     multipart:
-#       base-dir: C:\\uploadfiles
-#       # 파일명 난독화 설정
-#       obfuscation:
-#         enable: true
-#         # 파일 확장자 가릴 것인지 설정
-#         hide-ext:
-#           enable: true
-#     interceptors:
-#       check-session:
-#         path-patterns: /**
-
-# 이거 인터셉트용임
-#         exclude-path-patterns: 
-#           /js/**,
-#           /css/**,
-#         /image/**,
-#           /member/login,
-#           /member/regist/**
-#       check-dup-login:
-#         path-patterns:
-#           /member/login,
-#           /member/regist/**
-#         exclude-path-patterns:
-#       add-access-log:
-#         path-patterns: /**
-#         exclude-path-patterns: 
-#           /js/**,
-#           /css/**,
-#         /image/**
