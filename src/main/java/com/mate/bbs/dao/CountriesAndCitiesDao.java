@@ -51,7 +51,4 @@ public interface CountriesAndCitiesDao {
 
 	List<CitiesVO> searchCitiesByName(String query);
 
-//	List<CitiesVO> selectRandomCities();
-
-//	public TopDestinationsListVO selectTopDestinations();
 }

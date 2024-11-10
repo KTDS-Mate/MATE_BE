@@ -10,20 +10,23 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mate.bbs.dao.UserTourDao;
 import com.mate.bbs.service.UserTourService;
 import com.mate.bbs.vo.SearchUserTourVO;
-import com.mate.bbs.vo.UserTourImgVO;
 import com.mate.bbs.vo.UserTourListVO;
 import com.mate.bbs.vo.UserTourModifyVO;
 import com.mate.bbs.vo.UserTourSchdlVO;
 import com.mate.bbs.vo.UserTourVO;
 import com.mate.bbs.vo.UserTourWriteVO;
 import com.mate.common.beans.FileHandler;
-import com.mate.common.vo.StoreResultVO;
+import com.mate.payment.dao.PaymentDao;
+import com.mate.payment.vo.WritePaymentVO;
 
 @Service
 public class UserTourServiceImpl implements UserTourService{
 
 	@Autowired
 	private UserTourDao userTourDao;
+	
+	@Autowired
+	private PaymentDao paymentDao;
 
 	@Autowired
 	private FileHandler fileHandler;
@@ -54,22 +57,6 @@ public class UserTourServiceImpl implements UserTourService{
 				this.userTourDao.insertUserTourScheduls(userTourSchdlVO);
 			}
 		}
-		
-		// 이미지가 계속 null로 들어가여
-//		List<UserTourImgVO> imgList = userTourWriteVO.getUserTourImgList();
-//		
-//		if (imgList != null && !imgList.isEmpty()) {
-//			for (UserTourImgVO userTourImgVO : imgList) {
-//				String usrTrPstId = userTourWriteVO.getUsrTrPstId();
-//				userTourImgVO.setUsrTrPstId(usrTrPstId);
-//				
-//				StoreResultVO imgResult= fileHandler.storeFile(userTourWriteVO.getUsrTourImgFile());
-//				if (imgResult != null) {
-//					userTourWriteVO.setImgFileName(imgResult.getObfuscatedFileName());
-//				}
-//				this.userTourDao.insertNewUserTourImgs(userTourImgVO);
-//			}
-//		}
 		
 		return createCount > 0;
 	}
@@ -146,7 +133,13 @@ public class UserTourServiceImpl implements UserTourService{
 	@Transactional
 	@Override
 	public boolean reserveUserTour(String usrTrPstId, String usrLgnId) {
-		return this.userTourDao.updateGdId(usrTrPstId, usrLgnId) > 0;
+		if (this.userTourDao.updateGdId(usrTrPstId, usrLgnId) > 0) {
+			WritePaymentVO writePaymentVO = this.paymentDao.selectUsrTrPayInf(usrTrPstId);
+			if (writePaymentVO != null) {
+				return this.paymentDao.insertTrstTrPayment(writePaymentVO) > 0 ;
+			}
+		}
+		return false;
 	}
 	
 }

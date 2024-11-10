@@ -28,24 +28,19 @@ import com.mate.user.service.GuideService;
 import com.mate.user.vo.RegistGuideVO;
 import com.mate.user.vo.UserVO;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/user")
 public class GuideController {
 
 	Logger log = LoggerFactory.getLogger(getClass());
 	
-	private static final String NON_GUIDE_REDIRECT_URL = "/mypage/edit-profile/tr-profile/";
-    private static final String GUIDE_PROFILE_REDIRECT_URL = "/mypage/edit-profile/gd-profile/";
-	
     @Autowired
     private GuideService guideService;
 
     @GetMapping("/editinfo")
     public String viewGuideEditInfoPage(@SessionAttribute(name = "_LOGIN_USER_", required = false) UserVO userVO, Model model) {
-    	if (userVO == null) {
-    		return "redirect:/user/login";
-    	}
-    	
     	// 가이드 정보 + 활동 국가 + 도시정보 조회
     	RegistGuideVO registGuideVO = guideService.getGuideInfo(userVO.getUsrId());
     	model.addAttribute("registGuideVO", registGuideVO);
@@ -56,11 +51,6 @@ public class GuideController {
     @GetMapping("/guideregist")
     public String viewGuideRegisterPage(@SessionAttribute(name="_LOGIN_USER_", required=false) UserVO userVO, Model model) {
         // 세션에서 usrId를 가져와 RegistGuideVO에 설정
-    	
-    	if (userVO == null) {
-            return "redirect:/user/login";
-        }
-    	
     	log.debug("userVO 세션 확인: {}", userVO.getUsrId());
     	
         RegistGuideVO registGuideVO = guideService.getGuideInfo(userVO.getUsrId());
@@ -82,11 +72,8 @@ public class GuideController {
 
     @PostMapping("/guideregist")
     public String registerGuide(@ModelAttribute RegistGuideVO registGuideVO, 
-    							@SessionAttribute(name = "_LOGIN_USER_", required=false) UserVO userVO, Model model) {
-    	
-    	if (userVO == null ) {
-    		return "redirect:/user/login";
-    	}
+    							@SessionAttribute(name = "_LOGIN_USER_", required=false) UserVO userVO
+    							, Model model, HttpSession session) {
     	
         // 세션의 usrId를 RegistGuideVO에 설정 후 가이드 등록
         registGuideVO.setUsrLgnId(userVO.getUsrLgnId());
@@ -112,12 +99,10 @@ public class GuideController {
          * 이 경우 가이드의 상태를 기반으로 뷰를 보여주기 때문.
          */
     	userVO.setUsrIsGd("Y");
+    	// 업데이트된 userVO를 세션에 저장.
+    	session.setAttribute("_LOGIN_USER_", userVO);
         
-        if ("Y".equals(isGd)) {
-        	return "redirect:" + GUIDE_PROFILE_REDIRECT_URL + userVO.getUsrLgnId();
-        } else {
-        	return "redirect:" + NON_GUIDE_REDIRECT_URL + userVO.getUsrLgnId();
-        }
+    	return "redirect:/mypage/edit-profile/gd-profile/" + userVO.getUsrLgnId();
     }
 
     @GetMapping("/editlicense")
@@ -125,11 +110,6 @@ public class GuideController {
     	if (userVO == null) {
     		return "redirect:/login";
     	}
-
-//    	if (usrId == null) {
-//    		usrId = userVO.getUsrId();
-//    	}
-//    	
     	
     	RegistGuideVO guideInfo = guideService.getGuideInfo(userVO.getUsrId());
     	model.addAttribute("guideInfo", guideInfo);
@@ -173,10 +153,6 @@ public class GuideController {
     
     @GetMapping("/edit-id-image")
     public String viewEditIdImagePage(@SessionAttribute(name="_LOGIN_USER_", required=false) UserVO userVO, Model model) {
-    	if (userVO == null) {
-    		return "redirect:/user/login";
-    	}
-    	
     	RegistGuideVO guideInfo = guideService.getGuideInfo(userVO.getUsrId());
     	model.addAttribute("guideInfo", guideInfo);
     	return "user/edit-id-image";
@@ -185,10 +161,6 @@ public class GuideController {
     @PostMapping("/update-profile-image")
     public String updateProfileImage(@RequestParam("profileImgFile") MultipartFile profileImgFile,
     								 @SessionAttribute(name = "_LOGIN_USER_", required = false) UserVO userVO, Model model) {
-        
-        if (userVO == null) {
-            return "redirect:/user/login";
-        }
         
         RegistGuideVO registGuideVO = new RegistGuideVO();
         registGuideVO.setUsrId(userVO.getUsrId());
@@ -206,10 +178,6 @@ public class GuideController {
     @PostMapping("/update-id-image")
     public String updateIdImage(@RequestParam("idImageFile") MultipartFile idImageFile, 
     							@SessionAttribute(name="_LOGIN_USER_", required=false) UserVO userVO, Model model) {
-		if (userVO == null) {
-			return "redirect:/user/login";
-		}
-		
 		RegistGuideVO registGuideVO = new RegistGuideVO();
 		registGuideVO.setUsrId(userVO.getUsrId());
 		registGuideVO.setGdIdImgFile(idImageFile);
@@ -225,9 +193,6 @@ public class GuideController {
     
     @GetMapping("/editlocation")
     public String viewEditLocationPage(@SessionAttribute(name = "_LOGIN_USER_", required = false) UserVO userVO, Model model) {
-        if (userVO == null) {
-            return "redirect:/user/login";
-        }
 
         // RegistGuideVO 객체를 가져옵니다.
         RegistGuideVO registGuideVO = guideService.getGuideInfo(userVO.getUsrId());
@@ -246,9 +211,6 @@ public class GuideController {
     public String updateLocation(@ModelAttribute RegistGuideVO registGuideVO,
                                  @SessionAttribute(name = "_LOGIN_USER_", required = false) UserVO userVO,
                                  Model model) {
-        if (userVO == null) {
-            return "redirect:/user/login";
-        }
         // usrId 설정
         registGuideVO.setUsrId(userVO.getUsrId());
         // 활동 도시 업데이트 로직 (예: 서비스 메서드 호출)

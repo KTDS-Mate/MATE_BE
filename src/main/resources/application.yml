@@ -48,6 +48,7 @@ app:
         /img/**,
         /font/**,
         /public/**,
+        /tour/**,
         /user/login,
         /user/regist/**,
         /usertour/list,
@@ -57,6 +58,7 @@ app:
         /guidetour/random,
         /,
         /tour/**
+        /user/reissue-password
     check-dup-login:
       path-patterns: 
         /user/login,

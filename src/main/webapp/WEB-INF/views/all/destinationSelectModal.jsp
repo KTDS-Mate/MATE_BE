@@ -62,20 +62,6 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       <div class="searchResultArea" id="searchResultArea">
             	
             </div>
-          <!-- <div class="searchInputArea">
-            <div class="searchInput">
-              <input type="text" id="searchInput" placeholder="검색어 입력" />
-            </div>
-            <div class="searchButtonArea">
-              <img
-                src="/public/searchButton.png"
-                alt="검색 버튼"
-                id="searchButton"
-                class="searchButton"
-              />
-            </div>
-          </div>
-          <div id="searchResults" class="searchResults"></div> -->
         </div>
       </div>
     </dialog>
