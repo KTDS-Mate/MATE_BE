@@ -20,7 +20,7 @@
 }
 
 .select-div {
-  margin-top: 2rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
   font-weight: bold;
 }
@@ -95,6 +95,11 @@ input[type="text"] {
 
 .right-align {
   text-align: right;
+}
+
+.right-align input:hover {
+	background: #505050;
+	cursor: pointer; 
 }
 
 input[type="submit"] {
@@ -227,6 +232,24 @@ input {
 
 .locs:last-child {
   border: 0;
+}
+
+.locs2 {
+	border-bottom: 1px solid #ddd;
+	padding-top: 1rem;
+}
+
+.locs2:last-child {
+	border: 0;
+}
+
+.locs3 {
+	border-bottom: 1px solid #ddd;
+	padding-top: 1rem;
+}
+
+.locs3:last-child {
+	border: 0;
 }
 
 .time-select {

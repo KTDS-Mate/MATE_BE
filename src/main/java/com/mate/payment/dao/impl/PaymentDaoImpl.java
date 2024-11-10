@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.mate.payment.dao.PaymentDao;
 import com.mate.payment.vo.PaymentVO;
+import com.mate.payment.vo.SearchPaymentVO;
+import com.mate.user.vo.UserVO;
 
 @Repository
 public class PaymentDaoImpl extends SqlSessionDaoSupport implements PaymentDao {
@@ -31,13 +33,18 @@ public class PaymentDaoImpl extends SqlSessionDaoSupport implements PaymentDao {
 	}
 	
 	@Override
-	public List<PaymentVO> selectAllMyPayment(String trstId) {
-		return this.getSqlSession().selectList(NAMESPACE+".selectAllMyPayment", trstId);
+	public List<PaymentVO> selectAllMyPayment(SearchPaymentVO searchPaymentVO) {
+		return this.getSqlSession().selectList(NAMESPACE+".selectAllMyPayment", searchPaymentVO);
 	}
 	
 	@Override
-	public int selectAllMyPaymentCount(String trstId) {
-		return this.getSqlSession().selectOne(NAMESPACE + ".selectAllMyPaymentCount", trstId);
+	public int selectAllMyPaymentCount(SearchPaymentVO searchPaymentVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectAllMyPaymentCount", searchPaymentVO);
+	}
+	
+	@Override
+	public String selectUserId(String usrLgnId) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectUserId", usrLgnId);
 	}
 	
 	@Override
@@ -55,6 +62,19 @@ public class PaymentDaoImpl extends SqlSessionDaoSupport implements PaymentDao {
 		return this.getSqlSession().update(NAMESPACE + ".updateSuccessPayment", paymentVO);
 	}
 	
+	@Override
+	public int updateRefundPayment(String payId) {
+		return this.getSqlSession().update(NAMESPACE+".updateRefundPayment", payId);
+	}
 	
+	@Override
+	public List<PaymentVO> selectSearchMyPayment(SearchPaymentVO searchPaymentVO) {
+		return this.getSqlSession().selectList(NAMESPACE + ".selectSearchMyPayment", searchPaymentVO);
+	}
+	
+	@Override
+	public int selectSearchMyPaymentCount(SearchPaymentVO searchPaymentVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectSearchMyPaymentCount", searchPaymentVO);
+	}
 	
 }

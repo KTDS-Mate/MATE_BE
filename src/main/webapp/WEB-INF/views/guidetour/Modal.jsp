@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
-    <link rel="stylesheet" type="text/css" href="/css/Modal.css" />
+    <link rel="stylesheet" type="text/css" href="/css/guidetour/Modal.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -26,7 +26,9 @@ pageEncoding="UTF-8" %>
         />
       </div>
       <div class="reviewWritingArea">
-        <form>
+        <form:form modelAttribute="guideTourReviewWriteVO" method="post">
+        <input id="" type="hidden" data-gd-pst-id="${guideTourVO.gdTrPstId}" />
+        <input id="starCnt" name="gdTrRvwRtng" type="hidden" value="1" />
           <h2>리뷰 작성</h2>
           <div class="starRating">
             <span class="starThree on" value="1"></span>
@@ -36,15 +38,16 @@ pageEncoding="UTF-8" %>
             <span class="starThree" value="5"></span>
           </div>
           <textarea
+            name="gdTrRvwCntnt"
             class="starBox"
             placeholder="리뷰 내용을 작성해주세요."
-          ></textarea>
+          >${GuideTourReviewVO.gdTrRvwCntnt}</textarea>
           <input
             type="submit"
             class="reviewSubmitButton btn-submit-review"
             value="리뷰 등록"
           />
-        </form>
+        </form:form>
       </div>
     </dialog>
     <dialog id="picModalArea" class="picModal hidden">
@@ -56,7 +59,10 @@ pageEncoding="UTF-8" %>
         />
       </div>
       <div class="picArea">
-        <img src="${guideTourVO.guideTourImgList[0].gdTrImgUrl}" alt="확대 사진" />
+        <img
+          src="${guideTourVO.guideTourImgList[0].gdTrImgUrl}"
+          alt="확대 사진"
+        />
       </div>
     </dialog>
     <dialog id="viewAllReviewModal" class="viewAllReviewModal hidden">
@@ -72,7 +78,7 @@ pageEncoding="UTF-8" %>
         <div class="reviewListArea">
           <div class="oneReview">
             <div class="oneReviewRating">
-              <img src="/public/Star.png" alt="별점 아이콘" class="star" />
+              <img src="/public/Star.png" alt="별점 아이콘" class="modal-star" />
               <span class="oneReviewRatingCount">5</span>
               <span class="reviewerNameArea">Gil-Dong Hong</span>
             </div>

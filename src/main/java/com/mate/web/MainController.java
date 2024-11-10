@@ -6,9 +6,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
 	
+	@GetMapping("/demo")
+	public String calendar() {
+		return "mypage/Calendar_demo";
+	}
+	@GetMapping("/test")
+	public String Testcalendar() {
+		return "mypage/Test_Tourist_Calendar";
+	}
+
+	@GetMapping("/favicon.ico")
+    public String favicon() {
+        return "forward:/static/favicon.ico";
+    }
+
 	@GetMapping("/")
 	public String viewMainPage(){
-		return "all/MT_M001";
+		return "all/MainPage";
 		}
 
 	@GetMapping("header")
@@ -23,7 +37,7 @@ public class MainController {
 
 	@GetMapping("/guide/tourlist")
 	public String viewGuideTotalList() {
-		return "all/guide_total_tourlist";
+		return "guidetour/guide_total_tourlist";
 	}
 
 	@GetMapping("/guide/tourinfo")
@@ -31,17 +45,15 @@ public class MainController {
 		return "guidetour/GuideTourInfo";
 		}
 
-	@GetMapping("/guide/guideprofile")
+	@GetMapping("/user/guideprofile")
 	public String viewGuideProfilePage(){
-		return "all/GuideProfile"; 
+		return "user/GuideProfile";
 		}
-	
 	
 	@GetMapping("/guide/regist")
 	public String viewGuideRegistPage () {
-		return "all/reigst_Guide";
+		return "user/reigstguide";
 	}
-	
 	
 	@GetMapping("/guide/tour/write")
 	public String viewGuideTourWrite() {
@@ -49,7 +61,7 @@ public class MainController {
 	}
 	@GetMapping("/guide/recruitment")
 	public String viewGuideRecruitment() {
-		return "all/GuideRecruitmentPage";
+		return "usertour/GuideRecruitmentPage";
 	}
 	
 	@GetMapping("/tourist/tour/write")
@@ -64,5 +76,5 @@ public class MainController {
 	public String viewSendMessage(){return "all/send_message";}
 
 	@GetMapping("/tour/list")
-	public String viewTourListPage(){return "all/tour_list";}
+	public String viewTourListPage(){return "usertour/tour_list";}
 }

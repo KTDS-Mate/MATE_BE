@@ -1,5 +1,8 @@
 package com.mate.user.service.impl;
 
+import java.util.List;
+import java.util.Random;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,9 @@ import com.mate.access.dao.AccessLogDao;
 import com.mate.access.vo.AccessLogVO;
 import com.mate.common.beans.Sha;
 import com.mate.common.utils.RequestUtil;
+import com.mate.common.vo.CountriesVO;
+import com.mate.mail.service.EmailSendService;
+import com.mate.mail.vo.EmailVO;
 import com.mate.user.dao.UserDao;
 import com.mate.user.service.UserService;
 import com.mate.user.vo.LoginUserVO;
@@ -29,6 +35,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private AccessLogDao accessLogDao;
+	
+	@Autowired
+	private EmailSendService emailSendService;
 
 	@Override
 	public boolean createNewUser(RegistUserVO registUserVO) {
@@ -46,16 +55,63 @@ public class UserServiceImpl implements UserService {
 		String salt = this.sha.generateSalt();
 		
 		// user 비밀번호 암호화
-		String password = registUserVO.getUsrPw();
+		String password = registUserVO.getUsrPwd();
 		password = this.sha.getEncrypt(password, salt);
 		
 		// salt DB에 저장.(비밀번호 찾기용)
-		registUserVO.setUsrPw(password);
+		registUserVO.setUsrPwd(password);
 		registUserVO.setSalt(salt);
 		
 		int insertCount = this.userDao.insertNewUser(registUserVO);
 		return insertCount > 0;
 	}
+
+	// 비밀번호 재발급
+	@Override
+	public boolean reissueUserPassword(UserVO userVO) {
+		// 1. DB에 해당 회원이 존재하는지 확인
+		UserVO existUser = userDao.selectOneMemberByIdAndEmail(userVO);
+		if (existUser == null) {
+			return false;
+		}
+		
+		// 2. 임시 비밀번호와 새로운 salt 생성	
+		String tempPassword = generateTemporaryPassword();
+		String salt = sha.generateSalt();
+		String encryptedPassword = sha.getEncrypt(tempPassword, salt);
+		
+		// 3. 새 비밀번호와 salt를 DB에 업데이트
+		existUser.setUsrPwd(encryptedPassword);
+		existUser.setSalt(salt);
+		userDao.updateUserPassword(existUser);
+		
+		// 4. 임시비밀번호 이메일로 발송
+		sendTemporaryPasswordEmail(existUser.getUsrEml(), tempPassword);
+		
+		return true;
+	}
+	
+	// 임시 비밀번호 생성 메서드
+	private String generateTemporaryPassword() {
+		int length = 10;
+		String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		StringBuilder tempPassword = new StringBuilder();
+		Random random = new Random();
+		for (int i = 0; i < length; i++) {
+			tempPassword.append(chars.charAt(random.nextInt(chars.length())));
+		}
+		return tempPassword.toString();
+	}
+	
+	// 이메일 발송 메서드
+	private void sendTemporaryPasswordEmail(String email, String tempPassword) {
+		EmailVO emailVO = new EmailVO();
+		emailVO.setEmail(email);
+		emailVO.setAuthCode(tempPassword);
+		
+		emailSendService.sendPasswordAuthMail(emailVO);
+	}
+	
 
 	@Override
 	public boolean checkAvailableEmail(String email) {
@@ -63,13 +119,36 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public boolean checkAvailablePaypalEmail(String paypalEmail) {
+		return this.userDao.getPaypalEmailCount(paypalEmail) == 0;
+	}
+	
+	@Override
 	public boolean checkAvailableId(String usrId) {
 		return this.userDao.getIdCount(usrId) == 0;
 	}
 	
 	@Override
-	public boolean checkAvailablePhn(String usrPhn) {
-		return this.userDao.getPhnCount(usrPhn) == 0;
+	public boolean checkAvailablePhn(String usrPhn, String usrLgnId) {
+		return this.userDao.getPhnCount(usrPhn, usrLgnId) == 0;
+	}
+
+	// 현재 비밀번호 검증
+
+	@Override
+	public boolean checkCurrentPassword(String usrLgnId, String currentPassword) {
+		String storedPwd = userDao.getPasswordByUserId(usrLgnId);
+		String salt = userDao.getSalt(usrLgnId);
+		
+		if (storedPwd == null || salt == null) {
+			log.warn("사용자 {}의 비밀번호 또는 salt 정보를 찾을 수 없습니다.", usrLgnId);
+			return false;
+		}
+		// 현재 입력된 비밀번호를 암호화함
+		String ecryptedPassword = sha.getEncrypt(currentPassword, salt);
+		
+		// 암호화된 현재 입력된 비밀번호와 DB에 저장된 비밀번호를 비교함.
+		return storedPwd.equals(ecryptedPassword);
 	}
 	
 	@Override
@@ -158,5 +237,58 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean softDeleteUser(String usrLgnId) {
 		return this.userDao.softDeleteOneUser(usrLgnId) > 0;
+	}
+	
+	@Override
+	public boolean updateUserPhoneNumber(String usrLgnId, String newPhn) {
+
+		if (!checkAvailablePhn(newPhn, usrLgnId)) {
+			throw new IllegalArgumentException("이미 사용중인 휴대전화번호입니다.");
+		}
+		
+		UserVO userVO = new UserVO();
+		userVO.setUsrLgnId(usrLgnId);
+		userVO.setUsrPhn(newPhn);
+		return userDao.updateUserPhoneNumber(userVO) > 0;
+	}
+	
+	@Override
+	public boolean updateUserPaypalEmail(String usrLgnId, String usrPypEml) {
+		
+		if(!checkAvailablePaypalEmail(usrPypEml)) {
+			throw new IllegalArgumentException("이미 사용중인 Paypal 이메일입니다.");
+		}
+		
+		UserVO userVO = new UserVO();
+		userVO.setUsrLgnId(usrLgnId);
+		userVO.setUsrPypEml(usrPypEml);
+		log.debug("usrPypEml 값 확인: {}", usrPypEml);
+		
+		return userDao.upadateUserPaypalEmail(userVO) > 0;
+	}
+	
+	@Override
+	public boolean updateUserPassword(UserVO userVO, String newPassword) {
+
+		// salt 생성 및 사용자가 입력한 새로운 비밀번호 암호화
+		String salt = sha.generateSalt();
+		String encryptedPassword = sha.getEncrypt(newPassword, salt);
+		
+		// 암호화된 비밀번호를 DB에 저장.
+		userVO.setUsrPwd(encryptedPassword);
+		userVO.setSalt(salt);
+		
+		int updateCount = userDao.updateUserPassword(userVO);
+		
+		return updateCount > 0;
+	}
+	
+	/**
+	 * 모든 국가 정보를 조회함.
+	 * @return 국가 정보를 담은 List
+	 */
+	@Override
+	public List<CountriesVO> getAllCountries() {
+		return userDao.selectAllCountries();
 	}
 }

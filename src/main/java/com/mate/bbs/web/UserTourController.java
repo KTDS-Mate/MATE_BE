@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.mate.bbs.service.UserTourService;
 import com.mate.bbs.vo.SearchUserTourVO;
 import com.mate.bbs.vo.UserTourListVO;
+import com.mate.bbs.vo.UserTourModifyVO;
 import com.mate.bbs.vo.UserTourVO;
 import com.mate.bbs.vo.UserTourWriteVO;
 import com.mate.user.vo.UserVO;
@@ -29,7 +30,6 @@ public class UserTourController {
 	@GetMapping("/usertour/list")
 	public String viewAllUserTourPage(Model model
 									, SearchUserTourVO searchUserTourVO) {
-		System.out.println("대륙" + searchUserTourVO.getRegionName());
 		UserTourListVO userTourListVO = this.userTourService.getAllUserTour(searchUserTourVO);
 		model.addAttribute("userTourListVO", userTourListVO);
 		model.addAttribute("searchUserTourVO", searchUserTourVO);
@@ -71,7 +71,7 @@ public class UserTourController {
 		
 		this.userTourService.createNewUserTour(userTourWriteVO);
 		
-		return "redirect:/usertour/list";
+		return "redirect:/usertour/list?pageNo=0&listSize=9";
 	}
 	
 	@GetMapping("/usertour/modify/{usrTrPstId}")
@@ -87,5 +87,30 @@ public class UserTourController {
 		
 		return "usertour/Tourist_Modify";
 	}
+	
+	@PostMapping("/usertour/modify/{usrTrPstId}")
+	public String doUserTourModify(@PathVariable String usrTrPstId
+								 , @Valid UserTourModifyVO userTourModifyVO
+								 , BindingResult bindingResult
+								 , @SessionAttribute("_LOGIN_USER_") UserVO loginUserVO) {
+		if (loginUserVO == null) {
+			return "redirect:/user/login";
+		}
+		
+		boolean isSuccess = this.userTourService.modifyUserTour(userTourModifyVO);
+		
+		String loginId = loginUserVO.getUsrLgnId();
+		
+		return "redirect:/mypage/mytour/tr-mytour/" + loginId;
+	}
+	
+	@GetMapping("/usertour/reserve/{usrTrPstId}/{usrLgnId}")
+	public String doReserveUserTour(@PathVariable String usrTrPstId
+								  , @PathVariable String usrLgnId) {
+		boolean isReserved = this.userTourService.reserveUserTour(usrTrPstId, usrLgnId);
+		
+		return "redirect:/usertour/view?usrTrPstId=" + usrTrPstId;
+	}
+	
 	
 }

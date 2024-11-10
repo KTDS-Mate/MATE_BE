@@ -17,11 +17,13 @@
 		     , USR_CNT_CODE
 		     , USR_BD
 		     , SALT
-		     , LOGIN_FAIL_COUNT)
+		     , LOGIN_FAIL_COUNT
+		     , GD_RP_CNT_ID
+		     , USR_JN_DT)
 		VALUES
 		     ( 'USR-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_USR_PK.NEXTVAL, 6, 0)
 		     , #{usrLgnId}
-		     , #{usrPw}
+		     , #{usrPwd}
 		     , #{usrLnm}
 		     , #{usrFnm}
 		     , #{usrGndr}
@@ -30,7 +32,9 @@
 		     , #{usrCntCode}
 		     , TO_DATE(#{usrBd}, 'YYYY-MM-DD')
 		     , #{salt}
-		     , 0)
+		     , 0
+		     , #{gdRpCntId}
+		     , SYSDATE)
 	</insert>
 	
 	<select id="getIdCount" parameterType="String" resultType="_int">
@@ -45,10 +49,17 @@
  		 WHERE USR_EML = #{_parameter}
 	</select>
 	
+	<select id="getPaypalEmailCount" parameterType="String" resultType="_int">
+		SELECT COUNT(1)
+  		  FROM USR_INF
+ 		 WHERE USR_PYP_EML = #{_parameter}
+	</select>
+	
 	<select id="getPhnCount" parameterType="String" resultType="_int">
 		SELECT COUNT(1)
   		  FROM USR_INF
- 		 WHERE USR_PHN = #{_parameter}
+ 		 WHERE USR_LGN_ID != #{usrLgnId}
+ 		   AND USR_PHN = #{usrPhn}
 	</select>	
 	
 	<select id="selectSalt" parameterType="String" resultType="String">
@@ -60,19 +71,23 @@
 	<select id="selectOneMember" 
 			parameterType="com.mate.user.vo.LoginUserVO" 
 			resultType="com.mate.user.vo.UserVO">
-		SELECT USR_LGN_ID
-		     , USR_PWD 
-		     , SALT 
-		     , LOGIN_FAIL_COUNT 
-		     , TO_CHAR(LATEST_LOGIN_FAIL_DATE, 'YYYY-MM-DD HH24:MI:SS') LATEST_LOGIN_FAIL_DATE
-		     , LATEST_LOGIN_IP 
-		     , TO_CHAR(LATEST_LOGIN_SUCCESS_DATE, 'YYYY-MM-DD HH24:MI:SS') LATEST_LOGIN_SUCCESS_DATE
-		     , USR_IS_CL
-		     , USR_IS_GD
-		  FROM USR_INF
-		 WHERE USR_LGN_ID = #{usrLgnId}
-		   AND USR_PWD = #{usrPwd}
-		   AND USR_IS_CL = 'N'
+		SELECT U.USR_ID
+		     , U.USR_LGN_ID
+		     , U.USR_PWD 
+		     , U.SALT 
+		     , U.LOGIN_FAIL_COUNT 
+		     , TO_CHAR(U.LATEST_LOGIN_FAIL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS LATEST_LOGIN_FAIL_DATE
+		     , U.LATEST_LOGIN_IP 
+		     , TO_CHAR(U.LATEST_LOGIN_SUCCESS_DATE, 'YYYY-MM-DD HH24:MI:SS') AS LATEST_LOGIN_SUCCESS_DATE
+		     , U.USR_IS_CL
+		     , U.USR_IS_GD
+		     , C.COUNTRY_NAME
+		  FROM USR_INF U
+		  LEFT JOIN COUNTRIES C
+		    ON U.GD_RP_CNT_ID = C.COUNTRY_ID
+		 WHERE U.USR_LGN_ID = #{usrLgnId}
+		   AND U.USR_PWD = #{usrPwd}
+		   AND U.USR_IS_CL = 'N'
 	</select>
 	
 	<update id="updateLoginFailState" parameterType="com.mate.user.vo.LoginUserVO">
@@ -100,11 +115,55 @@
 		 WHERE USR_LGN_ID = #{usrLgnId}
 	</update>
 	
+	<update id="updateUserPhoneNumber" parameterType="com.mate.user.vo.UserVO">
+		 UPDATE USR_INF
+		    SET USR_PHN = #{usrPhn}
+		  WHERE USR_LGN_ID = #{usrLgnId}
+	</update>
+	
+	<update id="upadateUserPaypalEmail" parameterType="com.mate.user.vo.UserVO">
+		UPDATE USR_INF
+		    SET USR_PYP_EML = #{usrPypEml}
+		  WHERE USR_LGN_ID = #{usrLgnId}
+	</update>
+	
 	<update id="softDeleteOneUser" parameterType="String">
 		UPDATE USR_INF 
 		   SET USR_IS_CL = 'Y'
 		     , USR_CL_DT = SYSDATE 
 		 WHERE USR_LGN_ID = #{usrLgnId}
 	</update>
+	
+	<update id="updateUserPassword" parameterType="com.mate.user.vo.UserVO">
+		UPDATE USR_INF 
+		   SET USR_PWD = #{usrPwd}
+		     , SALT = #{salt} 
+		 WHERE USR_LGN_ID = #{usrLgnId}
+	</update>
+	
+	<update id="getSalt" parameterType="String">
+		SELECT SALT
+ 		  FROM USR_INF
+ 		 WHERE USR_LGN_ID = #{usrLgnId}
+	</update>
+	
+	<select id="selectAllCountries" resultType="com.mate.common.vo.CountriesVO">
+		 SELECT COUNTRY_ID
+		      , COUNTRY_NAME 
+		   FROM COUNTRIES
+	</select>
+	
+	<select id="getPasswordByUserId" parameterType="String" resultType="String">
+		SELECT USR_PWD
+		  FROM USR_INF
+		 WHERE USR_LGN_ID = #{usrLgnId}
+	</select>
+	
+	<select id="selectOneMemberByIdAndEmail" parameterType="com.mate.user.vo.UserVO" resultType="com.mate.user.vo.UserVO">
+		SELECT *
+		  FROM USR_INF
+		 WHERE USR_LGN_ID = #{usrLgnId}
+		   AND USR_EML = #{usrEml}
+	</select>
 	
 </mapper>

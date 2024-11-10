@@ -4,16 +4,69 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mate.payment.dao.PaymentDao">
 
+<!-- 검색을 위한 sql태그 -->
+<sql id="selectPeriodPayment">
+	<if test='searchType == "일주일"'>
+		AND PAY_CRT_DT BETWEEN SYSDATE -7 AND SYSDATE
+	</if>
+	<if test='searchType == "1개월"'>
+		AND PAY_CRT_DT BETWEEN ADD_MONTHS(SYSDATE, -1) AND SYSDATE
+	</if>
+	<if test='searchType == "3개월"'>
+		AND PAY_CRT_DT BETWEEN ADD_MONTHS(SYSDATE, -3) AND SYSDATE
+	</if>
+	<if test='searchType == "6개월"'>
+		AND PAY_CRT_DT BETWEEN ADD_MONTHS(SYSDATE, -6) AND SYSDATE
+	</if>
+	<if test='searchType == "기간검색"'>
+		AND PAY_CRT_DT BETWEEN TO_DATE(#{startDate}, 'YYYY-MM-DD') AND TO_DATE(#{endDate}, 'YYYY-MM-DD')
+	</if>
+</sql>
+
+<sql id="selectStatePayment">
+	<if test='payState !=null and payState != ""'>
+		AND PAY_STT = #{payState}
+	</if>
+</sql>
+
+<sql id="selectTourTypePayment">
+	<if test='tourType !=null and tourType != ""'>
+		AND PAY_TR_TP = #{tourType}
+	</if>
+</sql>
+
+
+
+
 <select id="selectAllPaymentCount" resultType="_int">
 	SELECT COUNT(1)
 	  FROM PAY_INF
 </select>
 
-
-<select id="selectAllMyPaymentCount" parameterType="String" resultType="_int">
+<!-- 한 유저의 결제 내역보기 -->
+<select id="selectAllMyPaymentCount" parameterType="com.mate.payment.vo.SearchPaymentVO"
+ resultType="_int">
 	SELECT COUNT(1)
-	  FROM PAY_INF
-	 WHERE TRST_ID = #{_parameter}
+	  FROM PAY_INF PI
+	 JOIN (SELECT *
+	  		  FROM USR_INF
+	  		 WHERE USR_IS_GD = 'Y') GD
+	    ON GD.USR_ID = PI.GD_ID
+	  JOIN USR_INF TRST
+	    ON PI.TRST_ID = TRST.USR_ID
+	  LEFT JOIN USR_TR_RQST UTR
+	    ON PI.PAY_TR_ID = UTR.USR_TR_PST_ID
+	  LEFT JOIN GD_TR_RCRT GTR
+	    ON PI.PAY_TR_ID = GTR.GD_TR_PST_ID
+	 WHERE (USR_TR_TTL IS NOT NULL
+    	OR GD_TR_TTL IS NOT NULL)
+       AND TRST_ID = #{trstId}
+       AND PAY_CRT_DT > ADD_MONTHS(SYSDATE, -24)       
+	<if test="_parameter != null">
+    	<include refid="com.mate.payment.dao.PaymentDao.selectPeriodPayment" />
+    	<include refid="com.mate.payment.dao.PaymentDao.selectStatePayment" />
+    	<include refid="com.mate.payment.dao.PaymentDao.selectTourTypePayment" />
+    </if>
 </select>
 
 <select id="selectAllPayment" resultType="com.mate.payment.vo.PaymentVO">
@@ -48,45 +101,55 @@
 	    ON PI.PAY_TR_ID = GTR.GD_TR_PST_ID
 	 WHERE USR_TR_TTL IS NOT NULL
 		OR GD_TR_TTL IS NOT NULL
-	<!-- TODO 자기 것만 나와야하니까 그것도 만들어야 함. -->
-  
 </select>
 
-<select id="selectAllMyPayment" parameterType="String" resultType="com.mate.payment.vo.PaymentVO">
+<select id="selectUserId" parameterType="String"
+	resultType="String">
+	SELECT USR_ID
+	  FROM USR_INF
+	 WHERE USR_LGN_ID = #{parameter}
+</select>
+
+
+
+<select id="selectAllMyPayment" parameterType="com.mate.payment.vo.SearchPaymentVO"
+ resultType="com.mate.payment.vo.PaymentVO">
+    <if test="_parameter != null">
+    	<include refid="Common.pagination_header" />
+	</if>
 	SELECT PAY_ID
-	     , PI.TRST_ID AS TRST_ID
-	     , TRST.USR_FNM AS TRST_FNM
-	     , PI.GD_ID AS GD_ID
 	     , GD.USR_FNM AS GD_FNM
 	     , PAY_TR_TP
-	     , PAY_TR_ID
 		 , UTR.USR_TR_TTL AS USR_TR_TTL
 	     , GTR.GD_TR_TTL AS GD_TR_TTL
 	     , PAY_CSH
 	     , PAY_STT
 	     , TO_CHAR(PAY_CRT_DT  , 'YYYY-MM-DD HH24:MI') PAY_CRT_DT
-	     , TO_CHAR(PAY_CMPLT_DT, 'YYYY-MM-DD HH24:MI') PAY_CMPLT_DT
-	     , IMP_UID
-	     , PAY_MTHD
-	     , PAY_CRRNC
-	     , PAY_CMMSSN
-	     , IMP_MID
 	  FROM PAY_INF PI
 	  JOIN (SELECT *
 	  		  FROM USR_INF
 	  		 WHERE USR_IS_GD = 'Y') GD
 	    ON GD.USR_ID = PI.GD_ID
 	  JOIN USR_INF TRST
-	    ON PI.TRST_ID = TRST.USR_ID	    
+	    ON PI.TRST_ID = TRST.USR_ID
 	  LEFT JOIN USR_TR_RQST UTR
 	    ON PI.PAY_TR_ID = UTR.USR_TR_PST_ID
 	  LEFT JOIN GD_TR_RCRT GTR
 	    ON PI.PAY_TR_ID = GTR.GD_TR_PST_ID
 	 WHERE (USR_TR_TTL IS NOT NULL
     	OR GD_TR_TTL IS NOT NULL)
-       AND TRST_ID = #{_parameter}
-   
+       AND TRST_ID = #{trstId}
+       AND PAY_CRT_DT > ADD_MONTHS(SYSDATE, -24)
+	<if test="_parameter != null">
+    	<include refid="com.mate.payment.dao.PaymentDao.selectPeriodPayment" />
+    	<include refid="com.mate.payment.dao.PaymentDao.selectStatePayment" />
+    	<include refid="com.mate.payment.dao.PaymentDao.selectTourTypePayment" />
+    </if>
+    <if test="_parameter != null">
+		<include refid="Common.pagination_footer" />
+	</if>
 </select>
+
 <select id="selectOnePayment" parameterType="String"
 		 resultType="com.mate.payment.vo.PaymentVO">
 	SELECT PAY_ID
@@ -131,14 +194,48 @@
 </select>
 
 <update id="updateSuccessPayment" parameterType="com.mate.payment.vo.PaymentVO">
-UPDATE PAY_INF
-   SET PAY_STT = 'COMPLETE'
-     , PAY_CMPLT_DT = SYSDATE
-     , IMP_UID = #{impUid}
-     , IMP_MID = #{impMid}
-     , PAY_MTHD = #{payMthd}
- WHERE PAY_ID = #{payId}
+	UPDATE PAY_INF
+	   SET PAY_STT = 'COMPLETE'
+	     , PAY_CMPLT_DT = SYSDATE
+	     , IMP_UID = #{impUid}
+	     , IMP_MID = #{impMid}
+	     , PAY_MTHD = #{payMthd}
+	 WHERE PAY_ID = #{payId}
 </update>
+
+<update id="updateRefundPayment" parameterType="String">
+	UPDATE PAY_INF
+	   SET PAY_STT = 'REFUND'
+	     , PAY_CMPLT_DT = NULL
+	 WHERE PAY_ID = #{_parameter}
+	   AND PAY_STT = 'COMPLETE'
+</update>
+
+<insert id="insertPayment" parameterType="com.mate.payment.vo.PaymentVO">
+ INSERT INTO PAY_INF
+		PAY_ID
+		TRST_ID
+		GD_ID
+		PAY_TR_TP
+		PAY_TR_ID
+		PAY_CSH
+		PAY_STT
+		PAY_CRT_DT
+		PAY_CRRNC
+		PAY_CMMSSN
+	VALUES
+		('PI-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_PAY_INF_PK.NEXTVAL, 6, 0)
+		, #{trstId}
+		, #{gdId}
+		, #{payTrTp}
+		, #{payTrId}
+		, #{payCsh}
+		, 'WAITING'
+		, SYSDATE
+		, 'USD'
+		, #{payCmmssn}
+</insert>
+
 
 
 

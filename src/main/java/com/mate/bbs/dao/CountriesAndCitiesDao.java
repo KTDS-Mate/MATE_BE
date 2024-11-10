@@ -2,9 +2,7 @@ package com.mate.bbs.dao;
 
 import java.util.List;
 
-import com.mate.common.vo.CitiesVO;
-import com.mate.common.vo.CountriesVO;
-import com.mate.common.vo.RegionsVO;
+import com.mate.common.vo.*;
 
 public interface CountriesAndCitiesDao {
 
@@ -48,5 +46,12 @@ public interface CountriesAndCitiesDao {
 	 * @return
 	 */
 	public int selectCitiesCount(int countryId);
-	
+
+	List<CountriesVO> searchCountriesByName(String query);
+
+	List<CitiesVO> searchCitiesByName(String query);
+
+//	List<CitiesVO> selectRandomCities();
+
+//	public TopDestinationsListVO selectTopDestinations();
 }

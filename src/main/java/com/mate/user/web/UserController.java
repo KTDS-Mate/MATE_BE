@@ -1,8 +1,11 @@
 package com.mate.user.web;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.mate.common.vo.CountriesVO;
 import com.mate.user.service.UserService;
 import com.mate.user.vo.LoginUserVO;
 import com.mate.user.vo.RegistUserVO;
@@ -25,17 +29,26 @@ import jakarta.validation.Valid;
 @Controller
 public class UserController {
 
+	Logger logger = LoggerFactory.getLogger(UserController.class);
+	
 	@Autowired
 	UserService userService;
 	
 	@GetMapping("/user/regist")
 	public String viewCreateUserPage(Model model) {
 		model.addAttribute("registUserVO", new RegistUserVO());
+		
+		// countries 리스트 추가
+		List<CountriesVO> countriesList = userService.getAllCountries();
+		model.addAttribute("countriesList", countriesList);
+		
 		return "user/userregist";
 	}
 	
 	@PostMapping("/user/regist")
 	public String doCreateUser(@Valid RegistUserVO registUserVO, BindingResult bindingResult, Model model) {
+		
+		logger.debug("countryId Pk값 들어오는지 확인 (gdRpCntId): {}", registUserVO.getGdRpCntId());
 		
 		// 이메일 인증이 되지 않을 경우 회원가입 진행 불가 설정
 		if (!"true".equals(registUserVO.getAuthVerified())) {
@@ -44,8 +57,8 @@ public class UserController {
 		}
 		
 		// 비밀번호가 불일치될 경우 회원 가입 진행 불가 설정
-		if (!registUserVO.getUsrPw().trim().equals(registUserVO.getConfirmPw().trim())) {
-			bindingResult.rejectValue("confirmPw", "error_password", "비밀번호가 일치하지 않습니다.");
+		if (!registUserVO.getUsrPwd().trim().equals(registUserVO.getConfirmPwd().trim())) {
+			bindingResult.rejectValue("confirmPwd", "error_password", "비밀번호가 일치하지 않습니다.");
 			model.addAttribute("registUserVO", registUserVO);
 			return "user/userregist";
 		}
@@ -86,10 +99,15 @@ public class UserController {
 	
 	@ResponseBody
 	@GetMapping("/user/regist/availablephn")
-	public Map<String, Object> doCheckAvailablePhn(@RequestParam String usrPhn) {
-		boolean isAvailablePhn = this.userService.checkAvailablePhn(usrPhn);
-		
+	public Map<String, Object> doCheckAvailablePhn(@RequestParam String usrPhn,
+												   @SessionAttribute(name = "_LOGIN_USER_", required= false) UserVO userVO) {
 		Map<String, Object> response = new HashMap<>();
+		
+		// 회원가입시 userVO가 null일 경우 항상 휴대전화번호가 이미 사용중인 번호라는 에러를 처리하기 위함. (AJAX 요청을 보내면 available이 항상 false이므로) 
+		String usrLgnId = (userVO != null) ? userVO.getUsrLgnId() : null;
+		
+		boolean isAvailablePhn = this.userService.checkAvailablePhn(usrPhn, usrLgnId);
+		
 		response.put("usrPhn", usrPhn);
 		response.put("available", isAvailablePhn);
 		
@@ -97,7 +115,12 @@ public class UserController {
 	}
 	
 	@GetMapping("/user/login")
-	public String viewLoginPage() {
+	public String viewLoginPage(HttpSession session) {
+		
+		if (session.getAttribute("_LOGIN_USER_") != null) {
+			return "redirect:/";
+		}
+		
 		return "user/userlogin";
 	}
 	
@@ -142,6 +165,206 @@ public class UserController {
 		return "redirect:/";
 	}
 	
+	@GetMapping("/user/reissue-password")
+	public String viewReissuePasswordPage(HttpSession session, Model model) {
+		if (session.getAttribute("_LOGIN_USER_") != null) {
+			return "redirect:/";
+		}
+		
+		model.addAttribute("userVO", new UserVO());
+		return "user/reissue-password";
+	}
+	
+	@PostMapping("/user/reissue-password")
+	public String reissuePassword(@RequestParam String usrLgnId,
+								  @RequestParam String usrEml, Model model) {
+		UserVO userVO = new UserVO();
+		userVO.setUsrLgnId(usrLgnId);
+		userVO.setUsrEml(usrEml);
+		
+		boolean isReissued = userService.reissueUserPassword(userVO);
+		if (isReissued) {
+			model.addAttribute("message", "입력하신 이메일로 임시 비밀번호가 발급되었습니다.");
+			model.addAttribute("messageType", "success");
+			return "user/userlogin";
+		} else {
+			model.addAttribute("message", "일치하는 회원 정보가 없습니다.");
+			model.addAttribute("messageType", "error");
+			return "user/reissue-password";
+		}
+	}
+	
+	// 휴대전화번호 수정
+	@GetMapping("/user/editphone/modal")
+	public String viewEditPhonePage(@SessionAttribute(name = "_LOGIN_USER_", required= false) UserVO userVO, Model model) {
+		
+		logger.debug("UserVO null check: {}", userVO);
+		
+		if (userVO == null) {
+			return "redirect:/user/login";
+		}
+		model.addAttribute("userVO", userVO);
+		return "user/frag-editphn";
+	}
+	
+	@ResponseBody
+	@PostMapping("/user/editphone")
+	public Map<String, Object> doEditPhone(@SessionAttribute(name = "_LOGIN_USER_", required= false) UserVO userVO , 
+							  @RequestParam String newPhn, Model model) {
+		Map<String, Object> response = new HashMap<>();
+		if (userVO == null) {
+			response.put("success", false);
+			response.put("message", "로그인이 필요합니다.");
+			return response;
+		}
+		
+		newPhn = newPhn.replaceAll("[^+0-9]", "");
+		
+		if (!newPhn.matches("^\\+?[0-9]{8,15}$")) {
+			response.put("success", false);
+			response.put("message", "휴대 전화번호를 올바르게 입력해 주세요.");
+			return response;
+		}
+		
+		try {
+			boolean isUpdated = userService.updateUserPhoneNumber(userVO.getUsrLgnId(), newPhn);
+			
+			if (isUpdated) {
+				userVO.setUsrPhn(newPhn);
+				response.put("success", true);
+				response.put("message", "휴대전화번호가 성공적으로 변경되었습니다.");
+			} else {
+				response.put("success", false);
+				response.put("message", "휴대전화번호 변경에 실패했습니다.");
+			}
+		} catch(IllegalArgumentException e) {
+			response.put("success", false);
+			response.put("message", e.getMessage());
+		}
+		return response;
+	}
+	
+	@GetMapping("/user/editpypeml")
+	public String viewEditPaypalPage(@SessionAttribute(name="_LOGIN_USER_", required=false) UserVO userVO, Model model) {
+		
+		if (userVO == null) {
+			return "redirect:/user/login";
+		}
+		model.addAttribute("userVO", userVO);
+		return "user/editpypeml";
+		
+	}	
+	
+	@PostMapping("/user/editpypeml")
+	public String doEditPaypalEmail(@SessionAttribute(name = "_LOGIN_USER_", required= false) UserVO userVO, 
+									@RequestParam String usrPypEml, Model model) {
+		if (userVO == null) {
+			return "redirect:/user/login";
+		}
+		
+		try {
+			boolean isUpdated = userService.updateUserPaypalEmail(userVO.getUsrLgnId(), usrPypEml);
+			
+			if (isUpdated) {
+				userVO.setUsrPypEml(usrPypEml);
+				model.addAttribute("success", "페이팔 이메일이 성공적으로 변경되었습니다.");
+			} else {
+				model.addAttribute("errorMessage", "휴대전화번호 변경에 실패하였습니다.");
+			}
+		} catch(IllegalArgumentException e) {
+			model.addAttribute("paypalEmailError", e.getMessage());
+		}
+		return "redirect:mypage/edit-profile/choice";
+	}
+	
+	@GetMapping("/user/editpwd")
+	public String viewEditPassword(@SessionAttribute(name = "_LOGIN_USER_", required= false) UserVO userVO, Model model) {
+		if (userVO == null) {
+			return "redirect:/user/login";
+		}
+		model.addAttribute("userVO", userVO);
+		return "user/frag-editpwd";
+	}
+	
+	@PostMapping("/user/editpwd")
+	@ResponseBody
+	public Map<String, Object> updatePassword(@SessionAttribute(name = "_LOGIN_USER_", required=false) UserVO userVO, 
+								@RequestParam String newPwd,
+								@RequestParam String currentPwd,
+								@RequestParam String confirmPwd,
+								Model model) {
+		Map<String, Object> response = new HashMap<>();
+		
+		if (userVO == null) {
+			response.put("success", false);
+			response.put("message", "로그인이 필요합니다.");
+			return response;
+		}
+		
+		// 현재 비밀번호 확인
+		if (!userService.checkCurrentPassword(userVO.getUsrLgnId(), currentPwd)) {
+			response.put("success", false);
+			response.put("message", "기존의 비밀번호가 일치하지 않습니다.");
+			return response;
+		}
+		
+		// 새 비밀번호와 확인 비밀번호 일치 확인
+		if (!newPwd.equals(confirmPwd)) {
+			response.put("success", false);
+			response.put("message", "새 비밀번호가 일치하지 않습니다.");
+			return response;
+		}
+		
+		// 비밀번호 정규식 검증
+		if (!isValidPassword(newPwd)) {
+			response.put("message", false);
+			response.put("message", "비밀번호 형식이 올바르지 않습니다.");
+			return response;
+		}
+		
+		try {
+			boolean isUpdated = userService.updateUserPassword(userVO, newPwd);
+			if (isUpdated) {
+				response.put("success", true);
+				response.put("message", "비밀번호가 변경되었습니다.");
+	    	} else {
+	    		response.put("success", false);
+	    		response.put("message", "비밀번호 변경에 실패했습니다.");
+	    	}
+		} catch (Exception e) {
+			response.put("success", false);
+			response.put("message", "비밀번호 변경에 실패했습니다.");
+		}
+		return response;
+	}
+	
+	// 비밀번호 유효성 검증 메서드
+	public boolean isValidPassword(String password) {
+		String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+{}\\[\\]:;<>,.?~\\-=/]).{8,16}$";
+		return password.matches(passwordRegex);
+	}
+	
+	
+	@ResponseBody
+	@PostMapping("/user/checkCurrentPassword")
+	public Map<String, Object> checkCurrentPassword(@SessionAttribute(name = "_LOGIN_USER_", required = false) UserVO userVO,
+													@RequestParam String currentPwd) {
+	    Map<String, Object> response = new HashMap<>();
+	    if (userVO == null) {
+	        response.put("isValid", false);
+	        response.put("error", "로그인이 필요합니다.");
+	        return response;
+	    }
+	    
+	    boolean isValid = userService.checkCurrentPassword(userVO.getUsrLgnId(), currentPwd);
+	    response.put("isValid", isValid);
+	    
+	    if (!isValid) {
+	    	response.put("message", "현재 비밀번호가 일치하지 않습니다.");
+	    }
+	    return response;
+	}
+
 	/*
 	 * 회원탈퇴 기능 수행은 마이페이지
 	 */

@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.mate.common.vo.CitiesVO;
 import com.mate.common.vo.CountriesVO;
+import com.mate.mypage.vo.GuideReviewVO;
 import com.mate.user.vo.UserVO;
 
 public class GuideTourVO {
@@ -18,7 +19,7 @@ public class GuideTourVO {
 	 */
 	private String athrId;
 	/**
-	 * 예약한 회원 아이디
+	 * 투어를 예약한 여행자 아이디
 	 */
 	private String usrId;
 	/**
@@ -50,7 +51,6 @@ public class GuideTourVO {
 	 * 투어 요약
 	 */
 	private String gdTrSmry;
-
 	/**
 	 * 투어 등록일
 	 */
@@ -105,8 +105,7 @@ public class GuideTourVO {
 	/**
 	 * 가이드 추가 정보 리스트 VO
 	 */
-	private List<GuideTourAdditionInfoVO> guideTourAdditionInfoList;
-	
+	private List<GuideTourScheduleInfoVO> guideTourScheduleInfoList;
 	/**
 	 * 가이드 투어 즐겨찾기 리스트 VO
 	 */
@@ -129,12 +128,29 @@ public class GuideTourVO {
 	 * 나라 정보를 담은 VO
 	 */
 	private CountriesVO countriesVO;
-	
 	/**
 	 * 해당 프로퍼티는 DB컬럼에 존재하지 않음
 	 */
 	private String guideAge;
+	/**DB에 존재하지 않고 평균만 내서 가져옴**/
+	private String avgGdRvw;
+	/**
+	 * 가이드 투어 게시글에 대한 평균 별점
+	 */
+	private int trAvgRtng;
 	
+	public String getAvgGdRvw() {
+		return avgGdRvw;
+	}
+	public void setAvgGdRvw(String avgGdRvw) {
+		this.avgGdRvw = avgGdRvw;
+	}
+	public int getTrAvgRtng() {
+		return trAvgRtng;
+	}
+	public void setTrAvgRtng(int trAvgRtng) {
+		this.trAvgRtng = trAvgRtng;
+	}
 	public String getGdTrPstId() {
 		return gdTrPstId;
 	}
@@ -267,11 +283,11 @@ public class GuideTourVO {
 	public void setGuideTourReviewList(List<GuideTourReviewVO> guideTourReviewList) {
 		this.guideTourReviewList = guideTourReviewList;
 	}
-	public List<GuideTourAdditionInfoVO> getGuideTourAdditionInfoList() {
-		return guideTourAdditionInfoList;
+	public List<GuideTourScheduleInfoVO> getGuideTourScheduleInfoList() {
+		return guideTourScheduleInfoList;
 	}
-	public void setGuideTourAdditionInfoList(List<GuideTourAdditionInfoVO> guideTourAdditionInfoList) {
-		this.guideTourAdditionInfoList = guideTourAdditionInfoList;
+	public void setGuideTourScheduleInfoList(List<GuideTourScheduleInfoVO> guideTourScheduleInfoList) {
+		this.guideTourScheduleInfoList = guideTourScheduleInfoList;
 	}
 	//	public List<GuideTourFavoriteVO> getGuideTourFavoriteList() {
 //		return guideTourFavoriteList;

@@ -1,8 +1,8 @@
 package com.mate.bbs.service;
 
-import com.mate.common.vo.CitiesListVO;
-import com.mate.common.vo.CountriesListVO;
-import com.mate.common.vo.RegionsListVO;
+import com.mate.common.vo.*;
+
+import java.util.List;
 
 public interface CountriesAndCitiesService {
 
@@ -23,5 +23,17 @@ public interface CountriesAndCitiesService {
 	 * @return
 	 */
 	public CitiesListVO getCities(int countryId);
-	
+
+	/**
+	 * 검색 타입과 검색어를 받아서 적절한 결과를 반환
+	 *
+	 * @param type  검색 타입 (예: country, city 등)
+	 * @param query 검색어
+	 * @return 검색 결과 리스트
+	 */
+	List<?> searchByType(String type, String query);
+
+
+
+//	public TopDestinationsListVO getTopDestinations();
 }

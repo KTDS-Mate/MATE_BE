@@ -7,22 +7,23 @@ public class MyReviewListVO {
 	/**
 	 * 조회된 리뷰 게시글의 수
 	 */
-	private int rvwCnt;
+	private int reviewCnt;
 	/**
 	 * 조회된 리뷰 게시글의 목록
 	 */
-	private List<MyReviewVO> myReviewList;
+	private List<GuideReviewVO> myReviewList;
 	
-	public int getRvwCnt() {
-		return rvwCnt;
+
+	public int getReviewCnt() {
+		return reviewCnt;
 	}
-	public void setRvwCnt(int rvwCnt) {
-		this.rvwCnt = rvwCnt;
+	public void setReviewCnt(int reviewCnt) {
+		this.reviewCnt = reviewCnt;
 	}
-	public List<MyReviewVO> getMyReviewList() {
+	public List<GuideReviewVO> getMyReviewList() {
 		return myReviewList;
 	}
-	public void setMyReviewList(List<MyReviewVO> myReviewList) {
+	public void setMyReviewList(List<GuideReviewVO> myReviewList) {
 		this.myReviewList = myReviewList;
 	}
 }

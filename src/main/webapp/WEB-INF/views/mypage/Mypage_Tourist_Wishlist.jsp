@@ -1,17 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
   <!DOCTYPE html>
   <html>
 
   <head>
     <meta charset="UTF-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <title>MATE 즐겨찾기</title>
-    <link rel="stylesheet" type="text/css" href="/css/Mypage_Tourist_Wishlist.css" />
+    <link rel="stylesheet" type="text/css" href="/css/mypage/Mypage_Tourist_Wishlist.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet">
+     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="/js/mypage/Mypage_Tourist_Wishlist.js"></script>
   </head>
 
   <body>
@@ -24,343 +28,134 @@
         <div class="content-grid">
           <!-- side-bar 공통파일 -->
           <jsp:include page="../Tourist_Sidebar.jsp"></jsp:include>
-          <!-- 수정이 예정 되어있음 -->
-          <!-- 좌측의 네비게이션 바 -->
-          <!-- <div class="my-page">
-            <ul class="list">
-              <li>캘린더</li>
-              <li>즐겨찾기</li>
-              <li>나의 등록 투어</li>
-              <li>매출 관리</li>
-              <li>내 정보 수정</li>
-              <li>메세지</li>
-            </ul>
-          </div> -->
+
           <!-- 좌측 네비게이션 바 -->
 
           <div class="main-content">
             <div class="content-title">
+            
               <div>
                 <h2>즐겨찾기</h2>
               </div>
+              
+              <div>
+                  <h5>
+                    <span class="gray">즐겨찾기 등록한 게시글리스트입니다. (하트 클릭시 즐겨찾기가 삭제됩니다)</span>
+                  </h5>
+                </div>
+              
             </div>
+            
+            <div class="border"></div>
 
             <div class="wishlist">
+            <input type="hidden" name="pageNo" class="page-no" value="${paginationVO.pageNo}">
               <!-- 즐겨찾기 전체 박스-->
               <div>
-                <!-- 즐겨찾기 하나 -->
+              
+              <c:choose>
+              <c:when test="${not empty trWishlistVO.wishlist}">
+              <c:forEach  items="${trWishlistVO.wishlist}" var="wish">
+              <!-- 즐겨찾기 하나 -->
                 <div class="one-wishlist">
                   <div class="right-element">
                     <div>
-                      <img class="check" src="/image/wishlist/check.png" alt="check" />
+                      <a href="javascript:deleteTour('${sessionScope._LOGIN_USER_.usrLgnId}', '${wish.favId}')"><img class="check" src="/img/wishlist/check.png" alt="check"/></a>
                     </div>
                     <div class="wishlist-info">
                       <div>
                         <div>제목 :</div>
-                        <div class="info-content">퀘백 안내해드립니다.</div>
+                        <div class="info-content">${wish.trMyBoardVO.usrTrTtl}</div>
                       </div>
                       <div>
                         <div>날짜 :</div>
                         <div class="info-content">
-                          241020 14:00 ~ 241020 18:30
+                          ${wish.trMyBoardVO.usrTrStDt} ~ ${wish.trMyBoardVO.usrTrEdDt}
                         </div>
                       </div>
                       <div>
                         <div>지역 :</div>
-                        <div class="info-content">퀘백</div>
+                        <div class="info-content">
+                        ${wish.trMyBoardVO.searchCityAndCountryVO.countriesVO.countryName} /
+                                ${wish.trMyBoardVO.searchCityAndCountryVO.cityName}
+                        </div>
                       </div>
                       <div>
                         <div>가격 :</div>
-                        <div class="info-content">250,000 WON</div>
+                        <div class="info-content">
+                        ${wish.trMyBoardVO.usrTrGdHrPrc}
+                        </div>
                       </div>
                     </div>
                   </div>
                   <div class="goto-button">
-                    <button class="activate">페이지 이동</button>
+                    <button class="activate" data-pst-id="${wish.trMyBoardVO.usrTrPstId}">페이지 이동</button>
                   </div>
                 </div>
                 <!-- 즐겨찾기 하나 -->
+              </c:forEach>
+              </c:when>
+              <c:otherwise>
+              <div class="one-wishlist">
+                        <div class="right-element">
+                          <div class="wishlist-info">
+                            <div>게시글이 없습니다.</div>
+                          </div>
+                        </div>
+                      </div>
+              </c:otherwise>
+              </c:choose>
+                
 
-                <!-- 즐겨찾기 하나 -->
-                <div class="one-wishlist">
-                  <div class="right-element">
-                    <div>
-                      <img class="check" src="/image/wishlist/check.png" alt="check" />
-                    </div>
-                    <div class="wishlist-info">
-                      <div>
-                        <div>제목 :</div>
-                        <div class="info-content">서울 안내해드립니다.</div>
-                      </div>
-                      <div>
-                        <div>날짜 :</div>
-                        <div class="info-content">
-                          241025 10:00 ~ 241025 15:30
-                        </div>
-                      </div>
-                      <div>
-                        <div>지역 :</div>
-                        <div class="info-content">서울</div>
-                      </div>
-                      <div>
-                        <div>가격 :</div>
-                        <div class="info-content">200,000 WON</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="goto-button">
-                    <button class="deactivate">페이지 이동</button>
-                  </div>
-                </div>
-                <!-- 즐겨찾기 하나 -->
-                <!-- 즐겨찾기 하나 -->
-                <div class="one-wishlist">
-                  <div class="right-element">
-                    <div>
-                      <img class="uncheck" src="/image/wishlist/uncheck.png" alt="uncheck" />
-                    </div>
-                    <div class="wishlist-info">
-                      <div>
-                        <div>제목 :</div>
-                        <div class="info-content">서울 안내해드립니다.</div>
-                      </div>
-                      <div>
-                        <div>날짜 :</div>
-                        <div class="info-content">
-                          241025 10:00 ~ 241025 15:30
-                        </div>
-                      </div>
-                      <div>
-                        <div>지역 :</div>
-                        <div class="info-content">서울</div>
-                      </div>
-                      <div>
-                        <div>가격 :</div>
-                        <div class="info-content">200,000 WON</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="goto-button">
-                    <button class="activate">페이지 이동</button>
-                  </div>
-                </div>
-                <!-- 즐겨찾기 하나 -->
-                <!-- 즐겨찾기 하나 -->
-                <div class="one-wishlist">
-                  <div class="right-element">
-                    <div>
-                      <img class="check" src="/image/wishlist/check.png" alt="check" />
-                    </div>
-                    <div class="wishlist-info">
-                      <div>
-                        <div>제목 :</div>
-                        <div class="info-content">서울 안내해드립니다.</div>
-                      </div>
-                      <div>
-                        <div>날짜 :</div>
-                        <div class="info-content">
-                          241025 10:00 ~ 241025 15:30
-                        </div>
-                      </div>
-                      <div>
-                        <div>지역 :</div>
-                        <div class="info-content">서울</div>
-                      </div>
-                      <div>
-                        <div>가격 :</div>
-                        <div class="info-content">200,000 WON</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="goto-button">
-                    <button class="activate">페이지 이동</button>
-                  </div>
-                </div>
-                <!-- 즐겨찾기 하나 -->
-
-                <!-- 즐겨찾기 하나 -->
-                <div class="one-wishlist">
-                  <div class="right-element">
-                    <div>
-                      <img class="check" src="/image/wishlist/check.png" alt="check" />
-                    </div>
-                    <div class="wishlist-info">
-                      <div>
-                        <div>제목 :</div>
-                        <div class="info-content">서울 안내해드립니다.</div>
-                      </div>
-                      <div>
-                        <div>날짜 :</div>
-                        <div class="info-content">
-                          241025 10:00 ~ 241025 15:30
-                        </div>
-                      </div>
-                      <div>
-                        <div>지역 :</div>
-                        <div class="info-content">서울</div>
-                      </div>
-                      <div>
-                        <div>가격 :</div>
-                        <div class="info-content">200,000 WON</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="goto-button">
-                    <button class="activate">페이지 이동</button>
-                  </div>
-                </div>
-                <!-- 즐겨찾기 하나 -->
-                <!-- 즐겨찾기 하나 -->
-                <div class="one-wishlist">
-                  <div class="right-element">
-                    <div>
-                      <img class="uncheck" src="/image/wishlist/uncheck.png" alt="uncheck" />
-                    </div>
-                    <div class="wishlist-info">
-                      <div>
-                        <div>제목 :</div>
-                        <div class="info-content">서울 안내해드립니다.</div>
-                      </div>
-                      <div>
-                        <div>날짜 :</div>
-                        <div class="info-content">
-                          241025 10:00 ~ 241025 15:30
-                        </div>
-                      </div>
-                      <div>
-                        <div>지역 :</div>
-                        <div class="info-content">서울</div>
-                      </div>
-                      <div>
-                        <div>가격 :</div>
-                        <div class="info-content">200,000 WON</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="goto-button">
-                    <button class="activate">페이지 이동</button>
-                  </div>
-                </div>
-                <!-- 즐겨찾기 하나 -->
-                <!-- 즐겨찾기 하나 -->
-                <div class="one-wishlist">
-                  <div class="right-element">
-                    <div>
-                      <img class="check" src="/image/wishlist/check.png" alt="check" />
-                    </div>
-                    <div class="wishlist-info">
-                      <div>
-                        <div>제목 :</div>
-                        <div class="info-content">서울 안내해드립니다.</div>
-                      </div>
-                      <div>
-                        <div>날짜 :</div>
-                        <div class="info-content">
-                          241025 10:00 ~ 241025 15:30
-                        </div>
-                      </div>
-                      <div>
-                        <div>지역 :</div>
-                        <div class="info-content">서울</div>
-                      </div>
-                      <div>
-                        <div>가격 :</div>
-                        <div class="info-content">200,000 WON</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="goto-button">
-                    <button class="activate">페이지 이동</button>
-                  </div>
-                </div>
-                <!-- 즐겨찾기 하나 -->
-                <!-- 즐겨찾기 하나 -->
-                <div class="one-wishlist">
-                  <div class="right-element">
-                    <div>
-                      <img class="check" src="/image/wishlist/check.png" alt="check" />
-                    </div>
-                    <div class="wishlist-info">
-                      <div>
-                        <div>제목 :</div>
-                        <div class="info-content">서울 안내해드립니다.</div>
-                      </div>
-                      <div>
-                        <div>날짜 :</div>
-                        <div class="info-content">
-                          241025 10:00 ~ 241025 15:30
-                        </div>
-                      </div>
-                      <div>
-                        <div>지역 :</div>
-                        <div class="info-content">서울</div>
-                      </div>
-                      <div>
-                        <div>가격 :</div>
-                        <div class="info-content">200,000 WON</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="goto-button">
-                    <button class="activate">페이지 이동</button>
-                  </div>
-                </div>
-                <!-- 즐겨찾기 하나 -->
-                <!-- 즐겨찾기 하나 -->
-                <div class="one-wishlist">
-                  <div class="right-element">
-                    <div>
-                      <img class="uncheck" src="/image/wishlist/uncheck.png" alt="uncheck" />
-                    </div>
-                    <div class="wishlist-info">
-                      <div>
-                        <div>제목 :</div>
-                        <div class="info-content">서울 안내해드립니다.</div>
-                      </div>
-                      <div>
-                        <div>날짜 :</div>
-                        <div class="info-content">
-                          241025 10:00 ~ 241025 15:30
-                        </div>
-                      </div>
-                      <div>
-                        <div>지역 :</div>
-                        <div class="info-content">서울</div>
-                      </div>
-                      <div>
-                        <div>가격 :</div>
-                        <div class="info-content">200,000 WON</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="goto-button">
-                    <button class="deactivate">페이지 이동</button>
-                  </div>
-                </div>
-                <!-- 즐겨찾기 하나 -->
+                
               </div>
               <!-- pagenation-->
-              <div class="paging">
-                <p class="page-minus"></p>
-                <div>1</div>
-                <!-- 한 페이지 못 채워서 나머지는 생략
-                <div>2</div>
-                <div>3</div>
-                <div>4</div>
-                <div>5</div>
-                -->
-                <p class="page-plus"></p>
-              </div>
+              <ul class="page-nav">
+                  <c:if test="${paginationVO.hesprevGroup}">
+                    <li>
+                      <!-- <a href="/board/list?pageNo=0&listSize=${searchMyBoardVO.listSize}"> -->
+                      <a href="javascript:movePage(0)">
+                        처음
+                      </a>
+                    </li>
+                    <li>
+                      <a href="javascript:movePage(${paginationVO.prevGroupStartPageNo})">
+                        이전
+                      </a>
+                    </li>
+                  </c:if>
+                  <c:forEach begin="${paginationVO.groupStartPageNo}" end="${paginationVO.groupEndPageNo}"
+                    step="1" var="p">
+                    <li class="${p eq paginationVO.pageNo ? 'active' : ''}">
+                      <!-- a href="/mypage/mytour/gd-mytour/${sessionScope._LOGIN_USER_.usrLgnId}?pageNo=${p}" -->
+                      <a href="javascript:movePage(${p})">
+
+                        ${p+1}
+
+                      </a>
+                    </li>
+                  </c:forEach>
+                  <c:if test="${paginationVO.hasNextGroup}">
+                    <li>
+                      <a href="javascript:movePage(${paginationVO.nextGroupStartPageNo})">
+                        다음
+                      </a>
+                    </li>
+                    <li>
+                      <a href="javascript:movePage(${paginationVO.pageCount - 1})">
+                        끝
+                      </a>
+                    </li>
+                  </c:if>
+                </ul>
+              
+              
             </div>
           </div>
         </div>
-        <div class="footer">
-          <!-- footer 공통파일 -->
-          <jsp:include page="../footer.jsp"></jsp:include>
-        </div>
       </div>
       <div class="footer">
-        <!-- footer 공통파일 -->
+        <!-- footer 공통파일-->
         <jsp:include page="../footer.jsp"></jsp:include>
       </div>
     </div>

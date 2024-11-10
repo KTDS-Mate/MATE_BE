@@ -9,9 +9,10 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mate.common.vo.PaginationVO;
 import com.mate.mypage.dao.WishlistDao;
-import com.mate.mypage.vo.SearchMyWishVO;
-import com.mate.mypage.vo.WishVO;
+import com.mate.mypage.vo.MyWishVO;
+import com.mate.mypage.vo.TrMyWishVO;
 
 @Repository
 public class WishlistDaoImpl extends SqlSessionDaoSupport implements WishlistDao {
@@ -21,36 +22,69 @@ public class WishlistDaoImpl extends SqlSessionDaoSupport implements WishlistDao
     public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
         super.setSqlSessionTemplate(sqlSessionTemplate);
     }
+    
+    
+//  -------------------------------------------------------------------------가이드파트
 
 	@Override
-	public int countWish(String usrLgnId , SearchMyWishVO searchMyWishVO) {
+	public int countWish(String usrLgnId) {
 		
-		Map<String, Object> params = new HashMap<>();
-        params.put("loginId", usrLgnId);
-        params.put("search", searchMyWishVO);
+
 		
-		return this.getSqlSession().selectOne(null);
+		return this.getSqlSession().selectOne(NAMESPACE + ".countWish" , usrLgnId);
 	}
 
 	@Override
-	public List<WishVO> selectAllWish(String usrLgnId, SearchMyWishVO searchMyWishVO) {
+	public List<MyWishVO> selectAllWish(String usrLgnId, PaginationVO paginationVO) {
 		
 		Map<String, Object> params = new HashMap<>();
         params.put("loginId", usrLgnId);
-        params.put("search", searchMyWishVO);
+        params.put("search", paginationVO);
 		
-		return this.getSqlSession().selectList(NAMESPACE + ".selectTLAllWish" , params);
+		return this.getSqlSession().selectList(NAMESPACE + ".selectAllWish" , params);
+	}
+
+	@Override
+	public int deleteWish(String favId) {
+		
+		System.out.println("Dao 전" + favId);
+		return this.getSqlSession().delete(NAMESPACE + ".deleteWish" , favId);
 	}
 	
+//  -------------------------------------------------------------------------투어리스트파트
+	
+	
+	
+	
+	
+	
 	@Override
-	public List<WishVO> selectAllWish(String usrLgnId) {
+	public int countTrWish(String usrLgnId) {
+		
+		
+		
+		return this.getSqlSession().selectOne(NAMESPACE + ".countTrWish" , usrLgnId);
+	}
+	
+	
+	
+	@Override
+	public List<TrMyWishVO> selectTrAllWish(String usrLgnId, PaginationVO paginationVO) {
 		
 		Map<String, Object> params = new HashMap<>();
 		params.put("loginId", usrLgnId);
-
+		params.put("search", paginationVO);
 		
-		return this.getSqlSession().selectList(NAMESPACE + ".selectTLAllWish" , params);
+		return this.getSqlSession().selectList(NAMESPACE + ".selectTrAllWish" , params);
 	}
+	
+	@Override
+	public int deleteTrWish(String favId) {
+		
+		System.out.println("Dao 전" + favId);
+		return this.getSqlSession().delete(NAMESPACE + ".deleteTrWish" , favId);
+	}
+	
 
 
 

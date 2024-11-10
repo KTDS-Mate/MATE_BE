@@ -10,11 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mate.bbs.dao.UserTourDao;
 import com.mate.bbs.service.UserTourService;
 import com.mate.bbs.vo.SearchUserTourVO;
+import com.mate.bbs.vo.UserTourImgVO;
 import com.mate.bbs.vo.UserTourListVO;
 import com.mate.bbs.vo.UserTourModifyVO;
 import com.mate.bbs.vo.UserTourSchdlVO;
 import com.mate.bbs.vo.UserTourVO;
 import com.mate.bbs.vo.UserTourWriteVO;
+import com.mate.common.beans.FileHandler;
+import com.mate.common.vo.StoreResultVO;
 
 @Service
 public class UserTourServiceImpl implements UserTourService{
@@ -22,6 +25,9 @@ public class UserTourServiceImpl implements UserTourService{
 	@Autowired
 	private UserTourDao userTourDao;
 
+	@Autowired
+	private FileHandler fileHandler;
+	
 	@Transactional
 	@Override
 	public boolean createNewUserTour(UserTourWriteVO userTourWriteVO) {
@@ -49,18 +55,38 @@ public class UserTourServiceImpl implements UserTourService{
 			}
 		}
 		
+		// 이미지가 계속 null로 들어가여
+//		List<UserTourImgVO> imgList = userTourWriteVO.getUserTourImgList();
+//		
+//		if (imgList != null && !imgList.isEmpty()) {
+//			for (UserTourImgVO userTourImgVO : imgList) {
+//				String usrTrPstId = userTourWriteVO.getUsrTrPstId();
+//				userTourImgVO.setUsrTrPstId(usrTrPstId);
+//				
+//				StoreResultVO imgResult= fileHandler.storeFile(userTourWriteVO.getUsrTourImgFile());
+//				if (imgResult != null) {
+//					userTourWriteVO.setImgFileName(imgResult.getObfuscatedFileName());
+//				}
+//				this.userTourDao.insertNewUserTourImgs(userTourImgVO);
+//			}
+//		}
+		
 		return createCount > 0;
 	}
 
 	@Override
 	public UserTourVO getOneUserTour(String usrTrPstId) {
 		UserTourVO userTourVO = this.userTourDao.selectOneUserTour(usrTrPstId);
+		List<UserTourSchdlVO> scdls = this.userTourDao.selectUserTourSchdls(usrTrPstId);
+		
+		userTourVO.setUserTourSchdlList(scdls);
+		
 		return userTourVO;
 	}
 
 	@Override
 	public UserTourListVO getAllUserTour(SearchUserTourVO searchUserTourVO) {
-		int userTourCnt = this.userTourDao.selectAllUserTourCount();
+		int userTourCnt = this.userTourDao.selectAllUserTourCount(searchUserTourVO);
 		
 		if (userTourCnt == 0) {
 			// 등록 된 게시글이 없다면 에러를 발생시키지 않기 위해 새로운 인스턴스를 만들어서 반환
@@ -69,12 +95,11 @@ public class UserTourServiceImpl implements UserTourService{
 			userTourListVO.setUserTourList( new ArrayList<>() );
 			return userTourListVO;
 		}
-		
-		List<UserTourVO> UserTourList = this.userTourDao.selectAllUserTour(searchUserTourVO);
 		// pagination 을 위해 listSize를 보내줌
 		searchUserTourVO.setPageCount(userTourCnt);
-		// 한 화면에 보여 줄 게시글 수 지정
-		searchUserTourVO.setListSize(9);
+		
+		List<UserTourVO> UserTourList = this.userTourDao.selectAllUserTour(searchUserTourVO);
+		
 		UserTourListVO userTourListVO = new UserTourListVO();
 		userTourListVO.setUserTourCount(userTourCnt);
 		userTourListVO.setUserTourList(UserTourList);
@@ -92,7 +117,22 @@ public class UserTourServiceImpl implements UserTourService{
 		userTourModifyVO.setUsrTrStDt(startDt);
 		userTourModifyVO.setUsrTrEdDt(endDt);
 		
+		// 기존의 스케줄을 모두 삭제
+		this.userTourDao.deleteUserTourSchdls(userTourModifyVO.getUsrTrPstId());
+		
+		// 새로 작성 한 리스트들을 다시 입력
+		List<UserTourSchdlVO> tourschdlList = userTourModifyVO.getUserTourSchdlList();
+		
+		if (tourschdlList != null && !tourschdlList.isEmpty()) {
+			for (UserTourSchdlVO userTourSchdlVO : tourschdlList) {
+				userTourSchdlVO.setUsrTrPstId(userTourModifyVO.getUsrTrPstId());
+				
+				this.userTourDao.insertUserTourScheduls(userTourSchdlVO);
+			}
+		}
+		
 		int updateCount = this.userTourDao.updateUserTour(userTourModifyVO);
+		
 		return updateCount > 0;
 	}
 
@@ -101,6 +141,12 @@ public class UserTourServiceImpl implements UserTourService{
 	public boolean softDeleteUserTour(String usrTrPstId) {
 		int updateCount = this.userTourDao.updateUserTourIsDtl(usrTrPstId);
 		return updateCount > 0;
+	}
+
+	@Transactional
+	@Override
+	public boolean reserveUserTour(String usrTrPstId, String usrLgnId) {
+		return this.userTourDao.updateGdId(usrTrPstId, usrLgnId) > 0;
 	}
 	
 }

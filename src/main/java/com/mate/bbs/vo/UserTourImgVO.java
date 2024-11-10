@@ -27,6 +27,8 @@ public class UserTourImgVO {
 	 */
 	private String gdTrImgIsDlt;
 	
+	
+	
 	public String getUsrTrRqImgId() {
 		return usrTrRqImgId;
 	}

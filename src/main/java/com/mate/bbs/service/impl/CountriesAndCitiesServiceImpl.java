@@ -1,18 +1,14 @@
 package com.mate.bbs.service.impl;
 
+import java.util.Collections;
 import java.util.List;
 
+import com.mate.common.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mate.bbs.dao.CountriesAndCitiesDao;
 import com.mate.bbs.service.CountriesAndCitiesService;
-import com.mate.common.vo.CitiesListVO;
-import com.mate.common.vo.CitiesVO;
-import com.mate.common.vo.CountriesListVO;
-import com.mate.common.vo.CountriesVO;
-import com.mate.common.vo.RegionsListVO;
-import com.mate.common.vo.RegionsVO;
 
 @Service
 public class CountriesAndCitiesServiceImpl implements CountriesAndCitiesService {
@@ -58,7 +54,29 @@ public class CountriesAndCitiesServiceImpl implements CountriesAndCitiesService 
 		
 		return citiesListVO;
 	}
-	
-	
+
+	@Override
+	public List<?> searchByType(String type, String query) {
+		switch (type) {
+			case "country":
+				return countriesAndCitiesDao.searchCountriesByName(query); // String 전달
+			case "city":
+				return countriesAndCitiesDao.searchCitiesByName(query); // String 전달
+			// "title" 및 "price" 타입에 대한 추가 구현 필요 시 여기에 추가
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+
+
+//	@Override
+//	public TopDestinationsListVO getTopDestinations() {
+//		TopDestinationsListVO topDestinationsList = this.countriesAndCitiesDao.selectTopDestinations();
+//
+//
+//
+//		return topDestinationsList;
+//	}
 	
 }

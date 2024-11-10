@@ -42,8 +42,6 @@ select {
   outline: none;
 }
 
-
-
 #region {
 	width: 6rem;
 }
@@ -85,6 +83,7 @@ textarea {
   border: 1px solid #ddd;
   border-radius: 10px;
   resize: none;
+  padding: 1rem;
 }
 
 input[type="number"] {
@@ -117,6 +116,15 @@ input[type="submit"] {
 	margin-left: 1rem;
 }
 
+.loc-inf {
+  border: 1px solid #ddd;
+  width: 85%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
 .hope-btn {
   margin-bottom: 1rem;
 }
@@ -133,11 +141,20 @@ input[type="file"] {
 
 .file-list {
   border: 1px solid #ddd;
-  height: 200px;
-  width: 250px;
+  width: 85%;
   margin-top: 1rem;
   margin-bottom: 1rem;
   padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.file-group {
+	display: flex;
+	margin-bottom: 1rem;
+}
+
+.file-group:last-child {
+	margin-bottom: 0;
 }
 
 .inline {
@@ -199,11 +216,11 @@ input {
 }
 
 #hope-location {
-  width: 50%;
+  width: 90%;
 }
 
 #hope-info {
-  width: 50%;
+  width: 90%;
 }
 
 #gender,

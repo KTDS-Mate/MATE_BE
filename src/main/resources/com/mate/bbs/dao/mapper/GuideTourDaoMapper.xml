@@ -13,91 +13,177 @@
 		   				javaType="com.mate.user.vo.UserVO"
 						autoMapping="true">
 				<id column="USR_ID" property="usrId" />	
+				<association property="guideReviewVO" 
+							javaType="com.mate.mypage.vo.GuideReviewVO"
+							autoMapping="true">
+					<id column="GD_RVW_ID" property="gdRvwId" />
+				</association>
 			</association>
+			
+			<association property="citiesVO"
+						javaType="com.mate.common.vo.CitiesVO"
+						autoMapping="true">
+				<id column="CITY_ID" property="cityId"/>
+			</association>
+			
+			<association property="countriesVO"
+						javaType="com.mate.common.vo.CountriesVO"
+						autoMapping="true">
+				<id column="COUNTRY_ID" property="countryId"/>
+			</association>
+			
 			<collection property="guideTourImgList" 
 						ofType="com.mate.bbs.vo.GuideTourImgVO"
 						autoMapping="true">
 				<id column="GD_TR_IMG_ID" property="gdTrImgId"/>
 			</collection>
+			
 			<collection property="guideTourDetailInfoList"
 						ofType="com.mate.bbs.vo.GuideTourDetailInfoVO"
 						autoMapping="true">
 				<id column="TR_DTL_ID" property="trDtlId"/>
 			</collection>
+			
 			<collection property="guideTourProvidedList"
 						ofType="com.mate.bbs.vo.GuideTourProvidedVO"
 						autoMapping="true">
 				<id column="TR_INCLD_ID" property="trIncldId"/>
 			</collection>
+			
 			 <collection property="guideTourReviewList"
 						ofType="com.mate.bbs.vo.GuideTourReviewVO"
 						autoMapping="true">
 				<id column="GD_TR_RVW_ID" property="gdTrRvwId"/>
 			</collection>
-			<collection property="citiesVO"
-						ofType="com.mate.common.vo.CitiesVO"
-						autoMapping="true">
-				<id column="CITY_ID" property="cityId"/>
-			</collection>
-			<collection property="guideTourAdditionInfoList"
-						ofType="com.mate.bbs.vo.GuideTourAdditionInfoVO"
+			
+			<collection property="guideTourScheduleInfoList"
+						ofType="com.mate.bbs.vo.GuideTourScheduleInfoVO"
 						autoMapping="true">
 				<id column="TR_ADD_INF_ID" property="trAddInfId"/>
 			</collection>
 		</resultMap>
+		<!-- 지역 검색 -->
+	<sql id="selectTitleAndContent">
+		<if test='searchKeyword != null and searchKeyword != ""'>
+			<if test='searchType == "region"'>
+				AND R.REGION_NAME LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			<if test='searchType == "country"'>
+				AND CTR.COUNTRY_NAME LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			<if test='searchType == "city"'>
+				AND C.CITY_NAME LIKE '%' || #{searchKeyword} || '%'
+			</if>
+		</if>
+	</sql>
+		
+		<!-- 정렬순 검색 -->
+	<sql id="order">
+		<choose>
+			<when test='"높은 가격순".equals(orderBy)'>
+				ORDER BY GTR.GD_TR_PRC DESC
+			</when>
+			<when test='"낮은 가격순".equals(orderBy)'>
+				ORDER BY GTR.GD_TR_PRC
+			</when>
+			<when test='"마감 임박순".equals(orderBy)'>
+				ORDER BY DEADLINE
+			</when>
+			<when test='"평점 높은순".equals(orderBy)'>
+				ORDER BY AVG_RVW DESC
+			</when>
+			<otherwise>
+				ORDER BY GTR.GD_TR_PST_ID DESC
+			</otherwise>
+		</choose>
+	</sql>
 	
-	<select id="selectGuideTourAllCount" resultType="_int">
+	<select id="selectGuideTourAllCount" 
+			parameterType="com.mate.bbs.vo.SearchGuideTourVO" 
+			resultType="_int">
 		SELECT COUNT(1)
-		  FROM GD_TR_RCRT
+		  FROM GD_TR_RCRT GTR
+	     LEFT JOIN GD_TR_RCRT_IMG GTRI
+	       ON GTR.GD_TR_PST_ID = GTRI.GD_TR_PST_ID 
+	     JOIN CITIES C
+	       ON C.CITY_ID = GTR.TR_CT_ID
+	     JOIN COUNTRIES CTR
+	       ON C.COUNTRY_ID = CTR.COUNTRY_ID
+	     JOIN REGIONS R
+	       ON R.REGION_ID = CTR.REGION_ID 
+	     JOIN USR_INF UI
+	       ON GTR.ATHR_ID = UI.USR_LGN_ID 
+	    WHERE GTR.GD_TR_ST_DT > SYSDATE
+	    <if test="_parameter != null">
+	    	<include refid="com.mate.bbs.dao.GuideTourDao.selectTitleAndContent" />
+	    </if>
 	</select>
 	
 	<select id="selectOneGuideTour" 
 			parameterType="string"
 			resultMap="guideTourVOMap">
-		SELECT GTR.GD_TR_PST_ID
-			 , GTR.ATHR_ID
-			 , GTR.USR_ID
-			 , GTR.GD_TR_TTL
-			 , GTR.GD_TR_ST_DT
-			 , GTR.GD_TR_ED_DT
-			 , GTR.GD_TR_MX_NP 
-			 , GTR.GD_TR_PRPS
-			 , GTR.GD_TR_MP
-			 , GTR.GD_TR_PRC
-			 , GTR.GD_TR_SMRY
-			 , GTR.GD_TR_RSTR_DT
-			 , GTR.GD_TR_MDFY_DT
-			 , GTR.GD_TR_DLT_DT
-			 , GTR.GD_TR_IS_DLT
-			 , GTR.TR_CT_ID
-			 , GTRI.GD_TR_IMG_URL 
-			 , UI.USR_FNM 
-			 , UI.USR_LNM 
-			 , UI.USR_GNDR 
-			 , UI.GD_PRFL_IMG 
-			 , UI.USR_BD 
-			 , UI.USR_GD_EXP 
-			 , TI.TR_INCLD 
-			 , TD.TR_DTL_INF 
-			 , TAI.TR_ADD_INF 
-			 , TAI.TR_ADD_PLC 
-			 , TRUNC(MONTHS_BETWEEN(TRUNC(SYSDATE), UI.USR_BD) / 12) AS GUIDE_AGE
-		  FROM GD_TR_RCRT GTR
-		  LEFT JOIN GD_TR_RCRT_IMG GTRI
-		    ON GTR.GD_TR_PST_ID = GTRI.GD_TR_PST_ID 
-		  LEFT JOIN GD_TR_RVW GTRV
-		    ON GTR.GD_TR_PST_ID = GTRV.GD_TR_PST_ID 
-		 INNER JOIN USR_INF UI
-		    ON UI.USR_ID = GTR.USR_ID 
-		 INNER JOIN TOUR_INCLD TI
-		    ON TI.GD_TR_PST_ID = GTR.GD_TR_PST_ID  
-		 INNER JOIN TR_DTL TD
-		    ON TD.GD_TR_PST_ID = GTR.GD_TR_PST_ID
-		 INNER JOIN TR_ADDTNL_INF TAI
-		    ON TAI.GD_TR_PST_ID = GTR.GD_TR_PST_ID 
-		 WHERE GTR.GD_TR_PST_ID = #{_parameter}
+		SELECT G.GD_TR_PST_ID
+			 , G.GD_TR_TTL 
+		     , G.ATHR_ID 
+		     , TO_CHAR(G.GD_TR_ST_DT, 'YYYY-MM-DD HH24:MI') GD_TR_ST_DT
+		     , TO_CHAR(G.GD_TR_ED_DT, 'YYYY-MM-DD HH24:MI') GD_TR_ED_DT
+		     , G.GD_TR_PRPS
+		     , G.GD_TR_MP
+		     , G.GD_TR_PRC
+		     , G.GD_TR_SMRY
+		     , G.GD_TR_MX_NP
+		     , G.TR_AVG_RTNG
+		     , GTI.GD_TR_IMG_URL
+		     , GR.ATHR_ID 
+		     , GR.GD_TR_RVW_TTL 
+		     , GR.GD_TR_RVW_CNTNT
+		     , GR.GD_TR_RVW_RTNG
+		     , GRI.GD_TR_RVW_IMG_URL 
+		     , UI.USR_LNM 
+		     , UI.USR_FNM 
+		     , UI.USR_GNDR 
+		     , UI.USR_SLF_INTDCTN 
+		     , UI.USR_GD_EXP 
+		     , C.COUNTRY_NAME 
+		     , CT.CITY_NAME 
+		     , TRUNC(MONTHS_BETWEEN(TRUNC(SYSDATE), TO_CHAR(UI.USR_BD , 'YYYYMMDD'))/ 12) AS guideAge
+		  FROM GD_TR_RCRT G
+		  LEFT JOIN GD_TR_RCRT_IMG GTI
+		    ON G.GD_TR_PST_ID = GTI.GD_TR_PST_ID
+		  LEFT JOIN GD_TR_RVW GR
+		    ON G.GD_TR_PST_ID = GR.GD_TR_PST_ID 
+		  LEFT JOIN GD_TR_RVW_IMG GRI
+		    ON GR.GD_TR_RVW_ID = GRI.GD_TR_RVW_ID
+		  JOIN USR_INF UI
+		    ON G.ATHR_ID = UI.USR_LGN_ID 
+		  JOIN CITIES CT
+		    ON G.TR_CT_ID = CT.CITY_ID
+		  JOIN COUNTRIES C
+		    ON CT.COUNTRY_ID = C.COUNTRY_ID  
+		 WHERE G.GD_TR_PST_ID = #{_parameter}
 	</select>
-	
+	<select id="selectTourDetailInfoList"
+			parameterType="string"
+			resultType="com.mate.bbs.vo.GuideTourDetailInfoVO">
+		SELECT TR_DTL_INF
+		  FROM TR_DTL
+		 WHERE GD_TR_PST_ID = #{_parameter}
+	</select>
+	<select id="selectTourProvidedList"
+			parameterType="string"
+			resultType="com.mate.bbs.vo.GuideTourProvidedVO">
+		SELECT TR_INCLD
+		  FROM TOUR_INCLD
+		 WHERE GD_TR_PST_ID = #{_parameter}
+	</select>
+	<select id="selectTourScheduleList"
+			parameterType="string"
+			resultType="com.mate.bbs.vo.GuideTourScheduleInfoVO">
+		SELECT TR_DTL_LCT 
+		     , TR_DTL_SCHD
+		  FROM TR_SCHD_INF
+		 WHERE GD_TR_PST_ID = #{_parameter}
+	</select>
 	<select id="selectAllGuideTour" 
 			resultMap="guideTourVOMap"
 			parameterType="com.mate.bbs.vo.SearchGuideTourVO">
@@ -108,38 +194,63 @@
 			 , GTR.ATHR_ID
 			 , GTR.USR_ID
 			 , GTR.GD_TR_TTL
-			 , GTR.GD_TR_ST_DT
-			 , GTR.GD_TR_ED_DT
+			 , TO_CHAR(GTR.GD_TR_ST_DT, 'YYYY-MM-DD') GD_TR_ST_DT
+			 , TO_CHAR(GTR.GD_TR_ED_DT, 'YYYY-MM-DD') GD_TR_ED_DT
+			 , CEIL(GTR.GD_TR_ST_DT - SYSDATE) AS DEADLINE
 			 , GTR.GD_TR_PRPS
 			 , GTR.GD_TR_MP
 			 , GTR.GD_TR_PRC
 			 , GTR.GD_TR_SMRY
-			 , GTR.GD_TR_RSTR_DT
-			 , GTR.GD_TR_MDFY_DT
-			 , GTR.GD_TR_DLT_DT
-			 , GTR.GD_TR_IS_DLT
 			 , GTR.TR_CT_ID
-			 , GTRI.GD_TR_IMG_URL
 			 , GTR.GD_TR_MX_NP
+			 , GTRI.GD_TR_IMG_URL 
 			 , C.CITY_NAME 
+			 , CTR.COUNTRY_NAME
+			 , R.REGION_NAME
+			 , UI.USR_LNM 
+			 , UI.USR_FNM 
+			 , (SELECT AVG(GD_RVW_RTNG)
+			      FROM GD_RVW GR
+			     WHERE GR.GD_ID = GTR.ATHR_ID) AS AVG_GD_RVW
 			 , ( SELECT AVG(gtr2.GD_TR_RVW_RTNG)
 			       FROM GD_TR_RVW gtr2
-			 	  WHERE gtr2.GD_TR_PST_ID = GTR.GD_TR_PST_ID) AS AVG_RVW
+			 	  WHERE gtr2.GD_TR_PST_ID = GTR.GD_TR_PST_ID ) AS AVG_RVW
 	     FROM GD_TR_RCRT GTR
 	     LEFT JOIN GD_TR_RCRT_IMG GTRI
 	       ON GTR.GD_TR_PST_ID = GTRI.GD_TR_PST_ID 
-	     LEFT JOIN GD_TR_RVW GTRV
-	       ON GTR.GD_TR_PST_ID = GTRV.GD_TR_PST_ID
 	     JOIN CITIES C
-	       ON C.CITY_ID = gtr.TR_CT_ID
-	    ORDER BY GTR.GD_TR_PST_ID DESC
+	       ON C.CITY_ID = GTR.TR_CT_ID
+	     JOIN COUNTRIES CTR
+	       ON C.COUNTRY_ID = CTR.COUNTRY_ID
+	     JOIN REGIONS R
+	       ON R.REGION_ID = CTR.REGION_ID 
+	     JOIN USR_INF UI
+	       ON GTR.ATHR_ID = UI.USR_LGN_ID 
+	    WHERE GTR.GD_TR_ST_DT > SYSDATE
+	    <if test="_parameter != null">
+	    	<include refid="com.mate.bbs.dao.GuideTourDao.selectTitleAndContent" />
+	    </if>
+	    <if test="_parameter != null">
+	    	<include refid="com.mate.bbs.dao.GuideTourDao.order" />
+	    </if>
 	    <if test="_parameter != null">
 			<include refid="Common.pagination_footer" />
 		</if>
 	</select>
 	<insert id="insertNewGuideTour" 
 			parameterType="com.mate.bbs.vo.GuideTourWriteVO">
-		INSERT INTO GD_TR_RCRT GTR
+		<!--
+		 PK를 먼저 발급 받음 
+		 keyProperty : VO에서 PK를 담당하는 프로퍼티 작성
+		 order : BEFORE - 쿼리를 실행하기 전에 먼저 실행
+		 		 AFTER - 쿼리를 실행한 후 실행
+		 resultType : 해당 쿼리의 반환 값
+		-->
+		<selectKey keyProperty="gdTrPstId" order="BEFORE" resultType="string">
+			SELECT 'GT-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_GD_TR_RCRT_PK.NEXTVAL, 6, 0)
+			  FROM DUAL
+		</selectKey>
+		INSERT INTO GD_TR_RCRT
 		 (GD_TR_PST_ID
 		, ATHR_ID
 		, USR_ID
@@ -150,29 +261,27 @@
 		, GD_TR_PRC
 		, GD_TR_SMRY
 		, GD_TR_RSTR_DT
-		, GD_TR_MDFY_DT
-		, GD_TR_DLT_DT
 		, GD_TR_IS_DLT
 		, TR_CT_ID
 		, GD_TR_ED_DT
-		, GD_TR_MX_NP)
+		, GD_TR_MX_NP
+		, GD_TR_STTS)
 		VALUES
-		 ('GT-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_GD_TR_RCRT_PK.NEXTVAL, 6, 0)
-		, 'USR-20241029-000090'
+		 (#{gdTrPstId}
+		, #{athrId}
 		, NULL
 		, #{gdTrTtl}
-		, TO_DATE(#{gdTrStDt}, 'YYYY-MM-DD HH24:MI') 
+		, TO_DATE(#{gdTrStDt}, 'YYYY-MM-DD HH24:MI')
 		, #{gdTrPrps}
 		, #{gdTrMp}
 		, #{gdTrPrc}
 		, #{gdTrSmry}
 		, SYSDATE
-		, NULL
-		, NULL
 		, 'N'
 		, #{trCtId}
-		, TO_DATE(#{gdTrEdDt}, 'YYYY-MM-DD HH24:MI') 
-		, #{gdTrMxNp})
+		, TO_DATE(#{gdTrEdDt}, 'YYYY-MM-DD HH24:MI')
+		, #{gdTrMxNp}
+		, 'RCRTNG')
 	</insert>
 	<update id="updateGuideTour"
 			parameterType="com.mate.bbs.vo.GuideTourModifyVO">
@@ -201,12 +310,66 @@
 		SELECT #{inputYear} || ' ' || #{inputStartHour}
  		  FROM DUAL
 	</select>
-	
+	<select id="selectAttachModifyStartHour"
+			parameterType="com.mate.bbs.vo.GuideTourModifyVO"
+			resultType="string">
+		SELECT #{inputYear} || ' ' || #{inputStartHour}
+ 		  FROM DUAL
+	</select>
 	<select id="selectAttachEndHour"
 			parameterType="com.mate.bbs.vo.GuideTourWriteVO"
 			resultType="string">
 		SELECT #{inputYear} || ' ' || #{inputEndHour}
  		  FROM DUAL
 	</select>
+		<select id="selectAttachModifyEndHour"
+				parameterType="com.mate.bbs.vo.GuideTourWriteVO"
+				resultType="string">
+		SELECT #{inputYear} || ' ' || #{inputEndHour}
+ 		  FROM DUAL
+		</select>
+	<insert id="insertNewDetailInfo" 
+			parameterType="com.mate.bbs.vo.GuideTourDetailInfoVO">
+		INSERT INTO TR_DTL
+		 (TR_DTL_ID
+		, GD_TR_PST_ID
+		, TR_DTL_INF)
+		VALUES
+		 ('DI-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_TR_DTL_PK.NEXTVAL, 6, 0)
+		, #{gdTrPstId}
+		, #{trDtlInf})
+	</insert>
 	
+	<insert id="insertNewSchdInfo"
+			parameterType="com.mate.bbs.vo.GuideTourScheduleInfoVO">
+		INSERT INTO TR_SCHD_INF
+		 (TR_ADD_INF_ID
+		, GD_TR_PST_ID
+		, TR_DTL_LCT
+		, TR_DTL_SCHD)
+		VALUES
+		 ('AI-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_TR_SCHDL_PK.NEXTVAL, 6, 0)
+		, #{gdTrPstId}
+		, #{trDtlLct}
+		, #{trDtlSchd})	
+	</insert>
+	
+	<insert id="insertNewProvidedInfo"
+			parameterType="com.mate.bbs.vo.GuideTourProvidedVO">
+	 INSERT INTO TOUR_INCLD
+		 (TR_INCLD_ID
+		, TR_INCLD
+		, GD_TR_PST_ID)
+		VALUES
+		 ('TI-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_TOUR_INCLD_PK.NEXTVAL, 6, 0) 
+		, #{trIncld}
+		, #{gdTrPstId})
+	</insert>
+
+	<!-- 랜덤하게 정렬된 가이드 투어 목록을 반환하는 쿼리-->
+	<select id="getRandomGuideTours" resultType="com.mate.bbs.vo.GuideTourVO">
+		SELECT *
+		  FROM GD_TR_RCRT
+		 ORDER BY DBMS_RANDOM.VALUE
+	</select>
 </mapper>

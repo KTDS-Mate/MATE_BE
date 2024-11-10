@@ -1,16 +1,16 @@
 package com.mate.bbs.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.mate.common.vo.*;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mate.bbs.dao.CountriesAndCitiesDao;
-import com.mate.common.vo.CitiesVO;
-import com.mate.common.vo.CountriesVO;
-import com.mate.common.vo.RegionsVO;
 
 @Repository
 public class CountriesAndCitiesDaoImpl extends SqlSessionDaoSupport implements CountriesAndCitiesDao{
@@ -50,5 +50,21 @@ public class CountriesAndCitiesDaoImpl extends SqlSessionDaoSupport implements C
 	public int selectCitiesCount(int countryId) {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectCitiesCount", countryId);
 	}
-	
+
+
+	@Override
+	public List<CountriesVO> searchCountriesByName(String query) {
+		return this.getSqlSession().selectList(NAMESPACE + ".searchCountriesByName", query);
+	}
+
+	@Override
+	public List<CitiesVO> searchCitiesByName(String query) {
+		return this.getSqlSession().selectList(NAMESPACE + ".searchCitiesByName", query);
+	}
+
+//	@Override
+//	public List<CitiesVO> selectRandomCities() {
+//		return this.getSqlSession().selectList("selectRandomCities");
+//	}
+
 }

@@ -5,13 +5,18 @@ uri="http://www.springframework.org/tags/form" %>
 <html>
   <head>
     <meta charset="UTF-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <title>여행자 투어 등록</title>
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link
       rel="stylesheet"
       type="text/css"
       href="/css/usertour/Tourist_TourInsert.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script src="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.js"></script>
+	<link href="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css" rel="stylesheet">
     <script
       type="text/javascript"
       src="/js/usertour/usertourinsert.js"></script>
@@ -23,7 +28,7 @@ uri="http://www.springframework.org/tags/form" %>
         <jsp:include page="../header.jsp"></jsp:include>
       </div>
       <div class="content">
-        <form:form modelAttribute="userTourWriteVO" method="post">
+        <form:form modelAttribute="userTourWriteVO" method="post" enctype="multipart/form-data">
           <div class="insert-main">
             <div class="flex-main-img">
               <div>
@@ -108,14 +113,23 @@ uri="http://www.springframework.org/tags/form" %>
               <div class="select-div">
                 투어 희망 정보<span class="font-we"
                   >원하는 일정을 추가해주세요.</span
-                >
-              </div>
-              <div class="loc-inf">
-                <!-- jquery를 사용해 여러 개를 호출 받는 곳 -->
+                ><span class="font-we">&lt;최대 10개까지 넣을 수 있습니다.&gt;</span>
               </div>
               <div class="hope-btn">
                 <input tabindex="10" id="plus" type="button" value="일정 추가하기" />
                 <input tabindex="11" id="m-btn" type="button" value="일정 삭제하기" />
+              </div>
+              <div class="loc-inf">
+                <div class="locs">
+						<div>
+							<label for="hope-location">장소</label>
+							<input id="hope-location" name="userTourSchdlList[0].trLctns" type="text" required="required" />
+						</div>
+						<div>
+							<label for="hope-info">일정</label>
+							<input id="hope-info" name="userTourSchdlList[0].trRqst" type="text" required="required" />
+						</div>
+						</div>
               </div>
             </div>
             <div class="all-select-div">
@@ -128,19 +142,24 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
               >
             </div>
             <div class="all-select-div">
-              <div class="inline">
+              <div>
                 <div class="select-div">투어 이미지 추가<span class="font-we"
                   >&lt;img, png, svc 파일만 넣을 수 있습니다.&gt;</span
-                ></div>
-                <input tabindex="13" type="file" multiple="multiple" />
-                <div class="file-list"></div>
-              </div>
-              <div class="inline margin-left-location">
-                <div class="select-div">
-                  <span class="red">*</span> 집결 장소 선택
+                ><span class="font-we">&lt;최대 10개까지 넣을 수 있습니다.&gt;</span></div>
+                <input id="add-file" type="button" value="파일 추가" />
+                <input id="del-file" type="button" value="파일 삭제" />
+                <div class="file-list">
+                	<!-- Jquery를 이용해 파일 리스트가 추가되는 곳 -->
                 </div>
-                <div id="googleMap"></div>
               </div>
+            </div>
+            <div class="all-select-div">
+	            <div>
+	                <div class="select-div">
+	                  <span class="red">*</span> 집결 장소 선택
+	                </div>
+	                <div id="googleMap"></div>
+	              </div>
             </div>
             <div class="all-select-div">
               <div class="select-div">원하는 가이드</div>

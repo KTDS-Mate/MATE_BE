@@ -1,0 +1,153 @@
+body {
+  background-color: #f7f7f7;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main-content {
+  display: flex;
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  min-height: calc(100vh - 150px); /* 헤더와 푸터 공간을 제외한 화면 중앙 정렬 */
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.container {
+  width: 27rem;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.9rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: inline-flex;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    align-items: center;
+}
+
+.form-group label::before {
+    content: "*";
+    color: red;
+    margin-right: 0.2rem; /* 별표와 라벨 텍스트 사이의 간격 */
+    display: inline-flex;
+    align-items: center;
+}
+
+
+.form-group input,
+.form-group select {
+    width: calc(100% - 10px);
+    padding: 0.6rem;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-group input[type="date"] {
+    padding: 8px 10px;
+}
+
+.form-group .check-btn,
+.form-group .send-code-btn {
+    margin-top: 10px;
+    background-color: #f5c9ae;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.form-group .error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.gender-birth {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.3rem;
+    width: calc(100% - 0.55rem); 
+}
+
+.gender-birth label {
+    width: auto;
+    text-align: center;
+    margin-right: 0.1rem;
+}
+
+.gender-birth select,
+.gender-birth input[type="date"] {
+    width: auto;
+    padding: 0.6rem;
+    text-align: center;
+}
+
+
+.submit-btn {
+    text-align: center;
+}
+
+.submit-btn input[type="submit"] {
+    background-color: #f5c9ae;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.error {
+  font-size: 0.8rem;
+  color: #a00;
+}
+
+.input-error {
+    border: 2px solid #ff0000 !important; 
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.2); 
+}
+.iti {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 48px; 
+    position: relative;
+}
+
+.iti .iti__flag-container {
+    height: 100%;
+    margin-right: 0.8rem; 
+}
+
+#usrPhn {
+    flex: 1;
+    margin: 0;
+    padding: 0.6rem;
+    height: 100%;
+    box-sizing: border-box; 
+    padding-left: 2.5rem;
+}

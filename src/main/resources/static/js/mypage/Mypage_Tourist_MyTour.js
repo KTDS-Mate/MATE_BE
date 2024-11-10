@@ -1,5 +1,5 @@
 $().ready(function () {
-    var loginId = $(".header-content").attr("data-loginId");
+    var loginId = $(".header-content").data("login-id");
 
 
     $(".search-btn").on("click", function () {
@@ -24,7 +24,7 @@ $().ready(function () {
 });
 
 function movePage(pageNo) {
-    var loginId = $(".header-content").attr("data-loginId");
+    var loginId = $(".header-content").data("login-id");
     console.log(loginId);
 
     $(".page-no").val(pageNo);
@@ -34,9 +34,9 @@ function movePage(pageNo) {
     }).submit();
 }
 
-function deleteTour(usrLgnId, gdTrPstId) {
+function deleteTour(usrLgnId, usrTrPstId) {
 	if (confirm("정말 삭제하시겠습니까?")) {
-	       location.href = `/mypage/mytour/tr-mytour/${usrLgnId}/delete-${gdTrPstId}`;
+	       location.href = `/mypage/mytour/tr-mytour/${usrLgnId}/delete-${usrTrPstId}`;
 	   }
 }
 

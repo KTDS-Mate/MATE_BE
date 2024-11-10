@@ -1,0 +1,49 @@
+select {
+  font-size: 1rem;
+}
+
+.editable-select-div {
+  display: inline-block;
+  padding: 0.5rem;
+  border: 1px solid #888;
+  border-radius: 0.5rem;
+  outline: none;
+}
+
+.editable-select-div:focus {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 0;
+}
+
+.editable-select-div::after {
+  content: "+";
+  margin-right: 0 0.2rem;
+  position: absolute;
+  right: 0.2rem;
+}
+
+.editable-select-div:focus::after {
+  content: "-";
+  margin-left: 1rem;
+}
+
+ul.editable-select-option-div {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  border: 1px solid #666;
+  border-top: 1px solid #aaa;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+ul.editable-select-option-div > li {
+  padding: 0.4rem 0 0.4rem 0.4rem;
+}
+ul.editable-select-option-div > li:hover {
+  background-color: #ddd;
+}
+ul.editable-select-option-div > li.active {
+  background-color: #ddd;
+}

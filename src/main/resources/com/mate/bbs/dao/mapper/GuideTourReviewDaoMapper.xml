@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.mate.bbs.dao.GuideTourReviewDao">
+  
+  	<resultMap id="guideTourReviewVOMap"
+  	  		   type="com.mate.bbs.vo.GuideTourReviewVO" 
+  	  		   autoMapping="true">
+  		<id column="GD_TR_RVW_ID" property="gdTrRvwId" />
+  		<association property="userVO"
+  					 javaType="com.mate.user.vo.UserVO"
+  					 autoMapping="true">
+  			<id column="USR_ID" property="usrId" />
+  		</association>
+  		<association property="guideTourVO"
+  					 javaType="com.mate.bbs.vo.GuideTourVO"
+  					 autoMapping="true">
+  			<id column="GD_TR_PST_ID" property="gdTrPstId" />	 
+  		</association>
+  		<collection property="guideTourReviewImgList" 
+  					ofType="com.mate.bbs.vo.GuideTourReviewImgVO"
+  					autoMapping="true">
+  			<id column="GD_TR_RVW_IMG_ID" property="gdTrRvwImgId" />
+  		</collection>
+  	</resultMap>
+  	
+  	<select id="selectGuideTourAllReview"
+  			parameterType="string"
+  			resultMap="guideTourReviewVOMap">
+  		SELECT GR.GD_TR_RVW_ID 
+			 , GR.GD_TR_PST_ID 
+			 , GR.GD_TR_RVW_TTL 
+			 , GR.GD_TR_RVW_CNTNT 
+			 , TO_CHAR(GR.GD_TR_RVW_CRTDAT, 'YYYY-MM-DD') GD_TR_RVW_CRTDAT 
+			 , GR.GD_TR_RVW_RTNG 
+			 , GR.PR_GD_TR_RVW_ID 
+			 , U.USR_LNM 
+			 , U.USR_FNM 
+			 , (SELECT AVG(gtr2.GD_TR_RVW_RTNG)
+			      FROM GD_TR_RVW gtr2
+			     WHERE gtr2.GD_TR_PST_ID = #{_parameter}) AS REVIEW_AVG
+			 , (SELECT COUNT(1) 
+			      FROM GD_TR_RVW gtr
+			     WHERE gtr.GD_TR_PST_ID = #{_parameter}
+			       AND gtr.GD_TR_RVW_RTNG = 5) AS FIVE_COUNT
+			 , (SELECT COUNT(1) 
+			      FROM GD_TR_RVW gtr
+			     WHERE gtr.GD_TR_PST_ID = #{_parameter}
+			       AND gtr.GD_TR_RVW_RTNG = 4) AS FOUR_COUNT
+			 , (SELECT COUNT(1) 
+			      FROM GD_TR_RVW gtr
+			     WHERE gtr.GD_TR_PST_ID = #{_parameter}
+			       AND gtr.GD_TR_RVW_RTNG = 3) AS THREE_COUNT
+			 , (SELECT COUNT(1) 
+			      FROM GD_TR_RVW gtr
+			     WHERE gtr.GD_TR_PST_ID = #{_parameter}
+			       AND gtr.GD_TR_RVW_RTNG = 2) AS TWO_COUNT
+			 , (SELECT COUNT(1) 
+			      FROM GD_TR_RVW gtr
+			     WHERE gtr.GD_TR_PST_ID = #{_parameter}
+			       AND gtr.GD_TR_RVW_RTNG = 1) AS ONE_COUNT
+		  FROM GD_TR_RVW GR
+		  JOIN USR_INF U
+		    ON GR.ATHR_ID = U.USR_LGN_ID 
+	     WHERE GR.GD_TR_PST_ID = #{_parameter}
+  	</select>
+  	
+  	<select id="selectGuideTourReviewCount"
+  			parameterType="string"
+  			resultType="_int">
+  		SELECT COUNT(1)
+  		  FROM GD_TR_RVW GR
+		  JOIN USR_INF U
+		    ON GR.ATHR_ID = U.USR_LGN_ID 
+	     WHERE GR.GD_TR_PST_ID = #{_parameter}
+  	</select>
+  	
+  	<select id="selectOneGuideTourReview"
+  			parameterType="string"
+  			resultMap="guideTourReviewVOMap">
+  		
+  	</select>
+  	
+  	<insert id="insertNewGuideTourReview"
+  			parameterType="com.mate.bbs.vo.GuideTourReviewVO">
+  		INSERT INTO GD_TR_RVW
+		 (GD_TR_RVW_ID
+		, ATHR_ID
+		, GD_TR_PST_ID
+		, GD_TR_RVW_TTL
+		, GD_TR_RVW_CNTNT
+		, GD_TR_RVW_CRTDAT
+		, GD_TR_RVW_IS_DLT
+		, GD_TR_RVW_RTNG
+		, GD_TR_RVW_MDFY_DT
+		, PR_GD_TR_RVW_ID)
+		VALUES
+		 ('GR-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_GD_TR_RVW_PK.NEXTVAL, 6, 0)
+		, #{athrId}
+		, #{gdTrPstId}
+		, #{gdTrRvwTtl}
+		, #{gdTrRvwCntnt}
+		, SYSDATE
+		, 'N'
+		, #{gdTrRvwRtng}
+		, SYSDATE
+		, #{prGdTrRvwId})
+  	</insert>
+  	
+  	<update id="updateGuideTourReview"
+  			parameterType="com.mate.bbs.vo.GuideTourReviewVO">
+  		UPDATE GD_TR_RVW 
+		   SET GD_TR_RVW_TTL = #{gdTrRvwTtl}
+		     , GD_TR_RVW_CNTNT = #{gdTrRvwCntnt}
+		     , GD_TR_RVW_CRTDAT = TO_DATE(#{gdTrRvwCrtdat}, 'YYYY-MM-DD HH24:MI')
+		     , GD_TR_RVW_RTNG = #{gdTrRvwRtng}
+		     , GD_TR_RVW_MDFY_DT = TO_DATE(#{gdTrRvwMdfyDt}, 'YYYY-MM-DD HH24:MI')
+		     , PR_GD_TR_RVW_ID = #{prGdTrRvwId}
+		 WHERE GD_TR_PST_ID = #{gdTrPstId}
+  	</update>
+  	
+  	<update id="deleteGuideTourReview"
+  			parameterType="string">
+  		UPDATE GD_TR_RVW 
+		   SET GD_TR_RVW_IS_DLT = 'Y'
+		 WHERE GD_TR_PST_ID = #{_parameter}
+  	</update>
+  </mapper>

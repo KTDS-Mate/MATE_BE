@@ -31,6 +31,7 @@ public class EmailSendServiceImpl implements EmailSendService {
 	@Autowired
 	private EmailDao emailDao;
 	
+	// 이메일 인증 코드 발송 메서드
 	@Override
 	public String sendAuthMail(EmailVO emailVO) {
 		// 인증 코드
@@ -91,6 +92,37 @@ public class EmailSendServiceImpl implements EmailSendService {
         }
         // 생성된 인증 코드를 반환함
         return emailVO.getAuthCode();
+	}
+	
+	// 비밀번호 재발급 메일 발송 메서드
+	@Override
+	public String sendPasswordAuthMail(EmailVO emailVO) {
+	    // 임시 비밀번호로 설정
+	    String tempPassword = emailVO.getAuthCode(); 
+	    String email = emailVO.getEmail();
+	    
+	    try {
+	        MimeMessage message = javaMailSender.createMimeMessage();
+	        MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+	        helper.setTo(email);
+	        helper.setSubject("메이트 비밀번호 재설정 안내");
+
+	        String messageToUser = """
+	            <div>
+	                <h1>안녕하세요! Mate 입니다.</h1>
+	                <p>요청하신 임시 비밀번호를 발송해 드립니다.</p>
+	                <p>임시 비밀번호: <strong>%s</strong></p>
+	                <p>로그인 후 반드시 비밀번호를 변경하시기 바랍니다.</p>
+	            </div>
+	            """.formatted(tempPassword);
+	        
+	        helper.setText(messageToUser, true);
+	        javaMailSender.send(message);
+	        
+	    } catch (MessagingException e) {
+	        log.error("이메일 전송 중 에러가 발생했습니다. 이메일: {}", email, e);
+	    }
+	    return tempPassword;
 	}
 	
 	@Override

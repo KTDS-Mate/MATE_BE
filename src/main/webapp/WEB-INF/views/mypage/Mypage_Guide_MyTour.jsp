@@ -5,8 +5,9 @@
 
     <head>
       <meta charset="UTF-8" />
+      <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
       <title>Mypage_Guide_MyTour</title>
-      <link rel="stylesheet" type="text/css" href="/css/Mypage_Guide_MyTour.css" />
+      <link rel="stylesheet" type="text/css" href="/css/mypage/Mypage_Guide_MyTour.css" />
       <link rel="stylesheet" type="text/css" href="/css/common.css" />
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -85,7 +86,7 @@
                             </div>
 
                             <div class="right-align">
-                              <a href="">수정</a>
+                              <a href="/guidetour/Modify/${board.gdTrPstId}">수정</a>
                               /
                               <a
                                 href="javascript:deleteTour('${sessionScope._LOGIN_USER_.usrLgnId}', '${board.gdTrPstId}')">삭제</a>

@@ -33,6 +33,7 @@ $().ready(function() {
 	});
 	$("#start-minutes").on("change", function() {
 
+		$("#end-minutes").val("");
 		// 현재 시간, 분 가져오기.
 		var now = new Date();
 		var nowHour = new Date().getHours();
@@ -63,9 +64,9 @@ $().ready(function() {
 				alert("현재 시간보다 빠른 시간을 선택 할 수 없습니다.");
 				$(this).val("");
 			}
-			
-			}
-		
+
+		}
+
 		else {
 			$("#end-minutes").removeAttr("disabled");
 		}
@@ -118,16 +119,26 @@ $().ready(function() {
 		for (var i = 0; i < regionCnt; i++) {
 			var regionDom = $(`<option value="${regionResult.regions[i].regionId}">${regionResult.regions[i].regionName}</option>`);
 			$("#region").append(regionDom);
+
 		}
 	});
 
 	$("#region").on("change", function() {
+
+		$("#country").removeAttr("disabled");
+		$("#city").attr("disabled", "disabled");
 		$("#country").empty();
 		$("#city").empty();
 		$("#country").append(`<option value="">국가 선택</option>`);
 		$("#city").append(`<option value="">도시 선택</option>`);
 
+
 		var regionId = $(this).val();
+
+		if (regionId === "") {
+			$("#country").attr("disabled", "disabled");
+		}
+
 		$.get(`/tour/countries/${regionId}`, {}, function(countryResult) {
 			var countryCnt = countryResult.countriesCount;
 
@@ -138,6 +149,7 @@ $().ready(function() {
 		});
 	});
 	$("#country").on("change", function() {
+		$("#city").removeAttr("disabled");
 		$("#city").empty();
 		$("#city").append(`<option value="">도시 선택</option>`);
 		var countryId = $(this).val();
@@ -154,11 +166,19 @@ $().ready(function() {
 	$("#maxNp").on("change", function() {
 		/** 선택한 인원 */
 		var inputValue = $(this).val();
+		
+		if(inputValue > 99) {
+			alert("최대 99명까지 가능합니다.");
+			$(this).val(1);
+		}
+		
 		if (inputValue < 1) {
 			alert("최대 인원을 올바르게 설정해주세요.");
 			$(this).val(1);
 		}
 	});
+	
+	
 	$("#trPrc").on("change", function() {
 		var inputValue = $(this).val();
 
@@ -169,17 +189,64 @@ $().ready(function() {
 		}
 	});
 	$("#plus").on("click", function() {
-		
+
 		var divCnt = $(".locs").length;
-		
-		var divPlus = $(`<div class="locs"><div>
-							<label for="hope-location">장소</label>
-							<input id="hope-location" name="guideTourAdditionInfoList[${divCnt}].trAddPlc" type="text"/>
-						 </div>
+		if (divCnt > 9) {
+			alert("더 이상 투어 세부 일정을 추가할 수 없습니다.( 최대 10개 )");
+			return
+		}
+		var divPlus = $(`<div class="locs">
+							<div>
+								<label for="hope-location">장소</label>
+								<input id="hope-location" name="guideTourScheduleInfoList[${divCnt}].trDtlLct" type="text"/>
+						 	</div>
 						 <div>
 							<label for="hope-info">일정</label>
-							<input id="hope-info" name="guideTourAdditionInfoList[${divCnt}].trAddInf" type="text"/>
-						 </div></div>`);
+							<input id="hope-info" name="guideTourScheduleInfoList[${divCnt}].trDtlSchd" type="text"/>
+						 </div>
+						 </div>`);
 		$(".loc-inf").append(divPlus);
 	});
+
+	$("#info-plus").on("click", function() {
+
+		var liCnt = $(".locs2").length;
+		if (liCnt > 9) {
+			alert("더 이상 투어 정보를 추가 할 수 없습니다. ( 최대 10개 )");
+			return
+		}
+		var liPlusDom = $(`<div class="locs2">
+							<div>
+								<input id="hope-info" name ="guideTourDetailInfoList[${liCnt}].trDtlInf" type="text" />
+							</div>
+				  </div>`)
+		$(".plus-inf").append(liPlusDom);
+
+	});
+
+	$("#incl-plus").on("click", function() {
+
+		var inclCnt = $(".locs3").length;
+		if (inclCnt > 9) {
+			alert("더 이상 투어 정보를 추가 할 수 없습니다. ( 최대 10개 )");
+			return
+		}
+		var liPlusDom = $(`<div class="locs3">
+								<div>
+								  <input id="hope-info" name ="guideTourProvidedList[${inclCnt}].trIncld" type="text" />
+								</div>
+						 	   </div>`);
+		$(".incl-div").append(liPlusDom);
+	});
+
+	$("#m-btn").on("click", function() {
+		$(".locs:last").remove();
+	});
+	$("#info-m-btn").on("click", function() {
+		$(".locs2:last").remove();
+	});
+	$("#incl-m-btn").on("click", function() {
+		$(".locs3:last").remove();
+	});
+
 });
