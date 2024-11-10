@@ -16,9 +16,6 @@
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="/js/main/mainPictureCarousel.js"></script>
     <script type="text/javascript" src="/js/main/recommendCities.js"></script>
-    <!-- <script type="text/javascript" src="/js/main/userTypeSelected.js"></script> -->
-    <!-- <script type="text/javascript" src="/js/main/searchButton.js"></script> -->
-    <!-- <script type="text/javascript" src="/js/main/topDestinations.js"></script> -->
   </head>
   <body>
     <div class="grid">
@@ -146,19 +143,32 @@
             </div>
             <div class="thirdLayer">
               <h2>실시간 주문 폭주 여행지</h2>
-              <div class="recommendCitiesAreaOne">
+              <div class="recommendCitiesAreaWrapper">
+                <div class="recommendCitiesAreaOne">
+
+                </div>
               </div>
             </div>
             
+            <div class="borderLine"></div>
+
             <div class="fourthLayer">
               <h2>이 달의 핫플 여행지</h2>
-              <div class="recommendCitiesAreaTwo">
+              <div class="recommendCitiesAreaWrapper">
+                <div class="recommendCitiesAreaTwo">
+                  
+                </div>
               </div>
             </div>
+            
+            <div class="borderLine"></div>
             
             <div class="fifthLayer">
               <h2>맛있는 음식이 있는 여행지</h2>
-              <div class="recommendCitiesAreaThree">
+              <div class="recommendCitiesAreaWrapper">
+                <div class="recommendCitiesAreaThree">
+                  
+                </div>
               </div>
             </div>
             
