@@ -211,29 +211,80 @@
 	   AND PAY_STT = 'COMPLETE'
 </update>
 
-<insert id="insertPayment" parameterType="com.mate.payment.vo.PaymentVO">
+<select id="selectUsrTrPayInf" parameterType="String" resultType="com.mate.payment.vo.WritePaymentVO">
+SELECT TRST.USR_ID AS TRST_ID
+	 , GD.USR_ID AS GD_ID
+	 , USR_TR_PST_ID AS PAY_TR_ID
+	 , USR_TR_GD_HR_PRC AS PAY_CSH
+  FROM USR_TR_RQST TR
+  JOIN USR_INF TRST
+    ON TRST.USR_LGN_ID = ATHR_ID
+  JOIN USR_INF GD
+    ON GD.USR_LGN_ID = TR.GD_ID
+ WHERE USR_TR_PST_ID = #{parameter}
+</select>
+
+<insert id="insertTrstTrPayment" parameterType="com.mate.payment.vo.WritePaymentVO">
  INSERT INTO PAY_INF
-		PAY_ID
-		TRST_ID
-		GD_ID
-		PAY_TR_TP
-		PAY_TR_ID
-		PAY_CSH
-		PAY_STT
-		PAY_CRT_DT
-		PAY_CRRNC
-		PAY_CMMSSN
-	VALUES
-		('PI-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_PAY_INF_PK.NEXTVAL, 6, 0)
-		, #{trstId}
-		, #{gdId}
-		, #{payTrTp}
-		, #{payTrId}
-		, #{payCsh}
-		, 'WAITING'
-		, SYSDATE
-		, 'USD'
-		, #{payCmmssn}
+	  ( PAY_ID
+	  , TRST_ID
+	  , GD_ID
+	  , PAY_TR_TP
+	  , PAY_TR_ID
+	  , PAY_CSH
+	  , PAY_STT
+	  , PAY_CRT_DT
+	  , PAY_CRRNC
+	  , PAY_CMMSSN)
+ VALUES
+ 	  ( ('PI-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_PAY_INF_PK.NEXTVAL, 6, 0))
+ 	  , #{trstId}
+ 	  , #{gdId}
+ 	  , 'TOURIST'
+ 	  , #{payTrId}
+ 	  , #{payCsh}
+ 	  , 'WAITING'
+ 	  , SYSDATE
+ 	  , 'USD'
+ 	  , 10.0)
+</insert>
+
+<select id="selectGdTrPayInf" parameterType="String" resultType="com.mate.payment.vo.WritePaymentVO">
+	SELECT TRST.USR_ID AS TRST_ID
+		 , GD.USR_ID AS GD_ID
+		 , GD_TR_PST_ID AS PAY_TR_ID
+		 , GD_TR_PRC AS PAY_CSH
+	  FROM GD_TR_RCRT TR
+	  JOIN USR_INF TRST
+	    ON TRST.USR_LGN_ID = TR.USR_ID 
+	  JOIN USR_INF GD
+	    ON GD.USR_LGN_ID = TR.ATHR_ID
+	 WHERE GD_TR_PST_ID = #{parameter}
+</select>
+
+<insert id="insertGdTrPayment" parameterType="com.mate.payment.vo.WritePaymentVO">
+	 INSERT INTO PAY_INF
+		  ( PAY_ID
+		  , TRST_ID
+		  , GD_ID
+		  , PAY_TR_TP
+		  , PAY_TR_ID
+		  , PAY_CSH
+		  , PAY_STT
+		  , PAY_CRT_DT
+		  , PAY_CRRNC
+		  , PAY_CMMSSN)
+	 VALUES
+	 	  ( ('PI-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_PAY_INF_PK.NEXTVAL, 6, 0))
+	 	  , #{trstId}
+	 	  , #{gdId}
+	 	  , 'GUIDE'
+	 	  , #{payTrId}
+	 	  , #{payCsh}
+	 	  , 'WAITING'
+	 	  , SYSDATE
+	 	  , 'USD'
+	 	  , 10.0)
 </insert>
 
 

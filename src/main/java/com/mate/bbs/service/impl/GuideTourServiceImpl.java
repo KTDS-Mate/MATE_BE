@@ -18,12 +18,16 @@ import com.mate.bbs.vo.GuideTourScheduleInfoVO;
 import com.mate.bbs.vo.GuideTourVO;
 import com.mate.bbs.vo.GuideTourWriteVO;
 import com.mate.bbs.vo.SearchGuideTourVO;
+import com.mate.payment.dao.PaymentDao;
 
 @Service
 public class GuideTourServiceImpl implements GuideTourService{
 
 	@Autowired
 	private GuideTourDao guideTourDao;
+	
+	@Autowired
+	private PaymentDao paymentDao;
 	
 	/**
 	 * 모든 가이드 투어 전체 수를 조회
@@ -111,6 +115,7 @@ public class GuideTourServiceImpl implements GuideTourService{
 		
 		return guideTourInsertCount > 0;
 	}
+	
 	@Transactional
 	@Override
 	public boolean modifyGuideTour(GuideTourModifyVO guideTourModifyVO) {
@@ -124,6 +129,7 @@ public class GuideTourServiceImpl implements GuideTourService{
 		int guideTourUpdateCount = this.guideTourDao.updateGuideTour(guideTourModifyVO);
 		return guideTourUpdateCount > 0;
 	}
+	
 	@Transactional
 	@Override
 	public boolean softDeleteGuideTour(String gdTrPstId) {
