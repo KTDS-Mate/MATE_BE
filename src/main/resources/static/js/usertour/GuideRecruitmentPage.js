@@ -85,7 +85,7 @@ $().ready(function() {
 	});
 
 
-	$(".reserve-btn").on('click', function() {
+	$(".reserveButton").on('click', function() {
 		// 현재 예약중이라면?
 		if (stts === 'RCRTNG') {
 			if (confirm("예약하시겠습니까?")) {
