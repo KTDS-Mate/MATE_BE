@@ -336,4 +336,11 @@
 		, #{trIncld}
 		, #{gdTrPstId})
 	</insert>
+
+	<!-- 랜덤하게 정렬된 가이드 투어 목록을 반환하는 쿼리-->
+	<select id="getRandomGuideTours" resultType="com.mate.bbs.vo.GuideTourVO">
+		SELECT *
+		  FROM GD_TR_RCRT
+		 ORDER BY DBMS_RANDOM.VALUE
+	</select>
 </mapper>

@@ -33,5 +33,7 @@ public interface CountriesAndCitiesService {
 	 */
 	List<?> searchByType(String type, String query);
 
-	public TopDestinationsListVO getTopDestinations();
+
+
+//	public TopDestinationsListVO getTopDestinations();
 }

@@ -61,6 +61,8 @@ public class CountriesAndCitiesController {
 		return ResponseEntity.ok(Map.of("results", results));
 	}
 
+
+
 //	@GetMapping("/api/top-destinations")
 //	public List<Map<String, Object>> getTopDestinations() {
 //		TopDestinationsListVO topDestinationsListVO = this.countriesAndCitiesService.getTopDestinations();

@@ -107,5 +107,10 @@ public class GuideTourDaoImpl extends SqlSessionDaoSupport implements GuideTourD
 	public List<GuideTourScheduleInfoVO> selectTourScheduleList(String gdTrPstId) {
 		return this.getSqlSession().selectList(NAMESPACE + ".selectTourScheduleList", gdTrPstId);
 	}
-	
+
+	@Override
+	public List<GuideTourVO> getRandomGuideTours() {
+		return this.getSqlSession().selectList(NAMESPACE + ".getRandomGuideTours");
+	}
+
 }

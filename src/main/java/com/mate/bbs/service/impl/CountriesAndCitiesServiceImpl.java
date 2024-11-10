@@ -68,13 +68,15 @@ public class CountriesAndCitiesServiceImpl implements CountriesAndCitiesService 
 		}
 	}
 
-	@Override
-	public TopDestinationsListVO getTopDestinations() {
-		TopDestinationsListVO topDestinationsList = this.countriesAndCitiesDao.selectTopDestinations();
 
 
-
-		return topDestinationsList;
-	}
+//	@Override
+//	public TopDestinationsListVO getTopDestinations() {
+//		TopDestinationsListVO topDestinationsList = this.countriesAndCitiesDao.selectTopDestinations();
+//
+//
+//
+//		return topDestinationsList;
+//	}
 	
 }

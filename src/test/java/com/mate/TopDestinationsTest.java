@@ -15,24 +15,24 @@ public class TopDestinationsTest {
     @Autowired
     private CountriesAndCitiesDao countriesAndCitiesDao;
 
-    @Test
-    public void testTopDestinationsVO() {
-        TopDestinationVO vo = new TopDestinationVO();
-        vo.setCityName("Test");
-        vo.setNumberOfTours(10);
-        vo.setNumberOfRequests(5);
+//    @Test
+//    public void testTopDestinationsVO() {
+//        TopDestinationVO vo = new TopDestinationVO();
+//        vo.setCityName("Test");
+//        vo.setNumberOfTours(10);
+//        vo.setNumberOfRequests(5);
+//
+//        // Now get values
+//        assertEquals("Test", vo.getCityName());
+//        assertEquals(10, vo.getNumberOfTours());
+//        assertEquals(5, vo.getNumberOfRequests());
+//    }
 
-        // Now get values
-        assertEquals("Test", vo.getCityName());
-        assertEquals(10, vo.getNumberOfTours());
-        assertEquals(5, vo.getNumberOfRequests());
-    }
-
-    @Test
-    public void testSelectTopDestinations() {
-        TopDestinationsListVO result = countriesAndCitiesDao.selectTopDestinations();
-
-        // A simple null check and size check can be done here
-        assertNotNull(result, "Result should not be null");
-    }
+//    @Test
+//    public void testSelectTopDestinations() {
+//        TopDestinationsListVO result = countriesAndCitiesDao.selectTopDestinations();
+//
+//        // A simple null check and size check can be done here
+//        assertNotNull(result, "Result should not be null");
+//    }
 }

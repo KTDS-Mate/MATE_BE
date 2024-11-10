@@ -77,19 +77,24 @@
 
 	<!-- 국가 이름으로 검색 -->
 	<select id="searchCountriesByName" parameterType="string" resultType="com.mate.common.vo.CountriesVO">
-		SELECT COUNTRY_ID, COUNTRY_NAME, REGION_ID
-		FROM COUNTRIES
-		WHERE COUNTRY_NAME = #{query}
-		ORDER BY COUNTRY_NAME
+		SELECT COUNTRY_ID
+			 , COUNTRY_NAME
+			 , REGION_ID
+		  FROM COUNTRIES
+		 WHERE COUNTRY_NAME LIKE #{query}
+		 ORDER BY COUNTRY_NAME
 	</select>
 
 	<!-- 도시 이름으로 검색 -->
 	<select id="searchCitiesByName" parameterType="string" resultType="com.mate.common.vo.CitiesVO">
-		SELECT CITY_ID, CITY_NAME, COUNTRY_ID
-		FROM CITIES
-		WHERE CITY_NAME = #{query}
-		ORDER BY CITY_NAME
+		SELECT CITY_ID
+			 , CITY_NAME
+			 , COUNTRY_ID
+		  FROM CITIES
+		 WHERE CITY_NAME LIKE #{query}
+		 ORDER BY CITY_NAME
 	</select>
+
 
 
 </mapper>

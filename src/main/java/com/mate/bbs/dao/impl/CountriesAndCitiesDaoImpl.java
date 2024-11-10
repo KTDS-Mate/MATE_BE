@@ -51,10 +51,6 @@ public class CountriesAndCitiesDaoImpl extends SqlSessionDaoSupport implements C
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectCitiesCount", countryId);
 	}
 
-	@Override
-	public TopDestinationsListVO selectTopDestinations() {
-		return this.getSqlSession().selectOne(NAMESPACE + ".selectTopDestinations");
-	}
 
 	@Override
 	public List<CountriesVO> searchCountriesByName(String query) {
@@ -65,5 +61,10 @@ public class CountriesAndCitiesDaoImpl extends SqlSessionDaoSupport implements C
 	public List<CitiesVO> searchCitiesByName(String query) {
 		return this.getSqlSession().selectList(NAMESPACE + ".searchCitiesByName", query);
 	}
+
+//	@Override
+//	public List<CitiesVO> selectRandomCities() {
+//		return this.getSqlSession().selectList("selectRandomCities");
+//	}
 
 }
