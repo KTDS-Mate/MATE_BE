@@ -427,3 +427,5 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/node,windows,macos,intellij,eclipse,maven,visualstudiocode
 .idea/
 src/main/resources/application.yml
+build.properties
+META-INF/MANIFEST.MF
