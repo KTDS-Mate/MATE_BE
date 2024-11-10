@@ -5,6 +5,7 @@ pageEncoding="UTF-8" %>
 <html>
   <head>
     <meta charset="utf-8" />
+    <title>${userTourVO.usrTrTtl}</title>
     <link
       rel="stylesheet"
       type="text/css"
@@ -60,7 +61,7 @@ pageEncoding="UTF-8" %>
               </div>
               <div class="smallPicAreas">
                 <div class="smallPicArea btn-open-pic-modal">
-                  <img src="/public/다낭.jpg" alt="사진 1" />
+                  <img class="brs" src="/public/다낭.jpg" alt="사진 1" />
                 </div>
                 <div class="smallPicArea btn-open-pic-modal">
                   <img src="/public/다낭.jpg" alt="사진 2" />
