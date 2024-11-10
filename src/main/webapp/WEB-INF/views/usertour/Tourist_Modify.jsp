@@ -13,6 +13,7 @@ uri="http://www.springframework.org/tags/form" %>
       rel="stylesheet"
       type="text/css"
       href="/css/usertour/Tourist_Modify.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script
       type="text/javascript"

@@ -11,6 +11,7 @@ import com.mate.bbs.dao.GuideTourDao;
 import com.mate.bbs.vo.GuideTourDetailInfoVO;
 import com.mate.bbs.vo.GuideTourModifyVO;
 import com.mate.bbs.vo.GuideTourProvidedVO;
+import com.mate.bbs.vo.GuideTourReviewVO;
 import com.mate.bbs.vo.GuideTourScheduleInfoVO;
 import com.mate.bbs.vo.GuideTourVO;
 import com.mate.bbs.vo.GuideTourWriteVO;
@@ -28,9 +29,10 @@ public class GuideTourDaoImpl extends SqlSessionDaoSupport implements GuideTourD
 	 * 가이드 투어 전체 수를 조회
 	 */
 	@Override
-	public int selectGuideTourAllCount() {
-		return this.getSqlSession().selectOne(NAMESPACE + ".selectGuideTourAllCount");
+	public int selectGuideTourAllCount(SearchGuideTourVO searchGuideTourVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectGuideTourAllCount", searchGuideTourVO);
 	}
+	
 	/**
 	 * 모든 가이드 투어 목록 조회 (검색)
 	 */

@@ -3,6 +3,7 @@ package com.mate.user.vo;
 import java.util.List;
 
 import com.mate.common.vo.CitiesVO;
+import com.mate.mypage.vo.GuideReviewVO;
 
 public class UserVO {
 
@@ -120,180 +121,174 @@ public class UserVO {
 	 */
 	private int usrGdExp;
 
-    public String getUsrId() {
-        return usrId;
-    }
+	private GuideReviewVO guideReviewVO;
 
-    public void setUsrId(String usrId) {
-        this.usrId = usrId;
-    }
-
-    public String getUsrLgnId() {
-        return usrLgnId;
-    }
-
-    public void setUsrLgnId(String usrLgnId) {
-        this.usrLgnId = usrLgnId;
-    }
-
-    public String getUsrPwd() {
-        return usrPwd;
-    }
-
-    public void setUsrPwd(String usrPwd) {
-        this.usrPwd = usrPwd;
-    }
-
-    public String getUsrLnm() {
-        return usrLnm;
-    }
-
-    public void setUsrLnm(String usrLnm) {
-        this.usrLnm = usrLnm;
-    }
-
-    public String getUsrFnm() {
-        return usrFnm;
-    }
-
-    public void setUsrFnm(String usrFnm) {
-        this.usrFnm = usrFnm;
-    }
-
-    public String getUsrGndr() {
-        return usrGndr;
-    }
-
-    public void setUsrGndr(String usrGndr) {
-        this.usrGndr = usrGndr;
-    }
-
-    public String getUsrEml() {
-        return usrEml;
-    }
-
-    public void setUsrEml(String usrEml) {
-        this.usrEml = usrEml;
-    }
-
-    public String getUsrPhn() {
-        return usrPhn;
-    }
-
-    public void setUsrPhn(String usrPhn) {
-        this.usrPhn = usrPhn;
-    }
-
-    public String getUsrBd() {
-        return usrBd;
-    }
-
-    public void setUsrBd(String usrBd) {
-        this.usrBd = usrBd;
-    }
-
-    public String getUsrIsGd() {
-        return usrIsGd;
-    }
-
-    public void setUsrIsGd(String usrIsGd) {
-        this.usrIsGd = usrIsGd;
-    }
-
-    public String getUsrSlfIntdctn() {
-        return usrSlfIntdctn;
-    }
-
-    public void setUsrSlfIntdctn(String usrSlfIntdctn) {
-        this.usrSlfIntdctn = usrSlfIntdctn;
-    }
-
-    public String getUsrPypEml() {
-        return usrPypEml;
-    }
-
-    public void setUsrPypEml(String usrPypEml) {
-        this.usrPypEml = usrPypEml;
-    }
-
-    public double getUsrAvgRtng() {
-        return usrAvgRtng;
-    }
-
-    public void setUsrAvgRtng(double usrAvgRtng) {
-        this.usrAvgRtng = usrAvgRtng;
-    }
-
-    public String getUsrJnDt() {
-        return usrJnDt;
-    }
-
-    public void setUsrJnDt(String usrJnDt) {
-        this.usrJnDt = usrJnDt;
-    }
-
-    public String getUsrClDt() {
-        return usrClDt;
-    }
-
-    public void setUsrClDt(String usrClDt) {
-        this.usrClDt = usrClDt;
-    }
-
-    public String getUsrIsCl() {
-        return usrIsCl;
-    }
-
-    public void setUsrIsCl(String usrIsCl) {
-        this.usrIsCl = usrIsCl;
-    }
-
-    public String getUsrMdfyDt() {
-        return usrMdfyDt;
-    }
-
-    public void setUsrMdfyDt(String usrMdfyDt) {
-        this.usrMdfyDt = usrMdfyDt;
-    }
-
-    public String getGdPrflImg() {
-        return gdPrflImg;
-    }
-
-    public void setGdPrflImg(String gdPrflImg) {
-        this.gdPrflImg = gdPrflImg;
-    }
-
-    public String getGdIdImg() {
-        return gdIdImg;
-    }
-
-    public void setGdIdImg(String gdIdImg) {
-        this.gdIdImg = gdIdImg;
-    }
-
-    public String getGdCbcImg() {
-        return gdCbcImg;
-    }
-
-    public void setGdCbcImg(String gdCbcImg) {
-        this.gdCbcImg = gdCbcImg;
-    }
-
-    public String getGdRpCntId() {
-        return gdRpCntId;
-    }
-
-    public void setGdRpCntId(String gdRpCntId) {
-        this.gdRpCntId = gdRpCntId;
-    }
-
-	public String getUsrCntCode() {
-		return usrCntCode;
+	public String getUsrId() {
+		return usrId;
 	}
 
-	public void setUsrCntCode(String usrCntCode) {
-		this.usrCntCode = usrCntCode;
+	public void setUsrId(String usrId) {
+		this.usrId = usrId;
+	}
+
+	public String getUsrLgnId() {
+		return usrLgnId;
+	}
+
+	public void setUsrLgnId(String usrLgnId) {
+		this.usrLgnId = usrLgnId;
+	}
+
+	public String getUsrPwd() {
+		return usrPwd;
+	}
+
+	public void setUsrPwd(String usrPwd) {
+		this.usrPwd = usrPwd;
+	}
+
+	public String getUsrLnm() {
+		return usrLnm;
+	}
+
+	public void setUsrLnm(String usrLnm) {
+		this.usrLnm = usrLnm;
+	}
+
+	public String getUsrFnm() {
+		return usrFnm;
+	}
+
+	public void setUsrFnm(String usrFnm) {
+		this.usrFnm = usrFnm;
+	}
+
+	public String getUsrGndr() {
+		return usrGndr;
+	}
+
+	public void setUsrGndr(String usrGndr) {
+		this.usrGndr = usrGndr;
+	}
+
+	public String getUsrEml() {
+		return usrEml;
+	}
+
+	public void setUsrEml(String usrEml) {
+		this.usrEml = usrEml;
+	}
+
+	public String getUsrPhn() {
+		return usrPhn;
+	}
+
+	public void setUsrPhn(String usrPhn) {
+		this.usrPhn = usrPhn;
+	}
+
+	public String getUsrBd() {
+		return usrBd;
+	}
+
+	public void setUsrBd(String usrBd) {
+		this.usrBd = usrBd;
+	}
+
+	public String getUsrIsGd() {
+		return usrIsGd;
+	}
+
+	public void setUsrIsGd(String usrIsGd) {
+		this.usrIsGd = usrIsGd;
+	}
+
+	public String getUsrSlfIntdctn() {
+		return usrSlfIntdctn;
+	}
+
+	public void setUsrSlfIntdctn(String usrSlfIntdctn) {
+		this.usrSlfIntdctn = usrSlfIntdctn;
+	}
+
+	public String getUsrPypEml() {
+		return usrPypEml;
+	}
+
+	public void setUsrPypEml(String usrPypEml) {
+		this.usrPypEml = usrPypEml;
+	}
+
+	public double getUsrAvgRtng() {
+		return usrAvgRtng;
+	}
+
+	public void setUsrAvgRtng(double usrAvgRtng) {
+		this.usrAvgRtng = usrAvgRtng;
+	}
+
+	public String getUsrJnDt() {
+		return usrJnDt;
+	}
+
+	public void setUsrJnDt(String usrJnDt) {
+		this.usrJnDt = usrJnDt;
+	}
+
+	public String getUsrClDt() {
+		return usrClDt;
+	}
+
+	public void setUsrClDt(String usrClDt) {
+		this.usrClDt = usrClDt;
+	}
+
+	public String getUsrIsCl() {
+		return usrIsCl;
+	}
+
+	public void setUsrIsCl(String usrIsCl) {
+		this.usrIsCl = usrIsCl;
+	}
+
+	public String getUsrMdfyDt() {
+		return usrMdfyDt;
+	}
+
+	public void setUsrMdfyDt(String usrMdfyDt) {
+		this.usrMdfyDt = usrMdfyDt;
+	}
+
+	public String getGdPrflImg() {
+		return gdPrflImg;
+	}
+
+	public void setGdPrflImg(String gdPrflImg) {
+		this.gdPrflImg = gdPrflImg;
+	}
+
+	public String getGdIdImg() {
+		return gdIdImg;
+	}
+
+	public void setGdIdImg(String gdIdImg) {
+		this.gdIdImg = gdIdImg;
+	}
+
+	public String getGdCbcImg() {
+		return gdCbcImg;
+	}
+
+	public void setGdCbcImg(String gdCbcImg) {
+		this.gdCbcImg = gdCbcImg;
+	}
+
+	public String getGdRpCntId() {
+		return gdRpCntId;
+	}
+
+	public void setGdRpCntId(String gdRpCntId) {
+		this.gdRpCntId = gdRpCntId;
 	}
 
 	public List<CitiesVO> getCitiesVO() {
@@ -312,6 +307,14 @@ public class UserVO {
 		this.countryName = countryName;
 	}
 
+	public String getUsrCntCode() {
+		return usrCntCode;
+	}
+
+	public void setUsrCntCode(String usrCntCode) {
+		this.usrCntCode = usrCntCode;
+	}
+
 	public String getSalt() {
 		return salt;
 	}
@@ -328,6 +331,14 @@ public class UserVO {
 		this.confirmPwd = confirmPwd;
 	}
 
+	public String getCurrentPwd() {
+		return currentPwd;
+	}
+
+	public void setCurrentPwd(String currentPwd) {
+		this.currentPwd = currentPwd;
+	}
+
 	public int getUsrGdExp() {
 		return usrGdExp;
 	}
@@ -336,11 +347,12 @@ public class UserVO {
 		this.usrGdExp = usrGdExp;
 	}
 
-	public String getCurrentPwd() {
-		return currentPwd;
+	public GuideReviewVO getGuideReviewVO() {
+		return guideReviewVO;
 	}
 
-	public void setCurrentPwd(String currentPwd) {
-		this.currentPwd = currentPwd;
+	public void setGuideReviewVO(GuideReviewVO guideReviewVO) {
+		this.guideReviewVO = guideReviewVO;
 	}
+
 }

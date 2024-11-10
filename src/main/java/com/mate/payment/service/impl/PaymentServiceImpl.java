@@ -34,7 +34,6 @@ public class PaymentServiceImpl implements PaymentService{
     	String lgnId = searchPaymentVO.getTrstLgnId();
     	String usrId = this.paymentDao.selectUserId(lgnId);
     	searchPaymentVO.setTrstId(usrId);
-    	System.out.println(lgnId + "      asdfasdf     " + usrId );
 		int cnt = this.paymentDao.selectAllMyPaymentCount(searchPaymentVO);
 		paymentListVO.setPaymentCnt(cnt);
 		if (cnt == 0) {

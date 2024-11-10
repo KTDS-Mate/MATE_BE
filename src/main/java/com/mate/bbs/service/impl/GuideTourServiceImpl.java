@@ -30,7 +30,7 @@ public class GuideTourServiceImpl implements GuideTourService{
 	 */
 	@Override
 	public GuideTourListVO getAllGuideTour(SearchGuideTourVO searchGuideTourVO) {
-		int guideTourListCount = this.guideTourDao.selectGuideTourAllCount();
+		int guideTourListCount = this.guideTourDao.selectGuideTourAllCount(searchGuideTourVO);
 		
 		if(guideTourListCount == 0) {
 			GuideTourListVO guideTourListVO = new GuideTourListVO();
@@ -39,11 +39,10 @@ public class GuideTourServiceImpl implements GuideTourService{
 			
 			return guideTourListVO;
 		}
-		List<GuideTourVO> guideTourList = this.guideTourDao.selectAllGuideTour(searchGuideTourVO);
 		
 		searchGuideTourVO.setListSize(5);
 		searchGuideTourVO.setPageCount(guideTourListCount);
-		
+		List<GuideTourVO> guideTourList = this.guideTourDao.selectAllGuideTour(searchGuideTourVO);
 		GuideTourListVO guideTourListVO = new GuideTourListVO();
 		guideTourListVO.setGdTrPstCnt(guideTourListCount);
 		guideTourListVO.setGuideTourList(guideTourList);

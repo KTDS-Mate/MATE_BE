@@ -14,6 +14,7 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet">
+<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
 <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="/js/mypage/Mypage_Guide_Apply.js"></script>
 </head>

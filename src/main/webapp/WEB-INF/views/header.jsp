@@ -40,10 +40,8 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
           <a href="/user/logout">로그아웃</a>
         </div>
         <div>
-          <a
-            href="/mypage/edit-profile/choice?usrLgnId=${sessionScope._LOGIN_USER_.usrLgnId}&usrIsGd=${sessionScope._LOGIN_USER_.usrIsGd}"
-            >마이페이지</a
-          >
+          <a href="/mypage/edit-profile/choice?usrLgnId=${sessionScope._LOGIN_USER_.usrLgnId}&usrIsGd=${sessionScope._LOGIN_USER_.usrIsGd}">
+          마이페이지</a>
         </div>
       </c:otherwise>
     </c:choose>
@@ -51,7 +49,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 </div>
 <div class="header-center-menu">
   <div>
-    <a href="/usertour/list?pageNo=0&listSize=9&regionName=전체&orderby=최신순"
+    <a href="/usertour/list?pageNo=0&listSize=10&regionName=전체&orderby=최신순"
       >투어 요청 목록</a
     >
   </div>

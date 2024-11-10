@@ -9,18 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.mate.mypage.service.MyBoardService;
 import com.mate.mypage.service.MyReviewService;
 import com.mate.mypage.vo.GuideReviewListVO;
 import com.mate.mypage.vo.GuideReviewVO;
 import com.mate.mypage.vo.GuideTourReviewListVO;
 import com.mate.mypage.vo.GuideTourReviewVO;
-import com.mate.mypage.vo.MyBoardListVO;
 import com.mate.mypage.vo.SearchGuideReviewVO;
 import com.mate.mypage.vo.SearchGuideTourReviewVO;
-import com.mate.mypage.vo.SearchMyBoardVO;
-import com.mate.mypage.vo.TrMyBoardListVO;
-import com.mate.mypage.vo.TrMyBoardVO;
 
 @Controller
 @RequestMapping("/mypage/review")

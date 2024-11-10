@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.mate.common.vo.CitiesVO;
 import com.mate.common.vo.CountriesVO;
+import com.mate.mypage.vo.GuideReviewVO;
 import com.mate.user.vo.UserVO;
 
 public class GuideTourVO {
@@ -131,11 +132,19 @@ public class GuideTourVO {
 	 * 해당 프로퍼티는 DB컬럼에 존재하지 않음
 	 */
 	private String guideAge;
+	/**DB에 존재하지 않고 평균만 내서 가져옴**/
+	private String avgGdRvw;
 	/**
 	 * 가이드 투어 게시글에 대한 평균 별점
 	 */
 	private int trAvgRtng;
 	
+	public String getAvgGdRvw() {
+		return avgGdRvw;
+	}
+	public void setAvgGdRvw(String avgGdRvw) {
+		this.avgGdRvw = avgGdRvw;
+	}
 	public int getTrAvgRtng() {
 		return trAvgRtng;
 	}
