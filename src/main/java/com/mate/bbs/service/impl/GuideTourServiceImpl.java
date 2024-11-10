@@ -130,4 +130,10 @@ public class GuideTourServiceImpl implements GuideTourService{
 		int guideTourDeleteCount = this.guideTourDao.updateGuideTourIsDtl(gdTrPstId);
 		return guideTourDeleteCount > 0;
 	}
+
+	@Override
+	public List<GuideTourVO> getRandomGuideTours() {
+		return guideTourDao.getRandomGuideTours();
+	}
+
 }

@@ -1,126 +1,182 @@
 $().ready(function () {
-  let countryId = null; // countryId 변수를 null로 초기화합니다.
+  // DOM 요소들
+  const $where = $('.where');
+  const $searchModal = $('#destinationSelectModal');
+  const $searchInput = $('.searchInput');
+  const $searchResults = $('#searchResults');
+  const $searchResultArea = $('#searchResultArea');
+  const $whereH3 = $('.where > h3');
+  const $searchTypeSelect = $('.searchType');
+  const $touristButton = $('.touristButton');
+  const $guideButton = $('.guideButton');
+  const $searchButton = $('.tourSearchButton');
 
-  const $where = $(".where");
-  const $searchModal = $("#destinationSelectModal");
-  const $searchInput = $("#searchInput");
-  const $searchResults = $("#searchResults");
-  const $whereH3 = $(".where > h3");
-  const initialDestination = "Select Destination"; // 초기 선택된 장소 텍스트
-  const $regionDisplay = $("#regionDisplay"); // 지역 이름을 표시할 요소
+  const initialDestination = 'Select Destination'; // 초기 선택된 장소 텍스트
+  let searchType = $searchTypeSelect.val(); // 기본 검색 타입 (국가, 도시 등)
 
   // 초기 선택된 장소를 h3에 설정
   function setInitialDestination() {
     $whereH3.text(initialDestination);
-    $regionDisplay.text(""); // 초기 지역 텍스트를 비웁니다.
   }
 
-  // 모달 열기 함수
+  // 검색 타입 변경 시 입력 필드 placeholder 업데이트
+  function updatePlaceholder() {
+    const placeholderText =
+      searchType === 'country'
+        ? '국가를 입력해주세요.'
+        : searchType === 'city'
+        ? '도시를 입력해주세요.'
+        : '제목을 입력해주세요.';
+    $searchInput.attr('placeholder', placeholderText);
+  }
+
+  // 검색 타입 선택 시 이벤트
+  $searchTypeSelect.on('change', function () {
+    searchType = $(this).val();
+    updatePlaceholder();
+  });
+
+  // 모달 열기 및 닫기
   function openDestinationSelectModal() {
-    $searchModal.removeClass("hidden");
-    generateCalendar();
+    $searchModal.removeClass('hidden');
   }
 
-  // 모달 닫기 함수
   function closeDestinationSelectModal() {
-    $searchModal.addClass("hidden");
+    $searchModal.addClass('hidden');
   }
 
-  // 국가 선택 이벤트
-  $(".country-select").on("click", function () {
-    countryId = $(this).data("country-id"); // 선택된 국가의 ID를 설정
-    console.log("선택된 countryId:", countryId); // countryId 확인 로그 추가
-
-    if (countryId) {
-      // 선택된 국가에 해당하는 지역 이름을 가져옴
-      $.ajax({
-        url: `/tour/regions/${countryId}`, // 서버에서 지역 이름을 검색
-        type: "GET",
-        dataType: "json",
-        success: function (data) {
-          if (data && data.regionName) {
-            $regionDisplay.text(data.regionName); // 지역 이름 표시
-          } else {
-            $regionDisplay.text("지역 정보가 없습니다");
-          }
-        },
-        error: function () {
-          alert("지역 정보를 가져오는 중 오류가 발생했습니다.");
-        },
-      });
-    } else {
-      alert("국가 ID를 설정하는 데 오류가 발생했습니다.");
-    }
-  });
-
-  $("#searchButton").on("click", function () {
-    console.log("검색 버튼 클릭됨");
-
-    const searchTerm = $searchInput.val().trim(); // 사용자가 입력한 도시 이름
-    console.log("입력된 도시 이름:", searchTerm); // 입력된 도시 이름을 콘솔에 출력
-
-    if (searchTerm) {
-      // countryId가 설정되지 않았더라도, URL을 사용하도록 설정
-      $.ajax({
-        url: `/tour/cities/${countryId || "default"}`, // countryId가 없을 경우 'default' 사용
-        type: "GET",
-        data: {
-          term: searchTerm, // 입력된 도시 이름
-        },
-        dataType: "json",
-        success: function (data) {
-          console.log("AJAX 성공:", data); // 데이터 확인
-          $searchResults.empty(); // 이전 검색 결과를 비웁니다.
-
-          if (data && data.cities && data.cities.length > 0) {
-            // 수정된 데이터 구조에 맞춰 검사
-            data.cities.forEach(function (city) {
-              const $cityItem = $("<div></div>").text(
-                `${city.CITY_NAME} (${city.COUNTRY_NAME})`
-              ); // 도시와 국가 이름 출력
-              $searchResults.append($cityItem);
-            });
-          } else {
-            $searchResults.html(
-              '<div class="placeholder-option">도시가 없습니다</div>'
-            );
-          }
-        },
-        error: function (xhr, status, error) {
-          console.error("AJAX 오류:", status, error, xhr.responseText); // 오류 메시지 확인
-          alert("도시 검색 중 오류가 발생했습니다.");
-        },
-      });
-    } else {
-      alert("검색어를 입력해 주세요.");
-    }
-  });
-
-  // 모달 열기 버튼
-  $where.on("click", function (e) {
+  // 'where' 클릭 시 모달 열기
+  $where.on('click', function (e) {
     e.stopPropagation();
     openDestinationSelectModal();
   });
 
-  $searchModal.on("click", function (e) {
-    e.stopPropagation(); // 모달 내부 클릭 시 닫히지 않도록 방지
-  });
-
-  // 이미지 전환 버튼 클릭 시 모달 닫히지 않도록 이벤트 추가
-  $(".picForwardButton, .picBackwardButton").on("click", function (e) {
-    e.stopPropagation(); // 이벤트 전파 중지
-  });
-
-  // 목적지 검색 모달 외부 클릭 시 모달 닫기
-  $(document).on("click", function (event) {
+  // 모달 외부 클릭 시 닫기
+  $(document).on('click', function (event) {
     if (
-      !$searchModal.hasClass("hidden") &&
+      !$searchModal.hasClass('hidden') &&
       !$(event.target).closest($searchModal).length
     ) {
-      console.log("목적지 검색 Modal 외부 영역 클릭됨.");
-      $searchModal.addClass("hidden");
+      closeDestinationSelectModal();
     }
   });
 
+  // 검색 버튼 클릭 시 AJAX 호출
+  $('.searchButton').on('click', function (e) {
+    e.preventDefault();
+    const searchValue = $searchInput.val();
+    if (searchValue) {
+      $.ajax({
+        url: '/tour/search',
+        method: 'GET',
+        data: { query: searchValue, type: searchType },
+        success: function (data) {
+          $searchResultArea.empty();
+          if (data.results && data.results.length > 0) {
+            data.results.forEach(function (result) {
+              const resultItem = $('<div class="result-item"></div>').text(
+                searchType === 'country' ? result.countryName : result.cityName
+              );
+              $searchResultArea.append(resultItem);
+            });
+          } else {
+            $searchResultArea.text('검색 결과가 없습니다.');
+          }
+        },
+        error: function () {
+          $searchResultArea.text('검색 중 오류가 발생했습니다.');
+        },
+      });
+    } else {
+      $searchResultArea.text('검색어를 입력해주세요.');
+    }
+  });
+
+  // Enter 키로 검색 실행
+  $searchInput.on('keypress', function (e) {
+    if (e.which === 13) {
+      e.preventDefault();
+      $('.searchButton').trigger('click');
+    }
+  });
+
+  // 결과 항목 클릭 시 처리
+  $searchResultArea.on('click', '.result-item', function () {
+    const selectedText = $(this).text();
+    $whereH3.text(selectedText);
+    closeDestinationSelectModal();
+  });
+
+  // 버튼 선택 함수
+  function selectButton($selectedButton) {
+    $touristButton.removeClass('selectedButton');
+    $guideButton.removeClass('selectedButton');
+    $selectedButton.addClass('selectedButton');
+  }
+
+  // 처음 접속 시 touristButton이 선택되도록 설정
+  selectButton($touristButton);
+
+  // touristButton 클릭 시 선택 처리
+  $touristButton.on('click', function () {
+    selectButton($touristButton);
+  });
+
+  // guideButton 클릭 시 선택 처리
+  $guideButton.on('click', function () {
+    selectButton($guideButton);
+  });
+
+  // tourSearchButton 클릭 시 이벤트
+  $searchButton.on('click', function () {
+    // userTypeArea에서 선택된 버튼 확인
+    var selectedUserType = $('.userTypeArea .selectedButton').text(); // 'Tourist' 또는 'Guide'
+
+    // where와 when의 텍스트 값 가져오기
+    var whereText = $('.where > h3').text(); // 국가 또는 도시
+    var whenText = $('.when > h3').text(); // 예: 최신순, 가격순 등
+
+    // 기본 검색 URL 설정
+    var baseUrl = '';
+    if ($touristButton.hasClass('selectedButton')) {
+      baseUrl = '/guidetour/list?';
+    } else if ($guideButton.hasClass('selectedButton')) {
+      baseUrl = '/usertour/list?';
+    }
+
+    // URL 파라미터를 담을 변수
+    var queryParams = '';
+
+    // pageNo를 먼저 추가 (기본값은 0)
+    queryParams += 'pageNo=0';
+
+    // when(검색 기준)에 맞는 검색 기준을 추가
+    if (whenText) {
+      queryParams += `&orderby=${encodeURIComponent(whenText)}`;
+    }
+
+    // searchType을 추가
+    queryParams += `&searchType=${encodeURIComponent(searchType)}`;
+
+    // searchKeyword를 추가
+    var searchKeyword = ''; // 기본값
+
+    // 'where' 텍스트 값이 입력 필드인지 텍스트 값인지 확인
+    if ($where.find('input').length > 0) {
+      searchKeyword = $('.where input').val(); // 입력 필드에서 값 가져오기
+    } else {
+      searchKeyword = whereText; // 텍스트 영역에서 값 가져오기
+    }
+
+    if (searchKeyword) {
+      queryParams += `&searchKeyword=${encodeURIComponent(searchKeyword)}`;
+    }
+
+    // 최종 URL로 리다이렉션
+    location.href = baseUrl + queryParams;
+  });
+
+  // 초기 설정
+  updatePlaceholder();
   setInitialDestination();
 });
