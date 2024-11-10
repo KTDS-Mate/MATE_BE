@@ -61,24 +61,4 @@ public class CountriesAndCitiesController {
 		return ResponseEntity.ok(Map.of("results", results));
 	}
 
-
-
-//	@GetMapping("/api/top-destinations")
-//	public List<Map<String, Object>> getTopDestinations() {
-//		TopDestinationsListVO topDestinationsListVO = this.countriesAndCitiesService.getTopDestinations();
-//		List<Map<String, Object>> resultList = new ArrayList<>();
-//
-//		//  Each TopDestinationVO in the list
-//		for(TopDestinationVO topDestinationVO : topDestinationsListVO.getTopDestinations()) {
-//			Map<String, Object> resultMap = new HashMap<>();
-//
-//			resultMap.put("cityName", topDestinationVO.getCityName());
-//			resultMap.put("numberOfTours", topDestinationVO.getNumberOfTours());
-//			resultMap.put("numberOfRequests", topDestinationVO.getNumberOfRequests());
-//
-//			resultList.add(resultMap);
-//		}
-//
-//		return resultList;
-//	}
 }

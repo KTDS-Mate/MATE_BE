@@ -48,12 +48,14 @@ app:
         /img/**,
         /font/**,
         /public/**,
+        /tour/**,
         /user/login,
         /user/regist/**,
         /usertour/list,
         /usertour/view,
         /guidetour/list,
         /guidetour/info,
+        /guidetour/random,
         /
     check-dup-login:
       path-patterns: 

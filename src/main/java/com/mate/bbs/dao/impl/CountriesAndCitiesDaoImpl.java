@@ -62,9 +62,4 @@ public class CountriesAndCitiesDaoImpl extends SqlSessionDaoSupport implements C
 		return this.getSqlSession().selectList(NAMESPACE + ".searchCitiesByName", query);
 	}
 
-//	@Override
-//	public List<CitiesVO> selectRandomCities() {
-//		return this.getSqlSession().selectList("selectRandomCities");
-//	}
-
 }

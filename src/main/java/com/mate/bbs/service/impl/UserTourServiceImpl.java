@@ -58,22 +58,6 @@ public class UserTourServiceImpl implements UserTourService{
 			}
 		}
 		
-		// 이미지가 계속 null로 들어가여
-//		List<UserTourImgVO> imgList = userTourWriteVO.getUserTourImgList();
-//		
-//		if (imgList != null && !imgList.isEmpty()) {
-//			for (UserTourImgVO userTourImgVO : imgList) {
-//				String usrTrPstId = userTourWriteVO.getUsrTrPstId();
-//				userTourImgVO.setUsrTrPstId(usrTrPstId);
-//				
-//				StoreResultVO imgResult= fileHandler.storeFile(userTourWriteVO.getUsrTourImgFile());
-//				if (imgResult != null) {
-//					userTourWriteVO.setImgFileName(imgResult.getObfuscatedFileName());
-//				}
-//				this.userTourDao.insertNewUserTourImgs(userTourImgVO);
-//			}
-//		}
-		
 		return createCount > 0;
 	}
 
