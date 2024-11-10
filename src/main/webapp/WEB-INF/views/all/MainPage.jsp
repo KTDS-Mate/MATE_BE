@@ -143,7 +143,7 @@
                 </div>
             </div>
             <div class="thirdLayer">
-              <h2>실시간 주문 폭주 여행지</h2>
+              <h2>가이드님이 여행자님들을 찾고 있어요!</h2>
               <div class="recommendCitiesAreaWrapper">
                 <div class="recommendCitiesAreaOne">
 
@@ -154,7 +154,7 @@
             <div class="borderLine"></div>
 
             <div class="fourthLayer">
-              <h2>이 달의 핫플 여행지</h2>
+              <h2>이런 가이드님을 구해요!</h2>
               <div class="recommendCitiesAreaWrapper">
                 <div class="recommendCitiesAreaTwo">
                   
@@ -165,7 +165,7 @@
             <div class="borderLine"></div>
             
             <div class="fifthLayer">
-              <h2>맛있는 음식이 있는 여행지</h2>
+              <h2>인기있는 가이드님들의 투어 목록!</h2>
               <div class="recommendCitiesAreaWrapper">
                 <div class="recommendCitiesAreaThree">
                   
