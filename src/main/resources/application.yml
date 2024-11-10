@@ -54,7 +54,9 @@ app:
         /usertour/view,
         /guidetour/list,
         /guidetour/info,
-        /
+        /guidetour/random,
+        /,
+        /tour/**
     check-dup-login:
       path-patterns: 
         /user/login,
