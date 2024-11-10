@@ -79,6 +79,9 @@ mybatis:
   # classpath -> target 폴더의 classes 폴더
   mapper-locations: classpath:com/mate/**/dao/mapper/*Mapper.xml  
 
+#server:
+#  port: 8081
+
 ---
 spring:
   config:
