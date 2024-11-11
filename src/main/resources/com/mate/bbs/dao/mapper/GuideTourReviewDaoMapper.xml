@@ -37,9 +37,9 @@
 			 , GR.PR_GD_TR_RVW_ID 
 			 , U.USR_LNM 
 			 , U.USR_FNM 
-			 , (SELECT AVG(gtr2.GD_TR_RVW_RTNG)
-			      FROM GD_TR_RVW gtr2
-			     WHERE gtr2.GD_TR_PST_ID = #{_parameter}) AS REVIEW_AVG
+			 , (SELECT ROUND(AVG(gtr2.GD_TR_RVW_RTNG), 1) 
+	              FROM GD_TR_RVW gtr2
+	             WHERE gtr2.GD_TR_PST_ID = #{_parameter}) AS REVIEW_AVG
 			 , (SELECT COUNT(1) 
 			      FROM GD_TR_RVW gtr
 			     WHERE gtr.GD_TR_PST_ID = #{_parameter}

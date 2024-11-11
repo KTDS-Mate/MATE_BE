@@ -85,6 +85,8 @@ public class GuideTourVO {
 	 * 리뷰 평점 알리아스
 	 */
 	private double avgRvw;
+	
+	
 	/**
 	 * 가이드 투어 이미지 리스트 VO 
 	 */

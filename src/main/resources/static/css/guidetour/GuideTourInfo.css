@@ -5,8 +5,25 @@
 }
 
 .title {
-  margin: 0 0 0 4rem;
+    margin: 0 0 0 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
+.wish-button {
+	width: 42px;
+	height: 40px;
+    margin-right: 2rem;
+	background-image: url("/img/tourboard/WishButton.png");
+}
+
+.wish-button:hover {
+	width: 46px;
+	height: 45px;
+	background-image: url("/img/tourboard/CheckedWishButton.png");
+}
+
 
 .firstLayer {
   display: flex;

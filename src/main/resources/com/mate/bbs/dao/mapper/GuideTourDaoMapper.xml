@@ -90,7 +90,7 @@
 				ORDER BY DEADLINE
 			</when>
 			<when test='"평점 높은순".equals(orderBy)'>
-				ORDER BY AVG_RVW DESC
+				ORDER BY AVG_RVW
 			</when>
 			<otherwise>
 				ORDER BY GTR.GD_TR_PST_ID DESC
@@ -114,6 +114,7 @@
 	     JOIN USR_INF UI
 	       ON GTR.ATHR_ID = UI.USR_LGN_ID 
 	    WHERE GTR.GD_TR_ST_DT > SYSDATE
+	      AND GTR.GD_TR_IS_DLT = 'N'
 	    <if test="_parameter != null">
 	    	<include refid="com.mate.bbs.dao.GuideTourDao.selectTitleAndContent" />
 	    </if>
@@ -212,9 +213,9 @@
 			 , (SELECT AVG(GD_RVW_RTNG)
 			      FROM GD_RVW GR
 			     WHERE GR.GD_ID = GTR.ATHR_ID) AS AVG_GD_RVW
-			 , ( SELECT AVG(gtr2.GD_TR_RVW_RTNG)
-			       FROM GD_TR_RVW gtr2
-			 	  WHERE gtr2.GD_TR_PST_ID = GTR.GD_TR_PST_ID ) AS AVG_RVW
+			 , ( SELECT ROUND(AVG(gtr2.GD_TR_RVW_RTNG), 1)
+                   FROM GD_TR_RVW gtr2
+                  WHERE gtr2.GD_TR_PST_ID = GTR.GD_TR_PST_ID ) AS AVG_RVW
 	     FROM GD_TR_RCRT GTR
 	     LEFT JOIN GD_TR_RCRT_IMG GTRI
 	       ON GTR.GD_TR_PST_ID = GTRI.GD_TR_PST_ID 
@@ -225,8 +226,9 @@
 	     JOIN REGIONS R
 	       ON R.REGION_ID = CTR.REGION_ID 
 	     JOIN USR_INF UI
-	       ON GTR.ATHR_ID = UI.USR_LGN_ID 
+	       ON GTR.ATHR_ID = UI.USR_LGN_ID
 	    WHERE GTR.GD_TR_ST_DT > SYSDATE
+	      AND GTR.GD_TR_IS_DLT = 'N'
 	    <if test="_parameter != null">
 	    	<include refid="com.mate.bbs.dao.GuideTourDao.selectTitleAndContent" />
 	    </if>

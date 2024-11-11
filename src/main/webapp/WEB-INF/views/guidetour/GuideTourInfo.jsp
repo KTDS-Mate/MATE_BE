@@ -45,6 +45,7 @@ pageEncoding="UTF-8" %>
           <div class="title">
           	<input id="" type="hidden" data-gd-pst-id="${guideTourVO.gdTrPstId}" />
             <h1>${guideTourVO.gdTrTtl}</h1>
+            <div class="wish-button"></div>
           </div>
           <!-- <div class="reviewWriteModal hidden"> -->
           <jsp:include page="Modal.jsp" />
