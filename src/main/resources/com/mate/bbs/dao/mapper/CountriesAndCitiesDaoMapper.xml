@@ -62,7 +62,7 @@
 			 , COUNTRY_NAME
 			 , REGION_ID
 		  FROM COUNTRIES
-		 WHERE COUNTRY_NAME LIKE #{query}
+		 WHERE COUNTRY_NAME LIKE '%' || #{query} || '%'
 		 ORDER BY COUNTRY_NAME
 	</select>
 
@@ -72,7 +72,7 @@
 			 , CITY_NAME
 			 , COUNTRY_ID
 		  FROM CITIES
-		 WHERE CITY_NAME LIKE #{query}
+		 WHERE CITY_NAME LIKE '%' || #{query} || '%'
 		 ORDER BY CITY_NAME
 	</select>
 
