@@ -21,7 +21,6 @@ $().ready(function() {
 
 function movePage(pageNo) {
 	var loginId = $(".header-content").data("login-id");
-	console.log(pageNo);
 
 	$(".page-no").val(pageNo);
 	location.href = `/mypage/wishlist/tr-wishlist/${loginId}?pageNo=${pageNo}`;

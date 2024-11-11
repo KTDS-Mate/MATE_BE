@@ -5,6 +5,7 @@ pageEncoding="UTF-8" %>
 <html>
   <head>
     <meta charset="utf-8" />
+    <title>${userTourVO.usrTrTtl}</title>
     <link
       rel="stylesheet"
       type="text/css"
@@ -60,7 +61,7 @@ pageEncoding="UTF-8" %>
               </div>
               <div class="smallPicAreas">
                 <div class="smallPicArea btn-open-pic-modal">
-                  <img src="/public/다낭.jpg" alt="사진 1" />
+                  <img class="brs" src="/public/다낭.jpg" alt="사진 1" />
                 </div>
                 <div class="smallPicArea btn-open-pic-modal">
                   <img src="/public/다낭.jpg" alt="사진 2" />
@@ -76,7 +77,7 @@ pageEncoding="UTF-8" %>
             </div>
             <div class="priceArea">
               <div class="priceTitleArea">
-                <span>Price for One Team</span>
+                <span>Price</span>
               </div>
               <div class="priceDetailArea">
                 <div class="hour">
@@ -119,8 +120,22 @@ pageEncoding="UTF-8" %>
                     <p>성별 : 상관없음</p>
                   </c:otherwise>
                 </c:choose>
-                <p>나이 : ${userTourVO.gdAge}대</p>
-                <p>경력 : ${userTourVO.gdCrr}년 차</p>
+                <c:choose>
+                  <c:when test="${userTourVO.gdAge eq 0}">
+                    <p>나이 : 상관없음</p>
+                  </c:when>
+                  <c:otherwise>
+                    <p>나이 : ${userTourVO.gdAge}대</p>
+                  </c:otherwise>
+                </c:choose>
+                <c:choose>
+                  <c:when test="${userTourVO.gdCrr eq 0}">
+                    <p>경력 : 상관없음</p>
+                  </c:when>
+                  <c:otherwise>
+                    <p>경력 : ${userTourVO.gdCrr}년 차</p>
+                  </c:otherwise>
+                </c:choose>
                 <p>${userTourVO.gdWntRq}</p>
               </div>
             </div>

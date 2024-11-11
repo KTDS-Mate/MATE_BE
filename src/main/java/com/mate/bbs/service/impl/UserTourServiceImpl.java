@@ -10,20 +10,23 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mate.bbs.dao.UserTourDao;
 import com.mate.bbs.service.UserTourService;
 import com.mate.bbs.vo.SearchUserTourVO;
-import com.mate.bbs.vo.UserTourImgVO;
 import com.mate.bbs.vo.UserTourListVO;
 import com.mate.bbs.vo.UserTourModifyVO;
 import com.mate.bbs.vo.UserTourSchdlVO;
 import com.mate.bbs.vo.UserTourVO;
 import com.mate.bbs.vo.UserTourWriteVO;
 import com.mate.common.beans.FileHandler;
-import com.mate.common.vo.StoreResultVO;
+import com.mate.payment.dao.PaymentDao;
+import com.mate.payment.vo.WritePaymentVO;
 
 @Service
 public class UserTourServiceImpl implements UserTourService{
 
 	@Autowired
 	private UserTourDao userTourDao;
+	
+	@Autowired
+	private PaymentDao paymentDao;
 
 	@Autowired
 	private FileHandler fileHandler;
@@ -80,6 +83,7 @@ public class UserTourServiceImpl implements UserTourService{
 			return userTourListVO;
 		}
 		// pagination 을 위해 listSize를 보내줌
+		searchUserTourVO.setListSize(5);
 		searchUserTourVO.setPageCount(userTourCnt);
 		
 		List<UserTourVO> UserTourList = this.userTourDao.selectAllUserTour(searchUserTourVO);
@@ -130,7 +134,13 @@ public class UserTourServiceImpl implements UserTourService{
 	@Transactional
 	@Override
 	public boolean reserveUserTour(String usrTrPstId, String usrLgnId) {
-		return this.userTourDao.updateGdId(usrTrPstId, usrLgnId) > 0;
+		if (this.userTourDao.updateGdId(usrTrPstId, usrLgnId) > 0) {
+			WritePaymentVO writePaymentVO = this.paymentDao.selectUsrTrPayInf(usrTrPstId);
+			if (writePaymentVO != null) {
+				return this.paymentDao.insertTrstTrPayment(writePaymentVO) > 0 ;
+			}
+		}
+		return false;
 	}
 	
 }
