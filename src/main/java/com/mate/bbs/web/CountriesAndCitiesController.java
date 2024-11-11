@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.mate.common.vo.*;
+import com.mate.common.vo.RegionsListVO;
+import com.mate.common.vo.CountriesListVO;
+import com.mate.common.vo.CitiesListVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
