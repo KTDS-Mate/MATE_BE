@@ -74,9 +74,6 @@ public class GuideTourController {
 			model.addAttribute("guideTourWriteVO", guideTourWriteVO);
 			return "guidetour/Guide_TourInsert";
 		}
-		if(loginUserVO == null) {
-			return "redirect:/user/login";
-		}
 		guideTourWriteVO.setAthrId(loginUserVO.getUsrLgnId());
 		
 		this.guideTourService.createNewGuideTour(guideTourWriteVO);
