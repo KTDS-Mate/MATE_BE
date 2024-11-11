@@ -7,6 +7,13 @@ div.tour-request-list h1 {
 	margin-bottom: 0;
 }
 
+.search-type {
+	border: 0;
+    border-radius: 22px;
+    outline: none;
+    margin-left: 0.5rem;
+}
+
 .search-zone {
   display: flex;
   align-items: center;
@@ -95,7 +102,6 @@ input.checked2 {
   font-size: small;
   border-radius: 10px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
-  margin-right: 1rem;
 }
 
 .insert-tour-btn:hover {
@@ -292,6 +298,7 @@ a:link {
 
 .tour-cost-fee {
   display: flex;
+  width: 6rem;
   align-items: flex-end;
   flex-direction: column;
 }
