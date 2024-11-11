@@ -5,10 +5,14 @@
 }
 
 .title {
-    margin: 0 0 0 4rem;
     display: flex;
-    justify-content: space-between;
+    width: 58.2rem;
     align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+.title h1 {
+	width: 90%;
 }
 
 .wish-button {
@@ -117,7 +121,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ffeedb;
   border-top-left-radius: 1.25rem;
   border-top-right-radius: 1.25rem;
 }
@@ -132,7 +135,6 @@
   min-height: 13.2rem;
   max-height: auto;
   margin: 0 auto;
-  /* background-color: #ffeedb; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -237,7 +239,6 @@
   justify-content: space-between;
   align-items: center;
   /* padding: 0 2rem; */
-  background-color: #ffeedb;
   border-top-left-radius: 1.25rem;
   border-top-right-radius: 1.25rem;
 }
@@ -253,7 +254,6 @@
   min-height: 9.5rem;
   max-height: auto;
   margin: 0 auto;
-  /* background-color: #ffeedb; */
   display: flex;
   padding: 1rem;
   align-items: left;
@@ -297,7 +297,6 @@
   justify-content: space-between;
   align-items: center;
   /* padding: 0 2rem; */
-  background-color: #ffeedb;
   border-top-left-radius: 1.25rem;
   border-top-right-radius: 1.25rem;
 }
@@ -313,7 +312,6 @@
   min-height: 11.64rem;
   max-height: auto;
   margin: 0 auto;
-  /* background-color: #ffeedb; */
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -365,7 +363,6 @@
   justify-content: space-between;
   align-items: center;
   /* padding: 0 2rem; */
-  background-color: #ffeedb;
   border-top-left-radius: 1.25rem;
   border-top-right-radius: 1.25rem;
 }
@@ -380,7 +377,6 @@
   width: 58.2rem;
   min-height: 11.64rem;
   max-height: auto;
-  /* background-color: #ffeedb; */
   display: flex;
   justify-content: center;
   align-items: left;
@@ -418,7 +414,6 @@
   justify-content: space-between;
   align-items: center;
   /* padding: 0 2rem; */
-  background-color: #ffeedb;
   border-top-left-radius: 1.25rem;
   border-top-right-radius: 1.25rem;
 }
@@ -434,7 +429,6 @@
   min-height: 23.63rem;
   max-height: auto;
   margin: 0 auto;
-  /* background-color: #ffeedb; */
   display: flex;
   justify-content: space-between;
   align-items: left;
@@ -502,7 +496,6 @@
   justify-content: space-between;
   align-items: center;
   /* padding: 0 2rem; */
-  background-color: #ffeedb;
   border-top-left-radius: 1.25rem;
   border-top-right-radius: 1.25rem;
 }
@@ -518,7 +511,6 @@
   min-height: 12.625rem;
   max-height: auto;
   margin: 0 auto;
-  /* background-color: #ffeedb; */
   display: flex;
   justify-content: space-between;
   align-items: left;
@@ -556,7 +548,6 @@
   justify-content: space-between;
   align-items: center;
   /* padding: 0 2rem; */
-  background-color: #ffeedb;
   border-top-left-radius: 1.25rem;
   border-top-right-radius: 1.25rem;
 }
@@ -572,7 +563,6 @@
   min-height: 19.53rem;
   max-height: auto;
   margin: 0 auto;
-  /* background-color: #ffeedb; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -681,7 +671,6 @@
   justify-content: space-between;
   align-items: center;
   /* padding: 0 2rem; */
-  background-color: #ffeedb;
   border-top-left-radius: 1.25rem;
   border-top-right-radius: 1.25rem;
 }
@@ -697,7 +686,6 @@
   min-height: 35.15rem;
   max-height: auto;
   margin: 0 auto;
-  /* background-color: #ffeedb; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -746,7 +734,6 @@
   justify-content: space-between;
   align-items: center;
   /* padding: 0 2rem; */
-  background-color: #ffeedb;
   border-top-left-radius: 1.25rem;
   border-top-right-radius: 1.25rem;
 }
@@ -762,7 +749,6 @@
   min-height: 35.15rem;
   max-height: auto;
   margin: 0 auto;
-  /* background-color: #ffeedb; */
   display: flex;
   justify-content: center;
   align-items: center;
