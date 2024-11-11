@@ -377,6 +377,12 @@ div.my-tour {
 	flex: 1, 1, 0;
 }
 
+.isempty {
+  display: flex;
+  grid-column: 1 / -1;
+  justify-content: center;
+  color: red;
+}
 .page-nav>li.active>a {
 	color: #f00a;
 	font-weight: 900;
