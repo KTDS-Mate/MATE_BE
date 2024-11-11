@@ -35,8 +35,8 @@ public class MyBoardController {
     	int myBoardListVO = boardListVO.getBoardCnt();
     	List<TrMyBoardVO> myBoardListVO2 = boardListVO.getBoardList();
     	
-    	System.out.println("갯수는 " + myBoardListVO);
-    	System.out.println("리스트는 " + myBoardListVO2);
+//    	System.out.println("갯수는 " + myBoardListVO);
+//    	System.out.println("리스트는 " + myBoardListVO2);
     	
     	
 //    	System.out.println("타입은 " + searchMyBoardVO.getSearchType());
@@ -55,7 +55,7 @@ public class MyBoardController {
     						   			   ,Model model) {
     	
     	int success = this.myBoardService.deleteTrBoard(usrTrPstId);
-    	System.out.println("삭제결과는 " + success);
+//    	System.out.println("삭제결과는 " + success);
     	model.addAttribute("success" , success);
     	
     	

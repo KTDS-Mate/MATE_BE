@@ -3,17 +3,14 @@ $().ready(function () {
 
 
     $(".search-btn").on("click", function () {
-        console.log(usrLgnId);
         movePage(0);
     })
 	
 	$(".guide").on("click" , function() {
-		console.log(usrLgnId);
 		goToGuideReview(usrLgnId);
 	})
 	
 	$(".guide-tour").on("click" , function() {
-		console.log(usrLgnId);
 		goToGuideTourReview(usrLgnId);
 	})
 
@@ -35,7 +32,6 @@ $().ready(function () {
 
 function movePage(pageNo) {
     var loginId = $(".header-content").data("login-id");
-    console.log(loginId);
 
     $(".page-no").val(pageNo);
     $(".search-form").attr({

@@ -1,5 +1,4 @@
 $(document).ready(function() {
-	console.log("!");
     var message = $(".container").data("message");
     var messageType = $(".container").data("messageType");
 
