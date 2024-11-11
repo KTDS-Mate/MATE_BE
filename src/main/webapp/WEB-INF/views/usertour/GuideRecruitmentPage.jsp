@@ -143,10 +143,20 @@ pageEncoding="UTF-8" %>
           <div class="thirdLayer">
             <div class="tourOfferArea">
               <div class="offerTitleArea">
-                <span>투어 요구 사항</span>
+                <span>투어 목적</span>
               </div>
               <div class="offerDetailArea">
                 <h1>${userTourVO.usrTrPrps}</h1>
+              </div>
+            </div>
+          </div>
+          <div class="thirdLayer">
+            <div class="tourOfferArea">
+              <div class="offerTitleArea">
+                <span>투어 세부 요구 사항</span>
+              </div>
+              <div class="offerDetailArea">
+                <h1>${userTourVO.usrTrRqDtl}</h1>
               </div>
             </div>
           </div>
@@ -179,7 +189,7 @@ pageEncoding="UTF-8" %>
           <div class="fifthLayer">
             <div class="tourInfoArea">
               <div class="tourInfoTitleArea">
-                <span>투어 세부 일정</span>
+                <span>투어 희망 정보</span>
               </div>
               <div class="tourInfoDetailArea">
                 <ul class="hope-info-list">
