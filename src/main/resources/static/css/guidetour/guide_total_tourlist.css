@@ -363,12 +363,13 @@ div.my-tour {
 
 .page-nav {
 	margin: 0;
-	padding: 0;
-	text-align: center;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-decoration: none;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .page-nav>li {
@@ -377,6 +378,12 @@ div.my-tour {
 	flex: 1, 1, 0;
 }
 
+.isempty {
+  display: flex;
+  grid-column: 1 / -1;
+  justify-content: center;
+  color: red;
+}
 .page-nav>li.active>a {
 	color: #f00a;
 	font-weight: 900;
