@@ -208,11 +208,10 @@ $().ready(function() {
 
 	$("#trPrc").on('change', function() {
 		var trPrcVal = $(this).val();
-		var defaultPrc = 30;
 				
-		if (trPrcVal < defaultPrc) {
-			alert("최소 가격은 30$ 이상입니다!");
-			$(this).val(defaultPrc);
+		if (trPrcVal < 0) {
+			alert("음수를 지정할 수 없습니다!");
+			$(this).val(0);
 		}
 
 	});
