@@ -46,7 +46,6 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
           </form>
         </div>
           <div class="region-menu-area">
-            <!-- 선택 한 대륙이 바뀌어도 값을 가져가기 위해 hidden에 담아둠 -->
             <input
               id="all"
               class="${searchUserTourVO.regionName eq '전체' ? 'checked' : ''}"

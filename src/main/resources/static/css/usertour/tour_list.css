@@ -7,6 +7,13 @@ div.tour-request-list h1 {
 	margin-bottom: 0;
 }
 
+.search-type {
+	border: 0;
+    border-radius: 22px;
+    outline: none;
+    margin-left: 0.5rem;
+}
+
 .search-zone {
   display: flex;
   align-items: center;
@@ -291,6 +298,7 @@ a:link {
 
 .tour-cost-fee {
   display: flex;
+  width: 6rem;
   align-items: flex-end;
   flex-direction: column;
 }

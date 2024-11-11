@@ -77,7 +77,7 @@ pageEncoding="UTF-8" %>
             </div>
             <div class="priceArea">
               <div class="priceTitleArea">
-                <span>Price for One Team</span>
+                <span>Price</span>
               </div>
               <div class="priceDetailArea">
                 <div class="hour">
