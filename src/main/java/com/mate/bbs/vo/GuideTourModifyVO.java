@@ -59,7 +59,7 @@ public class GuideTourModifyVO {
 	 */
 	@Min(value=1 , message="1 이상의 값을 입력해주세요!")
 	@PositiveOrZero(message ="음수를 넣으실 수 없습니다!")
-	private int gdTrPrc;
+	private double gdTrPrc;
 	/**
 	 * 투어 최대 인원수
 	 */
@@ -160,10 +160,10 @@ public class GuideTourModifyVO {
 	public void setGdTrMp(String gdTrMp) {
 		this.gdTrMp = gdTrMp;
 	}
-	public int getGdTrPrc() {
+	public double getGdTrPrc() {
 		return gdTrPrc;
 	}
-	public void setGdTrPrc(int gdTrPrc) {
+	public void setGdTrPrc(double gdTrPrc) {
 		this.gdTrPrc = gdTrPrc;
 	}
 	public int getGdTrMxNp() {
@@ -214,5 +214,4 @@ public class GuideTourModifyVO {
 	public void setGuideTourScheduleInfoList(List<GuideTourScheduleInfoVO> guideTourScheduleInfoList) {
 		this.guideTourScheduleInfoList = guideTourScheduleInfoList;
 	}
-	
 }
