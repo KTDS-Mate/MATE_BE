@@ -40,7 +40,7 @@ public class WishlistController {
 											,Model model) {
 		
 		int success = this.wishlistService.deleteWish(favId);
-    	System.out.println("삭제결과는 " + success);
+//    	System.out.println("삭제결과는 " + success);
     	
     	model.addAttribute("success" , success);
 		
@@ -68,10 +68,10 @@ public class WishlistController {
 							  ,@PathVariable String favId
 											,Model model) {
 		
-		System.out.println("로그인 아이디는 " + usrLgnId);
-		System.out.println("즐겨찾기 아이디는 " + favId);
+//		System.out.println("로그인 아이디는 " + usrLgnId);
+//		System.out.println("즐겨찾기 아이디는 " + favId);
 		int success = this.wishlistService.deleteWish(favId);
-    	System.out.println("삭제결과는 " + success);
+//    	System.out.println("삭제결과는 " + success);
 
 		
 		

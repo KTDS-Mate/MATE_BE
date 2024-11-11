@@ -32,8 +32,9 @@
         	<h1>가이드 투어 목록</h1>
 				<div class="search-zone">
 					<form class="search-form">
-						<input type="hidden" name="pageNo" class="page-no"
-							value="${searchGuideTourVO.pageNo}" />
+						<input id="search-val-3" type="hidden" name="regionName" value="${searchGuideTourVO.regionName}"  />
+          				<input id="search-val-4" type="hidden" name="orderBy" value="${searchGuideTourVO.orderBy}"  />
+            			<input type="hidden" name="pageNo" class="page-no" value="${searchGuideTourVO.pageNo}" />
 						<div class="search-area">
 							<select class="search-type" name="searchType">
 								<option value="region"
@@ -52,54 +53,49 @@
 					</form>
 				</div>
 			</div>
-          <form class="region-form">
           	<div class="region-menu-area">
           		<!--   선택한 대륙이 바뀌어도 값을 가져가기 위해 hidden에 담아둔다-->
           		<input 
           			id="region-hide" 
           			type="hidden"
-          			value="${SearchGuideTourVO.regionName}"/>
-          		<!-- <input 
+          			value="${searchGuideTourVO.regionName}"/>
+          		<input 
           			id="all"
-          			class="${SearchGuideTourVO.regionName eq '전체' ? 'checked' : ''} "
+          			class="${searchGuideTourVO.regionName eq '전체' ? 'checked' : ''} "
           			type="button"
           			value="전체" />
           		<input 
           			id="asia"
-          			class="${SearchGuideTourVO.regionName eq '아시아' ? 'checked' : ''} "
+          			class="${searchGuideTourVO.regionName eq '아시아' ? 'checked' : ''} "
           			type="button"
           			value="아시아" />
           		<input 
+          			id="eu"
+          			class="${searchGuideTourVO.regionName eq '유럽' ? 'checked' : ''} "
+          			type="button"
+          			value="유럽" />
+          		<input 
           			id="ose"
-          			class="${SearchGuideTourVO.regionName eq '오세아니아' ? 'checked' : ''} "
+          			class="${searchGuideTourVO.regionName eq '오세아니아' ? 'checked' : ''} "
           			type="button"
           			value="오세아니아" />
           		<input 
           			id="n-ame"
-          			class="${SearchGuideTourVO.regionName eq '북아메리카' ? 'checked' : ''} "
+          			class="${searchGuideTourVO.regionName eq '북아메리카' ? 'checked' : ''} "
           			type="button"
           			value="북아메리카" />
           		<input 
-          			id="eu"
-          			class="${SearchGuideTourVO.regionName eq '유럽' ? 'checked' : ''} "
-          			type="button"
-          			value="유럽" />
-          		<input 
           			id="s-ame"
-          			class="${SearchGuideTourVO.regionName eq '남아메리카' ? 'checked' : ''} "
+          			class="${searchGuideTourVO.regionName eq '남아메리카' ? 'checked' : ''} "
           			type="button"
           			value="남아메리카" />
           		<input 
           			id="af"
-          			class="${SearchGuideTourVO.regionName eq '아프리카' ? 'checked' : ''} "
+          			class="${searchGuideTourVO.regionName eq '아프리카' ? 'checked' : ''} "
           			type="button"
-          			value="아프리카" />-->
+          			value="아프리카" />
           	</div>
-          </form> 
           <div class="flex-list-insert-btn">
-            	<div>
-            		<a class="insert-tour-btn" href="/guidetour/insert">투어 등록</a>
-            	</div>
             	<div class="list-view-option">
             		<div class="input-option">
 		              	<input id="latest"
@@ -132,6 +128,11 @@
 		            		   value="평점 높은순"/>
 	            	</div>
 	            </div>
+	            <c:if test="${not empty sessionScope._LOGIN_USER_ && sessionScope._LOGIN_USER_.usrIsGd eq 'Y'}">
+		            <div>
+	            		  <a class="insert-tour-btn" href="/guidetour/insert">투어 등록</a>
+	            	</div>
+            	</c:if>
           </div>
           <div class="my-tour">
             <c:forEach items="${guideTourListVO.guideTourList}" var="guideTourVO">

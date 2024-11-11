@@ -5,17 +5,14 @@ $().ready(function() {
 		$("#end-minutes").attr("disabled", "disabled");
 		// 현재날짜보다 더 빠른 날짜를 선택할 수 없음.
 		var nowDate = new Date();
-		console.log(nowDate);
 
 		var year = nowDate.getFullYear();
 		var month = ('0' + (nowDate.getMonth() + 1)).slice(-2);
 		var day = ('0' + nowDate.getDate()).slice(-2);
 		// 포맷 맞추기
 		var dateString = year + '-' + month + '-' + day
-		console.log(dateString);
 
 		var inputDate = $(this).val();
-		console.log(inputDate);
 
 		var now = new Date(dateString);
 		var input = new Date(inputDate);
@@ -182,7 +179,6 @@ $().ready(function() {
 	$("#trPrc").on("change", function() {
 		var inputValue = $(this).val();
 
-		console.log(inputFloat);
 		if (inputValue < 1) {
 			alert("올바른 가격을 설정해주세요.");
 			$(this).val(1);

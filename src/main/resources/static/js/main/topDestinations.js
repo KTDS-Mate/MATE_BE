@@ -1,6 +1,5 @@
 $().ready(function () {
   // AJAX 요청으로 상위 10개 여행지 데이터 가져오기
-  console.log("111");
   $.ajax({
     url: "/api/top-destinations", // 실제 데이터가 반환될 API 엔드포인트
     method: "GET",
