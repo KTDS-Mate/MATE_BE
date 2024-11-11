@@ -29,8 +29,8 @@ public class EditProfileController {
     public String viewFirstMypageEdit(@RequestParam String usrLgnId
     								 ,@RequestParam String usrIsGd
     								 ,Model model) {
-		System.out.println("유저아이디 : " + usrLgnId);
-		System.out.println("가이드여부 : " + usrIsGd);
+		//System.out.println("유저아이디 : " + usrLgnId);
+		//System.out.println("가이드여부 : " + usrIsGd);
     	if(usrIsGd.equals("N")) {
             return "redirect:/mypage/edit-profile/tr-profile/"+usrLgnId;
     	} else if(usrIsGd.equals("Y")) {
@@ -46,7 +46,7 @@ public class EditProfileController {
     	int count = this.editProfileService.countUsers();
         UserVO userVO = this.editProfileService.selectOneUser(usrLgnId);
 
-        System.out.println(count);
+//        System.out.println(count);
         model.addAttribute("userVO", userVO);
     	return "mypage/Mypage_Tourist_EditInfo";
     }
@@ -77,7 +77,7 @@ public class EditProfileController {
     	
     	int count = this.editProfileService.countUsers();
         UserVO userVO = this.editProfileService.selectOneUser(usrLgnId);
-        System.out.println(count);
+//        System.out.println(count);
 
         RegistGuideVO registGuideVO = guideService.getGuideInfo(userVO.getUsrId());
         if (registGuideVO == null) {

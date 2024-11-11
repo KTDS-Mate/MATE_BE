@@ -32,8 +32,6 @@ $().ready(function () {
 	    var selectedCountryData = iti.getSelectedCountryData();
 	    // 국가코드도 저장.
 	    $("#usrCountryCode").val(selectedCountryData.dialCode);
-	    console.log("국가코드", selectedCountryData.iso2);
-	    console.log("전화번호", iti.getNumber());
 	});
 
     // 아이디 유효성 검사 및 중복 확인

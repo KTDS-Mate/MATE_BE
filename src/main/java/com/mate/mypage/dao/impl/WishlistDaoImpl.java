@@ -47,7 +47,7 @@ public class WishlistDaoImpl extends SqlSessionDaoSupport implements WishlistDao
 	@Override
 	public int deleteWish(String favId) {
 		
-		System.out.println("Dao 전" + favId);
+		//System.out.println("Dao 전" + favId);
 		return this.getSqlSession().delete(NAMESPACE + ".deleteWish" , favId);
 	}
 	
@@ -81,7 +81,7 @@ public class WishlistDaoImpl extends SqlSessionDaoSupport implements WishlistDao
 	@Override
 	public int deleteTrWish(String favId) {
 		
-		System.out.println("Dao 전" + favId);
+		//System.out.println("Dao 전" + favId);
 		return this.getSqlSession().delete(NAMESPACE + ".deleteTrWish" , favId);
 	}
 	

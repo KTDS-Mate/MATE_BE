@@ -77,16 +77,13 @@ function previewImage(input, previewId) {
 
 // DOM 설정
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("DOM 로드 완료");
 
     // 추가 버튼이 눌리면 라이센스 추가
     const addButton = document.getElementById("add-license-btn");
     if (addButton) {
-        console.log("add-license-btn 찾음");
         var licenseIndex = parseInt(addButton.getAttribute("data-license-index"));
 
         addButton.addEventListener("click", function() {
-            console.log("라이센스 추가 버튼 클릭됨");
             addLicense(licenseIndex);
             licenseIndex++;
         });
@@ -95,7 +92,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // 라이센스를 추가하는 함수
 function addLicense(index) {
-    console.log("addLicense 함수 호출");
     const licenseSection = document.getElementById("licenseSection");
 
     if (licenseSection) {
