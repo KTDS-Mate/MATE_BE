@@ -6,7 +6,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
   <head>
     <meta charset="UTF-8" />
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
-    <title>Mypage_Tourist_MyTour</title>
+    <title>내 결제내역</title>
     <link rel="stylesheet" type="text/css" href="/css/mypage/PaymentList.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />

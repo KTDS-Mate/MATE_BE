@@ -40,8 +40,8 @@ public class GuideTourController {
 		model.addAttribute("guideTourListVO", guideTourListVO);
 		model.addAttribute("searchGuideTourVO", searchGuideTourVO);
 		
-		System.out.println("타입" + searchGuideTourVO.getSearchType());
-		System.out.println("키워드" + searchGuideTourVO.getSearchKeyword());
+		//System.out.println("타입" + searchGuideTourVO.getSearchType());
+		//System.out.println("키워드" + searchGuideTourVO.getSearchKeyword());
 		
 		return "guidetour/guide_total_tourlist";
 	}
@@ -73,9 +73,6 @@ public class GuideTourController {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("guideTourWriteVO", guideTourWriteVO);
 			return "guidetour/Guide_TourInsert";
-		}
-		if(loginUserVO == null) {
-			return "redirect:/user/login";
 		}
 		guideTourWriteVO.setAthrId(loginUserVO.getUsrLgnId());
 		

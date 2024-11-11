@@ -63,15 +63,11 @@ public class UserTourController {
 			model.addAttribute("userTourWriteVO", userTourWriteVO);
 			return "usertour/Tourist_TourInsert";
 		}
-		if (loginUserVO == null) {
-			return "redirect:/user/login";
-		}
-		
 		userTourWriteVO.setAthrId(loginUserVO.getUsrLgnId());
 		
 		this.userTourService.createNewUserTour(userTourWriteVO);
 		
-		return "redirect:/usertour/list?pageNo=0&listSize=9";
+		return "redirect:/usertour/list";
 	}
 	
 	@GetMapping("/usertour/modify/{usrTrPstId}")
@@ -93,11 +89,11 @@ public class UserTourController {
 								 , @Valid UserTourModifyVO userTourModifyVO
 								 , BindingResult bindingResult
 								 , @SessionAttribute("_LOGIN_USER_") UserVO loginUserVO) {
-		if (loginUserVO == null) {
-			return "redirect:/user/login";
+		if (!userTourModifyVO.getAthrId().equals(loginUserVO.getUsrLgnId())) {
+			throw new IllegalArgumentException("잘못된 접근입니다.");
 		}
 		
-		boolean isSuccess = this.userTourService.modifyUserTour(userTourModifyVO);
+		this.userTourService.modifyUserTour(userTourModifyVO);
 		
 		String loginId = loginUserVO.getUsrLgnId();
 		
@@ -107,7 +103,7 @@ public class UserTourController {
 	@GetMapping("/usertour/reserve/{usrTrPstId}/{usrLgnId}")
 	public String doReserveUserTour(@PathVariable String usrTrPstId
 								  , @PathVariable String usrLgnId) {
-		boolean isReserved = this.userTourService.reserveUserTour(usrTrPstId, usrLgnId);
+		this.userTourService.reserveUserTour(usrTrPstId, usrLgnId);
 		
 		return "redirect:/usertour/view?usrTrPstId=" + usrTrPstId;
 	}

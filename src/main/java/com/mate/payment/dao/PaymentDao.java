@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mate.payment.vo.PaymentVO;
 import com.mate.payment.vo.SearchPaymentVO;
+import com.mate.payment.vo.WritePaymentVO;
 import com.mate.user.vo.UserVO;
 
 public interface PaymentDao {
@@ -28,5 +29,9 @@ public interface PaymentDao {
 	
 	public List<PaymentVO> selectSearchMyPayment(SearchPaymentVO searchPaymentVO);
 	public int selectSearchMyPaymentCount(SearchPaymentVO searchPaymentVO);
+	
+	public int insertTrstTrPayment(WritePaymentVO writePaymentVO);
+	
+	public WritePaymentVO selectUsrTrPayInf(String trId);
 	
 }

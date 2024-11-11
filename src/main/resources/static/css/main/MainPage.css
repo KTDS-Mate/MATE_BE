@@ -157,6 +157,7 @@ div.footer {
   flex-direction: row;
   /* opacity: 0.9; */
   border-radius: 1.25rem;
+  cursor: pointer;
 }
 
 .touristButton {
@@ -209,6 +210,7 @@ div.footer {
   text-align: center;
   font-weight: bold;
   padding: 0 15px;
+  cursor: pointer;
 }
 
 .centerArea > .tourSearchButton {
@@ -225,6 +227,7 @@ div.footer {
   justify-content: center;
   align-items: center;
   z-index: 3;
+  cursor: pointer;
 }
 
 .centerArea > .tourSearchButtonText {
@@ -245,9 +248,7 @@ div.footer {
   top: 20%;
   text-align: center;
   margin: 0 auto;
-  /* left: 365px; */
   border-radius: 1.25rem;
-  /* box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); */
   z-index: 3;
 }
 
@@ -280,7 +281,7 @@ div.footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 2rem 0 2rem 0;
+  margin: 2rem 0 0 0;
 }
 
 .reasonTextArea > span {
@@ -296,7 +297,7 @@ div.footer {
 }
 
 .reasonOneArea {
-  width: 20rem;
+  width: 25rem;
   height: auto;
   margin: 3rem;
   display: flex;
@@ -306,27 +307,28 @@ div.footer {
 }
 
 .reasonOneArea img {
-  width: 5rem;
+  width: 10rem;
   height: auto;
   margin: 1rem;
 }
 
 .reasonOneArea span {
-  font-size: 2rem;
+  font-size: 1.2rem;
   font-weight: bolder;
 }
 
 .reasonDetailArea {
   margin: 1rem 0 0 0;
   padding: 0 0.5rem 0 0.5rem;
-  font-size: 1.3rem;
+  font-size: 1rem;
   text-align: center;
 }
 
 .thirdLayer {
   width: 100%;
   display: flex;
-  margin-bottom: 2rem;
+  margin-top: 2rem;
+  padding-bottom: 4rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -335,7 +337,8 @@ div.footer {
 .fourthLayer {
   width: 100%;
   display: flex;
-  margin-bottom: 2rem;
+  margin-top: 2rem;
+  padding-bottom: 4rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -344,10 +347,17 @@ div.footer {
 .fifthLayer {
   width: 100%;
   display: flex;
-  margin-bottom: 2rem;
+  margin-top: 2rem;
+  padding-bottom: 4rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.borderLine {
+  width: 20vw;
+  border: 1px solid #ccc;
+  margin: 0 auto;
 }
 
 .thirdLayer h2,
@@ -356,25 +366,34 @@ div.footer {
   margin: 2rem;
 }
 
+.recommendCitiesAreaWrapper {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+
 .recommendCitiesAreaOne,
 .recommendCitiesAreaTwo,
 .recommendCitiesAreaThree {
-  width: 100%;
+  width: 80%;
   display: flex;
-  margin-bottom: 2rem;
+  margin: 2rem;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 }
 
 .recommendGuideTourArea {
-  width: 23%;
-  height: 23%;
+  width: 100%;
+  height: 100%;
   display: flex;
-  position: relative;
+  flex-direction: column;
   margin: 1rem;
-  border: 1px solid #fff;
+  border: none;
   border-radius: 1.25rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  /* box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); */
+  cursor: pointer;
 }
 
 .recommendGuideTourArea img {
@@ -386,14 +405,14 @@ div.footer {
 }
 
 .tourInfo {
-  position: absolute;
   width: 100%;
   display: flex;
-  top: 200px;
+  margin-top: -1rem;
   justify-content: center;
   text-align: center;
-  color: #fff;
-  text-shadow: 0 0 black;
+  color: #000;
+  text-shadow: 0 0 #fff;
+  font-size: 1.3rem;
 }
 
 .hidden {

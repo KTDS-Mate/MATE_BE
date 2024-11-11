@@ -74,7 +74,6 @@ $().ready(function () {
       // .whenSelectArea > h3의 값을 선택한 날짜로 변경
       $(".whenSelectArea > h3").text(formattedDate);
 
-      console.log("선택된 날짜:", formattedDate); // 선택된 날짜를 콘솔에 표시
       closeCalendarModal(); // 모달 닫기
     }
   });

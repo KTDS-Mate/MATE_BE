@@ -20,14 +20,14 @@ div.content {
 }
 
 .searchModalArea {
-  width: 21.5rem;
+  width: 22rem;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: white;
   padding: 1.25rem;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 0.3125rem;
 }
 
@@ -44,7 +44,7 @@ div.content {
   justify-content: flex-start;
   align-items: center;
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 0.25rem;
 }
 
@@ -61,7 +61,7 @@ div.content {
 }
 
 .searchInput {
-  width: 85%;
+  width: 70%;
   height: 1.5rem;
   display: flex;
   align-items: center;
@@ -92,6 +92,7 @@ div.content {
   flex-direction: row;
   justify-content: space-evenly;
   margin: 0.25rem;
+  border: none;
 }
 
 .searchForm {
@@ -107,7 +108,7 @@ div.content {
 .searchResultArea {
   width: 100%;
   height: calc(100% - 2rem);
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 0.25rem;
   overflow: hidden;
   text-align: center;
@@ -117,6 +118,11 @@ div.content {
 .searchResultArea #text {
   font-size: 1.3rem;
   font-weight: bold;
+}
+
+.result-item {
+  margin: 0.5rem;
+  cursor: pointer;
 }
 
 .hidden {

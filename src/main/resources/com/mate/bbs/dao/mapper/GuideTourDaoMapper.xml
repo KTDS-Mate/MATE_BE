@@ -76,7 +76,11 @@
 			</if>
 		</if>
 	</sql>
-		
+	<sql id="selectRegions">
+		<if test='regionName !="전체" and regionName != null and regionName != ""'>
+			AND (R.REGION_NAME = #{regionName})
+		</if>
+	</sql>	
 		<!-- 정렬순 검색 -->
 	<sql id="order">
 		<choose>
@@ -114,6 +118,9 @@
 	     JOIN USR_INF UI
 	       ON GTR.ATHR_ID = UI.USR_LGN_ID 
 	    WHERE GTR.GD_TR_ST_DT > SYSDATE
+	    <if test="_parameter != null">
+		 	<include refid="com.mate.bbs.dao.GuideTourDao.selectRegions" />
+		</if>
 	    <if test="_parameter != null">
 	    	<include refid="com.mate.bbs.dao.GuideTourDao.selectTitleAndContent" />
 	    </if>
@@ -227,6 +234,9 @@
 	     JOIN USR_INF UI
 	       ON GTR.ATHR_ID = UI.USR_LGN_ID 
 	    WHERE GTR.GD_TR_ST_DT > SYSDATE
+	    <if test="_parameter != null">
+		 	<include refid="com.mate.bbs.dao.GuideTourDao.selectRegions" />
+		</if>
 	    <if test="_parameter != null">
 	    	<include refid="com.mate.bbs.dao.GuideTourDao.selectTitleAndContent" />
 	    </if>
