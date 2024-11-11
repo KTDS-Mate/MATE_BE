@@ -30,61 +30,48 @@ $().ready(function() {
 
 	/**대륙 필터링에 사용 됨**/
 	$("#all").on('click', function() {
-		// 원래 다른 자식 요소에 걸려있는 클래스를 삭제함
-		$(".country-menu-area").children().removeClass("checked");
 		$("#search-val-3").val($(this).val());
 		movepage(0);
 	});
 	$("#asia").on('click', function() {
-		$(".country-menu-area").children().removeClass("checked");
 		$("#search-val-3").val($(this).val());
 		movepage(0);
 	});
 	$("#eu").on('click', function() {
-		$(".country-menu-area").children().removeClass("checked");
 		$("#search-val-3").val($(this).val());
 		movepage(0);
 	});
 	$("#ose").on('click', function() {
-		$(".country-menu-area").children().removeClass("checked");
 		$("#search-val-3").val($(this).val());
 		movepage(0);
 	});
 	$("#n-ame").on('click', function() {
-		$(".country-menu-area").children().removeClass("checked");
 		$("#search-val-3").val($(this).val());
 		movepage(0);
 	});
 	$("#s-ame").on('click', function() {
-		$(".country-menu-area").children().removeClass("checked");
 		$("#search-val-3").val($(this).val());
 		movepage(0);
 	});
 	$("#af").on('click', function() {
-		$(".country-menu-area").children().removeClass("checked");
 		$("#search-val-3").val($(this).val());
 		movepage(0);
 	});
 
 	/**정렬에 사용**/
 	$("#latest").on('click', function() {
-		// 원래 다른 자식 요소에 달려있는 클래스를 제거
-		$(".list-view-option").children().removeClass("checked2");
 		$("#search-val-4").val($(this).val());
 		movepage(0);
 	});
 	$("#high-price").on('click', function() {
-		$(".list-view-option").children().removeClass("checked2");
 		$("#search-val-4").val($(this).val());
 		movepage(0);
 	});
 	$("#low-price").on('click', function() {
-		$(".list-view-option").children().removeClass("checked2");
 		$("#search-val-4").val($(this).val());
 		movepage(0);
 	});
 	$("#deadline").on('click', function() {
-		$(".list-view-option").children().removeClass("checked2");
 		$("#search-val-4").val($(this).val());
 		movepage(0);
 	});

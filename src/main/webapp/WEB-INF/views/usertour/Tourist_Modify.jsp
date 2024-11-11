@@ -35,7 +35,7 @@ uri="http://www.springframework.org/tags/form" %>
           <div class="insert-main">
             <div class="flex-main-img">
               <div>
-                <h1>투어 요청 작성</h1>
+                <h1>투어 수정</h1>
               </div>
               <img alt="메인 이미지" src="/img/tourboard/예시여행이미지.png" />
             </div>

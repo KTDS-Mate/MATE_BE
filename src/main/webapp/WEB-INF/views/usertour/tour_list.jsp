@@ -46,7 +46,6 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
           </form>
         </div>
           <div class="region-menu-area">
-            <!-- 선택 한 대륙이 바뀌어도 값을 가져가기 위해 hidden에 담아둠 -->
             <input
               id="all"
               class="${searchUserTourVO.regionName eq '전체' ? 'checked' : ''}"
@@ -92,11 +91,6 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
           </div>
         <div class="flex-list-insert-btn">
           <div class="list-view-option">
-          	<c:if test="${not empty sessionScope._LOGIN_USER_}">
-          		<div>
-            	<a class="insert-tour-btn" href="/usertour/insert">투어 등록</a>
-            	</div>
-          	</c:if>
             <div class="order-form">
             <div>
             <input
@@ -131,6 +125,11 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
               value="마감 임박순" />
             </div>
             </div>
+            <c:if test="${not empty sessionScope._LOGIN_USER_}">
+          		<div>
+            	<a class="insert-tour-btn" href="/usertour/insert">투어 등록</a>
+            	</div>
+          	</c:if>
           </div>
         </div>
         <div class="tour-list-area">

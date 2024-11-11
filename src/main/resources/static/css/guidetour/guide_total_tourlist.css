@@ -5,11 +5,12 @@
 
 .search-title h1 {
 	text-align: center;
+	margin-bottom: 0;
 }
 
 img {
 	width: 20rem;
-	height: 18rem;
+    height: 15rem;
 	border-radius: 10px;
 }
 
@@ -39,28 +40,28 @@ input.checked2 {
 .flex-list-insert-btn {
 	display: flex;
 	align-items: center;
+	width: 78%;
 	justify-content: space-between;
+	margin: 0 auto;
 }
 
 .insert-tour-btn {
-	background-color: #fefae0;
-	padding: 0.5rem;
-	font-size: small;
-	border-radius: 10px;
-	margin-left: 5rem;
-	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  background-color: #57a8f2;
+  color: #fff;
+  padding: 0.8rem 1rem;
+  font-size: small;
+  border-radius: 10px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .insert-tour-btn:hover {
-	background-color: #faedcd;
+  background-color: #a8cff2;
 }
 
 div.my-tour {
 	text-align: center;
 	display: flex;
 	flex-direction: column;
-	width: 90%;
-	margin-left: 5%;
 }
 
 .search-zone {
@@ -69,16 +70,15 @@ div.my-tour {
 	width: 100%;
 	height: 7rem;
 	justify-content: space-evenly;
-	margin-top: 2rem;
 }
 
 .search-area {
-	display: flex;
-	width: 30rem;
-	height: 3.5rem;
-	border: 2px solid #333;
-	border-radius: 22px;
-	justify-content: space-between;
+    display: flex;
+    width: 30rem;
+    height: 3.5rem;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    justify-content: space-between;
 }
 
 .search-area>select {
@@ -100,16 +100,16 @@ div.my-tour {
 
 /* 포커스 시 기본 윤곽선 제거 */
 .search-button {
-	background-color: #ffeedb;
-	color: #333;
-	border: none;
-	padding: 13px 25px;
-	border-radius: 20px;
+  background-color: #ffeedb;
+  color: #333;
+  border: none;
+  padding: 13px 25px;
+  border-radius: 10px;
 }
 
 /* 버튼 호버 시 색상 변경 */
 .search-button:hover {
-	background-color: #d3c5b5;
+  background-color: #d3c5b5;
 }
 
 .align-button {
@@ -135,10 +135,8 @@ div.my-tour {
 	display: flex;
 	font-family: Arial, sans-serif;
 	font-size: 14px;
-	margin-top: 2rem;
-	margin-right: 5rem;
-	margin-left: 13rem;
-	margin-bottom: 1rem;
+	margin-top: 3rem;
+	margin-bottom: 3rem;
 	justify-content: space-between;
 }
 
@@ -154,6 +152,42 @@ div.my-tour {
 .list-view-option input:hover {
 	color: #00a;
 	cursor: pointer;
+}
+
+.region-menu-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 78%;
+  margin: 0 auto;
+}
+
+.region-menu-area input {
+  padding: 1rem 0;
+  width: 9rem;
+  text-align: center;
+  font-size: 1rem;
+  border: 2px solid #d7d7d7;
+  border-bottom: 2px solid #333;
+  background-color: #fff;
+  color: #333;
+}
+
+.region-menu-area input:hover {
+  color: #00a;
+  cursor: pointer;
+}
+
+.region-menu-area input.checked {
+  border: 2px solid #333;
+  border-bottom: 0px;
+  color: #00aa;
+  font-weight: bold;
+}
+
+.checked2 {
+  color: #00a8;
+  font-weight: bold;
 }
 
 .tour {
@@ -181,11 +215,12 @@ div.my-tour {
 .tour-box {
 	display: flex;
 	border: 1px solid #bbbbbb;
-	border-radius: 10px;
-	margin-bottom: 2rem;
+	border-radius: 5px;
 	flex-grow: 0;
 	padding: 1rem;
-	
+	width: 78%;
+	margin: 0 auto;
+	margin-bottom: 2rem;
 }
 
 .tour-right-info {
@@ -233,10 +268,6 @@ div.my-tour {
 	text-align: left;
 	width: 40rem;
 	margin-left: 1rem;
-}
-
-.my-tour>.tour-box {
-	margin-top: 1rem;
 }
 
 .tour-contents {
