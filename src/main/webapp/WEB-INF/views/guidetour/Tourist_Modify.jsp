@@ -5,20 +5,24 @@ uri="http://www.springframework.org/tags/form" %>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>가이드 투어 수정</title>
+    <title>가이드 투어 등록</title>
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <link
       rel="stylesheet"
       type="text/css"
-      href="/css/guidetour/Tourist_Modify.css"
+      href="/css/guidetour/Guide_TourInsert.css"
     />
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script
       type="text/javascript"
       src="/js/guidetour/guidetourinsert.js"
     ></script>
-   
+    <script src="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.js"></script>
+    <link
+      href="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="grid">
@@ -43,7 +47,7 @@ uri="http://www.springframework.org/tags/form" %>
                 name="gdTrTtl"
                 type="text"
                 placeholder="제목을 입력해주세요."
-                value="${guideTourWriteVO.gdTrTtl}"
+                value="${guideTourVO.gdTrTtl}"
               />
             </div>
             <div class="all-select-div">
@@ -56,7 +60,7 @@ uri="http://www.springframework.org/tags/form" %>
               <select id="country" disabled>
                 <option value="">국가 선택</option>
               </select>
-              <select id="city" name="trCtId"  disabled>
+              <select id="city" name="trCtId" disabled>
                 <option value="">도시 선택</option>
               </select>
             </div>
@@ -106,15 +110,20 @@ uri="http://www.springframework.org/tags/form" %>
                   id="maxNp"
                   type="number"
                   name="gdTrMxNp"
-                  value="${guideTourWriteVO.gdTrMxNp}"
+                  value="${guideTourVO.gdTrMxNp}"
                 />
                 <div>명</div>
               </div>
             </div>
             <div class="all-select-div">
-              <div class="select-div"><span class="red">*</span> 투어 요약</div>
+              <div class="select-div"><span class="red">*</span> 투어 목적</div>
               <form:errors path="gdTrPrps" element="div" cssClass="errors" />
-              <textarea name="gdTrPrps">${guideTourWriteVO.gdTrPrps}</textarea>
+              <textarea name="gdTrPrps">${guideTourVO.gdTrPrps}</textarea>
+            </div>
+            <div class="all-select-div">
+              <div class="select-div"><span class="red">*</span> 투어 요약</div>
+              <form:errors path="gdTrSmry" element="div" cssClass="errors" />
+              <textarea name="gdTrSmry">${guideTourVO.gdTrSmry}</textarea>
             </div>
             <div class="all-select-div">
               <div class="select-div">
@@ -179,13 +188,13 @@ uri="http://www.springframework.org/tags/form" %>
                     id="trPrc"
                     name="gdTrPrc"
                     type="number"
-                    value="${guideTourWriteVO.gdTrPrc}"
+                    value="${guideTourVO.gdTrPrc}"
                     step="0.01"
                   />
                   <div>$</div>
                 </div>
                 <div class="right-align">
-                  <input id="submit-regi" type="submit" value="투어 등록" />
+                  <input id="submit-regi" type="submit" value="투어 수정" />
                 </div>
               </div>
             </div>

@@ -189,7 +189,7 @@ uri="http://www.springframework.org/tags/form" %>
                     name="gdTrPrc"
                     type="number"
                     value="${guideTourWriteVO.gdTrPrc}"
-                    step="0.01"
+                    step="0.1"
                   />
                   <div>$</div>
                 </div>

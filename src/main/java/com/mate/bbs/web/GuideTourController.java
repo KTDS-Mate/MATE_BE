@@ -89,7 +89,6 @@ public class GuideTourController {
 			throw new IllegalArgumentException("잘못된 접근입니다.");
 		}
 		model.addAttribute("guideTourVO", guideTourVO);
-		
 		return "guidetour/Tourist_Modify";
 	}
 
