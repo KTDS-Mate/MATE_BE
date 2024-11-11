@@ -20,7 +20,6 @@ $().ready(function () {
 		selectMirror: true,
 		// 이벤트명 : function(){} : 각 날짜에 대한 이벤트를 통해 처리할 내용..
 		select: function (arg) {
-			console.log(arg);
 
 			var title = prompt('입력할 일정:');
 			// title 값이 있을때, 화면에 calendar.addEvent() json형식으로 일정을 추가
@@ -38,8 +37,6 @@ $().ready(function () {
 		},
 		eventClick: function (arg) {
 			// 있는 일정 클릭시,
-			console.log("#등록된 일정 클릭#");
-			console.log(arg.event);
 
 			if (confirm('Are you sure you want to delete this event?')) {
 				arg.event.remove()
@@ -55,7 +52,6 @@ $().ready(function () {
 					if (!data || data.length === 0) {
 						console.warn("No events data returned from server.");
 					} else {
-						console.log("Events data:", data);
 					}
 					// 서버에서 받은 데이터를 FullCalendar 이벤트 형식으로 변환
 					const events = data.map(item => ({
@@ -70,7 +66,7 @@ $().ready(function () {
 					successCallback(events);
 				},
 				error: function (xhr, status, error) {
-					console.error('Failed to fetch events:', error);
+					//console.error('Failed to fetch events:', error);
 					failureCallback(error);
 				}
 			});

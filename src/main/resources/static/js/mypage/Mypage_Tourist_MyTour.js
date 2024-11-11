@@ -3,7 +3,6 @@ $().ready(function () {
 
 
     $(".search-btn").on("click", function () {
-        console.log(loginId);
         movePage(0);
     })
 
@@ -25,7 +24,6 @@ $().ready(function () {
 
 function movePage(pageNo) {
     var loginId = $(".header-content").data("login-id");
-    console.log(loginId);
 
     $(".page-no").val(pageNo);
     $(".search-form").attr({

@@ -10,7 +10,6 @@ $(document).ready(function () {
       type: 'GET',
       dataType: 'json',
       success: function (data) {
-        console.log('Data received:', data); // 데이터를 확인할 수 있는 로그 추가
 
         // 서버에서 반환된 데이터가 배열인지 확인
         let guideTours = Array.isArray(data) ? data : []; // 데이터가 배열인 경우 그대로 사용
@@ -35,7 +34,6 @@ $(document).ready(function () {
             const endIndex = startIndex + 4;
             const randomTours = guideTours.slice(startIndex, endIndex);
 
-            console.log('Random tours:', randomTours); // 선택된 투어들을 로그로 확인
 
             randomTours.forEach(function (tour) {
               // 필수 값이 비어있는지 확인하고 기본값을 설정

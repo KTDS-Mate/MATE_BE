@@ -14,7 +14,6 @@ $().ready(function() {
 	for (var i = 0; i < trLength; i++) {
 		// 투어 상태
 		var sttsVal = $(`#re-${i}`).find(".apply-hide").data("stts");
-		console.log(`${i + 1}번째 글` + sttsVal)
 		// 결제 상태
 		var paySttsVal = $(`#re-${i}`).find(".apply-hide").data("pay-stts");
 		// 투어 일자
