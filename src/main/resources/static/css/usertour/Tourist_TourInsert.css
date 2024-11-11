@@ -185,13 +185,17 @@ input[type="file"] {
 .price-flex-div {
   display: flex;
   align-items: center;
-  width: 5.5rem;
+  width: 10rem;
   margin-bottom: 1rem;
   padding-left: 0.2rem;
   padding-top: 0.4rem;
   padding-bottom: 0.4rem;
   border: 1px solid #ddd;
   border-radius: 10px;
+}
+
+.price-flex-div input {
+	width: 8rem;
 }
 
 input[type="date"] {

@@ -57,7 +57,7 @@ app:
         /guidetour/info,
         /guidetour/random,
         /,
-        /tour/**
+        /tour/**,
         /user/reissue-password
     check-dup-login:
       path-patterns: 
