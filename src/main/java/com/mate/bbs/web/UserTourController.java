@@ -67,7 +67,7 @@ public class UserTourController {
 		
 		this.userTourService.createNewUserTour(userTourWriteVO);
 		
-		return "redirect:/usertour/list?pageNo=0&listSize=9";
+		return "redirect:/usertour/list";
 	}
 	
 	@GetMapping("/usertour/modify/{usrTrPstId}")
