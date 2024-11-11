@@ -2,7 +2,9 @@ package com.mate.bbs.dao;
 
 import java.util.List;
 
-import com.mate.common.vo.*;
+import com.mate.common.vo.RegionsVO;
+import com.mate.common.vo.CountriesVO;
+import com.mate.common.vo.CitiesVO;
 
 public interface CountriesAndCitiesDao {
 
