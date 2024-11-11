@@ -46,7 +46,7 @@ public class GuideTourVO {
 	/**
 	 * 투어 가격
 	 */
-	private int gdTrPrc;
+	private double gdTrPrc;
 	/**
 	 * 투어 요약
 	 */
@@ -140,19 +140,6 @@ public class GuideTourVO {
 	 * 가이드 투어 게시글에 대한 평균 별점
 	 */
 	private int trAvgRtng;
-	
-	public String getAvgGdRvw() {
-		return avgGdRvw;
-	}
-	public void setAvgGdRvw(String avgGdRvw) {
-		this.avgGdRvw = avgGdRvw;
-	}
-	public int getTrAvgRtng() {
-		return trAvgRtng;
-	}
-	public void setTrAvgRtng(int trAvgRtng) {
-		this.trAvgRtng = trAvgRtng;
-	}
 	public String getGdTrPstId() {
 		return gdTrPstId;
 	}
@@ -201,10 +188,10 @@ public class GuideTourVO {
 	public void setGdTrMp(String gdTrMp) {
 		this.gdTrMp = gdTrMp;
 	}
-	public int getGdTrPrc() {
+	public double getGdTrPrc() {
 		return gdTrPrc;
 	}
-	public void setGdTrPrc(int gdTrPrc) {
+	public void setGdTrPrc(double gdTrPrc) {
 		this.gdTrPrc = gdTrPrc;
 	}
 	public String getGdTrSmry() {
@@ -291,18 +278,6 @@ public class GuideTourVO {
 	public void setGuideTourScheduleInfoList(List<GuideTourScheduleInfoVO> guideTourScheduleInfoList) {
 		this.guideTourScheduleInfoList = guideTourScheduleInfoList;
 	}
-	//	public List<GuideTourFavoriteVO> getGuideTourFavoriteList() {
-//		return guideTourFavoriteList;
-//	}
-//	public void setGuideTourFavoriteList(List<GuideTourFavoriteVO> guideTourFavoriteList) {
-//		this.guideTourFavoriteList = guideTourFavoriteList;
-//	}
-//	public List<GuideTourAdditionInfoVO> getGuideTourAdditionInfoList() {
-//		return guideTourAdditionInfoList;
-//	}
-//	public void setGuideTourAdditionInfoList(List<GuideTourAdditionInfoVO> guideTourAdditionInfoList) {
-//		this.guideTourAdditionInfoList = guideTourAdditionInfoList;
-//	}
 	public UserVO getUserVO() {
 		return userVO;
 	}
@@ -326,5 +301,17 @@ public class GuideTourVO {
 	}
 	public void setGuideAge(String guideAge) {
 		this.guideAge = guideAge;
+	}
+	public String getAvgGdRvw() {
+		return avgGdRvw;
+	}
+	public void setAvgGdRvw(String avgGdRvw) {
+		this.avgGdRvw = avgGdRvw;
+	}
+	public int getTrAvgRtng() {
+		return trAvgRtng;
+	}
+	public void setTrAvgRtng(int trAvgRtng) {
+		this.trAvgRtng = trAvgRtng;
 	}
 }

@@ -72,7 +72,7 @@ pageEncoding="UTF-8" %>
             </div>
             <div class="priceArea">
               <div class="priceTitleArea">
-                <span>Price for One Team</span>
+                <span>Price</span>
               </div>
               <div class="priceDetailArea">
                 <div class="hour">
@@ -168,9 +168,9 @@ pageEncoding="UTF-8" %>
             <div class="tourInfoArea">
               <div class="tourInfoTitleArea">
                 <span>투어 세부 일정</span>
-                <h3 class="showDetail" onclick="location.href='index.html'">
+                <!--  <h3 class="showDetail" onclick="location.href='index.html'">
                   상세보기
-                </h3>
+                </h3>-->
               </div>
               <div class="tourInfoDetailArea">
                 <ul class="hope-info-list">

@@ -363,12 +363,13 @@ div.my-tour {
 
 .page-nav {
 	margin: 0;
-	padding: 0;
-	text-align: center;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-decoration: none;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .page-nav>li {
