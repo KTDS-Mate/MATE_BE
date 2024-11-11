@@ -15,10 +15,10 @@
 
 	<appender name="FILE"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${rolling-path}/hello-spring.log</file>
+		<file>${rolling-path}/mate.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<!-- daily rollover -->
-			<fileNamePattern>${rolling-path}/hello-spring.%d{yyyy-MM-dd HH:mm}.log</fileNamePattern>
+			<fileNamePattern>${rolling-path}/mate.%d{yyyy-MM-dd}.log</fileNamePattern>
 
 			<!-- keep 30 days' worth of history capped at 3GB total size -->
 			<!-- 로그는 함부로 지우면 안되니 사용하지 않ㅇㅁ. 30일지나면 삭제, 3기가 넘어가면 오래된 순으로 삭제 -->
