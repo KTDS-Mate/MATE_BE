@@ -67,7 +67,7 @@ public class UserTourController {
 		
 		this.userTourService.createNewUserTour(userTourWriteVO);
 		
-		return "redirect:/usertour/list?pageNo=0&listSize=9";
+		return "redirect:/usertour/list";
 	}
 	
 	@GetMapping("/usertour/modify/{usrTrPstId}")
@@ -89,15 +89,18 @@ public class UserTourController {
 								 , @Valid UserTourModifyVO userTourModifyVO
 								 , BindingResult bindingResult
 								 , @SessionAttribute("_LOGIN_USER_") UserVO loginUserVO) {
-		if (!userTourModifyVO.getAthrId().equals(loginUserVO.getUsrLgnId())) {
+		UserTourVO userTourVO = this.userTourService.getOneUserTour(usrTrPstId);
+		
+		if (!userTourVO.getAthrId().equals(loginUserVO.getUsrLgnId())) {
 			throw new IllegalArgumentException("잘못된 접근입니다.");
 		}
 		
+		String loginId = loginUserVO.getUsrLgnId();
+		userTourModifyVO.setAthrId(loginId);
+		
 		this.userTourService.modifyUserTour(userTourModifyVO);
 		
-		String loginId = loginUserVO.getUsrLgnId();
-		
-		return "redirect:/mypage/mytour/tr-mytour/" + loginId;
+		return "redirect:/mypage/edit-profile/tr-profile/" + loginId;
 	}
 	
 	@GetMapping("/usertour/reserve/{usrTrPstId}/{usrLgnId}")

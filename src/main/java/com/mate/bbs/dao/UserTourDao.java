@@ -91,7 +91,8 @@ public interface UserTourDao {
 	 */
 	public String selectAttachEndHour2(UserTourModifyVO userTourModifyVO);
 	
-	
+	public String selectAttachMultyStartHour(UserTourWriteVO userTourWriteVO);
+	public String selectAttachMultyEndHour(UserTourWriteVO userTourWriteVO);
 	
 	
 	/**

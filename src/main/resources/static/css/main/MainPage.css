@@ -385,7 +385,7 @@ div.footer {
 }
 
 .recommendGuideTourArea {
-  width: 100%;
+  width: 14rem;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -393,12 +393,13 @@ div.footer {
   border: none;
   border-radius: 1.25rem;
   /* box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); */
+  align-items: center;
   cursor: pointer;
 }
 
 .recommendGuideTourArea img {
-  width: 100%;
-  height: 100%;
+  width: 14rem;
+  height: 14rem;
   border: none;
   border-radius: 1.25rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);

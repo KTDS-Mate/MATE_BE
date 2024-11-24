@@ -74,9 +74,6 @@ public class GuideTourController {
 			model.addAttribute("guideTourWriteVO", guideTourWriteVO);
 			return "guidetour/Guide_TourInsert";
 		}
-		if(loginUserVO == null) {
-			return "redirect:/user/login";
-		}
 		guideTourWriteVO.setAthrId(loginUserVO.getUsrLgnId());
 		
 		this.guideTourService.createNewGuideTour(guideTourWriteVO);
@@ -92,7 +89,6 @@ public class GuideTourController {
 			throw new IllegalArgumentException("잘못된 접근입니다.");
 		}
 		model.addAttribute("guideTourVO", guideTourVO);
-		
 		return "guidetour/Tourist_Modify";
 	}
 

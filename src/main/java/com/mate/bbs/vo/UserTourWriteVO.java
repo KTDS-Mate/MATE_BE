@@ -27,6 +27,8 @@ public class UserTourWriteVO {
 	 * 여행자가 입력한 input[date]의 값 받아오기
 	 */
 	private String inputYear;
+	
+	private String inputEndYear;
 	/**
 	 * 여행자가 입력한 시작 시간
 	 */
@@ -100,8 +102,26 @@ public class UserTourWriteVO {
 	private List<UserTourSchdlVO> userTourSchdlList;
 	/** 파일 업로드를 위한 이미지파일 변수 **/
 	private String imgFileName;
+	
+	
 	private MultipartFile usrTourImgFile;
 	
+	
+	/**
+	 * 당일치기 체크 여부
+	 */
+	private boolean isChecked;
+	
+	
+	public String getInputEndYear() {
+		return inputEndYear;
+	}
+	public void setInputEndYear(String inputEndYear) {
+		this.inputEndYear = inputEndYear;
+	}
+	public void setChecked(boolean isChecked) {
+		this.isChecked = isChecked;
+	}
 	public String getUsrTrPstId() {
 		return usrTrPstId;
 	}
@@ -234,4 +254,11 @@ public class UserTourWriteVO {
 	public void setImgFileName(String imgFileName) {
 		this.imgFileName = imgFileName;
 	}
+	public boolean getIsChecked() {
+		return isChecked;
+	}
+	public void setIsChecked(boolean isChecked) {
+		this.isChecked = isChecked;
+	}
+	
 }

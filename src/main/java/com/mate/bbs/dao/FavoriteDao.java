@@ -22,6 +22,7 @@ public interface FavoriteDao {
 	 */
 	public List<FavoriteVO> selectAllFavoriteList(String usrPstId);
 	
+	
 	public int selectAllFavoriteCount(String pstId);
 	
 	/**

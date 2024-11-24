@@ -20,7 +20,7 @@
 }
 
 .select-div {
-  margin-top: 2rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
   font-weight: bold;
 }
@@ -39,36 +39,33 @@ select {
   margin-bottom: 1rem;
   border: 1px solid #ddd;
   border-radius: 10px;
-  outline: none;
 }
 
 #region {
-	width: 6rem;
+  width: 6rem;
 }
 
 #country {
-	width: 20rem;
+  width: 20rem;
 }
 
 #city {
-	width: 28.5rem;
+  width: 28.5rem;
 }
 
 .flex-hour-div {
   display: flex;
-  justify-content: flex-start;
-  margin-bottom: 1rem;
-  align-items: center;
 }
 
 .inline-margin {
   display: inline-block;
+  margin-top: 0.5rem;
 }
 
 .inline-margin img {
-    margin-top: 0.6rem;
-    width: 1rem;
-    height: 1rem;
+  margin-top: 0.3rem;
+  width: 1rem;
+  height: 1rem;
 }
 
 #usrTrTtl {
@@ -83,7 +80,6 @@ textarea {
   border: 1px solid #ddd;
   border-radius: 10px;
   resize: none;
-  padding: 1rem;
 }
 
 input[type="number"] {
@@ -101,6 +97,11 @@ input[type="text"] {
   text-align: right;
 }
 
+.right-align input:hover {
+	background: #505050;
+	cursor: pointer; 
+}
+
 input[type="submit"] {
   color: #fff;
   background-color: #333;
@@ -111,26 +112,13 @@ input[type="submit"] {
 }
 
 .font-we {
-	font-size: x-small;
-	color: #aaa;
-	margin-left: 1rem;
-}
-
-.loc-inf {
-  border: 1px solid #ddd;
-  width: 85%;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  margin-bottom: 1rem;
+  font-size: x-small;
+  color: #aaa;
+  margin-left: 1rem;
 }
 
 .hope-btn {
   margin-bottom: 1rem;
-}
-
-.hope-btn input {
-	margin-right: 1rem;
 }
 
 input[type="file"] {
@@ -141,20 +129,11 @@ input[type="file"] {
 
 .file-list {
   border: 1px solid #ddd;
-  width: 85%;
+  height: 200px;
+  width: 250px;
   margin-top: 1rem;
   margin-bottom: 1rem;
   padding: 1rem;
-  margin-bottom: 1rem;
-}
-
-.file-group {
-	display: flex;
-	margin-bottom: 1rem;
-}
-
-.file-group:last-child {
-	margin-bottom: 0;
 }
 
 .inline {
@@ -216,11 +195,11 @@ input {
 }
 
 #hope-location {
-  width: 90%;
+  width: 50%;
 }
 
 #hope-info {
-  width: 90%;
+  width: 50%;
 }
 
 #gender,
@@ -255,18 +234,44 @@ input {
   border: 0;
 }
 
-.time-select {
-	display: flex;
-	padding-left: 1rem;
-	padding-right: 1rem;
-	flex-direction: column;
-    align-items: center;
+.locs2 {
+	border-bottom: 1px solid #ddd;
+	padding-top: 1rem;
 }
 
-.time-select:first-child {
-	padding-left: 0;
+.locs2:last-child {
+	border: 0;
+}
+
+.locs3 {
+	border-bottom: 1px solid #ddd;
+	padding-top: 1rem;
+}
+
+.locs3:last-child {
+	border: 0;
+}
+
+.time-select {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.flex-hour {
+  display: flex;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  height: 2.5rem;
 }
 
 .time-select > input {
-	padding: 0.5rem;
+  text-align: center;
+}
+
+#start-minutes {
+  margin-right: 0.5rem;
+}
+
+#end-minutes {
+  margin-left: 0.5rem;
 }
