@@ -1,5 +1,37 @@
 $().ready(function() {
 	
+	$("#date-check").on('change', function(e) {
+		var isChecked = e.target.checked;
+		
+		var area = $(".tour-date-select");
+		
+		if(isChecked) {
+			area.children().remove();
+			area.append(`<input
+		                id="inputYear"
+		                name="inputYear"
+		                type="date"
+		                data-placeholder="투어 날짜를 골라주세요."
+		                value="${userTourWriteVO.inputYear}" />`);
+		}
+		else {
+			area.children().remove();
+						area.append(`			<input
+				                id="inputYear"
+				                name="inputYear"
+				                type="date"
+				                data-placeholder="투어 날짜를 골라주세요."
+				                value="${userTourWriteVO.inputYear}" />
+				              <img class="tilde-img" src="/img/tourboard/~.png" />
+				              <input
+				                id="inputEndYear"
+				                name="inputEndYear"
+				                type="date"
+				                data-placeholder="투어 날짜를 골라주세요."
+				                value="${userTourWriteVO.inputYear}" />`);
+		}
+	})
+	
 	// 현재 모든 날짜와 시간을 가져옴
 	var nowDate = new Date();
 	// 현재 시간을 가져옴
@@ -110,12 +142,16 @@ $().ready(function() {
 		// 해당 방법을 사용하기 위해서는 모든 input태그를 감싸고있는 div가 하나 필요함 -> <div class="locs">...</div>
 		var plusDom = $(`<div class="locs">
 						<div>
+			                <label>시간</label>
+			                <input id="hope-time" name="userTourSchdlList[${locsCnt}].trTm" type="datetime-local" />
+			            </div>
+						<div>
 							<label for="hope-location">장소</label>
 							<input id="hope-location" name="userTourSchdlList[${locsCnt}].trLctns" type="text" required="required" />
 						</div>
 						<div>
 							<label for="hope-info">일정</label>
-							<input id="hope-info" name="userTourSchdlList[${locsCnt}].trRqst" type="text" required="required" />
+							<textarea id="hope-info" name="userTourSchdlList[${locsCnt}].trRqst" type="text" required="required"></textarea>
 						</div>
 						</div>`);
 		// 인덱스가 담긴 가상 돔을 .loc-inf의 안쪽에 담아준다.
