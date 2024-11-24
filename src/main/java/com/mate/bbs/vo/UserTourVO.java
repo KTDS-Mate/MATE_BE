@@ -96,13 +96,6 @@ public class UserTourVO {
 	/**투어 총 소요 시간**/
 	private String usrTrTm;
 	
-	
-	public FavoriteVO getFavoriteVO() {
-		return favoriteVO;
-	}
-	public void setFavoriteVO(FavoriteVO favoriteVO) {
-		this.favoriteVO = favoriteVO;
-	}
 	public String getUsrTrPstId() {
 		return usrTrPstId;
 	}
@@ -246,6 +239,12 @@ public class UserTourVO {
 	}
 	public void setUserTourSchdlList(List<UserTourSchdlVO> userTourSchdlList) {
 		this.userTourSchdlList = userTourSchdlList;
+	}
+	public FavoriteVO getFavoriteVO() {
+		return favoriteVO;
+	}
+	public void setFavoriteVO(FavoriteVO favoriteVO) {
+		this.favoriteVO = favoriteVO;
 	}
 	public CitiesVO getCitiesVO() {
 		return citiesVO;

@@ -115,7 +115,6 @@
 		, USR_TR_RQ_DTL
 		, GD_GNDR
 		, GD_AGE
-		, GD_CRR
 		, GD_WNT_RQ
 		, USR_TR_ED_DT
 		, USR_TR_STTS)
@@ -135,7 +134,6 @@
 		, #{usrTrRqDtl}
 		, #{gdGndr}
 		, #{gdAge}
-		, #{gdCrr}
 		, #{gdWntRq}
 		, TO_DATE(#{usrTrEdDt}, 'YYYY-MM-DD HH24:MI')
 		, 'RCRTNG')
@@ -159,7 +157,6 @@
 		     , UTR.USR_TR_RQ_DTL 
 		     , UTR.GD_GNDR 
 		     , UTR.GD_AGE 
-		     , UTR.GD_CRR 
 		     , UTR.GD_WNT_RQ 
 		     , UTR.USR_TR_STTS
 		     , TO_CHAR(UTR.USR_TR_ST_DT, 'YYYY-MM-DD HH24:MI') USR_TR_ST_DT
@@ -309,12 +306,14 @@
 		 (TR_SCHDL_ID
 		, USR_TR_PST_ID
 		, TR_LCTNS
-		, TR_RQST)
+		, TR_RQST
+		, TR_TM)
 		VALUES
 		 ('RQ-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_TR_SCHDL_PK.NEXTVAL, 6, 0)
 		, #{usrTrPstId}
 		, #{trLctns}
-		, #{trRqst})
+		, #{trRqst}
+		, TO_DATE(#{trTm}, 'YYYY-MM-DD HH24:MI'))
 	</insert>
 	
 	<insert id="insertNewUserTourImgs"
@@ -358,5 +357,19 @@
 		     , USR_TR_STTS = 'RSRVT'
 		 WHERE USR_TR_PST_ID = #{usrTrPstId}
 	</update>
+	
+	<select id="selectAttachMultyStartHour"
+			parameterType="com.mate.bbs.vo.UserTourWriteVO"
+			resultType="string">
+		SELECT #{inputYear} || ' ' || #{inputStartHour}
+ 		  FROM DUAL
+	</select>
+	
+	<select id="selectAttachMultyEndHour"
+			parameterType="com.mate.bbs.vo.UserTourWriteVO"
+			resultType="string">
+		SELECT #{inputEndYear} || ' ' || #{inputEndHour}
+ 		  FROM DUAL
+	</select>
 	
 </mapper>

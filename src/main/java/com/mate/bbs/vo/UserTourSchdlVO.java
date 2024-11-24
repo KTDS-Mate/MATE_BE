@@ -19,6 +19,11 @@ public class UserTourSchdlVO {
 	 */
 	private String trRqst;
 	
+	/**
+	 * 일정 진행 시간
+	 */
+	private String trTm;
+	
 	public String getTrSchdlId() {
 		return trSchdlId;
 	}
@@ -42,6 +47,12 @@ public class UserTourSchdlVO {
 	}
 	public void setTrRqst(String trRqst) {
 		this.trRqst = trRqst;
+	}
+	public String getTrTm() {
+		return trTm;
+	}
+	public void setTrTm(String trTm) {
+		this.trTm = trTm;
 	}
 	
 }
