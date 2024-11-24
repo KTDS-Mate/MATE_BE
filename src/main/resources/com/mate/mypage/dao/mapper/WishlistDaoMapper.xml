@@ -190,6 +190,7 @@
 		,u.USR_TR_GD_HR_PRC 
 		,u.USR_TR_IS_DLT  
 		,u.USR_TR_STTS 
+		,u.USR_TR_DIVIDE
 		,u.TR_CT_ID 
 		,c.CITY_NAME 
 		,c.COUNTRY_ID 

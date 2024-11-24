@@ -25,91 +25,107 @@ public class UserTourController {
 
 	@Autowired
 	private UserTourService userTourService;
-	
-	/**클라이언트가 등록한 가이드 구인 게시글 목록 조회 페이지**/
+
+	/** 클라이언트가 등록한 가이드 구인 게시글 목록 조회 페이지 **/
 	@GetMapping("/usertour/list")
-	public String viewAllUserTourPage(Model model
-									, SearchUserTourVO searchUserTourVO) {
+	public String viewAllUserTourPage(Model model, SearchUserTourVO searchUserTourVO) {
 		UserTourListVO userTourListVO = this.userTourService.getAllUserTour(searchUserTourVO);
 		model.addAttribute("userTourListVO", userTourListVO);
 		model.addAttribute("searchUserTourVO", searchUserTourVO);
-		
+
 		return "usertour/tour_list";
 	}
-	
-	/**클라이언트가 등록한 가이드 구인 게시글 상세 조회 페이지**/
+
+	/** 클라이언트가 등록한 가이드 구인 게시글 상세 조회 페이지 **/
 	@GetMapping("/usertour/view")
-	public String viewOneUserTourPage(@RequestParam String usrTrPstId
-									 , Model model) {
+	public String viewOneUserTourPage(@RequestParam String usrTrPstId, Model model) {
 		UserTourVO userTourVO = this.userTourService.getOneUserTour(usrTrPstId);
 		model.addAttribute("userTourVO", userTourVO);
 		return "usertour/GuideRecruitmentPage";
 	}
-	
-	/**클라이언트가 등록한 가이드 구인 게시글 작성 페이지**/
+
+	/** 클라이언트가 등록한 가이드 구인 게시글 작성 페이지 **/
 	@GetMapping("/usertour/insert")
 	public String viewUserTourInsertPage() {
 		return "usertour/Tourist_TourInsert";
 	}
-	
-	/**클라이언트가 작성 가이드 구인 게시글을 받아와서 DB에 저장하는 페이지**/
+
+	/** 클라이언트가 작성 가이드 구인 게시글을 받아와서 DB에 저장하는 페이지 **/
 	@PostMapping("/usertour/insert")
-	public String doCreateNewUserTour(@Valid UserTourWriteVO userTourWriteVO
-									, BindingResult bindingResult
-									, Model model
-									, @SessionAttribute(value = "_LOGIN_USER_", required = false) UserVO loginUserVO
-									) {
+	public String doCreateNewUserTour(@Valid UserTourWriteVO userTourWriteVO, BindingResult bindingResult, Model model,
+			@SessionAttribute(value = "_LOGIN_USER_", required = false) UserVO loginUserVO) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("userTourWriteVO", userTourWriteVO);
 			return "usertour/Tourist_TourInsert";
 		}
 		userTourWriteVO.setAthrId(loginUserVO.getUsrLgnId());
-		
+
 		this.userTourService.createNewUserTour(userTourWriteVO);
-		
+
 		return "redirect:/usertour/list";
 	}
-	
+
 	@GetMapping("/usertour/modify/{usrTrPstId}")
-	public String viewUserTourModifyPage(@PathVariable String usrTrPstId
-									   , Model model
-									   , @SessionAttribute("_LOGIN_USER_") UserVO loginUserVO) {
+	public String viewUserTourModifyPage(@PathVariable String usrTrPstId, Model model,
+			@SessionAttribute("_LOGIN_USER_") UserVO loginUserVO) {
 		UserTourVO userTourVO = this.userTourService.getOneUserTour(usrTrPstId);
 		if (!userTourVO.getAthrId().equals(loginUserVO.getUsrLgnId())) {
 			throw new IllegalArgumentException("잘못된 접근입니다.");
 		}
-		
+
 		model.addAttribute("userTourVO", userTourVO);
-		
+
 		return "usertour/Tourist_Modify";
 	}
-	
+
 	@PostMapping("/usertour/modify/{usrTrPstId}")
-	public String doUserTourModify(@PathVariable String usrTrPstId
-								 , @Valid UserTourModifyVO userTourModifyVO
-								 , BindingResult bindingResult
-								 , @SessionAttribute("_LOGIN_USER_") UserVO loginUserVO) {
+	public String doUserTourModify(@PathVariable String usrTrPstId, @Valid UserTourModifyVO userTourModifyVO,
+			BindingResult bindingResult, @SessionAttribute("_LOGIN_USER_") UserVO loginUserVO) {
 		UserTourVO userTourVO = this.userTourService.getOneUserTour(usrTrPstId);
-		
+
 		if (!userTourVO.getAthrId().equals(loginUserVO.getUsrLgnId())) {
 			throw new IllegalArgumentException("잘못된 접근입니다.");
 		}
-		
+
 		String loginId = loginUserVO.getUsrLgnId();
 		userTourModifyVO.setAthrId(loginId);
-		
+
 		this.userTourService.modifyUserTour(userTourModifyVO);
-		
+
 		return "redirect:/mypage/edit-profile/tr-profile/" + loginId;
 	}
-	
+
 	@GetMapping("/usertour/reserve/{usrTrPstId}/{usrLgnId}")
-	public String doReserveUserTour(@PathVariable String usrTrPstId
-								  , @PathVariable String usrLgnId) {
+	public String doReserveUserTour(@PathVariable String usrTrPstId, @PathVariable String usrLgnId) {
 		this.userTourService.reserveUserTour(usrTrPstId, usrLgnId);
-		
+
 		return "redirect:/usertour/view?usrTrPstId=" + usrTrPstId;
 	}
-	
-	
+
+	@GetMapping("/usertour/insert/request")
+	public String viewRequestInsertPage() {
+		return "usertour/tourist_request_insert";
+	}
+
+	@PostMapping("/usertour/insert/request")
+	public String doCreateRequestTour(@Valid UserTourWriteVO userTourWriteVO, BindingResult bindingResult, Model model,
+			@SessionAttribute(value = "_LOGIN_USER_", required = false) UserVO loginUserVO) {
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("userTourWriteVO", userTourWriteVO);
+			return "usertour/Tourist_TourInsert";
+		}
+		userTourWriteVO.setAthrId(loginUserVO.getUsrLgnId());
+
+		this.userTourService.createNewRequestTour(userTourWriteVO);
+
+		return "redirect:/usertour/list";
+	}
+
+	@GetMapping("/usertour/view/request")
+	public String viewRequestPage(@RequestParam String usrTrPstId, Model model) {
+		UserTourVO userTourVO = this.userTourService.getOneUserTour(usrTrPstId);
+		model.addAttribute("userTourVO", userTourVO);
+		return "usertour/request_view";
+	}
+
 }

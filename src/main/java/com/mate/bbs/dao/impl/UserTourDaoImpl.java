@@ -32,6 +32,11 @@ public class UserTourDaoImpl extends SqlSessionDaoSupport implements UserTourDao
 	}
 
 	@Override
+	public int insertNewRequestTour(UserTourWriteVO userTourWriteVO) {
+		return this.getSqlSession().insert(NAMESPACE + ".insertNewRequestTour", userTourWriteVO);
+	}
+	
+	@Override
 	public UserTourVO selectOneUserTour(String usrTrPstId) {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectOneUserTour", usrTrPstId);
 	}

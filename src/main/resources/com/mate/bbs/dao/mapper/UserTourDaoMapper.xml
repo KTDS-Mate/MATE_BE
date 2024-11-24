@@ -117,7 +117,8 @@
 		, GD_AGE
 		, GD_WNT_RQ
 		, USR_TR_ED_DT
-		, USR_TR_STTS)
+		, USR_TR_STTS
+		, USR_TR_DIVIDE)
 		VALUES
 		 (#{usrTrPstId}
 		, #{athrId}
@@ -136,7 +137,52 @@
 		, #{gdAge}
 		, #{gdWntRq}
 		, TO_DATE(#{usrTrEdDt}, 'YYYY-MM-DD HH24:MI')
-		, 'RCRTNG')
+		, 'RCRTNG'
+		, 'SCHEDULE')
+	</insert>
+	
+	<insert id="insertNewRequestTour"
+			parameterType="com.mate.bbs.vo.UserTourWriteVO">
+		INSERT INTO USR_TR_RQST
+		 (USR_TR_PST_ID
+		, ATHR_ID
+		, GD_ID
+		, USR_TR_TTL
+		, USR_TR_ST_DT
+		, USR_TR_PRPS
+		, USR_TR_MP
+		, USR_TR_GD_HR_PRC
+		, USR_TR_NP
+		, USR_TR_IS_DLT
+		, USR_TR_RSTR_DT
+		, TR_CT_ID
+		, USR_TR_RQ_DTL
+		, GD_GNDR
+		, GD_AGE
+		, GD_WNT_RQ
+		, USR_TR_ED_DT
+		, USR_TR_STTS
+		, USR_TR_DIVIDE)
+		VALUES
+		 ('UT-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_USR_TR_RQST_PK.NEXTVAL, 6, 0)
+		, #{athrId}
+		, NULL
+		, #{usrTrTtl}
+		, TO_DATE(#{usrTrStDt}, 'YYYY-MM-DD HH24:MI')
+		, #{usrTrPrps}
+		, #{usrTrMp}
+		, #{usrTrGdHrPrc}
+		, #{usrTrNp}
+		, 'N'
+		, SYSDATE
+		, #{trCtId}
+		, #{usrTrRqDtl}
+		, #{gdGndr}
+		, #{gdAge}
+		, #{gdWntRq}
+		, TO_DATE(#{usrTrEdDt}, 'YYYY-MM-DD HH24:MI')
+		, 'RCRTNG'
+		, 'REQUEST')
 	</insert>
 	
 	<select id="selectOneUserTour"
@@ -218,10 +264,11 @@
 		     , UTR.USR_TR_TTL 
 		     , UTR.USR_TR_PRPS 
 		     , TO_CHAR(UTR.USR_TR_ST_DT, 'YYYY-MM-DD HH24:MI') USR_TR_ST_DT 
-		     , UTR.USR_TR_ED_DT 
+		     , TO_CHAR(UTR.USR_TR_ED_DT, 'YYYY-MM-DD HH24:MI') USR_TR_ED_DT 
 		     , UTR.USR_TR_GD_HR_PRC 
 		     , UTR.USR_TR_STTS 
-		     , CEIL (UTR.USR_TR_ST_DT - SYSDATE) AS DEADLINE
+		     , UTR.USR_TR_DIVIDE
+		     , CEIL (UTR.USR_TR_ED_DT - SYSDATE) AS DEADLINE
 		     , TRUNC((UTR.USR_TR_ED_DT - UTR.USR_TR_ST_DT) * 24 * 60) AS USR_TR_TM
 		     , UTRI.USR_TR_RQ_IMG_ID_URL 
 		     , C.CITY_NAME
