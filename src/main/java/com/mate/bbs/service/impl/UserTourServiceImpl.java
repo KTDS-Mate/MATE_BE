@@ -72,7 +72,6 @@ public class UserTourServiceImpl implements UserTourService{
 				userTourSchdlVO.setTrTm(formmatedDate);
 				// PK를 VO에 할당
 				userTourSchdlVO.setUsrTrPstId(userTourWriteVO.getUsrTrPstId());
-				System.out.println("시간 : "+ userTourSchdlVO.getTrTm());
 				// listSize만큼 INSERT문 반복
 				this.userTourDao.insertUserTourScheduls(userTourSchdlVO);
 			}
@@ -81,6 +80,32 @@ public class UserTourServiceImpl implements UserTourService{
 		return createCount > 0;
 	}
 
+	@Override
+	public boolean createNewRequestTour(UserTourWriteVO userTourWriteVO) {
+		
+		boolean isChecked = userTourWriteVO.getIsChecked();
+		
+		if (isChecked) {
+			// jsp에서 받아온 날짜 + 시작 시 + 시작 분을 이어붙이는 쿼리(포멧 맞추기)
+			String startDt = this.userTourDao.selectAttachStartHour(userTourWriteVO);
+			// jsp에서 받아온 날짜 + 종료 시 + 종료 분을 이어붙이는 쿼리(포멧 맞추기)
+			String endDt = this.userTourDao.selectAttachEndHour(userTourWriteVO);
+			// 포멧이 완료 된 시간을 USR_TR_ST_DT와 USR_TR_ED_DT에 담아줌
+			userTourWriteVO.setUsrTrStDt(startDt);
+			userTourWriteVO.setUsrTrEdDt(endDt);
+		}
+		else {
+			String startDt = this.userTourDao.selectAttachMultyStartHour(userTourWriteVO);
+			String endDt = this.userTourDao.selectAttachMultyEndHour(userTourWriteVO);
+			userTourWriteVO.setUsrTrStDt(startDt);
+			userTourWriteVO.setUsrTrEdDt(endDt);
+		}
+		
+		int createCount = this.userTourDao.insertNewRequestTour(userTourWriteVO);
+		
+		return createCount > 0;
+	}
+	
 	@Override
 	public UserTourVO getOneUserTour(String usrTrPstId) {
 		UserTourVO userTourVO = this.userTourDao.selectOneUserTour(usrTrPstId);

@@ -23,6 +23,12 @@ public interface UserTourDao {
 	public int insertNewUserTour(UserTourWriteVO userTourWriteVO);
 	
 	/**
+	 * 해주세요 게시글 작성
+	 * @return
+	 */
+	public int insertNewRequestTour(UserTourWriteVO userTourWriteVO);
+	
+	/**
 	 * 한 게시글 조회
 	 * @param usrTrPstId
 	 * @return
@@ -57,12 +63,8 @@ public interface UserTourDao {
 	 * @param usrLgnId 가이드 아이디
 	 * @return
 	 */
-	public int updateGdId(@Param("usrTrPstId") String usrTrPstId, @Param("usrLgnId") String usrLgnId);
-	
-	
-	
-	
-	
+	public int updateGdId(@Param("usrTrPstId") String usrTrPstId, @Param("usrLgnId") String usrLgnId);	
+			
 	/**
 	 * 사용자가 입력한 시작 날짜와 시간을 YYYY-MM-DD HH24:MI로 포멧을 맞춰주는 쿼리 실행
 	 * @param userTourWriteVO 게시글 작성에 사용

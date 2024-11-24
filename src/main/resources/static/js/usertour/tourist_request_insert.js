@@ -74,11 +74,9 @@ $().ready(function() {
 		if (nowDate > inputDate) {
 			alert("지난 날은 입력하실 수 없습니다!");
 			$(this).val("");
-			$("#start-time").attr('disabled', 'disabled');
 			$("#start-time").val(nowTime);
 		}
 		else {
-			$("#start-time").removeAttr('disabled');
 			$("#start-time").val(nowTime);
 		}
 
@@ -117,6 +115,7 @@ $().ready(function() {
 	});
 
 	$("#end-time").on('change', function() {
+		// 당일치기인지 아닌지
 		var isChecked = $("#date-check").is(":checked");
 		// 사용자가 입력한 시작 시간을 가져옴
 		var startTime = $("#start-time").val();
@@ -131,39 +130,6 @@ $().ready(function() {
 			}
 		}
 
-	});
-
-	// 투어 희망 정보를 입력할 때 추가하기 버튼을 누르면 실행
-	$("#plus").on("click", function() {
-		// 가상 돔으로 추가되는 div의 길이를 구함 -> index를 알기 위해
-		var locsCnt = $(".locs").length;
-		if (locsCnt > 9) {
-			alert("최대 10개 까지 작성할 수 있습니다!");
-			return
-		}
-		// userTourWriteVO에 있는 List<UserTourSchdlVO> userTourSchdulList에게 리스트 형식으로 담아줌
-		// -> name="userTourSchdlList[index].컬럼명" -> 해당 컬럼에 리스트 형식으로 담음
-		// 해당 방법을 사용하기 위해서는 모든 input태그를 감싸고있는 div가 하나 필요함 -> <div class="locs">...</div>
-		var plusDom = $(`<div class="locs">
-						<div>
-			                <label>시간</label>
-			                <input id="hope-time" name="userTourSchdlList[${locsCnt}].trTm" type="datetime-local" />
-			            </div>
-						<div>
-							<label for="hope-location">장소</label>
-							<input id="hope-location" name="userTourSchdlList[${locsCnt}].trLctns" type="text" required="required" />
-						</div>
-						<div>
-							<label for="hope-info">일정</label>
-							<textarea id="hope-info" name="userTourSchdlList[${locsCnt}].trRqst" type="text" required="required"></textarea>
-						</div>
-						</div>`);
-		// 인덱스가 담긴 가상 돔을 .loc-inf의 안쪽에 담아준다.
-		$(".loc-inf").append(plusDom);
-	});
-
-	$("#m-btn").on('click', function() {
-		$(".locs:last").remove();
 	});
 
 	// 대륙은 기존 한번 만 가져옴(바뀌지 않음)
@@ -250,48 +216,7 @@ $().ready(function() {
 		var trPrcVal = $(this).val();
 
 		if (trPrcVal < 0) {
-			alert("음수를 지정할 수 없습니다!");
 			$(this).val(0);
-		}
-
-	});
-
-	$("#add-file").on('click', function() {
-		var fileCnt = $(".file-group").length;
-
-		// 파일 첨부 개수 제한
-		if (fileCnt > 9) {
-			alert("파일은 최대 10개까지 첨부 가능합니다!");
-			return
-		}
-
-		var fileDom = $(`<div class="file-group">
-						 	<input id="img-file" type="file" name="userTourImgList[${fileCnt}].usrTrRqImgIdUrl}" required="required" accept=".jpg,.jpeg,.img,.png" />
-						 </div>`);
-		$(".file-list").append(fileDom);
-	});
-
-	$("#del-file").on('click', function() {
-		$(".file-group:last").remove();
-	});
-
-	// 파일 확장자 검증
-	$(document).on('change', "#img-file", function() {
-		// 현재 입력받은 파일
-		var fileVal = $(this).val();
-		// .앞에 있는 글자를 날리고 소문자로 변경 -> 확장자만 가져옴
-		var fileType = fileVal.split(".").pop().toLowerCase();
-		// 입력 가능한 확장자 리스트
-		var fileTypeArr = ['jpg', 'jpeg', 'img', 'png'];
-
-		// inArray => 만약 fileTypeArr 안에 있는 파일이 아닌 다른 확장자를 받으면 -1을 내보냄
-		if ($.inArray(fileType, fileTypeArr) == -1) {
-			alert("이미지 파일만 등록 가능합니다!");
-			// 값 초기화
-			$(this).val("");
-		}
-		else {
-			$(this).val(fileVal);
 		}
 
 	});

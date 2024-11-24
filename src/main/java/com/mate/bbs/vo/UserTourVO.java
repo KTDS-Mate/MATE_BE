@@ -95,7 +95,15 @@ public class UserTourVO {
 	private int deadline;
 	/**투어 총 소요 시간**/
 	private String usrTrTm;
+	/** 투어 구분 **/
+	private String usrTrDivide;
 	
+	public String getUsrTrDivide() {
+		return usrTrDivide;
+	}
+	public void setUsrTrDivide(String usrTrDivide) {
+		this.usrTrDivide = usrTrDivide;
+	}
 	public String getUsrTrPstId() {
 		return usrTrPstId;
 	}
