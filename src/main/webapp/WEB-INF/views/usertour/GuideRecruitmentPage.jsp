@@ -202,7 +202,7 @@ pageEncoding="UTF-8" %>
 			                		   	  <div class="list-item">
 			                		   	  	<span class="background-num">
 			                		   	  		${index.index + 1}</span>
-			                		   	  		${userTourSchdlList.trLctns}
+			                		   	  		(${userTourSchdlList.trTm}) ${userTourSchdlList.trLctns}
 			                		   	  </div>
 			                		   	  <div class="border-left">${userTourSchdlList.trRqst}</div>
 			                		   </li>

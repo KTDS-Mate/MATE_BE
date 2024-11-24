@@ -165,7 +165,8 @@
 		     , UI.USR_LNM 
 		     , UI.USR_FNM 
 		     , TS.TR_LCTNS 
-		     , TS.TR_RQST 
+		     , TS.TR_RQST
+		     , TO_CHAR(TS.TR_TM, 'YY-MM-DD HH24:MI') TR_TM 
 		     , C.CITY_NAME
 		     , CR.COUNTRY_NAME
 		  FROM USR_TR_RQST UTR
@@ -340,6 +341,7 @@
 		SELECT USR_TR_PST_ID 
 		     , TR_LCTNS 
 		     , TR_RQST 
+		     , TO_CHAR(TR_TM, 'YY-MM-DD HH24:MI') TR_TM
 		  FROM TR_SCHDL
 		 WHERE USR_TR_PST_ID = #{_parameter}
 	</select>
