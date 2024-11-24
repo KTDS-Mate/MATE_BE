@@ -25,7 +25,13 @@ $().ready(function() {
 
 	$(".tour-box").on("click", function() {
 		var usrTrPstId = $(this).find(".hide").data("pst-id");
-		location.href = "/usertour/view?usrTrPstId=" + usrTrPstId
+		var tourDivide = $(this).find(".hide").data("divide");
+		if (tourDivide === 'REQUEST') {
+			location.href = "/usertour/view/request?usrTrPstId=" + usrTrPstId
+		}
+		else {
+			location.href = "/usertour/view?usrTrPstId=" + usrTrPstId
+		}
 	});
 
 	/**대륙 필터링에 사용 됨**/

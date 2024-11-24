@@ -16,6 +16,13 @@ public interface UserTourService {
 	public boolean createNewUserTour(UserTourWriteVO userTourWriteVO);
 	
 	/**
+	 * 해주세요 게시글 작성
+	 * @param userTourWriteVO
+	 * @return
+	 */
+	public boolean createNewRequestTour(UserTourWriteVO userTourWriteVO);
+	
+	/**
 	 * 한 게시글 조회
 	 * @param usrTrPstId
 	 * @return

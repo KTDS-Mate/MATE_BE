@@ -53,6 +53,7 @@ app:
         /user/regist/**,
         /usertour/list,
         /usertour/view,
+        /usertour/view/request,
         /guidetour/list,
         /guidetour/info,
         /guidetour/random,
