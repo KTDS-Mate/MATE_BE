@@ -163,9 +163,6 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                     </c:otherwise>
                   </c:choose>
                   <div class="tour-cont">
-                  <c:if test="${userTourVO.usrTrDivide eq 'REQUEST'}">
-                  	<span class="deadline-come">이건 해주세요</span>
-                  </c:if>
                   <c:if test="${userTourVO.deadline < 3}">
                   	<span class="deadline-come">마감임박!</span>
                   </c:if>
@@ -202,9 +199,11 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                   </div>
                   </div>
                   <div class="tour-cost-fee">
-                  	<div class="dollar">
-                    	<h2>$${userTourVO.usrTrGdHrPrc}</h2>
-                    </div>
+                  	<c:if test="${userTourVO.usrTrDivide eq 'SCHEDULE'}">
+	                  	<div class="dollar">
+	                    	<h2>$${userTourVO.usrTrGdHrPrc}</h2>
+	                    </div>
+                  	</c:if>
                      <p><span class="end">마감 ${userTourVO.deadline}일전</span></p>
                   </div>
                 </div>

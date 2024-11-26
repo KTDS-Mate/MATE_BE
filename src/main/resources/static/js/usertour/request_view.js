@@ -1,4 +1,62 @@
 $().ready(function() {
+
+	$(".apply-btn").on('click', function() {
+		$("#modal").css('display', 'block');
+		$("body").addClass("modal-open");
+	});
+
+	$(".close").on('click', function() {
+		$("#modal").css('display', 'none');
+		$("body").removeClass("modal-open");
+	});
+
+	$(window).on('click', function(event) {
+		if (event.target === modal[0]) {
+			$("#modal").css('display', 'none');
+			$("body").removeClass("modal-open");
+		}
+	});
+
+	// 투어 희망 정보를 입력할 때 추가하기 버튼을 누르면 실행
+	$("#plus").on("click", function() {
+		// 가상 돔으로 추가되는 div의 길이를 구함 -> index를 알기 위해
+		var locsCnt = $(".locs").length;
+		
+		if (locsCnt > 9) {
+			alert("최대 10개 까지 작성할 수 있습니다!");
+			return
+		}
+		// userTourWriteVO에 있는 List<UserTourSchdlVO> userTourSchdulList에게 리스트 형식으로 담아줌
+		// -> name="userTourSchdlList[index].컬럼명" -> 해당 컬럼에 리스트 형식으로 담음
+		// 해당 방법을 사용하기 위해서는 모든 input태그를 감싸고있는 div가 하나 필요함 -> <div class="locs">...</div>
+		var plusDom = $(`		<div class="locs">
+			                		<div>
+			                			<label><span class="red">*</span> 시간</label>
+			                			<input id="hope-time" name="userTourSchdlList[${locsCnt}].trTm" type="datetime-local" required="required" />
+			                		</div>
+									<div>
+										<label for="hope-location"><span class="red">*</span> 장소</label>
+										<input id="hope-location" name="userTourSchdlList[${locsCnt}].trLctns" type="text" required="required" />
+									</div>
+									<div>
+										<label for="hope-info"><span class="red">*</span> 일정</label>
+										<textarea id="hope-info" name="userTourSchdlList[${locsCnt}].trRqst" type="text" required="required"></textarea>
+									</div>
+								</div>`);
+		// 인덱스가 담긴 가상 돔을 .loc-inf의 안쪽에 담아준다.
+		$(".loc-inf").append(plusDom);
+	});
+
+	$("#m-btn").on('click', function() {
+		var locsCnt = $(".locs").length;
+
+		if (locsCnt <= 1) {
+			alert("최소 1개는 작성해야 합니다!");
+			return
+		}
+		$(".locs:last").remove();
+	});
+
 	// 현재 보고있는 게시글의 아이디
 	var pstId = $(".ttl-wb").data("pst-id");
 	// 현재 로그인 한 유저의 로그인 아이디
@@ -74,24 +132,6 @@ $().ready(function() {
 		});
 
 
-	});
-
-
-	$(".reserveButton").on('click', function() {
-		// 현재 예약중이라면?
-		if (stts === 'RCRTNG') {
-			if (confirm("예약하시겠습니까?")) {
-				// 예약으로 바꾸는 url
-				location.href = `/usertour/reserve/${pstId}/${usrLgnId}`;
-			}
-			else {
-				alert("취소하였습니다.");
-			}
-		}
-		else {
-			alert("이미 누군가가 예약 중 입니다!");
-			return
-		}
 	});
 
 });

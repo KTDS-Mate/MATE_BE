@@ -141,23 +141,6 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
                 <textarea tabindex="17" name="gdWntRq">${userTourWriteVO.gdWntRq}</textarea>
               </div>
               <div class="price-submit-btn">
-                <div class="select-div">
-                  <span class="red">*</span> 고용 금액
-                </div>
-                <form:errors
-                  path="usrTrGdHrPrc"
-                  element="div"
-                  cssClass="errors" />
-                <div class="price-flex-div">
-                  <input
-                  	tabindex="18"
-                    id="trPrc"
-                    name="usrTrGdHrPrc"
-                    type="number"
-                    value="${userTourWriteVO.usrTrGdHrPrc}"
-                    step="0.1" />
-                  <div>$</div>
-                </div>
                 <div class="right-align">
                   <input tabindex="19" type="submit" value="투어 등록" />
                 </div>

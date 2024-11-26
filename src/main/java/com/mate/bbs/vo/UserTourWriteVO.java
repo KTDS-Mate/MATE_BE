@@ -50,8 +50,6 @@ public class UserTourWriteVO {
 	/**
 	 * 여행자가 가이드에게 제시하는 고용 금액
 	 */
-	@Min(value = 1 , message = "1 이상의 값을 입력해주세요!")
-	@PositiveOrZero(message = "음수를 넣으실 수 없습니다!")
 	private double usrTrGdHrPrc;
 	/**
 	 * 여행자의 총 투어 인원
