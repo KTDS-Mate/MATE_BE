@@ -1,16 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
     <title>${userTourVO.usrTrTtl}</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="/css/usertour/request_view.css"
-    />
+    <link rel="stylesheet" type="text/css" href="/css/usertour/request_view.css" />
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,20 +17,80 @@ pageEncoding="UTF-8" %>
       rel="stylesheet"
     />
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
-    <script
-      type="text/javascript"
-      src="/js/guidetour/tourReviewCarousel.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/js/guidetour/guideReviewCarousel.js"
-    ></script>
-        <script
-      type="text/javascript"
-      src="/js/usertour/GuideRecruitmentPage.js"
-    ></script>
+    <script type="text/javascript" src="/js/usertour/request_view.js"></script>
   </head>
   <body>
+    <c:if test="${sessionScope._LOGIN_USER_.usrIsGd eq 'Y'}">
+  	<div id="modal" class="modal">
+    	<div class="modal-content insert-main">
+    		<span class="close">&times;</span>
+    		<form:form>
+    		    <input type="hidden" value="${userTourVO.usrTrPstId}" />
+	            <div class="all-select-div">
+	              <div class="select-div">투어 제목 : ${userTourVO.usrTrTtl}</div>
+	            </div>
+	            <div class="all-select-div">
+	            	<div class="select-div">여행지 : ${userTourVO.citiesVO.cityName} / ${userTourVO.countriesVO.countryName}</div>
+	            </div>
+	            <div class="all-select-div">
+	            	<div class="select-div">날짜 : ${userTourVO.usrTrStDt} ~ ${userTourVO.usrTrEdDt}</div>
+	            </div>
+	            <div class="all-select-div">
+	            	<div class="select-div">인원 : ${userTourVO.usrTrNp}명</div>
+	            </div>
+	            <div class="all-select-div">
+	            	<div class="select-div">만날 장소 : ${userTourVO.usrTrMp}</div>
+	            </div>
+	            <div class="all-select-div">
+	            	<div class="select-div">
+	            		<span class="red">*</span> 제안서 제목
+	            	</div>
+	            	<textarea id="gdApplyTtl" required="required"></textarea>
+	            </div>
+	            <div class="all-select-div">
+	            	<div class="select-div">
+	            		<span class="red">*</span> 투어 요약
+	            	</div>
+	            	<textarea id="gdApplyTtl" required="required"></textarea>
+	            </div>
+	            <div class="all-select-div">
+	            	<div class="select-div">
+	            		<span class="red">*</span> 세부 일정
+	            	</div>
+	            	<div class="hope-btn">
+	                  <input tabindex="10" id="plus" type="button" value="일정 추가하기" />
+	                  <input tabindex="11" id="m-btn" type="button" value="일정 삭제하기" />
+	                </div>
+	                <div class="loc-inf">
+	                	<div class="locs">
+	                		<div>
+	                			<label><span class="red">*</span> 시간</label>
+	                			<input id="hope-time" name="userTourSchdlList[0].trTm" type="datetime-local" required="required" />
+	                		</div>
+							<div>
+								<label for="hope-location"><span class="red">*</span> 장소</label>
+								<input id="hope-location" name="userTourSchdlList[0].trLctns" type="text" required="required" />
+							</div>
+							<div>
+								<label for="hope-info"><span class="red">*</span> 일정</label>
+								<textarea id="hope-info" name="userTourSchdlList[0].trRqst" type="text" required="required"></textarea>
+							</div>
+						</div>
+	                </div>
+	            </div>
+	            <div class="all-select-div">
+	            	<div class="select-div">
+	            		<span class="red">*</span> 금액
+	            	</div>
+	            	<div class="btn-group">
+		            	<input class="prc" type="number" required="required" />
+		            	<input class="smbtn" type="submit" value="등록" />
+	            	</div>
+	            </div>
+    		</form:form>
+    	</div>
+    </div>
+    </c:if>
     <div class="grid">
       <!--  -->
       <div class="header">
@@ -128,9 +185,11 @@ pageEncoding="UTF-8" %>
               </div>
             </div>
           </div>
+          <c:if test="${sessionScope._LOGIN_USER_.usrIsGd eq 'Y'}">
           <div class="applyBtn">
-          	<button>지원하기</button>
+          	<button class="apply-btn">지원하기</button>
           </div>
+          </c:if>
         </div>
       </div>
     </div>

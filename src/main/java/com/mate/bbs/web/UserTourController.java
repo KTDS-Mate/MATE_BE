@@ -112,7 +112,7 @@ public class UserTourController {
 			@SessionAttribute(value = "_LOGIN_USER_", required = false) UserVO loginUserVO) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("userTourWriteVO", userTourWriteVO);
-			return "usertour/Tourist_TourInsert";
+			return "usertour//tourist_request_insert";
 		}
 		userTourWriteVO.setAthrId(loginUserVO.getUsrLgnId());
 
