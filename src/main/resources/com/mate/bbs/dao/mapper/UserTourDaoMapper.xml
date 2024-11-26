@@ -171,7 +171,7 @@
 		, TO_DATE(#{usrTrStDt}, 'YYYY-MM-DD HH24:MI')
 		, #{usrTrPrps}
 		, #{usrTrMp}
-		, #{usrTrGdHrPrc}
+		, NULL
 		, #{usrTrNp}
 		, 'N'
 		, SYSDATE
