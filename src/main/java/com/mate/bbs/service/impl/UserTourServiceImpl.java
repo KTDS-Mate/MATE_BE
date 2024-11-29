@@ -10,12 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mate.bbs.dao.UserTourDao;
 import com.mate.bbs.service.UserTourService;
 import com.mate.bbs.vo.SearchUserTourVO;
+import com.mate.bbs.vo.UserTourImgVO;
 import com.mate.bbs.vo.UserTourListVO;
 import com.mate.bbs.vo.UserTourModifyVO;
 import com.mate.bbs.vo.UserTourSchdlVO;
 import com.mate.bbs.vo.UserTourVO;
 import com.mate.bbs.vo.UserTourWriteVO;
 import com.mate.common.beans.FileHandler;
+import com.mate.common.vo.StoreResultVO;
 import com.mate.payment.dao.PaymentDao;
 import com.mate.payment.vo.WritePaymentVO;
 
@@ -74,6 +76,22 @@ public class UserTourServiceImpl implements UserTourService{
 				userTourSchdlVO.setUsrTrPstId(userTourWriteVO.getUsrTrPstId());
 				// listSize만큼 INSERT문 반복
 				this.userTourDao.insertUserTourScheduls(userTourSchdlVO);
+			}
+		}
+		
+		List<UserTourImgVO> userTourImgList = userTourWriteVO.getUserTourImgList();
+
+		if (userTourImgList != null && !userTourImgList.isEmpty()) {
+			for (UserTourImgVO userTourImgVO : userTourImgList) {
+				userTourImgVO.setUsrTrPstId( userTourWriteVO.getUsrTrPstId() );
+				StoreResultVO userTourImgResult = this.fileHandler.storeFile(userTourImgVO.getUserTourImgFile());
+				
+				if (userTourImgResult != null) {
+					userTourImgVO.setUsrTrRqOriginFileName( userTourImgResult.getOriginFileName() );
+					userTourImgVO.setUsrTrRqImgIdUrl( userTourImgResult.getObfuscatedFileName() );
+				}
+				
+				this.userTourDao.insertNewUserTourImgs(userTourImgVO);
 			}
 		}
 		
