@@ -370,6 +370,7 @@
 		 (USR_TR_RQ_IMG_ID
 		, USR_TR_PST_ID
 		, USR_TR_RQ_IMG_ID_URL
+		, USR_TR_RQ_ORIGIN_FILE_NAME
 		, USR_TR_RSTR_DT
 		, USR_TR_DLT_DT
 		, GD_TR_IMG_IS_DLT)
@@ -377,6 +378,7 @@
 		 ('UG-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_USR_TR_RQST_IMG_PK.NEXTVAL, 6, 0)
 		, #{usrTrPstId}
 		, #{usrTrRqImgIdUrl}
+		, #{usrTrRqOriginFileName}
 		, SYSDATE
 		, NULL
 		, 'N')
