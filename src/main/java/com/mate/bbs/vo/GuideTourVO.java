@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.mate.common.vo.CitiesVO;
 import com.mate.common.vo.CountriesVO;
-import com.mate.mypage.vo.GuideReviewVO;
 import com.mate.user.vo.UserVO;
 
 public class GuideTourVO {
