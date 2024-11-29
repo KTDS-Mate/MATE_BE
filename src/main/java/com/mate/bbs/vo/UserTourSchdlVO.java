@@ -1,5 +1,7 @@
 package com.mate.bbs.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class UserTourSchdlVO {
 
 	/**
@@ -18,6 +20,11 @@ public class UserTourSchdlVO {
 	 * 투어 일정 내용
 	 */
 	private String trRqst;
+	
+	/**
+	 * 일정 진행 시간
+	 */
+	private String trTm;
 	
 	public String getTrSchdlId() {
 		return trSchdlId;
@@ -42,6 +49,12 @@ public class UserTourSchdlVO {
 	}
 	public void setTrRqst(String trRqst) {
 		this.trRqst = trRqst;
+	}
+	public String getTrTm() {
+		return trTm;
+	}
+	public void setTrTm(String trTm) {
+		this.trTm = trTm;
 	}
 	
 }

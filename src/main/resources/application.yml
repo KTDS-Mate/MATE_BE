@@ -33,7 +33,7 @@ spring:
       max-request-size: 10485760
 app:
   multipart:
-    base-dir: /Users/moomin/Downloads/uploadfiles
+    base-dir: C:\matepic
     obfuscation:
       enable: true
       hide-ext:
@@ -53,6 +53,7 @@ app:
         /user/regist/**,
         /usertour/list,
         /usertour/view,
+        /usertour/view/request,
         /guidetour/list,
         /guidetour/info,
         /guidetour/random,

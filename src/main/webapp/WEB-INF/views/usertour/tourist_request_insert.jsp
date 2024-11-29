@@ -6,20 +6,17 @@ uri="http://www.springframework.org/tags/form" %>
   <head>
     <meta charset="UTF-8" />
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
-    <title>여행자 투어 등록</title>
+    <title>해주세요 작성</title>
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link
       rel="stylesheet"
       type="text/css"
-      href="/css/usertour/Tourist_TourInsert.css" />
+      href="/css/usertour/tourist_request_insert.css" />
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
-	<script src="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.js"></script>
-	<link href="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css" rel="stylesheet">
     <script
       type="text/javascript"
-      src="/js/usertour/usertourinsert.js"></script>
+      src="/js/usertour/tourist_request_insert.js"></script>
   </head>
   <body>
     <div class="grid">
@@ -32,7 +29,7 @@ uri="http://www.springframework.org/tags/form" %>
           <div class="insert-main">
             <div class="flex-main-img">
               <div>
-                <h1>투어 요청 작성</h1>
+                <h1>해주세요 작성</h1>
               </div>
               <img class="main-img" alt="메인 이미지" src="/img/tourboard/예시여행이미지.png" />
             </div>
@@ -97,40 +94,21 @@ uri="http://www.springframework.org/tags/form" %>
               </div>
             </div>
             <div class="all-select-div">
-              <div class="select-div"><span class="red">*</span> 투어 목적</div>
+              <div class="select-div"><span class="red">*</span> 투어 요구 사항</div>
               <form:errors path="usrTrPrps" element="div" cssClass="errors" />
               <textarea tabindex="9" name="usrTrPrps">${userTourWriteVO.usrTrPrps}</textarea>
             </div>
             <div class="all-select-div">
-              <div class="select-div">
-                투어 희망 정보<span class="font-we"
-                  >원하는 일정을 추가해주세요.</span
-                ><span class="font-we">&lt;최대 10개까지 넣을 수 있습니다.&gt;</span>
-              </div>
-              <div class="hope-btn">
-                <input tabindex="10" id="plus" type="button" value="일정 추가하기" />
-                <input tabindex="11" id="m-btn" type="button" value="일정 삭제하기" />
-              </div>
-              <div class="loc-inf">
-                	<div class="locs">
-                		<div>
-                			<label>시간</label>
-                			<input id="hope-time" name="userTourSchdlList[0].trTm" type="datetime-local" />
-                		</div>
-						<div>
-							<label for="hope-location">장소</label>
-							<input id="hope-location" name="userTourSchdlList[0].trLctns" type="text" required="required" />
-						</div>
-						<div>
-							<label for="hope-info">일정</label>
-							<textarea id="hope-info" name="userTourSchdlList[0].trRqst" type="text" required="required"></textarea>
-						</div>
-					</div>
-              </div>
+	            <div>
+	                <div class="select-div">
+	                  <span class="red">*</span> 접선 장소 선택
+	                </div>
+	                <div id="googleMap">여기에 구글맵</div>
+	              </div>
             </div>
             <div class="all-select-div">
               <div class="select-div">
-                <span class="red">*</span> 투어 세부 요구사항
+                <span class="red">*</span> 만날 때 요구 사항
               </div>
               <form:errors path="usrTrRqDtl" element="div" cssClass="errors" />
               <textarea tabindex="12" name="usrTrRqDtl">
@@ -138,27 +116,7 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
               >
             </div>
             <div class="all-select-div">
-              <div>
-                <div class="select-div">투어 이미지 추가<span class="font-we"
-                  >&lt;img, png, svc 파일만 넣을 수 있습니다.&gt;</span
-                ><span class="font-we">&lt;최대 10개까지 넣을 수 있습니다.&gt;</span></div>
-                <input id="add-file" type="button" value="파일 추가" />
-                <input id="del-file" type="button" value="파일 삭제" />
-                <div class="file-list">
-                	<!-- Jquery를 이용해 파일 리스트가 추가되는 곳 -->
-                </div>
-              </div>
-            </div>
-            <div class="all-select-div">
-	            <div>
-	                <div class="select-div">
-	                  <span class="red">*</span> 집결 장소 선택
-	                </div>
-	                <div id="googleMap"></div>
-	              </div>
-            </div>
-            <div class="all-select-div">
-              <div class="select-div">원하는 가이드</div>
+              <div class="select-div">희망하는 가이드</div>
               <div class="flex-want-gd-div">
                 <div>
                   <label for="gender">성별</label>
@@ -183,23 +141,6 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
                 <textarea tabindex="17" name="gdWntRq">${userTourWriteVO.gdWntRq}</textarea>
               </div>
               <div class="price-submit-btn">
-                <div class="select-div">
-                  <span class="red">*</span> 고용 금액
-                </div>
-                <form:errors
-                  path="usrTrGdHrPrc"
-                  element="div"
-                  cssClass="errors" />
-                <div class="price-flex-div">
-                  <input
-                  	tabindex="18"
-                    id="trPrc"
-                    name="usrTrGdHrPrc"
-                    type="number"
-                    value="${userTourWriteVO.usrTrGdHrPrc}"
-                    step="0.1" />
-                  <div>$</div>
-                </div>
                 <div class="right-align">
                   <input tabindex="19" type="submit" value="투어 등록" />
                 </div>

@@ -127,6 +127,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
             </div>
             <c:if test="${not empty sessionScope._LOGIN_USER_}">
           		<div>
+            	<a class="insert-tour-btn" href="/usertour/insert/request">해주세요</a>
             	<a class="insert-tour-btn" href="/usertour/insert">투어 등록</a>
             	</div>
           	</c:if>
@@ -142,7 +143,8 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                   <input
                     class="hide"
                     type="hidden"
-                    data-pst-id="${userTourVO.usrTrPstId}" />
+                    data-pst-id="${userTourVO.usrTrPstId}"
+                    data-divide="${userTourVO.usrTrDivide}" />
                   <c:choose>
                     <c:when
                       test="${not empty userTourVO.userTourImgList && not empty userTourVO.userTourImgList[0].usrTrRqImgIdUrl}">
@@ -187,7 +189,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                         ${userTourVO.countriesVO.countryName}
                       </div>
                       <div>
-                        투어일 : ${userTourVO.usrTrStDt}
+                        투어일 : ${userTourVO.usrTrStDt} ~ ${userTourVO.usrTrEdDt}
                       </div>
                       <div class="tour-time">
                           <img class="clock-img" alt="시계" src="/img/tourboard/ClockImage.png">
@@ -197,9 +199,11 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                   </div>
                   </div>
                   <div class="tour-cost-fee">
-                  	<div class="dollar">
-                    	<h2>$${userTourVO.usrTrGdHrPrc}</h2>
-                    </div>
+                  	<c:if test="${userTourVO.usrTrDivide eq 'SCHEDULE'}">
+	                  	<div class="dollar">
+	                    	<h2>$${userTourVO.usrTrGdHrPrc}</h2>
+	                    </div>
+                  	</c:if>
                      <p><span class="end">마감 ${userTourVO.deadline}일전</span></p>
                   </div>
                 </div>

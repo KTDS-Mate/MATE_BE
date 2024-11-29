@@ -128,14 +128,6 @@ pageEncoding="UTF-8" %>
                     <p>나이 : ${userTourVO.gdAge}대</p>
                   </c:otherwise>
                 </c:choose>
-                <c:choose>
-                  <c:when test="${userTourVO.gdCrr eq 0}">
-                    <p>경력 : 상관없음</p>
-                  </c:when>
-                  <c:otherwise>
-                    <p>경력 : ${userTourVO.gdCrr}년 차</p>
-                  </c:otherwise>
-                </c:choose>
                 <p>${userTourVO.gdWntRq}</p>
               </div>
             </div>
@@ -202,7 +194,7 @@ pageEncoding="UTF-8" %>
 			                		   	  <div class="list-item">
 			                		   	  	<span class="background-num">
 			                		   	  		${index.index + 1}</span>
-			                		   	  		${userTourSchdlList.trLctns}
+			                		   	  		(${userTourSchdlList.trTm}) ${userTourSchdlList.trLctns}
 			                		   	  </div>
 			                		   	  <div class="border-left">${userTourSchdlList.trRqst}</div>
 			                		   </li>

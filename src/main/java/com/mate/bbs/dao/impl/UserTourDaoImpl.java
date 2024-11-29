@@ -32,6 +32,11 @@ public class UserTourDaoImpl extends SqlSessionDaoSupport implements UserTourDao
 	}
 
 	@Override
+	public int insertNewRequestTour(UserTourWriteVO userTourWriteVO) {
+		return this.getSqlSession().insert(NAMESPACE + ".insertNewRequestTour", userTourWriteVO);
+	}
+	
+	@Override
 	public UserTourVO selectOneUserTour(String usrTrPstId) {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectOneUserTour", usrTrPstId);
 	}
@@ -103,5 +108,15 @@ public class UserTourDaoImpl extends SqlSessionDaoSupport implements UserTourDao
 	@Override
 	public int deleteUserTourSchdls(String usrTrPstId) {
 		return this.getSqlSession().delete(NAMESPACE + ".deleteUserTourSchdls", usrTrPstId);
+	}
+	
+	@Override
+	public String selectAttachMultyStartHour(UserTourWriteVO userTourWriteVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachMultyStartHour", userTourWriteVO);
+	}
+	
+	@Override
+	public String selectAttachMultyEndHour(UserTourWriteVO userTourWriteVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachMultyEndHour", userTourWriteVO);
 	}
 }
