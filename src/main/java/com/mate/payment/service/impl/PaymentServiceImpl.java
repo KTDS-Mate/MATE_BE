@@ -14,7 +14,7 @@ import com.mate.payment.vo.PaymentVO;
 import com.mate.payment.vo.SearchPaymentVO;
 
 @Service
-public class PaymentServiceImpl implements PaymentService{
+public class PaymentServiceImpl implements PaymentService {
 
 	@Autowired
 	private PaymentDao paymentDao;

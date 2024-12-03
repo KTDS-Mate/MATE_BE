@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.mate.bbs.service.TourApplyService;
 import com.mate.bbs.service.UserTourService;
 import com.mate.bbs.vo.SearchUserTourVO;
+import com.mate.bbs.vo.TourApplyVO;
 import com.mate.bbs.vo.UserTourListVO;
 import com.mate.bbs.vo.UserTourModifyVO;
 import com.mate.bbs.vo.UserTourVO;
@@ -25,6 +27,9 @@ public class UserTourController {
 
 	@Autowired
 	private UserTourService userTourService;
+	
+	@Autowired
+	private TourApplyService tourApplyService;
 
 	/** 클라이언트가 등록한 가이드 구인 게시글 목록 조회 페이지 **/
 	@GetMapping("/usertour/list")
@@ -127,5 +132,41 @@ public class UserTourController {
 		model.addAttribute("userTourVO", userTourVO);
 		return "usertour/request_view";
 	}
+	
+	@GetMapping("/tourApply/list")
+	public String viewTourApplyList(
+//			@RequestParam String usrTrPstId,
+			Model model) {
+		return "usertour/tour_apply_list";
+	}
 
+	@GetMapping("/tourApply/detail")
+	public String viewTourApply(@RequestParam String gdApplyId, Model model) {
+		TourApplyVO tourApplyVO = this.tourApplyService.getOneTourApply(gdApplyId);
+		model.addAttribute("tourApplyVO", tourApplyVO);
+		model.addAttribute("userTourVO", tourApplyVO.getUserTourVO());
+		model.addAttribute("guideVO", tourApplyVO.getGuideVO());
+		return "usertour/tour_apllyInfo";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

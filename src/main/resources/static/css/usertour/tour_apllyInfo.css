@@ -1,0 +1,1133 @@
+.container {
+  width: 62.5rem;
+  /* height: auto; */
+  margin: 0 auto;
+}
+
+.title {
+    display: flex;
+    width: 58.2rem;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+.title h1 {
+	width: 90%;
+}
+
+.wish-button {
+	width: 42px;
+	height: 40px;
+    margin-right: 2rem;
+	background-image: url("/img/tourboard/WishButton.png");
+}
+
+.wish-button:hover {
+	width: 46px;
+	height: 45px;
+	background-image: url("/img/tourboard/CheckedWishButton.png");
+}
+
+
+.firstLayer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.maxNp {
+	display: flex;
+}
+
+.tourPicArea {
+  width: 36.3rem;
+  height: 17.1rem;
+  border: 2px solid #000;
+  border-radius: 1.25rem;
+  display: flex;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.bigPicArea {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 1.1rem;
+  border-bottom-left-radius: 1.1rem;
+  border-right: 2px solid #000;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.bigPicArea > img {
+  width: 100%;
+  height: 100%;
+}
+
+.smallPicAreas {
+  display: flex;
+  flex-direction: column;
+}
+
+.smallPicArea {
+  margin: 0;
+  padding: 0;
+  border-top-right-radius: 1.1rem;
+  width: 8.6rem;
+  height: 5.7rem;
+  cursor: pointer;
+  border-bottom: 2px solid #000;
+}
+
+.brs {
+  border-top-right-radius: 1.1rem;
+  width: 8.6rem;
+  height: 5.7rem;
+}
+
+.smallPicArea > img {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.morePicArea {
+  width: 100%;
+  height: 100%;
+  background-color: #cccaca;
+  display: flex;
+  border-bottom-right-radius: 1.1rem;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.morePicArea > img {
+  width: 3.75rem;
+  height: 4.6875rem;
+}
+
+.priceArea {
+  width: 18.2rem;
+  border: 2px solid #ffeedb;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.priceTitleArea {
+  width: 18.2rem;
+  height: 3.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
+}
+
+.priceTitleArea > span {
+  font-size: 1.15rem;
+  font-weight: bold;
+}
+
+.priceDetailArea {
+  width: 18.2rem;
+  min-height: 13.2rem;
+  max-height: auto;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #ffeedb;
+  border-bottom-left-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+}
+
+.adultPrice {
+  width: 15.625rem;
+  height: 3.75rem;
+  /* background-color: #ffe6cc; */
+  border: 2px solid #ffe6cc;
+  border-radius: 1.25rem;
+  margin: 0.5rem 0 0.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.childPrice {
+  width: 15.625rem;
+  height: 2.92rem;
+  /* background-color: #ffe6cc; */
+  border: 2px solid #ffe6cc;
+  border-radius: 1.25rem;
+  margin: 0.5rem 0 0.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.price {
+  width: 15.625rem;
+  height: 3.3rem;
+  /* background-color: #ffe6cc; */
+  border: 2px solid #ffe6cc;
+  border-radius: 1.25rem;
+  margin: 0.5rem 0 0.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hour {
+  width: 15.625rem;
+  height: 3.3rem;
+  /* background-color: #ffe6cc; */
+  border: 2px solid #ffe6cc;
+  border-radius: 1.25rem;
+  margin: 0.5rem 0 0.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reserveButton {
+  width: 8.67rem;
+  height: 2.34375rem;
+  margin: 0.5rem 0 0.5rem 0;
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.price > span,
+.hour > span,
+.adultPrice > span,
+.childPrice > span {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.reserveButton > span {
+  font-size: 1.3rem;
+}
+
+.secondLayer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.tourSummaryArea {
+  width: 26.875rem;
+  height: 14.64rem;
+  margin: 2rem 0 0 0;
+  border: 2px solid #ffeedb;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.summaryTitleArea {
+  width: 26.875rem;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 0 2rem; */
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
+}
+
+.summaryTitleArea > span {
+  font-size: 1.15rem;
+  font-weight: bold;
+  margin: 0 0 0 2rem;
+}
+
+.summaryDetailArea {
+  width: 24.775rem;
+  min-height: 9.5rem;
+  max-height: auto;
+  margin: 0 auto;
+  display: flex;
+  padding: 1rem;
+  align-items: left;
+  flex-direction: column;
+  border-bottom-left-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+}
+
+.summaryDetailArea > h1 {
+  font-size: 1rem;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  /*몇 번째 줄부터 ...으로 표시할 것인지 설정 가능*/
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  margin: 0.7rem 0 0.5rem 0rem;
+}
+
+.summaryDetailArea > h4 {
+	margin: 0.2rem;
+}
+.summaryDetailArea > h5 {
+	margin: 0.2rem;
+}
+
+.guideProfileArea {
+  width: 26.875rem;
+  height: 14.64rem;
+  margin: 2rem 0 0 0;
+  border: 2px solid #ffeedb;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.profileTitleArea {
+  width: 26.875rem;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 0 2rem; */
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
+}
+
+.profileTitleArea > span {
+  font-size: 1.15rem;
+  font-weight: bold;
+  margin: 0 0 0 2rem;
+}
+
+.profileDetailArea {
+  width: 26.875rem;
+  min-height: 11.64rem;
+  max-height: auto;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  border-bottom-left-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+}
+
+.profileDetailArea > img {
+  width: 10rem;
+  height: 10.15625rem;
+  /* margin: 0 4rem 0 0; */
+  border: 2px solid #ffeedb;
+  border-radius: 1.25rem;
+  object-fit: cover;
+}
+
+.profileSummaryArea {
+  width: 12rem;
+  /* height: 10.15625rem; */
+
+  margin: 0 2rem 0 0;
+}
+
+.profileSummaryArea > h1 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 0 0.5rem 1rem;
+}
+
+.thirdLayer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.tourOfferArea {
+  width: 58.2rem;
+  margin: 2rem 0 0 0;
+  border: 2px solid #ffeedb;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.offerTitleArea {
+  width: 58.2rem;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 0 2rem; */
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
+}
+
+.offerTitleArea > span {
+  font-size: 1.15rem;
+  font-weight: bold;
+  margin: 0 0 0 2rem;
+}
+
+.offerDetailArea {
+  width: 58.2rem;
+  min-height: 11.64rem;
+  max-height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  flex-direction: column;
+  border: 1px solid #ffeedb;
+  border-bottom-left-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+}
+
+.offerDetailArea > h1 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 0 0.5rem 1rem;
+}
+
+.fourthLayer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.rallyPointArea {
+  width: 58.2rem;
+  height: auto;
+  margin: 2rem 0 0 0;
+  border: 2px solid #ffeedb;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.rallyPointTitleArea {
+  width: 58.2rem;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 0 2rem; */
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
+}
+
+.rallyPointTitleArea > span {
+  font-size: 1.15rem;
+  font-weight: bold;
+  margin: 0 0 0 2rem;
+}
+
+.rallyPointDetailArea {
+  width: 58.2rem;
+  min-height: 23.63rem;
+  max-height: auto;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  flex-direction: row;
+  border: 1px solid #ffeedb;
+  border-bottom-left-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+}
+
+.summaryArea {
+  margin: 2rem 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  flex-direction: row;
+}
+
+.rallyPointSummaryArea > h1 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 0 0.5rem 1rem;
+}
+
+.mapApiArea {
+  width: 27.7rem;
+  height: 23.4375rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.mapApiArea > span {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 2rem 0 2rem 0;
+}
+
+.apiArea {
+  width: 27.7rem;
+  height: 15.625rem;
+  margin: -1rem;
+  background-color: #fff;
+  border: 2px solid #ffeedb;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.fifthLayer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.tourInfoArea {
+  width: 58.2rem;
+  margin: 2rem 0 0 0;
+  border: 2px solid #ffeedb;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.tourInfoTitleArea {
+  width: 58.2rem;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 0 2rem; */
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
+}
+
+.tourInfoTitleArea > span {
+  font-size: 1.15rem;
+  font-weight: bold;
+  margin: 0 0 0 2rem;
+}
+
+.tourInfoDetailArea {
+  width: 58.2rem;
+  min-height: 12.625rem;
+  max-height: auto;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  flex-direction: column;
+  border: 1px solid #ffeedb;
+  border-bottom-left-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+}
+
+.tourInfoSummaryArea > h1 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 0 0.5rem 1rem;
+}
+
+.sixthLayer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.touristPicArea {
+  width: 58.2rem;
+  height: auto;
+  margin: 2rem 0 0 0;
+  border: 2px solid #ffeedb;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.touristPicTitleArea {
+  width: 58.2rem;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 0 2rem; */
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
+}
+
+.touristPicTitleArea > span {
+  font-size: 1.15rem;
+  font-weight: bold;
+  margin: 0 0 0 2rem;
+}
+
+.touristPicDetailArea {
+  width: 58.2rem;
+  min-height: 19.53rem;
+  max-height: auto;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #ffeedb;
+  border-bottom-left-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+}
+
+.touristPicturesArea {
+  width: 53.75rem;
+  height: 14.6875rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  flex-direction: row;
+  border: 2px solid #000;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.touristBigPicArea {
+  width: 26.875rem;
+  height: 14.6875rem;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.touristBigPicArea > img {
+  width: 26.875rem;
+  height: 14.6875rem;
+  object-fit: cover;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.touristSmallPicAreas {
+  width: 27rem;
+  height: 15rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.touristSmallPicAreas > .touristSmallPicArea:nth-child(2) {
+  border-top-right-radius: 1rem;
+  overflow: hidden;
+}
+
+.touristSmallPicArea {
+  width: 13.28rem;
+  height: 7.25rem;
+  margin-bottom: -0.3rem;
+  background-color: #fff;
+  border: 1px solid #000;
+}
+
+.touristSmallPicArea > img {
+  width: 13.28rem;
+  height: 7.25rem;
+  overflow: hidden;
+}
+
+.touristMorePicArea {
+  width: 13.28rem;
+  height: 7.22rem;
+  display: flex;
+  margin-bottom: 0.3rem;
+  justify-content: center;
+  align-items: center;
+  background-color: #a29a9a;
+  border: 1px solid #000;
+  border-bottom-right-radius: 1rem;
+}
+
+.touristMorePicArea > h1 {
+  font-size: 3rem;
+  color: #fff;
+  font-weight: bold;
+}
+
+.seventhLayer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+}
+
+.tourReviewArea {
+  width: 58.2rem;
+  height: auto;
+  margin: 2rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #ffeedb;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.tourReviewTitleArea {
+  width: 58.2rem;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 0 2rem; */
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
+}
+
+.tourReviewTitleArea > span {
+  font-size: 1.15rem;
+  font-weight: bold;
+  margin: 0 0 0 2rem;
+}
+
+.tourReviewDetailArea {
+  width: 58.2rem;
+  min-height: 35.15rem;
+  max-height: auto;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #ffeedb;
+  border-bottom-left-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+
+  overflow: hidden;
+
+  /* 글자 드래그 막기 */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.tourReviewRatingArea {
+  height: 15.15rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.eighthLayer {
+  display: flex;
+  margin: 0 0 2rem 0;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.guideReviewArea {
+  width: 58.2rem;
+  height: auto;
+  margin: 2rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #ffeedb;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.guideReviewTitleArea {
+  width: 58.2rem;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 0 2rem; */
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
+}
+
+.guideReviewTitleArea > span {
+  font-size: 1.15rem;
+  font-weight: bold;
+  margin: 0 0 0 2rem;
+}
+
+.guideReviewDetailArea {
+  width: 58.2rem;
+  min-height: 35.15rem;
+  max-height: auto;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #ffeedb;
+  border-bottom-left-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+
+  overflow: hidden;
+
+  /* 글자 드래그 막기 */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.guideReviewRatingArea {
+  height: 15.15rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.titleButtons {
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.showDetail {
+  margin: 0 2rem 0 0;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #868686;
+  cursor: pointer;
+}
+
+.titleButtons > .writeReview {
+  margin: 0 1rem 0 0;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #868686;
+  cursor: pointer;
+}
+
+.titleButtons > .showDetail {
+  margin: 0 2rem 0 0;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #868686;
+  cursor: pointer;
+}
+
+.averageRatingArea {
+  width: auto;
+  height: 2.6855rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 2rem 0 2rem;
+}
+
+.bigStar {
+  width: 3rem;
+  height: 3rem;
+  margin: 0.8rem 1rem 0 0;
+}
+
+.star {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.averageRating {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 1.2rem 0 0 0;
+}
+
+.ratingArea {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 1rem 0 0 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.ratingOneArea,
+.ratingTwoArea,
+.ratingThreeArea,
+.ratingFourArea,
+.ratingFiveArea {
+  display: flex;
+  height: 2rem;
+  margin: 0;
+  align-items: center;
+}
+
+meter.ratingGage {
+  width: 18rem;
+  height: 1.5rem;
+}
+
+meter.ratingGage::-webkit-meter-bar {
+  background: #ffffff; /* 미터 바 배경색 */
+  border-radius: 8px; /* 테두리 둥글게 */
+}
+
+/* 게이지의 최적 영역 스타일 */
+meter.ratingGage::-webkit-meter-optimum-value {
+  background: #ffe812; /* 색상 변경 */
+  border-radius: 8px; /* 게이지 끝을 둥글게 */
+}
+
+/* 게이지 높이 맞추기 */
+meter.ratingGage::-webkit-meter-suboptimum-value,
+meter.ratingGage::-webkit-meter-even-less-good-value {
+  height: 10%; /* 세로폭 맞추기 */
+}
+
+.reviewsArea {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+.reviewCarouselArea {
+  display: flex;
+  width: fit-content;
+  flex-direction: row;
+  align-items: center;
+}
+
+.reviewCarousel {
+  display: flex;
+  width: 27rem;
+  flex-direction: row;
+  align-items: center;
+  transform: translateX(0); /* 초기 위치 설정 */
+}
+
+.reviewCarouselTransition {
+  transition: 0.6s ease-out;
+}
+
+.reviewForwardButton,
+.reviewBackwardButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4rem;
+  height: 4rem;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.reviewForwardButton {
+  right: calc(100% + 2rem);
+}
+
+.reviewBackwardButton {
+  left: calc(100% + 2rem);
+}
+
+.reviewArea {
+  position: relative;
+  width: 27rem;
+  height: auto;
+  margin: 0.5rem;
+  background-color: #fff;
+  border: 2px solid #ffeedb;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  z-index: 1;
+}
+
+.someoneReviewFirstArea {
+  display: flex;
+  margin: 2rem 0 0 2rem;
+}
+
+.starTwo {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.someoneReviewTitleArea {
+  margin: 0 0 0 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.someoneReviewSecondArea {
+  display: flex;
+  margin: 1rem 0 0 2rem;
+}
+
+.reviewWriterArea {
+  font-size: 1rem;
+  font-weight: bold;
+  color: rgb(93, 93, 255);
+}
+
+.reviewWritingDate {
+  margin: 0 0 0 3rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.reviewTextArea {
+  width: 27rem;
+  height: 10.15rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reviewTextArea > span {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.rating {
+  width: 1.25rem;
+  margin: 0rem 1rem;
+}
+
+.ratingCount {
+  margin: 0.2rem 0 0 0;
+  padding: 0 0 0 1rem;
+}
+
+.guideReviewsArea {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+.guideReviewCarouselArea {
+  display: flex;
+  width: fit-content;
+  flex-direction: row;
+  align-items: center;
+}
+
+.guideReviewCarousel {
+  display: flex;
+  width: 27rem;
+  flex-direction: row;
+  align-items: center;
+  transform: translateX(0); /* 초기 위치 설정 */
+}
+
+.guideReviewOneArea {
+  position: relative;
+  width: 27rem;
+  height: auto;
+  margin: 0.5rem;
+  background-color: #fff;
+  border: 2px solid #ffeedb;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  z-index: 1;
+}
+
+.guideReviewForwardButton,
+.guideReviewBackwardButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4rem;
+  height: 4rem;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.guideReviewForwardButton {
+  right: calc(100% + 2rem);
+}
+
+.guideReviewBackwardButton {
+  left: calc(100% + 2rem);
+}
+
+.moreReviewListButtonArea {
+  position: relative;
+  width: 27rem;
+  height: 15.6rem;
+  margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border: 2px solid #ffeedb;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  z-index: 1;
+}
+
+.moreReviewButton {
+  width: 5rem;
+  height: 5rem;
+  margin: 3rem 0 0 0;
+}
+
+.moreReviewTextArea {
+  width: 27rem;
+  height: 5.4rem;
+  margin: 2rem 0 0 0;
+  text-align: center;
+}
+
+.moreReviewTextArea > span {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+
+.hope-info {
+  border: 2px solid #f5f6f7;
+  border-radius: 20px;
+  width: 75rem;
+}
+.hope-info-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.plus-inf {
+	display: grid;
+	grid-template-columns: 0.8fr 1fr; 
+	grid-column-gap: 1rem;
+    padding-right: 1rem;
+}
+
+.plus-inf li {
+	margin-top: 1rem;
+	font-weight: bold;
+	font-size: large;
+	color : #000;
+}
+
+.hope-info-list li {
+  display: inline-block;
+}
+
+.hope-info-list li p {
+  margin-top: 0;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.background-num {
+  display: flex;
+  background-color: #ddd;
+  color: #333;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+  font-weight: bold;
+}
+
+.border-left {
+  border-left: 2px solid #333;
+  margin-left: 1.2rem;
+  padding: 0.5rem 0rem 0.5rem 2rem;
+}
