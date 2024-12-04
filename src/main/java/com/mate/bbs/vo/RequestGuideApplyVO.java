@@ -13,7 +13,7 @@ public class RequestGuideApplyVO {
 	/** 게시글의 아이디. Pk **/
 	private String usrTrPstId;
 	/** 가이드가 제안한 총 투어 금액 **/
-	private String gdApplyPrc;
+	private int gdApplyPrc;
 	/** 가이드가 작성한 일시 **/
 	private String gdApplyRstrDt;
 	/** 가이드가 투어에 제안한 포스트의 삭제여부 **/
@@ -26,7 +26,10 @@ public class RequestGuideApplyVO {
 	private String trGdApplyDtl;
 	/** 가이드가 투어에 제안한 포스트의 미팅장소 **/
 	private String trGdApplyMp;
-
+	/** 가이드가 지원한 게시글 상태 (WAITING: 대기, ACCEPT: 수락, REFUSAL: 거절 ) **/
+	private String gdApplyStt;
+	
+	
 	private List<UserTourSchdlVO> userTourSchdlList;
 	
 	private UserVO userVO;
@@ -55,11 +58,11 @@ public class RequestGuideApplyVO {
 		this.usrTrPstId = usrTrPstId;
 	}
 
-	public String getGdApplyPrc() {
+	public int getGdApplyPrc() {
 		return gdApplyPrc;
 	}
 
-	public void setGdApplyPrc(String gdApplyPrc) {
+	public void setGdApplyPrc(int gdApplyPrc) {
 		this.gdApplyPrc = gdApplyPrc;
 	}
 
@@ -109,6 +112,14 @@ public class RequestGuideApplyVO {
 
 	public void setTrGdApplyMp(String trGdApplyMp) {
 		this.trGdApplyMp = trGdApplyMp;
+	}
+
+	public String getGdApplyStt() {
+		return gdApplyStt;
+	}
+
+	public void setGdApplyStt(String gdApplyStt) {
+		this.gdApplyStt = gdApplyStt;
 	}
 
 	public List<UserTourSchdlVO> getUserTourSchdlList() {
