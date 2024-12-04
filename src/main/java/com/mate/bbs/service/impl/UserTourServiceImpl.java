@@ -40,8 +40,10 @@ public class UserTourServiceImpl implements UserTourService{
 	@Override
 	public boolean createNewUserTour(UserTourWriteVO userTourWriteVO) {
 		
+		// 당일치기 체크박스 값 가져오기(체크되면 true 아니면 null)
 		boolean isChecked = userTourWriteVO.getIsChecked();
 		
+		// 체크가 되어있다면? => 당일치기
 		if (isChecked) {
 			// jsp에서 받아온 날짜 + 시작 시 + 시작 분을 이어붙이는 쿼리(포멧 맞추기)
 			String startDt = this.userTourDao.selectAttachStartHour(userTourWriteVO);
@@ -51,6 +53,7 @@ public class UserTourServiceImpl implements UserTourService{
 			userTourWriteVO.setUsrTrStDt(startDt);
 			userTourWriteVO.setUsrTrEdDt(endDt);
 		}
+		// 아니면 다중
 		else {
 			String startDt = this.userTourDao.selectAttachMultyStartHour(userTourWriteVO);
 			String endDt = this.userTourDao.selectAttachMultyEndHour(userTourWriteVO);
