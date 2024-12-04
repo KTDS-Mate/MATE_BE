@@ -49,7 +49,7 @@ public class UserTourController {
 		model.addAttribute("userTourVO", userTourVO);
 		return "usertour/GuideRecruitmentPage";
 	}
-
+	
 	/** 클라이언트가 등록한 가이드 구인 게시글 작성 페이지 **/
 	@GetMapping("/usertour/insert")
 	public String viewUserTourInsertPage() {
