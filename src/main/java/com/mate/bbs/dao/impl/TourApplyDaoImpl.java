@@ -24,5 +24,10 @@ public class TourApplyDaoImpl extends SqlSessionDaoSupport implements TourApplyD
 		return this.getSqlSession().selectOne("selectOneTourApply",gdApplyId);
 	}
 
+	@Override
+	public boolean isAlreadyAccept(String gdApplyId) {
+		int result = this.getSqlSession().selectOne("isAlreadyAccept", gdApplyId);
+		return result > 0;
+	}
 	
 }

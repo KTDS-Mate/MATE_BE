@@ -141,13 +141,22 @@ public class UserTourController {
 		return "usertour/tour_apply_list";
 	}
 
-	@GetMapping("/tourApply/detail")
+	@GetMapping("/mypage/mytour/tr-mytour/tourApply/detail")
 	public String viewTourApply(@RequestParam String gdApplyId, Model model) {
 		TourApplyVO tourApplyVO = this.tourApplyService.getOneTourApply(gdApplyId);
 		model.addAttribute("tourApplyVO", tourApplyVO);
 		model.addAttribute("userTourVO", tourApplyVO.getUserTourVO());
 		model.addAttribute("guideVO", tourApplyVO.getGuideVO());
 		return "usertour/tour_apllyInfo";
+	}
+	@PostMapping("tourApply/accept")
+	public String acceptApply( @RequestParam String gdApplyId,
+			@SessionAttribute(value = "_LOGIN_USER_", required = false) UserVO loginUserVO) {
+		
+		
+		
+		
+		return "redirect:/mypage";
 	}
 	
 	

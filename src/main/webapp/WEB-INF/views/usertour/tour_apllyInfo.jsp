@@ -132,7 +132,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                             <span class="background-num">
                               ${index.index + 1}
                             </span>
-                            ${guideTourScheduleInfoVO.trLctns}
+                            (${guideTourScheduleInfoVO.trTm}) ${guideTourScheduleInfoVO.trLctns}
                           </div>
                           <div class="border-left">
                             ${guideTourScheduleInfoVO.trRqst}

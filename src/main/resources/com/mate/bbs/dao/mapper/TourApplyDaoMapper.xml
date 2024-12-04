@@ -25,8 +25,7 @@
 		</collection>
  	</resultMap>
  	
- 	
- 	
+
  	
  	<select id="selectOneTourApply"
  			parameterType="String"
@@ -60,7 +59,7 @@
 			 , TS.USR_TR_PST_ID
 			 , TS.TR_LCTNS
 			 , TS.TR_RQST
-			 , TS.TR_TM
+			 , TO_CHAR(TS.TR_TM, 'YY-MM-DD HH24:MI') AS TR_TM
 		  FROM RQST_GD_APPLY RGA 
 		  JOIN USR_TR_RQST UTR 
 		    ON RGA.USR_TR_PST_ID = UTR.USR_TR_PST_ID
@@ -69,6 +68,16 @@
 		  JOIN TR_SCHDL TS
 		    ON GD_APPLY_ID = TS.USR_TR_PST_ID
 		 WHERE GD_APPLY_ID = #{parameter}
+ 	</select>
+ 	
+ 	<select id="isAlreadyAccept"
+ 	        parameterType="String"
+ 	        resultType="_int">
+ 	SELECT COUNT(1) 
+	  FROM RQST_GD_APPLY
+	 WHERE (SELECT USR_TR_PST_ID 
+	          FROM RQST_GD_APPLY
+	         WHERE GD_APPLY_ID = #{parameter}) = USR_TR_PST_ID
  	</select>
  	
  	
