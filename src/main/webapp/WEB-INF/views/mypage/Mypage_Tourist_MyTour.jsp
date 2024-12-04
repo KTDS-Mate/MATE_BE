@@ -20,6 +20,14 @@
   </head>
 
   <body>
+    <div id="modal" class="modal">
+    	<div class="modal-content insert-main">
+    		<span class="close">&times;</span>
+			<div class="requestList">
+				<!-- 여기에 지원 현황 쌓임 -->
+			</div>
+    	</div>
+    </div>
     <div class="grid">
       <div class="header">
         <!-- header 공통파일 -->
@@ -100,10 +108,17 @@
                             </div>
 
                             <div class="right-align">
-                              <a href="/usertour/modify/${board.usrTrPstId}">수정</a>
-                              /
-                              <a
-                                href="javascript:deleteTour('${sessionScope._LOGIN_USER_.usrLgnId}', '${board.usrTrPstId}')">삭제</a>
+                              <div>
+	                              <a href="/usertour/modify/${board.usrTrPstId}">수정</a>
+	                              /
+	                              <a
+	                                href="javascript:deleteTour('${sessionScope._LOGIN_USER_.usrLgnId}', '${board.usrTrPstId}')">삭제</a>
+                              </div>
+                              <c:if test="${board.usrTrDivide eq 'REQUEST'}">
+	                              <div>
+	                              	<input class="guideBtn" type="button" value="가이드 현황"  data-pst-id="${board.usrTrPstId}" />
+	                              </div>
+                              </c:if>
                             </div>
                           </div>
                         </div>

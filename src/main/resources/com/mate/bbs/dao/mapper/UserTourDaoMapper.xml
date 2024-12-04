@@ -4,6 +4,22 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mate.bbs.dao.UserTourDao">
 	
+	<resultMap id="requestGuideApplyVOMap"
+			   type="com.mate.bbs.vo.RequestGuideApplyVO"
+			   autoMapping="true">
+		<id column="GD_APPLY_ID" property="gdApplyId" />
+		<association property="userVO"
+					 javaType="com.mate.user.vo.UserVO"
+					 autoMapping="true">
+			<id column="USR_ID" property="usrId" />
+		</association>
+		<collection property="userTourSchdlList"
+					ofType="com.mate.bbs.vo.UserTourSchdlVO"
+					autoMapping="true">
+			<id column="TR_SCHDL_ID" property="trSchdlId" />
+		</collection>
+	</resultMap>
+	
 	<resultMap id="userTourVOMap" 
 			   type="com.mate.bbs.vo.UserTourVO"
 			   autoMapping="true">
@@ -421,6 +437,72 @@
 			resultType="string">
 		SELECT #{inputEndYear} || ' ' || #{inputEndHour}
  		  FROM DUAL
+	</select>
+	
+	<insert id="insertNewRequestGuideApply"
+			parameterType="com.mate.bbs.vo.RequestGuideApplyWriteVO">
+		<selectKey keyProperty="gdApplyId" order="BEFORE" resultType="string">
+			SELECT 'GY-' || TO_CHAR(SYSDATE, 'YYYY-MM-DD') || '-' || LPAD(SEQ_RQST_GD_APPLY_PK.NEXTVAL, 6, 0)
+			  FROM DUAL
+		</selectKey>
+		INSERT INTO RQST_GD_APPLY
+		 (GD_APPLY_ID
+		, GD_ID
+		, USR_TR_PST_ID
+		, GD_APPLY_PRC
+		, GD_APPLY_RSTR_DT
+		, GD_APPLY_IS_DLT
+		, GD_APPLY_DLT_DT
+		, GD_APPLY_TTL
+		, TR_GD_APPLY_DTL
+		, TR_GD_APPLY_MP)
+		VALUES
+		 (#{gdApplyId}
+		, #{gdId}
+		, #{usrTrPstId}
+		, #{gdApplyPrc}
+		, SYSDATE
+		, 'N'
+		, NULL
+		, #{gdApplyTtl}
+		, #{trGdApplyDtl}
+		, #{trGdApplyMp})
+	</insert>
+	
+	<select id="selectAllRequestGuideApplyList"
+			parameterType="string"
+			resultMap="requestGuideApplyVOMap">
+		SELECT RG.GD_APPLY_ID 
+		     , RG.GD_APPLY_PRC 
+		     , RG.GD_APPLY_RSTR_DT
+		     , UI.USR_LNM 
+		     , UI.USR_FNM 
+		     , UI.USR_GNDR 
+		     , TRUNC(MONTHS_BETWEEN(TRUNC(SYSDATE), UI.USR_BD) / 12) AS AGE
+		     , UI.USR_GD_EXP
+		     , RG.GD_APPLY_TTL
+		     , RG.TR_GD_APPLY_DTL 
+		     , TS.TR_LCTNS 
+		     , TS.TR_RQST 
+		     , TS.TR_TM 
+		  FROM RQST_GD_APPLY RG
+		  JOIN TR_SCHDL TS
+		    ON TS.USR_TR_PST_ID = RG.GD_APPLY_ID
+		  JOIN USR_INF UI
+		    ON RG.GD_ID = UI.USR_LGN_ID 
+		 WHERE RG.USR_TR_PST_ID = #{_parameter}
+	</select>
+	
+	<select id="selectRequestGuideApplyListCount"
+			parameterType="string"
+			resultType="_int">
+		SELECT COUNT(1)
+		  FROM RQST_GD_APPLY RG
+		  JOIN TR_SCHDL TS
+		    ON TS.USR_TR_PST_ID = RG.GD_APPLY_ID
+		  JOIN USR_INF UI
+		    ON RG.GD_ID = UI.USR_LGN_ID 
+		 WHERE RG.USR_TR_PST_ID = #{_parameter}
 	</select>
 	
 </mapper>

@@ -1032,3 +1032,10 @@
 	cursor: pointer;
 	background-color: #fadec3;
 }
+
+.errors {
+  font-size: x-small;
+  color: #f00;
+  margin-bottom: 1rem;
+  margin-left: 0.8rem;
+}

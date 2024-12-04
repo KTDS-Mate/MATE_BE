@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mate.bbs.dao.UserTourDao;
+import com.mate.bbs.vo.RequestGuideApplyVO;
+import com.mate.bbs.vo.RequestGuideApplyWriteVO;
 import com.mate.bbs.vo.SearchUserTourVO;
 import com.mate.bbs.vo.UserTourImgVO;
 import com.mate.bbs.vo.UserTourModifyVO;
@@ -118,5 +120,20 @@ public class UserTourDaoImpl extends SqlSessionDaoSupport implements UserTourDao
 	@Override
 	public String selectAttachMultyEndHour(UserTourWriteVO userTourWriteVO) {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachMultyEndHour", userTourWriteVO);
+	}
+	
+	@Override
+	public int insertNewRequestGuideApply(RequestGuideApplyWriteVO requestGuideApplyWriteVO) {
+		return this.getSqlSession().insert(NAMESPACE + ".insertNewRequestGuideApply", requestGuideApplyWriteVO);
+	}
+	
+	@Override
+	public List<RequestGuideApplyVO> selectAllRequestGuideApplyList(String usrTrPstId) {
+		return this.getSqlSession().selectList(NAMESPACE + ".selectAllRequestGuideApplyList", usrTrPstId);
+	}
+	
+	@Override
+	public int selectRequestGuideApplyListCount(String usrTrPstId) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectRequestGuideApplyListCount", usrTrPstId);
 	}
 }

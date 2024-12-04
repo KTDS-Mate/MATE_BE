@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.mate.bbs.vo.RequestGuideApplyVO;
+import com.mate.bbs.vo.RequestGuideApplyWriteVO;
 import com.mate.bbs.vo.SearchUserTourVO;
 import com.mate.bbs.vo.UserTourImgVO;
 import com.mate.bbs.vo.UserTourModifyVO;
@@ -110,5 +112,11 @@ public interface UserTourDao {
 	
 	/**게시글 수정 시 일정 리스트들을 추가 & 삭제 하게 될 경우가 있어서 삭제 후 다시 insert**/
 	public int deleteUserTourSchdls(String usrTrPstId);
+
+	public int insertNewRequestGuideApply(RequestGuideApplyWriteVO requestGuideApplyWriteVO);
+	
+	public List<RequestGuideApplyVO> selectAllRequestGuideApplyList(String usrTrPstId);
+	
+	public int selectRequestGuideApplyListCount(String usrTrPstId);
 	
 }

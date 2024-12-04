@@ -1,5 +1,7 @@
 package com.mate.bbs.service;
 
+import com.mate.bbs.vo.RequestGuideApplyListVO;
+import com.mate.bbs.vo.RequestGuideApplyWriteVO;
 import com.mate.bbs.vo.SearchUserTourVO;
 import com.mate.bbs.vo.UserTourListVO;
 import com.mate.bbs.vo.UserTourModifyVO;
@@ -50,5 +52,9 @@ public interface UserTourService {
 	public boolean softDeleteUserTour(String usrTrPstId);
 	
 	public boolean reserveUserTour(String usrTrPstId, String usrLgnId);
+	
+	public boolean createNewRequestGuideApply(RequestGuideApplyWriteVO requestGuideApplyWriteVO);
+	
+	public RequestGuideApplyListVO getAllRequestGuideApply(String usrTrPstId);
 	
 }
