@@ -266,7 +266,7 @@ $().ready(function() {
 		}
 
 		var fileDom = $(`<div class="file-group">
-						 	<input id="img-file" type="file" name="userTourImgList[${fileCnt}].usrTrRqImgIdUrl}" required="required" accept=".jpg,.jpeg,.img,.png" />
+						 	<input id="img-file" type="file" name="userTourImgList[${fileCnt}].userTourImgFile" required="required" accept=".jpg,.jpeg,.img,.png" />
 						 </div>`);
 		$(".file-list").append(fileDom);
 	});

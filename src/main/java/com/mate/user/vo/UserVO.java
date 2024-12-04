@@ -121,6 +121,9 @@ public class UserVO {
 	 */
 	private int usrGdExp;
 
+	/**가이드 나이**/
+	private int age;
+	
 	private GuideReviewVO guideReviewVO;
 
 	public String getUsrId() {
@@ -354,5 +357,14 @@ public class UserVO {
 	public void setGuideReviewVO(GuideReviewVO guideReviewVO) {
 		this.guideReviewVO = guideReviewVO;
 	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+	
 
 }

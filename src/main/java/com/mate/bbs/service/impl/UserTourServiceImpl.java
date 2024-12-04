@@ -9,13 +9,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mate.bbs.dao.UserTourDao;
 import com.mate.bbs.service.UserTourService;
+import com.mate.bbs.vo.RequestGuideApplyListVO;
+import com.mate.bbs.vo.RequestGuideApplyVO;
+import com.mate.bbs.vo.RequestGuideApplyWriteVO;
 import com.mate.bbs.vo.SearchUserTourVO;
+import com.mate.bbs.vo.UserTourImgVO;
 import com.mate.bbs.vo.UserTourListVO;
 import com.mate.bbs.vo.UserTourModifyVO;
 import com.mate.bbs.vo.UserTourSchdlVO;
 import com.mate.bbs.vo.UserTourVO;
 import com.mate.bbs.vo.UserTourWriteVO;
 import com.mate.common.beans.FileHandler;
+import com.mate.common.vo.StoreResultVO;
 import com.mate.payment.dao.PaymentDao;
 import com.mate.payment.vo.WritePaymentVO;
 
@@ -74,6 +79,22 @@ public class UserTourServiceImpl implements UserTourService{
 				userTourSchdlVO.setUsrTrPstId(userTourWriteVO.getUsrTrPstId());
 				// listSize만큼 INSERT문 반복
 				this.userTourDao.insertUserTourScheduls(userTourSchdlVO);
+			}
+		}
+		
+		List<UserTourImgVO> userTourImgList = userTourWriteVO.getUserTourImgList();
+
+		if (userTourImgList != null && !userTourImgList.isEmpty()) {
+			for (UserTourImgVO userTourImgVO : userTourImgList) {
+				userTourImgVO.setUsrTrPstId( userTourWriteVO.getUsrTrPstId() );
+				StoreResultVO userTourImgResult = this.fileHandler.storeFile(userTourImgVO.getUserTourImgFile());
+				
+				if (userTourImgResult != null) {
+					userTourImgVO.setUsrTrRqOriginFileName( userTourImgResult.getOriginFileName() );
+					userTourImgVO.setUsrTrRqImgIdUrl( userTourImgResult.getObfuscatedFileName() );
+				}
+				
+				this.userTourDao.insertNewUserTourImgs(userTourImgVO);
 			}
 		}
 		
@@ -186,6 +207,47 @@ public class UserTourServiceImpl implements UserTourService{
 			}
 		}
 		return false;
+	}
+	
+	@Transactional
+	@Override
+	public boolean createNewRequestGuideApply(RequestGuideApplyWriteVO requestGuideApplyWriteVO) {
+		
+		int createCount = this.userTourDao.insertNewRequestGuideApply(requestGuideApplyWriteVO);
+		
+		List<UserTourSchdlVO> tourSchdlList = requestGuideApplyWriteVO.getUserTourSchdlList();
+		if (tourSchdlList != null && !tourSchdlList.isEmpty()) {
+			for (UserTourSchdlVO userTourSchdlVO : tourSchdlList) {
+				// datetime-local 반환값 : YYYY-MM-DDTHH:MI
+				// 형 변환 필요
+				String dateTimeLocal = userTourSchdlVO.getTrTm();
+				// T를 " "으로 변환해 형식을 맞춰줌
+				String formmatedDate = dateTimeLocal.replace("T", " ");
+				// 재 할당
+				userTourSchdlVO.setTrTm(formmatedDate);
+				userTourSchdlVO.setUsrTrPstId(requestGuideApplyWriteVO.getGdApplyId());
+				
+				this.userTourDao.insertUserTourScheduls(userTourSchdlVO);
+			}
+		}
+		
+		return createCount > 0;
+	}
+
+	@Override
+	public RequestGuideApplyListVO getAllRequestGuideApply(String usrTrPstId) {
+		int applyCount = this.userTourDao.selectRequestGuideApplyListCount(usrTrPstId);
+		if (applyCount == 0) {
+			RequestGuideApplyListVO requestGuideApplyListVO = new RequestGuideApplyListVO();
+			requestGuideApplyListVO.setRequestGuideApplyCount(0);
+			return requestGuideApplyListVO;
+		}
+		List<RequestGuideApplyVO> requestGuideApplyList = this.userTourDao.selectAllRequestGuideApplyList(usrTrPstId);
+		RequestGuideApplyListVO requestGuideApplyListVO = new RequestGuideApplyListVO();
+		requestGuideApplyListVO.setRequestGuideApplyCount(applyCount);
+		requestGuideApplyListVO.setRequestGuideApplyList(requestGuideApplyList);
+		
+		return requestGuideApplyListVO;
 	}
 	
 }
