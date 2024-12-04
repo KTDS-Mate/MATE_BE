@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.mate.bbs.dao.TourApplyDao">
+ 	
+ 	<resultMap id="tourApplyVOMap"
+ 			   type="com.mate.bbs.vo.TourApplyVO"
+ 			   autoMapping="true">
+ 		<id column="GD_APPLY_ID" property="gdApplyId" />
+ 		<association property="userTourVO"
+ 					 javaType="com.mate.bbs.vo.UserTourVO"
+ 					 autoMapping="true">
+	 		<id column="USR_TR_PST_ID" property="usrTrPstId" />
+ 		</association>
+ 		<association property="guideVO"
+					 javaType="com.mate.user.vo.UserVO"
+					 autoMapping="true">
+			<id column="USR_ID" property="usrId" />
+		</association>
+		<collection property="trSchdlList"
+					ofType="com.mate.bbs.vo.UserTourSchdlVO"
+					autoMapping="true">
+			<id column="TR_SCHDL_ID" property="trSchdlId" />
+		</collection>
+ 	</resultMap>
+ 	
+
+ 	
+ 	<select id="selectOneTourApply"
+ 			parameterType="String"
+ 			resultMap="tourApplyVOMap">
+	 	SELECT RGA.GD_APPLY_ID
+		     , RGA.GD_ID
+		     , RGA.USR_TR_PST_ID
+		     , RGA.GD_APPLY_PRC
+		     , RGA.GD_APPLY_RSTR_DT
+		     , RGA.GD_APPLY_IS_DLT
+		     , RGA.GD_APPLY_DLT_DT
+		     , RGA.GD_APPLY_TTL
+		     , RGA.TR_GD_APPLY_DTL
+		     , RGA.TR_GD_APPLY_MP
+		     , TRUNC(MONTHS_BETWEEN(TRUNC(SYSDATE), TO_CHAR(GD.USR_BD , 'YYYYMMDD'))/ 12) AS GD_AGE
+		     , UTR.USR_TR_ST_DT
+			 , UTR.USR_TR_ED_DT
+			 , UTR.USR_TR_MP
+			 , UTR.USR_TR_NP
+			 , UTR.TR_CT_ID
+			 , UTR.USR_TR_STTS
+			 , UTR.USR_TR_DIVIDE
+			 , UTR.USR_TR_IS_DLT
+			 , GD.USR_ID 
+			 , GD.USR_LNM
+			 , GD.USR_FNM
+			 , GD.USR_GNDR
+			 , GD.USR_AVG_RTNG
+			 , GD.GD_PRFL_IMG
+			 , GD.USR_GD_EXP
+			 , TS.USR_TR_PST_ID
+			 , TS.TR_LCTNS
+			 , TS.TR_RQST
+			 , TO_CHAR(TS.TR_TM, 'YY-MM-DD HH24:MI') AS TR_TM
+		  FROM RQST_GD_APPLY RGA 
+		  JOIN USR_TR_RQST UTR 
+		    ON RGA.USR_TR_PST_ID = UTR.USR_TR_PST_ID
+		  JOIN USR_INF GD
+		    ON RGA.GD_ID = GD.USR_LGN_ID
+		  JOIN TR_SCHDL TS
+		    ON GD_APPLY_ID = TS.USR_TR_PST_ID
+		 WHERE GD_APPLY_ID = #{parameter}
+ 	</select>
+ 	
+ 	<select id="isAlreadyAccept"
+ 	        parameterType="String"
+ 	        resultType="_int">
+ 	SELECT COUNT(1) 
+	  FROM RQST_GD_APPLY
+	 WHERE (SELECT USR_TR_PST_ID 
+	          FROM RQST_GD_APPLY
+	         WHERE GD_APPLY_ID = #{parameter}) = USR_TR_PST_ID
+ 	</select>
+ 	
+ 	
+ 	
+ </mapper>

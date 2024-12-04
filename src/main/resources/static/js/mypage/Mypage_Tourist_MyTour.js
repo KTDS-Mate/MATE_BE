@@ -80,6 +80,7 @@ $().ready(function() {
 	$(document).on('click', ".viewBtn", function() {
 		var requestGuideApplyId = $(this).data("ps-id");
 		console.log(requestGuideApplyId);
+        location.href = `tourApply/detail?gdApplyId=${requestGuideApplyId}`;
 	});
 	
 	
