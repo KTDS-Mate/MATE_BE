@@ -33,38 +33,8 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
             />
             <h1>${tourApplyVO.gdApplyTtl}</h1>
           </div>
-          <div class="firstLayer">
           
-            <div class="priceArea">
-              <div class="priceTitleArea">
-                <span>Price</span>
-              </div>
-              <div class="priceDetailArea">
-                <div class="hour">
-                  <h4 class="maxNp">인원 : ${userTourVO.usrTrNp} 명</h4>
-                </div>
-                <div class="price">
-                  <span>제시 금액 : ${tourApplyVO.gdApplyPrc} $</span>
-                </div>
-                  <div class="reserveButton">
-                    <span onclick="location.href='index.html'">수락</span>
-                  </div>
-                  <div class="reserveButton">
-                    <span onclick="location.href='index.html'">거절</span>
-                  </div>
-              </div>
-            </div>
-          </div>
           <div class="secondLayer">
-            <div class="tourSummaryArea">
-              <div class="summaryTitleArea">
-                <span>투어 요약</span>
-              </div>
-              <div class="summaryDetailArea">
-                <h5>${userTourVO.usrTrStDt} ~ ${userTourVO.usrTrEdDt}</h5>
-                <h1>${tourApplyVO.trGdApplyDtl}</h1>
-              </div>
-            </div>
             <div class="guideProfileArea">
               <div class="profileTitleArea">
                 <span>가이드 프로필</span>
@@ -92,6 +62,46 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                   <h1>나이 : 만 ${tourApplyVO.gdAge} 세</h1>
                   <h1>가이드 경력 : ${guideVO.usrGdExp} 년</h1>
                 </div>
+              </div>
+            </div>
+            
+            <div class="tourSummaryArea">
+              <div class="summaryTitleArea">
+                <strong>Price</strong>
+              </div>
+              <div class="summaryDetailArea">
+                <div>
+	                <div class="hour">
+	                  <strong>인원 : ${userTourVO.usrTrNp} 명</strong>
+	                </div>
+	                <div class="price">
+	                  <strong>제시 금액 : ${tourApplyVO.gdApplyPrc} $</strong>
+	                </div>
+                </div>
+                <div>
+	                <div class="reserveButton">
+	                  <span onclick="location.href='index.html'">수락</span>
+	                </div>
+	                <div class="reserveButton">
+	                  <span onclick="location.href='index.html'">거절</span>
+	                </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          
+          <div class="firstLayer">
+          
+            <div class="priceArea">
+              <div class="priceTitleArea">
+                <span>투어 요약</span>
+              </div>
+              <div class="priceDetailArea">
+              
+              	<h5>${userTourVO.usrTrStDt} ~ ${userTourVO.usrTrEdDt}</h5>
+                <h1>${tourApplyVO.trGdApplyDtl}</h1>
+              
               </div>
             </div>
           </div>

@@ -84,7 +84,9 @@ pageEncoding="UTF-8" %>
 	            		<span class="red">*</span> 금액
 	            	</div>
 	            	<div class="btn-group">
-		            	<input class="prc" type="number" name="gdApplyPrc" required="required" />
+	            		<div class="prc">
+			            	<strong>$</strong><input class="requestPrc" type="number" name="gdApplyPrc" required="required" />
+	            		</div>
 		            	<input class="smbtn" type="submit" value="등록" />
 	            	</div>
 	            </div>
