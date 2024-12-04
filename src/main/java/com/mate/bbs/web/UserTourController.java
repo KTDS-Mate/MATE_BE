@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.mate.bbs.service.UserTourService;
+import com.mate.bbs.vo.RequestGuideApplyWriteVO;
 import com.mate.bbs.vo.SearchUserTourVO;
 import com.mate.bbs.vo.UserTourListVO;
 import com.mate.bbs.vo.UserTourModifyVO;
@@ -112,7 +113,7 @@ public class UserTourController {
 			@SessionAttribute(value = "_LOGIN_USER_", required = false) UserVO loginUserVO) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("userTourWriteVO", userTourWriteVO);
-			return "usertour//tourist_request_insert";
+			return "usertour/tourist_request_insert";
 		}
 		userTourWriteVO.setAthrId(loginUserVO.getUsrLgnId());
 
@@ -128,4 +129,23 @@ public class UserTourController {
 		return "usertour/request_view";
 	}
 
+	@PostMapping("/usertour/view/request")
+	public String doCreateNewRequestGuideApply(@RequestParam String usrTrPstId,
+											   @Valid RequestGuideApplyWriteVO requestGuideApplyWriteVO,
+			 								   BindingResult result,
+			 								   Model model,
+			 								   @SessionAttribute(value = "_LOGIN_USER_", required = false) UserVO loginUserVO) {
+		if (result.hasErrors()) {
+			model.addAttribute("requestGuideApplyWriteVO", requestGuideApplyWriteVO);
+			return "usertour/request_view";
+		}
+		requestGuideApplyWriteVO.setGdId(loginUserVO.getUsrLgnId());
+		// 기존 requestGuideAppplyVO에 usrTrPstId가 (usrTrPstId,usrTrPstId)형태로 들어있어서 다시 받아옴
+		requestGuideApplyWriteVO.setUsrTrPstId(usrTrPstId);
+		
+		this.userTourService.createNewRequestGuideApply(requestGuideApplyWriteVO);
+		
+		return "redirect:/usertour/view/request?usrTrPstId="+ usrTrPstId;
+	}
+	
 }

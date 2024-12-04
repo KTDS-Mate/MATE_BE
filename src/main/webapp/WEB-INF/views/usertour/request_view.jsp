@@ -24,8 +24,7 @@ pageEncoding="UTF-8" %>
   	<div id="modal" class="modal">
     	<div class="modal-content insert-main">
     		<span class="close">&times;</span>
-    		<form:form>
-    		    <input type="hidden" value="${userTourVO.usrTrPstId}" />
+    		<form:form modelAttribute="requestGuideApplyWriteVO" method="post">
 	            <div class="all-select-div">
 	              <div class="select-div">투어 제목 : ${userTourVO.usrTrTtl}</div>
 	            </div>
@@ -45,13 +44,15 @@ pageEncoding="UTF-8" %>
 	            	<div class="select-div">
 	            		<span class="red">*</span> 제안서 제목
 	            	</div>
-	            	<textarea id="gdApplyTtl" required="required"></textarea>
+	            	<form:errors path="gdApplyTtl" element="div" cssClass="errors" />
+	            	<textarea id="gdApplyTtl" name="gdApplyTtl" required="required" ></textarea>
 	            </div>
 	            <div class="all-select-div">
 	            	<div class="select-div">
 	            		<span class="red">*</span> 투어 요약
 	            	</div>
-	            	<textarea id="gdApplyTtl" required="required"></textarea>
+	            	<form:errors path="trGdApplyDtl" element="div" cssClass="errors" />
+	            	<textarea id="gdApplyTtl" name="trGdApplyDtl" required="required"></textarea>
 	            </div>
 	            <div class="all-select-div">
 	            	<div class="select-div">
@@ -83,7 +84,7 @@ pageEncoding="UTF-8" %>
 	            		<span class="red">*</span> 금액
 	            	</div>
 	            	<div class="btn-group">
-		            	<input class="prc" type="number" required="required" />
+		            	<input class="prc" type="number" name="gdApplyPrc" required="required" />
 		            	<input class="smbtn" type="submit" value="등록" />
 	            	</div>
 	            </div>

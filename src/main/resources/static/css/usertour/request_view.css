@@ -47,7 +47,7 @@
   padding-left: 2rem;
   padding-right: 2rem;
   width: 45rem;
-  height: 50rem;
+  height: 40rem;
   margin: 0 auto;
   overflow: auto;
 }
@@ -1031,4 +1031,11 @@
 .applyBtn button:hover {
 	cursor: pointer;
 	background-color: #fadec3;
+}
+
+.errors {
+  font-size: x-small;
+  color: #f00;
+  margin-bottom: 1rem;
+  margin-left: 0.8rem;
 }
