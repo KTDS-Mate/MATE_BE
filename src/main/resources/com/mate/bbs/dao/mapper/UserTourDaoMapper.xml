@@ -455,7 +455,8 @@
 		, GD_APPLY_DLT_DT
 		, GD_APPLY_TTL
 		, TR_GD_APPLY_DTL
-		, TR_GD_APPLY_MP)
+		, TR_GD_APPLY_MP
+		, GD_APPLY_STT)
 		VALUES
 		 (#{gdApplyId}
 		, #{gdId}
@@ -466,7 +467,8 @@
 		, NULL
 		, #{gdApplyTtl}
 		, #{trGdApplyDtl}
-		, #{trGdApplyMp})
+		, #{trGdApplyMp}
+		, 'WAITING')
 	</insert>
 	
 	<select id="selectAllRequestGuideApplyList"

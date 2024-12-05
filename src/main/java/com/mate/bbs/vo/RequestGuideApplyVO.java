@@ -6,41 +6,37 @@ import com.mate.user.vo.UserVO;
 
 public class RequestGuideApplyVO {
 
-   /** 유저의 투어요청 게시글에 대한 가이드의 제안 PK **/
-   private String gdApplyId;
-   /** 가이드의 PK **/
-   private String gdId;
-   /** 게시글의 아이디. Pk **/
-   private String usrTrPstId;
-   /** 가이드가 제안한 총 투어 금액 **/
-   private int gdApplyPrc;
-   /** 가이드가 작성한 일시 **/
-   private String gdApplyRstrDt;
-   /** 가이드가 투어에 제안한 포스트의 삭제여부 **/
-   private String gdApplyIsDlt;
-   /** 가이드가 투어에 제안한 포스트의 삭제일시 **/
-   private String gdApplyDltDt;
-   /** 가이드가 투어에 제안한 포스트의 제목 **/
-   private String gdApplyTtl;
-   /** 가이드가  투어에 제안하 포스트의 요약 **/
-   private String trGdApplyDtl;
-   /** 가이드가 투어에 제안한 포스트의 미팅장소 **/
-   private String trGdApplyMp;
-   /** 가이드가 지원한 게시글 상태 (WAITING: 대기, ACCEPT: 수락, REFUSAL: 거절 ) **/
-   private String gdApplyStt;
-   
-   
-   private List<UserTourSchdlVO> userTourSchdlList;
-   
-   private UserVO userVO;
-   
-   public String getGdApplyId() {
-      return gdApplyId;
-   }
-
-   public void setGdApplyId(String gdApplyId) {
-      this.gdApplyId = gdApplyId;
-   }
+	/** 유저의 투어요청 게시글에 대한 가이드의 제안 PK **/
+	private String gdApplyId;
+	/** 가이드의 PK **/
+	private String gdId;
+	/** 게시글의 아이디. Pk **/
+	private String usrTrPstId;
+	/** 가이드가 제안한 총 투어 금액 **/
+	private int gdApplyPrc;
+	/** 가이드가 작성한 일시 **/
+	private String gdApplyRstrDt;
+	/** 가이드가 투어에 제안한 포스트의 삭제여부 **/
+	private String gdApplyIsDlt;
+	/** 가이드가 투어에 제안한 포스트의 삭제일시 **/
+	private String gdApplyDltDt;
+	/** 가이드가 투어에 제안한 포스트의 제목 **/
+	private String gdApplyTtl;
+	/** 가이드가  투어에 제안하 포스트의 요약 **/
+	private String trGdApplyDtl;
+	/** 가이드가 투어에 제안한 포스트의 미팅장소 **/
+	private String trGdApplyMp;
+	/** 가이드가 지원한 게시글 상태 (WAITING: 대기, ACCEPT: 수락, REFUSAL: 거절 ) **/
+	private String gdApplyStt;
+	
+	
+	private List<UserTourSchdlVO> userTourSchdlList;
+	
+	private UserVO userVO;
+	
+	public String getGdApplyId() {
+		return gdApplyId;
+	}
 
    public String getGdId() {
       return gdId;
@@ -120,6 +116,10 @@ public class RequestGuideApplyVO {
 
    public void setGdApplyStt(String gdApplyStt) {
       this.gdApplyStt = gdApplyStt;
+   }
+
+   public void setGdApplyId(String gdApplyId) {
+	this.gdApplyId = gdApplyId;
    }
 
    public List<UserTourSchdlVO> getUserTourSchdlList() {

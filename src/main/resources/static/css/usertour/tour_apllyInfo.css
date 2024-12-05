@@ -108,20 +108,20 @@
 }
 
 .priceArea {
-  width: 18.2rem;
+  width: 58.2rem;
   border: 2px solid #ffeedb;
   border-radius: 1.25rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  margin-top: 2rem;
 }
 
 .priceTitleArea {
-  width: 18.2rem;
   height: 3.9rem;
   display: flex;
-  justify-content: center;
   align-items: center;
   border-top-left-radius: 1.25rem;
   border-top-right-radius: 1.25rem;
+  margin: 0 0 0 2rem;
 }
 
 .priceTitleArea > span {
@@ -130,17 +130,17 @@
 }
 
 .priceDetailArea {
-  width: 18.2rem;
   min-height: 13.2rem;
   max-height: auto;
-  margin: 0 auto;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
   border: 1px solid #ffeedb;
   border-bottom-left-radius: 1.25rem;
   border-bottom-right-radius: 1.25rem;
+}
+
+.priceDetailArea h5, h1 {
+	margin-left: 2rem;
 }
 
 .adultPrice {
@@ -168,8 +168,6 @@
 }
 
 .price {
-  width: 15.625rem;
-  height: 3.3rem;
   /* background-color: #ffe6cc; */
   border: 2px solid #ffe6cc;
   border-radius: 1.25rem;
@@ -177,11 +175,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0.3rem;
 }
 
 .hour {
-  width: 15.625rem;
-  height: 3.3rem;
   /* background-color: #ffe6cc; */
   border: 2px solid #ffe6cc;
   border-radius: 1.25rem;
@@ -189,6 +186,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0.3rem;
 }
 
 .reserveButton {
@@ -235,30 +233,23 @@
   width: 26.875rem;
   height: 3rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   /* padding: 0 2rem; */
   border-top-left-radius: 1.25rem;
   border-top-right-radius: 1.25rem;
 }
 
-.summaryTitleArea > span {
-  font-size: 1.15rem;
-  font-weight: bold;
-  margin: 0 0 0 2rem;
-}
-
 .summaryDetailArea {
-  width: 24.775rem;
   min-height: 9.5rem;
   max-height: auto;
-  margin: 0 auto;
   display: flex;
   padding: 1rem;
-  align-items: left;
-  flex-direction: column;
+  align-items: center;
   border-bottom-left-radius: 1.25rem;
   border-bottom-right-radius: 1.25rem;
+  justify-content: space-between;
+  border-top: 1px solid #ffeedb;
 }
 
 .summaryDetailArea > h1 {
@@ -307,7 +298,6 @@
 }
 
 .profileDetailArea {
-  width: 26.875rem;
   min-height: 11.64rem;
   max-height: auto;
   margin: 0 auto;
@@ -317,6 +307,7 @@
   flex-direction: row;
   border-bottom-left-radius: 1.25rem;
   border-bottom-right-radius: 1.25rem;
+  border-top: 1px solid #ffeedb;
 }
 
 .profileDetailArea > img {
@@ -478,6 +469,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  margin-bottom: 1.5rem;
 }
 
 .tourInfoArea {

@@ -205,7 +205,7 @@ public class UserTourController {
 			return "usertour/request_view";
 		}
 		requestGuideApplyWriteVO.setGdId(loginUserVO.getUsrLgnId());
-		// 기존 requestGuideAppplyVO에 usrTrPstId가 (usrTrPstId,usrTrPstId)형태로 들어있어서 다시 받아옴
+		// 기존 requestGuideAppplyVO에 usrTrPstId가 (usrTrPstId, usrTrPstId)형태로 들어있어서 다시 받아옴
 		requestGuideApplyWriteVO.setUsrTrPstId(usrTrPstId);
 		
 		this.userTourService.createNewRequestGuideApply(requestGuideApplyWriteVO);

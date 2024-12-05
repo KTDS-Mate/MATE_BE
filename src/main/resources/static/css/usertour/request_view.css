@@ -158,23 +158,31 @@
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
 	padding: 0.5rem 0.3rem;
-	outline: none;
 	border: 1px solid #ddd;
 	border-radius: 5px;
+}
+
+.requestPrc {
+	outline: none;
+	border: 0;
+}
+
+.doller-size {
+	font-weight: bold;
 }
 
 .btn-group {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 }
 
 .smbtn {
   color: #fff;
   background-color: #333;
-  margin-bottom: 1rem;
-  margin-right: 1rem;
   border-radius: 0;
   padding: 0.5rem 1rem;
+  height: 2.5rem;
 }
 
 .smbtn:hover {
@@ -625,6 +633,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  margin-bottom: 1.5rem;
 }
 
 .rallyPointArea {
@@ -670,10 +679,9 @@
 
 .summaryArea {
   display: flex;
-  justify-content: center;
-  align-items: left;
   flex-direction: row;
   padding: 1rem;
+  width: 30rem;
 }
 
 .summaryArea h3 {
