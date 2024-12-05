@@ -65,7 +65,7 @@ public class UserTourApiController {
 			
 			return errorResponse;
 		}
-		userTourWriteVO.setAthrId(loginUserVO.getUsrLgnId());
+//		userTourWriteVO.setAthrId(loginUserVO.getUsrLgnId());
 
 		boolean isCreate = this.userTourService.createNewUserTour(userTourWriteVO);
 

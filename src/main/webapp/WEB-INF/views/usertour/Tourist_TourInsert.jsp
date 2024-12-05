@@ -201,9 +201,12 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
 	                    value="${userTourWriteVO.usrTrGdHrPrc}"
 	                    step="0.1" />
 	                </div>
-	                <div class="right-align">
-	                  <button class="customBtn btn-14"><span>투어 등록</span></button>
-	                </div>
+	                <div class="button" onclick="javascript:moveRequest()">
+					    <p class="btnText">해주세요</p>
+					    <div class="btnTwo">
+					      <p class="btnText2">GO!</p>
+					    </div>
+					 </div>
                 </div>
               </div>
             </div>
