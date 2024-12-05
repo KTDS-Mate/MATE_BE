@@ -149,14 +149,29 @@ public class UserTourController {
 		model.addAttribute("guideVO", tourApplyVO.getGuideVO());
 		return "usertour/tour_apllyInfo";
 	}
-	@PostMapping("tourApply/accept")
+	
+	@GetMapping("/tourApply/accept")
 	public String acceptApply( @RequestParam String gdApplyId,
 			@SessionAttribute(value = "_LOGIN_USER_", required = false) UserVO loginUserVO) {
-		
-		
-		
-		
-		return "redirect:/mypage";
+		try {
+			this.tourApplyService.acceptTourApply(gdApplyId, loginUserVO);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return "redirect:/mypage/mytour/tr-mytour/tourApply/detail?gdApplyId=" + gdApplyId;
+		}
+		return "redirect:/mypage/payment/list/" + gdApplyId;
+	}
+	
+	@GetMapping("/tourApply/refusal")
+	public String refusalApply(@RequestParam String gdApplyId, 
+			@SessionAttribute(value = "_LOGIN_USER_", required = false) UserVO loginUserVO) {
+		try {
+			this.tourApplyService.refusalTourApply(gdApplyId, loginUserVO);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return "redirect:/mypage/mytour/tr-mytour/tourApply/detail?gdApplyId=" + gdApplyId;
+		}
+		return "redirect:/mypage/mytour/tr-mytour/" + loginUserVO.getUsrLgnId();
 	}
 	
 	

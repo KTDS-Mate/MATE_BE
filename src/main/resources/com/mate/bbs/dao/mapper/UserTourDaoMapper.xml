@@ -485,6 +485,7 @@
 		     , TS.TR_LCTNS 
 		     , TS.TR_RQST 
 		     , TS.TR_TM 
+		     , RG.GD_APPLY_STT
 		  FROM RQST_GD_APPLY RG
 		  JOIN TR_SCHDL TS
 		    ON TS.USR_TR_PST_ID = RG.GD_APPLY_ID

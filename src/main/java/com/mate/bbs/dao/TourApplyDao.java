@@ -1,10 +1,20 @@
 package com.mate.bbs.dao;
 
 import com.mate.bbs.vo.TourApplyVO;
+import com.mate.payment.vo.WritePaymentVO;
 
 public interface TourApplyDao {
 	
 	public TourApplyVO selectOneTourApply(String gdApplyId);
 	
-	public boolean isAlreadyAccept(String gdApplyId);
+	public String selectTourAthor(String gdApplyId);
+	
+	public int updateAcceptTourApply(String gdApplyId);
+	
+	public int updateRequestTour(String gdApplyId);
+	
+	public WritePaymentVO selectApplyInfo(String gdApplyId);
+	
+	public int updateRefusalTourApply(String gdApplyId);
+	
 }
