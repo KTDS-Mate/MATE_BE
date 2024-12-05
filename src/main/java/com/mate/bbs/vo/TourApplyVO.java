@@ -24,7 +24,7 @@ public class TourApplyVO {
 	/**
 	 * 가이드가 제안한 총 투어 금액
 	 */
-	private String gdApplyPrc;
+	private int gdApplyPrc;
 	
 	/**
 	 * 가이드가 작성한 일시
@@ -60,6 +60,11 @@ public class TourApplyVO {
 	 * 생년월일으로 DB에서 연산 후 가져온 가이드의 나이
 	 */
 	private int gdAge; 
+	
+	/**
+	 * 투어에 가이드가 지원한 게시글에 대한 수락 상태(WAITING, ACCEPT, REFUSAL)
+	 */
+	private String gdApplyStt;
 	
 	/**
 	 * 가이드가 투어에 제안한 투어의 기본정보
@@ -100,11 +105,11 @@ public class TourApplyVO {
 		this.usrTrPstId = usrTrPstId;
 	}
 
-	public String getGdApplyPrc() {
+	public int getGdApplyPrc() {
 		return gdApplyPrc;
 	}
 
-	public void setGdApplyPrc(String gdApplyPrc) {
+	public void setGdApplyPrc(int gdApplyPrc) {
 		this.gdApplyPrc = gdApplyPrc;
 	}
 
@@ -162,6 +167,14 @@ public class TourApplyVO {
 
 	public void setGdAge(int gdAge) {
 		this.gdAge = gdAge;
+	}
+
+	public String getGdApplyStt() {
+		return gdApplyStt;
+	}
+
+	public void setGdApplyStt(String gdApplyStt) {
+		this.gdApplyStt = gdApplyStt;
 	}
 
 	public UserTourVO getUserTourVO() {

@@ -44,11 +44,6 @@ public class PaymentDaoImpl extends SqlSessionDaoSupport implements PaymentDao {
 	}
 	
 	@Override
-	public String selectUserId(String usrLgnId) {
-		return this.getSqlSession().selectOne(NAMESPACE + ".selectUserId", usrLgnId);
-	}
-	
-	@Override
 	public PaymentVO selectOnePayment(String payId) {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectOnePayment", payId);
 	}
@@ -88,6 +83,29 @@ public class PaymentDaoImpl extends SqlSessionDaoSupport implements PaymentDao {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectUsrTrPayInf", trId);
 	}
 	
+	@Override
+	public int selectTrstTrPaymentCnt(String gdApplyId) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectTrstTrPaymentCnt", gdApplyId);
+	}
 	
+	@Override
+	public int updateCancelTrstTour(PaymentVO paymentVO) {
+		return this.getSqlSession().update(NAMESPACE + ".updateCancelTrstTour", paymentVO);
+	}
+	
+	@Override
+	public int selectApplyCnt(PaymentVO paymentVO) {
+		return this.getSqlSession().selectOne( NAMESPACE + ".selectApplyCnt", paymentVO);
+	}
+	
+	@Override
+	public int updateCancelApply(PaymentVO paymentVO) {
+		return this.getSqlSession().update(NAMESPACE + ".updateCancelApply", paymentVO);
+	}
+	
+	@Override
+	public int updateCancelGdTour(PaymentVO paymentVO) {
+		return this.getSqlSession().update(NAMESPACE + ".updateCancelGdTour", paymentVO); 
+	}
 	
 }

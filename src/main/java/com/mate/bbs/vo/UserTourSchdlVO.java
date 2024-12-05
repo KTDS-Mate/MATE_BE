@@ -1,7 +1,5 @@
 package com.mate.bbs.vo;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class UserTourSchdlVO {
 
 	/**

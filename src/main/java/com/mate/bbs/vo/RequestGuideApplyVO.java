@@ -38,104 +38,104 @@ public class RequestGuideApplyVO {
 		return gdApplyId;
 	}
 
-	public void setGdApplyId(String gdApplyId) {
-		this.gdApplyId = gdApplyId;
-	}
+   public String getGdId() {
+      return gdId;
+   }
 
-	public String getGdId() {
-		return gdId;
-	}
+   public void setGdId(String gdId) {
+      this.gdId = gdId;
+   }
 
-	public void setGdId(String gdId) {
-		this.gdId = gdId;
-	}
+   public String getUsrTrPstId() {
+      return usrTrPstId;
+   }
 
-	public String getUsrTrPstId() {
-		return usrTrPstId;
-	}
+   public void setUsrTrPstId(String usrTrPstId) {
+      this.usrTrPstId = usrTrPstId;
+   }
 
-	public void setUsrTrPstId(String usrTrPstId) {
-		this.usrTrPstId = usrTrPstId;
-	}
+   public int getGdApplyPrc() {
+      return gdApplyPrc;
+   }
 
-	public int getGdApplyPrc() {
-		return gdApplyPrc;
-	}
+   public void setGdApplyPrc(int gdApplyPrc) {
+      this.gdApplyPrc = gdApplyPrc;
+   }
 
-	public void setGdApplyPrc(int gdApplyPrc) {
-		this.gdApplyPrc = gdApplyPrc;
-	}
+   public String getGdApplyRstrDt() {
+      return gdApplyRstrDt;
+   }
 
-	public String getGdApplyRstrDt() {
-		return gdApplyRstrDt;
-	}
+   public void setGdApplyRstrDt(String gdApplyRstrDt) {
+      this.gdApplyRstrDt = gdApplyRstrDt;
+   }
 
-	public void setGdApplyRstrDt(String gdApplyRstrDt) {
-		this.gdApplyRstrDt = gdApplyRstrDt;
-	}
+   public String getGdApplyIsDlt() {
+      return gdApplyIsDlt;
+   }
 
-	public String getGdApplyIsDlt() {
-		return gdApplyIsDlt;
-	}
+   public void setGdApplyIsDlt(String gdApplyIsDlt) {
+      this.gdApplyIsDlt = gdApplyIsDlt;
+   }
 
-	public void setGdApplyIsDlt(String gdApplyIsDlt) {
-		this.gdApplyIsDlt = gdApplyIsDlt;
-	}
+   public String getGdApplyDltDt() {
+      return gdApplyDltDt;
+   }
 
-	public String getGdApplyDltDt() {
-		return gdApplyDltDt;
-	}
+   public void setGdApplyDltDt(String gdApplyDltDt) {
+      this.gdApplyDltDt = gdApplyDltDt;
+   }
 
-	public void setGdApplyDltDt(String gdApplyDltDt) {
-		this.gdApplyDltDt = gdApplyDltDt;
-	}
+   public String getGdApplyTtl() {
+      return gdApplyTtl;
+   }
 
-	public String getGdApplyTtl() {
-		return gdApplyTtl;
-	}
+   public void setGdApplyTtl(String gdApplyTtl) {
+      this.gdApplyTtl = gdApplyTtl;
+   }
 
-	public void setGdApplyTtl(String gdApplyTtl) {
-		this.gdApplyTtl = gdApplyTtl;
-	}
+   public String getTrGdApplyDtl() {
+      return trGdApplyDtl;
+   }
 
-	public String getTrGdApplyDtl() {
-		return trGdApplyDtl;
-	}
+   public void setTrGdApplyDtl(String trGdApplyDtl) {
+      this.trGdApplyDtl = trGdApplyDtl;
+   }
 
-	public void setTrGdApplyDtl(String trGdApplyDtl) {
-		this.trGdApplyDtl = trGdApplyDtl;
-	}
+   public String getTrGdApplyMp() {
+      return trGdApplyMp;
+   }
 
-	public String getTrGdApplyMp() {
-		return trGdApplyMp;
-	}
+   public void setTrGdApplyMp(String trGdApplyMp) {
+      this.trGdApplyMp = trGdApplyMp;
+   }
 
-	public void setTrGdApplyMp(String trGdApplyMp) {
-		this.trGdApplyMp = trGdApplyMp;
-	}
+   public String getGdApplyStt() {
+      return gdApplyStt;
+   }
 
-	public String getGdApplyStt() {
-		return gdApplyStt;
-	}
+   public void setGdApplyStt(String gdApplyStt) {
+      this.gdApplyStt = gdApplyStt;
+   }
 
-	public void setGdApplyStt(String gdApplyStt) {
-		this.gdApplyStt = gdApplyStt;
-	}
+   public void setGdApplyId(String gdApplyId) {
+	this.gdApplyId = gdApplyId;
+   }
 
-	public List<UserTourSchdlVO> getUserTourSchdlList() {
-		return userTourSchdlList;
-	}
+   public List<UserTourSchdlVO> getUserTourSchdlList() {
+      return userTourSchdlList;
+   }
 
-	public void setUserTourSchdlList(List<UserTourSchdlVO> userTourSchdlList) {
-		this.userTourSchdlList = userTourSchdlList;
-	}
+   public void setUserTourSchdlList(List<UserTourSchdlVO> userTourSchdlList) {
+      this.userTourSchdlList = userTourSchdlList;
+   }
 
-	public UserVO getUserVO() {
-		return userVO;
-	}
+   public UserVO getUserVO() {
+      return userVO;
+   }
 
-	public void setUserVO(UserVO userVO) {
-		this.userVO = userVO;
-	}
+   public void setUserVO(UserVO userVO) {
+      this.userVO = userVO;
+   }
 
 }
