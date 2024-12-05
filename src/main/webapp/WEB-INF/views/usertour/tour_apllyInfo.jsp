@@ -100,10 +100,10 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                 </div>
                 <div>
 	                <div class="reserveButton">
-	                  <span onclick="location.href='index.html'">수락</span>
+	                   <span onclick="location.href=`/tourApply/accept?gdApplyId=${tourApplyVO.gdApplyId}`">수락</span>
 	                </div>
 	                <div class="reserveButton">
-	                  <span onclick="location.href='index.html'">거절</span>
+	                   <span onclick="location.href=`/tourApply/refusal?gdApplyId=${tourApplyVO.gdApplyId}`">거절</span>
 	                </div>
                 </div>
                 
