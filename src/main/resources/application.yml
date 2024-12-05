@@ -43,6 +43,7 @@ app:
       path-patterns: 
         /**
       exclude-path-patterns: 
+        /api/v1/**,
         /js/**,
         /css/**,
         /img/**,
