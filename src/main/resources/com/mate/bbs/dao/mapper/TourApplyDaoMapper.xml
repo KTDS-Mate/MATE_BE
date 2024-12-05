@@ -110,7 +110,7 @@
 		   , USR_TR_PST_ID AS PAY_TR_ID
 		   , GD_APPLY_PRC AS PAY_CSH
 		FROM RQST_GD_APPLY
-	   WHERE GD_APPLY_ID = 'GY-2024-12-02-000004' 
+	   WHERE GD_APPLY_ID = #{parameter}
  	</select>
  	
  	<update id="updateRefusalTourApply"

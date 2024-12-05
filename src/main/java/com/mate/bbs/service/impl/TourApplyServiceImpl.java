@@ -40,9 +40,14 @@ public class TourApplyServiceImpl  implements TourApplyService{
 		}
 		
 		WritePaymentVO writePaymentVO = this.tourApplyDao.selectApplyInfo(gdApplyId);
+		if (writePaymentVO == null) {
+			throw new Exception("에러가 발생했습니다.");
+		}
 		writePaymentVO.setTrstId(loginUserVO.getUsrLgnId());
-		
-		if (writePaymentVO == null || this.paymentDao.insertTrstTrPayment(writePaymentVO) != 1) {
+		if (this.paymentDao.selectTrstTrPaymentCnt(gdApplyId) == 1) {
+			return true;
+		}
+		if (this.paymentDao.insertTrstTrPayment(writePaymentVO) != 1) {
 			throw new Exception("예약에 실패하였습니다.");
 		}
 		return true;

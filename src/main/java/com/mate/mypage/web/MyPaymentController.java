@@ -27,7 +27,7 @@ public class MyPaymentController {
     public String viewPaymentList(Model model, @PathVariable String trstLgnId, SearchPaymentVO searchPaymentVO) {
 		// 회원VO는 세션으로 받아와야 하지만, 일단 PathVariable로 받아옴
 		// TODO 세션 추가 되면 그걸 받아와서 유저 정보 끼워서 만들기
-    	searchPaymentVO.setTrstLgnId(trstLgnId);
+    	searchPaymentVO.setTrstId(trstLgnId);
 		PaymentListVO paymentListVO = this.paymentService.getAllMyPayment(searchPaymentVO);
 		model.addAttribute("paymentListVO", paymentListVO);
         model.addAttribute("searchPaymentVO", searchPaymentVO);

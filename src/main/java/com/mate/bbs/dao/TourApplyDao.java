@@ -5,6 +5,8 @@ import com.mate.payment.vo.WritePaymentVO;
 
 public interface TourApplyDao {
 	
+	public String NAMESPACE = "com.mate.bbs.dao.TourApplyDao";
+	
 	public TourApplyVO selectOneTourApply(String gdApplyId);
 	
 	public String selectTourAthor(String gdApplyId);

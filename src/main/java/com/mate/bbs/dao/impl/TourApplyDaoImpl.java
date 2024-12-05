@@ -22,33 +22,33 @@ public class TourApplyDaoImpl extends SqlSessionDaoSupport implements TourApplyD
 	
 	@Override
 	public TourApplyVO selectOneTourApply(String gdApplyId) {
-		return this.getSqlSession().selectOne("selectOneTourApply",gdApplyId);
+		return this.getSqlSession().selectOne( NAMESPACE + ".selectOneTourApply",gdApplyId);
 	}
 
 	@Override
 	public String selectTourAthor(String gdApplyId) {
-		String athorId = this.getSqlSession().selectOne("selectTourAthor", gdApplyId);
+		String athorId = this.getSqlSession().selectOne( NAMESPACE + ".selectTourAthor", gdApplyId);
 		return athorId;
 	}
 	
 	@Override
 	public int updateAcceptTourApply(String gdApplyId) {
-		return this.getSqlSession().update("updateAcceptTourApply", gdApplyId);
+		return this.getSqlSession().update( NAMESPACE + ".updateAcceptTourApply", gdApplyId);
 	}
 	
 	@Override
 	public int updateRequestTour(String gdApplyId) {
-		return this.getSqlSession().update("updateRequestTour", gdApplyId);
+		return this.getSqlSession().update( NAMESPACE + ".updateRequestTour", gdApplyId);
 	}
 	
 	@Override
 	public WritePaymentVO selectApplyInfo(String gdApplyId) {
-		return this.getSqlSession().selectOne("selectApplyInfo", gdApplyId);
+		return this.getSqlSession().selectOne( NAMESPACE + ".selectApplyInfo", gdApplyId);
 	}
 	
 	@Override
 	public int updateRefusalTourApply(String gdApplyId) {
-		return this.getSqlSession().update("updateRefusalTourApply" ,gdApplyId);
+		return this.getSqlSession().update( NAMESPACE + ".updateRefusalTourApply" ,gdApplyId);
 	}
 	
 	

@@ -159,7 +159,7 @@ public class UserTourController {
 			System.out.println(e.getMessage());
 			return "redirect:/mypage/mytour/tr-mytour/tourApply/detail?gdApplyId=" + gdApplyId;
 		}
-		return "redirect:/mypage/payment/list/" + gdApplyId;
+		return "redirect:/mypage/payment/list/" + loginUserVO.getUsrLgnId();
 	}
 	
 	@GetMapping("/tourApply/refusal")
