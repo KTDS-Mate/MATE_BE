@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mate.bbs.dao.TourApplyDao;
 import com.mate.bbs.vo.TourApplyVO;
+import com.mate.payment.vo.WritePaymentVO;
 
 @Repository
 public class TourApplyDaoImpl extends SqlSessionDaoSupport implements TourApplyDao {
@@ -21,13 +22,34 @@ public class TourApplyDaoImpl extends SqlSessionDaoSupport implements TourApplyD
 	
 	@Override
 	public TourApplyVO selectOneTourApply(String gdApplyId) {
-		return this.getSqlSession().selectOne("selectOneTourApply",gdApplyId);
+		return this.getSqlSession().selectOne( NAMESPACE + ".selectOneTourApply",gdApplyId);
 	}
 
 	@Override
-	public boolean isAlreadyAccept(String gdApplyId) {
-		int result = this.getSqlSession().selectOne("isAlreadyAccept", gdApplyId);
-		return result > 0;
+	public String selectTourAthor(String gdApplyId) {
+		String athorId = this.getSqlSession().selectOne( NAMESPACE + ".selectTourAthor", gdApplyId);
+		return athorId;
 	}
+	
+	@Override
+	public int updateAcceptTourApply(String gdApplyId) {
+		return this.getSqlSession().update( NAMESPACE + ".updateAcceptTourApply", gdApplyId);
+	}
+	
+	@Override
+	public int updateRequestTour(String gdApplyId) {
+		return this.getSqlSession().update( NAMESPACE + ".updateRequestTour", gdApplyId);
+	}
+	
+	@Override
+	public WritePaymentVO selectApplyInfo(String gdApplyId) {
+		return this.getSqlSession().selectOne( NAMESPACE + ".selectApplyInfo", gdApplyId);
+	}
+	
+	@Override
+	public int updateRefusalTourApply(String gdApplyId) {
+		return this.getSqlSession().update( NAMESPACE + ".updateRefusalTourApply" ,gdApplyId);
+	}
+	
 	
 }

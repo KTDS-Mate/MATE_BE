@@ -48,6 +48,16 @@ $().ready(function() {
 			}
 			else {
 				for (var i = 0; i < requestGuideApplyCount; i++) {
+                    var infoButton = ``;
+                    if (result.requestGuideApplys[i].gdApplyStt === 'WAITING'){
+                        infoButton = `<input class="viewBtn" type="button" value="투어 일정 보기" data-ps-id=${result.requestGuideApplys[i].gdApplyId} />`;
+                    } else if (result.requestGuideApplys[i].gdApplyStt === 'ACCEPT') {
+                        infoButton = '수락됨';
+                    } else if (result.requestGuideApplys[i].gdApplyStt === 'REFUSAL') {
+                        infoButton = '거절됨';
+                    }
+                        
+                    
 					var applyBox = $(`<div class="applyBox">
 													<div class="leftModal">
 														<div class="applyTitle">
@@ -65,9 +75,9 @@ $().ready(function() {
 															가격 : $${result.requestGuideApplys[i].gdApplyPrc}
 														</div>
 													</div>
-													<div class="rightModal">
-														<input class="viewBtn" type="button" value="투어 일정 보기" data-ps-id=${result.requestGuideApplys[i].gdApplyId} />
-													</div>
+                                                    <div class="rightModal">
+													   ${infoButton}
+                                                    </div>
 												</div>`);
 					appendedDom.append(applyBox);
 				}

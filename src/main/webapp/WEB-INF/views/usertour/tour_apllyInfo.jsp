@@ -71,20 +71,20 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
               </div>
               <div class="summaryDetailArea">
                 <div>
-	                <div class="hour">
-	                  <strong>인원 : ${userTourVO.usrTrNp} 명</strong>
-	                </div>
-	                <div class="price">
-	                  <strong>제시 금액 : ${tourApplyVO.gdApplyPrc} $</strong>
-	                </div>
+                   <div class="hour">
+                     <strong>인원 : ${userTourVO.usrTrNp} 명</strong>
+                   </div>
+                   <div class="price">
+                     <strong>제시 금액 : ${tourApplyVO.gdApplyPrc} $</strong>
+                   </div>
                 </div>
                 <div>
-	                <div class="reserveButton">
-	                  <span onclick="location.href='index.html'">수락</span>
-	                </div>
-	                <div class="reserveButton">
-	                  <span onclick="location.href='index.html'">거절</span>
-	                </div>
+                   <div class="reserveButton">
+                    <span onclick="location.href=`/tourApply/accept?gdApplyId=${tourApplyVO.gdApplyId}`">수락</span>
+                  </div>
+                  <div class="reserveButton">
+                    <span onclick="location.href=`/tourApply/refusal?gdApplyId=${tourApplyVO.gdApplyId}`">거절</span>
+                   </div>
                 </div>
                 
               </div>
@@ -99,7 +99,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
               </div>
               <div class="priceDetailArea">
               
-              	<h5>${userTourVO.usrTrStDt} ~ ${userTourVO.usrTrEdDt}</h5>
+                 <h5>${userTourVO.usrTrStDt} ~ ${userTourVO.usrTrEdDt}</h5>
                 <h1>${tourApplyVO.trGdApplyDtl}</h1>
               
               </div>
@@ -170,3 +170,4 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
     </div>
   </body>
 </html>
+                    

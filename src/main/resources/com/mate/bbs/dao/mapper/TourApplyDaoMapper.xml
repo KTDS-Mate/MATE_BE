@@ -40,6 +40,7 @@
 		     , RGA.GD_APPLY_TTL
 		     , RGA.TR_GD_APPLY_DTL
 		     , RGA.TR_GD_APPLY_MP
+		     , RGA.GD_APPLY_STT
 		     , TRUNC(MONTHS_BETWEEN(TRUNC(SYSDATE), TO_CHAR(GD.USR_BD , 'YYYYMMDD'))/ 12) AS GD_AGE
 		     , UTR.USR_TR_ST_DT
 			 , UTR.USR_TR_ED_DT
@@ -70,16 +71,55 @@
 		 WHERE GD_APPLY_ID = #{parameter}
  	</select>
  	
- 	<select id="isAlreadyAccept"
+ 	<select id="selectTourAthor"
  	        parameterType="String"
- 	        resultType="_int">
- 	SELECT COUNT(1) 
-	  FROM RQST_GD_APPLY
+ 	        resultType="String">
+ 	SELECT ATHR_ID
+	  FROM USR_TR_RQST
 	 WHERE (SELECT USR_TR_PST_ID 
 	          FROM RQST_GD_APPLY
-	         WHERE GD_APPLY_ID = #{parameter}) = USR_TR_PST_ID
+	         WHERE GD_APPLY_ID = #{parameter}
+	           AND GD_APPLY_IS_DLT = 'N' ) = USR_TR_PST_ID
+	   AND USR_TR_IS_DLT = 'N'
+	   AND USR_TR_STTS = 'RCRTNG'
  	</select>
  	
+ 	<update id="updateAcceptTourApply"
+ 	        parameterType="String">
+ 	  UPDATE RQST_GD_APPLY
+	     SET GD_APPLY_STT = 'ACCEPT'
+	   WHERE GD_APPLY_ID = #{parameter}
+ 	</update>
+ 	
+ 	<update id="updateRequestTour"
+ 	        parameterType="String">
+ 	  UPDATE USR_TR_RQST
+	     SET USR_TR_STTS = 'RSRVT'
+	       , GD_ID = (SELECT GD_ID
+	                    FROM RQST_GD_APPLY R
+	                   WHERE GD_APPLY_ID = #{parameter}) 
+	   WHERE (SELECT USR_TR_PST_ID 
+	            FROM RQST_GD_APPLY
+	           WHERE GD_APPLY_ID = #{parameter}) = USR_TR_PST_ID
+ 	</update>
+ 	
+ 	<select id="selectApplyInfo"
+ 	        parameterType="String"
+ 	        resultType="com.mate.payment.vo.WritePaymentVO">
+ 	  SELECT GD_ID
+		   , USR_TR_PST_ID AS PAY_TR_ID
+		   , GD_APPLY_PRC AS PAY_CSH
+		FROM RQST_GD_APPLY
+	   WHERE GD_APPLY_ID = #{parameter}
+ 	</select>
+ 	
+ 	<update id="updateRefusalTourApply"
+ 	        parameterType="String">
+ 	  UPDATE RQST_GD_APPLY
+         SET GD_APPLY_STT = 'REFUSAL'
+       WHERE GD_APPLY_ID = #{parameter}
+         AND GD_APPLY_IS_DLT = 'N'
+ 	</update>
  	
  	
  </mapper>
