@@ -263,6 +263,7 @@ a:link {
   width: 20rem;
   height: 15rem;
   border-radius: 10px;
+  object-fit: cover;
 }
 
 .tour-cont {

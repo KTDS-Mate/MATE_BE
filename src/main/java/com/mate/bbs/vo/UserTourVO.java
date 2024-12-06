@@ -98,6 +98,8 @@ public class UserTourVO {
 	/** 투어 구분 **/
 	private String usrTrDivide;
 	
+	private int userTourImgCount;
+	
 	public String getUsrTrDivide() {
 		return usrTrDivide;
 	}
@@ -301,6 +303,12 @@ public class UserTourVO {
 	}
 	public void setUsrTrTm(String usrTrTm) {
 		this.usrTrTm = usrTrTm;
+	}
+	public int getUserTourImgCount() {
+		return userTourImgCount;
+	}
+	public void setUserTourImgCount(int userTourImgCount) {
+		this.userTourImgCount = userTourImgCount;
 	}
 	
 }

@@ -55,26 +55,70 @@ pageEncoding="UTF-8" %>
           <!-- <div class="reviewWriteModal hidden"> -->
           <jsp:include page="../guidetour/Modal.jsp" />
           <div class="firstLayer">
-            <div class="tourPicArea">
-              <div class="bigPicArea btn-open-pic-modal">
-                <img src="/public/다낭.jpg" alt="사진 1" />
-              </div>
-              <div class="smallPicAreas">
-                <div class="smallPicArea btn-open-pic-modal">
-                  <img class="brs" src="/public/다낭.jpg" alt="사진 1" />
-                </div>
-                <div class="smallPicArea btn-open-pic-modal">
-                  <img src="/public/다낭.jpg" alt="사진 2" />
-                </div>
-                <div class="morePicArea">
-                  <img
-                    src="/img/tourboard/MorePicButton.png"
-                    alt="더보기 버튼"
-                    onclick="location.href='index.html'"
-                  />
-                </div>
-              </div>
-            </div>
+          	<c:choose>
+          		<c:when test="${userTourVO.userTourImgCount == 0}">
+          			<div class="bigOneImgArea">
+		              <div class="oneImgArea btn-open-pic-modal">
+		              	<!-- TODO 이미지 파일을 올리지 않았을 때 나올 이미지 추가 -->
+		                <img src="/img/tourlist/별하늘.jpg" alt="기본 이미지" />
+		              </div>
+		            </div>
+          		</c:when>
+          		<c:when test="${userTourVO.userTourImgCount == 1}">
+          			<div class="bigOneImgArea">
+		              <div class="oneImgArea btn-open-pic-modal">
+		                <img src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}" alt="사진 1" />
+		              </div>
+		            </div>
+          		</c:when>
+          		<c:when test="${userTourVO.userTourImgCount == 2}">
+          			<div class="tourPicArea">
+		              <div class="twoImgArea1 btn-open-pic-modal">
+		                <img src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}" alt="사진 1" />
+		              </div>
+		              <div class="twoImgArea2 btn-open-pic-modal">
+		                  <img class="brs" src="${userTourVO.userTourImgList[1].usrTrRqImgIdUrl}" alt="사진 1" />
+		              </div>
+		            </div>
+          		</c:when>
+          		<c:when test="${userTourVO.userTourImgCount == 3}">
+          			<div class="tourPicArea">
+		              <div class="bigPicArea btn-open-pic-modal">
+		                <img src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}" alt="사진 1" />
+		              </div>
+		              <div class="smallPicAreas">
+		                <div class="threeImgArea1 btn-open-pic-modal">
+		                  <img class="brs" src="${userTourVO.userTourImgList[1].usrTrRqImgIdUrl}" alt="사진 1" />
+		                </div>
+		                <div class="threeImgArea2 btn-open-pic-modal">
+		                  <img src="${userTourVO.userTourImgList[2].usrTrRqImgIdUrl}" alt="사진 2" />
+		                </div>
+		              </div>
+		            </div>
+          		</c:when>
+          		<c:otherwise>
+          			<div class="tourPicArea">
+		              <div class="bigPicArea btn-open-pic-modal">
+		                <img src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}" alt="사진 1" />
+		              </div>
+		              <div class="smallPicAreas">
+		                <div class="smallPicArea btn-open-pic-modal">
+		                  <img class="brs" src="${userTourVO.userTourImgList[1].usrTrRqImgIdUrl}" alt="사진 1" />
+		                </div>
+		                <div class="smallPicArea btn-open-pic-modal">
+		                  <img src="${userTourVO.userTourImgList[2].usrTrRqImgIdUrl}" alt="사진 2" />
+		                </div>
+		                <div class="morePicArea">
+		                  <img
+		                    src="/img/tourboard/MorePicButton.png"
+		                    alt="더보기 버튼"
+		                    onclick="location.href='index.html'"
+		                  />
+		                </div>
+		              </div>
+		            </div>
+          		</c:otherwise>
+          	</c:choose>
             <div class="priceArea">
               <div class="priceTitleArea">
                 <span>Price</span>

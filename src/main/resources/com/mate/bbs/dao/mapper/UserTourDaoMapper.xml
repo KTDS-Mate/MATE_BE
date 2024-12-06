@@ -508,4 +508,12 @@
 		 WHERE RG.USR_TR_PST_ID = #{_parameter}
 	</select>
 	
+	<select id="selectUserTourImgCount"
+			parameterType="string"
+			resultType="_int">
+		SELECT COUNT(1)
+		  FROM USR_TR_RQST_IMG
+		 WHERE USR_TR_PST_ID = #{_parameter}
+	</select>
+	
 </mapper>

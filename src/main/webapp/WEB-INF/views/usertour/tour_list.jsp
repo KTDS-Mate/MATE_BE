@@ -161,7 +161,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       <div>
                       <img
                         class="tour-country-image"
-                        src="http://localhost:8080/C:\matepic/${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}" />
+                        src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}" />
                       </div>
                     </c:when>
                     <c:otherwise>
