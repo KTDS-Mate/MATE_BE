@@ -168,7 +168,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       <div>
                       <img
                         class="tour-country-image"
-                        src="/img/tourboard/mateImg.png" />
+                        src="/img/tourboard/기본이미지.png" />
                       </div>
                     </c:otherwise>
                   </c:choose>
