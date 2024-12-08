@@ -13,11 +13,11 @@ public class ApiResponse {
 	private int count;
 	private List<String> errors;
 	private int errorsCount;
-	
+
 	public ApiResponse() {
 		this(HttpStatus.OK);
 	}
-	
+
 	public ApiResponse(Object body) {
 		this();
 		this.setBody(body);
@@ -27,7 +27,7 @@ public class ApiResponse {
 		this.status = httpStatus.value();
 		this.statusMessage = httpStatus.getReasonPhrase();
 	}
-	
+
 	public ApiResponse(HttpStatus httpStatus, Object body) {
 		this(httpStatus);
 		this.setBody(body);
@@ -55,13 +55,11 @@ public class ApiResponse {
 
 	public void setBody(Object body) {
 		this.body = body;
-		if(body instanceof List list) {
+		if (body instanceof List list) {
 			this.count = list.size();
-		}
-		else if(body instanceof Map map) {
+		} else if (body instanceof Map map) {
 			this.count = map.size();
-		}
-		else {
+		} else {
 			this.count = 1;
 		}
 	}
@@ -90,5 +88,5 @@ public class ApiResponse {
 	public void setErrorsCount(int errorsCount) {
 		this.errorsCount = errorsCount;
 	}
-	
+
 }

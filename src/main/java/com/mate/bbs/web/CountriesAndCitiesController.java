@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mate.bbs.service.CountriesAndCitiesService;
+import com.mate.bbs.service.UserTourService;
+import com.mate.bbs.vo.UserTourImgListVO;
 
 
 @RestController
@@ -22,6 +24,9 @@ public class CountriesAndCitiesController {
 
 	@Autowired
 	private CountriesAndCitiesService countriesAndCitiesService;
+	
+	@Autowired
+	private UserTourService userTourService;
 	
 	@GetMapping("/tour/regions")
 	public Map<String, Object> getAllRegions() {
@@ -62,4 +67,15 @@ public class CountriesAndCitiesController {
 		return ResponseEntity.ok(Map.of("results", results));
 	}
 
+	@GetMapping("/usertour/imgs/{usrTrPstId}")
+	public Map<String, Object> getUserTourImgs(@PathVariable String usrTrPstId) {
+		UserTourImgListVO userTourImgs = this.userTourService.getUserTourImgs(usrTrPstId);
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		resultMap.put("imgCnt", userTourImgs.getImgCount());
+		resultMap.put("imgUrls", userTourImgs.getUserTourImgList());
+		
+		return resultMap;
+	}
+	
 }
