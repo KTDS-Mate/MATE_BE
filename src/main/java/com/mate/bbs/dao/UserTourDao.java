@@ -121,4 +121,6 @@ public interface UserTourDao {
 	
 	public int selectUserTourImgCount(String usrTrPstId);
 	
+	public List<UserTourImgVO> selectUserTourImgs(String usrTrPstId);
+	
 }

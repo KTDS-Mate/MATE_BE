@@ -59,10 +59,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
         />
       </div>
       <div class="picArea">
-        <img
-          src="${guideTourVO.guideTourImgList[0].gdTrImgUrl}"
-          alt="확대 사진"
-        />
+        
       </div>
     </dialog>
     <dialog id="viewAllReviewModal" class="viewAllReviewModal hidden">

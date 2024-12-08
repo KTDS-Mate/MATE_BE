@@ -13,6 +13,7 @@ import com.mate.bbs.vo.RequestGuideApplyListVO;
 import com.mate.bbs.vo.RequestGuideApplyVO;
 import com.mate.bbs.vo.RequestGuideApplyWriteVO;
 import com.mate.bbs.vo.SearchUserTourVO;
+import com.mate.bbs.vo.UserTourImgListVO;
 import com.mate.bbs.vo.UserTourImgVO;
 import com.mate.bbs.vo.UserTourListVO;
 import com.mate.bbs.vo.UserTourModifyVO;
@@ -158,8 +159,8 @@ public class UserTourServiceImpl implements UserTourService{
 		searchUserTourVO.setPageCount(userTourCnt);
 		
 		List<UserTourVO> UserTourList = this.userTourDao.selectAllUserTour(searchUserTourVO);
-		
 		UserTourListVO userTourListVO = new UserTourListVO();
+		
 		userTourListVO.setUserTourCount(userTourCnt);
 		userTourListVO.setUserTourList(UserTourList);
 		
@@ -253,6 +254,16 @@ public class UserTourServiceImpl implements UserTourService{
 		requestGuideApplyListVO.setRequestGuideApplyList(requestGuideApplyList);
 		
 		return requestGuideApplyListVO;
+	}
+	
+	@Override
+	public UserTourImgListVO getUserTourImgs(String usrTrPstId) {
+		int imgCount = this.userTourDao.selectUserTourImgCount(usrTrPstId);
+		List<UserTourImgVO> userTourImgList = this.userTourDao.selectUserTourImgs(usrTrPstId);
+		UserTourImgListVO userTourImgListVO = new UserTourImgListVO();
+		userTourImgListVO.setImgCount(imgCount);
+		userTourImgListVO.setUserTourImgList(userTourImgList);
+		return userTourImgListVO;
 	}
 	
 }
