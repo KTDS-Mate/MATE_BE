@@ -53,7 +53,7 @@ pageEncoding="UTF-8" %>
             <div class="wish-button"></div>
           </div>
           <!-- <div class="reviewWriteModal hidden"> -->
-          <jsp:include page="../guidetour/Modal.jsp" />
+          <jsp:include page="../usertour/usertourModal.jsp" />
           <div class="firstLayer">
           	<c:choose>
           		<c:when test="${userTourVO.userTourImgCount == 0}">
