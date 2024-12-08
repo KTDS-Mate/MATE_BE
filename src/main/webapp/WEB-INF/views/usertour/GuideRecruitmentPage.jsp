@@ -58,7 +58,7 @@ pageEncoding="UTF-8" %>
           	<c:choose>
           		<c:when test="${userTourVO.userTourImgCount == 0}">
           			<div class="bigOneImgArea">
-		              <div class="oneImgArea">
+		              <div class="oneImgArea btn-open-pic-modal" data-img-url="/img/tourlist/기본이미지.png">
 		                <img src="/img/tourlist/기본이미지.png" alt="기본 이미지" />
 		              </div>
 		            </div>
