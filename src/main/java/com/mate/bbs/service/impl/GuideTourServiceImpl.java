@@ -50,6 +50,7 @@ public class GuideTourServiceImpl implements GuideTourService{
 		GuideTourListVO guideTourListVO = new GuideTourListVO();
 		guideTourListVO.setGdTrPstCnt(guideTourListCount);
 		guideTourListVO.setGuideTourList(guideTourList);
+		// TODO 여기에 사진
 		
 		return guideTourListVO;
 	}
