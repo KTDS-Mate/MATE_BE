@@ -1,3 +1,106 @@
+.defaultImgArea {
+	margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.defaultImgArea img {
+	width: 100;
+	height: 100%;
+	object-fit: cover;
+}
+
+.bigOneImgArea {
+	width: 36.3rem;
+    height: 17.1rem;
+    border: 2px solid #000;
+    border-radius: 1.25rem;
+    display: flex;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.oneImgArea {
+	margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;	
+}	
+
+.oneImgArea img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 1.1rem;
+}
+
+.twoImgArea1 {
+	margin: 0;
+    padding: 0;
+    border-right: 2px solid #000;
+    width: 50%;
+    cursor: pointer;
+}
+
+.twoImgArea1 img {
+	border-top-left-radius: 1.1rem;
+	border-bottom-left-radius: 1.1rem;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.twoImgArea2 {
+	margin: 0;
+    padding: 0;
+    border-top-right-radius: 1.1rem;
+    border-bottom-right-radius: 1.1rem;
+    width: 50%;
+    cursor: pointer;
+}
+
+.twoImgArea2 img {
+	width: 100%;
+	height: 100%;
+	border-top-right-radius: 1.1rem;
+    border-bottom-right-radius: 1.1rem;
+	object-fit: cover;
+}
+
+.threeImgArea1 {
+	margin: 0;
+    padding: 0;
+    border-top-right-radius: 1.1rem;
+    width: 8.6rem;
+    height: 50%;
+    cursor: pointer;
+    border-bottom: 2px solid #000;
+}
+
+.threeImgArea1 img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.threeImgArea2 {
+    margin: 0;
+    padding: 0;
+    border-top-right-radius: 1.1rem;
+    width: 8.6rem;
+    height: 50%;
+    cursor: pointer;
+}
+
+.threeImgArea2 img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-bottom-right-radius: 1.1rem;
+}
+
 .container {
   width: 62.5rem;
   /* height: auto; */
@@ -66,6 +169,7 @@
 .bigPicArea > img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .smallPicAreas {
@@ -94,9 +198,11 @@
   padding: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .morePicArea {
+  position: relative;
   width: 100%;
   height: 100%;
   background-color: #cccaca;
@@ -107,10 +213,30 @@
   cursor: pointer;
 }
 
-.morePicArea > img {
-  width: 3.75rem;
-  height: 4.6875rem;
+.beforeImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-bottom-right-radius: 1.1rem;
+  object-fit: cover;
 }
+
+.opacityImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-bottom-right-radius: 1.1rem;
+  object-fit: cover;
+}
+
+.plusImgBtn {
+  opacity: 0.9;
+}
+
 
 .priceArea {
   width: 18.2rem;
@@ -652,6 +778,7 @@
   object-fit: cover;
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
+  object-fit: cover;
 }
 
 .touristSmallPicAreas {
@@ -679,6 +806,7 @@
   width: 13.28rem;
   height: 7.25rem;
   overflow: hidden;
+  object-fit: cover;
 }
 
 .touristMorePicArea {

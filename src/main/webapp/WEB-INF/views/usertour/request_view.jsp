@@ -58,10 +58,6 @@ pageEncoding="UTF-8" %>
 	            	<div class="select-div">
 	            		<span class="red">*</span> 세부 일정
 	            	</div>
-	            	<div class="hope-btn">
-	                  <input tabindex="10" id="plus" type="button" value="일정 추가하기" />
-	                  <input tabindex="11" id="m-btn" type="button" value="일정 삭제하기" />
-	                </div>
 	                <div class="loc-inf">
 	                	<div class="locs">
 	                		<div>
@@ -77,6 +73,10 @@ pageEncoding="UTF-8" %>
 								<textarea id="hope-info" name="userTourSchdlList[0].trRqst" type="text" required="required"></textarea>
 							</div>
 						</div>
+	                </div>
+	                <div class="hope-btn">
+	                  <input tabindex="10" id="plus" type="button" value="일정 추가하기" />
+	                  <input tabindex="11" id="m-btn" type="button" value="일정 삭제하기" />
 	                </div>
 	            </div>
 	            <div class="all-select-div">

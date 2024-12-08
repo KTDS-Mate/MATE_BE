@@ -119,4 +119,8 @@ public interface UserTourDao {
 	
 	public int selectRequestGuideApplyListCount(String usrTrPstId);
 	
+	public int selectUserTourImgCount(String usrTrPstId);
+	
+	public List<UserTourImgVO> selectUserTourImgs(String usrTrPstId);
+	
 }

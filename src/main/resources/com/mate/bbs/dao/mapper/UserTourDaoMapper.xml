@@ -45,8 +45,8 @@
 			<id column="REGION_ID" property="regionId" />
 		</association>
 		<association property="favoriteVO"
-					javaType="com.mate.bbs.vo.FavoriteVO"
-					autoMapping="true">
+					 javaType="com.mate.bbs.vo.FavoriteVO"
+					 autoMapping="true">
 			<id column="FAV_ID" property="favId" />
 		</association>
 		<collection property="userTourImgList"
@@ -506,6 +506,22 @@
 		  JOIN USR_INF UI
 		    ON RG.GD_ID = UI.USR_LGN_ID 
 		 WHERE RG.USR_TR_PST_ID = #{_parameter}
+	</select>
+	
+	<select id="selectUserTourImgCount"
+			parameterType="string"
+			resultType="_int">
+		SELECT COUNT(1)
+		  FROM USR_TR_RQST_IMG
+		 WHERE USR_TR_PST_ID = #{_parameter}
+	</select>
+	
+	<select id="selectUserTourImgs"
+			parameterType="string"
+			resultType="com.mate.bbs.vo.UserTourImgVO">
+		SELECT USR_TR_RQ_IMG_ID_URL
+		 FROM USR_TR_RQST_IMG
+		 WHERE USR_TR_PST_ID = #{_parameter}
 	</select>
 	
 </mapper>

@@ -314,7 +314,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       <meter
                         class="ratingGage"
                         min="0"
-                        max="100"
+                        max="${reviewList.guideTourReviewList[0].sumCount}"
                         value="${reviewList.guideTourReviewList[0].fiveCount}"
                       ></meter>
                       <span class="ratingCount"
@@ -327,7 +327,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       <meter
                         class="ratingGage"
                         min="0"
-                        max="100"
+                        max="${reviewList.guideTourReviewList[0].sumCount}"
                         value="${reviewList.guideTourReviewList[0].fourCount}"
                       ></meter>
                       <span class="ratingCount"
@@ -340,7 +340,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       <meter
                         class="ratingGage"
                         min="0"
-                        max="100"
+                        max="${reviewList.guideTourReviewList[0].sumCount}"
                         value="${reviewList.guideTourReviewList[0].threeCount}"
                       ></meter>
                       <span class="ratingCount"
@@ -353,7 +353,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       <meter
                         class="ratingGage"
                         min="0"
-                        max="100"
+                        max="${reviewList.guideTourReviewList[0].sumCount}"
                         value="${reviewList.guideTourReviewList[0].twoCount}"
                       ></meter>
                       <span class="ratingCount"
@@ -366,7 +366,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       <meter
                         class="ratingGage"
                         min="0"
-                        max="100"
+                        max="${reviewList.guideTourReviewList[0].sumCount}"
                         value="${reviewList.guideTourReviewList[0].oneCount}"
                       ></meter>
                       <span class="ratingCount"
