@@ -1,5 +1,6 @@
 package com.mate.bbs.service;
 
+import com.mate.bbs.vo.GuideTourImgListVO;
 import com.mate.bbs.vo.GuideTourListVO;
 import com.mate.bbs.vo.GuideTourModifyVO;
 import com.mate.bbs.vo.GuideTourVO;
@@ -44,4 +45,7 @@ public interface GuideTourService {
     public boolean softDeleteGuideTour(String gdTrPstId);
 
     public List<GuideTourVO> getRandomGuideTours();
+    
+    public GuideTourImgListVO getGuideTourImgs(String gdTrPstId);
+    
 }

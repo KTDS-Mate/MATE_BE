@@ -404,4 +404,21 @@
 		  FROM GD_TR_RCRT
 		 ORDER BY DBMS_RANDOM.VALUE
 	</select>
+	
+	<select id="selectImgCount"
+			parameterType="string"
+			resultType="_int">
+		SELECT COUNT(1)
+		  FROM GD_TR_RCRT_IMG
+		 WHERE GD_TR_PST_ID = #{_parameter}
+	</select>
+	
+	<select id="selectGuideTourImgList"
+			parameterType="string"
+			resultType="com.mate.bbs.vo.GuideTourImgVO">
+		SELECT GD_TR_IMG_URL
+		  FROM GD_TR_RCRT_IMG
+		 WHERE GD_TR_PST_ID = #{_parameter}
+	</select>
+	
 </mapper>
