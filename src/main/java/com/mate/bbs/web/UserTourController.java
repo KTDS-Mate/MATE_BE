@@ -15,6 +15,7 @@ import com.mate.bbs.service.UserTourService;
 import com.mate.bbs.vo.RequestGuideApplyWriteVO;
 import com.mate.bbs.vo.SearchUserTourVO;
 import com.mate.bbs.vo.TourApplyVO;
+import com.mate.bbs.vo.TourGuideApplyWriteVO;
 import com.mate.bbs.vo.UserTourListVO;
 import com.mate.bbs.vo.UserTourModifyVO;
 import com.mate.bbs.vo.UserTourVO;
@@ -49,6 +50,28 @@ public class UserTourController {
 		model.addAttribute("userTourVO", userTourVO);
 		return "usertour/GuideRecruitmentPage";
 	}
+	
+	
+	@PostMapping("/usertour/view")
+	public String doCreateNewTourGuideApply(@RequestParam String usrTrPstId,
+			@Valid TourGuideApplyWriteVO tourGuideApplyWriteVO,
+			BindingResult result,
+			Model model, 
+			@SessionAttribute(value= "_LOGIN_USER_", required= false) UserVO loginUserVO) {
+		if (result.hasErrors()) {
+			model.addAttribute("requestGuideApplyWriteVO", tourGuideApplyWriteVO);
+			return "usertour/request_view";
+		}
+		tourGuideApplyWriteVO.setGdId(loginUserVO.getUsrLgnId());
+		// 기존 tourGuideApplyVO에 userTrPstId가 (usrTrPstId, usrTrPstId)형태로 들어있어서 다시 받아옴
+		tourGuideApplyWriteVO.setUsrTrPstId(usrTrPstId);
+		
+		this.userTourService.createNewTourGuideApply(tourGuideApplyWriteVO);
+		
+		return "redirect:/usertour/view?usrTrPstId=" + usrTrPstId;
+	}
+	
+	
 	
 	/** 클라이언트가 등록한 가이드 구인 게시글 작성 페이지 **/
 	@GetMapping("/usertour/insert")
@@ -173,8 +196,6 @@ public class UserTourController {
 		}
 		return "redirect:/mypage/mytour/tr-mytour/" + loginUserVO.getUsrLgnId();
 	}
-	
-	
 	
 	
 	

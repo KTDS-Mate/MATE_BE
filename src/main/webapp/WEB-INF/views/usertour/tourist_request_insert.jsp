@@ -112,8 +112,7 @@ uri="http://www.springframework.org/tags/form" %>
               </div>
               <form:errors path="usrTrRqDtl" element="div" cssClass="errors" />
               <textarea tabindex="12" name="usrTrRqDtl">
-${userTourWriteVO.usrTrRqDtl}</textarea
-              >
+                ${userTourWriteVO.usrTrRqDtl}</textarea>
             </div>
             <div class="all-select-div">
               <div class="select-div">희망하는 가이드</div>
