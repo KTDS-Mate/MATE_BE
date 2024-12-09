@@ -62,6 +62,18 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
         
       </div>
     </dialog>
+    <dialog id="morepicModalArea" class="more-picModal hidden">
+      <div class="morePicCloseButtonArea">
+        <img
+          src="/public/close.png"
+          alt="닫기 버튼"
+          class="picCloseButton btn-close-more-pic-modal"
+        />
+      </div>
+      <div class="more-picArea">
+        
+      </div>
+    </dialog>
     <dialog id="viewAllReviewModal" class="viewAllReviewModal hidden">
       <div class="closeReviewListButtonArea">
         <h2>후기</h2>
