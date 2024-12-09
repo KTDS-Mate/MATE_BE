@@ -13,16 +13,22 @@ public interface UserManagementDao {
 	 * @param usrId
 	 * @return
 	 */
-	public int selectUserManagementAllCount(String usrId);
+	public int selectUserManagementAllCount();
 	
 	/**
 	 * 모든 회원 목록 조회
 	 */
-	public List<UserManagementVO> selectAllUserManagement(String usrId);
+	public List<UserManagementVO> selectAllUserManagement();
 	
 	/**
-	 * 한 회원 조회
+	 * 가이드 신청 인원 조회
+	 * @return
 	 */
-	public UserManagementVO selectOneUserManagement(String usrId);
+	public List<UserManagementVO> selectWaitingGuideUsers();
 	
+	/**
+	 * 가이드 신청 인원 수 조회
+	 * @return
+	 */
+	public int selectWaitingGuideUsersCount();
 }

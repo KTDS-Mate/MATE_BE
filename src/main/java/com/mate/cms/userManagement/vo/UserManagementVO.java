@@ -17,7 +17,11 @@ public class UserManagementVO {
 	private String usrBd;
 
 	private String usrEml;
+	
+	private String usrIsGd;
 
+	private String gdApplStt;
+	
 	public String getUsrId() {
 		return usrId;
 	}
@@ -82,4 +86,19 @@ public class UserManagementVO {
 		this.usrEml = usrEml;
 	}
 
+	public String getUsrIsGd() {
+		return usrIsGd;
+	}
+
+	public void setUsrIsGd(String usrIsGd) {
+		this.usrIsGd = usrIsGd;
+	}
+
+	public String getGdApplStt() {
+		return gdApplStt;
+	}
+
+	public void setGdApplStt(String gdApplStt) {
+		this.gdApplStt = gdApplStt;
+	}
 }

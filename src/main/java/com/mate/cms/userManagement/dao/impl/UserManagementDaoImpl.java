@@ -23,27 +23,26 @@ public class UserManagementDaoImpl extends SqlSessionDaoSupport implements UserM
 	 * 회원 전체 수 조회
 	 */
 	@Override
-	public int selectUserManagementAllCount(String usrId) {
-		return this.getSqlSession().selectOne(NAMESPACE + ".selectUserManagementAllCount", usrId);
+	public int selectUserManagementAllCount() {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectUserManagementAllCount");
 	}
 
 	/**
 	 * 모든 회원 목록 조회
 	 */
 	@Override
-	public List<UserManagementVO> selectAllUserManagement(String usrId) {
-		return this.getSqlSession().selectList(NAMESPACE + ".selectAllUserManagement", usrId);
+	public List<UserManagementVO> selectAllUserManagement() {
+		return this.getSqlSession().selectList(NAMESPACE + ".selectAllUserManagement");
 	}
-
-	/**
-	 * 한 회원 조회
-	 */
+	
 	@Override
-	public UserManagementVO selectOneUserManagement(String usrId) {
-		return this.getSqlSession().selectOne(NAMESPACE + ".selectOneUserManagement", usrId);
+	public List<UserManagementVO> selectWaitingGuideUsers() {
+		return this.getSqlSession().selectList(NAMESPACE + ".selectWaitingGuideUsers");
 	}
-
 	
-	
+	@Override
+	public int selectWaitingGuideUsersCount() {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectWaitingGuideUsersCount");
+	}
 	
 }
