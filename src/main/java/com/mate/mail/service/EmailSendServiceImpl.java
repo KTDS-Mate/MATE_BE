@@ -159,6 +159,9 @@ public class EmailSendServiceImpl implements EmailSendService {
 			response.put("message", "인증이 완료되었습니다.");
 		// 실패할 경우 False 반환
 		} else {
+			System.out.println("코드 " + storedEmailVO.getAuthCode());
+			System.out.println("입력한 코드 " + emailVO.getAuthCode());
+			
 			response.put("valid", false);
 			response.put("message", "인증코드가 일치하지 않습니다.");
 		}

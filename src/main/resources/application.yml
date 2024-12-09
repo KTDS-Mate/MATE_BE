@@ -1,13 +1,16 @@
+server:
+  port: 80
+
 spring:
   profiles:
     active: dev
   application:
     name: mate
   datasource:
-    url: jdbc:oracle:thin:@ec2-15-165-9-38.ap-northeast-2.compute.amazonaws.com:1521:XE
+    url: jdbc:oracle:thin:@43.201.83.116:1521:XE
     driver-class-name: oracle.jdbc.driver.OracleDriver
     username: MATE
-    password: 1234
+    password: MATE
  # favicon 아이콘 맵핑
   web:
    resources:
