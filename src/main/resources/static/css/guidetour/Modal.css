@@ -1,11 +1,16 @@
 .picRealArea {
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    overflow: auto;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .moreImgArea img {
-	width: 10rem;
-	height: 10rem;
+    width: 30rem;
+    height: 30rem;
+    margin-bottom: 1rem;
+    border-radius: 1.1rem;
 }
 
 .reviewWriteModal {
@@ -126,6 +131,20 @@
   z-index: 1000;
 }
 
+.more-picModal {
+	display: flex;
+	flex-direction: column;
+	  padding: 1.25rem;
+  width: 100%;
+  height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 투명한 배경 적용 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+
 .picArea {
   width: 30rem;
   height: 25rem;
@@ -208,6 +227,17 @@
 
 .picCloseButtonArea {
   width: 60rem;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  background-color: none;
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
+  text-align: right;
+}
+
+.morePicCloseButtonArea {
+  width: 100%;
   height: auto;
   margin: 0;
   padding: 0;

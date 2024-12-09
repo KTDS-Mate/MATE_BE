@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mate.bbs.service.CountriesAndCitiesService;
+import com.mate.bbs.service.GuideTourService;
 import com.mate.bbs.service.UserTourService;
+import com.mate.bbs.vo.GuideTourImgListVO;
 import com.mate.bbs.vo.UserTourImgListVO;
 
 
@@ -27,6 +29,9 @@ public class CountriesAndCitiesController {
 	
 	@Autowired
 	private UserTourService userTourService;
+	
+	@Autowired
+	private GuideTourService guideTourService;
 	
 	@GetMapping("/tour/regions")
 	public Map<String, Object> getAllRegions() {
@@ -74,6 +79,17 @@ public class CountriesAndCitiesController {
 		
 		resultMap.put("imgCnt", userTourImgs.getImgCount());
 		resultMap.put("imgUrls", userTourImgs.getUserTourImgList());
+		
+		return resultMap;
+	}
+	
+	@GetMapping("/guidetour/imgs/{gdTrPstId}")
+	public Map<String, Object> getGuideTourImgs(@PathVariable String gdTrPstId) {
+		GuideTourImgListVO guideTourImgs = this.guideTourService.getGuideTourImgs(gdTrPstId);
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		resultMap.put("imgCnt", guideTourImgs.getGuideTourImgCount());
+		resultMap.put("imgUrls", guideTourImgs.getGuideTourImgList());
 		
 		return resultMap;
 	}
