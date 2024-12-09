@@ -13,6 +13,7 @@ import com.mate.bbs.vo.RequestGuideApplyListVO;
 import com.mate.bbs.vo.RequestGuideApplyVO;
 import com.mate.bbs.vo.RequestGuideApplyWriteVO;
 import com.mate.bbs.vo.SearchUserTourVO;
+import com.mate.bbs.vo.TourGuideApplyWriteVO;
 import com.mate.bbs.vo.UserTourImgListVO;
 import com.mate.bbs.vo.UserTourImgVO;
 import com.mate.bbs.vo.UserTourListVO;
@@ -214,6 +215,15 @@ public class UserTourServiceImpl implements UserTourService{
 		}
 		return false;
 	}
+	
+	@Transactional
+	@Override
+	public boolean createNewTourGuideApply(TourGuideApplyWriteVO tourGuideApplyWriteVO) {
+		int createCount = this.userTourDao.insertNewTourGuideApply(tourGuideApplyWriteVO);
+		
+		return createCount > 0;
+	}
+	
 	
 	@Transactional
 	@Override

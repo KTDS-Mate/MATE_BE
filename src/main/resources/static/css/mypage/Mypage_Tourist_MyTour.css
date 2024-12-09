@@ -101,6 +101,31 @@
 	cursor: pointer;
 }
 
+.acceptBtn {
+    border: 0;
+    border-radius: 5px;
+    padding: 0.3rem;
+    background-color: #fff6ec;
+    color: #333;
+}
+.acceptBtn:hover {
+    background-color: #fff6ee;
+    cursor: pointer;
+}
+
+.refusalBtn {
+    border: 0;
+    border-radius: 5px;
+    padding: 0.3rem;
+    background-color: #fff6ec;
+    color: #333;
+}
+
+.refusalBtn:hover {
+    background-color: #fff6ee;
+    cursor: pointer;
+}
+
 div.content-grid {
   display: grid;
   grid-template-columns: 13rem 1fr;
@@ -250,7 +275,6 @@ input::placeholder {
 	background-color: #fff6ee;
 	cursor: pointer;
 }
-
 
 .page-nav {
 	margin: 0px;
