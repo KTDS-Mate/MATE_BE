@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -34,6 +35,26 @@ pageEncoding="UTF-8" %>
     ></script>
   </head>
   <body>
+  <c:if test="${sessionScope._LOGIN_USER_.usrIsGd eq 'Y'}">
+    <div id="modal" class="modal">
+        <div class="modal-content insert-main">
+            <span class="close">&times;</span>
+            <form:form modelAttribute="tourGuideApplyWriteVO" method="post">
+                <div class="all-select-div">
+                    <div class="select-div">
+                        <span class="red">*</span> 제시금액
+                    </div>
+                    <div class="btn-group">
+                        <div class="prc">
+                            <strong>$</strong><input class="requestPrc" type="number" name="gdApplyPrc" required="required" />
+                        </div>
+                        <input class="smbtn" type="submit" value="등록" />
+                    </div>
+                </div>
+            </form:form>
+        </div>
+    </div>
+    </c:if>
     <div class="grid">
       <!--  -->
       <div class="header">
@@ -58,8 +79,8 @@ pageEncoding="UTF-8" %>
           	<c:choose>
           		<c:when test="${userTourVO.userTourImgCount == 0}">
           			<div class="bigOneImgArea">
-		              <div class="oneImgArea btn-open-pic-modal" data-img-url="/img/tourlist/기본이미지.png">
-		                <img src="/img/tourlist/기본이미지.png" alt="기본 이미지" />
+		              <div class="oneImgArea btn-open-pic-modal" data-img-url="/img/tourboard/기본이미지.png">
+		                <img src="/img/tourboard/기본이미지.png" alt="기본 이미지" />
 		              </div>
 		            </div>
           		</c:when>
@@ -135,7 +156,7 @@ pageEncoding="UTF-8" %>
                   <c:choose>
                     <c:when test="${userTourVO.usrTrStts eq 'RCRTNG'}">
                       <div class="reserveButton">
-	                    <span>예약 요청</span>
+	                    <span>지원하기</span>
 	                  </div>
                     </c:when>
                     <c:otherwise>
