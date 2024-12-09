@@ -5,7 +5,6 @@ import java.util.List;
 import com.mate.payment.vo.PaymentVO;
 import com.mate.payment.vo.SearchPaymentVO;
 import com.mate.payment.vo.WritePaymentVO;
-import com.mate.user.vo.UserVO;
 
 public interface PaymentDao {
 	
