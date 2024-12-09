@@ -21,7 +21,9 @@ public class CustomerServiceVO {
 	private String answrDt;
 	/** 답변 상태(default = 'N') **/
 	private String cstmrSrvcCntrStts;
-
+	/** 삭제 상태(default = 'N') **/
+	private String cstmrSrvcIsDlt;
+	
 	public String getCstmrSrvcCntrId() {
 		return cstmrSrvcCntrId;
 	}
@@ -86,4 +88,11 @@ public class CustomerServiceVO {
 		this.cstmrSrvcCntrStts = cstmrSrvcCntrStts;
 	}
 
+	public String getCstmrSrvcIsDlt() {
+		return cstmrSrvcIsDlt;
+	}
+
+	public void setCstmrSrvcIsDlt(String cstmrSrvcIsDlt) {
+		this.cstmrSrvcIsDlt = cstmrSrvcIsDlt;
+	}
 }
