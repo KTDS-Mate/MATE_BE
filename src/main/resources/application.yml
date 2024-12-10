@@ -6,7 +6,7 @@ spring:
   datasource:
     url: jdbc:oracle:thin:@ec2-15-165-9-38.ap-northeast-2.compute.amazonaws.com:1521:XE
     driver-class-name: oracle.jdbc.driver.OracleDriver
-    username: MATE
+    username: mate
     password: 1234
  # favicon 아이콘 맵핑
   web:
