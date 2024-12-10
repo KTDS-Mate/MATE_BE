@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
@@ -41,8 +41,8 @@ public class UserTourApiController {
 	}
 	
 	/** 클라이언트가 등록한 가이드 구인 게시글 상세 조회 페이지 **/
-	@GetMapping("/usertour/view")
-	public ApiResponse viewOneUserTourPage(@RequestParam String usrTrPstId) {
+	@GetMapping("/usertour/view/{usrTrPstId}")
+	public ApiResponse viewOneUserTourPage(@PathVariable String usrTrPstId) {
 		UserTourVO userTourVO = this.userTourService.getOneUserTour(usrTrPstId);
 		ApiResponse apiResponse = new ApiResponse();
 		apiResponse.setBody(userTourVO);
