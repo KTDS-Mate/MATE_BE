@@ -2,7 +2,9 @@ package com.mate.bbs.dao.impl;
 
 import java.util.List;
 
-import com.mate.common.vo.*;
+import com.mate.common.vo.RegionsVO;
+import com.mate.common.vo.CountriesVO;
+import com.mate.common.vo.CitiesVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +51,15 @@ public class CountriesAndCitiesDaoImpl extends SqlSessionDaoSupport implements C
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectCitiesCount", countryId);
 	}
 
+
 	@Override
-	public TopDestinationsListVO selectTopDestinations() {
-		return this.getSqlSession().selectOne(NAMESPACE + ".selectTopDestinations");
+	public List<CountriesVO> searchCountriesByName(String query) {
+		return this.getSqlSession().selectList(NAMESPACE + ".searchCountriesByName", query);
 	}
+
+	@Override
+	public List<CitiesVO> searchCitiesByName(String query) {
+		return this.getSqlSession().selectList(NAMESPACE + ".searchCitiesByName", query);
+	}
+
 }

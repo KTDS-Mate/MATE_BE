@@ -26,20 +26,42 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
       <div id="searchModalArea" class="searchModalArea">
         <h2>검색</h2>
         <div class="searchModalContent">
-          <div class="searchInputArea">
-            <div class="searchInput">
-              <input type="text" id="searchInput" placeholder="검색어 입력" />
-            </div>
-            <div class="searchButtonArea">
-              <img
-                src="/public/searchButton.png"
-                alt="검색 버튼"
-                id="searchButton"
-                class="searchButton"
+          <form class="searchForm">
+<%--             <input
+              type="hidden"
+              id="search-val-1"
+              name="searchType"
+              value="${searchUserTourVO.searchType}"
+            /> --%>
+            <div class="searchArea">
+              <select name="searchType" class="searchType">
+                <option
+                  value="country"
+                  class='${"country" eq searchUserTourVO.searchType ? "selected" : ""}'
+                >
+                  국가
+                </option>
+                <option
+                  value="city"
+                  class='${"city" eq searchUserTourVO.searchType ? "selected" : ""}'
+                >
+                  도시
+                </option>
+              </select>
+              <input
+                type="text"
+                class="searchInput"
+                name="searchKeyword"
+                placeholder="검색어를 입력해주세요."
+                value="${searchUserTourVO.searchKeyword}"
               />
+              <button type="button" class="searchButton">검색</button>
             </div>
-          </div>
-          <div id="searchResults" class="searchResults"></div>
+
+          </form>
+                      <div class="searchResultArea" id="searchResultArea">
+            	
+            </div>
         </div>
       </div>
     </dialog>

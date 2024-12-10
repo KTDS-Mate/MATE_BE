@@ -56,12 +56,16 @@ public class CountriesAndCitiesServiceImpl implements CountriesAndCitiesService 
 	}
 
 	@Override
-	public TopDestinationsListVO getTopDestinations() {
-		TopDestinationsListVO topDestinationsList = this.countriesAndCitiesDao.selectTopDestinations();
-
-
-
-		return topDestinationsList;
+	public List<?> searchByType(String type, String query) {
+		switch (type) {
+			case "country":
+				return countriesAndCitiesDao.searchCountriesByName(query); // String 전달
+			case "city":
+				return countriesAndCitiesDao.searchCitiesByName(query); // String 전달
+			// "title" 및 "price" 타입에 대한 추가 구현 필요 시 여기에 추가
+			default:
+				return Collections.emptyList();
+		}
 	}
-	
+
 }

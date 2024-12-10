@@ -1,198 +1,292 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
-    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
-    <title>가이드 투어 상세보기</title>
+    <meta charset="utf-8" />
+    <title>${userTourVO.usrTrTtl}</title>
     <link
       rel="stylesheet"
       type="text/css"
-      href="/css/usertour/GuideRecruitmentPage.css" />
-    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+      href="/css/usertour/GuideRecruitmentPage.css"
+    />
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script
       type="text/javascript"
-      src="/js/usertour/GuideRecruitmentPage.js"></script>
+      src="/js/guidetour/tourReviewCarousel.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/js/guidetour/guideReviewCarousel.js"
+    ></script>
+        <script
+      type="text/javascript"
+      src="/js/usertour/GuideRecruitmentPage.js"
+    ></script>
   </head>
   <body>
+  <c:if test="${sessionScope._LOGIN_USER_.usrIsGd eq 'Y'}">
+    <div id="modal" class="modal">
+        <div class="modal-content insert-main">
+            <span class="close">&times;</span>
+            <form:form modelAttribute="tourGuideApplyWriteVO" method="post">
+                <div class="all-select-div">
+                    <div class="select-div">
+                        <span class="red">*</span> 제시금액
+                    </div>
+                    <div class="btn-group">
+                        <div class="prc">
+                            <strong>$</strong><input class="requestPrc" type="number" name="gdApplyPrc" required="required" />
+                        </div>
+                        <input class="smbtn" type="submit" value="등록" />
+                    </div>
+                </div>
+            </form:form>
+        </div>
+    </div>
+    </c:if>
     <div class="grid">
+      <!--  -->
       <div class="header">
-        <!-- header 공통파일 -->
+        <!-- 헤더 공통파일 -->
         <jsp:include page="../header.jsp"></jsp:include>
       </div>
+      <!--  -->
       <div class="content">
-        <div class="grid-rows">
-          <div class="subject">
-            <div class="ttl-wb" 
-                 data-pst-id="${userTourVO.usrTrPstId}"
-                 data-pst-stts="${userTourVO.usrTrStts}">
-              <h1>${userTourVO.usrTrTtl}</h1>
-              <div class="wish-button"></div>
-            </div>
+        <div class="container">
+          <div class="title">
+          	<input 
+          	  class="ttl-wb" 
+          	  type="hidden" 
+          	  data-pst-id="${userTourVO.usrTrPstId}"
+          	  data-pst-stts="${userTourVO.usrTrStts}" />
+            <h1>${userTourVO.usrTrTtl}</h1>
+            <div class="wish-button"></div>
           </div>
-          <div class="img-price">
-            <div class="img-group">
-              <div class="main-img">
-                <img
-                  alt="main-img"
-                  src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}" />
+          <!-- <div class="reviewWriteModal hidden"> -->
+          <jsp:include page="../usertour/usertourModal.jsp" />
+          <div class="firstLayer">
+          	<c:choose>
+          		<c:when test="${userTourVO.userTourImgCount == 0}">
+          			<div class="bigOneImgArea">
+		              <div class="oneImgArea btn-open-pic-modal" data-img-url="/img/tourboard/기본이미지.png">
+		                <img src="/img/tourboard/기본이미지.png" alt="기본 이미지" />
+		              </div>
+		            </div>
+          		</c:when>
+          		<c:when test="${userTourVO.userTourImgCount == 1}">
+          			<div class="bigOneImgArea">
+		              <div class="oneImgArea btn-open-pic-modal" data-img-url="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}">
+		                <img src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}" alt="사진 1" />
+		              </div>
+		            </div>
+          		</c:when>
+          		<c:when test="${userTourVO.userTourImgCount == 2}">
+          			<div class="tourPicArea">
+		              <div class="twoImgArea1 btn-open-pic-modal" data-img-url="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}">
+		                <img src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}" alt="사진 1" />
+		              </div>
+		              <div class="twoImgArea2 btn-open-pic-modal" data-img-url="${userTourVO.userTourImgList[1].usrTrRqImgIdUrl}">
+		                  <img class="brs" src="${userTourVO.userTourImgList[1].usrTrRqImgIdUrl}" alt="사진 1" />
+		              </div>
+		            </div>
+          		</c:when>
+          		<c:when test="${userTourVO.userTourImgCount == 3}">
+          			<div class="tourPicArea">
+		              <div class="bigPicArea btn-open-pic-modal" data-img-url="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}">
+		                <img src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}" alt="사진 1" />
+		              </div>
+		              <div class="smallPicAreas">
+		                <div class="threeImgArea1 btn-open-pic-modal" data-img-url="${userTourVO.userTourImgList[1].usrTrRqImgIdUrl}">
+		                  <img class="brs" src="${userTourVO.userTourImgList[1].usrTrRqImgIdUrl}" alt="사진 1" />
+		                </div>
+		                <div class="threeImgArea2 btn-open-pic-modal" data-img-url="${userTourVO.userTourImgList[2].usrTrRqImgIdUrl}">
+		                  <img src="${userTourVO.userTourImgList[2].usrTrRqImgIdUrl}" alt="사진 2" />
+		                </div>
+		              </div>
+		            </div>
+          		</c:when>
+          		<c:otherwise>
+          			<div class="tourPicArea">
+		              <div class="bigPicArea btn-open-pic-modal" data-img-url="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}">
+		                <img src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}" alt="사진 1" />
+		              </div>
+		              <div class="smallPicAreas">
+		                <div class="smallPicArea btn-open-pic-modal" data-img-url="${userTourVO.userTourImgList[1].usrTrRqImgIdUrl}">
+		                  <img class="brs" src="${userTourVO.userTourImgList[1].usrTrRqImgIdUrl}" alt="사진 1" />
+		                </div>
+		                <div class="smallPicArea btn-open-pic-modal" data-img-url="${userTourVO.userTourImgList[2].usrTrRqImgIdUrl}">
+		                  <img src="${userTourVO.userTourImgList[2].usrTrRqImgIdUrl}" alt="사진 2" />
+		                </div>
+		                <div class="morePicArea">
+		                  <img class="beforeImg" src="${userTourVO.userTourImgList[3].usrTrRqImgIdUrl}" alt="사진 3" />
+		                  <img class="opacityImg" src="/img/tourlist/불투명처리.png" alt="사진 불투명 처리" />
+		                  <img
+		                    class="plusImgBtn"
+		                    src="/img/tourboard/MorePicButton.png"
+		                    alt="더보기 버튼"
+		                  />
+		                </div>
+		              </div>
+		            </div>
+          		</c:otherwise>
+          	</c:choose>
+            <div class="priceArea">
+              <div class="priceTitleArea">
+                <span>Price</span>
               </div>
-              <div class="second-img">
-                <img
-                  alt="second-img"
-                  src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}" />
-              </div>
-              <div class="third-img">
-                <img
-                  alt="third-img"
-                  src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}" />
-              </div>
-              <div class="plus-img">
-                <img
-                  alt="plus-img"
-                  src="${userTourVO.userTourImgList[0].usrTrRqImgIdUrl}" />
-                <div class="z-index">
-                  <button class="img-btn">+</button>
+              <div class="priceDetailArea">
+                <div class="hour">
+              	  <h4 class="maxNp">투어 인원 : ${userTourVO.usrTrNp} 명</h4>
                 </div>
-              </div>
-            </div>
-            <div class="price-group">
-              <div class="price-for">
-                <h2>Price</h2>
-              </div>
-              <div class="price-person">
-                <div class="price-ad-c">
-                  <h2>${userTourVO.usrTrGdHrPrc}$</h2>
+                <div class="price">
+                  <span>${userTourVO.usrTrGdHrPrc} $</span>
                 </div>
                 <c:if test="${sessionScope._LOGIN_USER_.usrIsGd eq 'Y'}">
-                  <div class="reserve-btn-group">
-                    <button class="reserve-btn">예약하기</button>
-                  </div>
+                  <c:choose>
+                    <c:when test="${userTourVO.usrTrStts eq 'RCRTNG'}">
+                      <div class="reserveButton">
+	                    <span>지원하기</span>
+	                  </div>
+                    </c:when>
+                    <c:otherwise>
+                      <div class="non-reserveButton">
+	                    <span>예약 중</span>
+	                  </div>
+                    </c:otherwise>
+                  </c:choose>
                 </c:if>
               </div>
             </div>
           </div>
-          <div class="summation-guide">
-            <div class="summation">
-              <div class="view-dtls">
-                <h2>희망 가이드</h2>
+          <div class="thirdLayer">
+            <div class="tourOfferArea">
+              <div class="offerTitleArea">
+                <span>희망 가이드</span>
               </div>
-              <div>
-                <ul class="guide-dtls-list">
-                  <c:choose>
-                    <c:when test="${userTourVO.gdGndr == 'female'}">
-                      <li>성별 : 여자</li>
-                    </c:when>
-                    <c:otherwise>
-                      <c:choose>
-                        <c:when test="${userTourVO.gdGndr == 'male'}">
-                          <li>성별 : 남자</li>
-                        </c:when>
-                        <c:otherwise>
-                          <li>성별 : 상관없음</li>
-                        </c:otherwise>
-                      </c:choose>
-                    </c:otherwise>
-                  </c:choose>
-                  <c:choose>
-                    <c:when test="${userTourVO.gdAge == 0}">
-                      <li>나이 : 상관없음</li>
-                    </c:when>
-                    <c:otherwise>
-                      <li>나이 : ${userTourVO.gdAge}대</li>
-                    </c:otherwise>
-                  </c:choose>
-
-                  <c:choose>
-                    <c:when test="${userTourVO.gdCrr == 0}">
-                      <li>가이드 경력 : 상관없음</li>
-                    </c:when>
-                    <c:otherwise>
-                      <li>가이드 경력 : ${userTourVO.gdCrr}년 이상</li>
-                    </c:otherwise>
-                  </c:choose>
-                  <c:if test="${not empty userTourVO.gdWntRq}">
-                    <li>가이드에게 원하는 것 : ${userTourVO.gdWntRq}</li>
-                  </c:if>
-                </ul>
+              <div class="want-guide">
+                <c:choose>
+                  <c:when test="${userTourVO.gdGndr eq 'male'}">
+                    <p>성별 : 남자</p>
+                  </c:when>
+                  <c:when test="${userTourVO.gdGndr eq 'female'}">
+                    <p>성별 : 여자</p>
+                  </c:when>
+                  <c:otherwise>
+                    <p>성별 : 상관없음</p>
+                  </c:otherwise>
+                </c:choose>
+                <c:choose>
+                  <c:when test="${userTourVO.gdAge eq 0}">
+                    <p>나이 : 상관없음</p>
+                  </c:when>
+                  <c:otherwise>
+                    <p>나이 : ${userTourVO.gdAge}대</p>
+                  </c:otherwise>
+                </c:choose>
+                <p>${userTourVO.gdWntRq}</p>
               </div>
             </div>
           </div>
-          <div class="want-tour">
-            <div class="want-list">
-              <div class="view-dtls">
-                <h2>투어에서 원하는 것</h2>
+          <div class="thirdLayer">
+            <div class="tourOfferArea">
+              <div class="offerTitleArea">
+                <span>투어 목적</span>
               </div>
-              <div>
-                <p class="tr-dtls-p">${userTourVO.usrTrRqDtl}</p>
+              <div class="offerDetailArea">
+                <h1>${userTourVO.usrTrPrps}</h1>
               </div>
             </div>
           </div>
-          <div class="want-time">
-            <div class="want-time-place">
-              <div class="view-dtls">
-                <h2>집결 희망 장소 / 시간</h2>
+          <div class="thirdLayer">
+            <div class="tourOfferArea">
+              <div class="offerTitleArea">
+                <span>투어 세부 요구 사항</span>
               </div>
-              <div class="margin-left">
-                <h2>${userTourVO.usrTrMp}</h2>
-                <div class="flex-div">
-                  <div class="time-div">
-                    <h3>${userTourVO.usrTrStDt} ~ ${userTourVO.usrTrEdDt}</h3>
+              <div class="offerDetailArea">
+                <h1>${userTourVO.usrTrRqDtl}</h1>
+              </div>
+            </div>
+          </div>
+          <div class="fourthLayer">
+            <div class="rallyPointArea">
+              <div class="rallyPointTitleArea">
+                <span>집결 장소</span>
+                <h3 class="showDetail">
+                  상세보기
+                </h3>
+              </div>
+              <div class="rallyPointDetailArea">
+                <div class="summaryArea">
+                  <div class="rallyPointSummaryArea">
+                    <div>
+                      <h1>${userTourVO.usrTrMp}</h1>
+                    </div>
+                    <div>
+                      <h3>${userTourVO.usrTrStDt} ~ ${userTourVO.usrTrEdDt}</h3>
+                    </div>
                   </div>
-                  <div class="margin-right"><h4>Open In GoogleMap</h4></div>
+                </div>
+                <div class="mapApiArea">
+                  <span>Google Map</span>
+                  <div class="apiArea"></div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="want-tour">
-            <div class="hope-info">
-              <div class="view-dtls">
-                <h2>투어 희망 정보</h2>
+          <div class="fifthLayer">
+            <div class="tourInfoArea">
+              <div class="tourInfoTitleArea">
+                <span>투어 희망 정보</span>
               </div>
-              <div>
+              <div class="tourInfoDetailArea">
                 <ul class="hope-info-list">
-                  <c:choose>
-                    <c:when
-                      test="${not empty userTourVO.userTourSchdlList && not empty userTourVO.userTourSchdlList[0].trLctns}">
-                      <c:forEach
-                        items="${userTourVO.userTourSchdlList}"
-                        var="userTourSchdl"
-                        varStatus="index">
-                        <li>
-                          <div class="list-item">
-                            <span class="background-num"
-                              >${index.index + 1}</span
-                            >
-                            ${userTourSchdl.trLctns}
-                          </div>
-                          <div class="border-left">${userTourSchdl.trRqst}</div>
-                        </li>
-                      </c:forEach>
-                      	<li>
-                      		<div class="list-item">
-                      			<span class="background-num"></span>
-                      		</div>
-                      	</li>
-                    </c:when>
-                    <c:otherwise>
-                      <li>
-                        <p>작성된 투어가 없습니다.</p>
-                      </li>
-                    </c:otherwise>
-                  </c:choose>
+                	<c:choose>
+                		<c:when test="${not empty userTourVO.userTourSchdlList}">
+			                <c:forEach items="${userTourVO.userTourSchdlList}"
+			                		   var="userTourSchdlList"
+			                		   varStatus="index">
+			                		   <li>
+			                		   	  <div class="list-item">
+			                		   	  	<span class="background-num">
+			                		   	  		${index.index + 1}</span>
+			                		   	  		(${userTourSchdlList.trTm}) ${userTourSchdlList.trLctns}
+			                		   	  </div>
+			                		   	  <div class="border-left">${userTourSchdlList.trRqst}</div>
+			                		   </li>
+			                </c:forEach>
+			                <li>
+			                  <div class="list-item">
+			                    <span class="background-num"></span>
+			                  </div>
+			                </li>
+                		</c:when>
+                		<c:otherwise>
+                			<li>
+                				<p>작성된 세부 일정이 없습니다.</p>
+                			</li>
+                		</c:otherwise>
+	                </c:choose>
                 </ul>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="footer">
-        <!-- footer 공통파일 -->
-        <jsp:include page="../footer.jsp"></jsp:include>
-      </div>
+    </div>
+    <div class="footer">
+      <!-- footer 공통파일 -->
+      <jsp:include page="../footer.jsp"></jsp:include>
     </div>
   </body>
 </html>

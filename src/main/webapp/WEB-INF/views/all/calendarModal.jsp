@@ -18,9 +18,9 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
     <dialog id="calendarModal" class="calendarModal hidden">
       <div class="calendarArea">
         <div class="monthSelectArea">
-          <div class="prevMonth">◀︎</div>
+          <div class="prevMonth">◀</div>
           <span class="nowMonth"></span>
-          <div class="nextMonth">►</div>
+          <div class="nextMonth">▶</div>
         </div>
         <div class="dateSelectArea">
           <div class="dayOfWeek">

@@ -53,9 +53,9 @@ public class WishlistServiceImpl implements WishlistService {
 	@Override
 	public int deleteWish(String favId) {
 		
-		System.out.println("서비스 임플전" + favId);
+		//System.out.println("서비스 임플전" + favId);
 		int success = this.wishlistDao.deleteWish(favId);
-		System.out.println("서비스 임플후" + success);
+		//System.out.println("서비스 임플후" + success);
 		
 		return success;
 	}
@@ -95,9 +95,9 @@ public class WishlistServiceImpl implements WishlistService {
 	@Override
 	public int deleteTrWish(String favId) {
 		
-		System.out.println("서비스 임플전" + favId);
+		//System.out.println("서비스 임플전" + favId);
 		int success = this.wishlistDao.deleteWish(favId);
-		System.out.println("서비스 임플후" + success);
+		//System.out.println("서비스 임플후" + success);
 		
 		return success;
 	}

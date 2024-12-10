@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mate.bbs.dao.GuideTourDao;
 import com.mate.bbs.service.GuideTourService;
 import com.mate.bbs.vo.GuideTourDetailInfoVO;
+import com.mate.bbs.vo.GuideTourImgListVO;
+import com.mate.bbs.vo.GuideTourImgVO;
 import com.mate.bbs.vo.GuideTourListVO;
 import com.mate.bbs.vo.GuideTourModifyVO;
 import com.mate.bbs.vo.GuideTourProvidedVO;
@@ -18,12 +20,16 @@ import com.mate.bbs.vo.GuideTourScheduleInfoVO;
 import com.mate.bbs.vo.GuideTourVO;
 import com.mate.bbs.vo.GuideTourWriteVO;
 import com.mate.bbs.vo.SearchGuideTourVO;
+import com.mate.payment.dao.PaymentDao;
 
 @Service
 public class GuideTourServiceImpl implements GuideTourService{
 
 	@Autowired
 	private GuideTourDao guideTourDao;
+	
+	@Autowired
+	private PaymentDao paymentDao;
 	
 	/**
 	 * 모든 가이드 투어 전체 수를 조회
@@ -46,6 +52,7 @@ public class GuideTourServiceImpl implements GuideTourService{
 		GuideTourListVO guideTourListVO = new GuideTourListVO();
 		guideTourListVO.setGdTrPstCnt(guideTourListCount);
 		guideTourListVO.setGuideTourList(guideTourList);
+		// TODO 여기에 사진
 		
 		return guideTourListVO;
 	}
@@ -57,9 +64,13 @@ public class GuideTourServiceImpl implements GuideTourService{
 		List<GuideTourDetailInfoVO> tourDetailInfoList = this.guideTourDao.selectTourDetailInfoList(gdTrPstId);
 		List<GuideTourScheduleInfoVO> tourScheduleInfoList = this.guideTourDao.selectTourScheduleList(gdTrPstId);
 		List<GuideTourProvidedVO> tourProvidedInfoList = this.guideTourDao.selectTourProvidedList(gdTrPstId);
+		List<GuideTourImgVO> guideTourImgList = this.guideTourDao.selectGuideTourImgList(gdTrPstId);
+		int imgCnt = this.guideTourDao.selectImgCount(gdTrPstId);
 		guideTourVO.setGuideTourDetailInfoList(tourDetailInfoList);
 		guideTourVO.setGuideTourScheduleInfoList(tourScheduleInfoList);
 		guideTourVO.setGuideTourProvidedList(tourProvidedInfoList);
+		guideTourVO.setGuideTourImgList(guideTourImgList);
+		guideTourVO.setGuideImgCount(imgCnt);
 		
 		return guideTourVO;
 	}
@@ -111,6 +122,7 @@ public class GuideTourServiceImpl implements GuideTourService{
 		
 		return guideTourInsertCount > 0;
 	}
+	
 	@Transactional
 	@Override
 	public boolean modifyGuideTour(GuideTourModifyVO guideTourModifyVO) {
@@ -124,10 +136,29 @@ public class GuideTourServiceImpl implements GuideTourService{
 		int guideTourUpdateCount = this.guideTourDao.updateGuideTour(guideTourModifyVO);
 		return guideTourUpdateCount > 0;
 	}
+	
 	@Transactional
 	@Override
 	public boolean softDeleteGuideTour(String gdTrPstId) {
 		int guideTourDeleteCount = this.guideTourDao.updateGuideTourIsDtl(gdTrPstId);
 		return guideTourDeleteCount > 0;
 	}
+
+	@Override
+	public List<GuideTourVO> getRandomGuideTours() {
+		return guideTourDao.getRandomGuideTours();
+	}
+
+	@Override
+	public GuideTourImgListVO getGuideTourImgs(String gdTrPstId) {
+		int guideTourImgCount = this.guideTourDao.selectImgCount(gdTrPstId);
+		List<GuideTourImgVO> guideTourImgList = this.guideTourDao.selectGuideTourImgList(gdTrPstId);
+		
+		GuideTourImgListVO guideTourImgListVO = new GuideTourImgListVO();
+		guideTourImgListVO.setGuideTourImgCount(guideTourImgCount);
+		guideTourImgListVO.setGuideTourImgList(guideTourImgList);
+		
+		return guideTourImgListVO;
+	}
+	
 }

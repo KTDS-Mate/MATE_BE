@@ -21,7 +21,6 @@ $().ready(function () {
 	    url: '/getAccessToken',
 	    type: 'POST',
 	    success: function(rsp) {
-	        console.log(rsp.token);
 	    },
 	    error: function(textStatus, errorThrown) {
 	        console.error("토큰 발급에 실패 했습니다 :", textStatus, errorThrown);
@@ -49,13 +48,12 @@ $().ready(function () {
 					}
 				},
 				error: function (){
-					alert("데이터베이스 처리에 실패하였습니다. 고객센터에 문의해주세요.");
+					alert("데이터베이스 과정 중에서 에러가 발생하였습니다. 고객센터에 문의해주세요.");
 				}
 			});
 			
 		},
 		error: function(rsp){
-			console.log("환불 처리도중에 오류가 생겼습니다. 고객센터에 문의해주세요.");
 		},
 	});
 	
@@ -68,26 +66,24 @@ $().ready(function () {
 		data : {"payId": merchantUid, "amount": amount },	// 얘는 위에서 받아오는 amount값을 가지고 비교한다.
 		success: function(firstVerify) {
 			if (firstVerify === true){
-				console.log("선검증 결과 : 안전");
 			    IMP.request_pay(
 				    {
 				        pg: pg,
 				        pay_method: payMethod,
 				        amount: amount, // 구매가격
 				        name: name, // 구매물품 이름
-				        merchant_uid: merchantUid + new Date().getTime() % 10000, // 결제에 대한 PK값 우리는 결제내역 ID가져오면 됨
+				        merchant_uid: merchantUid + new Date().getTime() % 100000, // 결제에 대한 PK값 우리는 결제내역 ID가져오면 됨
 						buyer_name: buyerName,	//이름대신 아이디긴 함
+						currency : 'KRW',
 				    },
 			      	function (rsp) {
 						if (rsp.success) {
-							console.log("결제 완료 결제 검증을 시작합니다.");
 							$.ajax({
 								type: 'get',
 								url : '/verifyPayment',
 								data : {"payId": merchantUid, "amount": rsp.paid_amount },
 								success: function(result) {
 									if (result){
-										console.log(result);
 										alert("올바른 결제입니다. 이용해주셔서 감사합니다.");
 										$.ajax({
 												type:'POST',
@@ -108,10 +104,8 @@ $().ready(function () {
 														type: 'POST',
 														data: { "impUid": rsp.imp_uid, "reason": "검증 실패", },
 														success: function(rsp){
-																console.log(rsp.message);
 														},
 														error: function(){
-															console.log("실행처리중 오류가 생겼습니다. 고객센터에 문의해주세요.");
 														},
 													});
 												},
@@ -123,10 +117,8 @@ $().ready(function () {
 											type: 'POST',
 											data: { "impUid": rsp.imp_uid, "reason": "검증 실패", },
 											success: function(rsp){
-													console.log(rsp.message);
 											},
 											error: function(){
-												console.log("실행처리중 오류가 생겼습니다. 고객센터에 문의해주세요.");
 											},
 										});
 									}
@@ -139,7 +131,6 @@ $().ready(function () {
 										type: 'POST',
 										data: { "impUid": rsp.imp_uid, "reason": "검증 실패", },
 										success: function(rsp){
-												console.log(rsp.message);
 										},
 										error: function(){
 											alert("취소 처리중 오류가 생겼습니다. 고객센터에 문의해주세요.");
@@ -149,9 +140,7 @@ $().ready(function () {
 							});
 						}
 						else {
-							console.log("결제 실패");
 							var msg =  rsp.error_code + "    " + rsp.error_msg;
-							console.log(msg);
 						}
 			        },
 			    );

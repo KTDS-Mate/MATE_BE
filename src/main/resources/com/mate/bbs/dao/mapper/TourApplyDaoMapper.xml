@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.mate.bbs.dao.TourApplyDao">
+ 	
+ 	<resultMap id="tourApplyVOMap"
+ 			   type="com.mate.bbs.vo.TourApplyVO"
+ 			   autoMapping="true">
+ 		<id column="GD_APPLY_ID" property="gdApplyId" />
+ 		<association property="userTourVO"
+ 					 javaType="com.mate.bbs.vo.UserTourVO"
+ 					 autoMapping="true">
+	 		<id column="USR_TR_PST_ID" property="usrTrPstId" />
+ 		</association>
+ 		<association property="guideVO"
+					 javaType="com.mate.user.vo.UserVO"
+					 autoMapping="true">
+			<id column="USR_ID" property="usrId" />
+		</association>
+		<collection property="trSchdlList"
+					ofType="com.mate.bbs.vo.UserTourSchdlVO"
+					autoMapping="true">
+			<id column="TR_SCHDL_ID" property="trSchdlId" />
+		</collection>
+ 	</resultMap>
+ 	
+
+ 	
+ 	<select id="selectOneTourApply"
+ 			parameterType="String"
+ 			resultMap="tourApplyVOMap">
+	 	SELECT RGA.GD_APPLY_ID
+		     , RGA.GD_ID
+		     , RGA.USR_TR_PST_ID
+		     , RGA.GD_APPLY_PRC
+		     , RGA.GD_APPLY_RSTR_DT
+		     , RGA.GD_APPLY_IS_DLT
+		     , RGA.GD_APPLY_DLT_DT
+		     , RGA.GD_APPLY_TTL
+		     , RGA.TR_GD_APPLY_DTL
+		     , RGA.TR_GD_APPLY_MP
+		     , RGA.GD_APPLY_STT
+		     , TRUNC(MONTHS_BETWEEN(TRUNC(SYSDATE), TO_CHAR(GD.USR_BD , 'YYYYMMDD'))/ 12) AS GD_AGE
+		     , UTR.USR_TR_ST_DT
+			 , UTR.USR_TR_ED_DT
+			 , UTR.USR_TR_MP
+			 , UTR.USR_TR_NP
+			 , UTR.TR_CT_ID
+			 , UTR.USR_TR_STTS
+			 , UTR.USR_TR_DIVIDE
+			 , UTR.USR_TR_IS_DLT
+			 , GD.USR_ID 
+			 , GD.USR_LNM
+			 , GD.USR_FNM
+			 , GD.USR_GNDR
+			 , GD.USR_AVG_RTNG
+			 , GD.GD_PRFL_IMG
+			 , GD.USR_GD_EXP
+			 , TS.USR_TR_PST_ID
+			 , TS.TR_LCTNS
+			 , TS.TR_RQST
+			 , TO_CHAR(TS.TR_TM, 'YY-MM-DD HH24:MI') AS TR_TM
+		  FROM RQST_GD_APPLY RGA 
+		  JOIN USR_TR_RQST UTR 
+		    ON RGA.USR_TR_PST_ID = UTR.USR_TR_PST_ID
+		  JOIN USR_INF GD
+		    ON RGA.GD_ID = GD.USR_LGN_ID
+		  JOIN TR_SCHDL TS
+		    ON GD_APPLY_ID = TS.USR_TR_PST_ID
+		 WHERE GD_APPLY_ID = #{parameter}
+ 	</select>
+ 	
+ 	<select id="selectTourAthor"
+ 	        parameterType="String"
+ 	        resultType="String">
+ 	SELECT ATHR_ID
+	  FROM USR_TR_RQST
+	 WHERE (SELECT USR_TR_PST_ID 
+	          FROM RQST_GD_APPLY
+	         WHERE GD_APPLY_ID = #{parameter}
+	           AND GD_APPLY_IS_DLT = 'N' ) = USR_TR_PST_ID
+	   AND USR_TR_IS_DLT = 'N'
+	   AND USR_TR_STTS = 'RCRTNG'
+ 	</select>
+ 	
+ 	<update id="updateAcceptTourApply"
+ 	        parameterType="String">
+ 	  UPDATE RQST_GD_APPLY
+	     SET GD_APPLY_STT = 'ACCEPT'
+	   WHERE GD_APPLY_ID = #{parameter}
+ 	</update>
+ 	
+ 	<update id="updateRequestTour"
+ 	        parameterType="String">
+ 	  UPDATE USR_TR_RQST
+	     SET USR_TR_STTS = 'RSRVT'
+	       , GD_ID = (SELECT GD_ID
+	                    FROM RQST_GD_APPLY R
+	                   WHERE GD_APPLY_ID = #{parameter}) 
+	   WHERE (SELECT USR_TR_PST_ID 
+	            FROM RQST_GD_APPLY
+	           WHERE GD_APPLY_ID = #{parameter}) = USR_TR_PST_ID
+ 	</update>
+ 	
+ 	<select id="selectApplyInfo"
+ 	        parameterType="String"
+ 	        resultType="com.mate.payment.vo.WritePaymentVO">
+ 	  SELECT GD_ID
+		   , USR_TR_PST_ID AS PAY_TR_ID
+		   , GD_APPLY_PRC AS PAY_CSH
+		FROM RQST_GD_APPLY
+	   WHERE GD_APPLY_ID = #{parameter}
+ 	</select>
+ 	
+ 	<update id="updateRefusalTourApply"
+ 	        parameterType="String">
+ 	  UPDATE RQST_GD_APPLY
+         SET GD_APPLY_STT = 'REFUSAL'
+       WHERE GD_APPLY_ID = #{parameter}
+         AND GD_APPLY_IS_DLT = 'N'
+ 	</update>
+ 	
+ 	
+ </mapper>

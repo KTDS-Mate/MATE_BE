@@ -6,7 +6,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
   <head>
     <meta charset="UTF-8" />
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
-    <title>Mypage_Tourist_MyTour</title>
+    <title>내 결제내역</title>
     <link rel="stylesheet" type="text/css" href="/css/mypage/PaymentList.css" />
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -44,11 +44,6 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
               <form class="search-form">
 			  	      <input
 	                	type="hidden"
-                		name="trstLgnId"
-                		class="page-no"
-                		value="${searchPaymentVO.trstLgnId}" />
-			  	      <input
-	                	type="hidden"
                 		name="pageNo"
                 		class="page-no"
                 		value="${searchPaymentVO.pageNo}" />
@@ -63,7 +58,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       name = "searchType" />
                     <input
                       type="button"
-                      onclick="window.location.href='/mypage/payment/list?trstLgnId='+ '${searchPaymentVO.trstLgnId}'"
+                      onclick="window.location.href='/mypage/payment/list/${searchPaymentVO.trstLgnId}'"
                       value="전체조회"
                       />
                     <input 
@@ -145,8 +140,8 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                         var="payInfo"
                       >
                         <tr
-						 onclick="window.location.href='/payment/detail?trstLgnId='+ '${searchPaymentVO.trstLgnId}'
-						 +'&payId=' + '${payInfo.payId}' ">
+						 onclick="window.location.href='/payment/detail/${searchPaymentVO.trstLgnId}'
+						 +'?payId=' + '${payInfo.payId}' ">
                           <td>${payInfo.payId}</td>
                           <td>${payInfo.payCrtDt}</td>
                           <td>${payInfo.payTrTp}</td>

@@ -14,10 +14,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <script type="text/javascript" src="/js/user/emailauthverify.js"></script>
     <script type="text/javascript" src="/js/user/emailauth.js"></script>
     <script type="text/javascript" src="/js/user/editphn.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.min.css" >
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.min.js"></script>
     <script type="text/javascript" src="/js/user/userregist.js"></script>
   </head>

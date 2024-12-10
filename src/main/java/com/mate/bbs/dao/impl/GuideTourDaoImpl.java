@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mate.bbs.dao.GuideTourDao;
 import com.mate.bbs.vo.GuideTourDetailInfoVO;
+import com.mate.bbs.vo.GuideTourImgVO;
 import com.mate.bbs.vo.GuideTourModifyVO;
 import com.mate.bbs.vo.GuideTourProvidedVO;
 import com.mate.bbs.vo.GuideTourReviewVO;
@@ -108,6 +109,21 @@ public class GuideTourDaoImpl extends SqlSessionDaoSupport implements GuideTourD
 	@Override
 	public List<GuideTourScheduleInfoVO> selectTourScheduleList(String gdTrPstId) {
 		return this.getSqlSession().selectList(NAMESPACE + ".selectTourScheduleList", gdTrPstId);
+	}
+
+	@Override
+	public List<GuideTourVO> getRandomGuideTours() {
+		return this.getSqlSession().selectList(NAMESPACE + ".getRandomGuideTours");
+	}
+
+	@Override
+	public int selectImgCount(String gdTrPstId) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectImgCount", gdTrPstId);
+	}
+	
+	@Override
+	public List<GuideTourImgVO> selectGuideTourImgList(String gdTrPstId) {
+		return this.getSqlSession().selectList(NAMESPACE + ".selectGuideTourImgList", gdTrPstId);
 	}
 	
 }

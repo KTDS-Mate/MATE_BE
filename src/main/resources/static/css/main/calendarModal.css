@@ -14,8 +14,8 @@ div.content {
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  top: 94vh;
-  left: 90vh;
+  top: 788px;
+  right: -785px;
   transform: translate(-50%, -50%);
   z-index: 1000;
 }
@@ -31,8 +31,9 @@ div.content {
 
 .monthSelectArea {
   display: flex;
+  flex-direction: row;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: flex-end;
   width: 100%;
   margin-bottom: 2rem;
 }

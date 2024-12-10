@@ -129,8 +129,8 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public boolean checkAvailablePhn(String usrPhn) {
-		return this.userDao.getPhnCount(usrPhn) == 0;
+	public boolean checkAvailablePhn(String usrPhn, String usrLgnId) {
+		return this.userDao.getPhnCount(usrPhn, usrLgnId) == 0;
 	}
 
 	// 현재 비밀번호 검증
@@ -242,7 +242,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean updateUserPhoneNumber(String usrLgnId, String newPhn) {
 
-		if (!checkAvailablePhn(newPhn)) {
+		if (!checkAvailablePhn(newPhn, usrLgnId)) {
 			throw new IllegalArgumentException("이미 사용중인 휴대전화번호입니다.");
 		}
 		

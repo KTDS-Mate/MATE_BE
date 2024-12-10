@@ -1,0 +1,144 @@
+.error {
+    border-color: red;
+}
+
+.available {
+    border-color: green;
+}
+
+.unusable {
+    border-color: red;
+}
+
+.btn-submit:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.8rem; /* 기존 0.rem에서 0.8rem으로 수정 */
+}
+
+body {
+    background-color: #f7f7f7;
+}
+
+.container {
+    width: 27rem;
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.logo h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.8rem ; 
+    font-weight: bold ;
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+    width: calc(100% - 10px);
+    padding: 0.6rem;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-group input[type="date"] {
+    padding: 8px 10px;
+}
+
+.form-group .check-btn,
+.form-group .send-code-btn {
+    margin-top: 10px;
+    background-color: #f5c9ae;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.gender-birth {
+    display: flex;
+    justify-content: space-between;
+}
+
+.gender-birth label {
+    width: 48%;
+}
+
+.gender-birth input,
+.gender-birth select {
+    width: 48%;
+}
+
+.submit-btn {
+    background-color: #f5c9ae;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.iti {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 48px; 
+    position: relative;
+}
+
+.iti .iti__flag-container {
+    height: 100%;
+    margin-right: 0.8rem; 
+}
+
+#usrPhn {
+    flex: 1;
+    margin: 0;
+    padding: 0.6rem;
+    height: 100%;
+    box-sizing: border-box; 
+    padding-left: 2.5rem;
+}
+
+/* 국가 선택 요소 높이 조정 */
+.iti__selected-country-primary {
+    height: 48px;
+    display: flex;
+    align-items: center;
+}
+
+.iti__selected-flag {
+    z-index: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 6px 0 8px;
+}

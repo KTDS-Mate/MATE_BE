@@ -1,75 +1,85 @@
 $().ready(function() {
 
+	var selectType = $(".search-type").val();
+	var typeDom = $(".search-input");
+	if (selectType === "price") {
+		typeDom.attr("type", "number");
+		typeDom.attr("placeholder", "가격을 입력해주세요.");
+	}
+	else if (selectType === "country") {
+		typeDom.attr("type", "text");
+		typeDom.attr("placeholder", "국가를 입력해주세요.");
+	}
+	else if (selectType === "city") {
+		typeDom.attr("type", "text");
+		typeDom.attr("placeholder", "도시를 입력해주세요.");
+	}
+	else {
+		typeDom.attr("type", "text");
+		typeDom.attr("placeholder", "제목을 입력해주세요.");
+	}
+
 	$(".search-button").on("click", function() {
 		movepage(0);
 	});
 
 	$(".tour-box").on("click", function() {
 		var usrTrPstId = $(this).find(".hide").data("pst-id");
-		location.href = "/usertour/view?usrTrPstId=" + usrTrPstId
+		var tourDivide = $(this).find(".hide").data("divide");
+		if (tourDivide === 'REQUEST') {
+			location.href = "/usertour/view/request?usrTrPstId=" + usrTrPstId
+		}
+		else {
+			location.href = "/usertour/view?usrTrPstId=" + usrTrPstId
+		}
 	});
 
 	/**대륙 필터링에 사용 됨**/
 	$("#all").on('click', function() {
-		// 원래 다른 자식 요소에 걸려있는 클래스를 삭제함
-		$(".country-menu-area").children().removeClass("checked");
-		// URL에 파라미터를 담아서 전송
-		location.href = "/usertour/list?pageNo=0&listSize=9&orderby=최신순&regionName=" + $(this).val();
+		$("#search-val-3").val($(this).val());
+		movepage(0);
 	});
 	$("#asia").on('click', function() {
-		$(".country-menu-area").children().removeClass("checked");
-		location.href = "/usertour/list?pageNo=0&listSize=9&orderby=최신순&regionName=" + $(this).val();
+		$("#search-val-3").val($(this).val());
+		movepage(0);
 	});
 	$("#eu").on('click', function() {
-		$(".country-menu-area").children().removeClass("checked");
-		location.href = "/usertour/list?pageNo=0&listSize=9&orderby=최신순&regionName=" + $(this).val();
+		$("#search-val-3").val($(this).val());
+		movepage(0);
 	});
 	$("#ose").on('click', function() {
-		$(".country-menu-area").children().removeClass("checked");
-		location.href = "/usertour/list?pageNo=0&listSize=9&orderby=최신순&regionName=" + $(this).val();
+		$("#search-val-3").val($(this).val());
+		movepage(0);
 	});
 	$("#n-ame").on('click', function() {
-		$(".country-menu-area").children().removeClass("checked");
-		location.href = "/usertour/list?pageNo=0&listSize=9&orderby=최신순&regionName=" + $(this).val();
+		$("#search-val-3").val($(this).val());
+		movepage(0);
 	});
 	$("#s-ame").on('click', function() {
-		$(".country-menu-area").children().removeClass("checked");
-		location.href = "/usertour/list?pageNo=0&listSize=9&orderby=최신순&regionName=" + $(this).val();
+		$("#search-val-3").val($(this).val());
+		movepage(0);
 	});
 	$("#af").on('click', function() {
-		$(".country-menu-area").children().removeClass("checked");
-		location.href = "/usertour/list?pageNo=0&listSize=9&orderby=최신순&regionName=" + $(this).val();
+		$("#search-val-3").val($(this).val());
+		movepage(0);
 	});
 
 	/**정렬에 사용**/
 	$("#latest").on('click', function() {
-		// 원래 다른 자식 요소에 달려있는 클래스를 제거
-		$(".list-view-option").children().removeClass("checked2");
-		// URL을 옮길 때 현재 선택 된 국가를 가져옴
-		var regionName = $("#region-hide").val();
-		location.href = "/usertour/list?pageNo=0&listSize=9&regionName=" + regionName + "&orderby=" + $(this).val();
+		$("#search-val-4").val($(this).val());
+		movepage(0);
 	});
 	$("#high-price").on('click', function() {
-		$(".list-view-option").children().removeClass("checked2");
-		var regionName = $("#region-hide").val();
-		location.href = "/usertour/list?pageNo=0&listSize=9&regionName=" + regionName + "&orderby=" + $(this).val();
+		$("#search-val-4").val($(this).val());
+		movepage(0);
 	});
 	$("#low-price").on('click', function() {
-		$(".list-view-option").children().removeClass("checked2");
-		var regionName = $("#region-hide").val();
-		location.href = "/usertour/list?pageNo=0&listSize=9&regionName=" + regionName + "&orderby=" + $(this).val();
+		$("#search-val-4").val($(this).val());
+		movepage(0);
 	});
 	$("#deadline").on('click', function() {
-		$(".list-view-option").children().removeClass("checked2");
-		var regionName = $("#region-hide").val();
-		location.href = "/usertour/list?pageNo=0&listSize=9&regionName=" + regionName + "&orderby=" + $(this).val();
-	});
-
-	$(".search-button").on('click', function() {
-		$(".search-form").attr({
-			"method": "GET",
-			"action": "list"
-		}).submit();
+		$("#search-val-4").val($(this).val());
+		movepage(0);
 	});
 
 	$(".search-type").on('change', function() {
@@ -98,12 +108,22 @@ $().ready(function() {
 });
 
 function movepage(pageNo) {
-	
+
 	$(".page-no").val(pageNo);
-	
+
 	$(".search-form").attr({
 		"method": "GET",
 		"action": `/usertour/list`
 	}).submit();
 
 }
+
+function moveRequest() {
+	location.href = "/usertour/insert/request";
+}
+
+function moveInsert() {
+	location.href = "/usertour/insert";
+}
+
+

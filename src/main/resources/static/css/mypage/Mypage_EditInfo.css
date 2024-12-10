@@ -91,13 +91,17 @@ body{
 }
 
 h2 {
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin-bottom: 0.8rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.content-text {
+	font-size: 1.1rem;
 }
 
 h3 {
-  font-size: 1.6rem;
+  font-size: 1.1rem;
   font-weight: bold;
   margin-bottom: 0.8rem;
 }
@@ -126,6 +130,7 @@ p {
   align-items: center;
   /* 각 info-row 간의 간격을 1rem로 설정 */
   margin-bottom: 0.8rem;
+  margin-left: 0.5rem;
 }
 
 .info-item p {

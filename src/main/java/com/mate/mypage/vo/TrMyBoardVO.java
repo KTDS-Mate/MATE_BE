@@ -24,6 +24,7 @@ public class TrMyBoardVO {
 	private String trCtId;
 	private String usrTrEdDt;
 	private String usrTrStts;
+	private String usrTrDivide;
     
     private SearchCityAndCountryVO searchCityAndCountryVO;
 
@@ -114,6 +115,13 @@ public class TrMyBoardVO {
 		this.searchCityAndCountryVO = searchCityAndCountryVO;
 	}
 
+	public String getUsrTrDivide() {
+		return usrTrDivide;
+	}
+
+	public void setUsrTrDivide(String usrTrDivide) {
+		this.usrTrDivide = usrTrDivide;
+	}
 	
     
     

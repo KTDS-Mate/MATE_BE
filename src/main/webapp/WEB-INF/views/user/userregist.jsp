@@ -8,13 +8,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <title>회원가입</title>
     <link rel="stylesheet" type="text/css" href="/css/user/userregist.css">
-    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
-    <script type="text/javascript" src="/js/user/userlogin.js"></script>
-    <script type="text/javascript" src="/js/user/userregist.js"></script>
-    <script type="text/javascript" src="/js/user/emailauthverify.js"></script>
-    <script type="text/javascript" src="/js/user/emailauth.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css">
+    
 </head>
 <body>
 
@@ -22,7 +17,7 @@
       <!-- 헤더 공통파일 -->
       <jsp:include page="../header.jsp"></jsp:include>
     </div>
-
+ <div class="main-content">
     <div class="container">
         <div class="logo">
         </div>
@@ -52,13 +47,13 @@
             
             <div class="form-group">
                 <label for="usrLnm">성</label>
-                <form:input path="usrLnm" id="usrLnm" />
+                <form:input path="usrLnm" id="usrLnm"  required="true"/>
                 <form:errors path="usrLnm" element="div" cssClass="error" />
             </div>
             
             <div class="form-group">
                 <label for="usrFnm">이름</label>
-                <form:input path="usrFnm" id="usrFnm" />
+                <form:input path="usrFnm" id="usrFnm" reqquired="true" />
                 <form:errors path="usrFnm" element="div" cssClass="error" />
             </div>
             
@@ -103,24 +98,34 @@
             
             <!-- 아래 항목들은 ModelAttribute에 바인딩할 필요가 없으므로 form:input을 사용하지 않는다. (폼데이터 바인딩이 필요 없음) -->
             
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="authCode">인증번호입력</label>
                 <input type="text" id="authCode" name="authCode" value="" />
-                <button type="button" id="verify-btn" class="send-code-btn">인증 코드 확인</button>
-            </div>
+                <button type="button" id="verify-btn" class="send-code-btn" disabled>인증 코드 확인</button>
+            </div> -->
             
             <!-- 인증 여부 서버 전송 -->
             <input type="hidden" id="authVerified" name="authVerified" value="false" />
            
             <div class="form-group submit-btn">
-                <input type="submit" value="회가입" />
+                <input type="submit" value="회원가입" />
             </div>
         </form:form>
     </div>
+  </div>
     <div class="footer">
       <!-- footer 공통파일 -->
       <jsp:include page="../footer.jsp"></jsp:include>
     </div>
     
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- intl-tel-input -->
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+    <!-- intl-tel-input -->
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js"></script>
+    <script type="text/javascript" src="/js/user/userlogin.js"></script>
+    <script type="text/javascript" src="/js/user/userregist.js"></script>
+    <script type="text/javascript" src="/js/user/emailauthverify.js"></script>
+    <script type="text/javascript" src="/js/user/emailauth.js"></script>
 </body>
 </html>
