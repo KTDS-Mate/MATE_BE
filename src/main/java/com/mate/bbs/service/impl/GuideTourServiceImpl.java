@@ -64,10 +64,12 @@ public class GuideTourServiceImpl implements GuideTourService{
 		List<GuideTourDetailInfoVO> tourDetailInfoList = this.guideTourDao.selectTourDetailInfoList(gdTrPstId);
 		List<GuideTourScheduleInfoVO> tourScheduleInfoList = this.guideTourDao.selectTourScheduleList(gdTrPstId);
 		List<GuideTourProvidedVO> tourProvidedInfoList = this.guideTourDao.selectTourProvidedList(gdTrPstId);
+		List<GuideTourImgVO> guideTourImgList = this.guideTourDao.selectGuideTourImgList(gdTrPstId);
 		int imgCnt = this.guideTourDao.selectImgCount(gdTrPstId);
 		guideTourVO.setGuideTourDetailInfoList(tourDetailInfoList);
 		guideTourVO.setGuideTourScheduleInfoList(tourScheduleInfoList);
 		guideTourVO.setGuideTourProvidedList(tourProvidedInfoList);
+		guideTourVO.setGuideTourImgList(guideTourImgList);
 		guideTourVO.setGuideImgCount(imgCnt);
 		
 		return guideTourVO;

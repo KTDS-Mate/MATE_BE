@@ -319,5 +319,6 @@ $().ready(function() {
 
 });
 function insertUsertour () {
-   $("#insertForm").submit();
+	$("#insertForm").submit();
 }
+

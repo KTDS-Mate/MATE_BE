@@ -136,10 +136,12 @@ public class UserTourServiceImpl implements UserTourService{
 	public UserTourVO getOneUserTour(String usrTrPstId) {
 		UserTourVO userTourVO = this.userTourDao.selectOneUserTour(usrTrPstId);
 		List<UserTourSchdlVO> scdls = this.userTourDao.selectUserTourSchdls(usrTrPstId);
+		List<UserTourImgVO> imgs = this.userTourDao.selectUserTourImgs(usrTrPstId);
 		int imgCnt = this.userTourDao.selectUserTourImgCount(usrTrPstId);
 		
 		userTourVO.setUserTourSchdlList(scdls);
 		userTourVO.setUserTourImgCount(imgCnt);
+		userTourVO.setUserTourImgList(imgs);
 		
 		return userTourVO;
 	}

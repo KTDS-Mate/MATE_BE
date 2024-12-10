@@ -11,7 +11,6 @@ import com.mate.payment.dao.PaymentDao;
 import com.mate.payment.vo.PaymentVO;
 import com.mate.payment.vo.SearchPaymentVO;
 import com.mate.payment.vo.WritePaymentVO;
-import com.mate.user.vo.UserVO;
 
 @Repository
 public class PaymentDaoImpl extends SqlSessionDaoSupport implements PaymentDao {

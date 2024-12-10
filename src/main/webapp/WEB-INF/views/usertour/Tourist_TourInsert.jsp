@@ -28,7 +28,7 @@ uri="http://www.springframework.org/tags/form" %>
         <jsp:include page="../header.jsp"></jsp:include>
       </div>
       <div class="content">
-        <form:form id="insertForm"  modelAttribute="userTourWriteVO" method="post" enctype="multipart/form-data">
+        <form:form id="insertForm" modelAttribute="userTourWriteVO" method="post" enctype="multipart/form-data">
           <div class="insert-main">
             <div class="flex-main-img">
               <div>
@@ -186,11 +186,11 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
                 <div class="select-div">
                   <span class="red">*</span> 고용 금액
                 </div>
+                <form:errors
+                  path="usrTrGdHrPrc"
+                  element="div"
+                  cssClass="errors" />
                 <div class="insertBtnGroup">
-	                <form:errors
-	                  path="usrTrGdHrPrc"
-	                  element="div"
-	                  cssClass="errors" />
 	                <div class="price-flex-div">
 	                  <strong>$</strong>
 	                  <input
@@ -202,11 +202,11 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
 	                    step="0.1" />
 	                </div>
 	                <div class="button" onclick="javascript:insertUsertour()">
-	                   <p class="btnText">투어 등록</p>
-	                   <div class="btnTwo">
-	                     <p class="btnText2">GO!</p>
-                       </div>
-                    </div>
+					    <p class="btnText">투어 등록</p>
+					    <div class="btnTwo">
+					      <p class="btnText2">GO!</p>
+					    </div>
+					 </div>
                 </div>
               </div>
             </div>
