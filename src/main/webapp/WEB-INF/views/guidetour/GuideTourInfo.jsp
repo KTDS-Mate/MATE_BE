@@ -164,7 +164,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
               <div class="profileDetailArea">
                 <img
                   src="${guideTourVO.userVO.gdPrflImg}"
-                  onerror="this.onerror=null; this.src='/img/guide/가이드 샘플 사진.jpg';"
+                  onerror="this.onerror=null; this.src='/img/guide/가이드 샘플 사진.png';"
                   alt="가이드 사진"
                 />
                 <div class="profileSummaryArea">

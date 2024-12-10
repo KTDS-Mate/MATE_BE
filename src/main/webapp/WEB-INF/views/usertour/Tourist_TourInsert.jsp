@@ -28,7 +28,7 @@ uri="http://www.springframework.org/tags/form" %>
         <jsp:include page="../header.jsp"></jsp:include>
       </div>
       <div class="content">
-        <form:form modelAttribute="userTourWriteVO" method="post" enctype="multipart/form-data">
+        <form:form id="insertForm"  modelAttribute="userTourWriteVO" method="post" enctype="multipart/form-data">
           <div class="insert-main">
             <div class="flex-main-img">
               <div>
@@ -201,12 +201,12 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
 	                    value="${userTourWriteVO.usrTrGdHrPrc}"
 	                    step="0.1" />
 	                </div>
-	                <div class="button" onclick="javascript:moveRequest()">
-					    <p class="btnText">해주세요</p>
-					    <div class="btnTwo">
-					      <p class="btnText2">GO!</p>
-					    </div>
-					 </div>
+	                <div class="button" onclick="javascript:insertUsertour()">
+	                   <p class="btnText">투어 등록</p>
+	                   <div class="btnTwo">
+	                     <p class="btnText2">GO!</p>
+                       </div>
+                    </div>
                 </div>
               </div>
             </div>
