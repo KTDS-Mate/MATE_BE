@@ -67,7 +67,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
         <img
           src="/public/close.png"
           alt="닫기 버튼"
-          class="picCloseButton btn-close-more-pic-modal"
+          class="pic-more-CloseButton btn-close-more-pic-modal"
         />
       </div>
       <div class="more-picArea">

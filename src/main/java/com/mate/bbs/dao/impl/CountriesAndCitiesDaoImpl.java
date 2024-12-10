@@ -1,8 +1,6 @@
 package com.mate.bbs.dao.impl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.mate.common.vo.RegionsVO;
 import com.mate.common.vo.CountriesVO;
