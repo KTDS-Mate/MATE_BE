@@ -13,6 +13,7 @@ import com.mate.bbs.dao.UserTourDao;
 import com.mate.bbs.vo.RequestGuideApplyVO;
 import com.mate.bbs.vo.RequestGuideApplyWriteVO;
 import com.mate.bbs.vo.SearchUserTourVO;
+import com.mate.bbs.vo.TourGuideApplyWriteVO;
 import com.mate.bbs.vo.UserTourImgVO;
 import com.mate.bbs.vo.UserTourModifyVO;
 import com.mate.bbs.vo.UserTourSchdlVO;
@@ -120,6 +121,11 @@ public class UserTourDaoImpl extends SqlSessionDaoSupport implements UserTourDao
 	@Override
 	public String selectAttachMultyEndHour(UserTourWriteVO userTourWriteVO) {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachMultyEndHour", userTourWriteVO);
+	}
+	
+	@Override
+	public int insertNewTourGuideApply(TourGuideApplyWriteVO tourGuideApplyWriteVO) {
+		return this.getSqlSession().insert(NAMESPACE+".insertNewTourGuideApply", tourGuideApplyWriteVO);
 	}
 	
 	@Override

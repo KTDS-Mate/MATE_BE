@@ -1,3 +1,194 @@
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    background-color: #0004;
+    overflow-y: auto;
+    z-index: 9999; 
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    width: 50%;
+    height: 60%;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #f00;
+}
+
+.modal-open {
+    overflow: hidden;
+}
+
+.insert-main {
+  border-radius: 20px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  width: 30rem;
+  height: 10rem;
+  margin: 0 auto;
+  overflow: auto;
+}
+
+.insert-main::-webkit-scrollbar {
+    width: 0;
+}
+
+.select-div {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.all-select-div {
+  border-bottom: 1px solid #ddd;
+}
+
+.all-select-div:last-child {
+  border: 0;
+}
+
+.red {
+  color: red;
+  margin-right: 0.5rem;
+  font-weight: 400;
+}
+
+#gdApplyTtl {
+    width: 100%;
+    height: 4rem;
+    padding: 0.5rem;
+    resize: none;
+    outline: none;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.loc-inf {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.locs {
+  border-bottom: 1px solid #ddd;
+  padding-top: 1rem;
+}
+
+.locs:last-child {
+  border: 0;
+}
+
+#hope-time {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+        outline: none;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+#hope-location {
+  padding: 0.5rem;
+  width: 100%;
+    outline: none;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+#hope-info {
+  width: 100%;
+  height: 4rem;
+  margin-bottom: 1rem;
+    outline: none;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    resize: none;
+    padding: 0.5rem;
+}
+
+.hope-btn {
+  margin-bottom: 1rem;
+}
+
+.hope-btn input {
+    margin-right: 1rem;
+    outline: none;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    background-color: #eee;
+}
+
+.hope-btn input:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+.prc {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 0.3rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.requestPrc {
+    outline: none;
+    border: 0;
+}
+
+.doller-size {
+    font-weight: bold;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.smbtn {
+  color: #fff;
+  background-color: #333;
+  border-radius: 0;
+  padding: 0.5rem 1rem;
+  height: 2.5rem;
+}
+
+.smbtn:hover {
+    background-color: #222;
+    cursor: pointer;
+}
 .defaultImgArea {
 	margin: 0;
     padding: 0;

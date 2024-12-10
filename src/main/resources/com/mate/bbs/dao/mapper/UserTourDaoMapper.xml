@@ -451,6 +451,39 @@
  		  FROM DUAL
 	</select>
 	
+	<insert id="insertNewTourGuideApply"
+	        parameterType="com.mate.bbs.vo.TourGuideApplyWriteVO">
+		<selectKey keyProperty="gdApplyId" order="BEFORE" resultType="string">
+			SELECT 'GY-' || TO_CHAR(SYSDATE, 'YYYY-MM-DD') || '-' || LPAD(SEQ_RQST_GD_APPLY_PK.NEXTVAL, 6, 0)
+			  FROM DUAL
+		</selectKey>
+	    INSERT INTO RQST_GD_APPLY
+	         ( GD_APPLY_ID
+	         , GD_ID
+	         , USR_TR_PST_ID
+	         , GD_APPLY_PRC
+	         , GD_APPLY_RSTR_DT
+	         , GD_APPLY_IS_DLT
+	         , GD_APPLY_DLT_DT
+	         , GD_APPLY_TTL
+	         , TR_GD_APPLY_DTL
+	         , TR_GD_APPLY_MP
+	         , GD_APPLY_STT)
+	    VALUES
+	         ( #{gdApplyId}
+	         , #{gdId}
+	         , #{usrTrPstId}
+	         , #{gdApplyPrc}
+	         , SYSDATE
+	         , 'N'
+	         , NULL
+	         , '유계획여행'
+	         , '유계획여행'
+	         , 'null'
+	         , 'WAITING')
+	</insert>
+	
+	
 	<insert id="insertNewRequestGuideApply"
 			parameterType="com.mate.bbs.vo.RequestGuideApplyWriteVO">
 		<selectKey keyProperty="gdApplyId" order="BEFORE" resultType="string">
