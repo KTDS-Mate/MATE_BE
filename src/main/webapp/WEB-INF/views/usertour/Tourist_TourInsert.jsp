@@ -201,8 +201,8 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
 	                    value="${userTourWriteVO.usrTrGdHrPrc}"
 	                    step="0.1" />
 	                </div>
-	                <div class="button" onclick="javascript:moveRequest()">
-					    <p class="btnText">해주세요</p>
+	                <div class="button" onclick="javascript:insertUsertour()">
+					    <p class="btnText">투어 등록</p>
 					    <div class="btnTwo">
 					      <p class="btnText2">GO!</p>
 					    </div>

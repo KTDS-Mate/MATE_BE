@@ -321,3 +321,8 @@ $().ready(function() {
 	});
 
 });
+
+
+function insertUsertour () {
+	
+}
