@@ -14,8 +14,7 @@ $().ready(function() {
 		                id="inputYear"
 		                name="inputYear"
 		                type="date"
-		                data-placeholder="투어 날짜를 골라주세요."
-		                value="${userTourWriteVO.inputYear}" />`);
+		                data-placeholder="투어 날짜를 골라주세요." />`);
 		}
 		else {
 			area.children().remove();
@@ -23,15 +22,13 @@ $().ready(function() {
 			                id="inputYear"
 			                name="inputYear"
 			                type="date"
-			                data-placeholder="투어 날짜를 골라주세요."
-			                value="${userTourWriteVO.inputYear}" />
+			                data-placeholder="투어 날짜를 골라주세요." />
 				         <img class="tilde-img" src="/img/tourboard/~.png" />
 				         <input
 			                id="inputEndYear"
 			                name="inputEndYear"
 			                type="date"
-			                data-placeholder="투어 날짜를 골라주세요."
-			                value="${userTourWriteVO.inputEndYear}" />`);
+			                data-placeholder="투어 날짜를 골라주세요." />`);
 		}
 	})
 
@@ -321,3 +318,8 @@ $().ready(function() {
 	});
 
 });
+
+
+function insertUsertour () {
+	$("#insertForm").submit();
+}

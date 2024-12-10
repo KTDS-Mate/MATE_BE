@@ -19,7 +19,6 @@
 			<id column="TR_SCHDL_ID" property="trSchdlId" />
 		</collection>
 	</resultMap>
-	
 	<resultMap id="userTourVOMap" 
 			   type="com.mate.bbs.vo.UserTourVO"
 			   autoMapping="true">

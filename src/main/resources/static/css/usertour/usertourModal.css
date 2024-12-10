@@ -98,8 +98,16 @@ img.picCloseButton {
   height: 2.5rem;
   margin: 0 2rem 5rem 0;
   cursor: pointer;
-  filter: invert(100%) sepia(93%) saturate(22%) hue-rotate(344deg)
-    brightness(105%) contrast(100%);
+  filter: invert(100%) sepia(93%) saturate(22%) hue-rotate(344deg) brightness(105%) contrast(100%);
+}
+
+.pic-more-CloseButton {
+	position: fixed;
+    right: 5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    cursor: pointer;
+    filter: invert(100%) sepia(93%) saturate(22%) hue-rotate(344deg) brightness(105%) contrast(100%);
 }
 
 .hidden {
