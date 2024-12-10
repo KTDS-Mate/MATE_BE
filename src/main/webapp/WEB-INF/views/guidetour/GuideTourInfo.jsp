@@ -131,7 +131,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                 </div>
                 <c:if test="${sessionScope._LOGIN_USER_.usrIsGd eq 'N'}">
                   <div class="reserveButton">
-                    <span onclick="location.href='index.html'">예약 요청</span>
+                    <span class="btnbtn" >예약 요청</span>
                   </div>
                 </c:if>
               </div>
