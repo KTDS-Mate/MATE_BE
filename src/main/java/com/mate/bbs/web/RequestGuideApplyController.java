@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mate.bbs.service.UserTourService;
 import com.mate.bbs.vo.RequestGuideApplyListVO;
-import com.mate.common.vo.RegionsListVO;
 
 @RestController
 public class RequestGuideApplyController {
@@ -28,5 +27,7 @@ public class RequestGuideApplyController {
 		
 		return resultMap;
 	}
+	
+	
 	
 }

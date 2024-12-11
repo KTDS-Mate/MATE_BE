@@ -28,7 +28,7 @@ public class UserTourVO {
 	/** 여행자의 총 투어 인원 **/
 	private int usrTrNp;
 	/** 논리적 삭제를 위한 게시글 삭제 여부 (기본 값 : N) **/
-	private int usrTrIsDlt;
+	private String usrTrIsDlt;
 	/** 여행자가 투어 요청 게시글을 등록한 일시 **/
 	private String usrTrRstrDt;
 	/** 여행자가 투어 요청 게시글을 수정한 일시 **/
@@ -98,6 +98,8 @@ public class UserTourVO {
 	/** 투어 구분 **/
 	private String usrTrDivide;
 	
+	private int userTourImgCount;
+	
 	public String getUsrTrDivide() {
 		return usrTrDivide;
 	}
@@ -158,10 +160,10 @@ public class UserTourVO {
 	public void setUsrTrNp(int usrTrNp) {
 		this.usrTrNp = usrTrNp;
 	}
-	public int getUsrTrIsDlt() {
+	public String getUsrTrIsDlt() {
 		return usrTrIsDlt;
 	}
-	public void setUsrTrIsDlt(int usrTrIsDlt) {
+	public void setUsrTrIsDlt(String usrTrIsDlt) {
 		this.usrTrIsDlt = usrTrIsDlt;
 	}
 	public String getUsrTrRstrDt() {
@@ -301,6 +303,12 @@ public class UserTourVO {
 	}
 	public void setUsrTrTm(String usrTrTm) {
 		this.usrTrTm = usrTrTm;
+	}
+	public int getUserTourImgCount() {
+		return userTourImgCount;
+	}
+	public void setUserTourImgCount(int userTourImgCount) {
+		this.userTourImgCount = userTourImgCount;
 	}
 	
 }

@@ -71,6 +71,7 @@ public class GuideTourReviewVO {
 	private double reviewAvg;
 	
 	/**별점 개수 컬럼 없음**/
+	private int sumCount;
 	private int fiveCount;
 	private int fourCount;
 	private int threeCount;
@@ -171,6 +172,12 @@ public class GuideTourReviewVO {
 	}
 	public void setReviewAvg(double reviewAvg) {
 		this.reviewAvg = reviewAvg;
+	}
+	public int getSumCount() {
+		return sumCount;
+	}
+	public void setSumCount(int sumCount) {
+		this.sumCount = sumCount;
 	}
 	public int getFiveCount() {
 		return fiveCount;

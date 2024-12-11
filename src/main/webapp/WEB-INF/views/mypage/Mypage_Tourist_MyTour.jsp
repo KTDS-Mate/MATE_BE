@@ -114,9 +114,9 @@
 	                              <a
 	                                href="javascript:deleteTour('${sessionScope._LOGIN_USER_.usrLgnId}', '${board.usrTrPstId}')">삭제</a>
                               </div>
-                              <c:if test="${board.usrTrDivide eq 'REQUEST'}">
+                              <c:if test="${board.usrTrStts eq 'RCRTNG'}">
 	                              <div>
-	                              	<input class="guideBtn" type="button" value="가이드 현황"  data-pst-id="${board.usrTrPstId}" />
+	                              	<input class="guideBtn" type="button" value="가이드 지원 현황" data-usr-tr-divide="${board.usrTrDivide}" data-pst-id="${board.usrTrPstId}" />
 	                              </div>
                               </c:if>
                             </div>

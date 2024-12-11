@@ -13,6 +13,7 @@ import com.mate.bbs.dao.UserTourDao;
 import com.mate.bbs.vo.RequestGuideApplyVO;
 import com.mate.bbs.vo.RequestGuideApplyWriteVO;
 import com.mate.bbs.vo.SearchUserTourVO;
+import com.mate.bbs.vo.TourGuideApplyWriteVO;
 import com.mate.bbs.vo.UserTourImgVO;
 import com.mate.bbs.vo.UserTourModifyVO;
 import com.mate.bbs.vo.UserTourSchdlVO;
@@ -123,6 +124,11 @@ public class UserTourDaoImpl extends SqlSessionDaoSupport implements UserTourDao
 	}
 	
 	@Override
+	public int insertNewTourGuideApply(TourGuideApplyWriteVO tourGuideApplyWriteVO) {
+		return this.getSqlSession().insert(NAMESPACE+".insertNewTourGuideApply", tourGuideApplyWriteVO);
+	}
+	
+	@Override
 	public int insertNewRequestGuideApply(RequestGuideApplyWriteVO requestGuideApplyWriteVO) {
 		return this.getSqlSession().insert(NAMESPACE + ".insertNewRequestGuideApply", requestGuideApplyWriteVO);
 	}
@@ -136,4 +142,17 @@ public class UserTourDaoImpl extends SqlSessionDaoSupport implements UserTourDao
 	public int selectRequestGuideApplyListCount(String usrTrPstId) {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectRequestGuideApplyListCount", usrTrPstId);
 	}
+	
+	@Override
+	public int selectUserTourImgCount(String usrTrPstId) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectUserTourImgCount", usrTrPstId);
+	}
+	
+	@Override
+	public List<UserTourImgVO> selectUserTourImgs(String usrTrPstId) {
+		return this.getSqlSession().selectList(NAMESPACE + ".selectUserTourImgs", usrTrPstId);
+	}
+	
+	
+	
 }

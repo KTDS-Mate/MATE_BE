@@ -58,10 +58,6 @@ pageEncoding="UTF-8" %>
 	            	<div class="select-div">
 	            		<span class="red">*</span> 세부 일정
 	            	</div>
-	            	<div class="hope-btn">
-	                  <input tabindex="10" id="plus" type="button" value="일정 추가하기" />
-	                  <input tabindex="11" id="m-btn" type="button" value="일정 삭제하기" />
-	                </div>
 	                <div class="loc-inf">
 	                	<div class="locs">
 	                		<div>
@@ -78,13 +74,19 @@ pageEncoding="UTF-8" %>
 							</div>
 						</div>
 	                </div>
+	                <div class="hope-btn">
+	                  <input tabindex="10" id="plus" type="button" value="일정 추가하기" />
+	                  <input tabindex="11" id="m-btn" type="button" value="일정 삭제하기" />
+	                </div>
 	            </div>
 	            <div class="all-select-div">
 	            	<div class="select-div">
 	            		<span class="red">*</span> 금액
 	            	</div>
 	            	<div class="btn-group">
-		            	<input class="prc" type="number" name="gdApplyPrc" required="required" />
+	            		<div class="prc">
+			            	<strong>$</strong><input class="requestPrc" type="number" name="gdApplyPrc" required="required" />
+	            		</div>
 		            	<input class="smbtn" type="submit" value="등록" />
 	            	</div>
 	            </div>

@@ -5,7 +5,6 @@ import java.util.List;
 import com.mate.payment.vo.PaymentVO;
 import com.mate.payment.vo.SearchPaymentVO;
 import com.mate.payment.vo.WritePaymentVO;
-import com.mate.user.vo.UserVO;
 
 public interface PaymentDao {
 	
@@ -16,8 +15,6 @@ public interface PaymentDao {
 	
 	public List<PaymentVO> selectAllMyPayment(SearchPaymentVO searchPaymentVO);
 	public int selectAllMyPaymentCount(SearchPaymentVO searchPaymentVO);
-	
-	public String selectUserId(String usrLgnId);
 	
 	public PaymentVO selectOnePayment(String payId);
 	
@@ -33,5 +30,16 @@ public interface PaymentDao {
 	public int insertTrstTrPayment(WritePaymentVO writePaymentVO);
 	
 	public WritePaymentVO selectUsrTrPayInf(String trId);
+	
+	public int selectTrstTrPaymentCnt(String gdApplyId);
+	
+	public int updateCancelTrstTour(PaymentVO paymentVO);
+	
+	public int selectApplyCnt(PaymentVO paymentVO);
+	
+	public int updateCancelApply(PaymentVO paymentVO);
+	
+	public int updateCancelGdTour(PaymentVO paymentVO);
+	
 	
 }

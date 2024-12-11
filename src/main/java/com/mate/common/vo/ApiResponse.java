@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.http.HttpStatus;
 
 public class ApiResponse {
-	
+
 	private int status;
 	
 	private String statusMessage;
@@ -23,6 +23,7 @@ public class ApiResponse {
 		this(HttpStatus.OK);
 	}
 	
+
 	public ApiResponse(Object body) {
 		this();
 		this.setBody(body);
@@ -32,7 +33,7 @@ public class ApiResponse {
 		this.status = httpStatus.value();
 		this.statusMessage = httpStatus.getReasonPhrase();
 	}
-	
+
 	public ApiResponse(HttpStatus httpStatus, Object body) {
 		this(httpStatus);
 		this.setBody(body);
@@ -46,7 +47,7 @@ public class ApiResponse {
 		this.status = httpStatus.value();
 		this.statusMessage = httpStatus.getReasonPhrase();
 	}
-
+	
 	public String getStatusMessage() {
 		return statusMessage;
 	}
@@ -63,11 +64,19 @@ public class ApiResponse {
 		this.body = body;
 		if (body instanceof List list) {
 			this.count = list.size();
-		} else if (body instanceof Map map){
+
+		} else if (body instanceof Map map) {
 			this.count = map.size();
 		} else {
 			this.count = 1;
 		}
+	}
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 	public List<String> getErrors() {
@@ -76,6 +85,8 @@ public class ApiResponse {
 
 	public void setErrors(List<String> errors) {
 		this.errors = errors;
+		this.errorsCount = errors.size();
+
 	}
 
 	public int getErrorsCount() {
@@ -86,11 +97,4 @@ public class ApiResponse {
 		this.errorsCount = errorsCount;
 	}
 
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
-	}
 }

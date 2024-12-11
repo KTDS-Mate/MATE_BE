@@ -28,13 +28,13 @@ uri="http://www.springframework.org/tags/form" %>
         <jsp:include page="../header.jsp"></jsp:include>
       </div>
       <div class="content">
-        <form:form modelAttribute="userTourWriteVO" method="post" enctype="multipart/form-data">
+        <form:form id="insertForm" modelAttribute="userTourWriteVO" method="post" enctype="multipart/form-data">
           <div class="insert-main">
             <div class="flex-main-img">
               <div>
                 <h1>투어 요청 작성</h1>
               </div>
-              <img class="main-img" alt="메인 이미지" src="/img/tourboard/예시여행이미지.png" />
+              <img class="main-img" alt="메인 이미지" src="/img/tourboard/기본이미지.png" />
             </div>
             <div class="all-select-div">
               <div class="select-div"><span class="red">*</span> 투어 제목</div>
@@ -107,10 +107,6 @@ uri="http://www.springframework.org/tags/form" %>
                   >원하는 일정을 추가해주세요.</span
                 ><span class="font-we">&lt;최대 10개까지 넣을 수 있습니다.&gt;</span>
               </div>
-              <div class="hope-btn">
-                <input tabindex="10" id="plus" type="button" value="일정 추가하기" />
-                <input tabindex="11" id="m-btn" type="button" value="일정 삭제하기" />
-              </div>
               <div class="loc-inf">
                 	<div class="locs">
                 		<div>
@@ -126,6 +122,10 @@ uri="http://www.springframework.org/tags/form" %>
 							<textarea id="hope-info" name="userTourSchdlList[0].trRqst" type="text" required="required"></textarea>
 						</div>
 					</div>
+              </div>
+              <div class="hope-btn">
+                <input tabindex="10" id="plus" type="button" value="일정 추가하기" />
+                <input tabindex="11" id="m-btn" type="button" value="일정 삭제하기" />
               </div>
             </div>
             <div class="all-select-div">
@@ -190,18 +190,23 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
                   path="usrTrGdHrPrc"
                   element="div"
                   cssClass="errors" />
-                <div class="price-flex-div">
-                  <input
-                  	tabindex="18"
-                    id="trPrc"
-                    name="usrTrGdHrPrc"
-                    type="number"
-                    value="${userTourWriteVO.usrTrGdHrPrc}"
-                    step="0.1" />
-                  <div>$</div>
-                </div>
-                <div class="right-align">
-                  <input tabindex="19" type="submit" value="투어 등록" />
+                <div class="insertBtnGroup">
+	                <div class="price-flex-div">
+	                  <strong>$</strong>
+	                  <input
+	                  	tabindex="18"
+	                    id="trPrc"
+	                    name="usrTrGdHrPrc"
+	                    type="number"
+	                    value="${userTourWriteVO.usrTrGdHrPrc}"
+	                    step="0.1" />
+	                </div>
+	                <div class="button" onclick="javascript:insertUsertour()">
+					    <p class="btnText">투어 등록</p>
+					    <div class="btnTwo">
+					      <p class="btnText2">GO!</p>
+					    </div>
+					 </div>
                 </div>
               </div>
             </div>

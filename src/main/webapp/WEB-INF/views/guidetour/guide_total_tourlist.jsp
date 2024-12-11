@@ -150,7 +150,7 @@
                     </c:when>
                     <c:otherwise>
                       <div class="tour-img">
-                        <img src="/img/tourlist/베니스.jpg" alt="mate 기본이미지" />
+                        <img src="/img/tourboard/기본이미지.png" alt="mate 기본이미지" />
                       </div>
                     </c:otherwise>
                   </c:choose>

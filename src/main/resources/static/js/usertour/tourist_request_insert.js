@@ -31,20 +31,9 @@ $().ready(function() {
 				                value="${userTourWriteVO.inputYear}" />`);
 		}
 	})
-
-	// 현재 모든 날짜와 시간을 가져옴
-	var nowDate = new Date();
-	// 현재 시간을 가져옴
-	var nowHour = nowDate.getHours();
-	// 현재 분을 가져옴
-	var nowMinutes = nowDate.getMinutes();
-	// 비교 대상과의 포멧을 맞춤
-	var nowTime = nowHour + ':' + nowMinutes;
-
-	// 시작 시간 기본 값을 현재 시간으로 설정
-	$("#start-time").val(nowTime);
-
-	$("#inputYear").on("change", function() {
+	// 가상돔으로 추가 되었을 때에도 해당 코드가 작동할 수 있게 위임
+	$(document).on("change", "#inputYear", function() {
+		$("#inputEndYear").val("");
 		// 현재 날짜(년월일)보다 느리면(이전이면) 안됨
 		// 현재 날짜를 가져옴
 		var today = new Date();
@@ -74,12 +63,43 @@ $().ready(function() {
 		if (nowDate > inputDate) {
 			alert("지난 날은 입력하실 수 없습니다!");
 			$(this).val("");
-			$("#start-time").val(nowTime);
+			$("#start-time").attr('disabled', 'disabled');
 		}
 		else {
-			$("#start-time").val(nowTime);
+			$("#start-time").removeAttr('disabled');
 		}
 
+	});
+
+	$(document).on('change', "#inputEndYear", function() {
+		var inputYearVal = $("#inputYear").val();
+
+		var startYear = parseInt(inputYearVal.replace(/-/gi, ""));
+
+		var inputEndYearVal = $(this).val();
+
+		var endYear = parseInt(inputEndYearVal.replace(/-/gi, ""));
+
+		if (inputYearVal === "") {
+			alert("시작 날짜를 먼저 입력하세요!");
+			$(this).val("");
+			return
+		}
+		if (startYear === endYear) {
+			$("#date-check").prop("checked", true);
+			$(".tour-date-select").children().remove();
+			$(".tour-date-select").append(`<input
+						                id="inputYear"
+						                name="inputYear"
+						                type="date"
+						                data-placeholder="투어 날짜를 골라주세요."
+						                value="${inputEndYearVal}" />`);
+		}
+		if (startYear > endYear) {
+			alert("시작 날짜보다 일찍 선택하실 수 없습니다!");
+			$(this).val("");
+			return
+		}
 	});
 
 	$("#start-time").on('change', function() {

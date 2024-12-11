@@ -48,7 +48,7 @@ $().ready(function () {
 					}
 				},
 				error: function (){
-					alert("데이터베이스 처리에 실패하였습니다. 고객센터에 문의해주세요.");
+					alert("데이터베이스 과정 중에서 에러가 발생하였습니다. 고객센터에 문의해주세요.");
 				}
 			});
 			
@@ -70,9 +70,9 @@ $().ready(function () {
 				    {
 				        pg: pg,
 				        pay_method: payMethod,
-				        amount: amount * 1400, // 구매가격
+				        amount: amount, // 구매가격
 				        name: name, // 구매물품 이름
-				        merchant_uid: merchantUid + new Date().getTime() % 10000, // 결제에 대한 PK값 우리는 결제내역 ID가져오면 됨
+				        merchant_uid: merchantUid + new Date().getTime() % 100000, // 결제에 대한 PK값 우리는 결제내역 ID가져오면 됨
 						buyer_name: buyerName,	//이름대신 아이디긴 함
 						currency : 'KRW',
 				    },

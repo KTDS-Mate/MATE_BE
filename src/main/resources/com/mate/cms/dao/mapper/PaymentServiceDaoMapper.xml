@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mate.cms.paymentService.dao.PaymentServiceDao">
+
+	<sql id="selectSearch">
+		<if test='searchKeyword != null and searchKeyword != ""'>
+			WHERE PAY_TR_ID LIKE '%' || #{searchKeyword} || '%'
+		</if>
+	</sql>
+
+	<select id="selectAllPaymentService"
+			parameterType="com.mate.cms.paymentService.vo.SearchPaymentServiceVO"
+			resultType="com.mate.cms.paymentService.vo.PaymentServiceVO">
+		<if test="_parameter != null">
+			<include refid="Common.pagination_header" />
+		</if>
+		SELECT PAY_ID
+		     , TRST_ID
+		     , GD_ID
+		     , PAY_TR_TP
+		     , PAY_TR_ID
+		     , PAY_CSH
+		     , PAY_STT
+		     , PAY_CRT_DT
+		     , PAY_CMPLT_DT
+		     , IMP_UID
+		     , PAY_MTHD
+		     , PAY_CRRNC
+		     , PAY_CMMSSN
+		     , IMP_MID
+		  FROM PAY_INF PIF
+		<if test="_parameter != null">
+			<include refid="com.mate.cms.paymentService.dao.PaymentServiceDao.selectSearch" />
+		</if>
+		<if test="_parameter != null">
+			<include refid="Common.pagination_footer" />
+		</if>
+	</select>
+
+	<select id="selectPaymentServiceCount"
+			resultType="_int">
+		SELECT COUNT(1)
+		  FROM PAY_INF PIF
+		<if test="_parameter != null">
+			<include refid="com.mate.cms.paymentService.dao.PaymentServiceDao.selectSearch" />
+		</if>
+	</select>
+
+	<update id="updatePayStts"
+			parameterType="com.mate.cms.paymentService.vo.PaymentServiceUpdateVO">
+		UPDATE PAY_INF
+		   SET PAY_STT = #{payStt}
+		 WHERE PAY_ID = #{payId}
+	</update>
+
+</mapper>

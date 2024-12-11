@@ -13,6 +13,8 @@ import com.mate.bbs.vo.RequestGuideApplyListVO;
 import com.mate.bbs.vo.RequestGuideApplyVO;
 import com.mate.bbs.vo.RequestGuideApplyWriteVO;
 import com.mate.bbs.vo.SearchUserTourVO;
+import com.mate.bbs.vo.TourGuideApplyWriteVO;
+import com.mate.bbs.vo.UserTourImgListVO;
 import com.mate.bbs.vo.UserTourImgVO;
 import com.mate.bbs.vo.UserTourListVO;
 import com.mate.bbs.vo.UserTourModifyVO;
@@ -40,8 +42,10 @@ public class UserTourServiceImpl implements UserTourService{
 	@Override
 	public boolean createNewUserTour(UserTourWriteVO userTourWriteVO) {
 		
+		// 당일치기 체크박스 값 가져오기(체크되면 true 아니면 null)
 		boolean isChecked = userTourWriteVO.getIsChecked();
 		
+		// 체크가 되어있다면? => 당일치기
 		if (isChecked) {
 			// jsp에서 받아온 날짜 + 시작 시 + 시작 분을 이어붙이는 쿼리(포멧 맞추기)
 			String startDt = this.userTourDao.selectAttachStartHour(userTourWriteVO);
@@ -51,6 +55,7 @@ public class UserTourServiceImpl implements UserTourService{
 			userTourWriteVO.setUsrTrStDt(startDt);
 			userTourWriteVO.setUsrTrEdDt(endDt);
 		}
+		// 아니면 다중
 		else {
 			String startDt = this.userTourDao.selectAttachMultyStartHour(userTourWriteVO);
 			String endDt = this.userTourDao.selectAttachMultyEndHour(userTourWriteVO);
@@ -131,8 +136,12 @@ public class UserTourServiceImpl implements UserTourService{
 	public UserTourVO getOneUserTour(String usrTrPstId) {
 		UserTourVO userTourVO = this.userTourDao.selectOneUserTour(usrTrPstId);
 		List<UserTourSchdlVO> scdls = this.userTourDao.selectUserTourSchdls(usrTrPstId);
+		List<UserTourImgVO> imgs = this.userTourDao.selectUserTourImgs(usrTrPstId);
+		int imgCnt = this.userTourDao.selectUserTourImgCount(usrTrPstId);
 		
 		userTourVO.setUserTourSchdlList(scdls);
+		userTourVO.setUserTourImgCount(imgCnt);
+		userTourVO.setUserTourImgList(imgs);
 		
 		return userTourVO;
 	}
@@ -153,8 +162,8 @@ public class UserTourServiceImpl implements UserTourService{
 		searchUserTourVO.setPageCount(userTourCnt);
 		
 		List<UserTourVO> UserTourList = this.userTourDao.selectAllUserTour(searchUserTourVO);
-		
 		UserTourListVO userTourListVO = new UserTourListVO();
+		
 		userTourListVO.setUserTourCount(userTourCnt);
 		userTourListVO.setUserTourList(UserTourList);
 		
@@ -211,6 +220,15 @@ public class UserTourServiceImpl implements UserTourService{
 	
 	@Transactional
 	@Override
+	public boolean createNewTourGuideApply(TourGuideApplyWriteVO tourGuideApplyWriteVO) {
+		int createCount = this.userTourDao.insertNewTourGuideApply(tourGuideApplyWriteVO);
+		
+		return createCount > 0;
+	}
+	
+	
+	@Transactional
+	@Override
 	public boolean createNewRequestGuideApply(RequestGuideApplyWriteVO requestGuideApplyWriteVO) {
 		
 		int createCount = this.userTourDao.insertNewRequestGuideApply(requestGuideApplyWriteVO);
@@ -248,6 +266,16 @@ public class UserTourServiceImpl implements UserTourService{
 		requestGuideApplyListVO.setRequestGuideApplyList(requestGuideApplyList);
 		
 		return requestGuideApplyListVO;
+	}
+	
+	@Override
+	public UserTourImgListVO getUserTourImgs(String usrTrPstId) {
+		int imgCount = this.userTourDao.selectUserTourImgCount(usrTrPstId);
+		List<UserTourImgVO> userTourImgList = this.userTourDao.selectUserTourImgs(usrTrPstId);
+		UserTourImgListVO userTourImgListVO = new UserTourImgListVO();
+		userTourImgListVO.setImgCount(imgCount);
+		userTourImgListVO.setUserTourImgList(userTourImgList);
+		return userTourImgListVO;
 	}
 	
 }

@@ -106,13 +106,13 @@ div.content {
 }
 
 .searchResultArea {
-  width: 100%;
-  height: calc(100% - 2rem);
-  border: none;
-  border-radius: 0.25rem;
-  overflow: hidden;
-  text-align: center;
-  align-content: center;
+ width: 100%;
+    height: calc(100% - 2rem);
+    border: none;
+    border-radius: 0.25rem;
+    overflow: auto;
+    align-content: center;
+    padding-left: 0.5rem;
 }
 
 .searchResultArea #text {
