@@ -7,11 +7,11 @@ spring:
   application:
     name: mate
   datasource:
-    #url: jdbc:oracle:thin:@43.201.83.116:1521:XE
-    url: jdbc:oracle:thin:@ec2-15-165-9-38.ap-northeast-2.compute.amazonaws.com:1521:XE
+    url: jdbc:oracle:thin:@43.201.83.116:1521:XE
+#    url: jdbc:oracle:thin:@ec2-15-165-9-38.ap-northeast-2.compute.amazonaws.com:1521:XE
     driver-class-name: oracle.jdbc.driver.OracleDriver
-    username: mate
-    password: 1234
+    username: MATE
+    password: MATE
  # favicon 아이콘 맵핑
   web:
    resources:
