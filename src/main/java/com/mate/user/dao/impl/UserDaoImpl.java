@@ -117,4 +117,14 @@ public class UserDaoImpl extends SqlSessionDaoSupport implements UserDao {
 	public UserVO selectOneMemberByIdAndEmail(UserVO userVO) {
 		return getSqlSession().selectOne(NAMESPACE + ".selectOneMemberByIdAndEmail", userVO);
 	}
+	
+	@Override
+	public int mergeUser(UserVO oAuthUser) {
+		return this.getSqlSession().update(NAMESPACE + ".mergeUser", oAuthUser);
+	}
+	
+	@Override
+	public UserVO selectUserByLoginId(String username) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectUserByLoginId", username);
+	}
 }
