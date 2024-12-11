@@ -12,6 +12,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.google.gson.Gson;
@@ -38,14 +39,19 @@ public class JsonWebTokenAuthenticationFilter extends OncePerRequestFilter{
 	@Autowired
 	private JsonWebTokenProvider jsonWebTokenProvider;
 
+	private AntPathMatcher pathMatcher = new AntPathMatcher();
+	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 	        throws ServletException, IOException {
 
 	    String url = request.getServletPath();
 	    
+	    boolean isPermitAllUrl = permitAllUrls.stream()
+                .anyMatch(pattern -> pathMatcher.match(pattern, url));
+	    
 	    if (url.startsWith("/api/")) {
-	        boolean isPermitAllUrl = this.permitAllUrls.contains(url);
+	        
 	        String jwt = request.getHeader("Authorization");
 	        
 	        if (!isPermitAllUrl && (jwt == null || jwt.trim().length() == 0)) {
@@ -57,6 +63,13 @@ public class JsonWebTokenAuthenticationFilter extends OncePerRequestFilter{
 	        
 	        try {
 	            userVO = jsonWebTokenProvider.getUserFromJwt(jwt);
+	            
+	         // SecurityContext에 인증 정보 설정
+                List<SimpleGrantedAuthority> authorities = List.of(new SimpleGrantedAuthority("ROLE_USER"));
+                UsernamePasswordAuthenticationToken authToken =
+                    new UsernamePasswordAuthenticationToken(userVO, null, authorities);
+                SecurityContextHolder.getContext().setAuthentication(authToken);
+	            
 	        } catch (ExpiredJwtException eje) {
 	            sendErrorResponse(response, HttpStatus.UNAUTHORIZED, "인증 토큰이 만료되었습니다. 다시 시도해 주세요.");
 	            return;
@@ -64,14 +77,7 @@ public class JsonWebTokenAuthenticationFilter extends OncePerRequestFilter{
 	            sendErrorResponse(response, HttpStatus.UNAUTHORIZED, "인증 토큰이 변조되었습니다. 다시 로그인해주세요.");
 	            return;
 	        }
-	        
-//	        if (userVO != null) {
-//                // SecurityContext에 인증 정보 설정
-//                List<SimpleGrantedAuthority> authorities = List.of(new SimpleGrantedAuthority("ROLE_USER")); // 역할에 따라 수정
-//                UsernamePasswordAuthenticationToken authToken =
-//                    new UsernamePasswordAuthenticationToken(userVO, null, authorities);
-//                SecurityContextHolder.getContext().setAuthentication(authToken);
-//            }
+
 	    }
 	    
 	    // 토큰 검증을 하지 않는 경우에도 filterChain 진행이 필요

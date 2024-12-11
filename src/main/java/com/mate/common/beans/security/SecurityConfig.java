@@ -105,15 +105,18 @@ public class SecurityConfig {
 		// 기본 filter 동작시키고 jsonWebTokenAuthenticationFilter 동작
 		http.addFilterAfter(this.jsonWebTokenAuthenticationFilter, BasicAuthenticationFilter.class);
 
-		// Role에 따른 접근권한 설정
+		// 접근 허용(token 없이 접근)
 		http.authorizeHttpRequests(httpRequest -> httpRequest
+				.requestMatchers("/").permitAll()
 				.requestMatchers("/api/user/login").permitAll()
 				.requestMatchers("/user/login").permitAll()
 				.requestMatchers("token").permitAll()
 				.requestMatchers("/guidetour/list").permitAll()
-				.requestMatchers("/").permitAll()
+				.requestMatchers("/api/v1/guidetour/list").permitAll()
 				.requestMatchers("/user/regist").permitAll()
-				.requestMatchers("/usertour/list").permitAll().anyRequest().authenticated());
+				.requestMatchers("/usertour/list").permitAll()
+				.requestMatchers("/api/v1/usertour/list").permitAll()
+				.anyRequest().authenticated());
 
 //		 form을 이용한 로그인 페이지의 인증 정책 설정
 		http.formLogin(formLogin -> formLogin
