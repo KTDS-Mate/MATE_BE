@@ -4,6 +4,19 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mate.user.dao.UserDao">
 
+    <resultMap type="com.mate.user.vo.UserVO"
+            id="userVOMap"
+            autoMapping="true">
+        <id column="EMAIL" property="email" />
+        
+        <collection property="authority"
+                    ofType="com.mate.user.vo.AuthorityVO"
+                    autoMapping="true">
+            <id column="AUTHORITY_NAME" property="authorityName" />
+            <id column="ROLE" property="roleName" />
+        </collection>
+    </resultMap>
+
 	<insert id="insertNewUser" parameterType="com.mate.user.vo.RegistUserVO">
 		INSERT INTO USR_INF
 		     ( USR_ID
@@ -166,4 +179,46 @@
 		   AND USR_EML = #{usrEml}
 	</select>
 	
+	<select id="selectUserByLoginId" parameterType="String" resultMap="userVOMap">
+      SELECT U.USR_LGN_ID
+           , U.USR_PWD
+           , U.SALT
+           , U.LOGIN_FAIL_COUNT
+           , TO_CHAR(U.LATEST_LOGIN_FAIL_DATE, 'YYYY-MM-DD HH24:MI:SS') LATEST_LOGIN_FAIL_DATE
+           , U.LATEST_LOGIN_IP
+           , TO_CHAR(U.LATEST_LOGIN_SUCCESS_DATE, 'YYYY-MM-DD HH24:MI:SS') LATEST_LOGIN_SUCCESS_DATE
+           , U.USR_ROLE
+           , A.AUTHORITY_NAME
+        FROM USR_INF U
+       INNER JOIN AUTHORITY A
+          ON U.USR_ROLE = A.ROLE_NAME
+       WHERE U.USR_LGN_ID = #{usrLgnId} 
+	</select>
+	
+	<update id="mergeUser" parameterType="com.mate.user.vo.UserVO">
+        MERGE INTO MEMBERS M
+        USING (SELECT 1 FROM DUAL ) D
+           ON (M.EMAIL = #{email})
+         WHEN MATCHED THEN
+           UPDATE 
+              SET NAME = #{name}
+                , PROVIDER = #{provider}
+         WHEN NOT MATCHED THEN
+           INSERT 
+                ( EMAIL
+                , NAME
+                , PASSWORD
+                , SALT
+                , LOGIN_FAIL_COUNT
+                , ROLE
+                , PROVIDER)
+            VALUES
+                ( #{email}
+                , #{name}
+                , #{password}
+                , #{salt}
+                , 0
+                , #{role}
+                , #{provider})
+	</update>
 </mapper>
