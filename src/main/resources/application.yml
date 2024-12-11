@@ -61,7 +61,11 @@ spring:
       max-request-size: 10485760
 app:
   security: 
-    permit-all-urls: /api/user/login
+    permit-all-urls: 
+      /api/user/login,
+      /api/v1/usertour/list,
+      /api/v1/usertour/view/**,
+      /api/v1/usertour/imgs/**,
   jwt:
     issuer: hello-spring-security
     secret-key: spring-security-secret-key-random-token-key

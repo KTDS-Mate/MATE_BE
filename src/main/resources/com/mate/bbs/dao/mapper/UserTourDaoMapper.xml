@@ -225,6 +225,7 @@
 		     , UTRI.USR_TR_RQ_IMG_ID_URL
 		     , UI.USR_LNM 
 		     , UI.USR_FNM 
+		     , TS.TR_SCHDL_ID
 		     , TS.TR_LCTNS 
 		     , TS.TR_RQST
 		     , TO_CHAR(TS.TR_TM, 'YY-MM-DD HH24:MI') TR_TM 
@@ -414,7 +415,7 @@
 	<select id="selectUserTourSchdls"
 			parameterType="string"
 			resultType="com.mate.bbs.vo.UserTourSchdlVO">
-		SELECT USR_TR_PST_ID 
+		SELECT TR_SCHDL_ID
 		     , TR_LCTNS 
 		     , TR_RQST 
 		     , TO_CHAR(TR_TM, 'YY-MM-DD HH24:MI') TR_TM

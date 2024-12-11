@@ -8,10 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.google.gson.Gson;
@@ -38,14 +36,20 @@ public class JsonWebTokenAuthenticationFilter extends OncePerRequestFilter{
 	@Autowired
 	private JsonWebTokenProvider jsonWebTokenProvider;
 
+	private AntPathMatcher pathMatcher = new AntPathMatcher();
+	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 	        throws ServletException, IOException {
 
 	    String url = request.getServletPath();
 	    
-	    if (url.startsWith("/api/")) {
-	        boolean isPermitAllUrl = this.permitAllUrls.contains(url);
+	    
+	    
+	    if (url.startsWith("/api/")) {	        
+	    	boolean isPermitAllUrl = permitAllUrls.stream()
+	                					          .anyMatch(pattern -> pathMatcher.match(pattern, url));
+	    	
 	        String jwt = request.getHeader("Authorization");
 	        
 	        if (!isPermitAllUrl && (jwt == null || jwt.trim().length() == 0)) {

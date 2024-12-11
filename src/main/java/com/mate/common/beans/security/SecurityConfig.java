@@ -98,10 +98,10 @@ public class SecurityConfig {
 		});
 		
 		http.oauth2Login(oauth -> oauth.loginPage("/user/login")
-				.userInfoEndpoint(endpoint -> endpoint.userService(this.securityOAuthService))
-				.defaultSuccessUrl("/usertour/list", true)
-				.defaultSuccessUrl("/guidetour/list", true)
-				.defaultSuccessUrl("/"));
+									   .userInfoEndpoint(endpoint -> endpoint.userService(this.securityOAuthService))
+									   .defaultSuccessUrl("/usertour/list", true)
+									   .defaultSuccessUrl("/guidetour/list", true)
+									   .defaultSuccessUrl("/"));
 		// 기본 filter 동작시키고 jsonWebTokenAuthenticationFilter 동작
 		http.addFilterAfter(this.jsonWebTokenAuthenticationFilter, BasicAuthenticationFilter.class);
 
@@ -113,9 +113,14 @@ public class SecurityConfig {
 				.requestMatchers("/guidetour/list").permitAll()
 				.requestMatchers("/").permitAll()
 				.requestMatchers("/user/regist").permitAll()
-				.requestMatchers("/usertour/list").permitAll().anyRequest().authenticated());
+				.requestMatchers("/usertour/list").permitAll()
+				.requestMatchers("/usertour/view**").permitAll()
+				.requestMatchers("/api/v1/usertour/list").permitAll()
+				.requestMatchers("/api/v1/usertour/view/**").permitAll()
+				.requestMatchers("/api/v1/usertour/imgs/**").permitAll()
+				.anyRequest().authenticated());
 
-//		 form을 이용한 로그인 페이지의 인증 정책 설정
+		// form을 이용한 로그인 페이지의 인증 정책 설정
 		http.formLogin(formLogin -> formLogin
 				.loginPage("/user/login")
 				.usernameParameter("usrLgnId")
