@@ -82,6 +82,10 @@ public class UserVO {
      */
     private String usrMdfyDt;
     /**
+     * 유저의 권한
+     */
+    private String usrRole;
+    /**
      * 가이드 프로필 사진
      */
     private String gdPrflImg;
@@ -395,6 +399,19 @@ public class UserVO {
 	public void setProvider(String provider) {
 		this.provider = provider;
 	}
+
+	public String getUsrRole() {
+		return usrRole;
+	}
+
+	public void setUsrRole(String usrRole) {
+		this.usrRole = usrRole;
+	}
+	
+	
+	
+	
+	
 	
 
 }
