@@ -63,6 +63,10 @@ app:
       /api/v1/usertour/list,
       /api/v1/usertour/view/**,
       /api/v1/usertour/imgs/**,
+      /api/v1/guidetour/list,
+      /api/v1/guidetour/info/**,
+      /api/v1/guidetour/imgs/**,
+      /api/v1/guidetour/insert,
   jwt:
     issuer: hello-spring-security
     secret-key: spring-security-secret-key-random-token-key

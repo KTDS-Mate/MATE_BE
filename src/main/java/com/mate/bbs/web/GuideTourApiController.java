@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.mate.bbs.service.GuideTourService;
+import com.mate.bbs.vo.GuideTourImgListVO;
 import com.mate.bbs.vo.GuideTourListVO;
 import com.mate.bbs.vo.GuideTourVO;
 import com.mate.bbs.vo.GuideTourWriteVO;
@@ -40,8 +42,8 @@ public class GuideTourApiController {
 		return apiResponse;
 	}
 	/** 가이드가 등록한 게시글 상세 조회 페이지 **/
-	@GetMapping("/guidetour/info")
-	public ApiResponse viewOneGuideTourPage (@RequestBody String gdTrPstId) {
+	@GetMapping("/guidetour/info/{gdTrPstId}")
+	public ApiResponse viewOneGuideTourPage (@PathVariable String gdTrPstId) {
 		
 		GuideTourVO guideTourVO = this.guideTourService.getOneGuideTour(gdTrPstId);
 		ApiResponse apiResponse = new ApiResponse();
@@ -70,6 +72,12 @@ public class GuideTourApiController {
 		boolean isCreate = this.guideTourService.createNewGuideTour(guideTourWriteVO);
 		
 		return new ApiResponse(isCreate);
+	}
+	
+	@GetMapping("/guidetour/imgs/{gdTrPstId}")
+	public ApiResponse getGuideTourImgs(@PathVariable String gdTrPstId) {
+		GuideTourImgListVO guideTourImgs = this.guideTourService.getGuideTourImgs(gdTrPstId);
+		return new ApiResponse(guideTourImgs);
 	}
 	
 	
