@@ -10,6 +10,7 @@ public class TourGuideApplyWriteVO {
 	private String usrTrPstId;
 	/** 가이드가 제안한 총 투어 금액 **/
 	private int gdApplyPrc;
+	
 	public String getGdApplyId() {
 		return gdApplyId;
 	}

@@ -117,8 +117,13 @@ public class SecurityConfig {
 				.requestMatchers("/usertour/view**").permitAll()
 				.requestMatchers("/api/v1/usertour/list").permitAll()
 				.requestMatchers("/api/v1/usertour/view/**").permitAll()
-				.requestMatchers("/api/v1/usertour/imgs/**").permitAll()
 				.requestMatchers("/api/v1/payment/**").permitAll()
+				.requestMatchers("/api/v1/usertour/insert").permitAll()
+				.requestMatchers("/api/v1/request/insert").permitAll()
+				.requestMatchers("/api/v1/request/apply/insert").permitAll()
+				.requestMatchers("/api/v1/tour/regions").permitAll()
+				.requestMatchers("/api/v1/tour/countries/**").permitAll()
+				.requestMatchers("/api/v1/tour/cities/**").permitAll()
 				.anyRequest().authenticated());
 
 		// form을 이용한 로그인 페이지의 인증 정책 설정
