@@ -128,6 +128,8 @@ public class UserVO {
 	
 	private String role;
 	
+	private String usrRole;
+	
 	private List<AuthorityVO> Authority;
 	
 	private String provider;
@@ -378,6 +380,14 @@ public class UserVO {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public String getUsrRole() {
+		return usrRole;
+	}
+
+	public void setUsrRole(String usrRole) {
+		this.usrRole = usrRole;
 	}
 
 	public List<AuthorityVO> getAuthority() {

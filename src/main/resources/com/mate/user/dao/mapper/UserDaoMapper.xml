@@ -4,18 +4,51 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mate.user.dao.UserDao">
 
-    <resultMap type="com.mate.user.vo.UserVO"
-            id="userVOMap"
-            autoMapping="true">
-        <id column="EMAIL" property="email" />
-        
-        <collection property="authority"
-                    ofType="com.mate.user.vo.AuthorityVO"
-                    autoMapping="true">
-            <id column="AUTHORITY_NAME" property="authorityName" />
-            <id column="ROLE" property="roleName" />
-        </collection>
-    </resultMap>
+	<resultMap type="com.mate.user.vo.UserVO"
+	           id="userVOMap"
+	           autoMapping="true">
+	    <!-- UserVO 필드 매핑 -->
+	    <id column="USR_LGN_ID" property="usrLgnId" />
+	    <result column="USR_PWD" property="usrPwd" />
+	    <result column="SALT" property="salt" />
+	    <result column="LOGIN_FAIL_COUNT" property="loginFailCount" />
+	    <result column="LATEST_LOGIN_FAIL_DATE" property="latestLoginFailDate" />
+	    <result column="LATEST_LOGIN_IP" property="latestLoginIp" />
+	    <result column="LATEST_LOGIN_SUCCESS_DATE" property="latestLoginSuccessDate" />
+	    <result column="USR_ROLE" property="usrRole" />
+	    <result column="USR_ID" property="usrId" />
+	    <result column="USR_LNM" property="usrLnm" />
+	    <result column="USR_FNM" property="usrFnm" />
+	    <result column="USR_GNDR" property="usrGndr" />
+	    <result column="USR_EML" property="usrEml" />
+	    <result column="USR_PHN" property="usrPhn" />
+	    <result column="USR_BD" property="usrBd" />
+	    <result column="USR_IS_GD" property="usrIsGd" />
+	    <result column="USR_SLF_INTDCTN" property="usrSlfIntdctn" />
+	    <result column="USR_PYP_EML" property="usrPypEml" />
+	    <result column="USR_AVG_RTNG" property="usrAvgRtng" />
+	    <result column="USR_JN_DT" property="usrJnDt" />
+	    <result column="USR_CL_DT" property="usrClDt" />
+	    <result column="USR_IS_CL" property="usrIsCl" />
+	    <result column="USR_MDFY_DT" property="usrMdfyDt" />
+	    <result column="GD_PRFL_IMG" property="gdPrflImg" />
+	    <result column="GD_ID_IMG" property="gdIdImg" />
+	    <result column="GD_CBC_IMG" property="gdCbcImg" />
+	    <result column="GD_RP_CNT_ID" property="gdRpCntId" />
+	    <result column="COUNTRY_NAME" property="countryName" />
+	    <result column="USR_CNT_CODE" property="usrCntCode" />
+	    <result column="AGE" property="age" />
+	    <result column="ROLE" property="role" />
+	    <result column="PROVIDER" property="provider" />
+	
+	    <!-- AuthorityVO 필드 매핑 -->
+	    <collection property="authority"
+	                ofType="com.mate.user.vo.AuthorityVO"
+	                autoMapping="true">
+	        <id column="AUTHORITY_NAME" property="authorityName" />
+	        <id column="ROLE" property="roleName" />
+	    </collection>
+	</resultMap>
 
 	<insert id="insertNewUser" parameterType="com.mate.user.vo.RegistUserVO">
 		INSERT INTO USR_INF
@@ -32,7 +65,8 @@
 		     , SALT
 		     , LOGIN_FAIL_COUNT
 		     , GD_RP_CNT_ID
-		     , USR_JN_DT)
+		     , USR_JN_DT
+		     , USR_ROLE)
 		VALUES
 		     ( 'USR-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_USR_PK.NEXTVAL, 6, 0)
 		     , #{usrLgnId}
@@ -47,7 +81,9 @@
 		     , #{salt}
 		     , 0
 		     , #{gdRpCntId}
-		     , SYSDATE)
+		     , SYSDATE
+		     , 'ROLE_TOURIST'
+		    )
 	</insert>
 	
 	<select id="getIdCount" parameterType="String" resultType="_int">
@@ -180,19 +216,40 @@
 	</select>
 	
 	<select id="selectUserByLoginId" parameterType="String" resultMap="userVOMap">
-      SELECT U.USR_LGN_ID
-           , U.USR_PWD
-           , U.SALT
-           , U.LOGIN_FAIL_COUNT
-           , TO_CHAR(U.LATEST_LOGIN_FAIL_DATE, 'YYYY-MM-DD HH24:MI:SS') LATEST_LOGIN_FAIL_DATE
-           , U.LATEST_LOGIN_IP
-           , TO_CHAR(U.LATEST_LOGIN_SUCCESS_DATE, 'YYYY-MM-DD HH24:MI:SS') LATEST_LOGIN_SUCCESS_DATE
-           , U.USR_ROLE
-           , A.AUTHORITY_NAME
-        FROM USR_INF U
-       INNER JOIN AUTHORITY A
-          ON U.USR_ROLE = A.ROLE_NAME
-       WHERE U.USR_LGN_ID = #{usrLgnId} 
+	    SELECT U.USR_ID,
+	           U.USR_LGN_ID,
+	           U.USR_PWD,
+	           U.SALT,
+	           U.LOGIN_FAIL_COUNT,
+	           TO_CHAR(U.LATEST_LOGIN_FAIL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS LATEST_LOGIN_FAIL_DATE,
+	           U.LATEST_LOGIN_IP,
+	           TO_CHAR(U.LATEST_LOGIN_SUCCESS_DATE, 'YYYY-MM-DD HH24:MI:SS') AS LATEST_LOGIN_SUCCESS_DATE,
+	           U.USR_ROLE,
+	           U.USR_LNM,
+	           U.USR_FNM,
+	           U.USR_GNDR,
+	           U.USR_EML,
+	           U.USR_PHN,
+	           U.USR_BD,
+	           U.USR_IS_GD,
+	           U.USR_SLF_INTDCTN,
+	           U.USR_PYP_EML,
+	           U.USR_AVG_RTNG,
+	           U.USR_JN_DT,
+	           U.USR_CL_DT,
+	           U.USR_IS_CL,
+	           U.USR_MDFY_DT,
+	           U.GD_PRFL_IMG,
+	           U.GD_ID_IMG,
+	           U.GD_CBC_IMG,
+	           U.GD_RP_CNT_ID,
+	           U.AGE,
+	           U.PROVIDER,
+	           C.COUNTRY_NAME,
+	           U.USR_CNT_CODE
+	      FROM USR_INF U
+	      LEFT JOIN COUNTRIES C ON U.GD_RP_CNT_ID = C.COUNTRY_ID
+	     WHERE U.USR_LGN_ID = #{usrLgnId}
 	</select>
 	
 	<update id="mergeUser" parameterType="com.mate.user.vo.UserVO">

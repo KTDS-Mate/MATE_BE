@@ -15,7 +15,7 @@ import com.mate.mail.vo.EmailVO;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/user/regist")
+@RequestMapping("api/user/regist")
 public class EmailController {
 
 	@Autowired
