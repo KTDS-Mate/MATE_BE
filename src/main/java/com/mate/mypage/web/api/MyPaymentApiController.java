@@ -1,4 +1,4 @@
-package com.mate.mypage.web;
+package com.mate.mypage.web.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
