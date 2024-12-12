@@ -24,7 +24,7 @@ public class MainController {
 	public String viewMainPage(){
 		return "all/MainPage";
 		}
-
+	
 	@GetMapping("header")
 	public String viewHeader(){
 		return "header";
@@ -70,11 +70,14 @@ public class MainController {
 	}
 	
 	@GetMapping("/message/receive")
-	public String viewReceiveMessage(){return "all/receive_message";}
+	public String viewReceiveMessage(){
+		return "all/receive_message";}
 
 	@GetMapping("/message/send")
-	public String viewSendMessage(){return "all/send_message";}
+	public String viewSendMessage(){
+		return "all/send_message";}
 
 	@GetMapping("/tour/list")
-	public String viewTourListPage(){return "usertour/tour_list";}
+	public String viewTourListPage(){
+		return "usertour/tour_list";}
 }

@@ -8,11 +8,16 @@ import org.springframework.http.HttpStatus;
 public class ApiResponse {
 
 	private int status;
+
 	private String statusMessage;
+
 	private Object body;
-	private int count;
+
 	private List<String> errors;
+
 	private int errorsCount;
+
+	private int count;
 
 	public ApiResponse() {
 		this(HttpStatus.OK);
@@ -22,7 +27,7 @@ public class ApiResponse {
 		this();
 		this.setBody(body);
 	}
-	
+
 	public ApiResponse(HttpStatus httpStatus) {
 		this.status = httpStatus.value();
 		this.statusMessage = httpStatus.getReasonPhrase();
@@ -37,8 +42,9 @@ public class ApiResponse {
 		return status;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
+	public void setStatus(HttpStatus httpStatus) {
+		this.status = httpStatus.value();
+		this.statusMessage = httpStatus.getReasonPhrase();
 	}
 
 	public String getStatusMessage() {
@@ -57,6 +63,7 @@ public class ApiResponse {
 		this.body = body;
 		if (body instanceof List list) {
 			this.count = list.size();
+
 		} else if (body instanceof Map map) {
 			this.count = map.size();
 		} else {
@@ -79,6 +86,7 @@ public class ApiResponse {
 	public void setErrors(List<String> errors) {
 		this.errors = errors;
 		this.errorsCount = errors.size();
+
 	}
 
 	public int getErrorsCount() {
