@@ -37,13 +37,13 @@ public class PaymentApiController {
 	
 	// 토큰 발급
 	@ResponseBody
-	@GetMapping("/getAccessToken")
+	@GetMapping("/payment/getAccessToken")
 	public IamportResponse<AccessToken> getAccessToken() {
 		return this.portOneService.getAccessToken();
 	}
 	
 	@ResponseBody
-	@GetMapping("/verifyPayment")
+	@GetMapping("/payment/verify")
 	public ApiResponse verifyPayment(@RequestParam String payId,
 								 @RequestParam double amount)  {
 		double payAmount = this.paymentService.getPayAmount(payId);
@@ -51,7 +51,7 @@ public class PaymentApiController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/successPayment")
+	@PostMapping("/payment/success")
 	public ApiResponse successPayment(@RequestBody PaymentVO paymentVO) {
 //		paymentVO.setPayId(payId);
 //		paymentVO.setImpUid(impUid);
@@ -61,7 +61,7 @@ public class PaymentApiController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/cancelPayment")
+	@PostMapping("/payment/cancel")
 	public IamportResponse<Payment> cancelPayment(@RequestParam String impUid, @RequestBody String reason){
 		return this.portOneService.cancelPayment(impUid, reason);
 	}
@@ -72,7 +72,7 @@ public class PaymentApiController {
 	 * @return
 	 */
 	@ResponseBody
-	@PostMapping("/refundPayment")
+	@PostMapping("payment/refund")
 	public ApiResponse refundPayment(@RequestParam String payId) {
 		try {
 			this.paymentService.refundPayment(payId);

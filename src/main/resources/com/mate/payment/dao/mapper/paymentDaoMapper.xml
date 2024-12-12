@@ -181,7 +181,7 @@
 
 <select id="selectOnePaymentAmount" parameterType="String"
 	resultType="_double">
-	SELECT PAY_CSH 
+	SELECT PAY_CSH
 	  FROM PAY_INF
 	 WHERE PAY_ID = #{_parameter}
 </select>
