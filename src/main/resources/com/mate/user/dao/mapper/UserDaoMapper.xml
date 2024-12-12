@@ -4,7 +4,8 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mate.user.dao.UserDao">
 
-	<resultMap type="com.mate.user.vo.UserVO"
+
+    <resultMap type="com.mate.user.vo.UserVO"
 	           id="userVOMap"
 	           autoMapping="true">
 	    <!-- UserVO 필드 매핑 -->
@@ -220,16 +221,12 @@
 	           U.USR_LGN_ID,
 	           U.USR_PWD,
 	           U.SALT,
-	           U.LOGIN_FAIL_COUNT,
-	           TO_CHAR(U.LATEST_LOGIN_FAIL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS LATEST_LOGIN_FAIL_DATE,
-	           U.LATEST_LOGIN_IP,
-	           TO_CHAR(U.LATEST_LOGIN_SUCCESS_DATE, 'YYYY-MM-DD HH24:MI:SS') AS LATEST_LOGIN_SUCCESS_DATE,
 	           U.USR_ROLE,
 	           U.USR_LNM,
 	           U.USR_FNM,
 	           U.USR_GNDR,
 	           U.USR_EML,
-	           U.USR_PHN,
+	           U.USR_PHN,	
 	           U.USR_BD,
 	           U.USR_IS_GD,
 	           U.USR_SLF_INTDCTN,
@@ -243,8 +240,6 @@
 	           U.GD_ID_IMG,
 	           U.GD_CBC_IMG,
 	           U.GD_RP_CNT_ID,
-	           U.AGE,
-	           U.PROVIDER,
 	           C.COUNTRY_NAME,
 	           U.USR_CNT_CODE
 	      FROM USR_INF U

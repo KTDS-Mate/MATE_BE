@@ -32,34 +32,28 @@ public class JsonWebTokenProvider {
 	 * @return JWT
 	 */
 	public String generateJwt(Duration duration, UserVO userVO) {
-	    try {
-	        ObjectMapper objectMapper = new ObjectMapper();
-	        String userJson = objectMapper.writeValueAsString(userVO);
-
-	        // 1. 토큰의 유효기간 생성
-	        Date now = new Date();
-	        Date expiry = new Date(now.getTime() + duration.toMillis());
-
-	        // 2. 토큰 암/복호화를 위한 키 생성 (secretKey 이용)
-	        SecretKey tokenKey = Keys.hmacShaKeyFor(this.secretKey.getBytes());
-
-	        // 3. 토큰 생성 후 반환
-	        return Jwts.builder()
-	            .issuer(issuer)
-	            .subject("SpringSecurityJwtToken")
-	            .claim("user", userJson)
-	            .claim("email", userVO.getUsrEml())
-	            .claim("name", userVO.getUsrLgnId())
-	            .claim("authority", userVO.getAuthority())
-	            .issuedAt(now)
-	            .expiration(expiry)
-	            .signWith(tokenKey)
-	            .compact();
-	    } catch (JsonProcessingException e) {
-	        // 로깅 또는 예외 처리
-	        throw new RuntimeException("JWT 토큰 생성에 실패했습니다.", e);
-	    }
+		
+		// 1. 토큰의 유효기간 생성
+		Date now = new Date();
+		Date expiry = new Date(now.getTime() + duration.toMillis());
+		
+		// 2. 토큰 암/복호화를 위한 키 생성 (secretKey 이용)
+		SecretKey tokenKey = Keys.hmacShaKeyFor(this.secretKey.getBytes());
+		
+		// 3. 토큰 생성 후 반환
+		return Jwts.builder()
+							.issuer(issuer) // JWT 발급 주체
+							.subject("SpringSecurityJwtToken") // Token명
+							.claim("user", userVO) // JWT에 포함시킬 회원 정보
+							.claim("email", userVO.getUsrEml())
+							.claim("name", userVO.getUsrLgnId())
+							.claim("authority", userVO.getAuthority())
+							.issuedAt(now) // 발급 시간
+							.expiration(expiry) // 유효 시간
+							.signWith(tokenKey) // 암호화에 사용될 비밀키 설정
+							.compact(); // JWT를 문자열 형태로 변환
 	}
+	
 	
 	/**
 	 * 사용자가 보내준 토큰을 검증해 사용자 정보를 조회한다.

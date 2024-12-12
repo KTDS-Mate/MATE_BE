@@ -82,6 +82,10 @@ public class UserVO {
      */
     private String usrMdfyDt;
     /**
+     * 유저의 권한
+     */
+    private String usrRole;
+    /**
      * 가이드 프로필 사진
      */
     private String gdPrflImg;
@@ -127,8 +131,6 @@ public class UserVO {
 	private GuideReviewVO guideReviewVO;
 	
 	private String role;
-	
-	private String usrRole;
 	
 	private List<AuthorityVO> Authority;
 	
@@ -405,6 +407,4 @@ public class UserVO {
 	public void setProvider(String provider) {
 		this.provider = provider;
 	}
-	
-
 }
