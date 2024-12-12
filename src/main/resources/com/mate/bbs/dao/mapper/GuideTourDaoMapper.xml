@@ -150,6 +150,7 @@
 		     , UI.USR_GNDR 
 		     , UI.USR_SLF_INTDCTN 
 		     , UI.USR_GD_EXP 
+		     , UI.GD_PRFL_IMG
 		     , C.COUNTRY_NAME 
 		     , CT.CITY_NAME 
 		     , TRUNC(MONTHS_BETWEEN(TRUNC(SYSDATE), TO_CHAR(UI.USR_BD , 'YYYYMMDD'))/ 12) AS guideAge

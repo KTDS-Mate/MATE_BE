@@ -50,4 +50,8 @@ public interface UserDao {
 	public int reissueNewPassword(UserVO userVO);
 	
 	public UserVO selectOneMemberByIdAndEmail(UserVO userVO);
+	
+	public UserVO selectUserByLoginId(String username);
+	
+	public int mergeUser(UserVO oAuthUser);
 }

@@ -125,6 +125,12 @@ public class UserVO {
 	private int age;
 	
 	private GuideReviewVO guideReviewVO;
+	
+	private String role;
+	
+	private List<AuthorityVO> Authority;
+	
+	private String provider;
 
 	public String getUsrId() {
 		return usrId;
@@ -364,6 +370,30 @@ public class UserVO {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public List<AuthorityVO> getAuthority() {
+		return Authority;
+	}
+
+	public void setAuthority(List<AuthorityVO> authority) {
+		Authority = authority;
+	}
+
+	public String getProvider() {
+		return provider;
+	}
+
+	public void setProvider(String provider) {
+		this.provider = provider;
 	}
 	
 
