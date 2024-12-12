@@ -28,67 +28,59 @@ uri="http://www.springframework.org/tags/form" %>
         <jsp:include page="../header.jsp"></jsp:include>
       </div>
       <div class="content">
-        <form:form modelAttribute="userTourWriteVO" method="post" enctype="multipart/form-data">
+        <form:form id="insertForm" modelAttribute="userTourWriteVO" method="post" enctype="multipart/form-data">
           <div class="insert-main">
             <div class="flex-main-img">
               <div>
                 <h1>투어 요청 작성</h1>
               </div>
-              <img alt="메인 이미지" src="/img/tourboard/예시여행이미지.png" />
+              <img class="main-img" alt="메인 이미지" src="/img/tourboard/기본이미지.png" />
             </div>
             <div class="all-select-div">
               <div class="select-div"><span class="red">*</span> 투어 제목</div>
               <form:errors path="usrTrTtl" element="div" cssClass="errors" />
-              <input
-              	tabindex="1"
-                id="usrTrTtl"
-                name="usrTrTtl"
-                type="text"
-                placeholder="제목을 입력해주세요."
-                value="${userTourWriteVO.usrTrTtl}" />
+                <textarea id="usrTrTtl" name="usrTrTtl">${userTourWriteVO.usrTrTtl}</textarea>
             </div>
             <div class="all-select-div">
               <div class="select-div">
                 <span class="red">*</span> 투어 지역 선택
               </div>
-              <div>
+              <div class="region-country-div">
 	              <select id="region" required="required" tabindex="2">
 	              	<option value="">대륙 선택</option>
 	              </select>
 	              <select id="country" disabled="disabled" required="required" tabindex="3">
-	              	<optgroup id="country-opt">
-	              		<option value="">국가 선택</option>
-	              	</optgroup>
+	              	<option value="">국가 선택</option>
 	              </select>
               </div>
               <select id="city" name="trCtId" disabled="disabled" required="required" tabindex="4">
               	<option value="">도시 선택</option>
               </select>
             </div>
-            <div class="all-select-div">
+            <div>
               <div class="select-div"><span class="red">*</span> 날짜 선택</div>
-              <input
-              	tabindex="5"
-                id="inputYear"
-                name="inputYear"
-                type="date"
-                data-placeholder="투어 날짜를 골라주세요."
-                value="${userTourWriteVO.inputYear}" />
+              <label for="date-check">당일치기</label>
+              <input name="isChecked" id="date-check" type="checkbox" />
+              <div class="tour-date-select">
+	              <input
+	              	tabindex="5"
+	                id="inputYear"
+	                name="inputYear"
+	                type="date"
+	                value="${userTourWriteVO.inputYear}" />
+	              <img class="tilde-img" src="/img/tourboard/~.png" />
+	              <input
+	                id="inputEndYear"
+	                name="inputEndYear"
+	                type="date"
+	                value="${userTourWriteVO.inputEndYear}" />
+              </div>
             </div>
             <div class="all-select-div">
-              <div class="select-div"><span class="red">*</span> 시간 선택</div>
-              <div class="flex-hour-div">
-                <div class="time-select">
-                  <label for="start-time">시작 시간</label>
-                  <input id="start-time" name="inputStartHour" type="time" disabled="disabled" tabindex="6" />
-                </div>
-                <div class="inline-margin">
-                  <img src="/img/tourboard/~.png" />
-                </div>
-                <div class="time-select">
-                  <label for="end-time">종료 시간</label>
-                  <input id="end-time" name="inputEndHour" type="time" disabled="disabled" tabindex="7" />
-                </div>
+              <div class="tour-time-select">
+                  <input id="start-time" name="inputStartHour" type="time" tabindex="6" />
+                  <img class="tilde-img" src="/img/tourboard/~.png" />
+                  <input id="end-time" name="inputEndHour" type="time" tabindex="7" />
               </div>
             </div>
             <div class="all-select-div">
@@ -115,21 +107,25 @@ uri="http://www.springframework.org/tags/form" %>
                   >원하는 일정을 추가해주세요.</span
                 ><span class="font-we">&lt;최대 10개까지 넣을 수 있습니다.&gt;</span>
               </div>
-              <div class="hope-btn">
-                <input tabindex="10" id="plus" type="button" value="일정 추가하기" />
-                <input tabindex="11" id="m-btn" type="button" value="일정 삭제하기" />
-              </div>
               <div class="loc-inf">
-                <div class="locs">
+                	<div class="locs">
+                		<div>
+                			<label>시간</label>
+                			<input id="hope-time" name="userTourSchdlList[0].trTm" type="datetime-local" />
+                		</div>
 						<div>
 							<label for="hope-location">장소</label>
 							<input id="hope-location" name="userTourSchdlList[0].trLctns" type="text" required="required" />
 						</div>
 						<div>
 							<label for="hope-info">일정</label>
-							<input id="hope-info" name="userTourSchdlList[0].trRqst" type="text" required="required" />
+							<textarea id="hope-info" name="userTourSchdlList[0].trRqst" type="text" required="required"></textarea>
 						</div>
-						</div>
+					</div>
+              </div>
+              <div class="hope-btn">
+                <input tabindex="10" id="plus" type="button" value="일정 추가하기" />
+                <input tabindex="11" id="m-btn" type="button" value="일정 삭제하기" />
               </div>
             </div>
             <div class="all-select-div">
@@ -181,16 +177,6 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
                     <option value="40">40대</option>
                   </select>
                 </div>
-                <div>
-                  <label for="career">경력</label>
-                  <select tabindex="16" name="gdCrr" id="career">
-                    <option value="0">상관없음</option>
-                    <option value="1">1년차 이상</option>
-                    <option value="3">3년차 이상</option>
-                    <option value="5">5년차 이상</option>
-                    <option value="10">10년차 이상</option>
-                  </select>
-                </div>
               </div>
               <div>
                 <div class="select-div">가이드에게 원하는 사항</div>
@@ -204,18 +190,23 @@ ${userTourWriteVO.usrTrRqDtl}</textarea
                   path="usrTrGdHrPrc"
                   element="div"
                   cssClass="errors" />
-                <div class="price-flex-div">
-                  <input
-                  	tabindex="18"
-                    id="trPrc"
-                    name="usrTrGdHrPrc"
-                    type="number"
-                    value="${userTourWriteVO.usrTrGdHrPrc}"
-                    step="0.1" />
-                  <div>$</div>
-                </div>
-                <div class="right-align">
-                  <input tabindex="19" type="submit" value="투어 등록" />
+                <div class="insertBtnGroup">
+	                <div class="price-flex-div">
+	                  <strong>$</strong>
+	                  <input
+	                  	tabindex="18"
+	                    id="trPrc"
+	                    name="usrTrGdHrPrc"
+	                    type="number"
+	                    value="${userTourWriteVO.usrTrGdHrPrc}"
+	                    step="0.1" />
+	                </div>
+	                <div class="button" onclick="javascript:insertUsertour()">
+					    <p class="btnText">투어 등록</p>
+					    <div class="btnTwo">
+					      <p class="btnText2">GO!</p>
+					    </div>
+					 </div>
                 </div>
               </div>
             </div>

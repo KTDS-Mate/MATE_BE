@@ -45,7 +45,6 @@ public class FavoriteController {
 		return resultMap;
 	}
 	
-	
 	@GetMapping("/favorite/delete/{usrPstId}/{usrLgnId}")
 	public Map<String, Object> doDeleteUserTourFavorite(@PathVariable String usrPstId
 													  , @PathVariable String usrLgnId) {
@@ -55,6 +54,5 @@ public class FavoriteController {
 		
 		return resultMap;
 	}
-	
 	
 }

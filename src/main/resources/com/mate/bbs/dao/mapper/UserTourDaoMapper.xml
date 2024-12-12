@@ -4,6 +4,21 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mate.bbs.dao.UserTourDao">
 	
+	<resultMap id="requestGuideApplyVOMap"
+			   type="com.mate.bbs.vo.RequestGuideApplyVO"
+			   autoMapping="true">
+		<id column="GD_APPLY_ID" property="gdApplyId" />
+		<association property="userVO"
+					 javaType="com.mate.user.vo.UserVO"
+					 autoMapping="true">
+			<id column="USR_ID" property="usrId" />
+		</association>
+		<collection property="userTourSchdlList"
+					ofType="com.mate.bbs.vo.UserTourSchdlVO"
+					autoMapping="true">
+			<id column="TR_SCHDL_ID" property="trSchdlId" />
+		</collection>
+	</resultMap>
 	<resultMap id="userTourVOMap" 
 			   type="com.mate.bbs.vo.UserTourVO"
 			   autoMapping="true">
@@ -29,8 +44,8 @@
 			<id column="REGION_ID" property="regionId" />
 		</association>
 		<association property="favoriteVO"
-					javaType="com.mate.bbs.vo.FavoriteVO"
-					autoMapping="true">
+					 javaType="com.mate.bbs.vo.FavoriteVO"
+					 autoMapping="true">
 			<id column="FAV_ID" property="favId" />
 		</association>
 		<collection property="userTourImgList"
@@ -115,10 +130,10 @@
 		, USR_TR_RQ_DTL
 		, GD_GNDR
 		, GD_AGE
-		, GD_CRR
 		, GD_WNT_RQ
 		, USR_TR_ED_DT
-		, USR_TR_STTS)
+		, USR_TR_STTS
+		, USR_TR_DIVIDE)
 		VALUES
 		 (#{usrTrPstId}
 		, #{athrId}
@@ -135,10 +150,54 @@
 		, #{usrTrRqDtl}
 		, #{gdGndr}
 		, #{gdAge}
-		, #{gdCrr}
 		, #{gdWntRq}
 		, TO_DATE(#{usrTrEdDt}, 'YYYY-MM-DD HH24:MI')
-		, 'RCRTNG')
+		, 'RCRTNG'
+		, 'SCHEDULE')
+	</insert>
+	
+	<insert id="insertNewRequestTour"
+			parameterType="com.mate.bbs.vo.UserTourWriteVO">
+		INSERT INTO USR_TR_RQST
+		 (USR_TR_PST_ID
+		, ATHR_ID
+		, GD_ID
+		, USR_TR_TTL
+		, USR_TR_ST_DT
+		, USR_TR_PRPS
+		, USR_TR_MP
+		, USR_TR_GD_HR_PRC
+		, USR_TR_NP
+		, USR_TR_IS_DLT
+		, USR_TR_RSTR_DT
+		, TR_CT_ID
+		, USR_TR_RQ_DTL
+		, GD_GNDR
+		, GD_AGE
+		, GD_WNT_RQ
+		, USR_TR_ED_DT
+		, USR_TR_STTS
+		, USR_TR_DIVIDE)
+		VALUES
+		 ('UT-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_USR_TR_RQST_PK.NEXTVAL, 6, 0)
+		, #{athrId}
+		, NULL
+		, #{usrTrTtl}
+		, TO_DATE(#{usrTrStDt}, 'YYYY-MM-DD HH24:MI')
+		, #{usrTrPrps}
+		, #{usrTrMp}
+		, NULL
+		, #{usrTrNp}
+		, 'N'
+		, SYSDATE
+		, #{trCtId}
+		, #{usrTrRqDtl}
+		, #{gdGndr}
+		, #{gdAge}
+		, #{gdWntRq}
+		, TO_DATE(#{usrTrEdDt}, 'YYYY-MM-DD HH24:MI')
+		, 'RCRTNG'
+		, 'REQUEST')
 	</insert>
 	
 	<select id="selectOneUserTour"
@@ -159,7 +218,6 @@
 		     , UTR.USR_TR_RQ_DTL 
 		     , UTR.GD_GNDR 
 		     , UTR.GD_AGE 
-		     , UTR.GD_CRR 
 		     , UTR.GD_WNT_RQ 
 		     , UTR.USR_TR_STTS
 		     , TO_CHAR(UTR.USR_TR_ST_DT, 'YYYY-MM-DD HH24:MI') USR_TR_ST_DT
@@ -167,8 +225,10 @@
 		     , UTRI.USR_TR_RQ_IMG_ID_URL
 		     , UI.USR_LNM 
 		     , UI.USR_FNM 
+		     , TS.TR_SCHDL_ID
 		     , TS.TR_LCTNS 
-		     , TS.TR_RQST 
+		     , TS.TR_RQST
+		     , TO_CHAR(TS.TR_TM, 'YY-MM-DD HH24:MI') TR_TM 
 		     , C.CITY_NAME
 		     , CR.COUNTRY_NAME
 		  FROM USR_TR_RQST UTR
@@ -192,8 +252,6 @@
 			resultType="_int">
 		SELECT COUNT(1)
 		  FROM USR_TR_RQST UTR
-		  LEFT JOIN USR_TR_RQST_IMG UTRI
-		    ON UTR.USR_TR_PST_ID = UTRI.USR_TR_PST_ID
 		  JOIN CITIES C
 		    ON UTR.TR_CT_ID = C.CITY_ID
 		  JOIN COUNTRIES CR
@@ -213,44 +271,59 @@
 	<select id="selectAllUserTour"
 			resultMap="userTourVOMap"
 			parameterType="com.mate.bbs.vo.SearchUserTourVO">
-		<if test="_parameter != null">
-			<include refid="Common.pagination_header" />
-		</if>
 		SELECT UTR.USR_TR_PST_ID
 		     , UTR.USR_TR_TTL 
 		     , UTR.USR_TR_PRPS 
 		     , TO_CHAR(UTR.USR_TR_ST_DT, 'YYYY-MM-DD HH24:MI') USR_TR_ST_DT 
-		     , UTR.USR_TR_ED_DT 
+		     , TO_CHAR(UTR.USR_TR_ED_DT, 'YYYY-MM-DD HH24:MI') USR_TR_ED_DT 
 		     , UTR.USR_TR_GD_HR_PRC 
 		     , UTR.USR_TR_STTS 
-		     , CEIL (UTR.USR_TR_ST_DT - SYSDATE) AS DEADLINE
+		     , UTR.USR_TR_DIVIDE
+		     , CEIL (UTR.USR_TR_ED_DT - SYSDATE) AS DEADLINE
 		     , TRUNC((UTR.USR_TR_ED_DT - UTR.USR_TR_ST_DT) * 24 * 60) AS USR_TR_TM
 		     , UTRI.USR_TR_RQ_IMG_ID_URL 
-		     , C.CITY_NAME
-		     , CR.COUNTRY_NAME
-		  FROM USR_TR_RQST UTR
+		     , UTR.CITY_NAME
+		     , UTR.COUNTRY_NAME
+		  FROM (
+			<if test="_parameter != null">
+				<include refid="Common.pagination_header" />
+			</if>
+		  SELECT UTR.USR_TR_PST_ID
+		       , UTR.USR_TR_TTL 
+		       , UTR.USR_TR_PRPS 
+		       , UTR.USR_TR_ST_DT 
+		       , UTR.USR_TR_ED_DT 
+		       , UTR.USR_TR_GD_HR_PRC 
+		       , UTR.USR_TR_STTS 
+		       , UTR.USR_TR_DIVIDE 
+		       , CEIL (UTR.USR_TR_ED_DT - SYSDATE) AS DEADLINE
+		       , TRUNC((UTR.USR_TR_ED_DT - UTR.USR_TR_ST_DT) * 24 * 60) AS USR_TR_TM
+		       , C.CITY_NAME
+		       , CR.COUNTRY_NAME
+		    FROM USR_TR_RQST UTR
+		    JOIN CITIES C
+  		      ON UTR.TR_CT_ID = C.CITY_ID
+		    JOIN COUNTRIES CR
+		      ON CR.COUNTRY_ID = C.COUNTRY_ID
+		    JOIN REGIONS R
+		      ON R.REGION_ID = CR.REGION_ID
+		   WHERE UTR.USR_TR_ST_DT > SYSDATE
+		     AND UTR.USR_TR_IS_DLT = 'N'
+			<if test="_parameter != null">
+			 	<include refid="com.mate.bbs.dao.UserTourDao.selectRegions" />
+			</if>
+			<if test="_parameter != null">
+				<include refid="com.mate.bbs.dao.UserTourDao.selectSubjectAndContent" />
+			</if>
+			<if test="_parameter != null">
+			 	<include refid="com.mate.bbs.dao.UserTourDao.order" />
+			</if>
+			<if test="_parameter != null">
+				<include refid="Common.pagination_footer" />
+			</if>
+		  ) UTR
 		  LEFT JOIN USR_TR_RQST_IMG UTRI
 		    ON UTR.USR_TR_PST_ID = UTRI.USR_TR_PST_ID
-		  JOIN CITIES C
-		    ON UTR.TR_CT_ID = C.CITY_ID
-		  JOIN COUNTRIES CR
-		    ON CR.COUNTRY_ID = C.COUNTRY_ID
-		  JOIN REGIONS R
-		    ON R.REGION_ID = CR.REGION_ID
-		 WHERE UTR.USR_TR_ST_DT > SYSDATE
-		   AND UTR.USR_TR_IS_DLT = 'N'
-		<if test="_parameter != null">
-		 	<include refid="com.mate.bbs.dao.UserTourDao.selectRegions" />
-		</if>
-		<if test="_parameter != null">
-			<include refid="com.mate.bbs.dao.UserTourDao.selectSubjectAndContent" />
-		</if>
-		<if test="_parameter != null">
-		 	<include refid="com.mate.bbs.dao.UserTourDao.order" />
-		</if>
-		<if test="_parameter != null">
-			<include refid="Common.pagination_footer" />
-		</if>
 	</select>
 	
 	<update id="updateUserTour"
@@ -309,12 +382,14 @@
 		 (TR_SCHDL_ID
 		, USR_TR_PST_ID
 		, TR_LCTNS
-		, TR_RQST)
+		, TR_RQST
+		, TR_TM)
 		VALUES
 		 ('RQ-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_TR_SCHDL_PK.NEXTVAL, 6, 0)
 		, #{usrTrPstId}
 		, #{trLctns}
-		, #{trRqst})
+		, #{trRqst}
+		, TO_DATE(#{trTm}, 'YYYY-MM-DD HH24:MI'))
 	</insert>
 	
 	<insert id="insertNewUserTourImgs"
@@ -323,6 +398,7 @@
 		 (USR_TR_RQ_IMG_ID
 		, USR_TR_PST_ID
 		, USR_TR_RQ_IMG_ID_URL
+		, USR_TR_RQ_ORIGIN_FILE_NAME
 		, USR_TR_RSTR_DT
 		, USR_TR_DLT_DT
 		, GD_TR_IMG_IS_DLT)
@@ -330,6 +406,7 @@
 		 ('UG-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_USR_TR_RQST_IMG_PK.NEXTVAL, 6, 0)
 		, #{usrTrPstId}
 		, #{usrTrRqImgIdUrl}
+		, #{usrTrRqOriginFileName}
 		, SYSDATE
 		, NULL
 		, 'N')
@@ -338,9 +415,10 @@
 	<select id="selectUserTourSchdls"
 			parameterType="string"
 			resultType="com.mate.bbs.vo.UserTourSchdlVO">
-		SELECT USR_TR_PST_ID 
+		SELECT TR_SCHDL_ID
 		     , TR_LCTNS 
 		     , TR_RQST 
+		     , TO_CHAR(TR_TM, 'YY-MM-DD HH24:MI') TR_TM
 		  FROM TR_SCHDL
 		 WHERE USR_TR_PST_ID = #{_parameter}
 	</select>
@@ -358,5 +436,137 @@
 		     , USR_TR_STTS = 'RSRVT'
 		 WHERE USR_TR_PST_ID = #{usrTrPstId}
 	</update>
+	
+	<select id="selectAttachMultyStartHour"
+			parameterType="com.mate.bbs.vo.UserTourWriteVO"
+			resultType="string">
+		SELECT #{inputYear} || ' ' || #{inputStartHour}
+ 		  FROM DUAL
+	</select>
+	
+	<select id="selectAttachMultyEndHour"
+			parameterType="com.mate.bbs.vo.UserTourWriteVO"
+			resultType="string">
+		SELECT #{inputEndYear} || ' ' || #{inputEndHour}
+ 		  FROM DUAL
+	</select>
+	
+	<insert id="insertNewTourGuideApply"
+	        parameterType="com.mate.bbs.vo.TourGuideApplyWriteVO">
+		<selectKey keyProperty="gdApplyId" order="BEFORE" resultType="string">
+			SELECT 'GY-' || TO_CHAR(SYSDATE, 'YYYY-MM-DD') || '-' || LPAD(SEQ_RQST_GD_APPLY_PK.NEXTVAL, 6, 0)
+			  FROM DUAL
+		</selectKey>
+	    INSERT INTO RQST_GD_APPLY
+	         ( GD_APPLY_ID
+	         , GD_ID
+	         , USR_TR_PST_ID
+	         , GD_APPLY_PRC
+	         , GD_APPLY_RSTR_DT
+	         , GD_APPLY_IS_DLT
+	         , GD_APPLY_DLT_DT
+	         , GD_APPLY_TTL
+	         , TR_GD_APPLY_DTL
+	         , TR_GD_APPLY_MP
+	         , GD_APPLY_STT)
+	    VALUES
+	         ( #{gdApplyId}
+	         , #{gdId}
+	         , #{usrTrPstId}
+	         , #{gdApplyPrc}
+	         , SYSDATE
+	         , 'N'
+	         , NULL
+	         , '유계획여행'
+	         , '유계획여행'
+	         , 'null'
+	         , 'WAITING')
+	</insert>
+	
+	
+	<insert id="insertNewRequestGuideApply"
+			parameterType="com.mate.bbs.vo.RequestGuideApplyWriteVO">
+		<selectKey keyProperty="gdApplyId" order="BEFORE" resultType="string">
+			SELECT 'GY-' || TO_CHAR(SYSDATE, 'YYYY-MM-DD') || '-' || LPAD(SEQ_RQST_GD_APPLY_PK.NEXTVAL, 6, 0)
+			  FROM DUAL
+		</selectKey>
+		INSERT INTO RQST_GD_APPLY
+		 (GD_APPLY_ID
+		, GD_ID
+		, USR_TR_PST_ID
+		, GD_APPLY_PRC
+		, GD_APPLY_RSTR_DT
+		, GD_APPLY_IS_DLT
+		, GD_APPLY_DLT_DT
+		, GD_APPLY_TTL
+		, TR_GD_APPLY_DTL
+		, TR_GD_APPLY_MP
+		, GD_APPLY_STT)
+		VALUES
+		 (#{gdApplyId}
+		, #{gdId}
+		, #{usrTrPstId}
+		, #{gdApplyPrc}
+		, SYSDATE
+		, 'N'
+		, NULL
+		, #{gdApplyTtl}
+		, #{trGdApplyDtl}
+		, #{trGdApplyMp}
+		, 'WAITING')
+	</insert>
+	
+	<select id="selectAllRequestGuideApplyList"
+			parameterType="string"
+			resultMap="requestGuideApplyVOMap">
+		SELECT RG.GD_APPLY_ID 
+		     , RG.GD_APPLY_PRC 
+		     , RG.GD_APPLY_RSTR_DT
+		     , UI.USR_LNM 
+		     , UI.USR_FNM 
+		     , UI.USR_GNDR 
+		     , TRUNC(MONTHS_BETWEEN(TRUNC(SYSDATE), UI.USR_BD) / 12) AS AGE
+		     , UI.USR_GD_EXP
+		     , RG.GD_APPLY_TTL
+		     , RG.TR_GD_APPLY_DTL 
+		     , TS.TR_LCTNS 
+		     , TS.TR_RQST 
+		     , TS.TR_TM 
+		     , RG.GD_APPLY_STT
+		  FROM RQST_GD_APPLY RG
+		  JOIN TR_SCHDL TS
+		    ON TS.USR_TR_PST_ID = RG.GD_APPLY_ID
+		  JOIN USR_INF UI
+		    ON RG.GD_ID = UI.USR_LGN_ID 
+		 WHERE RG.USR_TR_PST_ID = #{_parameter}
+	</select>
+	
+	<select id="selectRequestGuideApplyListCount"
+			parameterType="string"
+			resultType="_int">
+		SELECT COUNT(1)
+		  FROM RQST_GD_APPLY RG
+		  JOIN TR_SCHDL TS
+		    ON TS.USR_TR_PST_ID = RG.GD_APPLY_ID
+		  JOIN USR_INF UI
+		    ON RG.GD_ID = UI.USR_LGN_ID 
+		 WHERE RG.USR_TR_PST_ID = #{_parameter}
+	</select>
+	
+	<select id="selectUserTourImgCount"
+			parameterType="string"
+			resultType="_int">
+		SELECT COUNT(1)
+		  FROM USR_TR_RQST_IMG
+		 WHERE USR_TR_PST_ID = #{_parameter}
+	</select>
+	
+	<select id="selectUserTourImgs"
+			parameterType="string"
+			resultType="com.mate.bbs.vo.UserTourImgVO">
+		SELECT USR_TR_RQ_IMG_ID_URL
+		 FROM USR_TR_RQST_IMG
+		 WHERE USR_TR_PST_ID = #{_parameter}
+	</select>
 	
 </mapper>

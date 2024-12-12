@@ -3,6 +3,7 @@ package com.mate.bbs.dao;
 import java.util.List;
 
 import com.mate.bbs.vo.GuideTourDetailInfoVO;
+import com.mate.bbs.vo.GuideTourImgVO;
 import com.mate.bbs.vo.GuideTourModifyVO;
 import com.mate.bbs.vo.GuideTourProvidedVO;
 import com.mate.bbs.vo.GuideTourReviewVO;
@@ -122,4 +123,8 @@ public interface GuideTourDao {
 
     public List<GuideTourVO> getRandomGuideTours();
 
+    public int selectImgCount(String gdTrPstId);
+    
+    public List<GuideTourImgVO> selectGuideTourImgList(String gdTrPstId);
+    
 }

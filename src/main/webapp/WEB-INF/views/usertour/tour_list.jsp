@@ -126,8 +126,19 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
             </div>
             </div>
             <c:if test="${not empty sessionScope._LOGIN_USER_}">
-          		<div>
-            	<a class="insert-tour-btn" href="/usertour/insert">투어 등록</a>
+          		<div class="insertBtnGroup">
+					<div class="button" onclick="javascript:moveRequest()">
+					    <p class="btnText">해주세요</p>
+					    <div class="btnTwo">
+					      <p class="btnText2">GO!</p>
+					    </div>
+					 </div>
+					 <div class="button" onclick="javascript:moveInsert()">
+					    <p class="btnText">투어 등록</p>
+					    <div class="btnTwo">
+					      <p class="btnText2">GO!</p>
+					    </div>
+					 </div>
             	</div>
           	</c:if>
           </div>
@@ -142,7 +153,8 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                   <input
                     class="hide"
                     type="hidden"
-                    data-pst-id="${userTourVO.usrTrPstId}" />
+                    data-pst-id="${userTourVO.usrTrPstId}"
+                    data-divide="${userTourVO.usrTrDivide}" />
                   <c:choose>
                     <c:when
                       test="${not empty userTourVO.userTourImgList && not empty userTourVO.userTourImgList[0].usrTrRqImgIdUrl}">
@@ -156,7 +168,7 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       <div>
                       <img
                         class="tour-country-image"
-                        src="/img/tourboard/mateImg.png" />
+                        src="/img/tourboard/기본이미지.png" />
                       </div>
                     </c:otherwise>
                   </c:choose>
@@ -186,20 +198,25 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                         지역 : ${userTourVO.citiesVO.cityName} /
                         ${userTourVO.countriesVO.countryName}
                       </div>
-                      <div>
-                        투어일 : ${userTourVO.usrTrStDt}
-                      </div>
                       <div class="tour-time">
-                          <img class="clock-img" alt="시계" src="/img/tourboard/ClockImage.png">
-                      		${userTourVO.usrTrTm}분
+                      	<img class="calendarImg" alt="캘린더" src="/img/tourboard/calendar.png" />
+                         ${userTourVO.usrTrStDt} ~ ${userTourVO.usrTrEdDt}
                       </div>
+                      <c:if test="${userTourVO.usrTrTm < 1440}">
+	                      <div class="tour-time">
+	                          <img class="clock-img" alt="시계" src="/img/tourboard/ClockImage.png">
+	                      		${userTourVO.usrTrTm}분
+	                      </div>
+                      </c:if>
                     </div>
                   </div>
                   </div>
                   <div class="tour-cost-fee">
-                  	<div class="dollar">
-                    	<h2>$${userTourVO.usrTrGdHrPrc}</h2>
-                    </div>
+                  	<c:if test="${userTourVO.usrTrDivide eq 'SCHEDULE'}">
+	                  	<div class="dollar">
+	                    	<h2>$${userTourVO.usrTrGdHrPrc}</h2>
+	                    </div>
+                  	</c:if>
                      <p><span class="end">마감 ${userTourVO.deadline}일전</span></p>
                   </div>
                 </div>

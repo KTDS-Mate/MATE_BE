@@ -5,8 +5,13 @@ $().ready(function() {
 
 	$(".activate").on('click', function() {
 		var pstId = $(this).data("pst-id");
-
-		location.href = `/usertour/view?usrTrPstId=${pstId}`
+		var divide = $(this).data("divide");
+		if (divide === 'REQUEST') {
+			location.href = `/usertour/view/request?usrTrPstId=${pstId}`
+		}
+		else {
+			location.href = `/usertour/view?usrTrPstId=${pstId}`
+		}
 	});
 
 

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.mate.cms.customerService.dao.CustomerServiceDao">
+
+	<sql id="selectSearch">
+		<if test='searchKeyword != null and searchKeyword != ""'>
+			AND SRVC_CNTR_DTL LIKE '%' || #{searchKeyword} || '%'
+		</if>
+	</sql>
+
+	<insert id="insertNewCustomerService"
+		parameterType="com.mate.cms.customerService.vo.CustomerServiceWriteVO">
+		INSERT INTO CSTMR_SRVC_CNTR
+		 (CSTMR_SRVC_CNTR_ID
+		, USR_LGN_ID
+		, SRVC_CNTR_DTL
+		, SRVC_CRT_DT
+		, CSTMR_SRVC_CNTR_STTS
+		,
+		CSTMR_SRVC_IS_DLT)
+		VALUES
+		('CC-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_CSTMR_SRVC_CNTR_PK.NEXTVAL, 6, 0)
+		, #{usrLgnId}
+		, #{srvcCntrDtl}
+		, SYSDATE
+		, 'N'
+		, 'N')
+	</insert>
+
+	<select id="selectCustomerServiceCount"
+		parameterType="com.mate.cms.customerService.vo.SearchCustomerServiceVO"
+		resultType="_int">
+		SELECT COUNT(1)
+		  FROM CSTMR_SRVC_CNTR
+		 WHERE CSTMR_SRVC_IS_DLT = 'N'
+		<if test="_parameter != null">
+			<include
+				refid="com.mate.cms.customerService.dao.CustomerServiceDao.selectSearch" />
+		</if>
+	</select>
+
+	<select id="selectCustomerServiceList"
+		parameterType="com.mate.cms.customerService.vo.SearchCustomerServiceVO"
+		resultType="com.mate.cms.customerService.vo.CustomerServiceVO">
+		<if test="_parameter != null">
+			<include refid="Common.pagination_header" />
+		</if>
+		SELECT CSTMR_SRVC_CNTR_ID
+			, USR_LGN_ID
+			, SRVC_CNTR_DTL
+			, SRVC_CRT_DT
+			, MAN_ID
+			, ANSWR_DTL
+			, ANSWR_DT
+			, CSTMR_SRVC_CNTR_STTS
+		 FROM CSTMR_SRVC_CNTR
+		WHERE CSTMR_SRVC_IS_DLT = 'N'
+		<if test="_parameter != null">
+			<include refid="com.mate.cms.customerService.dao.CustomerServiceDao.selectSearch" />
+		</if>
+		<if test="_parameter != null">
+			<include refid="Common.pagination_footer" />
+		</if>
+	</select>
+
+	<update id="updateCustomerService"
+		parameterType="com.mate.cms.customerService.vo.CustomerServiceAnswerVO">
+		UPDATE CSTMR_SRVC_CNTR
+		   SET MAN_ID = #{manId}
+		     , ANSWR_DTL = #{answrDtl}
+		     , ANSWR_DT = SYSDATE
+		     , CSTMR_SRVC_CNTR_STTS = 'Y'
+		 WHERE CSTMR_SRVC_CNTR_ID = #{cstmrSrvcCntrId}
+	</update>
+
+	<update id="deleteCustomerService" parameterType="string">
+		UPDATE CSTMR_SRVC_CNTR
+		   SET CSTMR_SRVC_IS_DLT = 'Y'
+		 WHERE CSTMR_SRVC_CNTR_ID = #{_parameter}
+	</update>
+
+</mapper>

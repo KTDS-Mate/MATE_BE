@@ -1,4 +1,17 @@
 $().ready(function() {
+    
+    $(".close").on('click', function() {
+        $("#modal").css('display', 'none');
+        $("body").removeClass("modal-open");
+    });
+
+    $(window).on('click', function(event) {
+        if (event.target === modal[0]) {
+            $("#modal").css('display', 'none');
+            $("body").removeClass("modal-open");
+        }
+    });
+    
 	// 현재 보고있는 게시글의 아이디
 	var pstId = $(".ttl-wb").data("pst-id");
 	// 현재 로그인 한 유저의 로그인 아이디
@@ -64,7 +77,6 @@ $().ready(function() {
 					, { pstId: $(".ttl-wb").data("pst-id") }
 					, function(createdResult) {
 						if (createdResult.result) {
-							alert("즐겨찾기에 추가되었습니다!");
 							location.reload();
 						}
 						else {
@@ -81,17 +93,12 @@ $().ready(function() {
 	$(".reserveButton").on('click', function() {
 		// 현재 예약중이라면?
 		if (stts === 'RCRTNG') {
-			if (confirm("예약하시겠습니까?")) {
-				// 예약으로 바꾸는 url
-				location.href = `/usertour/reserve/${pstId}/${usrLgnId}`;
-			}
-			else {
-				alert("취소하였습니다.");
-			}
+           $("#modal").css('display', 'block');
+           $("body").addClass("modal-open");
 		}
 		else {
-			alert("이미 누군가가 예약 중 입니다!");
-			return
+    		alert("이미 누군가가 예약 중 입니다!");
+    		return
 		}
 	});
 

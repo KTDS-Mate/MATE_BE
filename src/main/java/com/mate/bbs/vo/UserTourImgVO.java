@@ -1,5 +1,7 @@
 package com.mate.bbs.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class UserTourImgVO {
 
 	/**
@@ -27,7 +29,10 @@ public class UserTourImgVO {
 	 */
 	private String gdTrImgIsDlt;
 	
+	private String usrTrRqOriginFileName;
 	
+	/** Tourist_TourInsert에서 받아 올 파일**/
+	private MultipartFile userTourImgFile;
 	
 	public String getUsrTrRqImgId() {
 		return usrTrRqImgId;
@@ -64,6 +69,18 @@ public class UserTourImgVO {
 	}
 	public void setGdTrImgIsDlt(String gdTrImgIsDlt) {
 		this.gdTrImgIsDlt = gdTrImgIsDlt;
+	}
+	public MultipartFile getUserTourImgFile() {
+		return userTourImgFile;
+	}
+	public void setUserTourImgFile(MultipartFile userTourImgFile) {
+		this.userTourImgFile = userTourImgFile;
+	}
+	public String getUsrTrRqOriginFileName() {
+		return usrTrRqOriginFileName;
+	}
+	public void setUsrTrRqOriginFileName(String usrTrRqOriginFileName) {
+		this.usrTrRqOriginFileName = usrTrRqOriginFileName;
 	}
 	
 }

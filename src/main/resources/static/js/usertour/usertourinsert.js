@@ -1,18 +1,40 @@
 $().ready(function() {
-	
-	// 현재 모든 날짜와 시간을 가져옴
-	var nowDate = new Date();
-	// 현재 시간을 가져옴
-	var nowHour = nowDate.getHours();
-	// 현재 분을 가져옴
-	var nowMinutes = nowDate.getMinutes();
-	// 비교 대상과의 포멧을 맞춤
-	var nowTime = nowHour + ':' + nowMinutes;
-	
-	// 시작 시간 기본 값을 현재 시간으로 설정
-	$("#start-time").val(nowTime);
-	
-	$("#inputYear").on("change", function() {
+
+	$("#date-check").on('change', function(e) {
+		$("#start-time").val("");
+		$("#end-time").val("");
+		
+		var isChecked = e.target.checked;
+
+		var area = $(".tour-date-select");
+
+		if (isChecked) {
+			area.children().remove();
+			area.append(`<input
+		                id="inputYear"
+		                name="inputYear"
+		                type="date"
+		                data-placeholder="투어 날짜를 골라주세요." />`);
+		}
+		else {
+			area.children().remove();
+			area.append(`<input
+			                id="inputYear"
+			                name="inputYear"
+			                type="date"
+			                data-placeholder="투어 날짜를 골라주세요." />
+				         <img class="tilde-img" src="/img/tourboard/~.png" />
+				         <input
+			                id="inputEndYear"
+			                name="inputEndYear"
+			                type="date"
+			                data-placeholder="투어 날짜를 골라주세요." />`);
+		}
+	})
+
+	// 가상돔으로 추가 되었을 때에도 해당 코드가 작동할 수 있게 위임
+	$(document).on("change", "#inputYear", function() {
+		$("#inputEndYear").val("");
 		// 현재 날짜(년월일)보다 느리면(이전이면) 안됨
 		// 현재 날짜를 가져옴
 		var today = new Date();
@@ -31,7 +53,7 @@ $().ready(function() {
 		var formattingInput = inputYear.replace(/-/gi, "");
 		var intNow = parseInt(formattingNow);
 		var intInput = parseInt(formattingInput);
-		
+
 		if (intNow === intInput) {
 			// 만약 당일로 다시 바꾼다면?
 			// 시간 입력 값 초기화
@@ -43,13 +65,44 @@ $().ready(function() {
 			alert("지난 날은 입력하실 수 없습니다!");
 			$(this).val("");
 			$("#start-time").attr('disabled', 'disabled');
-			$("#start-time").val(nowTime);
 		}
 		else {
 			$("#start-time").removeAttr('disabled');
-			$("#start-time").val(nowTime);
 		}
-		
+
+	});
+
+	$(document).on('change', "#inputEndYear", function() {
+		$("#start-time").val("");
+		$("#end-time").val("");
+		var inputYearVal = $("#inputYear").val();
+
+		var startYear = parseInt(inputYearVal.replace(/-/gi, ""));
+
+		var inputEndYearVal = $(this).val();
+
+		var endYear = parseInt(inputEndYearVal.replace(/-/gi, ""));
+
+		if (inputYearVal === "") {
+			alert("시작 날짜를 먼저 입력하세요!");
+			$(this).val("");
+			return
+		}
+		if (startYear === endYear) {
+			$("#date-check").prop("checked", true);
+			$(".tour-date-select").children().remove();
+			$(".tour-date-select").append(`<input
+					                id="inputYear"
+					                name="inputYear"
+					                type="date"
+					                data-placeholder="투어 날짜를 골라주세요."
+					                value="${inputEndYearVal}" />`);
+		}
+		if (startYear > endYear) {
+			alert("시작 날짜보다 일찍 선택하실 수 없습니다!");
+			$(this).val("");
+			return
+		}
 	});
 
 	$("#start-time").on('change', function() {
@@ -85,14 +138,18 @@ $().ready(function() {
 	});
 
 	$("#end-time").on('change', function() {
+		var isChecked = $("#date-check").is(":checked");
 		// 사용자가 입력한 시작 시간을 가져옴
 		var startTime = $("#start-time").val();
 		// 현재 입력한 종료 시간을 가져옴
 		var endTime = $(this).val();
 		// 만약 시작 시간보다 이전을 선택했다면 alert후 값 초기화
-		if (endTime < startTime) {
-			alert("시작 시간보다 빠르게 입력하실 수 없습니다!");
-			$(this).val("");
+		if (isChecked) {
+			// 당일치기인 경우에만 검증
+			if (endTime < startTime) {
+				alert("시작 시간보다 빠르게 입력하실 수 없습니다!");
+				$(this).val("");
+			}
 		}
 
 	});
@@ -110,12 +167,16 @@ $().ready(function() {
 		// 해당 방법을 사용하기 위해서는 모든 input태그를 감싸고있는 div가 하나 필요함 -> <div class="locs">...</div>
 		var plusDom = $(`<div class="locs">
 						<div>
+			                <label>시간</label>
+			                <input id="hope-time" name="userTourSchdlList[${locsCnt}].trTm" type="datetime-local" />
+			            </div>
+						<div>
 							<label for="hope-location">장소</label>
 							<input id="hope-location" name="userTourSchdlList[${locsCnt}].trLctns" type="text" required="required" />
 						</div>
 						<div>
 							<label for="hope-info">일정</label>
-							<input id="hope-info" name="userTourSchdlList[${locsCnt}].trRqst" type="text" required="required" />
+							<textarea id="hope-info" name="userTourSchdlList[${locsCnt}].trRqst" type="text" required="required"></textarea>
 						</div>
 						</div>`);
 		// 인덱스가 담긴 가상 돔을 .loc-inf의 안쪽에 담아준다.
@@ -125,7 +186,7 @@ $().ready(function() {
 	$("#m-btn").on('click', function() {
 		$(".locs:last").remove();
 	});
-	
+
 	// 대륙은 기존 한번 만 가져옴(바뀌지 않음)
 	$.get("/tour/regions", {}, function(regionResult) {
 		var regionsCnt = regionResult.regionsCount;
@@ -151,13 +212,13 @@ $().ready(function() {
 		$("#city").attr("disabled", 'disabled');
 		// 대륙 ID를 가져옴
 		var regionId = $(this).val();
-		
+
 		// 만약 대륙아이디가 공백이다 => 대륙 선택을 클릭했다 면 국가 선택도 막음
 		if (regionId === "") {
 			$("#country").attr("disabled", 'disabled');
 		}
-		
-		
+
+
 		// 대륙 별 국가 정보를 가져옴
 		$.get(`/tour/countries/${regionId}`, {}, function(countryResult) {
 			var countriesCnt = countryResult.countriesCount;
@@ -180,11 +241,11 @@ $().ready(function() {
 		$("#city").append(`<option value="">도시 선택</option>`);
 
 		var countryId = $(this).val();
-	
+
 		// 국가 별 도시를 가져옴
 		$.get(`/tour/cities/${countryId}`, {}, function(cityResult) {
 			var citiesCnt = cityResult.citiesCount;
-			
+
 			for (var i = 0; i < citiesCnt; i++) {
 				var cityOption = $(`<option value="${cityResult.cities[i].cityId}">${cityResult.cities[i].cityName}</option>`);
 				$("#city").append(cityOption);
@@ -208,7 +269,7 @@ $().ready(function() {
 
 	$("#trPrc").on('change', function() {
 		var trPrcVal = $(this).val();
-				
+
 		if (trPrcVal < 0) {
 			alert("음수를 지정할 수 없습니다!");
 			$(this).val(0);
@@ -216,7 +277,7 @@ $().ready(function() {
 
 	});
 
-	$("#add-file").on('click', function () {
+	$("#add-file").on('click', function() {
 		var fileCnt = $(".file-group").length;
 
 		// 파일 첨부 개수 제한
@@ -224,13 +285,13 @@ $().ready(function() {
 			alert("파일은 최대 10개까지 첨부 가능합니다!");
 			return
 		}
-				
+
 		var fileDom = $(`<div class="file-group">
-						 	<input id="img-file" type="file" name="userTourImgList[${fileCnt}].usrTrRqImgIdUrl}" required="required" accept=".jpg,.jpeg,.img,.png" />
+						 	<input id="img-file" type="file" name="userTourImgList[${fileCnt}].userTourImgFile" required="required" accept=".jpg,.jpeg,.img,.png" />
 						 </div>`);
 		$(".file-list").append(fileDom);
 	});
-	
+
 	$("#del-file").on('click', function() {
 		$(".file-group:last").remove();
 	});
@@ -243,7 +304,7 @@ $().ready(function() {
 		var fileType = fileVal.split(".").pop().toLowerCase();
 		// 입력 가능한 확장자 리스트
 		var fileTypeArr = ['jpg', 'jpeg', 'img', 'png'];
-		
+
 		// inArray => 만약 fileTypeArr 안에 있는 파일이 아닌 다른 확장자를 받으면 -1을 내보냄
 		if ($.inArray(fileType, fileTypeArr) == -1) {
 			alert("이미지 파일만 등록 가능합니다!");
@@ -253,7 +314,12 @@ $().ready(function() {
 		else {
 			$(this).val(fileVal);
 		}
-		
+
 	});
-		
+
 });
+
+
+function insertUsertour () {
+	$("#insertForm").submit();
+}

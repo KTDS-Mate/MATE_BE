@@ -16,9 +16,8 @@ public interface PaymentService {
 	
 	public boolean successPayment(PaymentVO paymentVO);
 	
-	public boolean refundPayment(String payId);
+	public boolean refundPayment(String payId) throws Exception;
 	
 	public PaymentListVO getSearchMyPayment(SearchPaymentVO searchPaymentVO);
 	
-	public String getUsrId(String trstLgnId);
 }

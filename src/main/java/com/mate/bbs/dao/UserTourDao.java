@@ -4,7 +4,10 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.mate.bbs.vo.RequestGuideApplyVO;
+import com.mate.bbs.vo.RequestGuideApplyWriteVO;
 import com.mate.bbs.vo.SearchUserTourVO;
+import com.mate.bbs.vo.TourGuideApplyWriteVO;
 import com.mate.bbs.vo.UserTourImgVO;
 import com.mate.bbs.vo.UserTourModifyVO;
 import com.mate.bbs.vo.UserTourSchdlVO;
@@ -21,6 +24,12 @@ public interface UserTourDao {
 	 * @return
 	 */
 	public int insertNewUserTour(UserTourWriteVO userTourWriteVO);
+	
+	/**
+	 * 해주세요 게시글 작성
+	 * @return
+	 */
+	public int insertNewRequestTour(UserTourWriteVO userTourWriteVO);
 	
 	/**
 	 * 한 게시글 조회
@@ -57,12 +66,8 @@ public interface UserTourDao {
 	 * @param usrLgnId 가이드 아이디
 	 * @return
 	 */
-	public int updateGdId(@Param("usrTrPstId") String usrTrPstId, @Param("usrLgnId") String usrLgnId);
-	
-	
-	
-	
-	
+	public int updateGdId(@Param("usrTrPstId") String usrTrPstId, @Param("usrLgnId") String usrLgnId);	
+			
 	/**
 	 * 사용자가 입력한 시작 날짜와 시간을 YYYY-MM-DD HH24:MI로 포멧을 맞춰주는 쿼리 실행
 	 * @param userTourWriteVO 게시글 작성에 사용
@@ -91,7 +96,8 @@ public interface UserTourDao {
 	 */
 	public String selectAttachEndHour2(UserTourModifyVO userTourModifyVO);
 	
-	
+	public String selectAttachMultyStartHour(UserTourWriteVO userTourWriteVO);
+	public String selectAttachMultyEndHour(UserTourWriteVO userTourWriteVO);
 	
 	
 	/**
@@ -107,5 +113,17 @@ public interface UserTourDao {
 	
 	/**게시글 수정 시 일정 리스트들을 추가 & 삭제 하게 될 경우가 있어서 삭제 후 다시 insert**/
 	public int deleteUserTourSchdls(String usrTrPstId);
+
+	public int insertNewTourGuideApply(TourGuideApplyWriteVO tourGuideApplyWriteVO);
+	
+	public int insertNewRequestGuideApply(RequestGuideApplyWriteVO requestGuideApplyWriteVO);
+	
+	public List<RequestGuideApplyVO> selectAllRequestGuideApplyList(String usrTrPstId);
+	
+	public int selectRequestGuideApplyListCount(String usrTrPstId);
+	
+	public int selectUserTourImgCount(String usrTrPstId);
+	
+	public List<UserTourImgVO> selectUserTourImgs(String usrTrPstId);
 	
 }
