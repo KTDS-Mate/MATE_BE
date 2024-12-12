@@ -1,20 +1,23 @@
 package com.mate.bbs.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.mate.bbs.service.UserTourService;
 import com.mate.bbs.vo.SearchUserTourVO;
+import com.mate.bbs.vo.UserTourImgListVO;
 import com.mate.bbs.vo.UserTourListVO;
 import com.mate.bbs.vo.UserTourVO;
 import com.mate.bbs.vo.UserTourWriteVO;
@@ -41,13 +44,11 @@ public class UserTourApiController {
 	}
 	
 	/** 클라이언트가 등록한 가이드 구인 게시글 상세 조회 페이지 **/
-	@GetMapping("/usertour/view")
-	public ApiResponse viewOneUserTourPage(@RequestParam String usrTrPstId) {
+	@GetMapping("/usertour/view/{usrTrPstId}")
+	public ApiResponse viewOneUserTourPage(@PathVariable String usrTrPstId) {
 		UserTourVO userTourVO = this.userTourService.getOneUserTour(usrTrPstId);
-		ApiResponse apiResponse = new ApiResponse();
-		apiResponse.setBody(userTourVO);
 		
-		return apiResponse;
+		return new ApiResponse(userTourVO);
 	}
 	
 	/** 클라이언트가 작성 가이드 구인 게시글을 받아와서 DB에 저장하는 페이지 **/
@@ -72,5 +73,11 @@ public class UserTourApiController {
 		return new ApiResponse(isCreate);
 	}
 
+	@GetMapping("/usertour/imgs/{usrTrPstId}")
+	public ApiResponse getUserTourImgs(@PathVariable String usrTrPstId) {
+		UserTourImgListVO userTourImgs = this.userTourService.getUserTourImgs(usrTrPstId);
+		
+		return new ApiResponse(userTourImgs);
+	}
 	
 }
