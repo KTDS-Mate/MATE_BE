@@ -222,7 +222,7 @@
 	           U.USR_FNM,
 	           U.USR_GNDR,
 	           U.USR_EML,
-	           U.USR_PHN,
+	           U.USR_PHN,	
 	           U.USR_BD,
 	           U.USR_IS_GD,
 	           U.USR_SLF_INTDCTN,
