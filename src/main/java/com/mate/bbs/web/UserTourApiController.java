@@ -1,8 +1,6 @@
 package com.mate.bbs.web;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,13 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.mate.bbs.service.CountriesAndCitiesService;
 import com.mate.bbs.service.UserTourService;
 import com.mate.bbs.vo.SearchUserTourVO;
-import com.mate.bbs.vo.UserTourImgListVO;
 import com.mate.bbs.vo.UserTourListVO;
 import com.mate.bbs.vo.UserTourVO;
 import com.mate.bbs.vo.UserTourWriteVO;
 import com.mate.common.vo.ApiResponse;
+import com.mate.common.vo.CitiesListVO;
+import com.mate.common.vo.CountriesListVO;
+import com.mate.common.vo.RegionsListVO;
 import com.mate.user.vo.UserVO;
 
 import jakarta.validation.Valid;
@@ -32,6 +33,9 @@ public class UserTourApiController {
 
 	@Autowired
 	private UserTourService userTourService;
+	
+	@Autowired
+	private CountriesAndCitiesService countriesAndCitiesService;
 	
 	/** 클라이언트가 등록한 가이드 구인 게시글 목록 조회 페이지 **/
 	@GetMapping("/usertour/list")
@@ -72,12 +76,25 @@ public class UserTourApiController {
 
 		return new ApiResponse(isCreate);
 	}
-
-	@GetMapping("/usertour/imgs/{usrTrPstId}")
-	public ApiResponse getUserTourImgs(@PathVariable String usrTrPstId) {
-		UserTourImgListVO userTourImgs = this.userTourService.getUserTourImgs(usrTrPstId);
+	
+	@GetMapping("/tour/regions")
+	public ApiResponse getAllRegions() {
+		RegionsListVO regions = this.countriesAndCitiesService.getAllRegions();
 		
-		return new ApiResponse(userTourImgs);
+		return new ApiResponse(regions);
 	}
 	
+	@GetMapping("/tour/countries/{regionId}")
+	public ApiResponse getCountries(@PathVariable int regionId) {
+		CountriesListVO countries = this.countriesAndCitiesService.getCountries(regionId);
+		
+		return new ApiResponse(countries);
+	}
+	
+	@GetMapping("/tour/cities/{countryId}")
+	public ApiResponse getCities(@PathVariable int countryId) {
+		CitiesListVO cities = this.countriesAndCitiesService.getCities(countryId);
+		
+		return new ApiResponse(cities);
+	}
 }

@@ -62,7 +62,9 @@ app:
     permit-all-urls: /api/user/login,
       /api/v1/usertour/list,
       /api/v1/usertour/view/**,
-      /api/v1/usertour/imgs/**,
+      /api/v1/tour/regions,
+      /api/v1/tour/countries/**,
+      /api/v1/tour/cities/**,
   jwt:
     issuer: hello-spring-security
     secret-key: spring-security-secret-key-random-token-key
