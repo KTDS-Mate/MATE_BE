@@ -63,9 +63,8 @@ app:
       /api/v1/usertour/list,
       /api/v1/usertour/count,
       /api/v1/usertour/view/**,
-      /api/v1/usertour/imgs/**,
       /api/v1/guidetour/**,
-      /api/v1/tour/**
+      /api/v1/tour/**,
       /api/v1/tour/regions,
       /api/v1/tour/countries/**,
       /api/v1/tour/cities/**,
