@@ -246,3 +246,7 @@ $().ready(function() {
 	});
 
 });
+
+function insertGuideTour () {
+	$("#insertPage").submit();
+}
