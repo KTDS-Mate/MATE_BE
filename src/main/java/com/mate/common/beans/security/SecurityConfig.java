@@ -116,6 +116,7 @@ public class SecurityConfig {
 				.requestMatchers("/usertour/list").permitAll()
 				.requestMatchers("/usertour/view**").permitAll()
 				.requestMatchers("/api/v1/usertour/list").permitAll()
+				.requestMatchers("/api/v1/usertour/count").permitAll()
 				.requestMatchers("/api/v1/usertour/view/**").permitAll()
 				.requestMatchers("/api/v1/usertour/insert").permitAll()
 				.requestMatchers("/api/v1/request/insert").permitAll()

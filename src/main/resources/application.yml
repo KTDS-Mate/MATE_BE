@@ -61,6 +61,7 @@ app:
   security:
     permit-all-urls: /api/user/login,
       /api/v1/usertour/list,
+      /api/v1/usertour/count,
       /api/v1/usertour/view/**,
       /api/v1/tour/regions,
       /api/v1/tour/countries/**,

@@ -38,17 +38,26 @@ public class UserTourApiController {
 
 	/** 클라이언트가 등록한 가이드 구인 게시글 목록 조회 페이지 **/
 	@GetMapping("/usertour/list")
-	public ApiResponse viewAllUserTourPage(SearchUserTourVO searchUserTourVO) {
+	public ApiResponse getAllUserTours(SearchUserTourVO searchUserTourVO) {
 		UserTourListVO userTourListVO = this.userTourService.getAllUserTour(searchUserTourVO);
 		ApiResponse apiResponse = new ApiResponse();
 		apiResponse.setBody(userTourListVO.getUserTourList());
-
+		
+		return apiResponse;
+	}
+	
+	@GetMapping("/usertour/count")
+	public ApiResponse getAllUserTourCount(SearchUserTourVO searchUserTourVO) {
+		UserTourListVO userTourListVO = this.userTourService.getAllUserTour(searchUserTourVO);
+		ApiResponse apiResponse = new ApiResponse();
+		apiResponse.setBody(userTourListVO.getUserTourCount());
+		
 		return apiResponse;
 	}
 
 	/** 클라이언트가 등록한 가이드 구인 게시글 상세 조회 페이지 **/
 	@GetMapping("/usertour/view/{usrTrPstId}")
-	public ApiResponse viewOneUserTourPage(@PathVariable String usrTrPstId) {
+	public ApiResponse getOneUserTour(@PathVariable String usrTrPstId) {
 		UserTourVO userTourVO = this.userTourService.getOneUserTour(usrTrPstId);
 
 		return new ApiResponse(userTourVO);
