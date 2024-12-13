@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -80,5 +81,14 @@ public class GuideTourApiController {
 		return new ApiResponse(guideTourImgs);
 	}
 	
-	
+    @GetMapping("/guidetour/random")
+    public ResponseEntity<?> getRandomGuideTours() {
+        try {
+            List<GuideTourVO> randomTours = guideTourService.getRandomGuideTours();
+            return ResponseEntity.ok(randomTours); // JSON 형식으로 반환
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("{\"error\": \"Server Error\", \"message\": \"" + e.getMessage() + "\"}");
+        }
+    }
+
 }

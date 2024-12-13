@@ -18,7 +18,7 @@ public class RequestGuideApplyController {
 	private UserTourService userTourService;
 	
 	@GetMapping("/requestApply/{usrTrPstId}")
-	public Map<String, Object> getAllRegions(@PathVariable String usrTrPstId) {
+	public Map<String, Object> getAllGuideApply(@PathVariable String usrTrPstId) {
 		RequestGuideApplyListVO requestGuideApplys = this.userTourService.getAllRequestGuideApply(usrTrPstId);
 		Map<String, Object> resultMap = new HashMap<>();
 		
