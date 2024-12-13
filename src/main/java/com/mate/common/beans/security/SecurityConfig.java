@@ -24,6 +24,8 @@ import com.mate.common.beans.security.jwt.JsonWebTokenAuthenticationFilter;
 import com.mate.common.beans.security.oauth.SecurityOAuthService;
 import com.mate.user.dao.UserDao;
 
+import jakarta.servlet.http.HttpServletResponse;
+
 @Configuration
 @EnableWebSecurity(debug = true)
 public class SecurityConfig {
@@ -107,6 +109,7 @@ public class SecurityConfig {
 
 		// Role에 따른 접근권한 설정
 		http.authorizeHttpRequests(httpRequest -> httpRequest
+
 				.requestMatchers("/api/user/login").permitAll()
 				.requestMatchers("/user/login").permitAll()
 				.requestMatchers("token").permitAll()
@@ -123,7 +126,10 @@ public class SecurityConfig {
 				.requestMatchers("/api/v1/tour/regions").permitAll()
 				.requestMatchers("/api/v1/tour/countries/**").permitAll()
 				.requestMatchers("/api/v1/tour/cities/**").permitAll()
+		        .requestMatchers("/api/v1/guidetour/random").permitAll()
+		        .requestMatchers("/api/v1/tour/**").permitAll()
 				.anyRequest().authenticated());
+
 
 		// form을 이용한 로그인 페이지의 인증 정책 설정
 		http.formLogin(formLogin -> formLogin
