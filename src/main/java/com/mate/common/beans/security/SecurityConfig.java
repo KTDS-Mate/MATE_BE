@@ -24,6 +24,8 @@ import com.mate.common.beans.security.jwt.JsonWebTokenAuthenticationFilter;
 import com.mate.common.beans.security.oauth.SecurityOAuthService;
 import com.mate.user.dao.UserDao;
 
+import jakarta.servlet.http.HttpServletResponse;
+
 @Configuration
 @EnableWebSecurity(debug = true)
 public class SecurityConfig {
@@ -107,19 +109,21 @@ public class SecurityConfig {
 
 		// Role에 따른 접근권한 설정
 		http.authorizeHttpRequests(httpRequest -> httpRequest
-				.requestMatchers("/api/user/login").permitAll()
-				.requestMatchers("/user/login").permitAll()
-				.requestMatchers("token").permitAll()
-				.requestMatchers("/guidetour/list").permitAll()
-				.requestMatchers("/").permitAll()
-				.requestMatchers("/user/regist").permitAll()
-				.requestMatchers("/usertour/list").permitAll()
-				.requestMatchers("/usertour/view**").permitAll()
-				.requestMatchers("/api/v1/usertour/list").permitAll()
-				.requestMatchers("/api/v1/usertour/view/**").permitAll()
-				.requestMatchers("/api/v1/usertour/imgs/**").permitAll()
-				.anyRequest().authenticated());
-
+		        .requestMatchers("/api/user/login").permitAll()
+		        .requestMatchers("/user/login").permitAll()
+		        .requestMatchers("token").permitAll()
+		        .requestMatchers("/guidetour/list").permitAll()
+		        .requestMatchers("/").permitAll()
+		        .requestMatchers("/user/regist").permitAll()
+		        .requestMatchers("/usertour/list").permitAll()
+		        .requestMatchers("/usertour/view**").permitAll()
+		        .requestMatchers("/api/v1/usertour/list").permitAll()
+		        .requestMatchers("/api/v1/usertour/view/**").permitAll()
+		        .requestMatchers("/api/v1/usertour/imgs/**").permitAll()
+		        .requestMatchers("/api/v1/guidetour/random").permitAll()
+		        .requestMatchers("/api/v1/tour/**").permitAll()
+		        .anyRequest().authenticated());
+		
 		// form을 이용한 로그인 페이지의 인증 정책 설정
 		http.formLogin(formLogin -> formLogin
 				.loginPage("/user/login")
