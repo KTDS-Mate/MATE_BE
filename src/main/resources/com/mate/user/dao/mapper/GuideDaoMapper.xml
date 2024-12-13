@@ -95,7 +95,7 @@
 		     , USR_GD_EXP = #{usrGdExp}
 		     , GD_CBC_IMG = #{gdCbcImg}
 		     , GD_ID_IMG = #{gdIdImg}
-		     , USR_IS_GD = 'Y'
+		     , GD_APPL_STT = 'WAITING'
 		     , GD_RGST_DT = SYSDATE
 		     , USR_MDFY_DT = SYSDATE
 		 WHERE USR_ID = #{usrId}
