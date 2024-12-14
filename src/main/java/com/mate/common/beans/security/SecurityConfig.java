@@ -24,7 +24,6 @@ import com.mate.common.beans.security.jwt.JsonWebTokenAuthenticationFilter;
 import com.mate.common.beans.security.oauth.SecurityOAuthService;
 import com.mate.user.dao.UserDao;
 
-import jakarta.servlet.http.HttpServletResponse;
 
 @Configuration
 @EnableWebSecurity(debug = true)
@@ -128,6 +127,9 @@ public class SecurityConfig {
 				.requestMatchers("/api/v1/usertour/insert").permitAll()
 				.requestMatchers("/api/v1/request/insert").permitAll()
 				.requestMatchers("/api/v1/request/apply/insert").permitAll()
+				.requestMatchers("/api/v1/favorite/**").permitAll()
+				.requestMatchers("/api/v1/favorite/create").permitAll()
+				.requestMatchers("/api/v1/favorite/delete/**").permitAll()
 				.requestMatchers("/api/v1/tour/regions").permitAll()
 				.requestMatchers("/api/v1/tour/countries/**").permitAll()
 				.requestMatchers("/api/v1/tour/cities/**").permitAll()

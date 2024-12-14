@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mate.bbs.service.CountriesAndCitiesService;
+import com.mate.bbs.service.FavoriteService;
 import com.mate.bbs.service.UserTourService;
+import com.mate.bbs.vo.FavoriteListVO;
+import com.mate.bbs.vo.FavoriteWriteVO;
 import com.mate.bbs.vo.RequestGuideApplyWriteVO;
 import com.mate.bbs.vo.SearchUserTourVO;
 import com.mate.bbs.vo.UserTourListVO;
@@ -36,6 +39,9 @@ public class UserTourApiController {
 	@Autowired
 	private CountriesAndCitiesService countriesAndCitiesService;
 
+	@Autowired
+	private FavoriteService favoriteService;
+	
 	/** 클라이언트가 등록한 가이드 구인 게시글 목록 조회 페이지 **/
 	@GetMapping("/usertour/list")
 	public ApiResponse getAllUserTours(SearchUserTourVO searchUserTourVO) {
@@ -130,4 +136,29 @@ public class UserTourApiController {
 
 		return new ApiResponse(cities);
 	}
+	
+	@GetMapping("/favorite/{pstId}")
+	public ApiResponse getAllFavorite(@PathVariable String pstId) {
+		FavoriteListVO favoriteListVO = this.favoriteService.getAllFavoriteList(pstId);
+		ApiResponse apiResponse = new ApiResponse();
+		apiResponse.setBody(favoriteListVO.getFavoriteList());
+		
+		return apiResponse;
+	}
+	
+	@PostMapping("/favorite/create")
+	public ApiResponse doCreateNewUserTourFavorite(@RequestBody FavoriteWriteVO favoriteWriteVO) {
+		boolean isCreated = this.favoriteService.createNewUserTourFavorite(favoriteWriteVO);
+		
+		return new ApiResponse(isCreated);
+	}
+	
+	@GetMapping("/favorite/delete/{usrPstId}/{usrLgnId}")
+	public ApiResponse doDeleteUserTourFavorite(@PathVariable String usrPstId
+			  								  , @PathVariable String usrLgnId) {
+		boolean isDeleted = this.favoriteService.deleteUserTourFavorite(usrPstId, usrLgnId);
+		
+		return new ApiResponse(isDeleted);
+	}
+	
 }
