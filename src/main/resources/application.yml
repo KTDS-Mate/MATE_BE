@@ -76,6 +76,7 @@ app:
       /api/v1/tour/regions,
       /api/v1/tour/countries/**,
       /api/v1/tour/cities/**,
+      /api/user/countries,
   jwt:
     issuer: hello-spring-security
     secret-key: spring-security-secret-key-random-token-key

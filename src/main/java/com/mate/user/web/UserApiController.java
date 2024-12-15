@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mate.common.beans.Sha;
 import com.mate.common.beans.security.jwt.JsonWebTokenProvider;
 import com.mate.common.vo.ApiResponse;
+import com.mate.common.vo.CountriesListVO;
+import com.mate.common.vo.CountriesVO;
 import com.mate.user.dao.UserDao;
 import com.mate.user.service.UserService;
 import com.mate.user.vo.LoginUserVO;
@@ -271,6 +273,22 @@ public class UserApiController {
         }
         
         response.setBody(body);
+        return response;
+    }
+    
+    /**
+     * 국가 목록을 조회하는 엔드포인트
+     * GET /api/user/countries
+     */
+    @GetMapping("/countries")
+    public ApiResponse getAllCountries() {
+        List<CountriesVO> countriesList = userService.getAllCountries();
+        CountriesListVO responseVO = new CountriesListVO();
+        responseVO.setCountriesCount(countriesList.size());
+        responseVO.setCountriesList(countriesList);
+        
+        ApiResponse response = new ApiResponse();
+        response.setBody(responseVO);
         return response;
     }
 

@@ -143,6 +143,7 @@ public class SecurityConfig {
 				.requestMatchers("/api/v1/tour/cities/**").permitAll()
 		        .requestMatchers("/api/v1/guidetour/random").permitAll()
 		        .requestMatchers("/api/v1/tour/**").permitAll()
+		        .requestMatchers("/api/user/countries").permitAll()
 				.anyRequest().authenticated());
 
 
