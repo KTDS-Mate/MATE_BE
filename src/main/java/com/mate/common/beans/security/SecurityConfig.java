@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,6 +20,8 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
 
 import com.mate.common.beans.security.jwt.JsonWebTokenAuthenticationFilter;
 import com.mate.common.beans.security.oauth.SecurityOAuthService;
@@ -89,7 +92,7 @@ public class SecurityConfig {
 				// 허용할 도메인 목록
 				corsConfiguration.setAllowedOrigins(List.of("http://localhost:3000"));
 				// 허용할 메서드 목록 (외부에서 요청)
-				corsConfiguration.setAllowedMethods(List.of("POST", "PUT", "DELETE", "GET", "OPTION"));
+				corsConfiguration.setAllowedMethods(List.of("POST", "PUT", "DELETE", "GET", "OPTIONS"));
 				corsConfiguration.setAllowedHeaders(List.of("*"));
 				corsConfiguration.setAllowCredentials(true);
 				return corsConfiguration;
@@ -109,7 +112,7 @@ public class SecurityConfig {
 		http.authorizeHttpRequests(httpRequest -> httpRequest
 				.requestMatchers("/api/user/login").permitAll()
 				.requestMatchers("/user/login").permitAll()
-				.requestMatchers("token").permitAll()
+				.requestMatchers("/token").permitAll()
 				.requestMatchers("/guidetour/list").permitAll()
 				.requestMatchers("/").permitAll()
 				.requestMatchers("/user/regist").permitAll()
@@ -118,6 +121,10 @@ public class SecurityConfig {
 				.requestMatchers("/api/v1/usertour/list").permitAll()
 				.requestMatchers("/api/v1/usertour/view/**").permitAll()
 				.requestMatchers("/api/v1/usertour/imgs/**").permitAll()
+				.requestMatchers("/api/user/regist/**").permitAll()
+				.requestMatchers(HttpMethod.POST, "/api/user/regist/**").permitAll()
+		        .requestMatchers(HttpMethod.POST, "/api/user/send-auth-mail").permitAll()
+		        .requestMatchers(HttpMethod.POST, "/api/user/verify-auth-code").permitAll()
 				.anyRequest().authenticated());
 
 		// form을 이용한 로그인 페이지의 인증 정책 설정

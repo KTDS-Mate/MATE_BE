@@ -16,4 +16,6 @@ public interface EmailDao {
 	public int invalidatePrevAuthCode(String email);
 	
 	public int updateTempPassword(EmailVO emailVO);
+	
+	public int markAuthCodeAsVerified(String email);
 }
