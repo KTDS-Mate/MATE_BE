@@ -1,8 +1,12 @@
 package com.mate.notice.web;
 
-import java.time.Duration;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalTime;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -11,13 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mate.common.beans.security.jwt.JsonWebTokenProvider;
 import com.mate.notice.service.NoticeService;
-import com.mate.notice.vo.NoticeVO;
 import com.mate.user.vo.UserVO;
 
-import reactor.core.publisher.Flux;
+import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 public class NoticeSSEController {
+
+    private final CopyOnWriteArrayList<PrintWriter> clients = new CopyOnWriteArrayList<>();
 
     @Autowired
     private NoticeService noticeService;
@@ -26,13 +31,61 @@ public class NoticeSSEController {
     private JsonWebTokenProvider jsonWebTokenProvider;
 
     @GetMapping(value = "/api/v1/notice/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<NoticeVO> streamNotices(@RequestHeader("Authorization") String token) throws JsonProcessingException {
-        // JWT 검증 및 사용자 정보 추출
-        UserVO user = jsonWebTokenProvider.getUserFromJwt(token.replace("Bearer ", ""));
-        String userId = user.getUsrLgnId();
+    public void stream(
+            @RequestHeader(value = "Authorization", required = false) String authHeader,
+            HttpServletResponse response) throws IOException {
 
-        // 3초마다 사용자별 읽지 않은 알림 목록을 반환
-        return Flux.interval(Duration.ofSeconds(3))
-                .flatMap(tick -> Flux.fromIterable(noticeService.getUnreadNoticesByRecipientId(userId)));
+        // JWT 인증 검증
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.flushBuffer();
+            return;
+        }
+
+        String token = authHeader.substring(7);
+        try {
+            UserVO user = jsonWebTokenProvider.getUserFromJwt(token);
+            if (user == null) {
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                response.flushBuffer();
+                return;
+            }
+        } catch (Exception e) {
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            response.flushBuffer();
+            return;
+        }
+
+        // SSE 처리 시작
+        response.setContentType("text/event-stream");
+        response.setCharacterEncoding("UTF-8");
+
+        PrintWriter writer = response.getWriter();
+        clients.add(writer);
+
+        try {
+            writer.write("data: 연결되었습니다.\n\n");
+            writer.flush();
+
+            while (!response.isCommitted()) {
+                Thread.sleep(10000);
+                writer.write("data: Heartbeat " + LocalTime.now() + "\n\n");
+                writer.flush();
+            }
+        } catch (Exception e) {
+            System.out.println("Client disconnected");
+        } finally {
+            clients.remove(writer);
+            writer.close();
+        }
+    }
+
+    // 알림 전송 메서드
+    public void sendNotification(String message) {
+        String jsonMessage = "{ \"message\": \"" + message + "\" }"; // JSON 형식으로 메시지 구성
+        for (PrintWriter client : clients) {
+            client.write("data: " + jsonMessage + "\n\n");
+            client.flush();
+        }
     }
 }
