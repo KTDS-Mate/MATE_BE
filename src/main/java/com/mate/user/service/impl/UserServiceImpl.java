@@ -21,6 +21,8 @@ import com.mate.user.vo.LoginUserVO;
 import com.mate.user.vo.RegistUserVO;
 import com.mate.user.vo.UserVO;
 
+import jakarta.mail.MessagingException;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -68,7 +70,7 @@ public class UserServiceImpl implements UserService {
 
 	// 비밀번호 재발급
 	@Override
-	public boolean reissueUserPassword(UserVO userVO) {
+	public boolean reissueUserPassword(UserVO userVO) throws MessagingException {
 		// 1. DB에 해당 회원이 존재하는지 확인
 		UserVO existUser = userDao.selectOneMemberByIdAndEmail(userVO);
 		if (existUser == null) {
@@ -104,7 +106,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	// 이메일 발송 메서드
-	private void sendTemporaryPasswordEmail(String email, String tempPassword) {
+	private void sendTemporaryPasswordEmail(String email, String tempPassword) throws MessagingException {
 		EmailVO emailVO = new EmailVO();
 		emailVO.setEmail(email);
 		emailVO.setAuthCode(tempPassword);
@@ -112,6 +114,18 @@ public class UserServiceImpl implements UserService {
 		emailSendService.sendPasswordAuthMail(emailVO);
 	}
 	
+    @Override
+    public boolean findUserIdByEmail(String usrEml) throws MessagingException {
+        // 이메일로 사용자 아이디 찾기 로직 구현
+        String usrLgnId = userDao.findUserIdByEmail(usrEml);
+        if (usrLgnId == null || usrLgnId.isEmpty()) {
+            return false;
+        }
+
+        // 아이디를 이메일로 전송
+        emailSendService.sendUserIdEmail(usrEml, usrLgnId);
+        return true;
+    }
 
 	@Override
 	public boolean checkAvailableEmail(String email) {
@@ -130,32 +144,47 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public boolean checkAvailablePhn(String usrPhn, String usrLgnId) {
-		return this.userDao.getPhnCount(usrPhn, usrLgnId) == 0;
+		UserVO userVO = new UserVO();
+		userVO.setUsrPhn(usrPhn);
+		userVO.setUsrLgnId(usrLgnId);
+		return this.userDao.checkPhoneAvailability(userVO) == 0;
 	}
 
 	// 현재 비밀번호 검증
-
 	@Override
-	public boolean checkCurrentPassword(String usrLgnId, String currentPassword) {
+	public boolean checkCurrentPassword(String usrLgnId, String currentPwd) {
 		String storedPwd = userDao.getPasswordByUserId(usrLgnId);
 		String salt = userDao.getSalt(usrLgnId);
 		
+		// 비밀번호 또는 Salt가 없는 경우 로그 출력 및 false 반환
 		if (storedPwd == null || salt == null) {
 			log.warn("사용자 {}의 비밀번호 또는 salt 정보를 찾을 수 없습니다.", usrLgnId);
 			return false;
 		}
-		// 현재 입력된 비밀번호를 암호화함
-		String ecryptedPassword = sha.getEncrypt(currentPassword, salt);
 		
-		// 암호화된 현재 입력된 비밀번호와 DB에 저장된 비밀번호를 비교함.
-		return storedPwd.equals(ecryptedPassword);
+		// 클라이언트에서 전달된 현재 비밀번호가 null인지 확인
+	    if (currentPwd == null) {
+	        log.warn("사용자가 입력한 현재 비밀번호가 null입니다.");
+	        return false;
+	    }
+	    
+		// 현재 입력된 비밀번호를 암호화함
+	    String encryptedPassword = sha.getEncrypt(currentPwd, salt);
+		
+		// 암호화된 비밀번호와 저장된 비밀번호 비교
+	    boolean isMatch = storedPwd.equals(encryptedPassword);
+	    if (!isMatch) {
+	        log.debug("사용자 {}의 입력된 비밀번호가 일치하지 않습니다.", usrLgnId);
+	    }
+
+	    return isMatch;
 	}
 	
 	@Override
 	public UserVO readUser(LoginUserVO loginUserVO) {
 		boolean isIpBlock = this.accessLogDao.selectLoginFailCount(RequestUtil.getIp()) >= 5;
 		
-		log.info("로그인 시도 아이디: {}", loginUserVO.getUsrLgnId());
+		log.debug("로그인 시도 아이디: {}", loginUserVO.getUsrLgnId());
 		
 		// return null을 하는 이유. 로그인 오류시 사용자를 읽어올때 예외를 던지면 화이트라벨 페이지로 넘어가게 된다. 따라서 null을 던지면
 		// controller에서 null을 잡아 로그인 페이지로 다시 이동하도록 만들기 위한 설정
@@ -168,7 +197,7 @@ public class UserServiceImpl implements UserService {
 		String salt = this.userDao.selectSalt(loginUserVO.getUsrLgnId());
 		// 유저 ID가 잘못된 경우
 		if (salt == null) {
-			log.warn("SALT를 찾을 수 없습니다. 아이디가 잘못되었습니다: {}", loginUserVO.getUsrLgnId());
+			log.debug("SALT를 찾을 수 없습니다. 아이디가 잘못되었습니다: {}", loginUserVO.getUsrLgnId());
 			
 			this.insertAccessLog(loginUserVO, "N");
 			// 잘못된 아이디인 경우 Null 반환
@@ -183,7 +212,7 @@ public class UserServiceImpl implements UserService {
 		loginUserVO.setUsrPwd(password);
 		
 		// 이메일과 암호화된 비밀번호로 데이터베이스에서 회원 정보 조회
-		log.info("암호화된 비밀번호: {}", password);
+		log.debug("암호화된 비밀번호: {}", password);
 		UserVO userVO = this.userDao.selectOneMember(loginUserVO);
 		// 유저의 비밀번호가 잘못된 경우
 		if (userVO == null) {
@@ -215,7 +244,7 @@ public class UserServiceImpl implements UserService {
 		// 성공 로그
 		//this.accessLogDao.insertNewAccessLog(accessLogVO);
 		
-		log.info("로그인 성공: {}", userVO);
+		log.debug("로그인 성공: {}", userVO);
 		return userVO;
 	}
 
@@ -240,16 +269,19 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public boolean updateUserPhoneNumber(String usrLgnId, String newPhn) {
-
-		if (!checkAvailablePhn(newPhn, usrLgnId)) {
-			throw new IllegalArgumentException("이미 사용중인 휴대전화번호입니다.");
-		}
+	public boolean updateUserPhoneNumber(UserVO userVO) {
 		
-		UserVO userVO = new UserVO();
-		userVO.setUsrLgnId(usrLgnId);
-		userVO.setUsrPhn(newPhn);
-		return userDao.updateUserPhoneNumber(userVO) > 0;
+		// 입력값 검증
+	    String usrPhn = userVO.getUsrPhn();
+	    String usrLgnId = userVO.getUsrLgnId();
+
+	    // 전화번호 중복 체크
+	    if (!checkAvailablePhn(usrPhn, usrLgnId)) {
+	        throw new IllegalArgumentException("이미 사용 중인 휴대전화번호입니다.");
+	    }
+
+	    // DB 업데이트
+	    return userDao.updateUserPhoneNumber(userVO) > 0;
 	}
 	
 	@Override
