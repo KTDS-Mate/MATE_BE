@@ -16,7 +16,7 @@ $().ready(function() {
 		
 		$.ajax({
 			type: "POST",
-			url: "/user/regist/verify-auth-code",
+			url: "api/user/regist/verify-auth-code",
 			contentType: "application/json",
 			data: JSON.stringify(emailVO),
 			success: function(response) {

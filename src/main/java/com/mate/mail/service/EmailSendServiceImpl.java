@@ -33,7 +33,7 @@ public class EmailSendServiceImpl implements EmailSendService {
 	
 	// 이메일 인증 코드 발송 메서드
 	@Override
-	public String sendAuthMail(EmailVO emailVO) {
+	public void sendAuthMail(EmailVO emailVO) {
 		// 인증 코드
 		String authCode = "";
 		// 이 email은 사용자 입력값(사용자가 인증을 요청한 email)
@@ -81,6 +81,7 @@ public class EmailSendServiceImpl implements EmailSendService {
             
             // emailVO 객체에 생성한 authCode를 설정함
             emailVO.setAuthCode(authCode);
+            emailVO.setIssueTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd HH:mm:ss")));
             
             // 전에 발급했던 인증 코드가 있는 경우 무효화
             emailDao.invalidatePrevAuthCode(email);
@@ -89,9 +90,9 @@ public class EmailSendServiceImpl implements EmailSendService {
             
         } catch (MessagingException e) {
             log.error("이메일 전송 중 에러가 발생했습니다. 이메일: {}", email, e);
+            throw new RuntimeException("이메일 전송에 실패하였습니다.");
         }
-        // 생성된 인증 코드를 반환함
-        return emailVO.getAuthCode();
+
 	}
 	
 	// 비밀번호 재발급 메일 발송 메서드
@@ -136,15 +137,15 @@ public class EmailSendServiceImpl implements EmailSendService {
 		
 		// DB에 저장된 authCode가 null 일 경우 false 반환
 		if (storedEmailVO == null) {
-			response.put("valid", false);
-			response.put("message", "인증 코드가 존재하지 않습니다.");
-			return response;
-		}
+	        response.put("valid", false);
+	        response.put("message", "인증 코드가 존재하지 않습니다.");
+	        return response;
+	    }
 		
 		// 발급 시간과 현재 시간을 비교하여 5분 이내인지 확인
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd HH:mm:ss");
-		LocalDateTime issueTime  = LocalDateTime.parse(storedEmailVO.getIssueTime(), formatter);
-		LocalDateTime currentTime = LocalDateTime.now();
+        LocalDateTime issueTime  = LocalDateTime.parse(storedEmailVO.getIssueTime(), formatter);
+        LocalDateTime currentTime = LocalDateTime.now();
 		
 		// 만약 5분을 초과했다면 인증 실패
 		if (Duration.between(issueTime, currentTime).toMinutes() > 5) {
@@ -157,6 +158,7 @@ public class EmailSendServiceImpl implements EmailSendService {
 		if (storedEmailVO.getAuthCode().trim().equals(emailVO.getAuthCode().trim())) {
 			response.put("valid", true);
 			response.put("message", "인증이 완료되었습니다.");
+			emailDao.markAuthCodeAsVerified(emailVO.getEmail());
 		// 실패할 경우 False 반환
 		} else {
 			response.put("valid", false);
