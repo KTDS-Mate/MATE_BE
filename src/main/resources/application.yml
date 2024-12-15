@@ -75,7 +75,9 @@ app:
       /api/v1/tour/regions,
       /api/v1/tour/countries/**,
       /api/v1/tour/cities/**,
+      /api/v1/payment/**,
       /api/v1/mypage/payment/**,
+
   jwt:
     issuer: hello-spring-security
     secret-key: spring-security-secret-key-random-token-key
@@ -90,7 +92,7 @@ app:
       path-patterns: /**
       exclude-path-patterns: /js/**,
         /css/**,
-        /image/**
+        /image/**,
 
 # 아래는 포트원 API키와 시크릿 키인데 절대 공개되면 안된다.
 portone:
