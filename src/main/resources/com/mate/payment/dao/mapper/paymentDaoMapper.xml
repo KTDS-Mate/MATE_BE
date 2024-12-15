@@ -328,6 +328,4 @@ SELECT TRST.USR_LGN_ID AS TRST_ID
        AND GD_TR_STTS = 'RSRVT'
 </update>
 
-
-
 </mapper>
