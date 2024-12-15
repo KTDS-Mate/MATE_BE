@@ -4,12 +4,14 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -97,32 +99,29 @@ public class EmailSendServiceImpl implements EmailSendService {
 	
 	// 비밀번호 재발급 메일 발송 메서드
 	@Override
-	public String sendPasswordAuthMail(EmailVO emailVO) {
+	public String sendPasswordAuthMail(EmailVO emailVO) throws MessagingException {
 	    // 임시 비밀번호로 설정
 	    String tempPassword = emailVO.getAuthCode(); 
 	    String email = emailVO.getEmail();
 	    
-	    try {
-	        MimeMessage message = javaMailSender.createMimeMessage();
-	        MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
-	        helper.setTo(email);
-	        helper.setSubject("메이트 비밀번호 재설정 안내");
+	    
+        MimeMessage message = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+        helper.setTo(email);
+        helper.setSubject("메이트 비밀번호 재설정 안내");
 
-	        String messageToUser = """
-	            <div>
-	                <h1>안녕하세요! Mate 입니다.</h1>
-	                <p>요청하신 임시 비밀번호를 발송해 드립니다.</p>
-	                <p>임시 비밀번호: <strong>%s</strong></p>
-	                <p>로그인 후 반드시 비밀번호를 변경하시기 바랍니다.</p>
-	            </div>
-	            """.formatted(tempPassword);
+        String messageToUser = """
+            <div>
+                <h1>안녕하세요! Mate 입니다.</h1>
+                <p>요청하신 임시 비밀번호를 발송해 드립니다.</p>
+                <p>임시 비밀번호: <strong>%s</strong></p>
+                <p>로그인 후 반드시 비밀번호를 변경하시기 바랍니다.</p>
+            </div>
+            """.formatted(tempPassword);
+        
+        helper.setText(messageToUser, true);
+        javaMailSender.send(message);
 	        
-	        helper.setText(messageToUser, true);
-	        javaMailSender.send(message);
-	        
-	    } catch (MessagingException e) {
-	        log.error("이메일 전송 중 에러가 발생했습니다. 이메일: {}", email, e);
-	    }
 	    return tempPassword;
 	}
 	
@@ -170,4 +169,31 @@ public class EmailSendServiceImpl implements EmailSendService {
 		
 		return response;
 	}
+	
+	@Override
+	public void sendUserIdEmail(String usrEml, String userId) throws MessagingException {
+	    // 메일 제목 설정
+	    String subject = "메이트 아이디 찾기 안내";
+
+	    // 메일 내용 작성
+	    String messageToUser = """
+	        <div>
+	            <h1>안녕하세요! Mate 입니다.</h1>
+	            <p>요청하신 아이디 정보를 아래와 같이 안내 드립니다.</p>
+	            <p>아이디: <strong>%s</strong></p>
+	            <p>Mate를 이용해 주셔서 감사합니다.</p>
+	            </div>
+	        """.formatted(userId);
+
+	    // MimeMessage 생성 및 설정
+	    MimeMessage message = javaMailSender.createMimeMessage();
+	    MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+	    helper.setTo(usrEml);
+	    helper.setSubject(subject);
+	    helper.setText(messageToUser, true);
+
+	    // 메일 발송
+	    javaMailSender.send(message);
+	}
+
 }
