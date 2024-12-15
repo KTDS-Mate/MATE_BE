@@ -384,6 +384,14 @@ public class UserVO {
 		this.role = role;
 	}
 
+	public String getUsrRole() {
+		return usrRole;
+	}
+
+	public void setUsrRole(String usrRole) {
+		this.usrRole = usrRole;
+	}
+
 	public List<AuthorityVO> getAuthority() {
 		return Authority;
 	}
@@ -399,19 +407,4 @@ public class UserVO {
 	public void setProvider(String provider) {
 		this.provider = provider;
 	}
-
-	public String getUsrRole() {
-		return usrRole;
-	}
-
-	public void setUsrRole(String usrRole) {
-		this.usrRole = usrRole;
-	}
-	
-	
-	
-	
-	
-	
-
 }

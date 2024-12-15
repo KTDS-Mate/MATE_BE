@@ -47,11 +47,11 @@ public class JsonWebTokenAuthenticationFilter extends OncePerRequestFilter{
 
 	    String url = request.getServletPath();
 	    
-	    boolean isPermitAllUrl = permitAllUrls.stream()
-                .anyMatch(pattern -> pathMatcher.match(pattern, url));
-	    
 	    if (url.startsWith("/api/")) {
 	        
+	    	boolean isPermitAllUrl = permitAllUrls.stream()
+	    										  .anyMatch(pattern -> pathMatcher.match(pattern, url));
+	    	
 	        String jwt = request.getHeader("Authorization");
 	        
 	        if (!isPermitAllUrl && (jwt == null || jwt.trim().length() == 0)) {
