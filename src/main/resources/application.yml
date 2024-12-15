@@ -61,11 +61,21 @@ app:
   security:
     permit-all-urls: /api/user/login,
       /api/v1/usertour/list,
+      /api/v1/usertour/count,
       /api/v1/usertour/view/**,
       /api/v1/usertour/imgs/**,
       /api/user/regist/**,
       /api/user/send-auth-mail,
       /api/user/verify-auth-code,
+      /api/v1//favorite/**,
+      /api/v1/guidetour/list,
+      /api/v1/guidetour/info/**,
+      /api/v1/guidetour/insert,
+      /api/v1/guidetour/**,
+      /api/v1/tour/**,
+      /api/v1/tour/regions,
+      /api/v1/tour/countries/**,
+      /api/v1/tour/cities/**,
   jwt:
     issuer: hello-spring-security
     secret-key: spring-security-secret-key-random-token-key
