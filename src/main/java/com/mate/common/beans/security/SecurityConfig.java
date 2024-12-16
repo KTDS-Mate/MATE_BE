@@ -118,6 +118,7 @@ public class SecurityConfig {
 				.requestMatchers("/api/v1/usertour/list").permitAll()
 				.requestMatchers("/api/v1/usertour/view/**").permitAll()
 				.requestMatchers("/api/v1/usertour/imgs/**").permitAll()
+				.requestMatchers("/api/v1/mypage/**").permitAll()
 				.anyRequest().authenticated());
 
 		// form을 이용한 로그인 페이지의 인증 정책 설정

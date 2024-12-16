@@ -8,14 +8,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.mate.common.vo.ApiResponse;
 import com.mate.mypage.service.MyBoardService;
 import com.mate.mypage.vo.MyBoardListVO;
 import com.mate.mypage.vo.SearchMyBoardVO;
 import com.mate.mypage.vo.TrMyBoardListVO;
 import com.mate.mypage.vo.TrMyBoardVO;
 
-@Controller
+@RestController
 @RequestMapping("/api/v1/mypage/mytour")
 public class MyBoardApiController {
 
@@ -28,25 +30,19 @@ public class MyBoardApiController {
 //  -------------------------------------------------------------------------투어리스트파트
 
     @GetMapping("/tr-mytour/{usrLgnId}")
-    public String viewTrMyTour(@PathVariable String usrLgnId,SearchMyBoardVO searchMyBoardVO, Model model) {
+    public ApiResponse viewTrMyTour(@PathVariable String usrLgnId,SearchMyBoardVO searchMyBoardVO) {
 
+    	System.out.println("유저아이디는 " + usrLgnId);
+    	
     	TrMyBoardListVO boardListVO = this.myBoardService.selectTrMyAllBoard(usrLgnId , searchMyBoardVO);
     	
-    	int myBoardListVO = boardListVO.getBoardCnt();
-    	List<TrMyBoardVO> myBoardListVO2 = boardListVO.getBoardList();
-    	
-//    	System.out.println("갯수는 " + myBoardListVO);
-//    	System.out.println("리스트는 " + myBoardListVO2);
-    	
-    	
-//    	System.out.println("타입은 " + searchMyBoardVO.getSearchType());
-//    	System.out.println("검색어는 " + searchMyBoardVO.getSearchKeyword());
-    	
-        model.addAttribute("boardListVO", boardListVO);
-        model.addAttribute("searchBoardVO", searchMyBoardVO);
+    	System.out.println("보드갯수는 " + boardListVO.getBoardCnt());
+//    	int myBoardListVO = boardListVO.getBoardCnt();
+//    	List<TrMyBoardVO> myBoardListVO2 = boardListVO.getBoardList();
 
 
-        return "mypage/Mypage_Tourist_MyTour";
+
+        return new ApiResponse(boardListVO);
     }
 
 
