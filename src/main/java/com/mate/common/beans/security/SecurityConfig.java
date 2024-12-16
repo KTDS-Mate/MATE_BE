@@ -117,6 +117,7 @@ public class SecurityConfig {
 				.requestMatchers("/guidetour/view**").permitAll()
 				.requestMatchers("/api/v1/guidetour/list").permitAll()
 				.requestMatchers("/api/v1/guidetour/getLateGuideTour").permitAll()
+				.requestMatchers("/api/v1/guidetour/insert").permitAll()
 				.requestMatchers("/api/v1/guidetour/count").permitAll()
 				.requestMatchers("/api/v1/guidetour/info/**").permitAll()
 				.requestMatchers("/api/v1/guidetour/imgs/**").permitAll()
