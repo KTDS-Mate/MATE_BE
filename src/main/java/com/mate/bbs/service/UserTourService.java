@@ -63,4 +63,6 @@ public interface UserTourService {
 	
 	public UserTourImgListVO getUserTourImgs(String usrTrPstId);
 	
+	public UserTourVO getLateUserTour();
+	
 }

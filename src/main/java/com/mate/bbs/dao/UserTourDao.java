@@ -126,4 +126,6 @@ public interface UserTourDao {
 	
 	public List<UserTourImgVO> selectUserTourImgs(String usrTrPstId);
 	
+	public UserTourVO selectLateUserTour();
+	
 }

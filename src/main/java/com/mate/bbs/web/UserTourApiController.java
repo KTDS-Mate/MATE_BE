@@ -161,4 +161,14 @@ public class UserTourApiController {
 		return new ApiResponse(isDeleted);
 	}
 	
+	@GetMapping("/usertour/getLateUserTour")
+	public ApiResponse doGetLateUserTour() {
+		UserTourVO userTourVO = this.userTourService.getLateUserTour();
+		
+		ApiResponse apiResponse = new ApiResponse();
+		apiResponse.setBody(userTourVO);
+		
+		return apiResponse;
+	}
+	
 }
