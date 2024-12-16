@@ -153,6 +153,9 @@ public class UserTourDaoImpl extends SqlSessionDaoSupport implements UserTourDao
 		return this.getSqlSession().selectList(NAMESPACE + ".selectUserTourImgs", usrTrPstId);
 	}
 	
-	
+	@Override
+	public UserTourVO selectLateUserTour() {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectLateUserTour");
+	}
 	
 }

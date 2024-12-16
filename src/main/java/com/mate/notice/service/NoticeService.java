@@ -16,4 +16,6 @@ public interface NoticeService {
 
     // 4. 알림 삭제 처리
     public void removeNotice(String ntcId);
+    
+    public boolean sendNotification(String token, String message);
 }
