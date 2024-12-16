@@ -126,4 +126,9 @@ public class GuideTourDaoImpl extends SqlSessionDaoSupport implements GuideTourD
 		return this.getSqlSession().selectList(NAMESPACE + ".selectGuideTourImgList", gdTrPstId);
 	}
 	
+	@Override
+	public GuideTourVO selectLateGuideTour() {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectLateGuideTour");
+	}
+	
 }

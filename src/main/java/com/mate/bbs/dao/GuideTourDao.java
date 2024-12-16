@@ -127,4 +127,6 @@ public interface GuideTourDao {
     
     public List<GuideTourImgVO> selectGuideTourImgList(String gdTrPstId);
     
+    /** 최신순 받아오기 위한 코드 */
+    public GuideTourVO selectLateGuideTour();
 }

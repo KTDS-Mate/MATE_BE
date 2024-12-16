@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.mate.bbs.service.CountriesAndCitiesService;
 import com.mate.bbs.service.GuideTourService;
 import com.mate.bbs.vo.GuideTourImgListVO;
 import com.mate.bbs.vo.GuideTourListVO;
@@ -32,6 +33,8 @@ public class GuideTourApiController {
 	@Autowired
 	private GuideTourService guideTourService;
 	
+	
+	
 	/** 가이드가 등록한 투어 게시글 목록 조회 페이지 **/
 	@GetMapping("/guidetour/list")
 	public ApiResponse viewAllGuideTourPage(SearchGuideTourVO searchGuideTourVO ) {
@@ -42,6 +45,16 @@ public class GuideTourApiController {
 		
 		return apiResponse;
 	}
+	
+	@GetMapping("/guidetour/count")
+	public ApiResponse getAllGuideTourCount(SearchGuideTourVO searchGuideTourVO) {
+		GuideTourListVO guideTourListVO = this.guideTourService.getAllGuideTour(searchGuideTourVO);
+		ApiResponse apiResponse = new ApiResponse();
+		apiResponse.setBody(guideTourListVO.getGdTrPstCnt());
+		
+		return apiResponse;
+	}
+	
 	/** 가이드가 등록한 게시글 상세 조회 페이지 **/
 	@GetMapping("/guidetour/info/{gdTrPstId}")
 	public ApiResponse viewOneGuideTourPage (@PathVariable String gdTrPstId) {
@@ -90,5 +103,16 @@ public class GuideTourApiController {
             return ResponseEntity.status(500).body("{\"error\": \"Server Error\", \"message\": \"" + e.getMessage() + "\"}");
         }
     }
-
+    
+    
+    
+    @GetMapping("/guidetour/getLateGuideTour")
+    public ApiResponse doGetLateGuideTour() {
+    	GuideTourVO guideTourVO = this.guideTourService.getLateGuideTour();
+    	
+    	ApiResponse apiResponse = new ApiResponse();
+    	apiResponse.setBody(guideTourVO);
+    	
+    	return apiResponse;
+    }
 }

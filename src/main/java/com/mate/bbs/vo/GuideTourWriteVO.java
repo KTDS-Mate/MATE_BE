@@ -89,6 +89,7 @@ public class GuideTourWriteVO {
 	/**
 	 * 투어 작성자의 ID VO
 	 */
+	
 	private String athrId;
 	
 	public String getGdTrPstId() {

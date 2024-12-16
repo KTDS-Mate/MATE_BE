@@ -168,4 +168,10 @@ public class GuideTourServiceImpl implements GuideTourService{
 		return guideTourImgListVO;
 	}
 	
+	@Override
+	public GuideTourVO getLateGuideTour() {
+		GuideTourVO guideTourVO = this.guideTourDao.selectLateGuideTour();
+		return guideTourVO;
+	}
+	
 }
