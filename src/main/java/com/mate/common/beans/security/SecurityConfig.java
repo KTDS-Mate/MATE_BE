@@ -126,6 +126,7 @@ public class SecurityConfig {
 				.requestMatchers("/api/v1/usertour/getLateUserTour").permitAll()
 				.requestMatchers("/api/v1/usertour/count").permitAll()
 				.requestMatchers("/api/v1/usertour/view/**").permitAll()
+				.requestMatchers("/api/v1/payment/**").permitAll()
 				.requestMatchers("/api/v1/usertour/imgs/**").permitAll()
 				.requestMatchers("/api/user/regist/**").permitAll()
 				.requestMatchers(HttpMethod.POST, "/api/user/regist/**").permitAll()
