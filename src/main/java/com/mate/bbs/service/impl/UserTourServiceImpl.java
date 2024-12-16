@@ -158,7 +158,7 @@ public class UserTourServiceImpl implements UserTourService{
 			return userTourListVO;
 		}
 		// pagination 을 위해 listSize를 보내줌
-//		searchUserTourVO.setListSize(5);
+		searchUserTourVO.setListSize(5);
 		searchUserTourVO.setPageCount(userTourCnt);
 		
 		List<UserTourVO> UserTourList = this.userTourDao.selectAllUserTour(searchUserTourVO);
