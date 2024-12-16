@@ -19,6 +19,12 @@ public class UserVO {
      * 비밀번호
      */
     private String usrPwd;
+    
+	private String confirmPwd;
+	
+	private String currentPwd;
+	
+	private String newPwd;
     /**
      * 회원의 성
      */
@@ -115,10 +121,6 @@ public class UserVO {
 	private String usrCntCode;
 
 	private String salt;
-	
-	private String confirmPwd;
-	
-	private String currentPwd;
 	
 	/**
 	 * 가이드 경력
@@ -350,6 +352,14 @@ public class UserVO {
 
 	public void setCurrentPwd(String currentPwd) {
 		this.currentPwd = currentPwd;
+	}
+
+	public String getNewPwd() {
+		return newPwd;
+	}
+
+	public void setNewPwd(String newPwd) {
+		this.newPwd = newPwd;
 	}
 
 	public int getUsrGdExp() {

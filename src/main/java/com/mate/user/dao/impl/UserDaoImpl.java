@@ -1,6 +1,7 @@
 package com.mate.user.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -57,6 +58,11 @@ public class UserDaoImpl extends SqlSessionDaoSupport implements UserDao {
 	public int getPhnCount(@Param("usrPhn")String usrPhn, @Param("usrLgnId")String usrLgnId) {
 		return this.getSqlSession().selectOne(NAMESPACE + ".getPhnCount", usrPhn);
 	}
+	
+	@Override
+    public int checkPhoneAvailability(UserVO userVO) {
+        return this.getSqlSession().selectOne(NAMESPACE + ".checkPhoneAvailability", userVO);
+    }
 	
 	@Override
 	public UserVO selectOneMember(LoginUserVO loginUserVO) {
@@ -126,5 +132,10 @@ public class UserDaoImpl extends SqlSessionDaoSupport implements UserDao {
 	@Override
 	public UserVO selectUserByLoginId(String username) {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectUserByLoginId", username);
+	}
+	
+	@Override
+	public String findUserIdByEmail(String usrEml) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".findUserIdByEmail", usrEml);
 	}
 }
