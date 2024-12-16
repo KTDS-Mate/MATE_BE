@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,12 +20,13 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
 
 import com.mate.common.beans.security.jwt.JsonWebTokenAuthenticationFilter;
 import com.mate.common.beans.security.oauth.SecurityOAuthService;
 import com.mate.user.dao.UserDao;
 
-import jakarta.servlet.http.HttpServletResponse;
 
 @Configuration
 @EnableWebSecurity(debug = true)
@@ -91,7 +93,7 @@ public class SecurityConfig {
 				// 허용할 도메인 목록
 				corsConfiguration.setAllowedOrigins(List.of("http://localhost:3000"));
 				// 허용할 메서드 목록 (외부에서 요청)
-				corsConfiguration.setAllowedMethods(List.of("POST", "PUT", "DELETE", "GET", "OPTION"));
+				corsConfiguration.setAllowedMethods(List.of("POST", "PUT", "DELETE", "GET", "OPTIONS"));
 				corsConfiguration.setAllowedHeaders(List.of("*"));
 				corsConfiguration.setAllowCredentials(true);
 				return corsConfiguration;
@@ -112,8 +114,12 @@ public class SecurityConfig {
 
 				.requestMatchers("/api/user/login").permitAll()
 				.requestMatchers("/user/login").permitAll()
-				.requestMatchers("token").permitAll()
+				.requestMatchers("/token").permitAll()
 				.requestMatchers("/guidetour/list").permitAll()
+				.requestMatchers("/guidetour/view**").permitAll()
+				.requestMatchers("/api/v1/guidetour/list").permitAll()
+				.requestMatchers("/api/v1/guidetour/info/**").permitAll()
+				.requestMatchers("/api/v1/guidetour/imgs/**").permitAll()
 				.requestMatchers("/").permitAll()
 				.requestMatchers("/user/regist").permitAll()
 				.requestMatchers("/usertour/list").permitAll()
@@ -121,14 +127,23 @@ public class SecurityConfig {
 				.requestMatchers("/api/v1/usertour/list").permitAll()
 				.requestMatchers("/api/v1/usertour/count").permitAll()
 				.requestMatchers("/api/v1/usertour/view/**").permitAll()
+				.requestMatchers("/api/v1/usertour/imgs/**").permitAll()
+				.requestMatchers("/api/user/regist/**").permitAll()
+				.requestMatchers(HttpMethod.POST, "/api/user/regist/**").permitAll()
+		        .requestMatchers(HttpMethod.POST, "/api/user/send-auth-mail").permitAll()
+		        .requestMatchers(HttpMethod.POST, "/api/user/verify-auth-code").permitAll()
 				.requestMatchers("/api/v1/usertour/insert").permitAll()
 				.requestMatchers("/api/v1/request/insert").permitAll()
 				.requestMatchers("/api/v1/request/apply/insert").permitAll()
+				.requestMatchers("/api/v1/favorite/**").permitAll()
+				.requestMatchers("/api/v1/favorite/create").permitAll()
+				.requestMatchers("/api/v1/favorite/delete/**").permitAll()
 				.requestMatchers("/api/v1/tour/regions").permitAll()
 				.requestMatchers("/api/v1/tour/countries/**").permitAll()
 				.requestMatchers("/api/v1/tour/cities/**").permitAll()
 		        .requestMatchers("/api/v1/guidetour/random").permitAll()
 		        .requestMatchers("/api/v1/tour/**").permitAll()
+		        .requestMatchers("/api/user/countries").permitAll()
 				.anyRequest().authenticated());
 
 

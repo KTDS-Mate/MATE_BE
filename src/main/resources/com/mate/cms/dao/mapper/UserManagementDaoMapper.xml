@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.mate.cms.userManagement.dao.UserManagementDao">
+  
+  <sql id="selectGuideOrNot">
+  	<if test='guideCheckedType == "Checked"'>
+  		WHERE USR_IS_GD = 'Y'
+  	</if>
+  </sql>
+  
+  
+  <select id="selectUserManagementAllCount"
+  		  resultType="_int">
+  		SELECT COUNT(1) 
+  		FROM USR_INF 
+  </select>
+  	
+  	<select id="selectAllUserManagement"
+  			resultType="com.mate.cms.userManagement.vo.UserManagementVO">
+  		SELECT USR_ID 
+		 	 , USR_LGN_ID 
+		 	 , GD_RGST_DT 
+		 	 , USR_FNM 
+		 	 , USR_LNM 
+		 	 , USR_GNDR 
+		 	 , USR_BD 
+		 	 , USR_EML 
+		 	 , USR_IS_GD
+		  FROM USR_INF
+		  <if test="_parameter != null">
+		  	<include refid="com.mate.cms.userManagement.dao.UserManagementDao.selectGuideOrNot" />
+		  </if>
+  	</select>
+  	
+  	<!-- 
+  	<select id="selectOneUserManagement"
+  			parameterType="string"
+  			resultType="com.mate.cms.userManagement.vo.UserManagementVO">
+  		SELECT USR_ID 
+		 	 , USR_LGN_ID 
+		 	 , GD_RGST_DT 
+		 	 , USR_FNM 
+		 	 , USR_LNM 
+		 	 , USR_GNDR 
+		 	 , USR_BD 
+		 	 , USR_EML 
+		  FROM USR_INF
+  	</select> -->
+  	<!-- 바보 -->
+  	<select id="selectWaitingGuideUsers"
+  			resultType="com.mate.cms.userManagement.vo.UserManagementVO">
+  		SELECT USR_ID
+		 	 , USR_LGN_ID
+		 	 , GD_RGST_DT
+		 	 , USR_FNM
+		 	 , USR_LNM
+		 	 , USR_GNDR
+		 	 , USR_BD
+		 	 , USR_EML
+		 	 , USR_IS_GD
+		 	 , GD_APPL_STT
+		  FROM USR_INF
+		 WHERE GD_APPL_STT = 'WAITING'
+  	</select>
+  	
+  	<select id="selectWaitingGuideUsersCount"
+  			resultType="_int">
+  		SELECT COUNT(1)
+		  FROM USR_INF
+		 WHERE GD_APPL_STT = 'WAITING'
+  	</select>
+  	
+  </mapper>

@@ -107,3 +107,7 @@ function movepage(pageNo) {
 		"action": `/guidetour/list`
 	}).submit();
 }
+
+function moveInsert() {
+	location.href = "/guidetour/insert";
+}

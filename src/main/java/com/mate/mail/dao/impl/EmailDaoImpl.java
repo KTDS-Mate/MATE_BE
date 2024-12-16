@@ -30,6 +30,7 @@ public class EmailDaoImpl extends SqlSessionDaoSupport implements EmailDao {
 	}
 
 	// email 인증 코드 재발급 시 이전에 발급했던 코드 무효화
+	@Override
 	public int invalidatePrevAuthCode(String email) {
 		return getSqlSession().update(NAMESPACE + ".invalidatePrevAuthCode", email);
 	}
@@ -37,5 +38,9 @@ public class EmailDaoImpl extends SqlSessionDaoSupport implements EmailDao {
 	@Override
 	public int updateTempPassword(EmailVO emailVO) {
 		return getSqlSession().update(NAMESPACE + ".updateTempPassword", emailVO);
+	}
+	@Override
+	public int markAuthCodeAsVerified(String email) {
+		return getSqlSession().update(NAMESPACE + ".markAuthCodeAsVerified", email);
 	}
 }
