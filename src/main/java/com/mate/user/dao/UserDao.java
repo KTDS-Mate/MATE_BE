@@ -1,6 +1,7 @@
 package com.mate.user.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -22,6 +23,8 @@ public interface UserDao {
 	public int getPaypalEmailCount(String payPalEmail);
 	
 	public int getPhnCount(@Param("usrPhn")String usrPhn, @Param("usrLgnId")String usrLgnId);
+	
+	public int checkPhoneAvailability(UserVO userVO);
 	
 	public String selectSalt(String usrId);
 	
@@ -54,4 +57,7 @@ public interface UserDao {
 	public UserVO selectUserByLoginId(String username);
 	
 	public int mergeUser(UserVO oAuthUser);
+	
+    public String findUserIdByEmail(String usrEml);
+
 }

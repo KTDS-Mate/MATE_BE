@@ -144,6 +144,8 @@ public class SecurityConfig {
 		        .requestMatchers("/api/v1/guidetour/random").permitAll()
 		        .requestMatchers("/api/v1/tour/**").permitAll()
 		        .requestMatchers("/api/user/countries").permitAll()
+		        .requestMatchers("/api/user/reissue-password").permitAll()
+		        .requestMatchers("/api/user/find-id").permitAll()
 				.anyRequest().authenticated());
 
 

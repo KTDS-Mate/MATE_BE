@@ -10,7 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.MessagingException;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -160,29 +162,38 @@ public class UserApiController {
      * 휴대전화번호 수정
      */
     @PostMapping("/editphone")
-    public ApiResponse doEditPhone(@RequestParam String newPhn, Authentication authentication) {
+    public ApiResponse doEditPhone(@RequestBody UserVO userVO, Authentication authentication) {
         ApiResponse response = new ApiResponse();
         
-        UserVO userVO = extractUserVO(authentication);
-        if (userVO == null) {
+        // SecurityContext에서 인증된 사용자 정보 추출
+        UserVO authenticatedUser = (UserVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (authenticatedUser == null) {
             response.setStatus(HttpStatus.UNAUTHORIZED);
             response.setErrors(List.of("로그인이 필요합니다."));
             return response;
         }
 
-        newPhn = newPhn.replaceAll("[^+0-9]", "");
-        
-        if (!newPhn.matches("^\\+?[0-9]{8,15}$")) {
+        String usrPhn = userVO.getUsrPhn();
+        if (usrPhn == null || !usrPhn.matches("^\\+?[0-9]{8,15}$")) {
+            response.setStatus(HttpStatus.BAD_REQUEST);
+            response.setErrors(List.of("휴대 전화번호를 올바르게 입력해 주세요."));
+            return response;
+        }
+
+        usrPhn = usrPhn.replaceAll("[^+0-9]", "");
+        if (!usrPhn.matches("^\\+?[0-9]{8,15}$")) {
             response.setStatus(HttpStatus.BAD_REQUEST);
             response.setErrors(List.of("휴대 전화번호를 올바르게 입력해 주세요."));
             return response;
         }
         
+    	userVO.setUsrLgnId(authenticatedUser.getUsrLgnId());
+    	userVO.setUsrPhn(usrPhn);
+        
         try {
-            boolean isUpdated = userService.updateUserPhoneNumber(userVO.getUsrLgnId(), newPhn);
-            
+        	// 전화번호 업데이
+        	boolean isUpdated = userService.updateUserPhoneNumber(userVO);
             if (isUpdated) {
-                userVO.setUsrPhn(newPhn);
                 response.setBody("휴대전화번호가 성공적으로 변경되었습니다.");
             } else {
                 response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -197,45 +208,85 @@ public class UserApiController {
     }
 
     /**
+     * 비밀번호 재발급 요청
+     * POST /api/user/reissue-password
+     * @throws jakarta.mail.MessagingException 
+     */
+    @PostMapping("/reissue-password")
+    public ApiResponse reissuePassword(@RequestBody UserVO userVO) throws jakarta.mail.MessagingException {
+        String usrLgnId = userVO.getUsrLgnId();
+        String usrEml = userVO.getUsrEml();
+        
+        try {
+        	boolean isReissued = userService.reissueUserPassword(userVO);
+            ApiResponse response = new ApiResponse();
+            
+            if (isReissued) {
+                Map<String, Object> body = new HashMap<>();
+                body.put("message", "입력하신 이메일로 임시 비밀번호가 발급되었습니다.");
+                body.put("messageType", "success");
+                response.setBody(body);
+                response.setStatus(HttpStatus.OK);
+            } else {
+                response.setStatus(HttpStatus.BAD_REQUEST);
+                response.setErrors(List.of("일치하는 회원 정보가 없습니다."));
+            }
+            
+            return response;
+            
+        } catch (MessagingException e) {
+        	log.error("비밀번호 재발급 이메일 전송 실패: {}", usrEml, e);
+        	ApiResponse errorResponse = new ApiResponse(HttpStatus.INTERNAL_SERVER_ERROR);
+            errorResponse.setErrors(List.of("비밀번호 재발급 이메일 전송에 실패했습니다. 다시 시도해 주세요."));
+            return errorResponse;
+        }
+    }
+
+    
+    /**
      * 비밀번호 변경
      */
-    @PostMapping("/editpwd")
-    public ApiResponse updatePassword(@RequestParam String newPwd,
-                                      @RequestParam String currentPwd,
-                                      @RequestParam String confirmPwd,
+    @PostMapping("/changePassword")
+    public ApiResponse updatePassword(@RequestBody UserVO userVO,
                                       Authentication authentication) {
         ApiResponse response = new ApiResponse();
 
-        UserVO userVO = extractUserVO(authentication);
-        if (userVO == null) {
+        // SecurityContext에서 인증된 사용자 정보 추출
+        UserVO authenticatedUser = (UserVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (authenticatedUser == null) {
             response.setStatus(HttpStatus.UNAUTHORIZED);
             response.setErrors(List.of("로그인이 필요합니다."));
             return response;
         }
         
+        String currentPwd = userVO.getCurrentPwd();  // 클라이언트가 보낸 현재 비밀번호
+        String newPwd = userVO.getNewPwd();          // 클라이언트가 보낸 새 비밀번호
+        String confirmPwd = userVO.getConfirmPwd();
+        
         // 현재 비밀번호 확인
-        if (!userService.checkCurrentPassword(userVO.getUsrLgnId(), currentPwd)) {
+        if (!userService.checkCurrentPassword(authenticatedUser.getUsrLgnId(), currentPwd)) {
             response.setStatus(HttpStatus.BAD_REQUEST);
             response.setErrors(List.of("기존의 비밀번호가 일치하지 않습니다."));
             return response;
         }
-        
+
         // 새 비밀번호와 확인 비밀번호 일치 확인
         if (!newPwd.equals(confirmPwd)) {
             response.setStatus(HttpStatus.BAD_REQUEST);
             response.setErrors(List.of("새 비밀번호가 일치하지 않습니다."));
             return response;
         }
-        
+
         // 비밀번호 정규식 검증
         if (!isValidPassword(newPwd)) {
             response.setStatus(HttpStatus.BAD_REQUEST);
             response.setErrors(List.of("비밀번호 형식이 올바르지 않습니다."));
             return response;
         }
-        
+
+        // 비밀번호 변경 처리
         try {
-            boolean isUpdated = userService.updateUserPassword(userVO, newPwd);
+            boolean isUpdated = userService.updateUserPassword(authenticatedUser, newPwd);
             if (isUpdated) {
                 response.setBody("비밀번호가 변경되었습니다.");
             } else {
@@ -274,6 +325,49 @@ public class UserApiController {
         
         response.setBody(body);
         return response;
+    }
+    
+    /**
+     * 아이디 찾기 요청
+     * POST /api/user/find-id
+     * @throws jakarta.mail.MessagingException 
+     */
+    @PostMapping("/find-id")
+    public ApiResponse findUserId(@RequestBody Map<String, String> request) throws jakarta.mail.MessagingException {
+		String usrEml = request.get("usrEml");
+        
+        if (usrEml == null || usrEml.trim().isEmpty()) {
+            ApiResponse errorResponse = new ApiResponse();
+            errorResponse.setStatus(HttpStatus.BAD_REQUEST);
+            errorResponse.setErrors(List.of("이메일을 입력하세요."));
+            return errorResponse;
+        }
+        
+        try {
+            boolean isFound = userService.findUserIdByEmail(usrEml);
+            ApiResponse response = new ApiResponse();
+            
+            if (isFound) {
+                Map<String, Object> body = new HashMap<>();
+                body.put("message", "입력하신 이메일로 아이디가 전송되었습니다.");
+                body.put("messageType", "success");
+                response.setBody(body);
+                response.setStatus(HttpStatus.OK); 
+            } else {
+                response.setStatus(HttpStatus.BAD_REQUEST);
+                response.setErrors(List.of("일치하는 회원 정보가 없습니다."));
+            }
+            
+            return response;
+            
+        } catch (MessagingException e) {
+            log.error("아이디 찾기 이메일 전송 실패: {}", usrEml, e);
+            ApiResponse errorResponse = new ApiResponse();
+            errorResponse.setStatus(HttpStatus.INTERNAL_SERVER_ERROR); 
+            errorResponse.setErrors(List.of("아이디 찾기 이메일 전송에 실패했습니다. 다시 시도해 주세요."));
+            return errorResponse;
+        }
+    
     }
     
     /**

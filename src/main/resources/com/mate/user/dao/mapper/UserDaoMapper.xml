@@ -114,7 +114,15 @@
   		  FROM USR_INF
  		 WHERE USR_LGN_ID != #{usrLgnId}
  		   AND USR_PHN = #{usrPhn}
-	</select>	
+	</select>
+
+    <select id="checkPhoneAvailability" parameterType="com.mate.user.vo.UserVO" resultType="int">
+	    SELECT COUNT(1)
+	    FROM USR_INF
+	    WHERE USR_PHN = #{usrPhn}
+	      AND USR_LGN_ID != #{usrLgnId}
+	</select>
+
 	
 	<select id="selectSalt" parameterType="String" resultType="String">
 		SELECT SALT
@@ -200,6 +208,12 @@
  		  FROM USR_INF
  		 WHERE USR_LGN_ID = #{usrLgnId}
 	</update>
+	
+    <select id="findUserIdByEmail" parameterType="string" resultType="string">
+       SELECT USR_LGN_ID
+       FROM USR_INF
+       WHERE USR_EML = #{usrEml}
+    </select>
 	
 	<select id="selectAllCountries" resultType="com.mate.common.vo.CountriesVO">
 		 SELECT COUNTRY_ID
