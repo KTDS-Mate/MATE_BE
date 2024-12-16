@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.mate.cms.customerService.service.CustomerServiceService;
 import com.mate.cms.customerService.vo.CustomerServiceAnswerVO;
@@ -19,7 +18,6 @@ import com.mate.cms.customerService.vo.CustomerServiceListVO;
 import com.mate.cms.customerService.vo.CustomerServiceWriteVO;
 import com.mate.cms.customerService.vo.SearchCustomerServiceVO;
 import com.mate.common.vo.ApiResponse;
-import com.mate.user.vo.UserVO;
 
 import jakarta.validation.Valid;
 
@@ -30,10 +28,10 @@ public class CustomerServiceApiController {
 	@Autowired
 	private CustomerServiceService customerServiceService;
 
+	// 1대1 문의 작성
 	@PostMapping("/cutomerservice/insert")
 	public ApiResponse doCreateNewCustomerService(@RequestBody @Valid CustomerServiceWriteVO customerServiceWriteVO,
-			BindingResult bindingResult,
-			@SessionAttribute(value = "_LOGIN_USER_", required = false) UserVO loginUserVO) {
+			BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			List<String> fieldErrors = bindingResult.getFieldErrors().stream()
 					.map(fieldError -> fieldError.getDefaultMessage()).toList();
@@ -41,20 +39,18 @@ public class CustomerServiceApiController {
 			errorResponse.setErrors(fieldErrors);
 
 		}
-		
-		customerServiceWriteVO.setUsrLgnId(loginUserVO.getUsrLgnId());
-		
 		boolean isCreate = this.customerServiceService.createNewCustomerService(customerServiceWriteVO);
+		
 		return new ApiResponse(isCreate);
 	}
 	
-	@GetMapping("/customerservice/list")
-	public ApiResponse doGetCustomerService(SearchCustomerServiceVO searchCustomerServiceVO) {
-		CustomerServiceListVO customerServiceListVO = customerServiceService.getCustomerServiceList(searchCustomerServiceVO);
+	@GetMapping("/customerservice/list/{usrLgnId}")
+	public ApiResponse doGetCustomerService(@PathVariable String usrLgnId, SearchCustomerServiceVO searchCustomerServiceVO) {
+		CustomerServiceListVO customerServiceListVO = customerServiceService.getCustomerServiceList(usrLgnId, searchCustomerServiceVO);
 		
 		ApiResponse apiResponse = new ApiResponse();
 		
-		apiResponse.setBody(customerServiceListVO.getCustomerServiceList());
+		apiResponse.setBody(customerServiceListVO);
 		
 		return apiResponse;
 	}

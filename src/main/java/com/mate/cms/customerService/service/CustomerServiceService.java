@@ -9,7 +9,7 @@ public interface CustomerServiceService {
 
 	public boolean createNewCustomerService(CustomerServiceWriteVO customerServiceWriteVO);
 	
-	public CustomerServiceListVO getCustomerServiceList(SearchCustomerServiceVO searchCustomerServiceVO);
+	public CustomerServiceListVO getCustomerServiceList(String usrLgnId, SearchCustomerServiceVO searchCustomerServiceVO);
 	
 	public boolean updateCustomerService(CustomerServiceAnswerVO customerServiceAnswerVO);
 	

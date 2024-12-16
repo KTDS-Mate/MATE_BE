@@ -1,6 +1,8 @@
 package com.mate.cms.customerService.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
@@ -28,13 +30,19 @@ public class CustomerServiceDaoImpl extends SqlSessionDaoSupport implements Cust
 	}
 
 	@Override
-	public int selectCustomerServiceCount(SearchCustomerServiceVO searchCustomerServiceVO) {
-		return this.getSqlSession().selectOne(NAMESPACE + ".selectCustomerServiceCount", searchCustomerServiceVO);
+	public int selectCustomerServiceCount(String usrLgnId, SearchCustomerServiceVO searchCustomerServiceVO) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("usrLgnId", usrLgnId);
+		params.put("search", searchCustomerServiceVO);
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectCustomerServiceCount", params);
 	}
 
 	@Override
-	public List<CustomerServiceVO> selectCustomerServiceList(SearchCustomerServiceVO searchCustomerServiceVO) {
-		return this.getSqlSession().selectList(NAMESPACE + ".selectCustomerServiceList", searchCustomerServiceVO);
+	public List<CustomerServiceVO> selectCustomerServiceList(String usrLgnId, SearchCustomerServiceVO searchCustomerServiceVO) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("usrLgnId", usrLgnId);
+		params.put("search", searchCustomerServiceVO);
+		return this.getSqlSession().selectList(NAMESPACE + ".selectCustomerServiceList", params);
 	}
 	
 	@Override
