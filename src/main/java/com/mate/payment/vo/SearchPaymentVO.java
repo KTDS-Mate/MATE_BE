@@ -73,8 +73,6 @@ public class SearchPaymentVO extends PaginationVO {
 	public void setSearchType(String searchType) {
 		this.searchType = searchType;
 	}
-
-
 	
 	
 	

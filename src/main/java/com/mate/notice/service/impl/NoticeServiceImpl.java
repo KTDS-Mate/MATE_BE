@@ -1,6 +1,8 @@
 package com.mate.notice.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,54 +18,45 @@ public class NoticeServiceImpl implements NoticeService{
 	private NoticeDao noticeDao;
 	
 	@Override
-	public void createNotice(NoticeVO noticeVO) {
-		noticeDao.insertNotice(noticeVO);
+	public NoticeVO createNotice(NoticeVO noticeVO) {
+	    // 알림 ID 생성 (UUID 등으로 생성 가능)
+	    noticeVO.setNtcIsRd(false);
+	    noticeVO.setNtcCrAt(LocalDateTime.now().toString());
+	    noticeVO.setNtcIsDlt(false);
+
+	    if (noticeVO.getNtcUrl() == null || noticeVO.getNtcUrl().isEmpty()) {
+	        noticeVO.setNtcUrl("/");
+	    }
+
+	    // 알림 DAO를 통해 데이터베이스에 삽입
+	    noticeDao.insertNotice(noticeVO);
+
+	    return noticeVO;
 	}
 
+	// 2. 특정 사용자의 읽지 않은 알림 조회
 	@Override
-	public List<NoticeVO> getUnreadNoticesByRecipientId(String rcpntId) {
-		return noticeDao.selectUnreadNoticesByRecipientId(rcpntId);
-	}
+    public List<NoticeVO> getUnreadNoticesByRecipientId(String recipientId) {
+        return noticeDao.selectUnreadNoticesByRecipientId(recipientId);
+    }
 
+    // 3. 알림 읽음 상태 업데이트
 	@Override
-	public void markNoticeAsRead(String ntcId) {
-		noticeDao.updateNoticeReadStatus(ntcId);
-	}
+    public void markNoticeAsRead(String noticeId) {
+        noticeDao.updateNoticeReadStatus(noticeId);
+    }
 
+    // 4. 알림 삭제 처리
 	@Override
-	public void removeNotice(String ntcId) {
-		noticeDao.deleteNotice(ntcId);
-	}
+    public void deleteNotice(String noticeId) {
+        noticeDao.deleteNotice(noticeId);
+    }
 	
 	@Override
-	public boolean sendNotification(String token, String message) {
-        if (token == null || token.isEmpty()) {
-            System.out.println("Invalid token: Notification not sent.");
-            return false; // 토큰이 없는 경우 실패 처리
-        }
-
-        try {
-            // 실제 알림 전송 로직 (예제)
-            // 외부 서비스 예: Firebase, AWS SNS 등 연동
-            System.out.println("Sending notification to token: " + token);
-            System.out.println("Message: " + message);
-
-            // TODO: 알림 전송 로직 구현 (Firebase Admin SDK 사용 예시)
-            /*
-            Message notificationMessage = Message.builder()
-                .setToken(token)
-                .putData("title", "New Notification")
-                .putData("body", message)
-                .build();
-
-            String response = FirebaseMessaging.getInstance().send(notificationMessage);
-            System.out.println("Successfully sent message: " + response);
-            */
-
-            return true; // 전송 성공
-        } catch (Exception e) {
-            System.err.println("Failed to send notification: " + e.getMessage());
-            return false; // 전송 실패
-        }
-    }
+	public List<NoticeVO> getNoticeByRecipientId(String rcpntId) {
+	    return noticeDao.selectAllNoticesByReceipientId(rcpntId)
+	        .stream()
+	        .filter(notice -> !notice.isNtcIsDlt()) // 삭제된 알림 제외
+	        .collect(Collectors.toList());
+	}
 }

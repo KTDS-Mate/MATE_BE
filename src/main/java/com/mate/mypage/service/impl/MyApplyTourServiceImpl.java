@@ -46,8 +46,8 @@ public class MyApplyTourServiceImpl implements MyApplyTourService {
 	}
 
 	@Override
-	public boolean updateUserTourStts(String gdTrPstId) {
-		return this.myApplyTourDao.updateGuideTourStts(gdTrPstId) > 0;
+	public boolean updateUserTourStts(String usrTrPstId) {
+		return this.myApplyTourDao.updateUserTourStts(usrTrPstId) > 0;
 	}
 
 	// ---------------------------------------------------------------------------
@@ -78,7 +78,7 @@ public class MyApplyTourServiceImpl implements MyApplyTourService {
 
 	@Override
 	public boolean updateGuideTourStts(String gdTrPstId) {
-		return this.myApplyTourDao.updateUserTourStts(gdTrPstId) > 0;
+		return this.myApplyTourDao.updateGuideTourStts(gdTrPstId) > 0;
 	}
 	
 	

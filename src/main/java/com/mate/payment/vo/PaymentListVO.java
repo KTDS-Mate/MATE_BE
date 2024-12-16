@@ -6,6 +6,9 @@ public class PaymentListVO {
 	
 	private int PaymentCnt;
 	
+	private SearchPaymentVO searchVO;
+	
+	
 	private List<PaymentVO> paymentList;
 
 	public int getPaymentCnt() {
@@ -24,6 +27,12 @@ public class PaymentListVO {
 		this.paymentList = paymentList;
 	}
 
-	
-	
+	public SearchPaymentVO getSearchVO() {
+		return searchVO;
+	}
+
+	public void setSearchVO(SearchPaymentVO searchVO) {
+		this.searchVO = searchVO;
+	}
+
 }
