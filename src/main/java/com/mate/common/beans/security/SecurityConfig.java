@@ -20,8 +20,6 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
 
 import com.mate.common.beans.security.jwt.JsonWebTokenAuthenticationFilter;
 import com.mate.common.beans.security.oauth.SecurityOAuthService;
@@ -147,6 +145,8 @@ public class SecurityConfig {
 		        .requestMatchers("/api/user/countries").permitAll()
 		        .requestMatchers("/api/user/reissue-password").permitAll()
 		        .requestMatchers("/api/user/find-id").permitAll()
+		        .requestMatchers("/api/v1/mypage/tr-apply-tour/**").permitAll()
+		        .requestMatchers("/api/v1/mypage/gd-apply-tour/**").permitAll()
 				.anyRequest().authenticated());
 
 

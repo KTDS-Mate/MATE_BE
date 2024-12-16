@@ -48,7 +48,33 @@
 		</if>
 	</sql>
 
+	<sql id="user-order">
+		<choose>
+			<when test='"tr".equals(orderby)'>
+				ORDER BY GT.GD_TR_ST_DT DESC
+			</when>
+			<when test='"cr".equals(orderby)'>
+				ORDER BY PIF.PAY_CMPLT_DT DESC
+			</when>
+			<otherwise>
+				ORDER BY GT.GD_TR_PST_ID DESC
+			</otherwise>
+		</choose>
+	</sql>
 	
+	<sql id="guide-order">
+		<choose>
+			<when test='"tr".equals(orderby)'>
+				ORDER BY UT.USR_TR_ST_DT DESC
+			</when>
+			<when test='"cr".equals(orderby)'>
+				ORDER BY PIF.PAY_CMPLT_DT DESC
+			</when>
+			<otherwise>
+				ORDER BY UT.USR_TR_PST_ID DESC
+			</otherwise>
+		</choose>
+	</sql>
 	
 	
 	
@@ -78,6 +104,9 @@
 		<include refid="com.mate.mypage.dao.MyApplyTourDao.user-searchCondition"/>
 	</if>
 	<if test="search != null">
+		<include refid="com.mate.mypage.dao.MyApplyTourDao.user-order" />
+	</if>
+	<if test="search != null">
 			<include refid="Common2.pagination_footer"></include>					
     </if>
 	</select>
@@ -95,7 +124,7 @@
 			parameterType="map"
 			resultType="_int">
 		SELECT COUNT(1)
-		  FROM GD_TR_RCRT
+		  FROM GD_TR_RCRT GT
 		 WHERE USR_ID = #{athrId}
 	<if test="search != null">
 		<include refid="com.mate.mypage.dao.MyApplyTourDao.user-searchCondition"/>
@@ -144,6 +173,9 @@
 	<if test="search != null">
 		<include refid="com.mate.mypage.dao.MyApplyTourDao.guide-searchCondition"/>
 	</if>
+		<if test="search != null">
+		<include refid="com.mate.mypage.dao.MyApplyTourDao.guide-order" />
+	</if>
 	<if test="search != null">
 			<include refid="Common2.pagination_footer"></include>					
     </if>
@@ -158,7 +190,7 @@
 			parameterType="string"
 			resultType="_int">
 		SELECT COUNT(1)
-		  FROM USR_TR_RQST
+		  FROM USR_TR_RQST UT
 		 WHERE GD_ID = #{athrId}
 	<if test="search != null">
 		<include refid="com.mate.mypage.dao.MyApplyTourDao.guide-searchCondition"/>
