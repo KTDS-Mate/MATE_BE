@@ -569,4 +569,32 @@
 		 WHERE USR_TR_PST_ID = #{_parameter}
 	</select>
 	
+	<select id="selectLateUserTour"
+			resultMap="userTourVOMap">
+		SELECT U.* 
+		  FROM (SELECT UTR.USR_TR_PST_ID
+		    	     , UTR.USR_TR_TTL 
+		    	     , UTR.USR_TR_PRPS 
+		    	     , UTR.USR_TR_ST_DT 
+		    	     , UTR.USR_TR_ED_DT 
+		    	     , UTR.USR_TR_GD_HR_PRC 
+		    	     , UTR.USR_TR_STTS 
+		    	     , UTR.USR_TR_DIVIDE 
+		    	     , CEIL (UTR.USR_TR_ED_DT - SYSDATE) AS DEADLINE
+		    	     , TRUNC((UTR.USR_TR_ED_DT - UTR.USR_TR_ST_DT) * 24 * 60) AS USR_TR_TM
+		    	     , C.CITY_NAME
+		    	     , CR.COUNTRY_NAME
+		    	  FROM USR_TR_RQST UTR
+		    	  JOIN CITIES C
+		    	    ON UTR.TR_CT_ID = C.CITY_ID
+		    	  JOIN COUNTRIES CR
+		    	    ON CR.COUNTRY_ID = C.COUNTRY_ID
+		    	  JOIN REGIONS R
+		    	    ON R.REGION_ID = CR.REGION_ID
+		    	 WHERE UTR.USR_TR_ST_DT > SYSDATE
+		    	   AND UTR.USR_TR_IS_DLT = 'N'
+		    	 ORDER BY UTR.USR_TR_PST_ID DESC) U
+		 WHERE ROWNUM = 1 	
+	</select>
+	
 </mapper>
