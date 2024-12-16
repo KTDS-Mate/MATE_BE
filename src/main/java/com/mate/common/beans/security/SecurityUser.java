@@ -49,7 +49,7 @@ public class SecurityUser implements UserDetails {
 		
 		List<GrantedAuthority> authorities = new ArrayList<>();
 		// 역할 세팅(ROLE)
-		authorities.add(new SimpleGrantedAuthority(this.userVO.getRole()));
+		authorities.add(new SimpleGrantedAuthority(this.userVO.getUsrRole()));
 		// 권한 세팅(Authority)
 		authorities.addAll(this.userVO.getAuthority().stream().map(auth -> new SimpleGrantedAuthority(auth.getAuthorityName())).toList());
 		

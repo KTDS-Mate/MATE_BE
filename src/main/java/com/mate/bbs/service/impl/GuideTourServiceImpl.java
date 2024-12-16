@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mate.bbs.dao.GuideTourDao;
+import com.mate.bbs.dao.GuideTourReviewDao;
 import com.mate.bbs.service.GuideTourService;
 import com.mate.bbs.vo.GuideTourDetailInfoVO;
 import com.mate.bbs.vo.GuideTourImgListVO;
@@ -16,6 +17,7 @@ import com.mate.bbs.vo.GuideTourImgVO;
 import com.mate.bbs.vo.GuideTourListVO;
 import com.mate.bbs.vo.GuideTourModifyVO;
 import com.mate.bbs.vo.GuideTourProvidedVO;
+import com.mate.bbs.vo.GuideTourReviewVO;
 import com.mate.bbs.vo.GuideTourScheduleInfoVO;
 import com.mate.bbs.vo.GuideTourVO;
 import com.mate.bbs.vo.GuideTourWriteVO;
@@ -30,6 +32,9 @@ public class GuideTourServiceImpl implements GuideTourService{
 	
 	@Autowired
 	private PaymentDao paymentDao;
+	
+	@Autowired
+	private GuideTourReviewDao guideTourReviewDao;
 	
 	/**
 	 * 모든 가이드 투어 전체 수를 조회
@@ -65,12 +70,14 @@ public class GuideTourServiceImpl implements GuideTourService{
 		List<GuideTourScheduleInfoVO> tourScheduleInfoList = this.guideTourDao.selectTourScheduleList(gdTrPstId);
 		List<GuideTourProvidedVO> tourProvidedInfoList = this.guideTourDao.selectTourProvidedList(gdTrPstId);
 		List<GuideTourImgVO> guideTourImgList = this.guideTourDao.selectGuideTourImgList(gdTrPstId);
+		List<GuideTourReviewVO> guideTourReviewList = this.guideTourReviewDao.selectGuideTourAllReview(gdTrPstId);
 		int imgCnt = this.guideTourDao.selectImgCount(gdTrPstId);
 		guideTourVO.setGuideTourDetailInfoList(tourDetailInfoList);
 		guideTourVO.setGuideTourScheduleInfoList(tourScheduleInfoList);
 		guideTourVO.setGuideTourProvidedList(tourProvidedInfoList);
 		guideTourVO.setGuideTourImgList(guideTourImgList);
 		guideTourVO.setGuideImgCount(imgCnt);
+		guideTourVO.setGuideTourReviewList(guideTourReviewList);
 		
 		return guideTourVO;
 	}

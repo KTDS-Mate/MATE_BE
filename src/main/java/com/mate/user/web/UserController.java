@@ -23,6 +23,7 @@ import com.mate.user.vo.LoginUserVO;
 import com.mate.user.vo.RegistUserVO;
 import com.mate.user.vo.UserVO;
 
+import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
@@ -70,26 +71,7 @@ public class UserController {
 		model.addAttribute("userVO", new UserVO());
 		return "user/reissue-password";
 	}
-	
-	@PostMapping("/user/reissue-password")
-	public String reissuePassword(@RequestParam String usrLgnId,
-								  @RequestParam String usrEml, Model model) {
-		UserVO userVO = new UserVO();
-		userVO.setUsrLgnId(usrLgnId);
-		userVO.setUsrEml(usrEml);
-		
-		boolean isReissued = userService.reissueUserPassword(userVO);
-		if (isReissued) {
-			model.addAttribute("message", "입력하신 이메일로 임시 비밀번호가 발급되었습니다.");
-			model.addAttribute("messageType", "success");
-			return "user/userlogin";
-		} else {
-			model.addAttribute("message", "일치하는 회원 정보가 없습니다.");
-			model.addAttribute("messageType", "error");
-			return "user/reissue-password";
-		}
-	}
-	
+
 	// 휴대전화번호 수정
 	@GetMapping("/user/editphone/modal")
 	public String viewEditPhonePage(@SessionAttribute(name = "_LOGIN_USER_", required= false) UserVO userVO, Model model) {
