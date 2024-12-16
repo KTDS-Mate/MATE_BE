@@ -20,8 +20,6 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
 
 import com.mate.common.beans.security.jwt.JsonWebTokenAuthenticationFilter;
 import com.mate.common.beans.security.oauth.SecurityOAuthService;
@@ -128,6 +126,7 @@ public class SecurityConfig {
 				.requestMatchers("/api/v1/usertour/getLateUserTour").permitAll()
 				.requestMatchers("/api/v1/usertour/count").permitAll()
 				.requestMatchers("/api/v1/usertour/view/**").permitAll()
+				.requestMatchers("/api/v1/payment/**").permitAll()
 				.requestMatchers("/api/v1/usertour/imgs/**").permitAll()
 				.requestMatchers("/api/user/regist/**").permitAll()
 				.requestMatchers(HttpMethod.POST, "/api/user/regist/**").permitAll()

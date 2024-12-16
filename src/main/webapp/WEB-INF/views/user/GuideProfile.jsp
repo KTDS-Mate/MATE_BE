@@ -33,7 +33,7 @@
           <jsp:include page="../guidetour/Modal.jsp" />
           <div class="firstLayer">
             <div class="guidePicArea">
-              <img src="/public/가이드 샘플 사진.jpg" alt="가이드 사진" class="guidePicture">
+              <img src="/public/가이드 샘플 사진.png" alt="가이드 사진" class="guidePicture">
               <img src="/public/가이드 인증 마크.png" alt="가이드 인증 마크" class="guideAuthMark">
             </div>
             <div class="guideProfileArea">
