@@ -18,4 +18,7 @@ public interface NoticeDao {
 
     // 4. 알림 삭제 처리
     int deleteNotice(String ntcId);
+    
+    // 5. 알림 받기
+    List<NoticeVO> selectAllNoticesByReceipientId(String rcpntId);
 }

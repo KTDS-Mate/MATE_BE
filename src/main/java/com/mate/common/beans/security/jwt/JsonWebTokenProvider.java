@@ -76,6 +76,9 @@ public class JsonWebTokenProvider {
 						.build() // 토큰 복호화 진행 -> claim들 가져올 수 있음
 						.parseSignedClaims(jwt) // claim 가져오기
 						.getPayload(); // payload할 경우 claim을 준다.
+
+		// !!!!!!
+		System.out.println("Decoded Claims:" + claims);
 		
 		Object jwtUser = claims.get("user");
 		String email = claims.get("email", String.class);

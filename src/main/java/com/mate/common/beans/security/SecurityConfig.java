@@ -20,8 +20,6 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
 
 import com.mate.common.beans.security.jwt.JsonWebTokenAuthenticationFilter;
 import com.mate.common.beans.security.oauth.SecurityOAuthService;
@@ -128,6 +126,7 @@ public class SecurityConfig {
 				.requestMatchers("/api/v1/usertour/getLateUserTour").permitAll()
 				.requestMatchers("/api/v1/usertour/count").permitAll()
 				.requestMatchers("/api/v1/usertour/view/**").permitAll()
+				.requestMatchers("/api/v1/payment/**").permitAll()
 				.requestMatchers("/api/v1/usertour/imgs/**").permitAll()
 				.requestMatchers("/api/user/regist/**").permitAll()
 				.requestMatchers(HttpMethod.POST, "/api/user/regist/**").permitAll()
@@ -150,6 +149,12 @@ public class SecurityConfig {
 		        .requestMatchers("/api/maps/places").permitAll()
 		        .requestMatchers("/api/maps/geocode").permitAll()
 		        .requestMatchers("/api/maps/reverse-geocode").permitAll()
+		        .requestMatchers("/api/v1/mypage/tr-apply-tour/**").permitAll()
+		        .requestMatchers("/api/v1/mypage/gd-apply-tour/**").permitAll()
+		        .requestMatchers("/api/v1/notice/**").permitAll()
+		        .requestMatchers("/ws/notice").permitAll()
+		        .requestMatchers("/ws/chat").permitAll()
+		        .requestMatchers("/ws/**").permitAll()
 				.anyRequest().authenticated());
 
 
@@ -163,7 +168,7 @@ public class SecurityConfig {
 				.successHandler(this.loginSuccessHandler()));
 
 		// csrf 활성화 및 예외 설정
-		http.csrf(csrf -> csrf.ignoringRequestMatchers("/token", "/api/**"));
+		http.csrf(csrf -> csrf.ignoringRequestMatchers("/token", "/api/**", "/ws/**"));
 
 		return http.build();
 	}
