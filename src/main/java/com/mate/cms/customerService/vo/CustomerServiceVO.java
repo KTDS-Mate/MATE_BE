@@ -1,5 +1,7 @@
 package com.mate.cms.customerService.vo;
 
+import com.mate.user.vo.UserVO;
+
 /**
  * 1대1 고객센터 VO
  */
@@ -23,7 +25,13 @@ public class CustomerServiceVO {
 	private String cstmrSrvcCntrStts;
 	/** 삭제 상태(default = 'N') **/
 	private String cstmrSrvcIsDlt;
-	
+	/** 문의 유형 GD_RQ="가이드 구인", RQST="해주세요", GD_RCRT="가이드 투어", PI="결제" **/
+	private String cstmrSrvcCtgry;
+	/** 문의 제목 **/
+	private String srvcCntrTtl;
+
+	private UserVO userVO;
+
 	public String getCstmrSrvcCntrId() {
 		return cstmrSrvcCntrId;
 	}
@@ -95,4 +103,29 @@ public class CustomerServiceVO {
 	public void setCstmrSrvcIsDlt(String cstmrSrvcIsDlt) {
 		this.cstmrSrvcIsDlt = cstmrSrvcIsDlt;
 	}
+
+	public String getCstmrSrvcCtgry() {
+		return cstmrSrvcCtgry;
+	}
+
+	public void setCstmrSrvcCtgry(String cstmrSrvcCtgry) {
+		this.cstmrSrvcCtgry = cstmrSrvcCtgry;
+	}
+
+	public String getSrvcCntrTtl() {
+		return srvcCntrTtl;
+	}
+
+	public void setSrvcCntrTtl(String srvcCntrTtl) {
+		this.srvcCntrTtl = srvcCntrTtl;
+	}
+
+	public UserVO getUserVO() {
+		return userVO;
+	}
+
+	public void setUserVO(UserVO userVO) {
+		this.userVO = userVO;
+	}
+
 }

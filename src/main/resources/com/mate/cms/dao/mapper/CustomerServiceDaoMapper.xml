@@ -6,9 +6,25 @@
 <mapper
 	namespace="com.mate.cms.customerService.dao.CustomerServiceDao">
 
+	<resultMap id="customerServiceVOMap" 
+	           type="com.mate.cms.customerService.vo.CustomerServiceVO" 
+	           autoMapping="true" >
+		<id column="CSTMR_SRVC_CNTR_ID" property="cstmrSrvcCntrId" />
+		<association property="userVO"
+				 javaType="com.mate.user.vo.UserVO"
+				 autoMapping="true">
+			<id column="USR_ID" property="usrId" />
+		</association>
+	</resultMap>
+
 	<sql id="selectSearch">
+		<if test='search.searchKeyword != null and search.searchKeyword != ""'>
+			AND CC.SRVC_CNTR_DTL LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+	</sql>
+	<sql id="search">
 		<if test='searchKeyword != null and searchKeyword != ""'>
-			AND SRVC_CNTR_DTL LIKE '%' || #{searchKeyword} || '%'
+			AND CC.SRVC_CNTR_DTL LIKE '%' || #{searchKeyword} || '%'
 		</if>
 	</sql>
 
@@ -20,47 +36,103 @@
 		, SRVC_CNTR_DTL
 		, SRVC_CRT_DT
 		, CSTMR_SRVC_CNTR_STTS
-		,
-		CSTMR_SRVC_IS_DLT)
+		, CSTMR_SRVC_IS_DLT
+		, CSTMR_SRVC_CTGRY
+		, SRVC_CNTR_TTL)
 		VALUES
 		('CC-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_CSTMR_SRVC_CNTR_PK.NEXTVAL, 6, 0)
 		, #{usrLgnId}
 		, #{srvcCntrDtl}
 		, SYSDATE
 		, 'N'
-		, 'N')
+		, 'N'
+		, #{cstmrSrvcCtgry}
+		, #{srvcCntrTtl})
 	</insert>
 
 	<select id="selectCustomerServiceCount"
-		parameterType="com.mate.cms.customerService.vo.SearchCustomerServiceVO"
+		parameterType="map"
 		resultType="_int">
 		SELECT COUNT(1)
-		  FROM CSTMR_SRVC_CNTR
+		  FROM CSTMR_SRVC_CNTR CC
 		 WHERE CSTMR_SRVC_IS_DLT = 'N'
-		<if test="_parameter != null">
+		   AND USR_LGN_ID = #{usrLgnId}
+		<if test="search != null">
 			<include
 				refid="com.mate.cms.customerService.dao.CustomerServiceDao.selectSearch" />
 		</if>
 	</select>
 
 	<select id="selectCustomerServiceList"
-		parameterType="com.mate.cms.customerService.vo.SearchCustomerServiceVO"
-		resultType="com.mate.cms.customerService.vo.CustomerServiceVO">
+		    parameterType="map"
+		    resultMap="customerServiceVOMap">
+		<if test="search != null">
+			<include refid="Common2.pagination_header" />
+		</if>
+		SELECT CC.CSTMR_SRVC_CNTR_ID
+		 	, CC.USR_LGN_ID
+		 	, CC.SRVC_CNTR_DTL
+		 	, TO_CHAR(CC.SRVC_CRT_DT, 'YYYY-MM-DD HH24:MI') SRVC_CRT_DT
+		 	, CC.MAN_ID
+		 	, CC.ANSWR_DTL
+		 	, TO_CHAR(CC.ANSWR_DT, 'YYYY-MM-DD HH24:MI') ANSWR_DT
+		 	, CC.CSTMR_SRVC_CNTR_STTS
+		 	, CC.CSTMR_SRVC_CTGRY
+		 	, CC.SRVC_CNTR_TTL
+		 	, UI.USR_LNM 
+		 	, UI.USR_FNM 
+		  FROM CSTMR_SRVC_CNTR CC
+		  LEFT JOIN USR_INF UI
+		    ON UI.USR_LGN_ID = CC.MAN_ID
+		 WHERE CC.CSTMR_SRVC_IS_DLT = 'N'
+		   AND CC.USR_LGN_ID = #{usrLgnId}
+		<if test="search != null">
+			<include refid="com.mate.cms.customerService.dao.CustomerServiceDao.selectSearch" />
+		</if>
+		<if test="search != null">
+			<include refid="Common2.pagination_footer" />
+		</if>
+	</select>
+
+
+
+
+
+	<select id="selectCustomerServiceCountForCms"
+			parameterType="com.mate.cms.customerService.vo.SearchCustomerServiceVO"
+			resultType="_int">
+		SELECT COUNT(1)
+		  FROM CSTMR_SRVC_CNTR CC
+		 WHERE CSTMR_SRVC_IS_DLT = 'N'
+		<if test="_parameter != null">
+			<include refid="com.mate.cms.customerService.dao.CustomerServiceDao.search" />
+		</if>
+	</select>
+
+	<select id="selectCustomerServiceListForCms"
+			parameterType="com.mate.cms.customerService.vo.SearchCustomerServiceVO"
+			resultMap="customerServiceVOMap">
 		<if test="_parameter != null">
 			<include refid="Common.pagination_header" />
 		</if>
-		SELECT CSTMR_SRVC_CNTR_ID
-			, USR_LGN_ID
-			, SRVC_CNTR_DTL
-			, SRVC_CRT_DT
-			, MAN_ID
-			, ANSWR_DTL
-			, ANSWR_DT
-			, CSTMR_SRVC_CNTR_STTS
-		 FROM CSTMR_SRVC_CNTR
-		WHERE CSTMR_SRVC_IS_DLT = 'N'
+		SELECT CC.CSTMR_SRVC_CNTR_ID
+		 	 , CC.USR_LGN_ID
+		 	 , CC.SRVC_CNTR_DTL
+		 	 , TO_CHAR(CC.SRVC_CRT_DT, 'YYYY-MM-DD HH24:MI') SRVC_CRT_DT
+		 	 , CC.MAN_ID
+		 	 , CC.ANSWR_DTL
+		 	 , TO_CHAR(CC.ANSWR_DT, 'YYYY-MM-DD HH24:MI') ANSWR_DT
+		 	 , CC.CSTMR_SRVC_CNTR_STTS
+		 	 , CC.CSTMR_SRVC_CTGRY
+		 	 , CC.SRVC_CNTR_TTL
+		 	 , UI.USR_LNM 
+		 	 , UI.USR_FNM 
+		  FROM CSTMR_SRVC_CNTR CC
+		  LEFT JOIN USR_INF UI
+		    ON UI.USR_LGN_ID = CC.USR_LGN_ID
+		 WHERE CC.CSTMR_SRVC_IS_DLT = 'N'
 		<if test="_parameter != null">
-			<include refid="com.mate.cms.customerService.dao.CustomerServiceDao.selectSearch" />
+			<include refid="com.mate.cms.customerService.dao.CustomerServiceDao.search" />
 		</if>
 		<if test="_parameter != null">
 			<include refid="Common.pagination_footer" />

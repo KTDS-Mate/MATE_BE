@@ -137,6 +137,8 @@ public class UserVO {
 	private List<AuthorityVO> Authority;
 	
 	private String provider;
+	
+	private String usrIsBlck;
 
 	public String getUsrId() {
 		return usrId;
@@ -417,4 +419,13 @@ public class UserVO {
 	public void setProvider(String provider) {
 		this.provider = provider;
 	}
+
+	public String getUsrIsBlck() {
+		return usrIsBlck;
+	}
+
+	public void setUsrIsBlck(String usrIsBlck) {
+		this.usrIsBlck = usrIsBlck;
+	}
+	
 }
