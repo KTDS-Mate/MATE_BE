@@ -147,6 +147,9 @@ public class SecurityConfig {
 		        .requestMatchers("/api/user/countries").permitAll()
 		        .requestMatchers("/api/user/reissue-password").permitAll()
 		        .requestMatchers("/api/user/find-id").permitAll()
+		        .requestMatchers("/api/maps/places").permitAll()
+		        .requestMatchers("/api/maps/geocode").permitAll()
+		        .requestMatchers("/api/maps/reverse-geocode").permitAll()
 				.anyRequest().authenticated());
 
 

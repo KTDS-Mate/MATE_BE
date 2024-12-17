@@ -2,7 +2,7 @@ spring:
   profiles:
     active: dev
   application:
-    name: mate
+    name: mate, google-maps-app
   security:
     oauth2:
       client:
@@ -57,6 +57,13 @@ spring:
       max-file-size: 104857600
       # 한 사용자가 업로드 할 수 있는 최대 업로드 용량에 대한 설정(10MB)
       max-request-size: 10485760
+
+google:
+  maps:
+    api-key: AIzaSyDWMwo19HLJ6tztCXGKKRL4Pw8zo3U_FPs
+    places-api:
+      enabled: true
+
 app:
   security:
     permit-all-urls: /api/user/login,
@@ -80,6 +87,9 @@ app:
       /api/user/countries,
       /api/user/reissue-password,
       /api/user/find-id,
+      /api/maps/places,
+      /api/maps/geocode,
+      /api/maps//reverse-geocode,
   jwt:
     issuer: hello-spring-security
     secret-key: spring-security-secret-key-random-token-key
