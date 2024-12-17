@@ -61,6 +61,13 @@
 		 	 , USR_EML
 		 	 , USR_IS_GD
 		 	 , GD_APPL_STT
+		 	 , USR_IS_CL
+		 	 , USR_IS_BLCK
+		 	 , USR_SLF_INTDCTN
+		 	 , GD_PRFL_IMG
+		 	 , GD_ID_IMG
+		 	 , GD_CBC_IMG
+		 	 , USR_GD_EXP
 		  FROM USR_INF
 		 WHERE GD_APPL_STT = 'WAITING'
   	</select>

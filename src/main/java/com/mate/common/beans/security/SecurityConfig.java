@@ -159,6 +159,7 @@ public class SecurityConfig {
 		        .requestMatchers("/ws/notice").permitAll()
 		        .requestMatchers("/ws/chat").permitAll()
 		        .requestMatchers("/ws/**").permitAll()
+		        .requestMatchers("/api/v1/usermanagement/**").permitAll()
 				.anyRequest().authenticated());
 
 

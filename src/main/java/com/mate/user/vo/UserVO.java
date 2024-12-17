@@ -59,10 +59,12 @@ public class UserVO {
      * 가이드 여부 확인
      */
     private String usrIsGd;
+    
     /**
      * 회원(가이드) 자기소개
      */
     private String usrSlfIntdctn;
+    
     /**
      * 회원의 페이팔 이메일
      */
