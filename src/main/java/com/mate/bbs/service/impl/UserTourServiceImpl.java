@@ -278,4 +278,11 @@ public class UserTourServiceImpl implements UserTourService{
 		return userTourImgListVO;
 	}
 	
+	@Override
+	public UserTourVO getLateUserTour() {
+		UserTourVO userTourVO = this.userTourDao.selectLateUserTour();
+		
+		return userTourVO;
+	}
+	
 }

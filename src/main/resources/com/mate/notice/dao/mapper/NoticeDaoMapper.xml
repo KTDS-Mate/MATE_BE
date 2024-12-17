@@ -13,14 +13,14 @@
              , NTC_INF
              , NTC_CR_AT
              , NTC_IS_DLT
-             , NTC_TRGR_ID )
-        VALUES ( #{ntcId}
+             , NTC_URL )
+        VALUES ( 'NTC-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_NTC_PK.NEXTVAL, 6, 0)
              , #{rcpntId}
              , 'N'
              , #{ntcInf}
              , SYSDATE
-             , 'N'
-             , #{ntcTrgrId} )
+             , 'N' 
+             , #{ntcUrl} )
     </insert>
 
     <!-- 2. 특정 사용자에 대한 읽지 않은 알림 조회 -->
@@ -32,12 +32,22 @@
              , TO_CHAR(NTC_CR_AT, 'YYYY-MM-DD HH24:MI:SS') AS NTC_CR_AT
              , NTC_IS_DLT
              , TO_CHAR(NTC_DLT_AT, 'YYYY-MM-DD HH24:MI:SS') AS NTC_DLT_AT
-             , NTC_TRGR_ID
+             , NTC_URL
           FROM NTC
          WHERE RCPNT_ID = #{rcpntId}
            AND NTC_IS_RD = 'N'
            AND NTC_IS_DLT = 'N'
          ORDER BY NTC_CR_AT DESC
+    </select>
+
+    <select id="selectAllNoticesByReceipientId" 
+            parameterType="string"
+            resultType="com.mate.notice.vo.NoticeVO">
+        SELECT *
+          FROM NTC
+         WHERE RCPNT_ID = #{_parameter}
+           AND NTC_IS_DLT = 'N'
+         ORDER BY NTC_ID
     </select>
 
     <!-- 3. 알림 읽음 상태로 업데이트 -->

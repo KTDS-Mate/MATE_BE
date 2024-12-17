@@ -9,6 +9,8 @@ public class NoticeVO {
     private boolean ntcIsDlt;
     private String ntcDltAt;
     private String ntcTrgrId;
+    private String ntcUrl;
+    
 	public String getNtcId() {
 		return ntcId;
 	}
@@ -56,6 +58,12 @@ public class NoticeVO {
 	}
 	public void setNtcTrgrId(String ntcTrgrId) {
 		this.ntcTrgrId = ntcTrgrId;
+	}
+	public String getNtcUrl() {
+		return ntcUrl;
+	}
+	public void setNtcUrl(String ntcUrl) {
+		this.ntcUrl = ntcUrl;
 	}
     
     

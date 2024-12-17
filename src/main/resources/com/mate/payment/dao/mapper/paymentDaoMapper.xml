@@ -181,7 +181,7 @@
 
 <select id="selectOnePaymentAmount" parameterType="String"
 	resultType="_double">
-	SELECT PAY_CSH 
+	SELECT PAY_CSH
 	  FROM PAY_INF
 	 WHERE PAY_ID = #{_parameter}
 </select>
@@ -327,7 +327,5 @@ SELECT TRST.USR_LGN_ID AS TRST_ID
      WHERE GD_TR_PST_ID = #{payTrId}
        AND GD_TR_STTS = 'RSRVT'
 </update>
-
-
 
 </mapper>

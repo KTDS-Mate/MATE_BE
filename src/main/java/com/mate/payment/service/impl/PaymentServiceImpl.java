@@ -43,6 +43,7 @@ public class PaymentServiceImpl implements PaymentService {
 		
 		List<PaymentVO> paymentList = this.paymentDao.selectAllMyPayment(searchPaymentVO);
 		paymentListVO.setPaymentList(paymentList);
+		paymentListVO.setSearchVO(searchPaymentVO);
 		
 		return paymentListVO;
 	}

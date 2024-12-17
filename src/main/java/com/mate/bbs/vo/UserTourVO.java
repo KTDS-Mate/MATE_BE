@@ -51,6 +51,12 @@ public class UserTourVO {
 	private String usrTrStts;
 	/** 여행자가 입력한 투어 종료일시 **/
 	private String usrTrEdDt;
+	/** 여행자가 마커로 등록한 위치의 경도 **/
+	private String usrTrLat;
+	/** 여행자가 마커로 등록한 위치의 위도 **/
+	private String usrTrLng;
+	/** 여행자가 마커로 등록한 위치의 상세 주소 **/
+	private String usrTrAddrs;
 	
 	private UserVO userVO;
 	
@@ -231,6 +237,24 @@ public class UserTourVO {
 	}
 	public void setUsrTrEdDt(String usrTrEdDt) {
 		this.usrTrEdDt = usrTrEdDt;
+	}
+	public String getUsrTrLat() {
+		return usrTrLat;
+	}
+	public void setUsrTrLat(String usrTrLat) {
+		this.usrTrLat = usrTrLat;
+	}
+	public String getUsrTrLng() {
+		return usrTrLng;
+	}
+	public void setUsrTrLng(String usrTrLng) {
+		this.usrTrLng = usrTrLng;
+	}
+	public String getUsrTrAddrs() {
+		return usrTrAddrs;
+	}
+	public void setUsrTrAddrs(String usrTrAddrs) {
+		this.usrTrAddrs = usrTrAddrs;
 	}
 	public UserVO getUserVO() {
 		return userVO;
