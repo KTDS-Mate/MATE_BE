@@ -22,6 +22,11 @@
 			AND CC.SRVC_CNTR_DTL LIKE '%' || #{search.searchKeyword} || '%'
 		</if>
 	</sql>
+	<sql id="search">
+		<if test='searchKeyword != null and searchKeyword != ""'>
+			AND CC.SRVC_CNTR_DTL LIKE '%' || #{searchKeyword} || '%'
+		</if>
+	</sql>
 
 	<insert id="insertNewCustomerService"
 		parameterType="com.mate.cms.customerService.vo.CustomerServiceWriteVO">
@@ -52,7 +57,7 @@
 		  FROM CSTMR_SRVC_CNTR CC
 		 WHERE CSTMR_SRVC_IS_DLT = 'N'
 		   AND USR_LGN_ID = #{usrLgnId}
-		<if test="_parameter != null">
+		<if test="search != null">
 			<include
 				refid="com.mate.cms.customerService.dao.CustomerServiceDao.selectSearch" />
 		</if>
@@ -86,6 +91,51 @@
 		</if>
 		<if test="search != null">
 			<include refid="Common2.pagination_footer" />
+		</if>
+	</select>
+
+
+
+
+
+	<select id="selectCustomerServiceCountForCms"
+			parameterType="com.mate.cms.customerService.vo.SearchCustomerServiceVO"
+			resultType="_int">
+		SELECT COUNT(1)
+		  FROM CSTMR_SRVC_CNTR CC
+		 WHERE CSTMR_SRVC_IS_DLT = 'N'
+		<if test="_parameter != null">
+			<include refid="com.mate.cms.customerService.dao.CustomerServiceDao.search" />
+		</if>
+	</select>
+
+	<select id="selectCustomerServiceListForCms"
+			parameterType="com.mate.cms.customerService.vo.SearchCustomerServiceVO"
+			resultMap="customerServiceVOMap">
+		<if test="_parameter != null">
+			<include refid="Common.pagination_header" />
+		</if>
+		SELECT CC.CSTMR_SRVC_CNTR_ID
+		 	 , CC.USR_LGN_ID
+		 	 , CC.SRVC_CNTR_DTL
+		 	 , TO_CHAR(CC.SRVC_CRT_DT, 'YYYY-MM-DD HH24:MI') SRVC_CRT_DT
+		 	 , CC.MAN_ID
+		 	 , CC.ANSWR_DTL
+		 	 , TO_CHAR(CC.ANSWR_DT, 'YYYY-MM-DD HH24:MI') ANSWR_DT
+		 	 , CC.CSTMR_SRVC_CNTR_STTS
+		 	 , CC.CSTMR_SRVC_CTGRY
+		 	 , CC.SRVC_CNTR_TTL
+		 	 , UI.USR_LNM 
+		 	 , UI.USR_FNM 
+		  FROM CSTMR_SRVC_CNTR CC
+		  LEFT JOIN USR_INF UI
+		    ON UI.USR_LGN_ID = CC.USR_LGN_ID
+		 WHERE CC.CSTMR_SRVC_IS_DLT = 'N'
+		<if test="_parameter != null">
+			<include refid="com.mate.cms.customerService.dao.CustomerServiceDao.search" />
+		</if>
+		<if test="_parameter != null">
+			<include refid="Common.pagination_footer" />
 		</if>
 	</select>
 

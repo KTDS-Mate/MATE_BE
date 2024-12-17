@@ -55,4 +55,15 @@ public class CustomerServiceDaoImpl extends SqlSessionDaoSupport implements Cust
 		return this.getSqlSession().update(NAMESPACE + ".deleteCustomerService", cstmrSrvcCntrId);
 	}
 	
+	@Override
+	public int selectCustomerServiceCountForCms(SearchCustomerServiceVO searchCustomerServiceVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectCustomerServiceCountForCms", searchCustomerServiceVO);
+	}
+
+	@Override
+	public List<CustomerServiceVO> selectCustomerServiceListForCms(SearchCustomerServiceVO searchCustomerServiceVO) {
+		return this.getSqlSession().selectList(NAMESPACE + ".selectCustomerServiceListForCms", searchCustomerServiceVO);
+	}
+	
 }
+

@@ -11,8 +11,13 @@ public interface CustomerServiceService {
 	
 	public CustomerServiceListVO getCustomerServiceList(String usrLgnId, SearchCustomerServiceVO searchCustomerServiceVO);
 	
+	
+	// --------------------------------
+	
 	public boolean updateCustomerService(CustomerServiceAnswerVO customerServiceAnswerVO);
 	
 	public boolean softDeleteCustomerService(String cstmrSrvcCntrId);
+	
+	public CustomerServiceListVO getCustomerServiceListForCms(SearchCustomerServiceVO searchCustomerServiceVO);
 	
 }

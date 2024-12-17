@@ -55,7 +55,12 @@ public class CustomerServiceApiController {
 		return apiResponse;
 	}
 
-	@PostMapping("/customerservice/update/{cstmrSrvcCntrId}")
+	
+	// ---------------------------------------
+	
+	
+	
+	@PostMapping("/cms/customerservice/update/{cstmrSrvcCntrId}")
 	public ApiResponse doAnswerCustomerService(@PathVariable String cstmrSrvcCntrId,
 											   @RequestBody CustomerServiceAnswerVO customerServiceAnswerVO) {
 		customerServiceAnswerVO.setCstmrSrvcCntrId(cstmrSrvcCntrId);
@@ -63,10 +68,21 @@ public class CustomerServiceApiController {
 		return new ApiResponse(isUpdated);
 	}
 	
-	@GetMapping("/customerservice/delete/{cstmrSrvcCntrId}")
+	@GetMapping("/cms/customerservice/delete/{cstmrSrvcCntrId}")
 	public ApiResponse doSoftDeleteCustomerService(@PathVariable String cstmrSrvcCntrId) {
 		boolean isDeleted = this.customerServiceService.softDeleteCustomerService(cstmrSrvcCntrId);
 		return new ApiResponse(isDeleted);
+	}
+	
+	@GetMapping("/cms/customerservice/list")
+	public ApiResponse doGetCustomerServiceListForCms(SearchCustomerServiceVO searchCustomerServiceVO) {
+		CustomerServiceListVO customerServiceListVO = this.customerServiceService.getCustomerServiceListForCms(searchCustomerServiceVO);
+		
+		ApiResponse apiResponse = new ApiResponse();
+		
+		apiResponse.setBody(customerServiceListVO);
+		
+		return apiResponse;
 	}
 	
 }

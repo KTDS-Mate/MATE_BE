@@ -150,7 +150,8 @@ public class SecurityConfig {
 		        .requestMatchers("/api/v1/mypage/gd-apply-tour/**").permitAll()
 		        .requestMatchers("/api/v1/cutomerservice/insert").permitAll()
 		        .requestMatchers("/api/v1/customerservice/list/**").permitAll()
-		        .requestMatchers("/api/v1/customerservice/update").permitAll()
+		        // 나중에 hasRole("ADMIN으로 변경")
+		        .requestMatchers("/api/v1/cms/**").permitAll()
 				.anyRequest().authenticated());
 
 

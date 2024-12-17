@@ -64,4 +64,27 @@ public class CustomerServiceServiceImpl implements CustomerServiceService {
 		return deleteCount > 0;
 	}
 	
+	@Override
+	public CustomerServiceListVO getCustomerServiceListForCms(SearchCustomerServiceVO searchCustomerServiceVO) {
+		int customerServiceCnt = this.customerServiceDao.selectCustomerServiceCountForCms(searchCustomerServiceVO);
+		
+		if (customerServiceCnt == 0) {
+			CustomerServiceListVO customerServiceListVO = new CustomerServiceListVO();
+			customerServiceListVO.setCustomerServiceCount(0);
+			customerServiceListVO.setCustomerServiceList( new ArrayList<>() );
+			return customerServiceListVO;
+		}
+		
+		searchCustomerServiceVO.setListSize(5);
+		searchCustomerServiceVO.setPageCount(customerServiceCnt);
+		
+		List<CustomerServiceVO> customerServiceList = this.customerServiceDao.selectCustomerServiceListForCms(searchCustomerServiceVO);
+		CustomerServiceListVO customerServiceListVO = new CustomerServiceListVO();
+		
+		customerServiceListVO.setCustomerServiceCount(customerServiceCnt);
+		customerServiceListVO.setCustomerServiceList(customerServiceList);
+		
+		return customerServiceListVO;
+	}
+	
 }
