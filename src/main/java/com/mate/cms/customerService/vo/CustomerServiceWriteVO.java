@@ -14,6 +14,10 @@ public class CustomerServiceWriteVO {
 	@NotEmpty(message = "문의 내용을 작성해주세요!")
 	@Size(min = 5, message = "5글자 이상 작성해주세요!")
 	private String srvcCntrDtl;
+	/** 문의 유형 GD_RQ="가이드 구인", RQST="해주세요", GD_RCRT="가이드 투어", PI="결제" **/
+	private String cstmrSrvcCtgry;
+	/** 문의 제목 **/
+	private String srvcCntrTtl;
 
 	public String getUsrLgnId() {
 		return usrLgnId;
@@ -29,6 +33,22 @@ public class CustomerServiceWriteVO {
 
 	public void setSrvcCntrDtl(String srvcCntrDtl) {
 		this.srvcCntrDtl = srvcCntrDtl;
+	}
+
+	public String getCstmrSrvcCtgry() {
+		return cstmrSrvcCtgry;
+	}
+
+	public void setCstmrSrvcCtgry(String cstmrSrvcCtgry) {
+		this.cstmrSrvcCtgry = cstmrSrvcCtgry;
+	}
+
+	public String getSrvcCntrTtl() {
+		return srvcCntrTtl;
+	}
+
+	public void setSrvcCntrTtl(String srvcCntrTtl) {
+		this.srvcCntrTtl = srvcCntrTtl;
 	}
 
 }
