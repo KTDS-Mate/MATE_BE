@@ -53,31 +53,28 @@ public class WishlistApiController {
 //  -------------------------------------------------------------------------가이드파트
 	
 	@GetMapping("/gd-wishlist/{usrLgnId}")
-	public String viewGdWish(@PathVariable String usrLgnId
-										  ,PaginationVO paginationVO
-										  ,Model model) {
+	public ApiResponse viewGdWish(@PathVariable String usrLgnId
+										  ,PaginationVO paginationVO) {
 		
+		System.out.println("유저아이디는 " + usrLgnId);
 		WishlistVO wishlistVO = this.wishlistService.selectAllWish(usrLgnId , paginationVO);
+		System.out.println("즐겨찾기갯수는 " + wishlistVO.getCountWish());
+
 		
-		model.addAttribute("wishlistVO" ,wishlistVO);
-		model.addAttribute("paginationVO", paginationVO);
-		
-		return "mypage/Mypage_Guide_Wishlist";
+		return new ApiResponse(wishlistVO);
 	}
 	
 	@GetMapping("/gd-wishlist/{usrLgnId}/delete-{favId}")
-	public String deleteGdWish(@PathVariable String usrLgnId
-							  ,@PathVariable String favId
-											,Model model) {
+	public ApiResponse deleteGdWish(@PathVariable String usrLgnId
+							  ,@PathVariable String favId) {
 		
-//		System.out.println("로그인 아이디는 " + usrLgnId);
-//		System.out.println("즐겨찾기 아이디는 " + favId);
+
 		int success = this.wishlistService.deleteWish(favId);
-//    	System.out.println("삭제결과는 " + success);
+
 
 		
 		
-		return "redirect:/mypage/wishlist/gd-wishlist/"+usrLgnId;
+		return new ApiResponse(success);
 	}
 
 

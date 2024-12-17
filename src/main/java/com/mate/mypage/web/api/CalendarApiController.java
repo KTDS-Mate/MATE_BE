@@ -62,14 +62,14 @@ public class CalendarApiController {
     
     @GetMapping("/gd-calendar/{usrLgnId}/cal")
     @ResponseBody
-    public String responseGdCalendar(@PathVariable String usrLgnId
-    									,Model model) {
+    public ApiResponse responseGdCalendar(@PathVariable String usrLgnId) {
     	
+    	System.out.println("유저아이디는 :" + usrLgnId);
     	List<CalendarVO> list = this.calendarService.calenList(usrLgnId);
+    	System.out.println("달력크기 :" + list.size());
+//    	String jsonResponse = gson.toJson(list);
     	
-    	String jsonResponse = gson.toJson(list);
-    	
-    	return jsonResponse;
+    	return new ApiResponse(list);
     }
 
 }

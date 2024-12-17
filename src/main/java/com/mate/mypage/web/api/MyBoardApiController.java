@@ -62,19 +62,16 @@ public class MyBoardApiController {
     
     
     @GetMapping("/gd-mytour/{usrLgnId}")
-    public String viewGDMyTour(@PathVariable String usrLgnId, SearchMyBoardVO searchMyBoardVO, Model model) {
+    public ApiResponse viewGDMyTour(@PathVariable String usrLgnId, SearchMyBoardVO searchMyBoardVO) {
 
+    	
+    	System.out.println("유저아이디는 " + usrLgnId);
     	MyBoardListVO boardListVO = this.myBoardService.selectGDMyAllBoard(usrLgnId , searchMyBoardVO);
-    	
+    	System.out.println("보드 사이즈는 " + boardListVO.getBoardCnt());
    
-  
-    	
-    	
-        model.addAttribute("boardListVO", boardListVO);
-        model.addAttribute("searchBoardVO", searchMyBoardVO);
         	
 
-        return "mypage/Mypage_Guide_MyTour";
+        return new ApiResponse(boardListVO);
     }
     
 
