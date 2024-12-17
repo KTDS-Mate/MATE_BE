@@ -80,16 +80,18 @@
 	<!-- 대륙별로 볼 때 사용 -->
 	<sql id="selectRegions">
 		<if test='regionName !="전체" and regionName != null and regionName != ""'>
-			AND (R.REGION_NAME = #{regionName})
+			AND R.REGION_NAME = #{regionName}
 		</if>
 	</sql>
 	<!-- ~순 정렬에 사용 -->
 	<sql id="order">
 		<choose>
 			<when test='"높은 가격순".equals(orderby)'>
+				  AND UTR.USR_TR_DIVIDE = 'SCHEDULE'
 				ORDER BY UTR.USR_TR_GD_HR_PRC DESC
 			</when>
 			<when test='"낮은 가격순".equals(orderby)'>
+			      AND UTR.USR_TR_DIVIDE = 'SCHEDULE'
 				ORDER BY UTR.USR_TR_GD_HR_PRC
 			</when>
 			<when test='"마감 임박순".equals(orderby)'>
@@ -100,6 +102,24 @@
 			</otherwise>
 		</choose>
 	</sql>
+	
+	<!-- ~순 정렬 COUNT에 사용 -->
+	<sql id="order2">
+		<choose>
+			<when test='"높은 가격순".equals(orderby)'>
+				  AND UTR.USR_TR_DIVIDE = 'SCHEDULE'
+				ORDER BY UTR.USR_TR_GD_HR_PRC DESC
+			</when>
+			<when test='"낮은 가격순".equals(orderby)'>
+			      AND UTR.USR_TR_DIVIDE = 'SCHEDULE'
+				ORDER BY UTR.USR_TR_GD_HR_PRC
+			</when>
+			<otherwise>
+				ORDER BY UTR.USR_TR_PST_ID DESC
+			</otherwise>
+		</choose>
+	</sql>
+	
 	
 	<insert id="insertNewUserTour"
 			parameterType="com.mate.bbs.vo.UserTourWriteVO">
@@ -183,7 +203,10 @@
 		, GD_WNT_RQ
 		, USR_TR_ED_DT
 		, USR_TR_STTS
-		, USR_TR_DIVIDE)
+		, USR_TR_DIVIDE
+		, USR_TR_LAT
+        , USR_TR_LNG
+        , USR_TR_ADDRS)
 		VALUES
 		 ('UT-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_USR_TR_RQST_PK.NEXTVAL, 6, 0)
 		, #{athrId}
@@ -203,7 +226,10 @@
 		, #{gdWntRq}
 		, TO_DATE(#{usrTrEdDt}, 'YYYY-MM-DD HH24:MI')
 		, 'RCRTNG'
-		, 'REQUEST')
+		, 'REQUEST'
+		, #{usrTrLat}
+        , #{usrTrLng}
+        , #{usrTrAddrs})
 	</insert>
 	
 	<select id="selectOneUserTour"
@@ -271,6 +297,9 @@
 		   AND UTR.USR_TR_IS_DLT = 'N'
 		<if test="_parameter != null">
 		 	<include refid="com.mate.bbs.dao.UserTourDao.selectRegions" />
+		</if>
+		<if test="_parameter != null">
+			<include refid="com.mate.bbs.dao.UserTourDao.order2" />
 		</if>
 		<if test="_parameter != null">
 			<include refid="com.mate.bbs.dao.UserTourDao.selectSubjectAndContent" />
