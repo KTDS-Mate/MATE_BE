@@ -149,6 +149,10 @@ public class SecurityConfig {
 		        .requestMatchers("/api/v1/mypage/tr-apply-tour/**").permitAll()
 		        .requestMatchers("/api/v1/mypage/gd-apply-tour/**").permitAll()
 		        .requestMatchers("/api/v1/payment/verify/**").permitAll()
+		        .requestMatchers("/api/v1/notice/**").permitAll()
+		        .requestMatchers("/ws/notice").permitAll()
+		        .requestMatchers("/ws/chat").permitAll()
+		        .requestMatchers("/ws/**").permitAll()
 				.anyRequest().authenticated());
 
 
@@ -162,7 +166,7 @@ public class SecurityConfig {
 				.successHandler(this.loginSuccessHandler()));
 
 		// csrf 활성화 및 예외 설정
-		http.csrf(csrf -> csrf.ignoringRequestMatchers("/token", "/api/**"));
+		http.csrf(csrf -> csrf.ignoringRequestMatchers("/token", "/api/**", "/ws/**"));
 
 		return http.build();
 	}
