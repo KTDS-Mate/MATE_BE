@@ -166,7 +166,7 @@
 		ON 
 			c.COUNTRY_ID = cn.COUNTRY_ID 
 		WHERE 
-			u.ATHR_ID = #{loginId}
+			f.USR_LGN_ID = #{loginId}
 		AND 
     		f.FAV_IS_DLT = 'N'
 	</select>
@@ -211,7 +211,7 @@
 	ON 
 		c.COUNTRY_ID = cn.COUNTRY_ID
 	WHERE
-        	u.ATHR_ID = #{loginId}
+        	f.USR_LGN_ID = #{loginId}
     AND 
     		f.FAV_IS_DLT = 'N'
 	ORDER BY u.USR_TR_ST_DT DESC 

@@ -1,4 +1,4 @@
-package com.mate.mypage.web;
+package com.mate.mypage.web.api;
 
 import java.util.List;
 
@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
+import com.mate.common.vo.ApiResponse;
 import com.mate.mypage.service.CalendarService;
 import com.mate.mypage.vo.CalendarVO;
 
-@Controller
-@RequestMapping("/mypage/calendar")
-public class CalendarController {
+@RestController
+@RequestMapping("/api/v1/mypage/calendar")
+public class CalendarApiController {
 	
 	@Autowired
 	private CalendarService calendarService;
@@ -36,16 +37,16 @@ public class CalendarController {
 	
 
     @GetMapping("/tr-calendar/{usrLgnId}/cal")
-    @ResponseBody
-    public String responseTrCalendar(@PathVariable String usrLgnId
-    										  ,Model model) {
+    public ApiResponse responseTrCalendar(@PathVariable String usrLgnId) {
 
+    	System.out.println("유저아이디 :" + usrLgnId);
     	List<CalendarVO> list = this.calendarService.calenList(usrLgnId);
+//    	String jsonResponse = gson.toJson(list);
+    	System.out.println("달력크기 :" + list.size());
 
-    	String jsonResponse = gson.toJson(list);
     	
         
-        return jsonResponse;
+        return new ApiResponse(list);
     }
     
     

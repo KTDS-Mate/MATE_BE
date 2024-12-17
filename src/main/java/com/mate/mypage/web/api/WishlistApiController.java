@@ -36,16 +36,17 @@ public class WishlistApiController {
 	}
 	
 	@GetMapping("/tr-wishlist/{usrLgnId}/delete-{favId}")
-	public String deleteTrWish(@PathVariable String usrLgnId
-							  ,@PathVariable String favId
-											,Model model) {
+	public ApiResponse deleteTrWish(@PathVariable String usrLgnId
+							  ,@PathVariable String favId) {
 		
+		System.out.println("즐겨찾기한 게시글아이디는 " + favId);
 		int success = this.wishlistService.deleteWish(favId);
 //    	System.out.println("삭제결과는 " + success);
+		System.out.println(success);
     	
-    	model.addAttribute("success" , success);
+
 		
-		return "redirect:/mypage/wishlist/tr-wishlist/"+usrLgnId;
+		return new ApiResponse(success);
 	}
 	
 	
