@@ -85,13 +85,25 @@ public class GuideTourServiceImpl implements GuideTourService{
 	@Transactional
 	@Override
 	public boolean createNewGuideTour(GuideTourWriteVO guideTourWriteVO) {
-		/** jsp에서 받아온 날짜 + 시작 시 + 시작 분 이어붙이는 쿼리 */
-		String startHour = this.guideTourDao.selectAttachStartHour(guideTourWriteVO);
-		/** jsp에서 받아온 날짜 + 종료 시 + 종료 분 이어붙이는 쿼리 */
-		String endHour = this.guideTourDao.selectAttachEndHour(guideTourWriteVO);
-		/** 완료된 위 쿼리 시간을 DB의 GD_TR_ST_DT, GD_TR_ED_DT에 담아준다. */
-		guideTourWriteVO.setGdTrStDt(startHour);
-		guideTourWriteVO.setGdTrEdDt(endHour);
+		// 당일치기 체크박스 값 가져오기(체크되면 true 아니면 null)
+		boolean isChecked = guideTourWriteVO.getIsChecked();
+		
+		// 체크가 되어있다면? => 당일치기
+		if(isChecked) {
+			/** jsp에서 받아온 날짜 + 시작 시 + 시작 분 이어붙이는 쿼리 */
+			String startHour = this.guideTourDao.selectAttachStartHour(guideTourWriteVO);
+			/** jsp에서 받아온 날짜 + 종료 시 + 종료 분 이어붙이는 쿼리 */
+			String endHour = this.guideTourDao.selectAttachEndHour(guideTourWriteVO);
+			
+			/** 완료된 위 쿼리 시간을 DB의 GD_TR_ST_DT, GD_TR_ED_DT에 담아준다. */
+			guideTourWriteVO.setGdTrStDt(startHour);
+			guideTourWriteVO.setGdTrEdDt(endHour);
+		} else {
+			String startDt = this.guideTourDao.selectAttachMultyStartHour(guideTourWriteVO);
+			String endDt = this.guideTourDao.selectAttachMultyEndHour(guideTourWriteVO);
+			guideTourWriteVO.setGdTrStDt(startDt);
+			guideTourWriteVO.setGdTrEdDt(endDt);
+		}
 		
 		// PK를 먼저 발급받기 위해 호출
 		int guideTourInsertCount = this.guideTourDao.insertNewGuideTour(guideTourWriteVO);

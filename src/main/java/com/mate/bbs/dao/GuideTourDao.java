@@ -82,6 +82,10 @@ public interface GuideTourDao {
      * @return
      */
     public String selectAttachModifyEndHour(GuideTourModifyVO guideTourModifyVO);
+    
+    public String selectAttachMultyStartHour(GuideTourWriteVO guideTourWriteVO);
+    public String selectAttachMultyEndHour(GuideTourWriteVO guideTourWriteVO);
+    
     /**
      * 가이드 투어 등록 폼에서 추가 정보를 담는 메소드.
      * @param guideTourDetailInfoVO

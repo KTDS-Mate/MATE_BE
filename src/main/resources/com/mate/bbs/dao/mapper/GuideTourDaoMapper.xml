@@ -361,6 +361,20 @@
 		SELECT #{inputYear} || ' ' || #{inputEndHour}
  		  FROM DUAL
 		</select>
+		
+		<select id="selectAttachMultyStartHour"
+				parameterType="com.mate.bbs.vo.GuideTourWriteVO"
+				resultType="string">
+			SELECT #{inputYear} || ' ' || #{inputStartHour}
+			  FROM DUAL
+		</select>
+		<select id="selectAttachMultyEndHour"
+				parameterType="com.mate.bbs.vo.GuideTourWriteVO"
+				resultType="string">
+			SELECT #{inputEndYear} || ' ' || #{inputEndHour}
+			  FROM DUAL
+		</select>
+		
 	<insert id="insertNewDetailInfo" 
 			parameterType="com.mate.bbs.vo.GuideTourDetailInfoVO">
 		INSERT INTO TR_DTL

@@ -269,7 +269,7 @@
 	      LEFT JOIN COUNTRIES C ON U.GD_RP_CNT_ID = C.COUNTRY_ID
 	     WHERE U.USR_LGN_ID = #{usrLgnId}
 	       AND U.USR_IS_BLCK = 'N'
-	       AND U.U.USR_IS_CL = 'N'
+	       AND U.USR_IS_CL = 'N'
 	</select>
 	
 	<update id="mergeUser" parameterType="com.mate.user.vo.UserVO">
