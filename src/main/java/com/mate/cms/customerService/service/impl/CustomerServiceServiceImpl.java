@@ -29,8 +29,8 @@ public class CustomerServiceServiceImpl implements CustomerServiceService {
 	}
 	
 	@Override
-	public CustomerServiceListVO getCustomerServiceList(SearchCustomerServiceVO searchCustomerServiceVO) {
-		int customerServiceCnt = this.customerServiceDao.selectCustomerServiceCount(searchCustomerServiceVO);
+	public CustomerServiceListVO getCustomerServiceList(String usrLgnId, SearchCustomerServiceVO searchCustomerServiceVO) {
+		int customerServiceCnt = this.customerServiceDao.selectCustomerServiceCount(usrLgnId, searchCustomerServiceVO);
 		if (customerServiceCnt == 0) {
 			CustomerServiceListVO customerServiceListVO = new CustomerServiceListVO();
 			customerServiceListVO.setCustomerServiceCount(0);
@@ -38,10 +38,10 @@ public class CustomerServiceServiceImpl implements CustomerServiceService {
 			return customerServiceListVO;
 		}
 		
-		searchCustomerServiceVO.setListSize(10);
+		searchCustomerServiceVO.setListSize(5);
 		searchCustomerServiceVO.setPageCount(customerServiceCnt);
 		
-		List<CustomerServiceVO> customerServiceList = this.customerServiceDao.selectCustomerServiceList(searchCustomerServiceVO);
+		List<CustomerServiceVO> customerServiceList = this.customerServiceDao.selectCustomerServiceList(usrLgnId, searchCustomerServiceVO);
 		CustomerServiceListVO customerServiceListVO = new CustomerServiceListVO();
 		
 		customerServiceListVO.setCustomerServiceCount(customerServiceCnt);
@@ -62,6 +62,29 @@ public class CustomerServiceServiceImpl implements CustomerServiceService {
 	public boolean softDeleteCustomerService(String cstmrSrvcCntrId) {
 		int deleteCount = this.customerServiceDao.deleteCustomerService(cstmrSrvcCntrId);
 		return deleteCount > 0;
+	}
+	
+	@Override
+	public CustomerServiceListVO getCustomerServiceListForCms(SearchCustomerServiceVO searchCustomerServiceVO) {
+		int customerServiceCnt = this.customerServiceDao.selectCustomerServiceCountForCms(searchCustomerServiceVO);
+		
+		if (customerServiceCnt == 0) {
+			CustomerServiceListVO customerServiceListVO = new CustomerServiceListVO();
+			customerServiceListVO.setCustomerServiceCount(0);
+			customerServiceListVO.setCustomerServiceList( new ArrayList<>() );
+			return customerServiceListVO;
+		}
+		
+		searchCustomerServiceVO.setListSize(5);
+		searchCustomerServiceVO.setPageCount(customerServiceCnt);
+		
+		List<CustomerServiceVO> customerServiceList = this.customerServiceDao.selectCustomerServiceListForCms(searchCustomerServiceVO);
+		CustomerServiceListVO customerServiceListVO = new CustomerServiceListVO();
+		
+		customerServiceListVO.setCustomerServiceCount(customerServiceCnt);
+		customerServiceListVO.setCustomerServiceList(customerServiceList);
+		
+		return customerServiceListVO;
 	}
 	
 }
