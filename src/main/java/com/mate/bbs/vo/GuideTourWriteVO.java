@@ -92,6 +92,11 @@ public class GuideTourWriteVO {
 	
 	private String athrId;
 	
+	/**
+	 * 당일치기 체크 여부
+	 */
+	private boolean isChecked;
+	
 	public String getGdTrPstId() {
 		return gdTrPstId;
 	}
@@ -205,5 +210,11 @@ public class GuideTourWriteVO {
 	}
 	public void setAthrId(String athrId) {
 		this.athrId = athrId;
+	}
+	public boolean isChecked() {
+		return isChecked;
+	}
+	public void setChecked(boolean isChecked) {
+		this.isChecked = isChecked;
 	}
 }

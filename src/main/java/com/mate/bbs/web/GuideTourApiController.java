@@ -67,18 +67,22 @@ public class GuideTourApiController {
 	/**가이드가 작성한 투어 게시글을 받아와서 DB에 저장하는 페이지 **/
 	@PostMapping("/guidetour/insert")
 	public ApiResponse doCreateNewGuideTour(@RequestBody @Valid GuideTourWriteVO guideTourWriteVO
+											, Authentication memberVO
 											,BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			List<String> fieldErrors = bindingResult.getFieldErrors()
 													.stream()
 													.map(fieldError -> fieldError.getDefaultMessage())
 													.toList();
-			
+			fieldErrors.stream().forEach( a -> 
+				System.out.println("!" + a)
+			);
 			ApiResponse errorResponse = new ApiResponse(HttpStatus.BAD_REQUEST);
 			errorResponse.setErrors(fieldErrors);
 			
 			return errorResponse;
 		}
+		System.out.println("!!!");
 		boolean isCreate = this.guideTourService.createNewGuideTour(guideTourWriteVO);
 		
 		return new ApiResponse(isCreate);
