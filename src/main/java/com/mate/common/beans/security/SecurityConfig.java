@@ -148,7 +148,6 @@ public class SecurityConfig {
 		        .requestMatchers("/api/user/find-id").permitAll()
 		        .requestMatchers("/api/v1/mypage/tr-apply-tour/**").permitAll()
 		        .requestMatchers("/api/v1/mypage/gd-apply-tour/**").permitAll()
-		        .requestMatchers("/api/v1/payment/verify/**").permitAll()
 		        .requestMatchers("/api/v1/notice/**").permitAll()
 		        .requestMatchers("/ws/notice").permitAll()
 		        .requestMatchers("/ws/chat").permitAll()
