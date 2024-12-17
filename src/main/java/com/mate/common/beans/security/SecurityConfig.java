@@ -128,6 +128,7 @@ public class SecurityConfig {
 				.requestMatchers("/api/v1/usertour/view/**").permitAll()
 				.requestMatchers("/api/v1/payment/**").permitAll()
 				.requestMatchers("/api/v1/usertour/imgs/**").permitAll()
+				.requestMatchers("/api/v1/mypage/**").permitAll()
 				.requestMatchers("/api/user/regist/**").permitAll()
 				.requestMatchers(HttpMethod.POST, "/api/user/regist/**").permitAll()
 		        .requestMatchers(HttpMethod.POST, "/api/user/send-auth-mail").permitAll()
