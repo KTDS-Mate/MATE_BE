@@ -28,6 +28,11 @@ public class NoticeDaoImpl extends SqlSessionDaoSupport implements NoticeDao{
 	public List<NoticeVO> selectUnreadNoticesByRecipientId(String rcpntId) {
 		return this.getSqlSession().selectList(NAMESPACE + ".selectUnreadNoticesByRecipientId", rcpntId);
 	}
+	
+	@Override
+	public List<NoticeVO> selectAllNoticesByReceipientId(String rcpntId){
+		return this.getSqlSession().selectList(NAMESPACE + ".selectAllNoticesByReceipientId", rcpntId);
+	}
 
 	@Override
 	public int updateNoticeReadStatus(String ntcId) {
