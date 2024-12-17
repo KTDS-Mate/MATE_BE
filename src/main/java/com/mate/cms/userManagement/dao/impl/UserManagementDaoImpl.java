@@ -7,6 +7,7 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mate.cms.customerService.vo.SearchCustomerServiceVO;
 import com.mate.cms.userManagement.dao.UserManagementDao;
 import com.mate.cms.userManagement.vo.UserManagementVO;
 
@@ -36,8 +37,8 @@ public class UserManagementDaoImpl extends SqlSessionDaoSupport implements UserM
 	}
 	
 	@Override
-	public List<UserManagementVO> selectWaitingGuideUsers() {
-		return this.getSqlSession().selectList(NAMESPACE + ".selectWaitingGuideUsers");
+	public List<UserManagementVO> selectWaitingGuideUsers(SearchCustomerServiceVO searchCustomerServiceVO) {
+		return this.getSqlSession().selectList(NAMESPACE + ".selectWaitingGuideUsers", searchCustomerServiceVO);
 	}
 	
 	@Override

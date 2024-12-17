@@ -2,6 +2,7 @@ package com.mate.cms.userManagement.dao;
 
 import java.util.List;
 
+import com.mate.cms.customerService.vo.SearchCustomerServiceVO;
 import com.mate.cms.userManagement.vo.UserManagementVO;
 
 public interface UserManagementDao {
@@ -24,7 +25,7 @@ public interface UserManagementDao {
 	 * 가이드 신청 인원 조회
 	 * @return
 	 */
-	public List<UserManagementVO> selectWaitingGuideUsers();
+	public List<UserManagementVO> selectWaitingGuideUsers(SearchCustomerServiceVO searchCustomerServiceVO);
 	
 	/**
 	 * 가이드 신청 인원 수 조회

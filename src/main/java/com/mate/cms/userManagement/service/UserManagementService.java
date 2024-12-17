@@ -1,5 +1,6 @@
 package com.mate.cms.userManagement.service;
 
+import com.mate.cms.customerService.vo.SearchCustomerServiceVO;
 import com.mate.cms.userManagement.vo.UserManagementListVO;
 
 public interface UserManagementService {
@@ -15,5 +16,6 @@ public interface UserManagementService {
 	 * 가이드 신청 회원 조회
 	 * @return
 	 */
-	public UserManagementListVO getWaitingGuideUsers();
+	public UserManagementListVO getWaitingGuideUsers(SearchCustomerServiceVO searchCustomerServiceVO);
+
 }

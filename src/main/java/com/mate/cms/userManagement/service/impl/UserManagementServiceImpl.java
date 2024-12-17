@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mate.cms.customerService.vo.SearchCustomerServiceVO;
 import com.mate.cms.userManagement.dao.UserManagementDao;
 import com.mate.cms.userManagement.service.UserManagementService;
 import com.mate.cms.userManagement.vo.UserManagementListVO;
@@ -38,7 +39,7 @@ public class UserManagementServiceImpl implements UserManagementService{
 	}
 	
 	@Override
-	public UserManagementListVO getWaitingGuideUsers() {
+	public UserManagementListVO getWaitingGuideUsers(SearchCustomerServiceVO searchCustomerServiceVO) {
 		
 		int waitingUsersCount = this.userManagementDao.selectWaitingGuideUsersCount();
 		
@@ -48,9 +49,14 @@ public class UserManagementServiceImpl implements UserManagementService{
 			userManagementListVO.setUserManagementList(new ArrayList<>());
 			return userManagementListVO;
 		}
-		List<UserManagementVO> waitingGuideList = this.userManagementDao.selectWaitingGuideUsers();
+		
+		searchCustomerServiceVO.setListSize(5);
+		searchCustomerServiceVO.setPageCount(waitingUsersCount);
+		
+		List<UserManagementVO> waitingGuideList = this.userManagementDao.selectWaitingGuideUsers(searchCustomerServiceVO);
 		UserManagementListVO userManagementListVO = new UserManagementListVO();
 		userManagementListVO.setUserManagementList(waitingGuideList);
+		userManagementListVO.setUsrMngmntCnt(waitingUsersCount);
 		return userManagementListVO;
 	}
 	

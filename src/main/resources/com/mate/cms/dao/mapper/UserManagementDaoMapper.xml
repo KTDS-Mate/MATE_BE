@@ -10,6 +10,17 @@
   	</if>
   </sql>
   
+  <sql id="selectSearch">
+        <if test='search.searchKeyword != null and search.searchKeyword != ""'>
+            AND USR_ID LIKE '%' || #{search.searchKeyword} || '%'
+        </if>
+    </sql>
+    <sql id="search">
+        <if test='searchKeyword != null and searchKeyword != ""'>
+            AND USR_ID LIKE '%' || #{searchKeyword} || '%'
+        </if>
+    </sql>
+  
   
   <select id="selectUserManagementAllCount"
   		  resultType="_int">
@@ -50,7 +61,11 @@
   	</select> -->
   	<!-- 바보 -->
   	<select id="selectWaitingGuideUsers"
+  	        parameterType="com.mate.cms.customerService.vo.SearchCustomerServiceVO"
   			resultType="com.mate.cms.userManagement.vo.UserManagementVO">
+		<if test="search != null">
+		<include refid="Common2.pagination_header" />
+        </if>
   		SELECT USR_ID
 		 	 , USR_LGN_ID
 		 	 , GD_RGST_DT
@@ -70,6 +85,12 @@
 		 	 , USR_GD_EXP
 		  FROM USR_INF
 		 WHERE GD_APPL_STT = 'WAITING'
+		 <if test="_parameter != null">
+            <include refid="com.mate.cms.userManagement.dao.UserManagementDao.search" />
+        </if>
+		 <if test="search != null">
+            <include refid="Common2.pagination_footer" />
+        </if>
   	</select>
   	
   	<select id="selectWaitingGuideUsersCount"
