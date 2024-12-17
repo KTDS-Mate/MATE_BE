@@ -146,12 +146,19 @@ public class SecurityConfig {
 		        .requestMatchers("/api/user/countries").permitAll()
 		        .requestMatchers("/api/user/reissue-password").permitAll()
 		        .requestMatchers("/api/user/find-id").permitAll()
+		        .requestMatchers("/api/maps/places").permitAll()
+		        .requestMatchers("/api/maps/geocode").permitAll()
+		        .requestMatchers("/api/maps/reverse-geocode").permitAll()
 		        .requestMatchers("/api/v1/mypage/tr-apply-tour/**").permitAll()
 		        .requestMatchers("/api/v1/mypage/gd-apply-tour/**").permitAll()
 		        .requestMatchers("/api/v1/cutomerservice/insert").permitAll()
 		        .requestMatchers("/api/v1/customerservice/list/**").permitAll()
 		        // 나중에 hasRole("ADMIN으로 변경")
 		        .requestMatchers("/api/v1/cms/**").permitAll()
+		        .requestMatchers("/api/v1/notice/**").permitAll()
+		        .requestMatchers("/ws/notice").permitAll()
+		        .requestMatchers("/ws/chat").permitAll()
+		        .requestMatchers("/ws/**").permitAll()
 				.anyRequest().authenticated());
 
 
@@ -165,7 +172,7 @@ public class SecurityConfig {
 				.successHandler(this.loginSuccessHandler()));
 
 		// csrf 활성화 및 예외 설정
-		http.csrf(csrf -> csrf.ignoringRequestMatchers("/token", "/api/**"));
+		http.csrf(csrf -> csrf.ignoringRequestMatchers("/token", "/api/**", "/ws/**"));
 
 		return http.build();
 	}

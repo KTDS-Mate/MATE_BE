@@ -133,7 +133,10 @@
 		, GD_WNT_RQ
 		, USR_TR_ED_DT
 		, USR_TR_STTS
-		, USR_TR_DIVIDE)
+		, USR_TR_DIVIDE
+		, USR_TR_LAT
+        , USR_TR_LNG
+        , USR_TR_ADDRS)
 		VALUES
 		 (#{usrTrPstId}
 		, #{athrId}
@@ -153,7 +156,10 @@
 		, #{gdWntRq}
 		, TO_DATE(#{usrTrEdDt}, 'YYYY-MM-DD HH24:MI')
 		, 'RCRTNG'
-		, 'SCHEDULE')
+		, 'SCHEDULE'
+		, #{usrTrLat}
+        , #{usrTrLng}
+        , #{usrTrAddrs})
 	</insert>
 	
 	<insert id="insertNewRequestTour"
@@ -222,6 +228,9 @@
 		     , UTR.USR_TR_STTS
 		     , TO_CHAR(UTR.USR_TR_ST_DT, 'YYYY-MM-DD HH24:MI') USR_TR_ST_DT
 		     , TO_CHAR(UTR.USR_TR_ED_DT, 'YYYY-MM-DD HH24:MI') USR_TR_ED_DT
+		     , UTR.USR_TR_LAT
+             , UTR.USR_TR_LNG
+             , UTR.USR_TR_ADDRS
 		     , UTRI.USR_TR_RQ_IMG_ID_URL
 		     , UI.USR_LNM 
 		     , UI.USR_FNM 
