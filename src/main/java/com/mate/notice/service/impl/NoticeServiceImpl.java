@@ -21,7 +21,6 @@ public class NoticeServiceImpl implements NoticeService{
 	public NoticeVO createNotice(NoticeVO noticeVO) {
 	    // 알림 ID 생성 (UUID 등으로 생성 가능)
 	    noticeVO.setNtcIsRd(false);
-	    noticeVO.setNtcCrAt(LocalDateTime.now().toString());
 	    noticeVO.setNtcIsDlt(false);
 
 	    if (noticeVO.getNtcUrl() == null || noticeVO.getNtcUrl().isEmpty()) {
