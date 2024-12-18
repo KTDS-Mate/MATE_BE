@@ -89,7 +89,7 @@ public class SecurityConfig {
 				CorsConfiguration corsConfiguration = new CorsConfiguration();
 				
 				// 허용할 도메인 목록
-				corsConfiguration.setAllowedOrigins(List.of("http://localhost:3000"));
+				corsConfiguration.setAllowedOrigins(List.of("http://localhost:3000", "http://3.38.186.79"));
 				// 허용할 메서드 목록 (외부에서 요청)
 				corsConfiguration.setAllowedMethods(List.of("POST", "PUT", "DELETE", "GET", "OPTIONS"));
 				corsConfiguration.setAllowedHeaders(List.of("*"));
@@ -161,6 +161,9 @@ public class SecurityConfig {
 		        // 나중에 hasRole("ADMIN으로 변경")
 		        .requestMatchers("/api/v1/cms/**").permitAll()
 		        .requestMatchers("/api/v1/notice/**").permitAll()
+		        .requestMatchers("/api/v1/paymentservice/list").permitAll()
+		        .requestMatchers("/api/v1/paymentservice/update").permitAll()
+		        .requestMatchers("/api/v1/paymentservice/**").permitAll()
 		        .requestMatchers("/ws/notice").permitAll()
 		        .requestMatchers("/ws/chat").permitAll()
 		        .requestMatchers("/ws/**").permitAll()
