@@ -233,10 +233,10 @@ public class GuideTourWriteVO {
 	public void setGdTrAddrs(String gdTrAddrs) {
 		this.gdTrAddrs = gdTrAddrs;
 	}
-	public boolean isChecked() {
+	public boolean getIsChecked() {
 		return isChecked;
 	}
-	public void setChecked(boolean isChecked) {
+	public void setIsChecked(boolean isChecked) {
 		this.isChecked = isChecked;
 	}
 }

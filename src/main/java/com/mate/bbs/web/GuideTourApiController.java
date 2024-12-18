@@ -107,7 +107,7 @@ public class GuideTourApiController {
         }
     }
     
-    @GetMapping("/favorite/{gdTrPstId}")
+    @GetMapping("/guidetour/favorite/{gdTrPstId}")
     public ApiResponse getAllGuideTourFavorite(@PathVariable String gdTrPstId) {
     	FavoriteListVO favoriteListVO = this.favoriteService.getAllGuideTourFavoriteList(gdTrPstId);
     	ApiResponse apiResponse = new ApiResponse();
@@ -123,7 +123,7 @@ public class GuideTourApiController {
     	return new ApiResponse(isCreated);
     }
     
-    @GetMapping("/favorite/delete/{gdTrPstId}/{usrLgnId}")
+    @GetMapping("/guidetour/favorite/delete/{gdTrPstId}/{usrLgnId}")
     public ApiResponse doDeleteGuideTourFavorite(@PathVariable String gdTrPstId, 
     											 @PathVariable String usrLgnId) {
     	boolean isDeleted = this.favoriteService.deleteGuideTourFavorite(gdTrPstId, usrLgnId);
