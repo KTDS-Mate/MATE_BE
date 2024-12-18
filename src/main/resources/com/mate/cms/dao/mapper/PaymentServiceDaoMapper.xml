@@ -8,6 +8,9 @@
     <sql id="selectSearch">
         <if test='searchKeyword != null and searchKeyword != ""'>
             WHERE PAY_TR_ID LIKE '%' || #{searchKeyword} || '%'
+               OR PAY_ID LIKE '%' || #{searchKeyword} || '%'
+               OR TRST_ID LIKE '%' || #{searchKeyword} || '%'
+               OR GD_ID LIKE '%' || #{searchKeyword} || '%'
         </if>
     </sql>
 
