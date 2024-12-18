@@ -43,6 +43,16 @@ public class FavoriteDaoImpl extends SqlSessionDaoSupport implements FavoriteDao
 	}
 	
 	@Override
+	public int selectAllGuideTourFavoriteCount(String pstId) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectAllGuideTourFavoriteCount", pstId);
+	}
+	
+	@Override
+	public List<FavoriteVO> selectAllGuideTourFavoriteList(String gdTrPstId) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectAllGuideTourFavoriteList", gdTrPstId);
+	}
+	
+	@Override
 	public int deleteFavIsDlt(String usrPstId, String usrLgnId) {
 		Map<String, Object> param = new HashMap<>();
 		param.put("usrPstId", usrPstId);
@@ -50,5 +60,7 @@ public class FavoriteDaoImpl extends SqlSessionDaoSupport implements FavoriteDao
 		
 		return this.getSqlSession().update(NAMESPACE + ".deleteFavIsDlt", param);
 	}
+	
+	
 
 }

@@ -50,8 +50,6 @@ public class GuideTourWriteVO {
 	/**
 	 * 투어 비용(가격)
 	 */
-	@Min(value = 1, message = "1 이상의 값을 입력해주세요!")
-	@PositiveOrZero(message = "음수를 넣으실 수 없습니다!")
 	private double gdTrPrc;
 	/**
 	 * 투어 최대 인원수

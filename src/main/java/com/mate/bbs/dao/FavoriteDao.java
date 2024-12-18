@@ -22,8 +22,14 @@ public interface FavoriteDao {
 	 */
 	public List<FavoriteVO> selectAllFavoriteList(String usrPstId);
 	
+	public List<FavoriteVO> selectAllGuideTourFavoriteList(String gdTrPstId);
+	
 	
 	public int selectAllFavoriteCount(String pstId);
+	
+	public int selectAllGuideTourFavoriteCount(String pstId);
+	
+	
 	
 	/**
 	 * 선택 된 즐겨찾기를 삭제
@@ -31,5 +37,7 @@ public interface FavoriteDao {
 	 */
 	public int deleteFavIsDlt(@Param("usrPstId") String usrPstId
 							, @Param("usrLgnId") String usrLgnId);
+	
+	
 	
 }

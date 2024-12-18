@@ -49,7 +49,7 @@ public class GuideTourApiController {
 		GuideTourListVO guideTourListVO = this.guideTourService.getAllGuideTour(searchGuideTourVO);
 		ApiResponse apiResponse = new ApiResponse();
 		apiResponse.setBody(guideTourListVO.getGdTrPstCnt());
-		
+		System.out.println("toto" + guideTourListVO.getGdTrPstCnt());
 		return apiResponse;
 	}
 	
@@ -81,6 +81,7 @@ public class GuideTourApiController {
 			
 			return errorResponse;
 		}
+		System.out.println("불러온 값" + guideTourWriteVO.getAthrId());
 		System.out.println("!!!");
 		boolean isCreate = this.guideTourService.createNewGuideTour(guideTourWriteVO);
 		
