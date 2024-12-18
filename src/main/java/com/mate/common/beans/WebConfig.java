@@ -41,10 +41,10 @@ public class WebConfig implements WebMvcConfigurer {
 	/**
 	 * JSP View Resolver 설정
 	 */
-//	@Override
-//	public void configureViewResolvers(ViewResolverRegistry registry) {
-//		registry.jsp("/WEB-INF/views/", ".jsp");
-//	}
+	@Override
+	public void configureViewResolvers(ViewResolverRegistry registry) {
+		registry.jsp("/WEB-INF/views/", ".jsp");
+	}
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
