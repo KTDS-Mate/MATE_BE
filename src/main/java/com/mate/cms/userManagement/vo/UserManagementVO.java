@@ -50,6 +50,7 @@ public class UserManagementVO {
     /** 가이드 범죄경력 조회서 사진 */
     private String gdCbcImg;
     
+    
     /** 가이드 경력 */
 	private int usrGdExp;
 	

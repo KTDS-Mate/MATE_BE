@@ -42,12 +42,30 @@
 		 	 , USR_BD 
 		 	 , USR_EML 
 		 	 , USR_IS_GD
+		 	 , USR_IS_CL
+		 	 , USR_IS_BLCK
 		  FROM USR_INF
 		 WHERE 1=1
 		  <if test="_parameter != null">
 		  	<include refid="com.mate.cms.userManagement.dao.UserManagementDao.selectGuideOrNot" />
 		  </if>
   	</select>
+  	
+  	<update id="updateDeleteUser"
+  	        parameterType="String">
+  	     UPDATE USR_INF
+            SET USR_IS_CL = 'Y'
+          WHERE USR_ID = #{parameter}
+  	</update>
+  	
+  	<update id="updateBlockUser"
+  	        parameterType="String">
+  	     UPDATE USR_INF
+            SET USR_IS_BLCK = 'Y'
+          WHERE USR_ID = #{parameter}
+  	</update>
+  	
+  	
   	
   	<!-- 
   	<select id="selectOneUserManagement"

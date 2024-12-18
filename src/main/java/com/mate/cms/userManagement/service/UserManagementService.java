@@ -23,4 +23,8 @@ public interface UserManagementService {
 	
 	public boolean doRefuseGuideApprove(String usrId);
 	
+	public boolean doDeleteUser(String usrId);
+	
+	public boolean doBlockUser(String usrId);
+	
 }

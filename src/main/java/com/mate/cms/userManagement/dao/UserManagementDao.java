@@ -39,4 +39,8 @@ public interface UserManagementDao {
 	public int updateRefuseApprove(String usrId);
 	
 	
+	public int updateDeleteUser(String usrId);
+	
+	public int updateBlockUser(String usrId);
+	
 }

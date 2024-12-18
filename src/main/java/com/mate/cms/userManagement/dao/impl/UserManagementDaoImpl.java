@@ -58,5 +58,15 @@ public class UserManagementDaoImpl extends SqlSessionDaoSupport implements UserM
 		return this.getSqlSession().update(NAMESPACE + ".updateRefuseApprove", usrId);
 	}
 	
+	@Override
+	public int updateDeleteUser(String usrId) {
+		return this.getSqlSession().update(NAMESPACE + ".updateDeleteUser", usrId);
+	}
+	
+	@Override
+	public int updateBlockUser(String usrId) {
+		return this.getSqlSession().update(NAMESPACE + ".updateBlockUser", usrId);
+	}
+	
 	
 }

@@ -50,6 +50,7 @@ public class UserManagementController {
 		
 		return new ApiResponse(true);
 	}
+	
 	@ResponseBody
 	@PostMapping("/usermanagement/refuseguide/{usrId}")
 	public ApiResponse doRefuseGuideApprove(@PathVariable String usrId) {
@@ -59,8 +60,30 @@ public class UserManagementController {
 			return new ApiResponse(e.getMessage());
 		}
 		return new ApiResponse(true);
-		
 	}
+	
+	@ResponseBody
+	@PostMapping("/usermanagement/deleteUser/{usrId}")
+	public ApiResponse doDeleteUser(@PathVariable String usrId) {
+		try {
+			this.userManagementService.doDeleteUser(usrId);
+		} catch(Exception e) {
+			return new ApiResponse(e.getMessage());
+		}
+		return new ApiResponse(true);
+	}
+	
+	@ResponseBody
+	@PostMapping("/usermanagement/blockUser/{usrId}")
+	public ApiResponse doBlockeUser(@PathVariable String usrId) {
+		try {
+			this.userManagementService.doBlockUser(usrId);
+		} catch(Exception e) {
+			return new ApiResponse(e.getMessage());
+		}
+		return new ApiResponse(true);
+	}
+	
 	
 	
 	
