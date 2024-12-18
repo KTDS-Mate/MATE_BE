@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mate.cms.customerService.vo.SearchCustomerServiceVO;
 import com.mate.cms.userManagement.service.UserManagementService;
+import com.mate.cms.userManagement.vo.SearchUserManagementVO;
 import com.mate.cms.userManagement.vo.UserManagementListVO;
 import com.mate.common.vo.ApiResponse;
 
@@ -21,10 +21,9 @@ public class UserManagementController {
 	@Autowired
 	private UserManagementService userManagementService;
 	
-	@GetMapping("/usermanagement/list")
-	public ApiResponse doGetAllUsers() {
-		
-		UserManagementListVO userManagementListVO = this.userManagementService.getAllUserManagerment();
+	@GetMapping("/usermanagement/list/{filter}")
+	public ApiResponse doGetAllUsers(@PathVariable String filter) {
+		UserManagementListVO userManagementListVO = this.userManagementService.getAllUserManagerment(filter);
 		ApiResponse apiResponse = new ApiResponse();
 		apiResponse.setBody(userManagementListVO.getUserManagementList());
 		
@@ -32,25 +31,37 @@ public class UserManagementController {
 	}
 	
 	@GetMapping("/usermanagement/waiting/list")
-	public ApiResponse doGetWaitingGuideUsers(SearchCustomerServiceVO searchCustomerServiceVO) {
-		UserManagementListVO userManagementListVO = this.userManagementService.getWaitingGuideUsers(searchCustomerServiceVO);
+	public ApiResponse doGetWaitingGuideUsers(SearchUserManagementVO searchUserManagementVO) {
+		UserManagementListVO userManagementListVO = this.userManagementService.getWaitingGuideUsers(searchUserManagementVO);
 		ApiResponse apiResponse = new ApiResponse();
-		apiResponse.setBody(userManagementListVO.getUserManagementList());
+		apiResponse.setBody(userManagementListVO);
 		
 		return apiResponse;
 	}
 	
 	@ResponseBody
-	@PostMapping("/usermanagement/aceptguide/{usrId}")
+	@PostMapping("/usermanagement/acceptguide/{usrId}")
 	public ApiResponse doAceptGuideApprove(@PathVariable String usrId) {
 		try {
-//			this.userManagementService.as
-			System.out.println("asdf");
+			this.userManagementService.doAcceptGuideApprove(usrId);
 		} catch(Exception e) {
 			return new ApiResponse(e.getMessage());
 		}
 		
-		return new ApiResponse("수락하였습니다.");
+		return new ApiResponse(true);
 	}
+	@ResponseBody
+	@PostMapping("/usermanagement/refuseguide/{usrId}")
+	public ApiResponse doRefuseGuideApprove(@PathVariable String usrId) {
+		try {
+			this.userManagementService.doRefuseGuideApprove(usrId);
+		} catch(Exception e) {
+			return new ApiResponse(e.getMessage());
+		}
+		return new ApiResponse(true);
+		
+	}
+	
+	
 	
 }

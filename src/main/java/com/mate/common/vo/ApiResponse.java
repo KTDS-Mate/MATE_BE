@@ -86,8 +86,7 @@ public class ApiResponse {
 	public void setErrors(List<String> errors) {
 		this.errors = errors;
 		this.errorsCount = errors.size();
-
-	}
+ 	}
 
 	public int getErrorsCount() {
 		return errorsCount;

@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mate.cms.customerService.vo.SearchCustomerServiceVO;
 import com.mate.cms.userManagement.dao.UserManagementDao;
 import com.mate.cms.userManagement.service.UserManagementService;
+import com.mate.cms.userManagement.vo.SearchUserManagementVO;
 import com.mate.cms.userManagement.vo.UserManagementListVO;
 import com.mate.cms.userManagement.vo.UserManagementVO;
 
@@ -19,8 +19,8 @@ public class UserManagementServiceImpl implements UserManagementService{
 	private UserManagementDao userManagementDao;
 	
 	@Override
-	public UserManagementListVO getAllUserManagerment() {
-		int userManagementCount = this.userManagementDao.selectUserManagementAllCount();
+	public UserManagementListVO getAllUserManagerment(String filter) {
+		int userManagementCount = this.userManagementDao.selectUserManagementAllCount(filter);
 		
 		if(userManagementCount == 0) {
 			UserManagementListVO userManagementListVO = new UserManagementListVO();
@@ -30,7 +30,7 @@ public class UserManagementServiceImpl implements UserManagementService{
 			return userManagementListVO;
 		}
 		
-		List<UserManagementVO> UserManagementList = this.userManagementDao.selectAllUserManagement();
+		List<UserManagementVO> UserManagementList = this.userManagementDao.selectAllUserManagement(filter);
 		UserManagementListVO userManagementListVO = new UserManagementListVO();
 		// Setter 이용하여 count와 List를 ListVO에 넣어줌.
 		userManagementListVO.setUsrMngmntCnt(userManagementCount);
@@ -39,7 +39,7 @@ public class UserManagementServiceImpl implements UserManagementService{
 	}
 	
 	@Override
-	public UserManagementListVO getWaitingGuideUsers(SearchCustomerServiceVO searchCustomerServiceVO) {
+	public UserManagementListVO getWaitingGuideUsers(SearchUserManagementVO searchUserManagementVO) {
 		
 		int waitingUsersCount = this.userManagementDao.selectWaitingGuideUsersCount();
 		
@@ -50,15 +50,29 @@ public class UserManagementServiceImpl implements UserManagementService{
 			return userManagementListVO;
 		}
 		
-		searchCustomerServiceVO.setListSize(5);
-		searchCustomerServiceVO.setPageCount(waitingUsersCount);
+		searchUserManagementVO.setListSize(5);
+		searchUserManagementVO.setPageCount(waitingUsersCount);
 		
-		List<UserManagementVO> waitingGuideList = this.userManagementDao.selectWaitingGuideUsers(searchCustomerServiceVO);
+		List<UserManagementVO> waitingGuideList = this.userManagementDao.selectWaitingGuideUsers(searchUserManagementVO);
 		UserManagementListVO userManagementListVO = new UserManagementListVO();
 		userManagementListVO.setUserManagementList(waitingGuideList);
 		userManagementListVO.setUsrMngmntCnt(waitingUsersCount);
 		return userManagementListVO;
 	}
+	
+	
+	@Override
+	public boolean doAcceptGuideApprove(String usrId) {
+		int updateCnt = this.userManagementDao.updateAcceptApprove(usrId);
+		return updateCnt > 0;
+	}
+	
+	@Override
+	public boolean doRefuseGuideApprove(String usrId) {
+		int updateCnt =this.userManagementDao.updateRefuseApprove(usrId);
+		return updateCnt > 0;
+	}
+	
 	
 	
 }
