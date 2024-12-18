@@ -370,6 +370,20 @@
 		SELECT #{inputYear} || ' ' || #{inputEndHour}
  		  FROM DUAL
 		</select>
+		
+		<select id="selectAttachMultyStartHour"
+				parameterType="com.mate.bbs.vo.GuideTourWriteVO"
+				resultType="string">
+			SELECT #{inputYear} || ' ' || #{inputStartHour}
+			  FROM DUAL
+		</select>
+		<select id="selectAttachMultyEndHour"
+				parameterType="com.mate.bbs.vo.GuideTourWriteVO"
+				resultType="string">
+			SELECT #{inputEndYear} || ' ' || #{inputEndHour}
+			  FROM DUAL
+		</select>
+		
 	<insert id="insertNewDetailInfo" 
 			parameterType="com.mate.bbs.vo.GuideTourDetailInfoVO">
 		INSERT INTO TR_DTL
@@ -431,4 +445,41 @@
 		 WHERE GD_TR_PST_ID = #{_parameter}
 	</select>
 	
+	<select id="selectLateGuideTour"
+			resultMap="guideTourVOMap">
+		SELECT D.*
+	      FROM	(SELECT GTR.GD_TR_PST_ID
+			 	  , GTR.ATHR_ID
+			      , GTR.USR_ID
+			      , GTR.GD_TR_TTL
+			      , GTR.GD_TR_ST_DT
+			      , GTR.GD_TR_ED_DT
+			      , CEIL(GTR.GD_TR_ST_DT - SYSDATE) AS DEADLINE
+				  , GTR.GD_TR_PRPS
+				  , GTR.GD_TR_MP
+				  , GTR.GD_TR_PRC
+				  , GTR.GD_TR_SMRY
+				  , GTR.TR_CT_ID
+				  , GTR.GD_TR_MX_NP
+				  , C.CITY_NAME 
+				  , CTR.COUNTRY_NAME
+				  , R.REGION_NAME
+				  , (SELECT AVG(GD_RVW_RTNG)
+			           FROM GD_RVW GR
+			          WHERE GR.GD_ID = GTR.ATHR_ID) AS AVG_GD_RVW
+			      , (SELECT ROUND(AVG(gtr2.GD_TR_RVW_RTNG), 1)
+                       FROM GD_TR_RVW gtr2
+                   	  WHERE gtr2.GD_TR_PST_ID = GTR.GD_TR_PST_ID ) AS AVG_RVW
+	     	   FROM GD_TR_RCRT GTR
+			   JOIN CITIES C
+			     ON C.CITY_ID = GTR.TR_CT_ID
+			   JOIN COUNTRIES CTR
+			     ON C.COUNTRY_ID = CTR.COUNTRY_ID
+			   JOIN REGIONS R
+			     ON R.REGION_ID = CTR.REGION_ID 
+			  WHERE GD_TR_ST_DT > SYSDATE
+			    AND GD_TR_IS_DLT = 'N'
+			  ORDER BY GTR.GD_TR_PST_ID DESC) D
+		WHERE ROWNUM = 1		
+	</select>
 </mapper>

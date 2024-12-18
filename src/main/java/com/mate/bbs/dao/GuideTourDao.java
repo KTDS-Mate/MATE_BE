@@ -82,6 +82,10 @@ public interface GuideTourDao {
      * @return
      */
     public String selectAttachModifyEndHour(GuideTourModifyVO guideTourModifyVO);
+    
+    public String selectAttachMultyStartHour(GuideTourWriteVO guideTourWriteVO);
+    public String selectAttachMultyEndHour(GuideTourWriteVO guideTourWriteVO);
+    
     /**
      * 가이드 투어 등록 폼에서 추가 정보를 담는 메소드.
      * @param guideTourDetailInfoVO
@@ -127,4 +131,6 @@ public interface GuideTourDao {
     
     public List<GuideTourImgVO> selectGuideTourImgList(String gdTrPstId);
     
+    /** 최신순 받아오기 위한 코드 */
+    public GuideTourVO selectLateGuideTour();
 }
