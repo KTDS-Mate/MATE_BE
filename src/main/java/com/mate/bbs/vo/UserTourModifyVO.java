@@ -19,12 +19,14 @@ public class UserTourModifyVO {
 	/**
 	 * 여행자가 등록한 투어 게시글의 제목
 	 */
-	@NotBlank(message ="제목을 작성해주세요!")
+	@NotBlank(message = "제목을 작성해주세요!")
 	private String usrTrTtl;
 	/**
 	 * 여행자가 입력한 input[date]의 값 받아오기
 	 */
 	private String inputYear;
+
+	private String inputEndYear;
 	/**
 	 * 여행자가 입력한 시작 시
 	 */
@@ -36,7 +38,7 @@ public class UserTourModifyVO {
 	/**
 	 * 여행자가 입력한 투어의 목적
 	 */
-	@NotBlank(message ="투어 목적을 작성해주세요!")
+	@NotBlank(message = "투어 목적을 작성해주세요!")
 	private String usrTrPrps;
 	/**
 	 * 여행자가 등록한 가이드와 만날 지점에 대한 정보
@@ -46,13 +48,11 @@ public class UserTourModifyVO {
 	/**
 	 * 여행자가 가이드에게 제시하는 고용 금액
 	 */
-	@Min(value = 1 , message = "1 이상의 값을 입력해주세요!")
-	@PositiveOrZero(message = "음수를 넣으실 수 없습니다!")
 	private double usrTrGdHrPrc;
 	/**
 	 * 여행자의 총 투어 인원
 	 */
-	@Min(value = 1 , message = "1 이상의 값을 입력해주세요!")
+	@Min(value = 1, message = "1 이상의 값을 입력해주세요!")
 	@PositiveOrZero(message = "음수를 넣으실 수 없습니다!")
 	private int usrTrNp;
 	/**
@@ -62,7 +62,7 @@ public class UserTourModifyVO {
 	/**
 	 * 여행자의 가이드 구인 게시글의 세부 요구사항 내용
 	 */
-	@NotBlank(message ="세부 요구사항을 작성해주세요!")
+	@NotBlank(message = "세부 요구사항을 작성해주세요!")
 	private String usrTrRqDtl;
 	/**
 	 * 원하는 가이드의 성별
@@ -96,126 +96,228 @@ public class UserTourModifyVO {
 	 * 투어 일정 리스트
 	 */
 	private List<UserTourSchdlVO> userTourSchdlList;
-	
+	/** 파일 업로드를 위한 이미지파일 변수 **/
+	private String imgFileName;
+	/**
+	 * 당일치기 체크 여부
+	 */
+	private boolean isChecked;
+
+	/** 여행자가 마커로 등록한 위치의 경도 **/
+	private String usrTrLat;
+
+	/** 여행자가 마커로 등록한 위치의 위도 **/
+	private String usrTrLng;
+
+	/** 여행자가 마커로 등록한 위치의 상세 주소 **/
+	private String usrTrAddrs;
+
 	public String getUsrTrPstId() {
 		return usrTrPstId;
 	}
+
 	public void setUsrTrPstId(String usrTrPstId) {
 		this.usrTrPstId = usrTrPstId;
 	}
+
 	public String getAthrId() {
 		return athrId;
 	}
+
 	public void setAthrId(String athrId) {
 		this.athrId = athrId;
 	}
+
 	public String getUsrTrTtl() {
 		return usrTrTtl;
 	}
+
 	public void setUsrTrTtl(String usrTrTtl) {
 		this.usrTrTtl = usrTrTtl;
 	}
+
 	public String getInputYear() {
 		return inputYear;
 	}
+
 	public void setInputYear(String inputYear) {
 		this.inputYear = inputYear;
 	}
+
+	public String getInputEndYear() {
+		return inputEndYear;
+	}
+
+	public void setInputEndYear(String inputEndYear) {
+		this.inputEndYear = inputEndYear;
+	}
+
 	public String getInputStartHour() {
 		return inputStartHour;
 	}
+
 	public void setInputStartHour(String inputStartHour) {
 		this.inputStartHour = inputStartHour;
 	}
+
 	public String getUsrTrStDt() {
 		return usrTrStDt;
 	}
+
 	public void setUsrTrStDt(String usrTrStDt) {
 		this.usrTrStDt = usrTrStDt;
 	}
+
 	public String getUsrTrPrps() {
 		return usrTrPrps;
 	}
+
 	public void setUsrTrPrps(String usrTrPrps) {
 		this.usrTrPrps = usrTrPrps;
 	}
+
 	public String getUsrTrMp() {
 		return usrTrMp;
 	}
+
 	public void setUsrTrMp(String usrTrMp) {
 		this.usrTrMp = usrTrMp;
 	}
+
 	public double getUsrTrGdHrPrc() {
 		return usrTrGdHrPrc;
 	}
+
 	public void setUsrTrGdHrPrc(double usrTrGdHrPrc) {
 		this.usrTrGdHrPrc = usrTrGdHrPrc;
 	}
+
 	public int getUsrTrNp() {
 		return usrTrNp;
 	}
+
 	public void setUsrTrNp(int usrTrNp) {
 		this.usrTrNp = usrTrNp;
 	}
+
 	public int getTrCtId() {
 		return trCtId;
 	}
+
 	public void setTrCtId(int trCtId) {
 		this.trCtId = trCtId;
 	}
+
 	public String getUsrTrRqDtl() {
 		return usrTrRqDtl;
 	}
+
 	public void setUsrTrRqDtl(String usrTrRqDtl) {
 		this.usrTrRqDtl = usrTrRqDtl;
 	}
+
 	public String getGdGndr() {
 		return gdGndr;
 	}
+
 	public void setGdGndr(String gdGndr) {
 		this.gdGndr = gdGndr;
 	}
+
 	public int getGdAge() {
 		return gdAge;
 	}
+
 	public void setGdAge(int gdAge) {
 		this.gdAge = gdAge;
 	}
+
 	public int getGdCrr() {
 		return gdCrr;
 	}
+
 	public void setGdCrr(int gdCrr) {
 		this.gdCrr = gdCrr;
 	}
+
 	public String getGdWntRq() {
 		return gdWntRq;
 	}
+
 	public void setGdWntRq(String gdWntRq) {
 		this.gdWntRq = gdWntRq;
 	}
+
 	public String getUsrTrEdDt() {
 		return usrTrEdDt;
 	}
+
 	public void setUsrTrEdDt(String usrTrEdDt) {
 		this.usrTrEdDt = usrTrEdDt;
 	}
+
 	public String getInputEndHour() {
 		return inputEndHour;
 	}
+
 	public void setInputEndHour(String inputEndHour) {
 		this.inputEndHour = inputEndHour;
 	}
+
 	public List<UserTourImgVO> getUserTourImgList() {
 		return userTourImgList;
 	}
+
 	public void setUserTourImgList(List<UserTourImgVO> userTourImgList) {
 		this.userTourImgList = userTourImgList;
 	}
+
 	public List<UserTourSchdlVO> getUserTourSchdlList() {
 		return userTourSchdlList;
 	}
+
 	public void setUserTourSchdlList(List<UserTourSchdlVO> userTourSchdlList) {
 		this.userTourSchdlList = userTourSchdlList;
 	}
-	
+
+	public String getImgFileName() {
+		return imgFileName;
+	}
+
+	public void setImgFileName(String imgFileName) {
+		this.imgFileName = imgFileName;
+	}
+
+	public boolean isChecked() {
+		return isChecked;
+	}
+
+	public void setChecked(boolean isChecked) {
+		this.isChecked = isChecked;
+	}
+
+	public String getUsrTrLat() {
+		return usrTrLat;
+	}
+
+	public void setUsrTrLat(String usrTrLat) {
+		this.usrTrLat = usrTrLat;
+	}
+
+	public String getUsrTrLng() {
+		return usrTrLng;
+	}
+
+	public void setUsrTrLng(String usrTrLng) {
+		this.usrTrLng = usrTrLng;
+	}
+
+	public String getUsrTrAddrs() {
+		return usrTrAddrs;
+	}
+
+	public void setUsrTrAddrs(String usrTrAddrs) {
+		this.usrTrAddrs = usrTrAddrs;
+	}
+
 }

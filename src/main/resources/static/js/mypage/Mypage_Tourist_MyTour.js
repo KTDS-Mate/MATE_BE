@@ -38,7 +38,7 @@ $().ready(function() {
 		$("#modal").css('display', 'block');
 		$("body").addClass("modal-open");
 		var usrTrPstId = $(this).data("pst-id");
-        var usrTrDivide = $(this).data("usr-tr-divide");
+		var usrTrDivide = $(this).data("usr-tr-divide");
 		var appendedDom = $(".requestList");
 
 		$.get(`/requestApply/${usrTrPstId}`, {}, function(result) {
@@ -48,18 +48,18 @@ $().ready(function() {
 			}
 			else {
 				for (var i = 0; i < requestGuideApplyCount; i++) {
-                    
-                    if(usrTrDivide === 'REQUEST') {
-                    var infoButton = ``;
-                    if (result.requestGuideApplys[i].gdApplyStt === 'WAITING'){
-                        infoButton = `<input class="viewBtn" type="button" value="투어 일정 보기" data-ps-id=${result.requestGuideApplys[i].gdApplyId} />`;
-                    } else if (result.requestGuideApplys[i].gdApplyStt === 'ACCEPT') {
-                        infoButton = '수락됨';
-                    } else if (result.requestGuideApplys[i].gdApplyStt === 'REFUSAL') {
-                        infoButton = '거절됨';
-                    }
-                        
-    					var applyBox = $(`<div class="applyBox">
+
+					if (usrTrDivide === 'REQUEST') {
+						var infoButton = ``;
+						if (result.requestGuideApplys[i].gdApplyStt === 'WAITING') {
+							infoButton = `<input class="viewBtn" type="button" value="투어 일정 보기" data-ps-id=${result.requestGuideApplys[i].gdApplyId} />`;
+						} else if (result.requestGuideApplys[i].gdApplyStt === 'ACCEPT') {
+							infoButton = '수락됨';
+						} else if (result.requestGuideApplys[i].gdApplyStt === 'REFUSAL') {
+							infoButton = '거절됨';
+						}
+
+						var applyBox = $(`<div class="applyBox">
 											<div class="leftModal">
 											  <div class="applyTitle">
 												  제목 : ${result.requestGuideApplys[i].gdApplyTtl}
@@ -80,22 +80,21 @@ $().ready(function() {
 											   ${infoButton}
                                             </div>
 										  </div>`);
-    					appendedDom.append(applyBox);
-                    } else if(usrTrDivide === 'SCHEDULE') {
-                        console.log("이거 계획짠 투어임");
-                        var infoButton = ``;
-                        if (result.requestGuideApplys[i].gdApplyStt === 'WAITING'){
-                            infoButton = `<div>
+						appendedDom.append(applyBox);
+					} else if (usrTrDivide === 'SCHEDULE') {
+						var infoButton = ``;
+						if (result.requestGuideApplys[i].gdApplyStt === 'WAITING') {
+							infoButton = `<div>
                                             <input class="acceptBtn" type="button" value="수락" data-ps-id=${result.requestGuideApplys[i].gdApplyId} />
                                             <input class="refusalBtn" type="button" value="거절" data-ps-id=${result.requestGuideApplys[i].gdApplyId} />
                                           </div>`;
-                        } else if (result.requestGuideApplys[i].gdApplyStt === 'ACCEPT') {
-                            infoButton = '수락됨';
-                        } else if (result.requestGuideApplys[i].gdApplyStt === 'REFUSAL') {
-                            infoButton = '거절됨';
-                        }
-                        
-    					var applyBox = $(`<div class="applyBox">
+						} else if (result.requestGuideApplys[i].gdApplyStt === 'ACCEPT') {
+							infoButton = '수락됨';
+						} else if (result.requestGuideApplys[i].gdApplyStt === 'REFUSAL') {
+							infoButton = '거절됨';
+						}
+
+						var applyBox = $(`<div class="applyBox">
 											<div class="leftModal">
 											  <div class="applyGuide">
 												<div>이름 : ${result.requestGuideApplys[i].userVO.usrLnm} ${result.requestGuideApplys[i].userVO.usrFnm}</div>
@@ -110,8 +109,8 @@ $().ready(function() {
 											   ${infoButton}
                                             </div>
 										  </div>`);
-    					appendedDom.append(applyBox);
-                    }
+						appendedDom.append(applyBox);
+					}
 				}
 			}
 
@@ -122,22 +121,22 @@ $().ready(function() {
 	$(document).on('click', ".viewBtn", function() {
 		var requestGuideApplyId = $(this).data("ps-id");
 		console.log(requestGuideApplyId);
-        location.href = `tourApply/detail?gdApplyId=${requestGuideApplyId}`;
+		location.href = `tourApply/detail?gdApplyId=${requestGuideApplyId}`;
 	});
-    
-    $(document).on('click', ".acceptBtn", function() {
-            var requestGuideApplyId = $(this).data("ps-id");
-            console.log(requestGuideApplyId);
-            location.href = `/tourApply/accept?gdApplyId=${requestGuideApplyId}`;
-    });
-    $(document).on('click', ".refusalBtn", function() {
-            var requestGuideApplyId = $(this).data("ps-id");
-            console.log(requestGuideApplyId);
-            location.href = `/tourApply/refusal?gdApplyId=${requestGuideApplyId}`;
-    });
-        
-	
-	
+
+	$(document).on('click', ".acceptBtn", function() {
+		var requestGuideApplyId = $(this).data("ps-id");
+		console.log(requestGuideApplyId);
+		location.href = `/tourApply/accept?gdApplyId=${requestGuideApplyId}`;
+	});
+	$(document).on('click', ".refusalBtn", function() {
+		var requestGuideApplyId = $(this).data("ps-id");
+		console.log(requestGuideApplyId);
+		location.href = `/tourApply/refusal?gdApplyId=${requestGuideApplyId}`;
+	});
+
+
+
 });
 
 function movePage(pageNo) {
