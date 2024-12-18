@@ -89,7 +89,7 @@ public class SecurityConfig {
 				CorsConfiguration corsConfiguration = new CorsConfiguration();
 				
 				// 허용할 도메인 목록
-				corsConfiguration.setAllowedOrigins(List.of("http://localhost:3000"));
+				corsConfiguration.setAllowedOrigins(List.of("http://localhost:3000", "http://3.38.186.79"));
 				// 허용할 메서드 목록 (외부에서 요청)
 				corsConfiguration.setAllowedMethods(List.of("POST", "PUT", "DELETE", "GET", "OPTIONS"));
 				corsConfiguration.setAllowedHeaders(List.of("*"));
@@ -116,9 +116,16 @@ public class SecurityConfig {
 				.requestMatchers("/guidetour/list").permitAll()
 				.requestMatchers("/guidetour/view**").permitAll()
 				.requestMatchers("/api/v1/guidetour/list").permitAll()
+				.requestMatchers("/api/v1/guidetour/getLateGuideTour").permitAll()
+				.requestMatchers("/api/v1/guidetour/insert").permitAll()
+				.requestMatchers("/api/v1/guidetour/count").permitAll()
 				.requestMatchers("/api/v1/guidetour/info/**").permitAll()
 				.requestMatchers("/api/v1/guidetour/imgs/**").permitAll()
+				.requestMatchers("/api/v1/guidetour/favorite/create").permitAll()
+				.requestMatchers("/api/v1/guidetour/**").permitAll()
+				.requestMatchers("/api/v1/guidetour/review/**").permitAll()
 				.requestMatchers("/").permitAll()
+				.requestMatchers("/api/v1/tourApply/detail/**").permitAll()
 				.requestMatchers("/user/regist").permitAll()
 				.requestMatchers("/usertour/list").permitAll()
 				.requestMatchers("/usertour/view**").permitAll()
@@ -134,6 +141,8 @@ public class SecurityConfig {
 		        .requestMatchers(HttpMethod.POST, "/api/user/send-auth-mail").permitAll()
 		        .requestMatchers(HttpMethod.POST, "/api/user/verify-auth-code").permitAll()
 				.requestMatchers("/api/v1/usertour/insert").permitAll()
+				.requestMatchers("/api/v1/usertour/modify").permitAll()
+				.requestMatchers("/api/v1/usertour/delete/**").permitAll()
 				.requestMatchers("/api/v1/request/insert").permitAll()
 				.requestMatchers("/api/v1/request/apply/insert").permitAll()
 				.requestMatchers("/api/v1/favorite/**").permitAll()
@@ -158,6 +167,9 @@ public class SecurityConfig {
 		        // 나중에 hasRole("ADMIN으로 변경")
 		        .requestMatchers("/api/v1/cms/**").permitAll()
 		        .requestMatchers("/api/v1/notice/**").permitAll()
+		        .requestMatchers("/api/v1/paymentservice/list").permitAll()
+		        .requestMatchers("/api/v1/paymentservice/update").permitAll()
+		        .requestMatchers("/api/v1/paymentservice/**").permitAll()
 		        .requestMatchers("/ws/notice").permitAll()
 		        .requestMatchers("/ws/chat").permitAll()
 		        .requestMatchers("/ws/**").permitAll()

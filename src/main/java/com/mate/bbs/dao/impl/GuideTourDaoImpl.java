@@ -86,6 +86,14 @@ public class GuideTourDaoImpl extends SqlSessionDaoSupport implements GuideTourD
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachModifyEndHour", guideTourModifyVO);
 	}
 	@Override
+	public String selectAttachMultyStartHour(GuideTourWriteVO guideTourWriteVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachMultyStartHour", guideTourWriteVO);
+	}
+	@Override
+	public String selectAttachMultyEndHour(GuideTourWriteVO guideTourWriteVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachMultyEndHour", guideTourWriteVO);
+	}
+	@Override
 	public int insertNewDetailInfo(GuideTourDetailInfoVO guideTourDetailInfoVO) {
 		return this.getSqlSession().insert(NAMESPACE + ".insertNewDetailInfo", guideTourDetailInfoVO);
 	}
@@ -124,6 +132,11 @@ public class GuideTourDaoImpl extends SqlSessionDaoSupport implements GuideTourD
 	@Override
 	public List<GuideTourImgVO> selectGuideTourImgList(String gdTrPstId) {
 		return this.getSqlSession().selectList(NAMESPACE + ".selectGuideTourImgList", gdTrPstId);
+	}
+	
+	@Override
+	public GuideTourVO selectLateGuideTour() {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectLateGuideTour");
 	}
 	
 }

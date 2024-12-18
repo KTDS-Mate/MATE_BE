@@ -48,4 +48,6 @@ public interface GuideTourService {
     
     public GuideTourImgListVO getGuideTourImgs(String gdTrPstId);
     
+    public GuideTourVO getLateGuideTour();
+    
 }
