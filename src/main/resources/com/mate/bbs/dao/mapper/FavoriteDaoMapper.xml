@@ -71,7 +71,7 @@
 	</select>
 	
 	<select id="selectAllGuideTourFavoriteList"
-			parameterType=""
+			parameterType="string"
 			resultMap="favoriteVOMap">
 		SELECT FAV_ID
 		     , FAV_CR_AT
@@ -104,6 +104,13 @@
 			parameterType="map">
 		DELETE FROM FVRTS 
 		 WHERE USR_TR_PST_ID = #{usrPstId}
+		   AND USR_LGN_ID = #{usrLgnId}
+	</delete>
+	
+	<delete id="deleteFavoriteGuideTour"
+			parameterType="map">
+		DELETE FROM FVRTS 
+		 WHERE GD_TR_PST_ID = #{gdTrPstId}
 		   AND USR_LGN_ID = #{usrLgnId}
 	</delete>
 

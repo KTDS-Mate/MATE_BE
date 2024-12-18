@@ -53,8 +53,10 @@ public class GuideTourServiceImpl implements GuideTourService{
 		
 		searchGuideTourVO.setListSize(5);
 		searchGuideTourVO.setPageCount(guideTourListCount);
+		
 		List<GuideTourVO> guideTourList = this.guideTourDao.selectAllGuideTour(searchGuideTourVO);
 		GuideTourListVO guideTourListVO = new GuideTourListVO();
+		
 		guideTourListVO.setGdTrPstCnt(guideTourListCount);
 		guideTourListVO.setGuideTourList(guideTourList);
 		// TODO 여기에 사진

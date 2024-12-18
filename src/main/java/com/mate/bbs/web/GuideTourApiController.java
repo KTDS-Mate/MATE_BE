@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mate.bbs.service.FavoriteService;
 import com.mate.bbs.service.GuideTourService;
+import com.mate.bbs.vo.FavoriteListVO;
+import com.mate.bbs.vo.FavoriteWriteVO;
 import com.mate.bbs.vo.GuideTourImgListVO;
 import com.mate.bbs.vo.GuideTourListVO;
 import com.mate.bbs.vo.GuideTourVO;
@@ -31,7 +33,8 @@ public class GuideTourApiController {
 	@Autowired
 	private GuideTourService guideTourService;
 	
-	
+	@Autowired
+	private FavoriteService favoriteService;
 	
 	/** 가이드가 등록한 투어 게시글 목록 조회 페이지 **/
 	@GetMapping("/guidetour/list")
@@ -104,7 +107,30 @@ public class GuideTourApiController {
         }
     }
     
+    @GetMapping("/favorite/{gdTrPstId}")
+    public ApiResponse getAllGuideTourFavorite(@PathVariable String gdTrPstId) {
+    	FavoriteListVO favoriteListVO = this.favoriteService.getAllGuideTourFavoriteList(gdTrPstId);
+    	ApiResponse apiResponse = new ApiResponse();
+    	apiResponse.setBody(favoriteListVO.getFavoriteList());
+    	
+    	return apiResponse;
+    }
     
+    @PostMapping("/guidetour/favorite/create")
+    public ApiResponse doCreateNewGuideTourFavorite(@RequestBody FavoriteWriteVO favoriteWriteVO) {
+    	boolean isCreated = this.favoriteService.createNewGuideTourFavorite(favoriteWriteVO);
+    	
+    	return new ApiResponse(isCreated);
+    }
+    
+    @GetMapping("/favorite/delete/{gdTrPstId}/{usrLgnId}")
+    public ApiResponse doDeleteGuideTourFavorite(@PathVariable String gdTrPstId, 
+    											 @PathVariable String usrLgnId) {
+    	boolean isDeleted = this.favoriteService.deleteGuideTourFavorite(gdTrPstId, usrLgnId);
+    	
+    	return new ApiResponse(isDeleted);
+    	
+    }
     
     @GetMapping("/guidetour/getLateGuideTour")
     public ApiResponse doGetLateGuideTour() {

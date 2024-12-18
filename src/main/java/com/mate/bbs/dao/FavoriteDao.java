@@ -27,7 +27,7 @@ public interface FavoriteDao {
 	
 	public int selectAllFavoriteCount(String pstId);
 	
-	public int selectAllGuideTourFavoriteCount(String pstId);
+	public int selectAllGuideTourFavoriteCount(String gdTrPstId);
 	
 	
 	
@@ -38,6 +38,8 @@ public interface FavoriteDao {
 	public int deleteFavIsDlt(@Param("usrPstId") String usrPstId
 							, @Param("usrLgnId") String usrLgnId);
 	
+	public int deleteFavoriteGuideTour(@Param("gdTrPstId") String gdTrPstId
+									 , @Param("usrLgnId") String usrLgnId);
 	
 	
 }
