@@ -50,6 +50,10 @@
 			 , UTR.USR_TR_STTS
 			 , UTR.USR_TR_DIVIDE
 			 , UTR.USR_TR_IS_DLT
+			 , UTR.ATHR_ID 
+			 , UTR.USR_TR_LAT
+             , UTR.USR_TR_LNG
+             , UTR.USR_TR_ADDRS
 			 , GD.USR_ID 
 			 , GD.USR_LNM
 			 , GD.USR_FNM

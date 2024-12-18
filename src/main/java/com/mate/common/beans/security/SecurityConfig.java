@@ -119,6 +119,7 @@ public class SecurityConfig {
 				.requestMatchers("/api/v1/guidetour/info/**").permitAll()
 				.requestMatchers("/api/v1/guidetour/imgs/**").permitAll()
 				.requestMatchers("/").permitAll()
+				.requestMatchers("/api/v1/tourApply/detail/**").permitAll()
 				.requestMatchers("/user/regist").permitAll()
 				.requestMatchers("/usertour/list").permitAll()
 				.requestMatchers("/usertour/view**").permitAll()
