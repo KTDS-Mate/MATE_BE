@@ -32,9 +32,9 @@ public class PaymentServiceApiController {
 
 	@PostMapping("/paymentservice/update")
 	public ApiResponse doUpdatePaymentStts(@RequestBody PaymentServiceUpdateVO paymentServiceUpdateVO) {
-		boolean isUpdated = this.paymentServiceService.updatePaymentServiceStts(paymentServiceUpdateVO);
-		
-		return new ApiResponse(isUpdated);
+	    boolean isUpdated = this.paymentServiceService.updatePaymentServiceStts(paymentServiceUpdateVO);
+	    return new ApiResponse(isUpdated);
 	}
+
 	
 }
