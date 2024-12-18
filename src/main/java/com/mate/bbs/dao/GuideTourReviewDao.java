@@ -43,4 +43,6 @@ public interface GuideTourReviewDao {
      * @return
      */
     public int deleteGuideTourReview(String gdTrRvwId);
+    /** 최근 리뷰 가져오기 **/
+    public GuideTourReviewVO selectLateGuideTourReview();
 }
