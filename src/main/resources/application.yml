@@ -97,6 +97,7 @@ app:
       /api/maps/geocode,
       /api/maps//reverse-geocode,
       /api/v1/notice/**,
+      /api/v1/paymentservice/**,
       /ws/notice,
       /ws/chat,
       /ws/**,
