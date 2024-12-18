@@ -41,8 +41,8 @@ public class PaymentServiceServiceImpl implements PaymentServiceService {
 	
 	@Override
 	public boolean updatePaymentServiceStts(PaymentServiceUpdateVO paymentServiceUpdateVO) {
-		int updateCount = this.paymentServiceDao.updatePayStts(paymentServiceUpdateVO);
-		return updateCount > 0;
+	    int updateCount = this.paymentServiceDao.updatePayStts(paymentServiceUpdateVO);
+	    return updateCount > 0;
 	}
 	
 }
