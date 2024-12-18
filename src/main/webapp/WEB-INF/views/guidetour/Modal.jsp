@@ -59,10 +59,19 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
         />
       </div>
       <div class="picArea">
+        
+      </div>
+    </dialog>
+    <dialog id="morepicModalArea" class="more-picModal hidden">
+      <div class="morePicCloseButtonArea">
         <img
-          src="${guideTourVO.guideTourImgList[0].gdTrImgUrl}"
-          alt="확대 사진"
+          src="/public/close.png"
+          alt="닫기 버튼"
+          class="pic-more-CloseButton btn-close-more-pic-modal"
         />
+      </div>
+      <div class="more-picArea">
+        
       </div>
     </dialog>
     <dialog id="viewAllReviewModal" class="viewAllReviewModal hidden">

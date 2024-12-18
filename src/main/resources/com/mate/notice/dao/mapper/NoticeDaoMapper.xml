@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mate.notice.dao.NoticeDao">
+
+    <!-- 1. 알림 생성 -->
+    <insert id="insertNotice" parameterType="com.mate.notice.vo.NoticeVO">
+        INSERT INTO NTC
+             ( NTC_ID
+             , RCPNT_ID
+             , NTC_IS_RD
+             , NTC_INF
+             , NTC_CR_AT
+             , NTC_IS_DLT
+             , NTC_URL )
+        VALUES ( 'NTC-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_NTC_PK.NEXTVAL, 6, 0)
+             , #{rcpntId}
+             , 'N'
+             , #{ntcInf}
+             , SYSDATE
+             , 'N' 
+             , #{ntcUrl} )
+    </insert>
+
+    <!-- 2. 특정 사용자에 대한 읽지 않은 알림 조회 -->
+    <select id="selectUnreadNoticesByRecipientId" resultType="com.mate.notice.vo.NoticeVO">
+        SELECT NTC_ID
+             , RCPNT_ID
+             , NTC_IS_RD
+             , NTC_INF
+             , TO_CHAR(NTC_CR_AT, 'YYYY-MM-DD HH24:MI:SS') AS NTC_CR_AT
+             , NTC_IS_DLT
+             , TO_CHAR(NTC_DLT_AT, 'YYYY-MM-DD HH24:MI:SS') AS NTC_DLT_AT
+             , NTC_URL
+          FROM NTC
+         WHERE RCPNT_ID = #{rcpntId}
+           AND NTC_IS_RD = 'N'
+           AND NTC_IS_DLT = 'N'
+         ORDER BY NTC_CR_AT DESC
+    </select>
+
+    <select id="selectAllNoticesByReceipientId" 
+            parameterType="string"
+            resultType="com.mate.notice.vo.NoticeVO">
+        SELECT *
+          FROM NTC
+         WHERE RCPNT_ID = #{_parameter}
+           AND NTC_IS_DLT = 'N'
+         ORDER BY NTC_ID
+    </select>
+
+    <!-- 3. 알림 읽음 상태로 업데이트 -->
+    <update id="updateNoticeReadStatus">
+        UPDATE NTC
+           SET NTC_IS_RD = 'Y'
+         WHERE NTC_ID = #{ntcId}
+    </update>
+
+    <!-- 4. 알림 삭제 처리 -->
+    <update id="deleteNotice">
+        UPDATE NTC
+           SET NTC_IS_DLT = 'Y'
+             , NTC_DLT_AT = SYSDATE
+         WHERE NTC_ID = #{ntcId}
+    </update>
+
+</mapper>

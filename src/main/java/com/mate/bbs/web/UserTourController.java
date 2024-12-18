@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.mate.bbs.service.TourApplyService;
 import com.mate.bbs.service.UserTourService;
+import com.mate.bbs.vo.RequestGuideApplyWriteVO;
 import com.mate.bbs.vo.SearchUserTourVO;
+import com.mate.bbs.vo.TourApplyVO;
+import com.mate.bbs.vo.TourGuideApplyWriteVO;
 import com.mate.bbs.vo.UserTourListVO;
 import com.mate.bbs.vo.UserTourModifyVO;
 import com.mate.bbs.vo.UserTourVO;
@@ -25,6 +29,9 @@ public class UserTourController {
 
 	@Autowired
 	private UserTourService userTourService;
+	
+	@Autowired
+	private TourApplyService tourApplyService;
 
 	/** 클라이언트가 등록한 가이드 구인 게시글 목록 조회 페이지 **/
 	@GetMapping("/usertour/list")
@@ -43,7 +50,29 @@ public class UserTourController {
 		model.addAttribute("userTourVO", userTourVO);
 		return "usertour/GuideRecruitmentPage";
 	}
-
+	
+	
+	@PostMapping("/usertour/view")
+	public String doCreateNewTourGuideApply(@RequestParam String usrTrPstId,
+			@Valid TourGuideApplyWriteVO tourGuideApplyWriteVO,
+			BindingResult result,
+			Model model, 
+			@SessionAttribute(value= "_LOGIN_USER_", required= false) UserVO loginUserVO) {
+		if (result.hasErrors()) {
+			model.addAttribute("requestGuideApplyWriteVO", tourGuideApplyWriteVO);
+			return "usertour/request_view";
+		}
+		tourGuideApplyWriteVO.setGdId(loginUserVO.getUsrLgnId());
+		// 기존 tourGuideApplyVO에 userTrPstId가 (usrTrPstId, usrTrPstId)형태로 들어있어서 다시 받아옴
+		tourGuideApplyWriteVO.setUsrTrPstId(usrTrPstId);
+		
+		this.userTourService.createNewTourGuideApply(tourGuideApplyWriteVO);
+		
+		return "redirect:/usertour/view?usrTrPstId=" + usrTrPstId;
+	}
+	
+	
+	
 	/** 클라이언트가 등록한 가이드 구인 게시글 작성 페이지 **/
 	@GetMapping("/usertour/insert")
 	public String viewUserTourInsertPage() {
@@ -112,7 +141,7 @@ public class UserTourController {
 			@SessionAttribute(value = "_LOGIN_USER_", required = false) UserVO loginUserVO) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("userTourWriteVO", userTourWriteVO);
-			return "usertour//tourist_request_insert";
+			return "usertour/tourist_request_insert";
 		}
 		userTourWriteVO.setAthrId(loginUserVO.getUsrLgnId());
 
@@ -127,5 +156,81 @@ public class UserTourController {
 		model.addAttribute("userTourVO", userTourVO);
 		return "usertour/request_view";
 	}
+	
+	@GetMapping("/tourApply/list")
+	public String viewTourApplyList(
+//			@RequestParam String usrTrPstId,
+			Model model) {
+		return "usertour/tour_apply_list";
+	}
 
+	@GetMapping("/mypage/mytour/tr-mytour/tourApply/detail")
+	public String viewTourApply(@RequestParam String gdApplyId, Model model) {
+		TourApplyVO tourApplyVO = this.tourApplyService.getOneTourApply(gdApplyId);
+		model.addAttribute("tourApplyVO", tourApplyVO);
+		model.addAttribute("userTourVO", tourApplyVO.getUserTourVO());
+		model.addAttribute("guideVO", tourApplyVO.getGuideVO());
+		return "usertour/tour_apllyInfo";
+	}
+	
+	@GetMapping("/tourApply/accept")
+	public String acceptApply( @RequestParam String gdApplyId,
+			@SessionAttribute(value = "_LOGIN_USER_", required = false) UserVO loginUserVO) {
+		try {
+			this.tourApplyService.acceptTourApply(gdApplyId, loginUserVO);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return "redirect:/mypage/mytour/tr-mytour/tourApply/detail?gdApplyId=" + gdApplyId;
+		}
+		return "redirect:/mypage/payment/list/" + loginUserVO.getUsrLgnId();
+	}
+	
+	@GetMapping("/tourApply/refusal")
+	public String refusalApply(@RequestParam String gdApplyId, 
+			@SessionAttribute(value = "_LOGIN_USER_", required = false) UserVO loginUserVO) {
+		try {
+			this.tourApplyService.refusalTourApply(gdApplyId, loginUserVO);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return "redirect:/mypage/mytour/tr-mytour/tourApply/detail?gdApplyId=" + gdApplyId;
+		}
+		return "redirect:/mypage/mytour/tr-mytour/" + loginUserVO.getUsrLgnId();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@PostMapping("/usertour/view/request")
+	public String doCreateNewRequestGuideApply(@RequestParam String usrTrPstId,
+											   @Valid RequestGuideApplyWriteVO requestGuideApplyWriteVO,
+			 								   BindingResult result,
+			 								   Model model,
+			 								   @SessionAttribute(value = "_LOGIN_USER_", required = false) UserVO loginUserVO) {
+		if (result.hasErrors()) {
+			model.addAttribute("requestGuideApplyWriteVO", requestGuideApplyWriteVO);
+			return "usertour/request_view";
+		}
+		requestGuideApplyWriteVO.setGdId(loginUserVO.getUsrLgnId());
+		// 기존 requestGuideAppplyVO에 usrTrPstId가 (usrTrPstId, usrTrPstId)형태로 들어있어서 다시 받아옴
+		requestGuideApplyWriteVO.setUsrTrPstId(usrTrPstId);
+		
+		this.userTourService.createNewRequestGuideApply(requestGuideApplyWriteVO);
+		
+		return "redirect:/usertour/view/request?usrTrPstId="+ usrTrPstId;
+	}
 }

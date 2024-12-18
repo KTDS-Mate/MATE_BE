@@ -43,7 +43,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
         <div class="container">
           <div class="title">
             <input
-              id=""
+              class="ttl-wb"
               type="hidden"
               data-gd-pst-id="${guideTourVO.gdTrPstId}"
             />
@@ -53,26 +53,71 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
           <!-- <div class="reviewWriteModal hidden"> -->
           <jsp:include page="Modal.jsp" />
           <div class="firstLayer">
-            <div class="tourPicArea">
-              <div class="bigPicArea btn-open-pic-modal">
-                <img src="/public/다낭.jpg" alt="사진 1" />
-              </div>
-              <div class="smallPicAreas">
-                <div class="smallPicArea btn-open-pic-modal">
-                  <img class="brs" src="/public/다낭.jpg" alt="사진 1" />
-                </div>
-                <div class="smallPicArea btn-open-pic-modal">
-                  <img src="/public/다낭.jpg" alt="사진 2" />
-                </div>
-                <div class="morePicArea">
-                  <img
-                    src="/img/tourboard/MorePicButton.png"
-                    alt="더보기 버튼"
-                    onclick="location.href='index.html'"
-                  />
-                </div>
-              </div>
-            </div>
+          	<c:choose>
+          		<c:when test="${guideTourVO.guideImgCount == 0}">
+          			<div class="bigOneImgArea">
+		              <div class="oneImgArea btn-open-pic-modal" data-img-url="/img/tourlist/기본이미지.png">
+		                <img src="/img/tourlist/기본이미지.png" alt="기본 이미지" />
+		              </div>
+		            </div>
+          		</c:when>
+          		<c:when test="${guideTourVO.guideImgCount == 1}">
+          			<div class="bigOneImgArea">
+		              <div class="oneImgArea btn-open-pic-modal" data-img-url="${guideTourVO.guideTourImgList[0].gdTrImgUrl}">
+		                <img src="${guideTourVO.guideTourImgList[0].gdTrImgUrl}" alt="사진 1" />
+		              </div>
+		            </div>
+          		</c:when>
+          		<c:when test="${guideTourVO.guideImgCount == 2}">
+          			<div class="tourPicArea">
+		              <div class="twoImgArea1 btn-open-pic-modal" data-img-url="${guideTourVO.guideTourImgList[0].gdTrImgUrl}">
+		                <img src="${guideTourVO.guideTourImgList[0].gdTrImgUrl}" alt="사진 1" />
+		              </div>
+		              <div class="twoImgArea2 btn-open-pic-modal" data-img-url="${guideTourVO.guideTourImgList[1].gdTrImgUrl}">
+		                  <img class="brs" src="${guideTourVO.guideTourImgList[1].gdTrImgUrl}" alt="사진 1" />
+		              </div>
+		            </div>
+          		</c:when>
+          		<c:when test="${guideTourVO.guideImgCount == 3}">
+          			<div class="tourPicArea">
+		              <div class="bigPicArea btn-open-pic-modal" data-img-url="${guideTourVO.guideTourImgList[0].gdTrImgUrl}">
+		                <img src="${guideTourVO.guideTourImgList[0].gdTrImgUrl}" alt="사진 1" />
+		              </div>
+		              <div class="smallPicAreas">
+		                <div class="threeImgArea1 btn-open-pic-modal" data-img-url="${guideTourVO.guideTourImgList[1].gdTrImgUrl}">
+		                  <img class="brs" src="${guideTourVO.guideTourImgList[1].gdTrImgUrl}" alt="사진 1" />
+		                </div>
+		                <div class="threeImgArea2 btn-open-pic-modal" data-img-url="${guideTourVO.guideTourImgList[2].gdTrImgUrl}">
+		                  <img src="${guideTourVO.guideTourImgList[2].gdTrImgUrl}" alt="사진 2" />
+		                </div>
+		              </div>
+		            </div>
+          		</c:when>
+          		<c:otherwise>
+          			<div class="tourPicArea">
+		              <div class="bigPicArea btn-open-pic-modal" data-img-url="${guideTourVO.guideTourImgList[0].gdTrImgUrl}">
+		                <img src="${guideTourVO.guideTourImgList[0].gdTrImgUrl}" alt="사진 1" />
+		              </div>
+		              <div class="smallPicAreas">
+		                <div class="smallPicArea btn-open-pic-modal" data-img-url="${guideTourVO.guideTourImgList[1].gdTrImgUrl}">
+		                  <img class="brs" src="${guideTourVO.guideTourImgList[1].gdTrImgUrl}" alt="사진 1" />
+		                </div>
+		                <div class="smallPicArea btn-open-pic-modal" data-img-url="${guideTourVO.guideTourImgList[2].gdTrImgUrl}">
+		                  <img src="${guideTourVO.guideTourImgList[2].gdTrImgUrl}" alt="사진 2" />
+		                </div>
+		                <div class="morePicArea">
+		                  <img class="beforeImg" src="${guideTourVO.guideTourImgList[3].gdTrImgUrl}" alt="사진 3" />
+		                  <img class="opacityImg" src="/img/tourlist/불투명처리.png" alt="사진 불투명 처리" />
+		                  <img
+		                    class="plusImgBtn"
+		                    src="/img/tourboard/MorePicButton.png"
+		                    alt="더보기 버튼"
+		                  />
+		                </div>
+		              </div>
+		            </div>
+          		</c:otherwise>
+          	</c:choose>
             <div class="priceArea">
               <div class="priceTitleArea">
                 <span>Price</span>
@@ -86,7 +131,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                 </div>
                 <c:if test="${sessionScope._LOGIN_USER_.usrIsGd eq 'N'}">
                   <div class="reserveButton">
-                    <span onclick="location.href='index.html'">예약 요청</span>
+                    <span class="btnbtn" >예약 요청</span>
                   </div>
                 </c:if>
               </div>
@@ -119,7 +164,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
               <div class="profileDetailArea">
                 <img
                   src="${guideTourVO.userVO.gdPrflImg}"
-                  onerror="this.onerror=null; this.src='/img/guide/가이드 샘플 사진.jpg';"
+                  onerror="this.onerror=null; this.src='/img/guide/가이드 샘플 사진.png';"
                   alt="가이드 사진"
                 />
                 <div class="profileSummaryArea">
@@ -314,7 +359,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       <meter
                         class="ratingGage"
                         min="0"
-                        max="100"
+                        max="${reviewList.guideTourReviewList[0].sumCount}"
                         value="${reviewList.guideTourReviewList[0].fiveCount}"
                       ></meter>
                       <span class="ratingCount"
@@ -327,7 +372,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       <meter
                         class="ratingGage"
                         min="0"
-                        max="100"
+                        max="${reviewList.guideTourReviewList[0].sumCount}"
                         value="${reviewList.guideTourReviewList[0].fourCount}"
                       ></meter>
                       <span class="ratingCount"
@@ -340,7 +385,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       <meter
                         class="ratingGage"
                         min="0"
-                        max="100"
+                        max="${reviewList.guideTourReviewList[0].sumCount}"
                         value="${reviewList.guideTourReviewList[0].threeCount}"
                       ></meter>
                       <span class="ratingCount"
@@ -353,7 +398,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       <meter
                         class="ratingGage"
                         min="0"
-                        max="100"
+                        max="${reviewList.guideTourReviewList[0].sumCount}"
                         value="${reviewList.guideTourReviewList[0].twoCount}"
                       ></meter>
                       <span class="ratingCount"
@@ -366,7 +411,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       <meter
                         class="ratingGage"
                         min="0"
-                        max="100"
+                        max="${reviewList.guideTourReviewList[0].sumCount}"
                         value="${reviewList.guideTourReviewList[0].oneCount}"
                       ></meter>
                       <span class="ratingCount"

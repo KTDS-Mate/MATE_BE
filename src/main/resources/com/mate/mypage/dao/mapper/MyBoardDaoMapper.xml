@@ -185,6 +185,7 @@
 			,u.USR_TR_IS_DLT 
 			,u.TR_CT_ID  
 			,u.USR_TR_STTS
+			,u.USR_TR_DIVIDE
 			,c.CITY_ID 
 			,c.CITY_NAME 
 			,c.COUNTRY_ID 

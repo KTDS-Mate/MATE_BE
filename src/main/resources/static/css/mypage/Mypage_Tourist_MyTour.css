@@ -1,3 +1,131 @@
+.redColor {
+	width: 80%;
+	margin: 0 auto;
+	color: #f00;
+	text-align: center;
+	font-size: small;
+}
+
+.modal {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	max-width: 100%;
+	height: 100%;
+	max-height: 100%;
+	background-color: #0004;
+	overflow-y: auto;
+	z-index: 9999; 
+}
+
+.modal-content {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	width: 50%;
+	height: 60%;
+	padding: 30px;
+	border-radius: 20px;
+}
+
+.close {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	font-size: 24px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.close:hover {
+	color: #f00;
+}
+
+.modal-open {
+	overflow: hidden;
+}
+
+.insert-main {
+  border-radius: 20px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  width: 45rem;
+  height: 40rem;
+  margin: 0 auto;
+  overflow: auto;
+}
+
+.insert-main::-webkit-scrollbar {
+	width: 0;
+}
+
+.requestList {
+	display: flex;
+	flex-direction: column;
+}
+
+.applyBox {
+	display: flex;
+	justify-content: space-between;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	padding: 0.5rem;
+	width: 90%;
+	margin: 0 auto;
+	margin-bottom: 1rem;
+}
+
+.leftModal {
+	padding-left: 1rem;
+}
+
+.rightModal {
+	padding-right: 1rem;
+}
+
+.viewBtn {
+	border: 0;
+	border-radius: 5px;
+	padding: 0.3rem;
+	background-color: #fff6ec;
+	color: #333;
+}
+
+.viewBtn:hover {
+	background-color: #fff6ee;
+	cursor: pointer;
+}
+
+.acceptBtn {
+    border: 0;
+    border-radius: 5px;
+    padding: 0.3rem;
+    background-color: #fff6ec;
+    color: #333;
+}
+.acceptBtn:hover {
+    background-color: #fff6ee;
+    cursor: pointer;
+}
+
+.refusalBtn {
+    border: 0;
+    border-radius: 5px;
+    padding: 0.3rem;
+    background-color: #fff6ec;
+    color: #333;
+}
+
+.refusalBtn:hover {
+    background-color: #fff6ee;
+    cursor: pointer;
+}
+
 div.content-grid {
   display: grid;
   grid-template-columns: 13rem 1fr;
@@ -110,6 +238,9 @@ input::placeholder {
 }
 
 .right-align {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   text-align: right;
   margin-right: 1rem;
   margin-top: 0.5rem;
@@ -131,7 +262,19 @@ input::placeholder {
   height: 100%;
 }
 
+.guideBtn {
+	background-color: #fff6ec;
+	color: #333;
+	border-radius: 5px;
+	padding: 0.3rem;
+	margin-bottom: 1rem;
+	border: 0;
+}
 
+.guideBtn:hover {
+	background-color: #fff6ee;
+	cursor: pointer;
+}
 
 .page-nav {
 	margin: 0px;

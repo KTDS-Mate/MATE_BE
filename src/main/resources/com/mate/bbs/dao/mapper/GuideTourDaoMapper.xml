@@ -107,18 +107,16 @@
 			resultType="_int">
 		SELECT COUNT(1)
 		  FROM GD_TR_RCRT GTR
-	     LEFT JOIN GD_TR_RCRT_IMG GTRI
-	       ON GTR.GD_TR_PST_ID = GTRI.GD_TR_PST_ID 
-	     JOIN CITIES C
-	       ON C.CITY_ID = GTR.TR_CT_ID
-	     JOIN COUNTRIES CTR
-	       ON C.COUNTRY_ID = CTR.COUNTRY_ID
-	     JOIN REGIONS R
-	       ON R.REGION_ID = CTR.REGION_ID 
-	     JOIN USR_INF UI
-	       ON GTR.ATHR_ID = UI.USR_LGN_ID 
-	    WHERE GTR.GD_TR_ST_DT > SYSDATE
-	      AND GTR.GD_TR_IS_DLT = 'N'
+		  JOIN CITIES C
+	        ON C.CITY_ID = GTR.TR_CT_ID
+	      JOIN COUNTRIES CTR
+	        ON C.COUNTRY_ID = CTR.COUNTRY_ID
+	      JOIN REGIONS R
+	        ON R.REGION_ID = CTR.REGION_ID 
+	      JOIN USR_INF UI
+	        ON GTR.ATHR_ID = UI.USR_LGN_ID
+	     WHERE GTR.GD_TR_ST_DT > SYSDATE
+	       AND GTR.GD_TR_IS_DLT = 'N'
 	    <if test="_parameter != null">
 		 	<include refid="com.mate.bbs.dao.GuideTourDao.selectRegions" />
 		</if>
@@ -152,6 +150,7 @@
 		     , UI.USR_GNDR 
 		     , UI.USR_SLF_INTDCTN 
 		     , UI.USR_GD_EXP 
+		     , UI.GD_PRFL_IMG
 		     , C.COUNTRY_NAME 
 		     , CT.CITY_NAME 
 		     , TRUNC(MONTHS_BETWEEN(TRUNC(SYSDATE), UI.USR_BD)/ 12) AS guide_Age
@@ -193,12 +192,10 @@
 		  FROM TR_SCHD_INF
 		 WHERE GD_TR_PST_ID = #{_parameter}
 	</select>
+	
 	<select id="selectAllGuideTour" 
 			resultMap="guideTourVOMap"
 			parameterType="com.mate.bbs.vo.SearchGuideTourVO">
-	<if test="_parameter != null">
-			<include refid="Common.pagination_header" />
-	</if>
 		SELECT GTR.GD_TR_PST_ID
 			 , GTR.ATHR_ID
 			 , GTR.USR_ID
@@ -213,43 +210,67 @@
 			 , GTR.TR_CT_ID
 			 , GTR.GD_TR_MX_NP
 			 , GTRI.GD_TR_IMG_URL 
-			 , C.CITY_NAME 
-			 , CTR.COUNTRY_NAME
-			 , R.REGION_NAME
+			 , GTR.CITY_NAME 
+			 , GTR.COUNTRY_NAME
+			 , GTR.REGION_NAME
 			 , UI.USR_LNM 
 			 , UI.USR_FNM 
-			 , (SELECT AVG(GD_RVW_RTNG)
-			      FROM GD_RVW GR
-			     WHERE GR.GD_ID = GTR.ATHR_ID) AS AVG_GD_RVW
-			 , ( SELECT ROUND(AVG(gtr2.GD_TR_RVW_RTNG), 1)
-                   FROM GD_TR_RVW gtr2
-                  WHERE gtr2.GD_TR_PST_ID = GTR.GD_TR_PST_ID ) AS AVG_RVW
-	     FROM GD_TR_RCRT GTR
+			 , GTR.AVG_GD_RVW
+			 , GTR.AVG_RVW
+	     FROM (
+			<if test="_parameter != null">
+				<include refid="Common.pagination_header" />
+			</if>
+	     	 SELECT GTR.GD_TR_PST_ID
+			 	  , GTR.ATHR_ID
+			      , GTR.USR_ID
+			      , GTR.GD_TR_TTL
+			      , GTR.GD_TR_ST_DT
+			      , GTR.GD_TR_ED_DT
+			      , CEIL(GTR.GD_TR_ST_DT - SYSDATE) AS DEADLINE
+				  , GTR.GD_TR_PRPS
+				  , GTR.GD_TR_MP
+				  , GTR.GD_TR_PRC
+				  , GTR.GD_TR_SMRY
+				  , GTR.TR_CT_ID
+				  , GTR.GD_TR_MX_NP
+				  , C.CITY_NAME 
+				  , CTR.COUNTRY_NAME
+				  , R.REGION_NAME
+				  , (SELECT AVG(GD_RVW_RTNG)
+			           FROM GD_RVW GR
+			          WHERE GR.GD_ID = GTR.ATHR_ID) AS AVG_GD_RVW
+			      , (SELECT ROUND(AVG(gtr2.GD_TR_RVW_RTNG), 1)
+                       FROM GD_TR_RVW gtr2
+                   	  WHERE gtr2.GD_TR_PST_ID = GTR.GD_TR_PST_ID ) AS AVG_RVW
+	     	   FROM GD_TR_RCRT GTR
+			   JOIN CITIES C
+			     ON C.CITY_ID = GTR.TR_CT_ID
+			   JOIN COUNTRIES CTR
+			     ON C.COUNTRY_ID = CTR.COUNTRY_ID
+			   JOIN REGIONS R
+			     ON R.REGION_ID = CTR.REGION_ID 
+			  WHERE GD_TR_ST_DT > SYSDATE
+			    AND GD_TR_IS_DLT = 'N'
+		    <if test="_parameter != null">
+			 	<include refid="com.mate.bbs.dao.GuideTourDao.selectRegions" />
+			</if>
+		    <if test="_parameter != null">
+		    	<include refid="com.mate.bbs.dao.GuideTourDao.selectTitleAndContent" />
+		    </if>
+		    <if test="_parameter != null">
+		    	<include refid="com.mate.bbs.dao.GuideTourDao.order" />
+		    </if>
+	    	<if test="_parameter != null">
+				<include refid="Common.pagination_footer" />
+			</if>
+	     ) GTR
 	     LEFT JOIN GD_TR_RCRT_IMG GTRI
 	       ON GTR.GD_TR_PST_ID = GTRI.GD_TR_PST_ID 
-	     JOIN CITIES C
-	       ON C.CITY_ID = GTR.TR_CT_ID
-	     JOIN COUNTRIES CTR
-	       ON C.COUNTRY_ID = CTR.COUNTRY_ID
-	     JOIN REGIONS R
-	       ON R.REGION_ID = CTR.REGION_ID 
 	     JOIN USR_INF UI
 	       ON GTR.ATHR_ID = UI.USR_LGN_ID
-	    WHERE GTR.GD_TR_ST_DT > SYSDATE
-	      AND GTR.GD_TR_IS_DLT = 'N'
-	    <if test="_parameter != null">
-		 	<include refid="com.mate.bbs.dao.GuideTourDao.selectRegions" />
-		</if>
-	    <if test="_parameter != null">
-	    	<include refid="com.mate.bbs.dao.GuideTourDao.selectTitleAndContent" />
-	    </if>
-	    <if test="_parameter != null">
-	    	<include refid="com.mate.bbs.dao.GuideTourDao.order" />
-	    </if>
-	    <if test="_parameter != null">
-			<include refid="Common.pagination_footer" />
-		</if>
 	</select>
+	
 	<insert id="insertNewGuideTour" 
 			parameterType="com.mate.bbs.vo.GuideTourWriteVO">
 		<!--
@@ -385,4 +406,21 @@
 		  FROM GD_TR_RCRT
 		 ORDER BY DBMS_RANDOM.VALUE
 	</select>
+	
+	<select id="selectImgCount"
+			parameterType="string"
+			resultType="_int">
+		SELECT COUNT(1)
+		  FROM GD_TR_RCRT_IMG
+		 WHERE GD_TR_PST_ID = #{_parameter}
+	</select>
+	
+	<select id="selectGuideTourImgList"
+			parameterType="string"
+			resultType="com.mate.bbs.vo.GuideTourImgVO">
+		SELECT GD_TR_IMG_URL
+		  FROM GD_TR_RCRT_IMG
+		 WHERE GD_TR_PST_ID = #{_parameter}
+	</select>
+	
 </mapper>

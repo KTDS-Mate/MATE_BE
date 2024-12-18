@@ -16,7 +16,7 @@
 		      , #{email}
 		      , #{authCode}
 		      , SYSDATE
-		      , 'Y')
+		      , 'N')
 	</insert>
 	
 	<select id="getAuthCodeByEmail" parameterType="String" resultType="com.mate.mail.vo.EmailVO">
@@ -26,15 +26,23 @@
 		              , AUTH_MAIL_ISSUETIME
 		           FROM AUTH_MAIL
 		          WHERE AUTH_MAIL_EMAIL = #{email}
+		            AND AUTH_MAIL_VERIFIED = 'N'
 		          ORDER BY AUTH_MAIL_ISSUETIME DESC)
 		 WHERE ROWNUM = 1 
 	</select>
 	
 	<update id="invalidatePrevAuthCode" parameterType="String">
 		 UPDATE AUTH_MAIL
-		    SET AUTH_MAIL_VERIFIED = 'N'
+		    SET AUTH_MAIL_VERIFIED = 'Y'
 		  WHERE AUTH_MAIL_EMAIL = #{email}
+		    AND AUTH_MAIL_VERIFIED = 'N'
 	</update>
+	
+	<update id="markAuthCodeAsVerified" parameterType="String">
+    UPDATE AUTH_MAIL
+       SET AUTH_MAIL_VERIFIED = 'Y'
+     WHERE AUTH_MAIL_EMAIL = #{email} AND AUTH_MAIL_VERIFIED = 'N'
+    </update>
 	
 	<update id="updateTempPassword" parameterType="com.mate.mail.vo.EmailVO">
 		UPDATE EMAIL_AUTH

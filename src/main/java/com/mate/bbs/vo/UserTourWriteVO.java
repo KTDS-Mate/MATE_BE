@@ -104,6 +104,15 @@ public class UserTourWriteVO {
 	 */
 	private boolean isChecked;
 
+	/** 여행자가 마커로 등록한 위치의 경도 **/
+	private String usrTrLat;
+	
+	/** 여행자가 마커로 등록한 위치의 위도 **/
+	private String usrTrLng;
+	
+	/** 여행자가 마커로 등록한 위치의 상세 주소 **/
+	private String usrTrAddrs;
+	
 	public String getInputEndYear() {
 		return inputEndYear;
 	}
@@ -290,6 +299,30 @@ public class UserTourWriteVO {
 
 	public void setUserTourImgList(List<UserTourImgVO> userTourImgList) {
 		this.userTourImgList = userTourImgList;
+	}
+
+	public String getUsrTrLat() {
+		return usrTrLat;
+	}
+
+	public void setUsrTrLat(String usrTrLat) {
+		this.usrTrLat = usrTrLat;
+	}
+
+	public String getUsrTrLng() {
+		return usrTrLng;
+	}
+
+	public void setUsrTrLng(String usrTrLng) {
+		this.usrTrLng = usrTrLng;
+	}
+
+	public String getUsrTrAddrs() {
+		return usrTrAddrs;
+	}
+
+	public void setUsrTrAddrs(String usrTrAddrs) {
+		this.usrTrAddrs = usrTrAddrs;
 	}
 
 }

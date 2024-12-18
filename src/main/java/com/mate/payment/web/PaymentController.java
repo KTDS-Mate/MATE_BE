@@ -29,8 +29,7 @@ public class PaymentController {
 	public String viewOrderInfo(@PathVariable String trstLgnId
 							  , @RequestParam String payId, Model model) {
 		PaymentVO paymentVO = this.paymentService.getPaymentDetail(payId);
-		String usrId = this.paymentService.getUsrId(trstLgnId);
-		if(paymentVO != null && paymentVO.getTrstId().equals(usrId)) {
+		if(paymentVO != null && paymentVO.getTrstId().equals(trstLgnId)) {
 			model.addAttribute("paymentVO", paymentVO);
 			return "payment/PaymentDetail";
 		}
@@ -82,7 +81,13 @@ public class PaymentController {
 	@ResponseBody
 	@PostMapping("/refundPayment")
 	public boolean refundPayment(@RequestParam String payId) {
-		return this.paymentService.refundPayment(payId);
+		try {
+			this.paymentService.refundPayment(payId);
+			
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
 	}
 	
 	

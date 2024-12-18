@@ -135,7 +135,11 @@ $().ready(function () {
     // where와 when의 텍스트 값 가져오기
     var whereText = $('.where > h3').text(); // 국가 또는 도시
     var whenText = $('.when > h3').text(); // 예: 최신순, 가격순 등
-
+	
+	// 검색어를 입력하지 않았을 때 Select Destination이 넘어가는 것 방지
+	if (whereText === "Select Destination") {
+		whereText = "";
+	}
     // 기본 검색 URL 설정
     var baseUrl = '';
     if ($touristButton.hasClass('selectedButton')) {

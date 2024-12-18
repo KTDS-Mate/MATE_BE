@@ -19,6 +19,12 @@ public class UserVO {
      * 비밀번호
      */
     private String usrPwd;
+    
+	private String confirmPwd;
+	
+	private String currentPwd;
+	
+	private String newPwd;
     /**
      * 회원의 성
      */
@@ -82,6 +88,10 @@ public class UserVO {
      */
     private String usrMdfyDt;
     /**
+     * 유저의 권한
+     */
+    private String usrRole;
+    /**
      * 가이드 프로필 사진
      */
     private String gdPrflImg;
@@ -112,16 +122,23 @@ public class UserVO {
 
 	private String salt;
 	
-	private String confirmPwd;
-	
-	private String currentPwd;
-	
 	/**
 	 * 가이드 경력
 	 */
 	private int usrGdExp;
 
+	/**가이드 나이**/
+	private int age;
+	
 	private GuideReviewVO guideReviewVO;
+	
+	private String role;
+	
+	private List<AuthorityVO> Authority;
+	
+	private String provider;
+	
+	private String usrIsBlck;
 
 	public String getUsrId() {
 		return usrId;
@@ -339,6 +356,14 @@ public class UserVO {
 		this.currentPwd = currentPwd;
 	}
 
+	public String getNewPwd() {
+		return newPwd;
+	}
+
+	public void setNewPwd(String newPwd) {
+		this.newPwd = newPwd;
+	}
+
 	public int getUsrGdExp() {
 		return usrGdExp;
 	}
@@ -355,4 +380,52 @@ public class UserVO {
 		this.guideReviewVO = guideReviewVO;
 	}
 
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getUsrRole() {
+		return usrRole;
+	}
+
+	public void setUsrRole(String usrRole) {
+		this.usrRole = usrRole;
+	}
+
+	public List<AuthorityVO> getAuthority() {
+		return Authority;
+	}
+
+	public void setAuthority(List<AuthorityVO> authority) {
+		Authority = authority;
+	}
+
+	public String getProvider() {
+		return provider;
+	}
+
+	public void setProvider(String provider) {
+		this.provider = provider;
+	}
+
+	public String getUsrIsBlck() {
+		return usrIsBlck;
+	}
+
+	public void setUsrIsBlck(String usrIsBlck) {
+		this.usrIsBlck = usrIsBlck;
+	}
+	
 }

@@ -7,6 +7,8 @@ import com.mate.user.vo.LoginUserVO;
 import com.mate.user.vo.RegistUserVO;
 import com.mate.user.vo.UserVO;
 
+import jakarta.mail.MessagingException;
+
 public interface UserService {
 
 	public boolean createNewUser(RegistUserVO registUserVO);
@@ -23,7 +25,7 @@ public interface UserService {
 	
 	public boolean softDeleteUser(String usrLgnId);
 	
-	public boolean updateUserPhoneNumber(String usrLgnId, String newPhn);
+	public boolean updateUserPhoneNumber(UserVO userVO);
 	
 	public boolean updateUserPaypalEmail(String usrLgnId, String usrEml);
 	
@@ -33,5 +35,7 @@ public interface UserService {
 	
 	public boolean updateUserPassword(UserVO userVO, String newPassword);
 	
-	public boolean reissueUserPassword(UserVO userVO);
+	public boolean reissueUserPassword(UserVO userVO) throws MessagingException;
+	
+	boolean findUserIdByEmail(String usrEml) throws MessagingException;
 }

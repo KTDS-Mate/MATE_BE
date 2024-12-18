@@ -22,10 +22,6 @@
         <div class="logo">
         </div>
         <h2>회원가입</h2>
-        <!-- form:input
-        	 registUserVO와 같은 모델 객체에 직접 바인딩 되어야 하는 정보의 경우에 사용한다.
-        	 value 값을 지정하지 않아도 바인딩 됨.
-          -->
         <form:form modelAttribute="registUserVO" method="post" class="regist-form">
             <div class="form-group">
                 <label for="usrLgnId">아이디</label>
@@ -95,14 +91,6 @@
                 <div class="error" id="usrEml-error"></div>
                 <button type="button" id="auth-button" class="send-code-btn">인증 메일 발송</button>
             </div>
-            
-            <!-- 아래 항목들은 ModelAttribute에 바인딩할 필요가 없으므로 form:input을 사용하지 않는다. (폼데이터 바인딩이 필요 없음) -->
-            
-            <!-- <div class="form-group">
-                <label for="authCode">인증번호입력</label>
-                <input type="text" id="authCode" name="authCode" value="" />
-                <button type="button" id="verify-btn" class="send-code-btn" disabled>인증 코드 확인</button>
-            </div> -->
             
             <!-- 인증 여부 서버 전송 -->
             <input type="hidden" id="authVerified" name="authVerified" value="false" />
