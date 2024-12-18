@@ -23,6 +23,7 @@ import com.mate.bbs.vo.RequestGuideApplyWriteVO;
 import com.mate.bbs.vo.SearchUserTourVO;
 import com.mate.bbs.vo.TourApplyVO;
 import com.mate.bbs.vo.UserTourListVO;
+import com.mate.bbs.vo.UserTourModifyVO;
 import com.mate.bbs.vo.UserTourVO;
 import com.mate.bbs.vo.UserTourWriteVO;
 import com.mate.common.vo.ApiResponse;
@@ -93,6 +94,34 @@ public class UserTourApiController {
 		return new ApiResponse(isCreate);
 	}
 
+	@PostMapping("/usertour/modify")
+	public ApiResponse doUserTourModify(@RequestBody @Valid UserTourModifyVO userTourModifyVO, BindingResult bindingResult) {
+		
+		boolean isModified = this.userTourService.modifyUserTour(userTourModifyVO);
+
+		return new ApiResponse(isModified);
+	}
+	
+	@GetMapping("/usertour/delete/{usrTrPstId}")
+	public ApiResponse doDeleteUserTour(@PathVariable String usrTrPstId, Authentication authentication) {
+		
+		UserVO userVO = extractUserVO(authentication);
+		
+		if (userVO == null) {
+			return new ApiResponse(HttpStatus.UNAUTHORIZED, "사용자가 로그인되어 있지 않습니다.");
+		}
+		
+		UserTourVO userTourVO = this.userTourService.getOneUserTour(usrTrPstId);
+		
+		if (!userTourVO.getAthrId().equals(userVO.getUsrLgnId())) {
+			return new ApiResponse(HttpStatus.BAD_REQUEST, "권한이 부족합니다.");
+		}
+		
+		boolean isDeleted = this.userTourService.softDeleteUserTour(usrTrPstId);
+		
+		return new ApiResponse(isDeleted);
+	}
+	
 	@PostMapping("/request/insert")
 	public ApiResponse doCreateNewRequstTour(@RequestBody @Valid UserTourWriteVO userTourWriteVO,
 			BindingResult bindingResult) {

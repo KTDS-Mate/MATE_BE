@@ -265,7 +265,10 @@
 		     , TS.TR_RQST
 		     , TO_CHAR(TS.TR_TM, 'YY-MM-DD HH24:MI') TR_TM 
 		     , C.CITY_NAME
+		     , C.CITY_ID
 		     , CR.COUNTRY_NAME
+		     , CR.COUNTRY_ID
+		     , R.REGION_ID
 		  FROM USR_TR_RQST UTR
 		  LEFT JOIN USR_TR_RQST_IMG UTRI
 		    ON UTR.USR_TR_PST_ID = UTRI.USR_TR_PST_ID
@@ -277,6 +280,8 @@
 		    ON UTR.TR_CT_ID = C.CITY_ID
 		  JOIN COUNTRIES CR
 		    ON CR.COUNTRY_ID = C.COUNTRY_ID
+		  JOIN REGIONS R
+		    ON R.REGION_ID = CR.REGION_ID
 		  LEFT JOIN FVRTS F
 		    ON UTR.USR_TR_PST_ID = F.USR_TR_PST_ID
 		 WHERE UTR.USR_TR_PST_ID = #{_parameter}
@@ -376,6 +381,12 @@
 		   	 , USR_TR_MDFY_DT = SYSDATE
 		   	 , USR_TR_RQ_DTL = #{usrTrRqDtl}
 		   	 , USR_TR_ED_DT = TO_DATE(#{usrTrEdDt}, 'YYYY-MM-DD HH24:MI')
+		   	 , USR_TR_LAT = #{usrTrLat}
+		   	 , USR_TR_LNG = #{usrTrLng}
+		   	 , USR_TR_ADDRS = #{usrTrAddrs}
+		   	 , GD_GNDR = #{gdGndr}
+		   	 , GD_AGE = #{gdAge}
+		   	 , GD_WNT_RQ = #{gdWntRq}
 		 WHERE USR_TR_PST_ID = #{usrTrPstId}
 	</update>
 	
@@ -456,7 +467,7 @@
 		SELECT TR_SCHDL_ID
 		     , TR_LCTNS 
 		     , TR_RQST 
-		     , TO_CHAR(TR_TM, 'YY-MM-DD HH24:MI') TR_TM
+		     , TO_CHAR(TR_TM, 'YYYY-MM-DD HH24:MI') TR_TM
 		  FROM TR_SCHDL
 		 WHERE USR_TR_PST_ID = #{_parameter}
 	</select>

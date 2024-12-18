@@ -135,6 +135,8 @@ public class SecurityConfig {
 		        .requestMatchers(HttpMethod.POST, "/api/user/send-auth-mail").permitAll()
 		        .requestMatchers(HttpMethod.POST, "/api/user/verify-auth-code").permitAll()
 				.requestMatchers("/api/v1/usertour/insert").permitAll()
+				.requestMatchers("/api/v1/usertour/modify").permitAll()
+				.requestMatchers("/api/v1/usertour/delete/**").permitAll()
 				.requestMatchers("/api/v1/request/insert").permitAll()
 				.requestMatchers("/api/v1/request/apply/insert").permitAll()
 				.requestMatchers("/api/v1/favorite/**").permitAll()
