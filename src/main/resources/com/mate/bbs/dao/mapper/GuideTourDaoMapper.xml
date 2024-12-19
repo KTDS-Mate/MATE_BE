@@ -139,6 +139,9 @@
 		     , G.GD_TR_SMRY
 		     , G.GD_TR_MX_NP
 		     , G.TR_AVG_RTNG
+		     , G.GD_TR_LAT
+			 , G.GD_TR_LNG
+    		 , G.GD_TR_ADDRS
 		     , GTI.GD_TR_IMG_URL
 		     , GR.ATHR_ID 
 		     , GR.GD_TR_RVW_TTL 
@@ -298,7 +301,10 @@
 		, TR_CT_ID
 		, GD_TR_ED_DT
 		, GD_TR_MX_NP
-		, GD_TR_STTS)
+		, GD_TR_STTS
+		, GD_TR_LAT
+        , GD_TR_LNG
+        , GD_TR_ADDRS)
 		VALUES
 		 (#{gdTrPstId}
 		, #{athrId}
@@ -314,7 +320,10 @@
 		, #{trCtId}
 		, TO_DATE(#{gdTrEdDt}, 'YYYY-MM-DD HH24:MI')
 		, #{gdTrMxNp}
-		, 'RCRTNG')
+		, 'RCRTNG'
+		, #{gdTrLat}
+		, #{gdTrLng}
+		, #{gdTrAddrs})
 	</insert>
 	<update id="updateGuideTour"
 			parameterType="com.mate.bbs.vo.GuideTourModifyVO">
