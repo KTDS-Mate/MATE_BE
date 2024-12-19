@@ -163,6 +163,8 @@ public class SecurityConfig {
 		        .requestMatchers("/api/maps/geocode").permitAll()
 		        .requestMatchers("/api/maps/reverse-geocode").permitAll()
 		        .requestMatchers("/api/v1/mypage/tr-apply-tour/**").permitAll()
+		        .requestMatchers("/api/v1/tourApply/accept/**").permitAll()
+		        .requestMatchers("/api/v1/tourApply/refusal/**").permitAll()
 		        .requestMatchers("/api/v1/mypage/gd-apply-tour/**").permitAll()
 		        .requestMatchers("/api/v1/cutomerservice/insert").permitAll()
 		        .requestMatchers("/api/v1/customerservice/list/**").permitAll()

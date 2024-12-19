@@ -304,10 +304,10 @@
 		 	<include refid="com.mate.bbs.dao.UserTourDao.selectRegions" />
 		</if>
 		<if test="_parameter != null">
-			<include refid="com.mate.bbs.dao.UserTourDao.order2" />
+			<include refid="com.mate.bbs.dao.UserTourDao.selectSubjectAndContent" />
 		</if>
 		<if test="_parameter != null">
-			<include refid="com.mate.bbs.dao.UserTourDao.selectSubjectAndContent" />
+			<include refid="com.mate.bbs.dao.UserTourDao.order2" />
 		</if>
 	</select>
 	

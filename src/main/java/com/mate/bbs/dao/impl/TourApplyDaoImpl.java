@@ -32,6 +32,11 @@ public class TourApplyDaoImpl extends SqlSessionDaoSupport implements TourApplyD
 	}
 	
 	@Override
+	public int updateOtherRefusal(String gdApplyId) {
+		return this.getSqlSession().update(NAMESPACE + ".updateOtherRefusal", gdApplyId);
+	}
+	
+	@Override
 	public int updateAcceptTourApply(String gdApplyId) {
 		return this.getSqlSession().update( NAMESPACE + ".updateAcceptTourApply", gdApplyId);
 	}

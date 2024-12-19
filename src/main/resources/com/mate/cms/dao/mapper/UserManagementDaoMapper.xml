@@ -39,7 +39,7 @@
 		 	 , USR_FNM 
 		 	 , USR_LNM 
 		 	 , USR_GNDR 
-		 	 , USR_BD 
+		 	 , TO_CHAR(USR_BD, 'YYYY-MM-DD') AS USR_BD
 		 	 , USR_EML 
 		 	 , USR_IS_GD
 		 	 , USR_IS_CL
@@ -94,7 +94,7 @@
 		 	 , USR_FNM
 		 	 , USR_LNM
 		 	 , USR_GNDR
-		 	 , USR_BD
+		 	 , TO_CHAR(USR_BD, 'YYYY-MM-DD') AS USR_BD
 		 	 , USR_EML
 		 	 , USR_IS_GD
 		 	 , GD_APPL_STT
