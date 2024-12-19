@@ -118,6 +118,7 @@ public class GuideTourApiController {
     
     @PostMapping("/guidetour/favorite/create")
     public ApiResponse doCreateNewGuideTourFavorite(@RequestBody FavoriteWriteVO favoriteWriteVO) {
+    	System.out.println("!!!" + favoriteWriteVO.getGdTrPstId());
     	boolean isCreated = this.favoriteService.createNewGuideTourFavorite(favoriteWriteVO);
     	
     	return new ApiResponse(isCreated);
