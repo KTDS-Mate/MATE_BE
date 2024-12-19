@@ -32,6 +32,9 @@ public class TourApplyServiceImpl  implements TourApplyService{
 		if (!(athorId == null || athorId.equals(loginUserVO.getUsrLgnId()))) {
 			throw new Exception("글의 소유자가 아닙니다.");
 		}
+		if (this.tourApplyDao.updateOtherRefusal(gdApplyId) < 1) {
+			throw new Exception("나머지 게시글 거절 처리에 실패했습니다.");
+		}
 		if (this.tourApplyDao.updateAcceptTourApply(gdApplyId) != 1) {
 			throw new Exception("수락 처리에 실패했습니다.");
 		}

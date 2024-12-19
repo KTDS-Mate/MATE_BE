@@ -17,107 +17,88 @@ import org.springframework.stereotype.Service;
 @Service
 public class MyBoardServiceImpl implements MyBoardService {
 
-    @Autowired
-    private MyBoardDao myBoardDao;
-
-    
-    
-    
+	@Autowired
+	private MyBoardDao myBoardDao;
 
 //  -------------------------------------------------------------------------투어리스트파트
-	
-	
+
 	@Override
 	public TrMyBoardListVO selectTrMyAllBoard(String usrLgnId, SearchMyBoardVO searchMyBoardVO) {
-		
-		int count = this.myBoardDao.selectTrBoardCount(usrLgnId , searchMyBoardVO);
-    	
-    	if(count == 0) {
-    		TrMyBoardListVO boardListVO = new TrMyBoardListVO();
+
+		int count = this.myBoardDao.selectTrBoardCount(usrLgnId, searchMyBoardVO);
+
+		if (count == 0) {
+			TrMyBoardListVO boardListVO = new TrMyBoardListVO();
 			boardListVO.setBoardCnt(0);
 			boardListVO.setBoardList(new ArrayList<>());
-			
+
 			return boardListVO;
-    	}
-		
-    	List<TrMyBoardVO> MyboardList = null;
-    	if(searchMyBoardVO == null) { 
-    				// 페이지 처리를 하지 않을경우 
-    		MyboardList = this.myBoardDao.selectTrMyAllBoard(usrLgnId);
-    		}
-    		else {
-    		// 페이지네이션을 위한 게시글 조회
-    			MyboardList = this.myBoardDao.selectTrMyAllBoard(usrLgnId ,searchMyBoardVO);
-    			//총 페이지 개수를 구한다
-    			searchMyBoardVO.setPageCount(count);
-    			}
-    	
-    	TrMyBoardListVO boardListVO = new TrMyBoardListVO();
+		}
 
-    	boardListVO.setBoardCnt(count);
-    	boardListVO.setBoardList(MyboardList);
+		List<TrMyBoardVO> MyboardList = null;
+		if (searchMyBoardVO == null) {
+			// 페이지 처리를 하지 않을경우
+			MyboardList = this.myBoardDao.selectTrMyAllBoard(usrLgnId);
+		} else {
+			// 총 페이지 개수를 구한다
+			searchMyBoardVO.setListSize(5);
+			searchMyBoardVO.setPageCount(count);
+			// 페이지네이션을 위한 게시글 조회
+			MyboardList = this.myBoardDao.selectTrMyAllBoard(usrLgnId, searchMyBoardVO);
+		}
 
-        return boardListVO;
+		TrMyBoardListVO boardListVO = new TrMyBoardListVO();
+
+		boardListVO.setBoardCnt(count);
+		boardListVO.setBoardList(MyboardList);
+
+		return boardListVO;
 	}
-
 
 	@Override
 	public int deleteTrBoard(String usrTrPstId) {
 		int success = this.myBoardDao.deleteTrBoard(usrTrPstId);
 		return success;
 	}
-    
-    
-    
-    
-    
-    
+
 //  -------------------------------------------------------------------------가이드파트
-    
-    
-    @Override
-    public MyBoardListVO selectGDMyAllBoard(String usrLgnId ,SearchMyBoardVO searchMyBoardVO) {
-    	
-    	int count = this.myBoardDao.selectBoardCount(usrLgnId , searchMyBoardVO);
-    	
-    	if(count == 0) {
-    		MyBoardListVO boardListVO = new MyBoardListVO();
+
+	@Override
+	public MyBoardListVO selectGDMyAllBoard(String usrLgnId, SearchMyBoardVO searchMyBoardVO) {
+
+		int count = this.myBoardDao.selectBoardCount(usrLgnId, searchMyBoardVO);
+
+		if (count == 0) {
+			MyBoardListVO boardListVO = new MyBoardListVO();
 			boardListVO.setBoardCnt(0);
 			boardListVO.setBoardList(new ArrayList<>());
-			
+
 			return boardListVO;
-    	}
-    	
-    	
-    	
-    	List<MyBoardVO> MyboardList = null;
-    	if(searchMyBoardVO == null) { 
-    				// 페이지 처리를 하지 않을경우 
-    		MyboardList = this.myBoardDao.selectGDMyAllBoard(usrLgnId);
-    		}
-    		else {
-    		// 페이지네이션을 위한 게시글 조회
-    			MyboardList = this.myBoardDao.selectGDMyAllBoard(usrLgnId ,searchMyBoardVO);
-    			//총 페이지 개수를 구한다
-    			searchMyBoardVO.setPageCount(count);
-    			}
-    	
-    	MyBoardListVO boardListVO = new MyBoardListVO();
+		}
 
-    	boardListVO.setBoardCnt(count);
-    	boardListVO.setBoardList(MyboardList);
+		List<MyBoardVO> MyboardList = null;
+		if (searchMyBoardVO == null) {
+			// 페이지 처리를 하지 않을경우
+			MyboardList = this.myBoardDao.selectGDMyAllBoard(usrLgnId);
+		} else {
+			// 페이지네이션을 위한 게시글 조회
+			MyboardList = this.myBoardDao.selectGDMyAllBoard(usrLgnId, searchMyBoardVO);
+			// 총 페이지 개수를 구한다
+			searchMyBoardVO.setPageCount(count);
+		}
 
-        return boardListVO;
-    }
+		MyBoardListVO boardListVO = new MyBoardListVO();
 
-    
+		boardListVO.setBoardCnt(count);
+		boardListVO.setBoardList(MyboardList);
+
+		return boardListVO;
+	}
+
 	@Override
 	public int deleteGDBoard(String gdTrPstId) {
 		int success = this.myBoardDao.deleteGDBoard(gdTrPstId);
 		return success;
 	}
 
-
-    
-    
 }
