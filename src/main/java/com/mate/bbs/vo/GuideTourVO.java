@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mate.common.vo.CitiesVO;
 import com.mate.common.vo.CountriesVO;
+import com.mate.common.vo.RegionsVO;
 import com.mate.user.vo.UserVO;
 
 public class GuideTourVO {
@@ -127,6 +128,8 @@ public class GuideTourVO {
 	 * 나라 정보를 담은 VO
 	 */
 	private CountriesVO countriesVO;
+	
+	private RegionsVO regionsVO;
 	/**
 	 * 해당 프로퍼티는 DB컬럼에 존재하지 않음
 	 */
@@ -350,6 +353,14 @@ public class GuideTourVO {
 
 	public void setCountriesVO(CountriesVO countriesVO) {
 		this.countriesVO = countriesVO;
+	}
+
+	public RegionsVO getRegionsVO() {
+		return regionsVO;
+	}
+
+	public void setRegionsVO(RegionsVO regionsVO) {
+		this.regionsVO = regionsVO;
 	}
 
 	public String getGuideAge() {
