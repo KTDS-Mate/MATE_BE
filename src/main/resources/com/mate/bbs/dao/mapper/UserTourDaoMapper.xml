@@ -80,16 +80,18 @@
 	<!-- 대륙별로 볼 때 사용 -->
 	<sql id="selectRegions">
 		<if test='regionName !="전체" and regionName != null and regionName != ""'>
-			AND (R.REGION_NAME = #{regionName})
+			AND R.REGION_NAME = #{regionName}
 		</if>
 	</sql>
 	<!-- ~순 정렬에 사용 -->
 	<sql id="order">
 		<choose>
 			<when test='"높은 가격순".equals(orderby)'>
+				  AND UTR.USR_TR_DIVIDE = 'SCHEDULE'
 				ORDER BY UTR.USR_TR_GD_HR_PRC DESC
 			</when>
 			<when test='"낮은 가격순".equals(orderby)'>
+			      AND UTR.USR_TR_DIVIDE = 'SCHEDULE'
 				ORDER BY UTR.USR_TR_GD_HR_PRC
 			</when>
 			<when test='"마감 임박순".equals(orderby)'>
@@ -100,6 +102,24 @@
 			</otherwise>
 		</choose>
 	</sql>
+	
+	<!-- ~순 정렬 COUNT에 사용 -->
+	<sql id="order2">
+		<choose>
+			<when test='"높은 가격순".equals(orderby)'>
+				  AND UTR.USR_TR_DIVIDE = 'SCHEDULE'
+				ORDER BY UTR.USR_TR_GD_HR_PRC DESC
+			</when>
+			<when test='"낮은 가격순".equals(orderby)'>
+			      AND UTR.USR_TR_DIVIDE = 'SCHEDULE'
+				ORDER BY UTR.USR_TR_GD_HR_PRC
+			</when>
+			<otherwise>
+				ORDER BY UTR.USR_TR_PST_ID DESC
+			</otherwise>
+		</choose>
+	</sql>
+	
 	
 	<insert id="insertNewUserTour"
 			parameterType="com.mate.bbs.vo.UserTourWriteVO">
@@ -183,7 +203,10 @@
 		, GD_WNT_RQ
 		, USR_TR_ED_DT
 		, USR_TR_STTS
-		, USR_TR_DIVIDE)
+		, USR_TR_DIVIDE
+		, USR_TR_LAT
+        , USR_TR_LNG
+        , USR_TR_ADDRS)
 		VALUES
 		 ('UT-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_USR_TR_RQST_PK.NEXTVAL, 6, 0)
 		, #{athrId}
@@ -203,7 +226,10 @@
 		, #{gdWntRq}
 		, TO_DATE(#{usrTrEdDt}, 'YYYY-MM-DD HH24:MI')
 		, 'RCRTNG'
-		, 'REQUEST')
+		, 'REQUEST'
+		, #{usrTrLat}
+        , #{usrTrLng}
+        , #{usrTrAddrs})
 	</insert>
 	
 	<select id="selectOneUserTour"
@@ -239,7 +265,10 @@
 		     , TS.TR_RQST
 		     , TO_CHAR(TS.TR_TM, 'YY-MM-DD HH24:MI') TR_TM 
 		     , C.CITY_NAME
+		     , C.CITY_ID
 		     , CR.COUNTRY_NAME
+		     , CR.COUNTRY_ID
+		     , R.REGION_ID
 		  FROM USR_TR_RQST UTR
 		  LEFT JOIN USR_TR_RQST_IMG UTRI
 		    ON UTR.USR_TR_PST_ID = UTRI.USR_TR_PST_ID
@@ -251,6 +280,8 @@
 		    ON UTR.TR_CT_ID = C.CITY_ID
 		  JOIN COUNTRIES CR
 		    ON CR.COUNTRY_ID = C.COUNTRY_ID
+		  JOIN REGIONS R
+		    ON R.REGION_ID = CR.REGION_ID
 		  LEFT JOIN FVRTS F
 		    ON UTR.USR_TR_PST_ID = F.USR_TR_PST_ID
 		 WHERE UTR.USR_TR_PST_ID = #{_parameter}
@@ -271,6 +302,9 @@
 		   AND UTR.USR_TR_IS_DLT = 'N'
 		<if test="_parameter != null">
 		 	<include refid="com.mate.bbs.dao.UserTourDao.selectRegions" />
+		</if>
+		<if test="_parameter != null">
+			<include refid="com.mate.bbs.dao.UserTourDao.order2" />
 		</if>
 		<if test="_parameter != null">
 			<include refid="com.mate.bbs.dao.UserTourDao.selectSubjectAndContent" />
@@ -347,6 +381,12 @@
 		   	 , USR_TR_MDFY_DT = SYSDATE
 		   	 , USR_TR_RQ_DTL = #{usrTrRqDtl}
 		   	 , USR_TR_ED_DT = TO_DATE(#{usrTrEdDt}, 'YYYY-MM-DD HH24:MI')
+		   	 , USR_TR_LAT = #{usrTrLat}
+		   	 , USR_TR_LNG = #{usrTrLng}
+		   	 , USR_TR_ADDRS = #{usrTrAddrs}
+		   	 , GD_GNDR = #{gdGndr}
+		   	 , GD_AGE = #{gdAge}
+		   	 , GD_WNT_RQ = #{gdWntRq}
 		 WHERE USR_TR_PST_ID = #{usrTrPstId}
 	</update>
 	
@@ -427,7 +467,7 @@
 		SELECT TR_SCHDL_ID
 		     , TR_LCTNS 
 		     , TR_RQST 
-		     , TO_CHAR(TR_TM, 'YY-MM-DD HH24:MI') TR_TM
+		     , TO_CHAR(TR_TM, 'YYYY-MM-DD HH24:MI') TR_TM
 		  FROM TR_SCHDL
 		 WHERE USR_TR_PST_ID = #{_parameter}
 	</select>

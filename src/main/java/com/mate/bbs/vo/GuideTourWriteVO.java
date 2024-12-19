@@ -2,12 +2,10 @@ package com.mate.bbs.vo;
 
 import java.util.List;
 
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.PositiveOrZero;
 
 public class GuideTourWriteVO {
-	
+
 	/**
 	 * 가이드 투어 게시글 아이디
 	 */
@@ -21,6 +19,7 @@ public class GuideTourWriteVO {
 	 * 가이드가 입력한 input[date]의 값 받아오기
 	 */
 	private String inputYear;
+	private String inputEndYear;
 	/**
 	 * 가이드가 입력한 시작 시
 	 */
@@ -49,8 +48,6 @@ public class GuideTourWriteVO {
 	/**
 	 * 투어 비용(가격)
 	 */
-	@Min(value=1 , message="1 이상의 값을 입력해주세요!")
-	@PositiveOrZero(message ="음수를 넣으실 수 없습니다!")
 	private double gdTrPrc;
 	/**
 	 * 투어 최대 인원수
@@ -60,7 +57,7 @@ public class GuideTourWriteVO {
 	 * 투어를 진행할 도시 아이디 fk
 	 */
 	private int trCtId;
-	
+
 	/**
 	 * 투어 요약(요구사항)
 	 */
@@ -71,7 +68,7 @@ public class GuideTourWriteVO {
 	 */
 	private String gdTrRstrDt;
 	/**
-	 *  투어제공항목 리스트
+	 * 투어제공항목 리스트
 	 */
 	private List<GuideTourProvidedVO> guideTourProvidedList;
 	/**
@@ -90,7 +87,14 @@ public class GuideTourWriteVO {
 	 * 투어 작성자의 ID VO
 	 */
 	private String athrId;
-	
+
+	private String gdTrLat;
+	private String gdTrLng;
+	private String gdTrAddrs;
+	/**
+	 * 당일치기 체크 여부
+	 */
+	private boolean isChecked;
 	public String getGdTrPstId() {
 		return gdTrPstId;
 	}
@@ -108,6 +112,12 @@ public class GuideTourWriteVO {
 	}
 	public void setInputYear(String inputYear) {
 		this.inputYear = inputYear;
+	}
+	public String getInputEndYear() {
+		return inputEndYear;
+	}
+	public void setInputEndYear(String inputEndYear) {
+		this.inputEndYear = inputEndYear;
 	}
 	public String getInputStartHour() {
 		return inputStartHour;
@@ -204,5 +214,29 @@ public class GuideTourWriteVO {
 	}
 	public void setAthrId(String athrId) {
 		this.athrId = athrId;
+	}
+	public String getGdTrLat() {
+		return gdTrLat;
+	}
+	public void setGdTrLat(String gdTrLat) {
+		this.gdTrLat = gdTrLat;
+	}
+	public String getGdTrLng() {
+		return gdTrLng;
+	}
+	public void setGdTrLng(String gdTrLng) {
+		this.gdTrLng = gdTrLng;
+	}
+	public String getGdTrAddrs() {
+		return gdTrAddrs;
+	}
+	public void setGdTrAddrs(String gdTrAddrs) {
+		this.gdTrAddrs = gdTrAddrs;
+	}
+	public boolean getIsChecked() {
+		return isChecked;
+	}
+	public void setIsChecked(boolean isChecked) {
+		this.isChecked = isChecked;
 	}
 }
