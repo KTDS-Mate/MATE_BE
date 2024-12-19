@@ -5,19 +5,33 @@
   <mapper namespace="com.mate.cms.userManagement.dao.UserManagementDao">
   
   <sql id="selectGuideOrNot">
-  	<if test='guideCheckedType == "Checked"'>
-  		WHERE USR_IS_GD = 'Y'
+  	<if test="_parameter == 'GUIDE'">
+  		AND USR_IS_GD = 'Y'
+  	</if>
+  	<if test='_parameter == "TOURIST"'>
+  		AND USR_IS_GD = 'N'
   	</if>
   </sql>
   
+  <sql id="keywordSearch">
+    <if test='searchKeyword != null and searchKeyword != ""'>
+        AND USR_ID LIKE '%' || #{searchKeyword} || '%'
+    </if>
+  </sql>
   
   <select id="selectUserManagementAllCount"
+          parameterType="String"
   		  resultType="_int">
   		SELECT COUNT(1) 
-  		FROM USR_INF 
+  	 	  FROM USR_INF 
+  	     WHERE 1=1
+  	     <if test="_parameter != null">
+            <include refid="com.mate.cms.userManagement.dao.UserManagementDao.selectGuideOrNot" />
+          </if>
   </select>
   	
   	<select id="selectAllUserManagement"
+  	        parameterType="String"
   			resultType="com.mate.cms.userManagement.vo.UserManagementVO">
   		SELECT USR_ID 
 		 	 , USR_LGN_ID 
@@ -28,11 +42,30 @@
 		 	 , USR_BD 
 		 	 , USR_EML 
 		 	 , USR_IS_GD
+		 	 , USR_IS_CL
+		 	 , USR_IS_BLCK
 		  FROM USR_INF
+		 WHERE 1=1
 		  <if test="_parameter != null">
 		  	<include refid="com.mate.cms.userManagement.dao.UserManagementDao.selectGuideOrNot" />
 		  </if>
   	</select>
+  	
+  	<update id="updateDeleteUser"
+  	        parameterType="String">
+  	     UPDATE USR_INF
+            SET USR_IS_CL = 'Y'
+          WHERE USR_ID = #{parameter}
+  	</update>
+  	
+  	<update id="updateBlockUser"
+  	        parameterType="String">
+  	     UPDATE USR_INF
+            SET USR_IS_BLCK = 'Y'
+          WHERE USR_ID = #{parameter}
+  	</update>
+  	
+  	
   	
   	<!-- 
   	<select id="selectOneUserManagement"
@@ -50,7 +83,11 @@
   	</select> -->
   	<!-- 바보 -->
   	<select id="selectWaitingGuideUsers"
+  	        parameterType="com.mate.cms.userManagement.vo.SearchUserManagementVO"
   			resultType="com.mate.cms.userManagement.vo.UserManagementVO">
+		<if test="_parameter != null">
+		<include refid="Common.pagination_header" />
+        </if>
   		SELECT USR_ID
 		 	 , USR_LGN_ID
 		 	 , GD_RGST_DT
@@ -61,8 +98,21 @@
 		 	 , USR_EML
 		 	 , USR_IS_GD
 		 	 , GD_APPL_STT
+		 	 , USR_IS_CL
+		 	 , USR_IS_BLCK
+		 	 , USR_SLF_INTDCTN
+		 	 , GD_PRFL_IMG
+		 	 , GD_ID_IMG
+		 	 , GD_CBC_IMG
+		 	 , USR_GD_EXP
 		  FROM USR_INF
 		 WHERE GD_APPL_STT = 'WAITING'
+		 <if test="_parameter != null">
+	        <include refid="com.mate.cms.userManagement.dao.UserManagementDao.keywordSearch" />
+	     </if>
+		 <if test="_parameter != null">
+            <include refid="Common.pagination_footer" />
+        </if>
   	</select>
   	
   	<select id="selectWaitingGuideUsersCount"
@@ -71,5 +121,25 @@
 		  FROM USR_INF
 		 WHERE GD_APPL_STT = 'WAITING'
   	</select>
+  	
+  	<update id="updateGuideApprove"
+  	        parameterType="String">
+  	   UPDATE USR_INF
+		  SET GD_RGST_DT = SYSDATE 
+		    , GD_APPL_STT = 'ACCEPT'
+		    , USR_ROLE = 'ROLE_GUIDE'
+		    , USR_IS_GD = 'Y'
+		WHERE USR_ID = #{parameter}
+  	</update>
+  	
+  	<update id="updateRefuseApprove"
+  	        parameterType="String">
+  	UPDATE USR_INF
+	   SET GD_APPL_STT = 'REFUSE'
+	 WHERE USR_ID = #{parameter}
+  	</update>
+  	
+  	
+  	
   	
   </mapper>
