@@ -103,6 +103,7 @@ app:
       /ws/notice,
       /ws/chat,
       /ws/**,
+      /api/v1/usermanagement/**,
   jwt:
     issuer: hello-spring-security
     secret-key: spring-security-secret-key-random-token-key
