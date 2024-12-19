@@ -228,6 +228,44 @@ public class UserTourApiController {
 		return apiResponse;
 	}
 
+	@GetMapping("/tourApply/accept/{gdApplyId}")
+	public ApiResponse acceptApply(@PathVariable String gdApplyId, Authentication authentication) {
+		
+		UserVO loginUserVO = extractUserVO(authentication);
+		if (loginUserVO == null) {
+			return new ApiResponse(HttpStatus.UNAUTHORIZED, "사용자가 로그인되어 있지 않습니다.");
+		}
+		
+		try {
+			boolean isAccepted = this.tourApplyService.acceptTourApply(gdApplyId, loginUserVO);
+			return new ApiResponse(isAccepted);
+		} 
+		catch (Exception e) {
+			ApiResponse apiResponse = new ApiResponse();
+			apiResponse.setErrors(List.of(e.getMessage()));
+			return apiResponse;
+		}
+	}
+	
+	@GetMapping("/tourApply/refusal/{gdApplyId}")
+	public ApiResponse refusalApply(@PathVariable String gdApplyId, Authentication authentication) {
+		
+		UserVO loginUserVO = extractUserVO(authentication);
+		if (loginUserVO == null) {
+			return new ApiResponse(HttpStatus.UNAUTHORIZED, "사용자가 로그인되어 있지 않습니다.");
+		}
+		
+		try {
+			boolean isRefusal = this.tourApplyService.refusalTourApply(gdApplyId, loginUserVO);
+			return new ApiResponse(isRefusal);
+		} 
+		catch (Exception e) {
+			ApiResponse apiResponse = new ApiResponse();
+			apiResponse.setErrors(List.of(e.getMessage()));
+			return apiResponse;
+		}
+	}
+	
 	private UserVO extractUserVO(Authentication authentication) {
 		if (authentication == null || authentication.getPrincipal() == null) {
 			return null;

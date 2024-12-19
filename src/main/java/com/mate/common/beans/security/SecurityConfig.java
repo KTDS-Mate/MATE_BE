@@ -89,7 +89,7 @@ public class SecurityConfig {
 				CorsConfiguration corsConfiguration = new CorsConfiguration();
 				
 				// 허용할 도메인 목록
-				corsConfiguration.setAllowedOrigins(List.of("http://localhost:3000", "http://3.38.186.79"));
+				corsConfiguration.setAllowedOrigins(List.of("http://localhost:3000", "http://3.38.186.79","http://localhost:3000/api/*", "http://3.38.186.79/api/*"));
 				// 허용할 메서드 목록 (외부에서 요청)
 				corsConfiguration.setAllowedMethods(List.of("POST", "PUT", "DELETE", "GET", "OPTIONS"));
 				corsConfiguration.setAllowedHeaders(List.of("*"));
@@ -164,6 +164,8 @@ public class SecurityConfig {
 		        .requestMatchers("/api/maps/geocode").permitAll()
 		        .requestMatchers("/api/maps/reverse-geocode").permitAll()
 		        .requestMatchers("/api/v1/mypage/tr-apply-tour/**").permitAll()
+		        .requestMatchers("/api/v1/tourApply/accept/**").permitAll()
+		        .requestMatchers("/api/v1/tourApply/refusal/**").permitAll()
 		        .requestMatchers("/api/v1/mypage/gd-apply-tour/**").permitAll()
 		        .requestMatchers("/api/v1/cutomerservice/insert").permitAll()
 		        .requestMatchers("/api/v1/customerservice/list/**").permitAll()
