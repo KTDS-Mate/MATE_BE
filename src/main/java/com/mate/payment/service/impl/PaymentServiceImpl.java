@@ -36,6 +36,7 @@ public class PaymentServiceImpl implements PaymentService {
 		paymentListVO.setPaymentCnt(cnt);
 		if (cnt == 0) {
 			paymentListVO.setPaymentList(new ArrayList<>());
+			paymentListVO.setSearchVO(searchPaymentVO);
 			return paymentListVO;
 		}
 		// 조회된 항목의 페이지 수 설정
