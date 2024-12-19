@@ -117,6 +117,7 @@
 	        ON GTR.ATHR_ID = UI.USR_LGN_ID
 	     WHERE GTR.GD_TR_ST_DT > SYSDATE
 	       AND GTR.GD_TR_IS_DLT = 'N'
+	       AND CTR.COUNTRY_NAME LIKE '%' || #{searchKeyword} || '%'
 	    <if test="_parameter != null">
 		 	<include refid="com.mate.bbs.dao.GuideTourDao.selectRegions" />
 		</if>
