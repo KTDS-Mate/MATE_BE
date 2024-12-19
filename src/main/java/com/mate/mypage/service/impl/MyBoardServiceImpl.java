@@ -81,10 +81,11 @@ public class MyBoardServiceImpl implements MyBoardService {
 			// 페이지 처리를 하지 않을경우
 			MyboardList = this.myBoardDao.selectGDMyAllBoard(usrLgnId);
 		} else {
+			// 총 페이지 개수를 구한다
+			searchMyBoardVO.setListSize(5);
+			searchMyBoardVO.setPageCount(count);
 			// 페이지네이션을 위한 게시글 조회
 			MyboardList = this.myBoardDao.selectGDMyAllBoard(usrLgnId, searchMyBoardVO);
-			// 총 페이지 개수를 구한다
-			searchMyBoardVO.setPageCount(count);
 		}
 
 		MyBoardListVO boardListVO = new MyBoardListVO();
