@@ -49,6 +49,11 @@
 	        <id column="AUTHORITY_NAME" property="authorityName" />
 	        <id column="ROLE" property="roleName" />
 	    </collection>
+	    <collection property="licenseList"
+	                ofType="com.mate.common.vo.LicenseVO"
+	                autoMapping="true">
+	       <id column="GD_LCN_ID" property="lcnId" />
+	    </collection>
 	</resultMap>
 
 	<insert id="insertNewUser" parameterType="com.mate.user.vo.RegistUserVO">
@@ -146,6 +151,7 @@
 		     , U.USR_IS_CL
 		     , U.USR_IS_GD
 		     , C.COUNTRY_NAME
+		     , U.USR_ROLE
 		     , U.USR_IS_BLCK
 		  FROM USR_INF U
 		  LEFT JOIN COUNTRIES C

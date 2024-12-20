@@ -18,7 +18,7 @@ public class MyBoardVO {
     private char gdTrIsDlt;
     private String trCtId;
     private int gdTrMxNp;
-    private String usrTrStts;
+    private String gdTrStts;
     
     private SearchCityAndCountryVO searchCityAndCountryVO;
     
@@ -164,12 +164,21 @@ public class MyBoardVO {
 	public void setGdTrMxNp(int gdTrMxNp) {
 		this.gdTrMxNp = gdTrMxNp;
 	}
-	public String getUsrTrStts() {
-		return usrTrStts;
+
+
+
+
+	public String getGdTrStts() {
+		return gdTrStts;
 	}
-	public void setUsrTrStts(String usrTrStts) {
-		this.usrTrStts = usrTrStts;
+
+
+
+
+	public void setGdTrStts(String gdTrStts) {
+		this.gdTrStts = gdTrStts;
 	}
+	
 
 
     

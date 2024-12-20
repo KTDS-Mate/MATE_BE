@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.mate.common.vo.CitiesVO;
 import com.mate.common.vo.CountriesVO;
-import com.mate.mypage.vo.GuideReviewVO;
+import com.mate.common.vo.RegionsVO;
 import com.mate.user.vo.UserVO;
 
 public class GuideTourVO {
@@ -128,6 +128,8 @@ public class GuideTourVO {
 	 * 나라 정보를 담은 VO
 	 */
 	private CountriesVO countriesVO;
+	
+	private RegionsVO regionsVO;
 	/**
 	 * 해당 프로퍼티는 DB컬럼에 존재하지 않음
 	 */
@@ -140,6 +142,12 @@ public class GuideTourVO {
 	private int trAvgRtng;
 
 	private int guideImgCount;
+
+	private String gdTrLat;
+	private String gdTrLng;
+	private String gdTrAddrs;
+	
+	private String gdTrStts;
 
 	public String getGdTrPstId() {
 		return gdTrPstId;
@@ -171,6 +179,15 @@ public class GuideTourVO {
 
 	public void setGdTrTtl(String gdTrTtl) {
 		this.gdTrTtl = gdTrTtl;
+	}
+
+	
+	public String getGdTrStts() {
+		return gdTrStts;
+	}
+
+	public void setGdTrStts(String gdTrStts) {
+		this.gdTrStts = gdTrStts;
 	}
 
 	public String getGdTrStDt() {
@@ -349,6 +366,14 @@ public class GuideTourVO {
 		this.countriesVO = countriesVO;
 	}
 
+	public RegionsVO getRegionsVO() {
+		return regionsVO;
+	}
+
+	public void setRegionsVO(RegionsVO regionsVO) {
+		this.regionsVO = regionsVO;
+	}
+
 	public String getGuideAge() {
 		return guideAge;
 	}
@@ -380,4 +405,29 @@ public class GuideTourVO {
 	public void setGuideImgCount(int guideImgCount) {
 		this.guideImgCount = guideImgCount;
 	}
+
+	public String getGdTrLat() {
+		return gdTrLat;
+	}
+
+	public void setGdTrLat(String gdTrLat) {
+		this.gdTrLat = gdTrLat;
+	}
+
+	public String getGdTrLng() {
+		return gdTrLng;
+	}
+
+	public void setGdTrLng(String gdTrLng) {
+		this.gdTrLng = gdTrLng;
+	}
+
+	public String getGdTrAddrs() {
+		return gdTrAddrs;
+	}
+
+	public void setGdTrAddrs(String gdTrAddrs) {
+		this.gdTrAddrs = gdTrAddrs;
+	}
+
 }

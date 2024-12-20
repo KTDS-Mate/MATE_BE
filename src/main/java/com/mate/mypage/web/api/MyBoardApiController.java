@@ -1,21 +1,19 @@
 package com.mate.mypage.web.api;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mate.bbs.service.UserTourService;
+import com.mate.bbs.vo.RequestGuideApplyListVO;
 import com.mate.common.vo.ApiResponse;
 import com.mate.mypage.service.MyBoardService;
 import com.mate.mypage.vo.MyBoardListVO;
 import com.mate.mypage.vo.SearchMyBoardVO;
 import com.mate.mypage.vo.TrMyBoardListVO;
-import com.mate.mypage.vo.TrMyBoardVO;
 
 @RestController
 @RequestMapping("/api/v1/mypage/mytour")
@@ -24,7 +22,8 @@ public class MyBoardApiController {
     @Autowired
     private MyBoardService myBoardService;
     
-    
+    @Autowired
+    private UserTourService userTourService;
     
 
 //  -------------------------------------------------------------------------투어리스트파트
@@ -32,15 +31,7 @@ public class MyBoardApiController {
     @GetMapping("/tr-mytour/{usrLgnId}")
     public ApiResponse viewTrMyTour(@PathVariable String usrLgnId,SearchMyBoardVO searchMyBoardVO) {
 
-    	System.out.println("유저아이디는 " + usrLgnId);
-    	
     	TrMyBoardListVO boardListVO = this.myBoardService.selectTrMyAllBoard(usrLgnId , searchMyBoardVO);
-    	
-    	System.out.println("보드갯수는 " + boardListVO.getBoardCnt());
-//    	int myBoardListVO = boardListVO.getBoardCnt();
-//    	List<TrMyBoardVO> myBoardListVO2 = boardListVO.getBoardList();
-
-
 
         return new ApiResponse(boardListVO);
     }
@@ -57,6 +48,16 @@ public class MyBoardApiController {
     	
     	return "redirect:/mypage/mytour/tr-mytour/"+usrLgnId;
     } 
+    
+	@GetMapping("/tr-mytour/requestApply/{usrTrPstId}")
+	public ApiResponse getAllGuideApply(@PathVariable String usrTrPstId) {
+		RequestGuideApplyListVO requestGuideApplyListVO = this.userTourService.getAllRequestGuideApply(usrTrPstId);
+		
+		ApiResponse apiResponse = new ApiResponse();
+		apiResponse.setBody(requestGuideApplyListVO);
+		
+		return apiResponse;
+	}
     
 //  -------------------------------------------------------------------------가이드파트
     

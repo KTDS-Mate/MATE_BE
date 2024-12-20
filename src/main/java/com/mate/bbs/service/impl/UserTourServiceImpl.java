@@ -106,6 +106,45 @@ public class UserTourServiceImpl implements UserTourService{
 		return createCount > 0;
 	}
 
+	@Transactional
+	@Override
+	public boolean modifyUserTour(UserTourModifyVO userTourModifyVO) {
+		boolean isChecked = userTourModifyVO.getIsChecked();
+		
+		if (isChecked) {
+			// 사용자가 입력한 날짜를 받아와서 포멧에 맞춤
+			String startDt = this.userTourDao.selectAttachStartHour2(userTourModifyVO);
+			String endDt = this.userTourDao.selectAttachEndHour2(userTourModifyVO);
+			// 포멧에 맞춘 시간을 담아줌
+			userTourModifyVO.setUsrTrStDt(startDt);
+			userTourModifyVO.setUsrTrEdDt(endDt);
+			
+		}
+		else {
+			String startDt = this.userTourDao.selectAttachMultyStartHour2(userTourModifyVO);
+			String endDt = this.userTourDao.selectAttachMultyEndHour2(userTourModifyVO);
+			userTourModifyVO.setUsrTrStDt(startDt);
+			userTourModifyVO.setUsrTrEdDt(endDt);
+		}
+		// 기존의 스케줄을 모두 삭제
+		this.userTourDao.deleteUserTourSchdls(userTourModifyVO.getUsrTrPstId());
+		
+		// 새로 작성 한 리스트들을 다시 입력
+		List<UserTourSchdlVO> tourschdlList = userTourModifyVO.getUserTourSchdlList();
+		
+		if (tourschdlList != null && !tourschdlList.isEmpty()) {
+			for (UserTourSchdlVO userTourSchdlVO : tourschdlList) {
+				userTourSchdlVO.setUsrTrPstId(userTourModifyVO.getUsrTrPstId());
+				
+				this.userTourDao.insertUserTourScheduls(userTourSchdlVO);
+			}
+		}
+		
+		int updateCount = this.userTourDao.updateUserTour(userTourModifyVO);
+		
+		return updateCount > 0;
+	}
+	
 	@Override
 	public boolean createNewRequestTour(UserTourWriteVO userTourWriteVO) {
 		
@@ -170,34 +209,7 @@ public class UserTourServiceImpl implements UserTourService{
 		return userTourListVO;
 	}
 
-	@Transactional
-	@Override
-	public boolean modifyUserTour(UserTourModifyVO userTourModifyVO) {
-		// 사용자가 입력한 날짜를 받아와서 포멧에 맞춤
-		String startDt = this.userTourDao.selectAttachStartHour2(userTourModifyVO);
-		String endDt = this.userTourDao.selectAttachEndHour2(userTourModifyVO);
-		// 포멧에 맞춘 시간을 담아줌
-		userTourModifyVO.setUsrTrStDt(startDt);
-		userTourModifyVO.setUsrTrEdDt(endDt);
-		
-		// 기존의 스케줄을 모두 삭제
-		this.userTourDao.deleteUserTourSchdls(userTourModifyVO.getUsrTrPstId());
-		
-		// 새로 작성 한 리스트들을 다시 입력
-		List<UserTourSchdlVO> tourschdlList = userTourModifyVO.getUserTourSchdlList();
-		
-		if (tourschdlList != null && !tourschdlList.isEmpty()) {
-			for (UserTourSchdlVO userTourSchdlVO : tourschdlList) {
-				userTourSchdlVO.setUsrTrPstId(userTourModifyVO.getUsrTrPstId());
-				
-				this.userTourDao.insertUserTourScheduls(userTourSchdlVO);
-			}
-		}
-		
-		int updateCount = this.userTourDao.updateUserTour(userTourModifyVO);
-		
-		return updateCount > 0;
-	}
+	
 
 	@Transactional
 	@Override

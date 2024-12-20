@@ -3,6 +3,7 @@ package com.mate.bbs.service;
 import com.mate.bbs.vo.GuideTourImgListVO;
 import com.mate.bbs.vo.GuideTourListVO;
 import com.mate.bbs.vo.GuideTourModifyVO;
+import com.mate.bbs.vo.GuideTourReserveVO;
 import com.mate.bbs.vo.GuideTourVO;
 import com.mate.bbs.vo.GuideTourWriteVO;
 import com.mate.bbs.vo.SearchGuideTourVO;
@@ -48,4 +49,7 @@ public interface GuideTourService {
     
     public GuideTourImgListVO getGuideTourImgs(String gdTrPstId);
     
+    public GuideTourVO getLateGuideTour();
+    
+    public boolean updateGuideTourStts(GuideTourReserveVO guideTourReserveVO);
 }
