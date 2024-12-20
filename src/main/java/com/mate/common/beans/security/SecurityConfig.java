@@ -143,6 +143,7 @@ public class SecurityConfig {
 				.requestMatchers("/api/v1/usertour/insert").permitAll()
 				.requestMatchers("/api/v1/usertour/modify").permitAll()
 				.requestMatchers("/api/v1/usertour/delete/**").permitAll()
+				.requestMatchers("/api/v1/request/guide/apply/insert").permitAll()
 				.requestMatchers("/api/v1/request/insert").permitAll()
 				.requestMatchers("/api/v1/request/apply/insert").permitAll()
 				.requestMatchers("/api/v1/favorite/**").permitAll()
