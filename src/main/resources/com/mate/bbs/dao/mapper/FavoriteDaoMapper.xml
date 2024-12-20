@@ -81,7 +81,7 @@
 		     , GD_TR_PST_ID
 		     , USR_TR_PST_ID
 		  FROM FVRTS 
-		 WHERE GD_TR_PST_ID = #{parameter}
+		 WHERE GD_TR_PST_ID = #{_parameter}
 	</select>
 
 	<select id="selectAllFavoriteCount"

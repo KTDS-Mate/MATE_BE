@@ -1,16 +1,20 @@
 package com.mate.bbs.web;
 
+import static org.hamcrest.CoreMatchers.is;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mate.bbs.service.FavoriteService;
@@ -19,10 +23,13 @@ import com.mate.bbs.vo.FavoriteListVO;
 import com.mate.bbs.vo.FavoriteWriteVO;
 import com.mate.bbs.vo.GuideTourImgListVO;
 import com.mate.bbs.vo.GuideTourListVO;
+import com.mate.bbs.vo.GuideTourModifyVO;
+import com.mate.bbs.vo.GuideTourReserveVO;
 import com.mate.bbs.vo.GuideTourVO;
 import com.mate.bbs.vo.GuideTourWriteVO;
 import com.mate.bbs.vo.SearchGuideTourVO;
 import com.mate.common.vo.ApiResponse;
+import com.mate.user.vo.UserVO;
 
 import jakarta.validation.Valid;
 
@@ -107,6 +114,34 @@ public class GuideTourApiController {
         }
     }
     
+    @PostMapping("/guidetour/modify")
+    public ApiResponse doGuideTourmodify(@RequestBody @Valid GuideTourModifyVO guideTourModifyVO
+    									, BindingResult bindingResult) {
+    	boolean isModify = this.guideTourService.modifyGuideTour(guideTourModifyVO);
+    	
+    	return new ApiResponse(isModify);
+    }
+    
+    @GetMapping("/guidetour/delete/{gdTrPstId}")
+    public ApiResponse doDeleteGuideTour(@PathVariable String gdTrPstId
+    									, Authentication authentication) {
+    	UserVO userVO = extractUserVO(authentication);
+    	
+    	if(userVO == null) {
+    		return new ApiResponse(HttpStatus.UNAUTHORIZED, "사용자가 로그인되어 있지 않습니다.");
+    	}
+    	
+    	GuideTourVO guideTourVO = this.guideTourService.getOneGuideTour(gdTrPstId);
+    	
+    	if(!guideTourVO.getAthrId().equals(userVO.getUsrLgnId())) {
+    		return new ApiResponse(HttpStatus.BAD_REQUEST, "권한이 부족합니다.");
+    	}
+    	
+    	boolean isDeleted = this.guideTourService.softDeleteGuideTour(gdTrPstId);
+    	
+    	return new ApiResponse(isDeleted);
+    }
+    
     @GetMapping("/guidetour/favorite/{gdTrPstId}")
     public ApiResponse getAllGuideTourFavorite(@PathVariable String gdTrPstId) {
     	FavoriteListVO favoriteListVO = this.favoriteService.getAllGuideTourFavoriteList(gdTrPstId);
@@ -141,4 +176,24 @@ public class GuideTourApiController {
     	
     	return apiResponse;
     }
+    
+	private UserVO extractUserVO(Authentication authentication) {
+		if (authentication == null || authentication.getPrincipal() == null) {
+			return null;
+		}
+		Object principal = authentication.getPrincipal();
+		if (principal instanceof UserVO user) {
+			return user;
+		}
+		return null;
+	}
+	
+	@PostMapping("/guidetour/reserve")
+	public ApiResponse doUpdateGuideTourStts(@RequestBody GuideTourReserveVO guideTourReserveVO) {
+		System.out.println("ㅇㅇㅇ" + guideTourReserveVO.getGdTrPstId());
+		System.out.println("ㅇㅇㅇ" + guideTourReserveVO.getUsrId());
+		boolean isUpdated = this.guideTourService.updateGuideTourStts(guideTourReserveVO);
+		
+		return new ApiResponse(isUpdated);
+	}
 }

@@ -2,9 +2,7 @@ package com.mate.bbs.vo;
 
 import java.util.List;
 
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.PositiveOrZero;
 
 public class GuideTourModifyVO {
 
@@ -21,14 +19,11 @@ public class GuideTourModifyVO {
 	 * 가이드가 입력한 input[date]의 값 받아오기
 	 */
 	private String inputYear;
+	private String inputEndYear;
 	/**
 	 * 가이드가 입력한 시작 시
 	 */
 	private String inputStartHour;
-	/**
-	 * 가이드가 입력한 시작 분
-	 */
-	private String inputStartMinute;
 	/**
 	 * 투어 시작 일자
 	 */
@@ -42,10 +37,6 @@ public class GuideTourModifyVO {
 	 */
 	private String inputEndHour;
 	/**
-	 * 가이드가 입력한 종료 분
-	 */
-	private String inputEndMinute;
-	/**
 	 * 투어 상세정보(목적)
 	 */
 	@NotBlank(message = "투어 목적을 작성해주세요!")
@@ -57,8 +48,6 @@ public class GuideTourModifyVO {
 	/**
 	 * 투어 비용(가격)
 	 */
-	@Min(value=1 , message="1 이상의 값을 입력해주세요!")
-	@PositiveOrZero(message ="음수를 넣으실 수 없습니다!")
 	private double gdTrPrc;
 	/**
 	 * 투어 최대 인원수
@@ -68,17 +57,18 @@ public class GuideTourModifyVO {
 	 * 투어를 진행할 도시 아이디 fk
 	 */
 	private int trCtId;
-	
+
 	/**
 	 * 투어 요약(요구사항)
 	 */
+	@NotBlank(message = "투어 목적을 작성해주세요!")
 	private String gdTrSmry;
 	/**
 	 * 투어 등록일
 	 */
 	private String gdTrRstrDt;
 	/**
-	 *  투어제공항목 리스트
+	 * 투어제공항목 리스트
 	 */
 	private List<GuideTourProvidedVO> guideTourProvidedList;
 	/**
@@ -93,7 +83,18 @@ public class GuideTourModifyVO {
 	 * 가이드 투어 세부일정 리스트 VO
 	 */
 	private List<GuideTourScheduleInfoVO> guideTourScheduleInfoList;
-	
+	/**
+	 * 투어 작성자의 ID VO
+	 */
+	private String athrId;
+
+	private String gdTrLat;
+	private String gdTrLng;
+	private String gdTrAddrs;
+	/**
+	 * 당일치기 체크 여부
+	 */
+	private boolean isChecked;
 	public String getGdTrPstId() {
 		return gdTrPstId;
 	}
@@ -112,17 +113,17 @@ public class GuideTourModifyVO {
 	public void setInputYear(String inputYear) {
 		this.inputYear = inputYear;
 	}
+	public String getInputEndYear() {
+		return inputEndYear;
+	}
+	public void setInputEndYear(String inputEndYear) {
+		this.inputEndYear = inputEndYear;
+	}
 	public String getInputStartHour() {
 		return inputStartHour;
 	}
 	public void setInputStartHour(String inputStartHour) {
 		this.inputStartHour = inputStartHour;
-	}
-	public String getInputStartMinute() {
-		return inputStartMinute;
-	}
-	public void setInputStartMinute(String inputStartMinute) {
-		this.inputStartMinute = inputStartMinute;
 	}
 	public String getGdTrStDt() {
 		return gdTrStDt;
@@ -141,12 +142,6 @@ public class GuideTourModifyVO {
 	}
 	public void setInputEndHour(String inputEndHour) {
 		this.inputEndHour = inputEndHour;
-	}
-	public String getInputEndMinute() {
-		return inputEndMinute;
-	}
-	public void setInputEndMinute(String inputEndMinute) {
-		this.inputEndMinute = inputEndMinute;
 	}
 	public String getGdTrPrps() {
 		return gdTrPrps;
@@ -213,5 +208,35 @@ public class GuideTourModifyVO {
 	}
 	public void setGuideTourScheduleInfoList(List<GuideTourScheduleInfoVO> guideTourScheduleInfoList) {
 		this.guideTourScheduleInfoList = guideTourScheduleInfoList;
+	}
+	public String getAthrId() {
+		return athrId;
+	}
+	public void setAthrId(String athrId) {
+		this.athrId = athrId;
+	}
+	public String getGdTrLat() {
+		return gdTrLat;
+	}
+	public void setGdTrLat(String gdTrLat) {
+		this.gdTrLat = gdTrLat;
+	}
+	public String getGdTrLng() {
+		return gdTrLng;
+	}
+	public void setGdTrLng(String gdTrLng) {
+		this.gdTrLng = gdTrLng;
+	}
+	public String getGdTrAddrs() {
+		return gdTrAddrs;
+	}
+	public void setGdTrAddrs(String gdTrAddrs) {
+		this.gdTrAddrs = gdTrAddrs;
+	}
+	public boolean getIsChecked() {
+		return isChecked;
+	}
+	public void setIsChecked(boolean isChecked) {
+		this.isChecked = isChecked;
 	}
 }

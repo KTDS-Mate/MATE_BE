@@ -40,7 +40,7 @@ public class NoticeApiController {
         try {
             return jsonWebTokenProvider.getUserFromJwt(token.replace("Bearer ", ""));
         } catch (Exception e) {
-            logger.error("Failed to parse JWT and extract user data: {}", e.getMessage());
+            //logger.error("Failed to parse JWT and extract user data: {}", e.getMessage());
             return null;
         }
     }
@@ -53,7 +53,7 @@ public class NoticeApiController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized access");
         }
 
-        logger.info("Fetching unread notices for user: {}", userVO.getUsrLgnId());
+        //logger.info("Fetching unread notices for user: {}", userVO.getUsrLgnId());
         List<NoticeVO> unreadNotices = noticeService.getUnreadNoticesByRecipientId(userVO.getUsrLgnId());
         return ResponseEntity.ok(unreadNotices);
     }
@@ -67,7 +67,7 @@ public class NoticeApiController {
                 noticeVO.setNtcUrl("/");
             }
 
-            // 알림 생성
+            // 알림 생성 
             NoticeVO newNotice = noticeService.createNotice(noticeVO);
 
             // 성공적으로 생성된 알림 반환
@@ -111,7 +111,7 @@ public class NoticeApiController {
         }
 
         noticeService.deleteNotice(noticeVO.getNtcId());
-        logger.info("Deleted notice: {}", noticeVO.getNtcId());
+        //logger.info("Deleted notice: {}", noticeVO.getNtcId());
         return ResponseEntity.ok("Notice deleted successfully.");
     }
 
@@ -124,11 +124,11 @@ public class NoticeApiController {
         }
 
         try {
-            logger.info("Fetching all notices for user: {}", userVO.getUsrLgnId());
+            //logger.info("Fetching all notices for user: {}", userVO.getUsrLgnId());
             List<NoticeVO> allNotices = noticeService.getNoticeByRecipientId(userVO.getUsrLgnId());
             return ResponseEntity.ok(allNotices);
         } catch (Exception e) {
-            logger.error("Error fetching all notices", e);
+            //logger.error("Error fetching all notices", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                                  .body(Map.of("error", "Failed to fetch notices."));
         }
