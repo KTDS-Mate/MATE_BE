@@ -17,6 +17,7 @@ import com.mate.bbs.vo.GuideTourImgVO;
 import com.mate.bbs.vo.GuideTourListVO;
 import com.mate.bbs.vo.GuideTourModifyVO;
 import com.mate.bbs.vo.GuideTourProvidedVO;
+import com.mate.bbs.vo.GuideTourReserveVO;
 import com.mate.bbs.vo.GuideTourReviewVO;
 import com.mate.bbs.vo.GuideTourScheduleInfoVO;
 import com.mate.bbs.vo.GuideTourVO;
@@ -147,14 +148,59 @@ public class GuideTourServiceImpl implements GuideTourService{
 	@Transactional
 	@Override
 	public boolean modifyGuideTour(GuideTourModifyVO guideTourModifyVO) {
-		// 가이드가 입력한 날짜를 받아와서 포멧에 맞춤
-		String startHour = this.guideTourDao.selectAttachModifyStartHour(guideTourModifyVO);
-		String endHour = this.guideTourDao.selectAttachModifyEndHour(guideTourModifyVO);
-		// 포멧에 맞춘 시간을 담아준다.
-		guideTourModifyVO.setGdTrRstrDt(startHour);
-		guideTourModifyVO.setGdTrEdDt(endHour);
+		boolean isChecked = guideTourModifyVO.getIsChecked();
+		if (isChecked) {
+			// 가이드가 입력한 날짜를 받아와서 포멧에 맞춤
+			String startHour = this.guideTourDao.selectAttachModifyStartHour(guideTourModifyVO);
+			String endHour = this.guideTourDao.selectAttachModifyEndHour(guideTourModifyVO);
+			// 포멧에 맞춘 시간을 담아준다.
+			guideTourModifyVO.setGdTrStDt(startHour);
+			guideTourModifyVO.setGdTrEdDt(endHour);
+		}
+		else {
+			String startDt = this.guideTourDao.selectAttachMultyStartHour2(guideTourModifyVO);
+			String endDt = this.guideTourDao.selectAttachMultyEndHour2(guideTourModifyVO);
+			guideTourModifyVO.setGdTrStDt(startDt);
+			guideTourModifyVO.setGdTrEdDt(endDt);
+			
+		}
+		
+		// 기존의 스케쥴을 모두 삭제
+		this.guideTourDao.deleteGuideTourSchdls(guideTourModifyVO.getGdTrPstId());
+		// 기존의 추가 정보를 모두 삭제
+		this.guideTourDao.deleteGuideTourDetails(guideTourModifyVO.getGdTrPstId());
+		// 기존의 제공 요소를 모두 삭제
+		this.guideTourDao.deleteGuideTourProvided(guideTourModifyVO.getGdTrPstId());
+		
+		// 새로 작성 한 리스트들을 다시 입력
+		List<GuideTourScheduleInfoVO> guideTourSchdlList = guideTourModifyVO.getGuideTourScheduleInfoList();
+		List<GuideTourDetailInfoVO> guideTourDetailList = guideTourModifyVO.getGuideTourDetailInfoList();
+		List<GuideTourProvidedVO> guideTourProvidedList = guideTourModifyVO.getGuideTourProvidedList();
+		
+		if(guideTourSchdlList != null && !guideTourSchdlList.isEmpty()) {
+			for (GuideTourScheduleInfoVO guideTourScheduleInfoVO : guideTourSchdlList) {
+				guideTourScheduleInfoVO.setGdTrPstId(guideTourModifyVO.getGdTrPstId());
+				
+				this.guideTourDao.insertNewSchdInfo(guideTourScheduleInfoVO);
+			}
+		}
+		if(guideTourDetailList != null && !guideTourDetailList.isEmpty()) {
+			for (GuideTourDetailInfoVO guideTourDetailInfoVO : guideTourDetailList) {
+				guideTourDetailInfoVO.setGdTrPstId(guideTourModifyVO.getGdTrPstId());
+				
+				this.guideTourDao.insertNewDetailInfo(guideTourDetailInfoVO);
+			}
+		}
+		if(guideTourProvidedList != null && !guideTourProvidedList.isEmpty()) {
+			for(GuideTourProvidedVO guideTourProvidedVO : guideTourProvidedList) {
+				guideTourProvidedVO.setGdTrPstId(guideTourModifyVO.getGdTrPstId());
+				
+				this.guideTourDao.insertNewProvidedInfo(guideTourProvidedVO);
+			}
+		}
 		
 		int guideTourUpdateCount = this.guideTourDao.updateGuideTour(guideTourModifyVO);
+		
 		return guideTourUpdateCount > 0;
 	}
 	
@@ -186,6 +232,11 @@ public class GuideTourServiceImpl implements GuideTourService{
 	public GuideTourVO getLateGuideTour() {
 		GuideTourVO guideTourVO = this.guideTourDao.selectLateGuideTour();
 		return guideTourVO;
+	}
+	@Transactional
+	@Override
+	public boolean updateGuideTourStts(GuideTourReserveVO guideTourReserveVO) {
+		return this.guideTourDao.updateGuideTourReserve(guideTourReserveVO) > 0;
 	}
 	
 }

@@ -46,4 +46,10 @@ public class GuideTourReviewServiceImpl implements GuideTourReviewService{
 		return false;
 	}
 	
+	@Override
+	public GuideTourReviewVO getLateGuideTourReview() {
+		GuideTourReviewVO guideTourReviewVO = this.guideTourReviewDao.selectLateGuideTourReview();
+		return guideTourReviewVO;
+	}
+	
 }
