@@ -12,6 +12,7 @@ import com.mate.bbs.vo.GuideTourDetailInfoVO;
 import com.mate.bbs.vo.GuideTourImgVO;
 import com.mate.bbs.vo.GuideTourModifyVO;
 import com.mate.bbs.vo.GuideTourProvidedVO;
+import com.mate.bbs.vo.GuideTourReserveVO;
 import com.mate.bbs.vo.GuideTourReviewVO;
 import com.mate.bbs.vo.GuideTourScheduleInfoVO;
 import com.mate.bbs.vo.GuideTourVO;
@@ -159,6 +160,10 @@ public class GuideTourDaoImpl extends SqlSessionDaoSupport implements GuideTourD
 	@Override
 	public String selectAttachMultyEndHour2(GuideTourModifyVO guideTourModifyVO) {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachMultyEndHour2", guideTourModifyVO);
+	}
+	@Override
+	public int updateGuideTourReserve(GuideTourReserveVO guideTourReserveVO) {
+		return this.getSqlSession().update(NAMESPACE+ ".updateGuideTourReserve", guideTourReserveVO);
 	}
 	
 }

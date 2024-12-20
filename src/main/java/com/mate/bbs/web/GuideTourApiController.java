@@ -24,6 +24,7 @@ import com.mate.bbs.vo.FavoriteWriteVO;
 import com.mate.bbs.vo.GuideTourImgListVO;
 import com.mate.bbs.vo.GuideTourListVO;
 import com.mate.bbs.vo.GuideTourModifyVO;
+import com.mate.bbs.vo.GuideTourReserveVO;
 import com.mate.bbs.vo.GuideTourVO;
 import com.mate.bbs.vo.GuideTourWriteVO;
 import com.mate.bbs.vo.SearchGuideTourVO;
@@ -185,5 +186,14 @@ public class GuideTourApiController {
 			return user;
 		}
 		return null;
+	}
+	
+	@PostMapping("/guidetour/reserve")
+	public ApiResponse doUpdateGuideTourStts(@RequestBody GuideTourReserveVO guideTourReserveVO) {
+		System.out.println("ㅇㅇㅇ" + guideTourReserveVO.getGdTrPstId());
+		System.out.println("ㅇㅇㅇ" + guideTourReserveVO.getUsrId());
+		boolean isUpdated = this.guideTourService.updateGuideTourStts(guideTourReserveVO);
+		
+		return new ApiResponse(isUpdated);
 	}
 }

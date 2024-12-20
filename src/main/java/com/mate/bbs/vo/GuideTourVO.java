@@ -146,6 +146,8 @@ public class GuideTourVO {
 	private String gdTrLat;
 	private String gdTrLng;
 	private String gdTrAddrs;
+	
+	private String gdTrStts;
 
 	public String getGdTrPstId() {
 		return gdTrPstId;
@@ -177,6 +179,15 @@ public class GuideTourVO {
 
 	public void setGdTrTtl(String gdTrTtl) {
 		this.gdTrTtl = gdTrTtl;
+	}
+
+	
+	public String getGdTrStts() {
+		return gdTrStts;
+	}
+
+	public void setGdTrStts(String gdTrStts) {
+		this.gdTrStts = gdTrStts;
 	}
 
 	public String getGdTrStDt() {

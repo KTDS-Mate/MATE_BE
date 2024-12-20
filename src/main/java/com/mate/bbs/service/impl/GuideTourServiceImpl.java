@@ -17,6 +17,7 @@ import com.mate.bbs.vo.GuideTourImgVO;
 import com.mate.bbs.vo.GuideTourListVO;
 import com.mate.bbs.vo.GuideTourModifyVO;
 import com.mate.bbs.vo.GuideTourProvidedVO;
+import com.mate.bbs.vo.GuideTourReserveVO;
 import com.mate.bbs.vo.GuideTourReviewVO;
 import com.mate.bbs.vo.GuideTourScheduleInfoVO;
 import com.mate.bbs.vo.GuideTourVO;
@@ -231,6 +232,11 @@ public class GuideTourServiceImpl implements GuideTourService{
 	public GuideTourVO getLateGuideTour() {
 		GuideTourVO guideTourVO = this.guideTourDao.selectLateGuideTour();
 		return guideTourVO;
+	}
+	@Transactional
+	@Override
+	public boolean updateGuideTourStts(GuideTourReserveVO guideTourReserveVO) {
+		return this.guideTourDao.updateGuideTourReserve(guideTourReserveVO) > 0;
 	}
 	
 }

@@ -6,7 +6,7 @@ import com.mate.bbs.vo.GuideTourDetailInfoVO;
 import com.mate.bbs.vo.GuideTourImgVO;
 import com.mate.bbs.vo.GuideTourModifyVO;
 import com.mate.bbs.vo.GuideTourProvidedVO;
-import com.mate.bbs.vo.GuideTourReviewVO;
+import com.mate.bbs.vo.GuideTourReserveVO;
 import com.mate.bbs.vo.GuideTourScheduleInfoVO;
 import com.mate.bbs.vo.GuideTourVO;
 import com.mate.bbs.vo.GuideTourWriteVO;
@@ -143,4 +143,6 @@ public interface GuideTourDao {
     
     /** 최신순 받아오기 위한 코드 */
     public GuideTourVO selectLateGuideTour();
+    
+    public int updateGuideTourReserve(GuideTourReserveVO guideTourReserveVO);
 }

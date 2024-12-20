@@ -125,6 +125,7 @@ public class SecurityConfig {
 				.requestMatchers("/api/v1/guidetour/**").permitAll()
 				.requestMatchers("/api/v1/guidetour/review/**").permitAll()
 				.requestMatchers("/api/v1/guidetour/late/review").permitAll()
+				.requestMatchers("/api/v1/guidetour/reserve").permitAll()
 				.requestMatchers("/").permitAll()
 				.requestMatchers("/api/v1/tourApply/detail/**").permitAll()
 				.requestMatchers("/user/regist").permitAll()

@@ -146,6 +146,7 @@
 		     , G.GD_TR_MX_NP
 		     , G.TR_AVG_RTNG
 		     , G.GD_TR_LAT
+		     , G.GD_TR_STTS
 			 , G.GD_TR_LNG
     		 , G.GD_TR_ADDRS
 		     , GTI.GD_TR_IMG_URL
@@ -263,7 +264,7 @@
 			     ON C.COUNTRY_ID = CTR.COUNTRY_ID
 			   JOIN REGIONS R
 			     ON R.REGION_ID = CTR.REGION_ID 
-			  WHERE GD_TR_ST_DT > SYSDATE
+			  WHERE GD_TR_ST_DT >= SYSDATE
 			    AND GD_TR_IS_DLT = 'N'
 		    <if test="_parameter != null">
 			 	<include refid="com.mate.bbs.dao.GuideTourDao.selectRegions" />
@@ -525,4 +526,12 @@
 			  ORDER BY GTR.GD_TR_PST_ID DESC) D
 		WHERE ROWNUM = 1		
 	</select>
+	
+	<update id="updateGuideTourReserve"
+			parameterType="com.mate.bbs.vo.GuideTourReserveVO">
+		UPDATE GD_TR_RCRT 
+		   SET USR_ID = #{usrId}
+		     , GD_TR_STTS = 'RSRVT'
+		 WHERE GD_TR_PST_ID = #{gdTrPstId}
+	</update>
 </mapper>
