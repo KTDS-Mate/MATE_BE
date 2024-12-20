@@ -67,7 +67,7 @@ public class NoticeApiController {
                 noticeVO.setNtcUrl("/");
             }
 
-            // 알림 생성
+            // 알림 생성 
             NoticeVO newNotice = noticeService.createNotice(noticeVO);
 
             // 성공적으로 생성된 알림 반환

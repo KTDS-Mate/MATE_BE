@@ -94,7 +94,6 @@ app:
       /api/user/regist/**,
       /api/user/send-auth-mail,
       /api/user/verify-auth-code,
-      /api/v1//favorite/**,
       /api/v1/guidetour/list,
       /api/v1/guidetour/getLateGuideTour,
       /api/v1/guidetour/count,

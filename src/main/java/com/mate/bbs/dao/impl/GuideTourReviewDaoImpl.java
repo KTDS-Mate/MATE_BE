@@ -71,4 +71,8 @@ public class GuideTourReviewDaoImpl extends SqlSessionDaoSupport implements Guid
 	public int deleteGuideTourReview(String gdTrRvwId) {
 		return this.getSqlSession().update(NAMESPACE + ".deleteGuideTourReview", gdTrRvwId);
 	}
+	@Override
+	public GuideTourReviewVO selectLateGuideTourReview() {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectLateGuideTourReview");
+	}
 }
