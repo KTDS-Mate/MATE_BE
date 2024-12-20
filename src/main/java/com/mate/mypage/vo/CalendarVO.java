@@ -13,6 +13,7 @@ public class CalendarVO {
 	private String calTextColor;
 	private String calBackColor;
 	private String calBorderColor;
+	private String calUrl;
 	
 	private CalendarUserVO calendarUserVO;
 	
@@ -21,6 +22,12 @@ public class CalendarVO {
 	
 	
 	
+	public String getCalUrl() {
+		return calUrl;
+	}
+	public void setCalUrl(String calUrl) {
+		this.calUrl = calUrl;
+	}
 	public CalendarUserVO getCalendarUserVO() {
 		return calendarUserVO;
 	}
