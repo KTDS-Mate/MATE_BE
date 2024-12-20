@@ -97,15 +97,19 @@ public class GuideTourApiController {
 		return new ApiResponse(guideTourImgs);
 	}
 	
-    @GetMapping("/guidetour/random")
-    public ResponseEntity<?> getRandomGuideTours() {
-        try {
-            List<GuideTourVO> randomTours = guideTourService.getRandomGuideTours();
-            return ResponseEntity.ok(randomTours); // JSON 형식으로 반환
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body("{\"error\": \"Server Error\", \"message\": \"" + e.getMessage() + "\"}");
-        }
-    }
+	@GetMapping("/guidetour/random")
+	public ApiResponse getRandomGuideTours() {
+	    ApiResponse apiResponse = new ApiResponse();
+	    try {
+	        List<GuideTourVO> randomTours = guideTourService.getRandomGuideTours();
+	        apiResponse.setBody(randomTours);
+	    } catch (Exception e) {
+	        apiResponse.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+	        apiResponse.setErrors(List.of(e.getMessage())); // 오류 메시지를 리스트에 추가
+	    }
+	    return apiResponse;
+	}
+
     
     @GetMapping("/guidetour/favorite/{gdTrPstId}")
     public ApiResponse getAllGuideTourFavorite(@PathVariable String gdTrPstId) {

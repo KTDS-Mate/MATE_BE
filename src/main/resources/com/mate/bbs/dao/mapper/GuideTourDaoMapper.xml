@@ -424,9 +424,13 @@
 	</insert>
 
 	<!-- 랜덤하게 정렬된 가이드 투어 목록을 반환하는 쿼리-->
-	<select id="getRandomGuideTours" resultType="com.mate.bbs.vo.GuideTourVO">
-		SELECT *
-		  FROM GD_TR_RCRT
+	<select id="getRandomGuideTours" resultMap="guideTourVOMap">
+		SELECT GTR.GD_TR_PST_ID
+		     , GTR.GD_TR_TTL
+		     , GTRI.GD_TR_IMG_URL
+		  FROM GD_TR_RCRT GTR
+		  LEFT JOIN GD_TR_RCRT_IMG GTRI
+		    ON GTR.GD_TR_PST_ID = GTRI.GD_TR_PST_ID
 		 ORDER BY DBMS_RANDOM.VALUE
 	</select>
 	
