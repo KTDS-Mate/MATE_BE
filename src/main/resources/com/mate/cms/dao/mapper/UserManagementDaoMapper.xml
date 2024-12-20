@@ -65,6 +65,20 @@
           WHERE USR_ID = #{parameter}
   	</update>
   	
+  	<update id="updateUndoDeleteUser"
+  	        parameterType="String">
+  	     UPDATE USR_INF
+            SET USR_IS_CL = 'N'
+          WHERE USR_ID = #{parameter}
+  	</update>
+  	
+  	<update id="updateUndoBlockUser"
+  	        parameterType="String">
+  	     UPDATE USR_INF
+            SET USR_IS_BLCK = 'N'
+          WHERE USR_ID = #{parameter}
+  	</update>
+  	
   	
   	
   	<!-- 
