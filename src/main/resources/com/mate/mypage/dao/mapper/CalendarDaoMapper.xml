@@ -29,6 +29,7 @@
 			,c.CAL_TEXTCOLOR 
 			,c.CAL_BACKCOLOR 
 			,c.CAL_BORDERCOLOR 
+			,c.CAL_URL 
 		FROM 
 			CALENDAR c 
 		INNER JOIN 
