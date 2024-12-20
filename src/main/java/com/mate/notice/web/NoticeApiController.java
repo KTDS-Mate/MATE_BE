@@ -62,27 +62,26 @@ public class NoticeApiController {
     @PostMapping("/create")
     public ResponseEntity<ApiResponse> createNotification(@RequestBody NoticeVO noticeVO) {
         try {
-        	
-        	if (noticeVO.getNtcUrl() == null || noticeVO.getNtcUrl().isEmpty()) {
-        		noticeVO.setNtcUrl("/");
-        	}
+            // 알림 URL 기본값 설정
+            if (noticeVO.getNtcUrl() == null || noticeVO.getNtcUrl().isEmpty()) {
+                noticeVO.setNtcUrl("/");
+            }
 
-        	// 알림 생성
+            // 알림 생성
             NoticeVO newNotice = noticeService.createNotice(noticeVO);
 
-            
-            // 반환 데이터에 새로 생성된 알림 객체 포함
+            // 성공적으로 생성된 알림 반환
             ApiResponse response = new ApiResponse(HttpStatus.OK, newNotice);
             return ResponseEntity.ok(response);
         } catch (Exception e) {
-        	 //logger.error("Error creating notification", e); 
+            logger.error("Error creating notification", e);
             ApiResponse errorResponse = new ApiResponse(HttpStatus.INTERNAL_SERVER_ERROR);
             errorResponse.setErrors(List.of("Failed to create notification."));
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .body(errorResponse);
+                                 .body(errorResponse);
         }
     }
+
 
     // 3. 알림 읽음 상태 업데이트
     @PostMapping("/read")

@@ -60,10 +60,12 @@ public class UserVO {
      * 가이드 여부 확인
      */
     private String usrIsGd;
+    
     /**
      * 회원(가이드) 자기소개
      */
     private String usrSlfIntdctn;
+    
     /**
      * 회원의 페이팔 이메일
      */
@@ -138,6 +140,8 @@ public class UserVO {
 	private List<AuthorityVO> Authority;
 	
 	private String provider;
+	
+	private String usrIsBlck;
 
 	private List<LicenseVO> licenseList;
 		
@@ -427,6 +431,14 @@ public class UserVO {
 
 	public void setLicenseList(List<LicenseVO> licenseList) {
 		this.licenseList = licenseList;
+	}
+	
+	public String getUsrIsBlck() {
+		return usrIsBlck;
+	}
+
+	public void setUsrIsBlck(String usrIsBlck) {
+		this.usrIsBlck = usrIsBlck;
 	}
 	
 }

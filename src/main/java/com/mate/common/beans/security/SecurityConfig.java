@@ -96,7 +96,7 @@ public class SecurityConfig {
 	        // CORS 설정
 	        .cors(cors -> cors.configurationSource(request -> {
 	            CorsConfiguration corsConfiguration = new CorsConfiguration();
-	            corsConfiguration.setAllowedOrigins(List.of("http://localhost:3000"));
+	            corsConfiguration.setAllowedOrigins(List.of("http://localhost:3000", "http://3.38.186.79","http://localhost:3000/api/*", "http://3.38.186.79/api/*"));
 	            corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 	            corsConfiguration.setAllowedHeaders(List.of("*"));
 	            corsConfiguration.setExposedHeaders(List.of("Authorization"));
@@ -123,7 +123,31 @@ public class SecurityConfig {
 	                "/api/v1/tour/**",
 	                "/api/v1/payment/**",
 	                "/api/v1/notice/**",
-	                "/ws/**"
+	                "/ws/**",
+	                "/api/maps/**",
+	                "/guidetour/list",
+	                "/token",
+	                "/guidetour/view/**",
+	                "/",
+	                "/api/v1/tourApply/detail/**",
+	                "/usertour/list",
+	                "/usertour/view**",
+	                "/api/v1/mypage/**",
+	                "/api/v1/request/guide/apply/insert",
+	                "/api/v1/request/insert",
+	                "/api/v1/favorite/**",
+	                "/api/v1/guidetour/favorite/**",
+	                "/api/maps/**",
+	                "/api/v1/mypage/tr-apply-tour/**",
+	                "/api/v1/tourApply/accept/**",
+	                "/api/v1/tourApply/refusal/**",
+	                "/api/v1/mypage/gd-apply-tour/**",
+	                "/api/v1/cutomerservice/insert",
+	                "/api/v1/customerservice/list/**",
+	                "/api/v1/usermanagement/**",
+	                "/api/v1/cms/**",
+	                "/api/v1/notice/**",
+	                "/api/v1/paymentservice/**"
 	            ).permitAll()
 	            .anyRequest().authenticated()
 	        )

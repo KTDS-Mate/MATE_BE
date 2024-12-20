@@ -96,9 +96,12 @@ app:
       /api/user/verify-auth-code,
       /api/v1//favorite/**,
       /api/v1/guidetour/list,
+      /api/v1/guidetour/getLateGuideTour,
+      /api/v1/guidetour/count,
       /api/v1/guidetour/info/**,
-      /api/v1/guidetour/insert,
-      /api/v1/guidetour/**,
+      /api/v1/guidetour/imgs/**,
+      /api/v1/guidetour/review/**,
+      /api/v1/guidetour/random,
       /api/v1/tour/**,
       /api/v1/tour/regions,
       /api/v1/tour/countries/**,
@@ -122,9 +125,11 @@ app:
       /api/v1/s3/presigned-url/upload,
       /api/v1/s3/presigned-url/download,
       /api/v1/notice/**,
+      /api/v1/paymentservice/**,
       /ws/notice,
       /ws/chat,
       /ws/**,
+      /api/v1/usermanagement/**,
   jwt:
     issuer: hello-spring-security
     secret-key: spring-security-secret-key-random-token-key

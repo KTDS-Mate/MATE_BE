@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.mate.common.vo.CitiesVO;
 import com.mate.common.vo.CountriesVO;
-import com.mate.mypage.vo.GuideReviewVO;
 import com.mate.user.vo.UserVO;
 
 public class GuideTourVO {
@@ -140,6 +139,10 @@ public class GuideTourVO {
 	private int trAvgRtng;
 
 	private int guideImgCount;
+
+	private String gdTrLat;
+	private String gdTrLng;
+	private String gdTrAddrs;
 
 	public String getGdTrPstId() {
 		return gdTrPstId;
@@ -380,4 +383,29 @@ public class GuideTourVO {
 	public void setGuideImgCount(int guideImgCount) {
 		this.guideImgCount = guideImgCount;
 	}
+
+	public String getGdTrLat() {
+		return gdTrLat;
+	}
+
+	public void setGdTrLat(String gdTrLat) {
+		this.gdTrLat = gdTrLat;
+	}
+
+	public String getGdTrLng() {
+		return gdTrLng;
+	}
+
+	public void setGdTrLng(String gdTrLng) {
+		this.gdTrLng = gdTrLng;
+	}
+
+	public String getGdTrAddrs() {
+		return gdTrAddrs;
+	}
+
+	public void setGdTrAddrs(String gdTrAddrs) {
+		this.gdTrAddrs = gdTrAddrs;
+	}
+
 }

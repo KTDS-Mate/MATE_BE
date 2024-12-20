@@ -74,7 +74,8 @@
 		     , USR_JN_DT
 		     , USR_ROLE
 		     , USR_IS_GD
-		     , USR_IS_CL)
+		     , USR_IS_CL
+		     , USR_IS_BLCK)
 		VALUES
 		     ( 'USR-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_USR_PK.NEXTVAL, 6, 0)
 		     , #{usrLgnId}
@@ -91,6 +92,7 @@
 		     , #{gdRpCntId}
 		     , SYSDATE
 		     , 'ROLE_TOURIST'
+		     , 'N'
 		     , 'N'
 		     , 'N'
 		    )
@@ -150,12 +152,14 @@
 		     , U.USR_IS_GD
 		     , C.COUNTRY_NAME
 		     , U.USR_ROLE
+		     , U.USR_IS_BLCK
 		  FROM USR_INF U
 		  LEFT JOIN COUNTRIES C
 		    ON U.GD_RP_CNT_ID = C.COUNTRY_ID
 		 WHERE U.USR_LGN_ID = #{usrLgnId}
 		   AND U.USR_PWD = #{usrPwd}
 		   AND U.USR_IS_CL = 'N'
+		   AND U.USR_IS_BLCK = 'N'
 	</select>
 	
 	<update id="updateLoginFailState" parameterType="com.mate.user.vo.LoginUserVO">
@@ -259,6 +263,7 @@
 	           U.USR_JN_DT,
 	           U.USR_CL_DT,
 	           U.USR_IS_CL,
+	           U.USR_IS_BLCK,
 	           U.USR_MDFY_DT,
 	           U.GD_PRFL_IMG,
 	           U.GD_ID_IMG,
@@ -269,6 +274,8 @@
 	      FROM USR_INF U
 	      LEFT JOIN COUNTRIES C ON U.GD_RP_CNT_ID = C.COUNTRY_ID
 	     WHERE U.USR_LGN_ID = #{usrLgnId}
+	       AND U.USR_IS_BLCK = 'N'
+	       AND U.USR_IS_CL = 'N'
 	</select>
 	
 	<update id="mergeUser" parameterType="com.mate.user.vo.UserVO">

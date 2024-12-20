@@ -11,6 +11,8 @@ public interface TourApplyDao {
 	
 	public String selectTourAthor(String gdApplyId);
 	
+	public int updateOtherRefusal(String gdApplyId);
+	
 	public int updateAcceptTourApply(String gdApplyId);
 	
 	public int updateRequestTour(String gdApplyId);

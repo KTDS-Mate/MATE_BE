@@ -69,6 +69,20 @@
 		  FROM FVRTS
 		 WHERE USR_TR_PST_ID = #{_parameter}
 	</select>
+	
+	<select id="selectAllGuideTourFavoriteList"
+			parameterType="string"
+			resultMap="favoriteVOMap">
+		SELECT FAV_ID
+		     , FAV_CR_AT
+		     , FAV_IS_DLT
+		     , FAV_DLT_AT
+		     , USR_LGN_ID
+		     , GD_TR_PST_ID
+		     , USR_TR_PST_ID
+		  FROM FVRTS 
+		 WHERE GD_TR_PST_ID = #{parameter}
+	</select>
 
 	<select id="selectAllFavoriteCount"
 			parameterType="string"
@@ -77,11 +91,26 @@
 		  FROM FVRTS
 		 WHERE USR_TR_PST_ID = #{_parameter}
 	</select>
+	
+	<select id="selectAllGuideTourFavoriteCount"
+			parameterType="string"
+			resultType="_int">
+		SELECT COUNT(1)
+		  FROM FVRTS
+		 WHERE GD_TR_PST_ID = #{_parameter}
+	</select>
 
 	<delete id="deleteFavIsDlt"
 			parameterType="map">
 		DELETE FROM FVRTS 
 		 WHERE USR_TR_PST_ID = #{usrPstId}
+		   AND USR_LGN_ID = #{usrLgnId}
+	</delete>
+	
+	<delete id="deleteFavoriteGuideTour"
+			parameterType="map">
+		DELETE FROM FVRTS 
+		 WHERE GD_TR_PST_ID = #{gdTrPstId}
 		   AND USR_LGN_ID = #{usrLgnId}
 	</delete>
 
