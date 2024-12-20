@@ -88,15 +88,24 @@
 	   AND USR_TR_STTS = 'RCRTNG'
  	</select>
  	
+ 	<update id="updateOtherRefusal"
+ 			parameterType="string">
+ 		UPDATE RQST_GD_APPLY
+	     SET GD_APPLY_STT = 'REFUSAL'
+	   WHERE USR_TR_PST_ID = (SELECT USR_TR_PST_ID
+	  							FROM RQST_GD_APPLY
+	  						   WHERE GD_APPLY_ID = #{_parameter})
+ 	</update>
+ 	
  	<update id="updateAcceptTourApply"
- 	        parameterType="String">
+ 	        parameterType="string">
  	  UPDATE RQST_GD_APPLY
 	     SET GD_APPLY_STT = 'ACCEPT'
 	   WHERE GD_APPLY_ID = #{parameter}
  	</update>
  	
  	<update id="updateRequestTour"
- 	        parameterType="String">
+ 	        parameterType="string">
  	  UPDATE USR_TR_RQST
 	     SET USR_TR_STTS = 'RSRVT'
 	       , GD_ID = (SELECT GD_ID

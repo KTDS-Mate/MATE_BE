@@ -20,8 +20,7 @@ public class MyPaymentApiController {
 	
 	@GetMapping("/payment/list")
     public ApiResponse viewPaymentList(@ModelAttribute SearchPaymentVO searchPaymentVO) {
-		// 회원VO는 세션으로 받아와야 하지만, 일단 PathVariable로 받아옴
-		// TODO 세션 추가 되면 그걸 받아와서 유저 정보 끼워서 만들기
+		
 		PaymentListVO paymentListVO = this.paymentService.getAllMyPayment(searchPaymentVO);
 		return new ApiResponse(paymentListVO);
 	}

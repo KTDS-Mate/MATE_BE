@@ -43,4 +43,8 @@ public interface UserManagementDao {
 	
 	public int updateBlockUser(String usrId);
 	
+	public int updateUndoDeleteUser(String usrId);
+	
+	public int updateUndoBlockUser(String usrId);
+	
 }

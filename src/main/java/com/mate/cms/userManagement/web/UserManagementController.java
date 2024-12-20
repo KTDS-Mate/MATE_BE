@@ -63,10 +63,10 @@ public class UserManagementController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/usermanagement/deleteUser/{usrId}")
-	public ApiResponse doDeleteUser(@PathVariable String usrId) {
+	@PostMapping("/usermanagement/deleteUser/{usrId}/{usrIsCl}")
+	public ApiResponse doDeleteUser(@PathVariable String usrId, @PathVariable String usrIsCl) {
 		try {
-			this.userManagementService.doDeleteUser(usrId);
+			this.userManagementService.doDeleteUser(usrId, usrIsCl);
 		} catch(Exception e) {
 			return new ApiResponse(e.getMessage());
 		}
@@ -74,10 +74,10 @@ public class UserManagementController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/usermanagement/blockUser/{usrId}")
-	public ApiResponse doBlockeUser(@PathVariable String usrId) {
+	@PostMapping("/usermanagement/blockUser/{usrId}/{usrIsBlck}")
+	public ApiResponse doBlockeUser(@PathVariable String usrId, @PathVariable String usrIsBlck) {
 		try {
-			this.userManagementService.doBlockUser(usrId);
+			this.userManagementService.doBlockUser(usrId, usrIsBlck);
 		} catch(Exception e) {
 			return new ApiResponse(e.getMessage());
 		}

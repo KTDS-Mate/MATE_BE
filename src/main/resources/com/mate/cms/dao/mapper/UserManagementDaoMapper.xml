@@ -39,7 +39,7 @@
 		 	 , USR_FNM 
 		 	 , USR_LNM 
 		 	 , USR_GNDR 
-		 	 , USR_BD 
+		 	 , TO_CHAR(USR_BD, 'YYYY-MM-DD') AS USR_BD
 		 	 , USR_EML 
 		 	 , USR_IS_GD
 		 	 , USR_IS_CL
@@ -62,6 +62,20 @@
   	        parameterType="String">
   	     UPDATE USR_INF
             SET USR_IS_BLCK = 'Y'
+          WHERE USR_ID = #{parameter}
+  	</update>
+  	
+  	<update id="updateUndoDeleteUser"
+  	        parameterType="String">
+  	     UPDATE USR_INF
+            SET USR_IS_CL = 'N'
+          WHERE USR_ID = #{parameter}
+  	</update>
+  	
+  	<update id="updateUndoBlockUser"
+  	        parameterType="String">
+  	     UPDATE USR_INF
+            SET USR_IS_BLCK = 'N'
           WHERE USR_ID = #{parameter}
   	</update>
   	
@@ -94,7 +108,7 @@
 		 	 , USR_FNM
 		 	 , USR_LNM
 		 	 , USR_GNDR
-		 	 , USR_BD
+		 	 , TO_CHAR(USR_BD, 'YYYY-MM-DD') AS USR_BD
 		 	 , USR_EML
 		 	 , USR_IS_GD
 		 	 , GD_APPL_STT

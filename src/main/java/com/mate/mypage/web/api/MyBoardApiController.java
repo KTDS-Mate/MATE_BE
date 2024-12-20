@@ -31,15 +31,7 @@ public class MyBoardApiController {
     @GetMapping("/tr-mytour/{usrLgnId}")
     public ApiResponse viewTrMyTour(@PathVariable String usrLgnId,SearchMyBoardVO searchMyBoardVO) {
 
-    	System.out.println("유저아이디는 " + usrLgnId);
-    	
     	TrMyBoardListVO boardListVO = this.myBoardService.selectTrMyAllBoard(usrLgnId , searchMyBoardVO);
-    	
-    	System.out.println("보드갯수는 " + boardListVO.getBoardCnt());
-//    	int myBoardListVO = boardListVO.getBoardCnt();
-//    	List<TrMyBoardVO> myBoardListVO2 = boardListVO.getBoardList();
-
-
 
         return new ApiResponse(boardListVO);
     }

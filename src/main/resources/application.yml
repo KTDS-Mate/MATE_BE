@@ -86,6 +86,7 @@ app:
       /api/v1/guidetour/info/**,
       /api/v1/guidetour/imgs/**,
       /api/v1/guidetour/review/**,
+      /api/v1/guidetour/random,
       /api/v1/tour/**,
       /api/v1/tour/regions,
       /api/v1/tour/countries/**,
