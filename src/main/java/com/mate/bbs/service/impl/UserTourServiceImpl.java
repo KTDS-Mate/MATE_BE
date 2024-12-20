@@ -87,23 +87,24 @@ public class UserTourServiceImpl implements UserTourService{
 			}
 		}
 		
-		List<UserTourImgVO> userTourImgList = userTourWriteVO.getUserTourImgList();
+		// 이미지 처리 로직 (Pre-signed URL 방식)
+	    List<UserTourImgVO> userTourImgList = userTourWriteVO.getUserTourImgList();
+	    if (userTourImgList != null && !userTourImgList.isEmpty()) {
+	        for (UserTourImgVO userTourImgVO : userTourImgList) {
+	            userTourImgVO.setUsrTrPstId(userTourWriteVO.getUsrTrPstId());
+	            
+	            // 클라이언트에서 이미 S3에 업로드한 파일의 정보를 받음
+	            String originalFileName = userTourImgVO.getUsrTrRqOriginFileName();
+	            String s3FileUrl = userTourImgVO.getUsrTrRqImgIdUrl();
+	            
+	            if (originalFileName != null && s3FileUrl != null) {
+	                // DB에 이미지 정보 저장
+	                this.userTourDao.insertNewUserTourImgs(userTourImgVO);
+	            }
+	        }
+	    }
 
-		if (userTourImgList != null && !userTourImgList.isEmpty()) {
-			for (UserTourImgVO userTourImgVO : userTourImgList) {
-				userTourImgVO.setUsrTrPstId( userTourWriteVO.getUsrTrPstId() );
-				StoreResultVO userTourImgResult = this.fileHandler.storeFile(userTourImgVO.getUserTourImgFile());
-				
-				if (userTourImgResult != null) {
-					userTourImgVO.setUsrTrRqOriginFileName( userTourImgResult.getOriginFileName() );
-					userTourImgVO.setUsrTrRqImgIdUrl( userTourImgResult.getObfuscatedFileName() );
-				}
-				
-				this.userTourDao.insertNewUserTourImgs(userTourImgVO);
-			}
-		}
-		
-		return createCount > 0;
+	    return createCount > 0;
 	}
 
 	@Transactional
