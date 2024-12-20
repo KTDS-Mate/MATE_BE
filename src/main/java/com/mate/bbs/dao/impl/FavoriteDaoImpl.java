@@ -49,7 +49,7 @@ public class FavoriteDaoImpl extends SqlSessionDaoSupport implements FavoriteDao
 	
 	@Override
 	public List<FavoriteVO> selectAllGuideTourFavoriteList(String gdTrPstId) {
-		return this.getSqlSession().selectOne(NAMESPACE + ".selectAllGuideTourFavoriteList", gdTrPstId);
+		return this.getSqlSession().selectList(NAMESPACE + ".selectAllGuideTourFavoriteList", gdTrPstId);
 	}
 	
 	@Override

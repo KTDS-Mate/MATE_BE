@@ -31,4 +31,6 @@ public interface GuideTourReviewService {
 	 * @return
 	 */
 	public boolean deleteGuideTourReview(String athrId, String gdTrRvwId);
+	
+	public GuideTourReviewVO getLateGuideTourReview();
 }

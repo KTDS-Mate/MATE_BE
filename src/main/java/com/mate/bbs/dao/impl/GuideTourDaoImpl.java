@@ -12,6 +12,7 @@ import com.mate.bbs.vo.GuideTourDetailInfoVO;
 import com.mate.bbs.vo.GuideTourImgVO;
 import com.mate.bbs.vo.GuideTourModifyVO;
 import com.mate.bbs.vo.GuideTourProvidedVO;
+import com.mate.bbs.vo.GuideTourReserveVO;
 import com.mate.bbs.vo.GuideTourReviewVO;
 import com.mate.bbs.vo.GuideTourScheduleInfoVO;
 import com.mate.bbs.vo.GuideTourVO;
@@ -123,6 +124,19 @@ public class GuideTourDaoImpl extends SqlSessionDaoSupport implements GuideTourD
 	public List<GuideTourVO> getRandomGuideTours() {
 		return this.getSqlSession().selectList(NAMESPACE + ".getRandomGuideTours");
 	}
+	
+	@Override
+	public int deleteGuideTourSchdls(String gdTrPstId) {
+		return this.getSqlSession().delete(NAMESPACE + ".deleteGuideTourSchdls", gdTrPstId);
+	}
+	@Override
+	public int deleteGuideTourDetails(String gdTrPstId) {
+		return this.getSqlSession().delete(NAMESPACE + ".deleteGuideTourDetails", gdTrPstId);
+	}
+	@Override
+	public int deleteGuideTourProvided(String gdTrPstId) {
+		return this.getSqlSession().delete(NAMESPACE + ".deleteGuideTourProvided", gdTrPstId);
+	}
 
 	@Override
 	public int selectImgCount(String gdTrPstId) {
@@ -137,6 +151,19 @@ public class GuideTourDaoImpl extends SqlSessionDaoSupport implements GuideTourD
 	@Override
 	public GuideTourVO selectLateGuideTour() {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectLateGuideTour");
+	}
+	
+	@Override
+	public String selectAttachMultyStartHour2(GuideTourModifyVO guideTourModifyVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachMultyStartHour2", guideTourModifyVO);
+	}
+	@Override
+	public String selectAttachMultyEndHour2(GuideTourModifyVO guideTourModifyVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachMultyEndHour2", guideTourModifyVO);
+	}
+	@Override
+	public int updateGuideTourReserve(GuideTourReserveVO guideTourReserveVO) {
+		return this.getSqlSession().update(NAMESPACE+ ".updateGuideTourReserve", guideTourReserveVO);
 	}
 	
 }

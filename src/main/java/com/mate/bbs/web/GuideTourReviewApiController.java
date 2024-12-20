@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mate.bbs.service.GuideTourReviewService;
 import com.mate.bbs.vo.GuideTourReviewListVO;
+import com.mate.bbs.vo.GuideTourReviewVO;
 import com.mate.bbs.vo.GuideTourReviewWriteVO;
 import com.mate.common.vo.ApiResponse;
 
@@ -33,6 +34,12 @@ public class GuideTourReviewApiController {
 		apiResponse.setBody(guideTourReviewListVO.getGuideTourReviewList());
 		
 		return apiResponse;
+	}
+	
+	@GetMapping("/guidetour/late/review")
+	public ApiResponse getLateReview() {
+		GuideTourReviewVO guideTourReviewVO = this.guideTourReviewService.getLateGuideTourReview();
+		return new ApiResponse(guideTourReviewVO);
 	}
 	
 	@GetMapping("/guidetour/review/count")
