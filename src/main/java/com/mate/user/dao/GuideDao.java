@@ -17,7 +17,7 @@ public interface GuideDao {
 
     public int insertGuideCity(CitiesVO citiesVO);
 
-    public int insertGuideLicense(LicenseVO licenseVO);
+    public int updateGuideLicenseApi(LicenseVO licenseVO);
 
     public int updateGuideProfile(RegistGuideVO registGuideVO);
     
@@ -38,4 +38,6 @@ public interface GuideDao {
     public int updateIdImage(RegistGuideVO registGuideVO);
     
     int deleteGuideCitiesByUserId(String usrId);
+    
+    
 }

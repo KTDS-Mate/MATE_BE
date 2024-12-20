@@ -52,6 +52,15 @@ public class RegistGuideVO {
      */
     private String gdPrflImg;
     /**
+     * 가이드의 신분증 사진
+     */
+    private String gdIdImg;
+    
+    /**
+     * 가이드의 범죄경력 조회서 사진
+     */
+    private String gdCbcImg;
+    /**
      * 가이드 자기소개
      */
     private String usrSlfIntdctn;
@@ -72,15 +81,6 @@ public class RegistGuideVO {
      * 가이드가 활동하는 도시
      */
     private String cityName;
-    /**
-     * 가이드의 신분증 사진
-     */
-    private String gdIdImg;
-    
-    /**
-     * 가이드의 범죄경력 조회서 사진
-     */
-    private String gdCbcImg;
     /**
      * 국가 아이디 PK
      */
@@ -121,13 +121,7 @@ public class RegistGuideVO {
      */
     private List<String> selectedCities;
     
-    
-    /**
-     * 파일 업로드를 위한 이미지 파일 변수 생성
-     */
-    private MultipartFile gdPrflImgFile;
-    private MultipartFile gdIdImgFile;
-    private MultipartFile gdCbcImgFile;
+    private String gdApplStt;
     
 	public String getUsrId() {
 		return usrId;
@@ -337,27 +331,12 @@ public class RegistGuideVO {
 		this.gdLcnImg = gdLcnImg;
 	}
 
-	public MultipartFile getGdPrflImgFile() {
-		return gdPrflImgFile;
+	public String getGdApplStt() {
+		return gdApplStt;
 	}
 
-	public void setGdPrflImgFile(MultipartFile gdPrflImgFile) {
-		this.gdPrflImgFile = gdPrflImgFile;
+	public void setGdApplStt(String gdApplStt) {
+		this.gdApplStt = gdApplStt;
 	}
-
-	public MultipartFile getGdIdImgFile() {
-		return gdIdImgFile;
-	}
-
-	public void setGdIdImgFile(MultipartFile gdIdImgFile) {
-		this.gdIdImgFile = gdIdImgFile;
-	}
-
-	public MultipartFile getGdCbcImgFile() {
-		return gdCbcImgFile;
-	}
-
-	public void setGdCbcImgFile(MultipartFile gdCbcImgFile) {
-		this.gdCbcImgFile = gdCbcImgFile;
-	}
+	
 }
