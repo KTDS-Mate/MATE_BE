@@ -119,8 +119,18 @@ public class UserTourDaoImpl extends SqlSessionDaoSupport implements UserTourDao
 	}
 	
 	@Override
+	public String selectAttachMultyStartHour2(UserTourModifyVO userTourModifyVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachMultyStartHour2", userTourModifyVO);
+	}
+	
+	@Override
 	public String selectAttachMultyEndHour(UserTourWriteVO userTourWriteVO) {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachMultyEndHour", userTourWriteVO);
+	}
+	
+	@Override
+	public String selectAttachMultyEndHour2(UserTourModifyVO userTourModifyVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachMultyEndHour2", userTourModifyVO);
 	}
 	
 	@Override
