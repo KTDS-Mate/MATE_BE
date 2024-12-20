@@ -4,6 +4,8 @@ public class CitiesVO {
 
 	private String usrId;
 	
+	private String usrLngId;
+	
 	/**
 	 * 도시 아이디
 	 */
@@ -29,6 +31,12 @@ public class CitiesVO {
 		this.usrId = usrId;
 	}
 
+	public String getUsrLngId() {
+		return usrLngId;
+	}
+	public void setUsrLngId(String usrLngId) {
+		this.usrLngId = usrLngId;
+	}
 	public int getCityId() {
 		return cityId;
 	}

@@ -13,7 +13,7 @@ public class LicenseVO {
 	 * 가이드 아이디
 	 */
 	private String usrId;
-	
+	private String usrLgnId;
 	/**
 	 * 라이센스 이름 
 	 */
@@ -40,6 +40,14 @@ public class LicenseVO {
 
 	public void setUsrId(String usrId) {
 		this.usrId = usrId;
+	}
+
+	public String getUsrLgnId() {
+		return usrLgnId;
+	}
+
+	public void setUsrLgnId(String usrLgnId) {
+		this.usrLgnId = usrLgnId;
 	}
 
 	public String getLcnNm() {

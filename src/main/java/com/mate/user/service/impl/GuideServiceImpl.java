@@ -1,5 +1,6 @@
 package com.mate.user.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -9,11 +10,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mate.common.beans.FileHandler;
+import com.mate.common.s3.S3Service;
 import com.mate.common.vo.CitiesVO;
 import com.mate.common.vo.CountriesVO;
 import com.mate.common.vo.LicenseVO;
 import com.mate.common.vo.StoreResultVO;
 import com.mate.user.dao.GuideDao;
+import com.mate.user.dao.UserDao;
 import com.mate.user.service.GuideService;
 import com.mate.user.vo.RegistGuideVO;
 
@@ -24,147 +27,161 @@ public class GuideServiceImpl implements GuideService {
 	
     @Autowired
     private GuideDao guideDao;
+    
+    @Autowired
+    private UserDao userDao;
 
     @Autowired
     private FileHandler filehandler;
     
+    @Autowired
+    private S3Service s3Service;
+    
     @Override
     public RegistGuideVO getGuideInfo(String usrId) { // getGuideInfo 호출해서 User(가이드) 정보 반환
     	// 메서드 호출해서 usrId에 해당하는 정보를 RegistGuidVO 형태로 반환함
-        //return guideDao.selectGuideInfo(usrId);
     	RegistGuideVO guideInfo = guideDao.selectGuideInfo(usrId);
-        log.debug("Fetched Guide Info: {}", guideInfo);
-        log.debug("Guide Cities: {}", guideInfo.getCities());
-        log.debug("Guide Country: {}", guideInfo.getCountryName());
+        if (guideInfo == null) {
+            log.warn("가이드 정보가 존재하지 않습니다. 유저 아이디: {}", usrId);
+        }
         return guideInfo;
     }
 
     @Transactional
     @Override
     public boolean registerGuide(RegistGuideVO registGuideVO) {
+        try {
+            // 2. selectedCities를 CitiesVO 리스트로 변환
+            if (registGuideVO.getSelectedCities() != null && !registGuideVO.getSelectedCities().isEmpty()) {
+                List<CitiesVO> citiesList = new ArrayList<>();
+                for (String cityId : registGuideVO.getSelectedCities()) {
+                    try {
+                        CitiesVO city = new CitiesVO();
+                        city.setCityId(Integer.parseInt(cityId));
+                        city.setUsrId(registGuideVO.getUsrId());
+                        citiesList.add(city);
+                    } catch (NumberFormatException e) {
+                        throw new RuntimeException("유효하지 않은 cityId 포맷", e);
+                    }
+                }
+                registGuideVO.setCities(citiesList);
+            }
 
-        // 프로필 이미지(gdPrflImg) 처리
-        StoreResultVO prflImgResult = filehandler.storeFile(registGuideVO.getGdPrflImgFile());
-        // 각 이미지 파일에 대해 storeFile() 메서드를 호출하고 반환값이 Null인지 확인한 후에 null이 아닌 경우에만 파일명을 설정한다.
-        if (prflImgResult != null) {
-        	registGuideVO.setGdPrflImg(prflImgResult.getObfuscatedFileName());
+            // 3. 기본값 설정
+            registGuideVO.setUsrSlfIntdctn(registGuideVO.getUsrSlfIntdctn() != null ? 
+                registGuideVO.getUsrSlfIntdctn() : "");
+            registGuideVO.setUsrPypEml(registGuideVO.getUsrPypEml() != null ? 
+                registGuideVO.getUsrPypEml() : "");
+            registGuideVO.setUsrGdExp(registGuideVO.getUsrGdExp() != null ? 
+                registGuideVO.getUsrGdExp() : "0");
+            registGuideVO.setGdApplStt("WAITING");
+            registGuideVO.setUsrIsGd("N");
+
+            // 4. 메인 프로필 정보 업데이트
+            int count = this.guideDao.insertGuideProfile(registGuideVO);
+            
+            if (count <= 0) {
+                return false;
+            }
+
+            // 5. 라이센스 처리
+            if (registGuideVO.getLicenses() != null && !registGuideVO.getLicenses().isEmpty()) {
+                for (LicenseVO licenseVO : registGuideVO.getLicenses()) {
+                    licenseVO.setUsrId(registGuideVO.getUsrId());
+                    String lcnId = guideDao.getNextLicenseId();
+                    licenseVO.setLcnId(lcnId);
+                    guideDao.updateGuideLicenseApi(licenseVO);
+                }
+            }
+
+            // 6. 도시 정보 처리
+            List<CitiesVO> citiesList = registGuideVO.getCities();
+            if (citiesList != null && !citiesList.isEmpty()) {
+                for (CitiesVO citiesVO : citiesList) {
+                    String actCtId = guideDao.getNextCityId();
+                    citiesVO.setActCtId(actCtId);
+                    guideDao.insertGuideCity(citiesVO);
+                }
+            }
+
+            return true;
+        } catch (Exception e) {
+            throw new RuntimeException("가이드 등록 실패", e);
         }
-        
-        // 신분증 이미지(gdIdImg) 처리
-        StoreResultVO idImgResult = filehandler.storeFile(registGuideVO.getGdIdImgFile());
-        if (idImgResult != null) {
-        	registGuideVO.setGdIdImg(idImgResult.getObfuscatedFileName());
-        }
-    	
-        // 범죄경력조회서 이미지(gdCbcImg) 처리
-    	StoreResultVO cbcImgResult = filehandler.storeFile(registGuideVO.getGdCbcImgFile());
-    	if (cbcImgResult != null) {
-    		registGuideVO.setGdCbcImg(cbcImgResult.getObfuscatedFileName());
-    	}
-    	
-    	// 가이드 프로필 DB에 삽입
-    	int count = this.guideDao.insertGuideProfile(registGuideVO);
-    	
-    	// 라이센스 처리
-    	List<LicenseVO> licenseList = registGuideVO.getLicenses();
-    	
-    	if (licenseList != null && !licenseList.isEmpty()) {
-    		for (LicenseVO licenseVO : licenseList) {
-        		licenseVO.setUsrId(registGuideVO.getUsrId());
-        		
-        		// 시퀀스 값 미리 가져오기
-        		String lcnId = guideDao.getNextLicenseId();
-        		licenseVO.setLcnId(lcnId);
-        		
-        		// 라이센스 이미지 
-        		StoreResultVO licenseImgResult = filehandler.storeFile(licenseVO.getLcnImgFile());
-        		if (licenseImgResult != null) {
-        			licenseVO.setLcnImg(licenseImgResult.getObfuscatedFileName());
-        		}
-        		
-        		// 개별 라이센스 삽입
-        		guideDao.insertGuideLicense(licenseVO);
-    		}
-    	}
-    	
-    	// 도시 정보 리스트
-    	List<CitiesVO> citiesList = registGuideVO.getCities();
-    	if (citiesList != null && !citiesList.isEmpty()) {
-    		for (CitiesVO citiesVO : citiesList) {
-    			// usrId 설정
-    			citiesVO.setUsrId(registGuideVO.getUsrId());
-    			
-    			// 시퀀스 값 미리 가져오기
-    			String actCtId = guideDao.getNextCityId();
-    			citiesVO.setActCtId(actCtId);
-    			
-    			guideDao.insertGuideCity(citiesVO);
-        	}
-    	}
-    	
-    	return count > 0;
-    }    	
+    }
     
     @Transactional
     @Override
     public boolean updateGuideLicense(RegistGuideVO registGuideVO) {
-    	List<LicenseVO> licenseList = registGuideVO.getLicenses();
-    	//String usrId = registGuideVO.getUsrId();
-    	
-    	if (licenseList == null || licenseList.isEmpty()) {
-    		return false;
-    	}
-    	
-    	for (LicenseVO licenseVO : licenseList) {
-			if (licenseVO.getLcnId() == null || licenseVO.getLcnId().isEmpty()) {
-				licenseVO.setLcnImg("default_image.jpg");
-				
-				// 신규 라이센스인 경우 삽입
-				String newLcnId = guideDao.getNextLicenseId();
-				licenseVO.setLcnId(newLcnId);
-				licenseVO.setUsrId(registGuideVO.getUsrId());
-				
-				// 신규 라이센스 이미지 저장
-				StoreResultVO licenseImgResult = filehandler.storeFile(licenseVO.getLcnImgFile());
-				if (licenseImgResult != null) {
-				    licenseVO.setLcnImg(licenseImgResult.getObfuscatedFileName());
-				}
-				guideDao.insertGuideLicense(licenseVO);
-			} else {
-				// 기존 라이센스 업데이트
-				StoreResultVO licenseImgResult = filehandler.storeFile(licenseVO.getLcnImgFile());
-				if (licenseImgResult != null) {
-				    licenseVO.setLcnImg(licenseImgResult.getObfuscatedFileName());
-				}
-				guideDao.updateGuideLicense(licenseVO);
+        List<LicenseVO> licenseList = registGuideVO.getLicenses();
+
+        if (licenseList == null || licenseList.isEmpty()) {
+            return false;
+        }
+
+        for (LicenseVO licenseVO : licenseList) {
+            try {
+                if (licenseVO.getLcnId() == null || licenseVO.getLcnId().isEmpty()) {
+                    // 신규 라이센스인 경우 삽입
+                    String newLcnId = guideDao.getNextLicenseId();
+                    licenseVO.setLcnId(newLcnId);
+                    licenseVO.setUsrId(registGuideVO.getUsrId());
+
+                    // 신규 라이센스 이미지 저장
+                    StoreResultVO licenseImgResult = filehandler.storeFile(licenseVO.getLcnImgFile());
+                    if (licenseImgResult != null) {
+                        licenseVO.setLcnImg(licenseImgResult.getObfuscatedFileName());
+                    } else {
+                        throw new RuntimeException("라이센스 이미지 저장 실패"); 
+                    }
+                    guideDao.updateGuideLicenseApi(licenseVO);
+                } else {
+                    // 기존 라이센스 업데이트
+                    StoreResultVO licenseImgResult = filehandler.storeFile(licenseVO.getLcnImgFile());
+                    if (licenseImgResult != null) {
+                        licenseVO.setLcnImg(licenseImgResult.getObfuscatedFileName());
+                    } else {
+                        throw new RuntimeException("라이센스 이미지 저장 실패"); 
+                    }
+                    guideDao.updateGuideLicense(licenseVO);
+                }
+            } catch (Exception e) {
+                // 예외 처리 방식 결정 (예: 예외 재발생, 오류 메시지 반환 등)
+                throw new RuntimeException("라이센스 업데이트 중 오류 발생", e); 
             }
-    	}
-    	return true;
+        }
+        return true;
     }
     
     @Override
-    public boolean updateProfileImage(RegistGuideVO registGuideVO) {
-		if (registGuideVO.getGdPrflImgFile() != null && !registGuideVO.getGdPrflImgFile().isEmpty()) {
-			StoreResultVO prflImgResult = filehandler.storeFile(registGuideVO.getGdPrflImgFile());
-			if (prflImgResult != null) {
-				registGuideVO.setGdPrflImg(prflImgResult.getObfuscatedFileName());
-			}
-		}
-		int updateResult = guideDao.updateProfileImage(registGuideVO);
-    	return updateResult > 0;
-    }    
-    
-    @Override
-    public boolean updateIdImage(RegistGuideVO registGuideVO) {
-    	if (registGuideVO.getGdIdImgFile() != null && !registGuideVO.getGdIdImgFile().isEmpty()) {
-    		StoreResultVO idImgResult = filehandler.storeFile(registGuideVO.getGdIdImgFile());
-    		if (idImgResult != null) {
-    			registGuideVO.setGdIdImg(idImgResult.getObfuscatedFileName());
-    		}
-    	}
-    	int updateResult = guideDao.updateIdImage(registGuideVO);
-    	return updateResult > 0;
+    public boolean updateGuideLicenseApi(LicenseVO licenseVO) {
+    	int updateCount = guideDao.updateGuideLicenseApi(licenseVO);
+        return updateCount > 0;
     }
+    
+//    @Override
+//    public boolean updateProfileImage(RegistGuideVO registGuideVO) {
+//		if (registGuideVO.getGdPrflImgFile() != null && !registGuideVO.getGdPrflImgFile().isEmpty()) {
+//			StoreResultVO prflImgResult = filehandler.storeFile(registGuideVO.getGdPrflImgFile());
+//			if (prflImgResult != null) {
+//				registGuideVO.setGdPrflImg(prflImgResult.getObfuscatedFileName());
+//			}
+//		}
+//		int updateResult = guideDao.updateProfileImage(registGuideVO);
+//    	return updateResult > 0;
+//    }    
+//    
+//    @Override
+//    public boolean updateIdImage(RegistGuideVO registGuideVO) {
+//    	if (registGuideVO.getGdIdImgFile() != null && !registGuideVO.getGdIdImgFile().isEmpty()) {
+//    		StoreResultVO idImgResult = filehandler.storeFile(registGuideVO.getGdIdImgFile());
+//    		if (idImgResult != null) {
+//    			registGuideVO.setGdIdImg(idImgResult.getObfuscatedFileName());
+//    		}
+//    	}
+//    	int updateResult = guideDao.updateIdImage(registGuideVO);
+//    	return updateResult > 0;
+//    }
     
     @Transactional
     @Override
@@ -176,7 +193,7 @@ public class GuideServiceImpl implements GuideService {
         List<CitiesVO> citiesList = registGuideVO.getCities();
         if (citiesList != null && !citiesList.isEmpty()) {
             for (CitiesVO city : citiesList) {
-                city.setUsrId(registGuideVO.getUsrId());
+                city.setUsrLngId(registGuideVO.getUsrId());;
                 String actCtId = guideDao.getNextCityId();
                 city.setActCtId(actCtId);
                 guideDao.insertGuideCity(city);
@@ -198,7 +215,6 @@ public class GuideServiceImpl implements GuideService {
     	int updateResult = guideDao.updateGuideProfile(registGuideVO);
     	return updateResult > 0;
     }
-
     
     @Override
     public List<CitiesVO> getCitiesByCountryId(String countryId) {
@@ -207,6 +223,11 @@ public class GuideServiceImpl implements GuideService {
     
     @Override
     public List<CountriesVO> getAllCountries() {
-    	return guideDao.selectAllCountries();
+    	return userDao.selectAllCountries();
+    }
+    
+    @Override
+    public String getNextLicenseId() {
+        return guideDao.getNextLicenseId();
     }
 }
