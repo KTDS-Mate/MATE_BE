@@ -75,14 +75,25 @@ public class UserManagementServiceImpl implements UserManagementService{
 	
 	
 	@Override
-	public boolean doDeleteUser(String usrId) {
-		int updateCnt = this.userManagementDao.updateDeleteUser(usrId);
+	public boolean doDeleteUser(String usrId, String usrIsCl) {
+		int updateCnt = 0;
+		if (usrIsCl.equals("N")) {
+			updateCnt = this.userManagementDao.updateDeleteUser(usrId);
+		}else {
+			updateCnt = this.userManagementDao.updateUndoDeleteUser(usrId);
+		}
 		return updateCnt > 0;
 	}
 	
 	@Override
-	public boolean doBlockUser(String usrId) {
-		int updateCnt = this.userManagementDao.updateBlockUser(usrId);
+	public boolean doBlockUser(String usrId , String usrIsBlck) {
+		int updateCnt = 0;
+		if (usrIsBlck.equals("N")) {
+			updateCnt = this.userManagementDao.updateBlockUser(usrId);
+		}else {
+			updateCnt = this.userManagementDao.updateUndoBlockUser(usrId);
+		}
+		
 		return updateCnt > 0;
 	}
 	

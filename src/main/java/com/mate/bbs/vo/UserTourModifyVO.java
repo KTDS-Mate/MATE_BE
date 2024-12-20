@@ -28,7 +28,7 @@ public class UserTourModifyVO {
 
 	private String inputEndYear;
 	/**
-	 * 여행자가 입력한 시작 시
+	 * 여행자가 입력한 시작 시간
 	 */
 	private String inputStartHour;
 	/**
@@ -85,7 +85,7 @@ public class UserTourModifyVO {
 	 */
 	private String usrTrEdDt;
 	/**
-	 * 여행자가 입력한 종료 시
+	 * 여행자가 입력한 종료 시간
 	 */
 	private String inputEndHour;
 	/**
@@ -98,6 +98,7 @@ public class UserTourModifyVO {
 	private List<UserTourSchdlVO> userTourSchdlList;
 	/** 파일 업로드를 위한 이미지파일 변수 **/
 	private String imgFileName;
+
 	/**
 	 * 당일치기 체크 여부
 	 */
@@ -105,12 +106,24 @@ public class UserTourModifyVO {
 
 	/** 여행자가 마커로 등록한 위치의 경도 **/
 	private String usrTrLat;
-
+	
 	/** 여행자가 마커로 등록한 위치의 위도 **/
 	private String usrTrLng;
-
+	
 	/** 여행자가 마커로 등록한 위치의 상세 주소 **/
 	private String usrTrAddrs;
+	
+	public String getInputEndYear() {
+		return inputEndYear;
+	}
+
+	public void setInputEndYear(String inputEndYear) {
+		this.inputEndYear = inputEndYear;
+	}
+
+	public void setChecked(boolean isChecked) {
+		this.isChecked = isChecked;
+	}
 
 	public String getUsrTrPstId() {
 		return usrTrPstId;
@@ -142,14 +155,6 @@ public class UserTourModifyVO {
 
 	public void setInputYear(String inputYear) {
 		this.inputYear = inputYear;
-	}
-
-	public String getInputEndYear() {
-		return inputEndYear;
-	}
-
-	public void setInputEndYear(String inputEndYear) {
-		this.inputEndYear = inputEndYear;
 	}
 
 	public String getInputStartHour() {
@@ -264,14 +269,6 @@ public class UserTourModifyVO {
 		this.inputEndHour = inputEndHour;
 	}
 
-	public List<UserTourImgVO> getUserTourImgList() {
-		return userTourImgList;
-	}
-
-	public void setUserTourImgList(List<UserTourImgVO> userTourImgList) {
-		this.userTourImgList = userTourImgList;
-	}
-
 	public List<UserTourSchdlVO> getUserTourSchdlList() {
 		return userTourSchdlList;
 	}
@@ -288,12 +285,20 @@ public class UserTourModifyVO {
 		this.imgFileName = imgFileName;
 	}
 
-	public boolean isChecked() {
+	public boolean getIsChecked() {
 		return isChecked;
 	}
 
-	public void setChecked(boolean isChecked) {
+	public void setIsChecked(boolean isChecked) {
 		this.isChecked = isChecked;
+	}
+
+	public List<UserTourImgVO> getUserTourImgList() {
+		return userTourImgList;
+	}
+
+	public void setUserTourImgList(List<UserTourImgVO> userTourImgList) {
+		this.userTourImgList = userTourImgList;
 	}
 
 	public String getUsrTrLat() {
