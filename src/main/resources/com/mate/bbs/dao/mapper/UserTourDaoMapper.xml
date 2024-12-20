@@ -493,8 +493,22 @@
  		  FROM DUAL
 	</select>
 	
+	<select id="selectAttachMultyStartHour2"
+			parameterType="com.mate.bbs.vo.UserTourModifyVO"
+			resultType="string">
+		SELECT #{inputYear} || ' ' || #{inputStartHour}
+ 		  FROM DUAL
+	</select>
+	
 	<select id="selectAttachMultyEndHour"
 			parameterType="com.mate.bbs.vo.UserTourWriteVO"
+			resultType="string">
+		SELECT #{inputEndYear} || ' ' || #{inputEndHour}
+ 		  FROM DUAL
+	</select>
+	
+		<select id="selectAttachMultyEndHour2"
+			parameterType="com.mate.bbs.vo.UserTourModifyVO"
 			resultType="string">
 		SELECT #{inputEndYear} || ' ' || #{inputEndHour}
  		  FROM DUAL

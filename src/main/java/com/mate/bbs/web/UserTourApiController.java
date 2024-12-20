@@ -22,6 +22,7 @@ import com.mate.bbs.vo.FavoriteWriteVO;
 import com.mate.bbs.vo.RequestGuideApplyWriteVO;
 import com.mate.bbs.vo.SearchUserTourVO;
 import com.mate.bbs.vo.TourApplyVO;
+import com.mate.bbs.vo.TourGuideApplyWriteVO;
 import com.mate.bbs.vo.UserTourListVO;
 import com.mate.bbs.vo.UserTourModifyVO;
 import com.mate.bbs.vo.UserTourVO;
@@ -150,6 +151,12 @@ public class UserTourApiController {
 		boolean isCreate = this.userTourService.createNewRequestGuideApply(requestGuideApplyWriteVO);
 
 		return new ApiResponse(isCreate);
+	}
+	
+	@PostMapping("/request/guide/apply/insert")
+	public ApiResponse doCreateNewApply(@RequestBody TourGuideApplyWriteVO tourGuideApplyWriteVO) {
+        boolean isCreated = this.userTourService.createNewTourGuideApply(tourGuideApplyWriteVO);
+		return new ApiResponse(isCreated);
 	}
 
 	@GetMapping("/tour/regions")

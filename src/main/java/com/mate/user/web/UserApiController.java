@@ -49,6 +49,16 @@ public class UserApiController {
     @Autowired
     private JsonWebTokenProvider jsonWebTokenProvider;
     
+    @GetMapping("/regist")
+    public ApiResponse getRegistrationData() {
+        List<CountriesVO> countriesList = userService.getAllCountries();
+        
+        Map<String, Object> body = new HashMap<>();
+        body.put("countriesList", countriesList);
+
+        return new ApiResponse(body);
+    }
+    
     @PostMapping("/regist")
     public ApiResponse doCreateUser(@RequestBody RegistUserVO registUserVO) {
 

@@ -46,15 +46,15 @@ public class UserController {
 		return "user/userregist";
 	}
 	
-	@GetMapping("/user/login")
-	public String viewLoginPage(HttpSession session) {
-		
-		if (session.getAttribute("_LOGIN_USER_") != null) {
-			return "redirect:/";
-		}
-		
-		return "user/userlogin";
-	}
+//	@GetMapping("/user/login")
+//	public String viewLoginPage(HttpSession session) {
+//		
+//		if (session.getAttribute("_LOGIN_USER_") != null) {
+//			return "redirect:/";
+//		}
+//		
+//		return "user/userlogin";
+//	}
 
 	@GetMapping("/user/logout")
 	public String doLogout(HttpSession session) {
@@ -62,15 +62,15 @@ public class UserController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/user/reissue-password")
-	public String viewReissuePasswordPage(HttpSession session, Model model) {
-		if (session.getAttribute("_LOGIN_USER_") != null) {
-			return "redirect:/";
-		}
-		
-		model.addAttribute("userVO", new UserVO());
-		return "user/reissue-password";
-	}
+//	@GetMapping("/user/reissue-password")
+//	public String viewReissuePasswordPage(HttpSession session, Model model) {
+//		if (session.getAttribute("_LOGIN_USER_") != null) {
+//			return "redirect:/";
+//		}
+//		
+//		model.addAttribute("userVO", new UserVO());
+//		return "user/reissue-password";
+//	}
 
 	// 휴대전화번호 수정
 	@GetMapping("/user/editphone/modal")
@@ -118,14 +118,14 @@ public class UserController {
 		return "redirect:mypage/edit-profile/choice";
 	}
 	
-	@GetMapping("/user/editpwd")
-	public String viewEditPassword(@SessionAttribute(name = "_LOGIN_USER_", required= false) UserVO userVO, Model model) {
-		if (userVO == null) {
-			return "redirect:/user/login";
-		}
-		model.addAttribute("userVO", userVO);
-		return "user/frag-editpwd";
-	}
+//	@GetMapping("/user/editpwd")
+//	public String viewEditPassword(@SessionAttribute(name = "_LOGIN_USER_", required= false) UserVO userVO, Model model) {
+//		if (userVO == null) {
+//			return "redirect:/user/login";
+//		}
+//		model.addAttribute("userVO", userVO);
+//		return "user/frag-editpwd";
+//	}
 	
 	// 비밀번호 유효성 검증 메서드
 	public boolean isValidPassword(String password) {

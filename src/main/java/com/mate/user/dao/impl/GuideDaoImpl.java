@@ -16,6 +16,8 @@ import com.mate.user.vo.RegistGuideVO;
 @Repository
 public class GuideDaoImpl extends SqlSessionDaoSupport implements GuideDao{
 	
+	private static final String NAMESPACE = "com.mate.user.dao.GuideDao";
+	
 	@Autowired
 	@Override
 	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
@@ -23,8 +25,8 @@ public class GuideDaoImpl extends SqlSessionDaoSupport implements GuideDao{
 	}
 
 	@Override
-    public RegistGuideVO selectGuideInfo(String usrId) {
-        return getSqlSession().selectOne(NAMESPACE + ".selectGuideInfo", usrId);
+    public RegistGuideVO selectGuideInfo(String usrLgnId) {
+        return getSqlSession().selectOne(NAMESPACE + ".selectGuideInfo", usrLgnId);
     }
 
     @Override
@@ -38,8 +40,8 @@ public class GuideDaoImpl extends SqlSessionDaoSupport implements GuideDao{
     }
 
     @Override
-    public int insertGuideLicense(LicenseVO licenseVO) {
-        return getSqlSession().insert(NAMESPACE + ".insertGuideLicense", licenseVO);
+    public int updateGuideLicenseApi(LicenseVO licenseVO) {
+        return getSqlSession().insert(NAMESPACE + ".updateGuideLicenseApi", licenseVO);
     }
 
     @Override
