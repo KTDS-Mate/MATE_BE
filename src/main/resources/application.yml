@@ -36,7 +36,7 @@ spring:
 
   datasource:
 #    url: jdbc:oracle:thin:@43.201.83.116:1521:XE
-    url: jdbc:oracle:thin:@ec2-15-165-9-38.ap-northeast-2.compute.amazonaws.com:1521:XE
+    url: jdbc:oracle:thin:@ec2-3-38-186-79.ap-northeast-2.compute.amazonaws.com:1521:XE
     driver-class-name: oracle.jdbc.driver.OracleDriver
     username: MATE
     password: 1234
@@ -57,16 +57,31 @@ spring:
 
   servlet:
     multipart:
+      enabled: true
+      file-size-threshold: 0B
       # 애플리케이션이 받을 수 있는 최대 업로드 용량에 대한 설정(100MB)
-      max-file-size: 104857600
+      max-file-size: 3MB
       # 한 사용자가 업로드 할 수 있는 최대 업로드 용량에 대한 설정(10MB)
-      max-request-size: 10485760
+      max-request-size: 30MB
 
+      
 google:
   maps:
     api-key: AIzaSyDWMwo19HLJ6tztCXGKKRL4Pw8zo3U_FPs
     places-api:
       enabled: true
+      # S3
+cloud:
+  aws:
+    credentials:
+      access-key: AKIAUPMYNNP6NEUERZNL
+      secret-key: 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
+    s3:
+      bucket: mateimg
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
 
 app:
   security:
@@ -90,12 +105,22 @@ app:
       /api/v1/tour/cities/**,
       /api/v1/payment/**,
       /api/v1/mypage/payment/**,
+      /api/v1/s3/**,
       /api/user/countries,
       /api/user/reissue-password,
       /api/user/find-id,
+      /api/user/changePassword,
+      /api/user/eidtPhone,
+      /api/user/getAllCountries,
+      /api/user/getCities/**,
       /api/maps/places,
       /api/maps/geocode,
       /api/maps//reverse-geocode,
+      /api/user/guideregist,
+      /api/user/getAllCountries,
+      /api/user/getCities/**,
+      /api/v1/s3/presigned-url/upload,
+      /api/v1/s3/presigned-url/download,
       /api/v1/notice/**,
       /ws/notice,
       /ws/chat,
@@ -125,9 +150,15 @@ portone:
 mybatis:
   # mybatis-config.xml 파일의 위치를 지정
   config-location: classpath:mybatis/mybatis-config.xml
+  log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   # classpath -> target 폴더의 classes 폴더
   mapper-locations: classpath:com/mate/**/dao/mapper/*Mapper.xml
+    
 
+logging:
+  level:
+    com.mate.user.dao: TRACE
+  
 #server:
 #  port: 8081
 

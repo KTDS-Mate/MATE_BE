@@ -3,6 +3,7 @@ package com.mate.user.vo;
 import java.util.List;
 
 import com.mate.common.vo.CitiesVO;
+import com.mate.common.vo.LicenseVO;
 import com.mate.mypage.vo.GuideReviewVO;
 
 public class UserVO {
@@ -138,6 +139,8 @@ public class UserVO {
 	
 	private String provider;
 
+	private List<LicenseVO> licenseList;
+		
 	public String getUsrId() {
 		return usrId;
 	}
@@ -417,4 +420,13 @@ public class UserVO {
 	public void setProvider(String provider) {
 		this.provider = provider;
 	}
+
+	public List<LicenseVO> getLicenseList() {
+		return licenseList;
+	}
+
+	public void setLicenseList(List<LicenseVO> licenseList) {
+		this.licenseList = licenseList;
+	}
+	
 }
