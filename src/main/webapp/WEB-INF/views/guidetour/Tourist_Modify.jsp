@@ -37,7 +37,7 @@ uri="http://www.springframework.org/tags/form" %>
               <div>
                 <h1>투어 프로그램 작성</h1>
               </div>
-              <img alt="메인 이미지" src="/img/tourboard/예시여행이미지.png" />
+              <img alt="메인 이미지" src="/img/tourboard/기본이미지.png" />
             </div>
             <div class="all-select-div">
               <div class="select-div"><span class="red">*</span> 투어 제목</div>

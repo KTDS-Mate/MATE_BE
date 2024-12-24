@@ -80,6 +80,7 @@ public class GuideTourController {
 		
 		return "redirect:/guidetour/list";
 	}
+	
 	@GetMapping("/guidetour/Modify/{gdTrPstId}")
 	public String viewGuideTourModifyPage(@PathVariable String gdTrPstId
 										, Model model

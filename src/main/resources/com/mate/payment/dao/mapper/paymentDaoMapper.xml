@@ -46,22 +46,22 @@
 <!-- 한 유저의 결제 내역보기 -->
 <select id="selectAllMyPaymentCount" parameterType="com.mate.payment.vo.SearchPaymentVO"
  resultType="_int">
-	SELECT COUNT(1)
-	  FROM PAY_INF PI
-	 JOIN (SELECT *
-	  		  FROM USR_INF
-	  		 WHERE USR_IS_GD = 'Y') GD
-	    ON GD.USR_ID = PI.GD_ID
-	  JOIN USR_INF TRST
-	    ON PI.TRST_ID = TRST.USR_ID
-	  LEFT JOIN USR_TR_RQST UTR
-	    ON PI.PAY_TR_ID = UTR.USR_TR_PST_ID
-	  LEFT JOIN GD_TR_RCRT GTR
-	    ON PI.PAY_TR_ID = GTR.GD_TR_PST_ID
-	 WHERE (USR_TR_TTL IS NOT NULL
-    	OR GD_TR_TTL IS NOT NULL)
+    SELECT COUNT(1)
+      FROM PAY_INF PI
+      JOIN (SELECT *
+              FROM USR_INF
+             WHERE USR_IS_GD = 'Y') GD
+        ON GD.USR_LGN_ID = PI.GD_ID
+      JOIN USR_INF TRST
+        ON PI.TRST_ID = TRST.USR_LGN_ID
+      LEFT JOIN USR_TR_RQST UTR
+        ON PI.PAY_TR_ID = UTR.USR_TR_PST_ID
+      LEFT JOIN GD_TR_RCRT GTR
+        ON PI.PAY_TR_ID = GTR.GD_TR_PST_ID
+     WHERE (USR_TR_TTL IS NOT NULL
+        OR GD_TR_TTL IS NOT NULL)
        AND TRST_ID = #{trstId}
-       AND PAY_CRT_DT > ADD_MONTHS(SYSDATE, -24)       
+       AND PAY_CRT_DT > ADD_MONTHS( SYSDATE, -24)     
 	<if test="_parameter != null">
     	<include refid="com.mate.payment.dao.PaymentDao.selectPeriodPayment" />
     	<include refid="com.mate.payment.dao.PaymentDao.selectStatePayment" />
@@ -92,22 +92,15 @@
 	  JOIN (SELECT *
 	  		  FROM USR_INF
 	  		 WHERE USR_IS_GD = 'Y') GD
-	    ON GD.USR_ID = PI.GD_ID
+	    ON GD.USR_LGN_ID = PI.GD_ID
 	  JOIN USR_INF TRST
-	    ON PI.TRST_ID = TRST.USR_ID 
+	    ON PI.TRST_ID = TRST.USR_LGN_ID 
 	  LEFT JOIN USR_TR_RQST UTR
 	    ON PI.PAY_TR_ID = UTR.USR_TR_PST_ID
 	  LEFT JOIN GD_TR_RCRT GTR
 	    ON PI.PAY_TR_ID = GTR.GD_TR_PST_ID
 	 WHERE USR_TR_TTL IS NOT NULL
 		OR GD_TR_TTL IS NOT NULL
-</select>
-
-<select id="selectUserId" parameterType="String"
-	resultType="String">
-	SELECT USR_ID
-	  FROM USR_INF
-	 WHERE USR_LGN_ID = #{parameter}
 </select>
 
 
@@ -124,14 +117,14 @@
 	     , GTR.GD_TR_TTL AS GD_TR_TTL
 	     , PAY_CSH
 	     , PAY_STT
-	     , TO_CHAR(PAY_CRT_DT  , 'YYYY-MM-DD HH24:MI') PAY_CRT_DT
+	     , TO_CHAR(PAY_CRT_DT, 'YYYY-MM-DD HH24:MI') PAY_CRT_DT
 	  FROM PAY_INF PI
 	  JOIN (SELECT *
 	  		  FROM USR_INF
 	  		 WHERE USR_IS_GD = 'Y') GD
-	    ON GD.USR_ID = PI.GD_ID
+	    ON GD.USR_LGN_ID = PI.GD_ID
 	  JOIN USR_INF TRST
-	    ON PI.TRST_ID = TRST.USR_ID
+	    ON PI.TRST_ID = TRST.USR_LGN_ID
 	  LEFT JOIN USR_TR_RQST UTR
 	    ON PI.PAY_TR_ID = UTR.USR_TR_PST_ID
 	  LEFT JOIN GD_TR_RCRT GTR
@@ -174,9 +167,9 @@
 	  JOIN (SELECT *
 	  		  FROM USR_INF
 	  		 WHERE USR_IS_GD = 'Y') GD
-	    ON GD.USR_ID = PI.GD_ID
+	    ON GD.USR_LGN_ID = PI.GD_ID
 	  JOIN USR_INF TRST
-	    ON PI.TRST_ID = TRST.USR_ID	    
+	    ON PI.TRST_ID = TRST.USR_LGN_ID	    
 	  LEFT JOIN USR_TR_RQST UTR
 	    ON PI.PAY_TR_ID = UTR.USR_TR_PST_ID
 	  LEFT JOIN GD_TR_RCRT GTR
@@ -188,7 +181,7 @@
 
 <select id="selectOnePaymentAmount" parameterType="String"
 	resultType="_double">
-	SELECT PAY_CSH 
+	SELECT PAY_CSH
 	  FROM PAY_INF
 	 WHERE PAY_ID = #{_parameter}
 </select>
@@ -212,8 +205,8 @@
 </update>
 
 <select id="selectUsrTrPayInf" parameterType="String" resultType="com.mate.payment.vo.WritePaymentVO">
-SELECT TRST.USR_ID AS TRST_ID
-	 , GD.USR_ID AS GD_ID
+SELECT TRST.USR_LGN_ID AS TRST_ID
+	 , GD.USR_LGN_ID AS GD_ID
 	 , USR_TR_PST_ID AS PAY_TR_ID
 	 , USR_TR_GD_HR_PRC AS PAY_CSH
   FROM USR_TR_RQST TR
@@ -250,13 +243,13 @@ SELECT TRST.USR_ID AS TRST_ID
 </insert>
 
 <select id="selectGdTrPayInf" parameterType="String" resultType="com.mate.payment.vo.WritePaymentVO">
-	SELECT TRST.USR_ID AS TRST_ID
-		 , GD.USR_ID AS GD_ID
+	SELECT TRST.USR_LGN_ID AS TRST_ID
+		 , GD.USR_LGN_ID AS GD_ID
 		 , GD_TR_PST_ID AS PAY_TR_ID
 		 , GD_TR_PRC AS PAY_CSH
 	  FROM GD_TR_RCRT TR
 	  JOIN USR_INF TRST
-	    ON TRST.USR_LGN_ID = TR.USR_ID 
+	    ON TRST.USR_LGN_ID = TR.USR_ID
 	  JOIN USR_INF GD
 	    ON GD.USR_LGN_ID = TR.ATHR_ID
 	 WHERE GD_TR_PST_ID = #{parameter}
@@ -287,7 +280,52 @@ SELECT TRST.USR_ID AS TRST_ID
 	 	  , 10.0)
 </insert>
 
+<select id="selectTrstTrPaymentCnt"
+        parameterType="String"
+        resultType="_int">
+    SELECT COUNT(1) 
+      FROM PAY_INF
+     WHERE PAY_TR_ID = (SELECT USR_TR_PST_ID 
+                          FROM RQST_GD_APPLY
+                         WHERE GD_APPLY_ID = #{parameter})
+       AND PAY_STT = 'WAITING'
+</select>
+
+<update id="updateCancelTrstTour"
+        parameterType="com.mate.payment.vo.PaymentVO">
+    UPDATE USR_TR_RQST
+       SET USR_TR_STTS = 'RCRTNG'
+         , GD_ID = NULL
+     WHERE USR_TR_PST_ID = #{payTrId}
+       AND USR_TR_STTS = 'RSRVT'
+</update>
 
 
+
+<select id="selectApplyCnt"
+        parameterType="com.mate.payment.vo.PaymentVO"
+        resultType="_int">
+     SELECT COUNT(1) 
+	   FROM RQST_GD_APPLY
+	  WHERE USR_TR_PST_ID = #{payTrId}
+	    AND GD_APPLY_STT = 'ACCEPT'
+</select>
+
+<update id="updateCancelApply"
+        parameterType="com.mate.payment.vo.PaymentVO">
+    UPDATE RQST_GD_APPLY 
+	   SET GD_APPLY_STT = 'REFUSAL'
+	 WHERE USR_TR_PST_ID = #{payTrId}
+	   AND GD_APPLY_STT = 'ACCEPT'
+</update>
+
+<update id="updateCancelGdTour"
+        parameterType="com.mate.payment.vo.PaymentVO">
+    UPDATE GD_TR_RCRT 
+       SET GD_TR_STTS = 'RCRTNG'
+         , GD_ID = NULL
+     WHERE GD_TR_PST_ID = #{payTrId}
+       AND GD_TR_STTS = 'RSRVT'
+</update>
 
 </mapper>

@@ -110,7 +110,7 @@ div.content {
   height: calc(100% - 2rem);
   border: none;
   border-radius: 0.25rem;
-  overflow: hidden;
+  overflow: auto;
   text-align: center;
   align-content: center;
 }

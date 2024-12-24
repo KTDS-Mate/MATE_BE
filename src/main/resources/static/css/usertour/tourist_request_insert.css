@@ -111,7 +111,7 @@ textarea {
   border: 1px solid #ddd;
   border-radius: 10px;
   resize: none;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 input[type="number"] {
@@ -233,6 +233,7 @@ input[type="date"] {
   border-radius: 10px;
   font-size: 0.9rem;
   width: 15rem;
+  text-align: center;
 }
 
 input[type="time"] {
@@ -241,6 +242,7 @@ input[type="time"] {
   border-radius: 10px;
   font-size: 0.9rem;
   width: 15rem;
+  text-align: center;
 }
 
 input {

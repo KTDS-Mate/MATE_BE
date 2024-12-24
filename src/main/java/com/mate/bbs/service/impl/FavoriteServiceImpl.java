@@ -21,6 +21,11 @@ public class FavoriteServiceImpl implements FavoriteService {
 	public boolean createNewUserTourFavorite(FavoriteWriteVO favoriteWriteVO) {
 		return this.favoriteDao.insertNewUserTourFavorite(favoriteWriteVO) > 0;
 	}
+	
+	@Override
+	public boolean createNewGuideTourFavorite(FavoriteWriteVO favoriteWriteVO) {
+		return this.favoriteDao.insertNewGuideTourFavorite(favoriteWriteVO) > 0;
+	}
 
 	@Override
 	public FavoriteListVO getAllFavoriteList(String pstId) {
@@ -35,8 +40,25 @@ public class FavoriteServiceImpl implements FavoriteService {
 	}
 	
 	@Override
+	public FavoriteListVO getAllGuideTourFavoriteList(String gdTrPstId) {
+		List<FavoriteVO> favoriteList = this.favoriteDao.selectAllGuideTourFavoriteList(gdTrPstId);
+		int favoriteCount = this.favoriteDao.selectAllGuideTourFavoriteCount(gdTrPstId);
+		
+		FavoriteListVO favoriteListVO = new FavoriteListVO();
+		favoriteListVO.setFavoriteList(favoriteList);
+		favoriteListVO.setFavoriteCount(favoriteCount);
+		
+		return favoriteListVO;
+	}
+	
+	@Override
 	public boolean deleteUserTourFavorite(String usrPstId, String usrLgnId) {
 		return this.favoriteDao.deleteFavIsDlt(usrPstId, usrLgnId) > 0;
+	}
+	
+	@Override
+	public boolean deleteGuideTourFavorite(String gdTrPstId, String usrLgnId) {
+		return this.favoriteDao.deleteFavoriteGuideTour(gdTrPstId, usrLgnId) > 0;
 	}
 	
 }

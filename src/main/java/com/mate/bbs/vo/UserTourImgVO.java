@@ -30,6 +30,7 @@ public class UserTourImgVO {
 	private String gdTrImgIsDlt;
 	
 	private String usrTrRqOriginFileName;
+	
 	/** Tourist_TourInsert에서 받아 올 파일**/
 	private MultipartFile userTourImgFile;
 	

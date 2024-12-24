@@ -3,9 +3,10 @@ package com.mate.bbs.dao;
 import java.util.List;
 
 import com.mate.bbs.vo.GuideTourDetailInfoVO;
+import com.mate.bbs.vo.GuideTourImgVO;
 import com.mate.bbs.vo.GuideTourModifyVO;
 import com.mate.bbs.vo.GuideTourProvidedVO;
-import com.mate.bbs.vo.GuideTourReviewVO;
+import com.mate.bbs.vo.GuideTourReserveVO;
 import com.mate.bbs.vo.GuideTourScheduleInfoVO;
 import com.mate.bbs.vo.GuideTourVO;
 import com.mate.bbs.vo.GuideTourWriteVO;
@@ -81,6 +82,12 @@ public interface GuideTourDao {
      * @return
      */
     public String selectAttachModifyEndHour(GuideTourModifyVO guideTourModifyVO);
+    
+    public String selectAttachMultyStartHour(GuideTourWriteVO guideTourWriteVO);
+    public String selectAttachMultyEndHour(GuideTourWriteVO guideTourWriteVO);
+    
+    public String selectAttachMultyStartHour2(GuideTourModifyVO guideTourModifyVO);
+    public String selectAttachMultyEndHour2(GuideTourModifyVO guideTourModifyVO);
     /**
      * 가이드 투어 등록 폼에서 추가 정보를 담는 메소드.
      * @param guideTourDetailInfoVO
@@ -120,6 +127,22 @@ public interface GuideTourDao {
      */
     public List<GuideTourScheduleInfoVO> selectTourScheduleList(String gdTrPstId);
 
+    /** 게시글 수정 시 리스트 돔을 추가 & 삭제 하게 될 경우가 있어서 삭제후 다시 insert **/
+    public int deleteGuideTourSchdls(String gdTrPstId);
+    /** 게시글 수정 시 리스트 돔을 추가 & 삭제 하게 될 경우가 있어서 삭제후 다시 insert **/
+    public int deleteGuideTourDetails(String gdTrPstId);
+    /** 게시글 수정 시 리스트 돔을 추가 & 삭제 하게 될 경우가 있어서 삭제후 다시 insert **/
+    public int deleteGuideTourProvided(String gdTrPstId);
+    
+    
     public List<GuideTourVO> getRandomGuideTours();
 
+    public int selectImgCount(String gdTrPstId);
+    
+    public List<GuideTourImgVO> selectGuideTourImgList(String gdTrPstId);
+    
+    /** 최신순 받아오기 위한 코드 */
+    public GuideTourVO selectLateGuideTour();
+    
+    public int updateGuideTourReserve(GuideTourReserveVO guideTourReserveVO);
 }

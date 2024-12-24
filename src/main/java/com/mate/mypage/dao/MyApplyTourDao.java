@@ -20,7 +20,7 @@ public interface MyApplyTourDao {
 	public int selectMyTourCount(@Param("athrId") String athrId, @Param("search") SearchMyApplyTourVO searchMyApplyTourVO);
 	
 	/**파라미터로 받은 가이드의 게시글을 투어 진행중 -> 투어 완료로 변경**/
-	public int updateGuideTourStts(String gdTrPstId);
+	public int updateGuideTourStts(String usrTrPstId);
 	
 	//    ------------- 가이드 마이페이지 ---------------
 	

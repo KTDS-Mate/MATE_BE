@@ -7,6 +7,7 @@
 
 	<resultMap id="GuideInfoResultMap" type="com.mate.user.vo.RegistGuideVO">
 	    <id property="usrId" column="USR_ID"/>
+	    <id property="usrLgnId" column="USR_LGN_ID"/>
 	    <result property="usrLnm" column="USR_LNM"/>
 	    <result property="usrFnm" column="USR_FNM"/>
 	    <result property="usrBd" column="USR_BD"/>
@@ -37,10 +38,10 @@
 	
 	    <!-- 라이센스 정보 매핑 -->
 	    <collection property="licenses" ofType="com.mate.common.vo.LicenseVO">
-	        <id property="lcnId" column="LICENSE_GD_LCN_ID"/>
-	        <result property="lcnNm" column="LICENSE_GD_LCN_NM"/>
-	        <result property="lcnImg" column="LICENSE_GD_LCN_IMG"/>
-	    </collection>
+		    <id property="lcnId" column="GD_LCN_ID"/>
+		    <result property="lcnNm" column="GD_LCN_NM"/>
+		    <result property="lcnImg" column="GD_LCN_IMG"/>
+		</collection>
 	</resultMap>
 
     <!-- 가이드 정보와 활동 도시/국가를 가져옴 -->
@@ -63,9 +64,9 @@
 		     , U.GD_CBC_IMG AS GD_CBC_IMG 
 		     , U.USR_PYP_EML AS USR_PYP_EML
 		     , C.COUNTRY_NAME AS COUNTRY_NAME
-		     , L.GD_LCN_ID AS LICENSE_GD_LCN_ID
-		     , L.GD_LCN_NM AS LICENSE_GD_LCN_NM
-		     , L.GD_LCN_IMG AS LICENSE_GD_LCN_IMG
+		     , L.GD_LCN_ID
+		     , L.GD_LCN_NM
+		     , L.GD_LCN_IMG
 		     , CT.CITY_ID AS CITY_CITY_ID
 		     , CT.CITY_NAME AS CITY_CITY_NAME
 		     , CNT.COUNTRY_ID AS CITY_COUNTRY_ID
@@ -87,22 +88,25 @@
 
     <!-- 가이드 프로필 정보 삽입 -->
 	<update id="insertGuideProfile" parameterType="com.mate.user.vo.RegistGuideVO">
-		<!-- 가이드 프로필 정보 삽입 -->
-		UPDATE USR_INF 
-		   SET GD_PRFL_IMG = #{gdPrflImg}
-		     , USR_SLF_INTDCTN = #{usrSlfIntdctn}
-		     , USR_PYP_EML = #{usrPypEml}
-		     , USR_GD_EXP = #{usrGdExp}
-		     , GD_CBC_IMG = #{gdCbcImg}
-		     , GD_ID_IMG = #{gdIdImg}
-		     , USR_IS_GD = 'Y'
-		     , GD_RGST_DT = SYSDATE
-		     , USR_MDFY_DT = SYSDATE
-		 WHERE USR_ID = #{usrId}
+	    UPDATE USR_INF
+	    SET
+	        GD_PRFL_IMG = #{gdPrflImg},
+	        USR_SLF_INTDCTN = #{usrSlfIntdctn},
+	        USR_PYP_EML = #{usrPypEml},
+	        USR_GD_EXP = #{usrGdExp},
+	        GD_CBC_IMG = #{gdCbcImg},
+	        GD_ID_IMG = #{gdIdImg},
+	        GD_APPL_STT = #{gdApplStt},
+	        GD_RGST_DT = SYSDATE,
+	        USR_MDFY_DT = SYSDATE,
+	        USR_IS_GD = #{usrIsGd},
+	        GD_RP_CNT_ID = #{gdRpCntId}
+	    WHERE USR_ID = #{usrId}
 	</update>
 	
+	
 	<!-- 가이드 라이센스 삽입 -->
-	<insert id="insertGuideLicense" parameterType="com.mate.common.vo.LicenseVO">
+    <insert id="insertGuideLicense" parameterType="com.mate.common.vo.LicenseVO">
 		INSERT INTO GD_LCN
 			 ( GD_LCN_ID
 			 , GD_LCN_NM
@@ -110,17 +114,24 @@
 			 , USR_ID)
 		VALUES
 			 ( #{lcnId}
-			 , NVL(#{lcnNm}, '라이센스 없음')
-			 , NVL(#{lcnImg}, '라이센스 없음')
+			 , #{lcnNm}
+			 , #{lcnImg}
 			 , #{usrId})
-	</insert>
+	</insert> 
 	
-	<update id="updateGuideLicense" parameterType="com.mate.common.vo.LicenseVO">
-		UPDATE GD_LCN
-		   SET GD_LCN_NM = #{lcnNm}
-		     , GD_LCN_IMG =#{lcnImg}
-		 WHERE GD_LCN_ID = #{lcnId}
-	</update>
+	<insert id="updateGuideLicenseApi" parameterType="com.mate.common.vo.LicenseVO">
+	    INSERT INTO GD_LCN (
+	        GD_LCN_ID,
+	        GD_LCN_NM,
+	        GD_LCN_IMG,
+	        USR_ID
+	    ) VALUES (
+	        #{lcnId},
+	        #{lcnNm},
+	        #{lcnImg},
+	        #{usrId}
+	    )
+	</insert>
 	
 	<delete id="deleteLicneseById" parameterType="String">
 		DELETE FROM GD_LCN
@@ -146,10 +157,6 @@
 		     , USR_SLF_INTDCTN = #{usrSlfIntdctn}
 		     , USR_PYP_EML = #{usrPypEml}
 		     , USR_GD_EXP = #{usrGdExp}
-		     , USR_LNM = #{usrLnm}
-		     , USR_FNM = #{usrFnm}
-		     , USR_BD = #{usrBd}
-		     , USR_PHN = #{usrPhn}
 		     , GD_CBC_IMG = #{gdCbcImg}
 		     , GD_ID_IMG = #{gdIdImg}
 		 WHERE USR_ID = #{usrId}
@@ -164,7 +171,7 @@
 	<update id="updateIdImage" parameterType="com.mate.user.vo.RegistGuideVO">
 		UPDATE USR_INF
 		   SET GD_ID_IMG = #{gdIdImg}
-		 WHERE USR_ID = #{usrId}
+		 WHERE USR_ID = #{usrLgnId}
 	</update>
 
 	<select id="selectCitiesByCountry" parameterType="String" resultType="com.mate.common.vo.CitiesVO">

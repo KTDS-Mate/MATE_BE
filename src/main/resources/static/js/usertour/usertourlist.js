@@ -117,3 +117,13 @@ function movepage(pageNo) {
 	}).submit();
 
 }
+
+function moveRequest() {
+	location.href = "/usertour/insert/request";
+}
+
+function moveInsert() {
+	location.href = "/usertour/insert";
+}
+
+

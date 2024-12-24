@@ -40,6 +40,9 @@
 			 , (SELECT ROUND(AVG(gtr2.GD_TR_RVW_RTNG), 1) 
 	              FROM GD_TR_RVW gtr2
 	             WHERE gtr2.GD_TR_PST_ID = #{_parameter}) AS REVIEW_AVG
+	         , (SELECT COUNT(1)
+	         	  FROM GD_TR_RVW gtr
+	         	 WHERE gtr.GD_TR_PST_ID = #{_parameter}) AS SUM_COUNT
 			 , (SELECT COUNT(1) 
 			      FROM GD_TR_RVW gtr
 			     WHERE gtr.GD_TR_PST_ID = #{_parameter}
@@ -64,6 +67,7 @@
 		  JOIN USR_INF U
 		    ON GR.ATHR_ID = U.USR_LGN_ID 
 	     WHERE GR.GD_TR_PST_ID = #{_parameter}
+	     ORDER BY GR.GD_TR_RVW_ID DESC
   	</select>
   	
   	<select id="selectGuideTourReviewCount"
@@ -126,4 +130,21 @@
 		   SET GD_TR_RVW_IS_DLT = 'Y'
 		 WHERE GD_TR_PST_ID = #{_parameter}
   	</update>
+  	
+  	<select id="selectLateGuideTourReview"
+  			resultMap="guideTourReviewVOMap">
+  		SELECT R.*
+  		  FROM (SELECT GR.GD_TR_RVW_ID 
+					 , GR.GD_TR_PST_ID 
+					 , GR.GD_TR_RVW_CNTNT 
+					 , GR.GD_TR_RVW_RTNG 
+					 , U.USR_LNM 
+					 , U.USR_FNM 
+				  FROM GD_TR_RVW GR
+				  JOIN USR_INF U
+				    ON GR.ATHR_ID = U.USR_LGN_ID 
+	     		 ORDER BY GR.GD_TR_RVW_ID DESC) R
+		 WHERE ROWNUM = 1
+  	</select>
+  	
   </mapper>

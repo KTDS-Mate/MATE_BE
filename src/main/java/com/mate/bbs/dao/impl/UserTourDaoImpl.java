@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mate.bbs.dao.UserTourDao;
+import com.mate.bbs.vo.RequestGuideApplyVO;
+import com.mate.bbs.vo.RequestGuideApplyWriteVO;
 import com.mate.bbs.vo.SearchUserTourVO;
+import com.mate.bbs.vo.TourGuideApplyWriteVO;
 import com.mate.bbs.vo.UserTourImgVO;
 import com.mate.bbs.vo.UserTourModifyVO;
 import com.mate.bbs.vo.UserTourSchdlVO;
@@ -116,7 +119,53 @@ public class UserTourDaoImpl extends SqlSessionDaoSupport implements UserTourDao
 	}
 	
 	@Override
+	public String selectAttachMultyStartHour2(UserTourModifyVO userTourModifyVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachMultyStartHour2", userTourModifyVO);
+	}
+	
+	@Override
 	public String selectAttachMultyEndHour(UserTourWriteVO userTourWriteVO) {
 		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachMultyEndHour", userTourWriteVO);
 	}
+	
+	@Override
+	public String selectAttachMultyEndHour2(UserTourModifyVO userTourModifyVO) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectAttachMultyEndHour2", userTourModifyVO);
+	}
+	
+	@Override
+	public int insertNewTourGuideApply(TourGuideApplyWriteVO tourGuideApplyWriteVO) {
+		return this.getSqlSession().insert(NAMESPACE+".insertNewTourGuideApply", tourGuideApplyWriteVO);
+	}
+	
+	@Override
+	public int insertNewRequestGuideApply(RequestGuideApplyWriteVO requestGuideApplyWriteVO) {
+		return this.getSqlSession().insert(NAMESPACE + ".insertNewRequestGuideApply", requestGuideApplyWriteVO);
+	}
+	
+	@Override
+	public List<RequestGuideApplyVO> selectAllRequestGuideApplyList(String usrTrPstId) {
+		return this.getSqlSession().selectList(NAMESPACE + ".selectAllRequestGuideApplyList", usrTrPstId);
+	}
+	
+	@Override
+	public int selectRequestGuideApplyListCount(String usrTrPstId) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectRequestGuideApplyListCount", usrTrPstId);
+	}
+	
+	@Override
+	public int selectUserTourImgCount(String usrTrPstId) {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectUserTourImgCount", usrTrPstId);
+	}
+	
+	@Override
+	public List<UserTourImgVO> selectUserTourImgs(String usrTrPstId) {
+		return this.getSqlSession().selectList(NAMESPACE + ".selectUserTourImgs", usrTrPstId);
+	}
+	
+	@Override
+	public UserTourVO selectLateUserTour() {
+		return this.getSqlSession().selectOne(NAMESPACE + ".selectLateUserTour");
+	}
+	
 }

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.mate.cms.customerService.dao.CustomerServiceDao">
+
+	<resultMap id="customerServiceVOMap" 
+	           type="com.mate.cms.customerService.vo.CustomerServiceVO" 
+	           autoMapping="true" >
+		<id column="CSTMR_SRVC_CNTR_ID" property="cstmrSrvcCntrId" />
+		<association property="userVO"
+				 javaType="com.mate.user.vo.UserVO"
+				 autoMapping="true">
+			<id column="USR_ID" property="usrId" />
+		</association>
+	</resultMap>
+
+	<sql id="selectSearch">
+		<if test='search.searchKeyword != null and search.searchKeyword != ""'>
+			AND CC.SRVC_CNTR_DTL LIKE '%' || #{search.searchKeyword} || '%'
+		</if>
+	</sql>
+	<sql id="search">
+		<if test='searchKeyword != null and searchKeyword != ""'>
+			AND CC.SRVC_CNTR_DTL LIKE '%' || #{searchKeyword} || '%'
+		</if>
+	</sql>
+
+	<insert id="insertNewCustomerService"
+		parameterType="com.mate.cms.customerService.vo.CustomerServiceWriteVO">
+		INSERT INTO CSTMR_SRVC_CNTR
+		 (CSTMR_SRVC_CNTR_ID
+		, USR_LGN_ID
+		, SRVC_CNTR_DTL
+		, SRVC_CRT_DT
+		, CSTMR_SRVC_CNTR_STTS
+		, CSTMR_SRVC_IS_DLT
+		, CSTMR_SRVC_CTGRY
+		, SRVC_CNTR_TTL)
+		VALUES
+		('CC-' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '-' || LPAD(SEQ_CSTMR_SRVC_CNTR_PK.NEXTVAL, 6, 0)
+		, #{usrLgnId}
+		, #{srvcCntrDtl}
+		, SYSDATE
+		, 'N'
+		, 'N'
+		, #{cstmrSrvcCtgry}
+		, #{srvcCntrTtl})
+	</insert>
+
+	<select id="selectCustomerServiceCount"
+		parameterType="map"
+		resultType="_int">
+		SELECT COUNT(1)
+		  FROM CSTMR_SRVC_CNTR CC
+		 WHERE CSTMR_SRVC_IS_DLT = 'N'
+		   AND USR_LGN_ID = #{usrLgnId}
+		<if test="search != null">
+			<include
+				refid="com.mate.cms.customerService.dao.CustomerServiceDao.selectSearch" />
+		</if>
+	</select>
+
+	<select id="selectCustomerServiceList"
+		    parameterType="map"
+		    resultMap="customerServiceVOMap">
+		<if test="search != null">
+			<include refid="Common2.pagination_header" />
+		</if>
+		SELECT CC.CSTMR_SRVC_CNTR_ID
+		 	, CC.USR_LGN_ID
+		 	, CC.SRVC_CNTR_DTL
+		 	, TO_CHAR(CC.SRVC_CRT_DT, 'YYYY-MM-DD HH24:MI') SRVC_CRT_DT
+		 	, CC.MAN_ID
+		 	, CC.ANSWR_DTL
+		 	, TO_CHAR(CC.ANSWR_DT, 'YYYY-MM-DD HH24:MI') ANSWR_DT
+		 	, CC.CSTMR_SRVC_CNTR_STTS
+		 	, CC.CSTMR_SRVC_CTGRY
+		 	, CC.SRVC_CNTR_TTL
+		 	, UI.USR_LNM 
+		 	, UI.USR_FNM 
+		  FROM CSTMR_SRVC_CNTR CC
+		  LEFT JOIN USR_INF UI
+		    ON UI.USR_LGN_ID = CC.MAN_ID
+		 WHERE CC.CSTMR_SRVC_IS_DLT = 'N'
+		   AND CC.USR_LGN_ID = #{usrLgnId}
+		<if test="search != null">
+			<include refid="com.mate.cms.customerService.dao.CustomerServiceDao.selectSearch" />
+		</if>
+		<if test="search != null">
+			<include refid="Common2.pagination_footer" />
+		</if>
+	</select>
+
+
+
+
+
+	<select id="selectCustomerServiceCountForCms"
+			parameterType="com.mate.cms.customerService.vo.SearchCustomerServiceVO"
+			resultType="_int">
+		SELECT COUNT(1)
+		  FROM CSTMR_SRVC_CNTR CC
+		 WHERE CSTMR_SRVC_IS_DLT = 'N'
+		<if test="_parameter != null">
+			<include refid="com.mate.cms.customerService.dao.CustomerServiceDao.search" />
+		</if>
+	</select>
+
+	<select id="selectCustomerServiceListForCms"
+			parameterType="com.mate.cms.customerService.vo.SearchCustomerServiceVO"
+			resultMap="customerServiceVOMap">
+		<if test="_parameter != null">
+			<include refid="Common.pagination_header" />
+		</if>
+		SELECT CC.CSTMR_SRVC_CNTR_ID
+		 	 , CC.USR_LGN_ID
+		 	 , CC.SRVC_CNTR_DTL
+		 	 , TO_CHAR(CC.SRVC_CRT_DT, 'YYYY-MM-DD HH24:MI') SRVC_CRT_DT
+		 	 , CC.MAN_ID
+		 	 , CC.ANSWR_DTL
+		 	 , TO_CHAR(CC.ANSWR_DT, 'YYYY-MM-DD HH24:MI') ANSWR_DT
+		 	 , CC.CSTMR_SRVC_CNTR_STTS
+		 	 , CC.CSTMR_SRVC_CTGRY
+		 	 , CC.SRVC_CNTR_TTL
+		 	 , UI.USR_LNM 
+		 	 , UI.USR_FNM 
+		  FROM CSTMR_SRVC_CNTR CC
+		  LEFT JOIN USR_INF UI
+		    ON UI.USR_LGN_ID = CC.USR_LGN_ID
+		 WHERE CC.CSTMR_SRVC_IS_DLT = 'N'
+		<if test="_parameter != null">
+			<include refid="com.mate.cms.customerService.dao.CustomerServiceDao.search" />
+		</if>
+		<if test="_parameter != null">
+			<include refid="Common.pagination_footer" />
+		</if>
+	</select>
+
+	<update id="updateCustomerService"
+		parameterType="com.mate.cms.customerService.vo.CustomerServiceAnswerVO">
+		UPDATE CSTMR_SRVC_CNTR
+		   SET MAN_ID = #{manId}
+		     , ANSWR_DTL = #{answrDtl}
+		     , ANSWR_DT = SYSDATE
+		     , CSTMR_SRVC_CNTR_STTS = 'Y'
+		 WHERE CSTMR_SRVC_CNTR_ID = #{cstmrSrvcCntrId}
+	</update>
+
+	<update id="deleteCustomerService" parameterType="string">
+		UPDATE CSTMR_SRVC_CNTR
+		   SET CSTMR_SRVC_IS_DLT = 'Y'
+		 WHERE CSTMR_SRVC_CNTR_ID = #{_parameter}
+	</update>
+
+</mapper>
