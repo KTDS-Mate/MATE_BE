@@ -32,9 +32,6 @@ public class GuideTourServiceImpl implements GuideTourService{
 	private GuideTourDao guideTourDao;
 	
 	@Autowired
-	private PaymentDao paymentDao;
-	
-	@Autowired
 	private GuideTourReviewDao guideTourReviewDao;
 	
 	/**
