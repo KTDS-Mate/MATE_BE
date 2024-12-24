@@ -97,7 +97,6 @@ public class GuideTourController {
 	public List<GuideTourVO> getRandomGuideTours() {
 		// 서비스에서 랜덤 가이드 투어 리스트 가져오기
 		List<GuideTourVO> guideTours = guideTourService.getRandomGuideTours();
-
 		// 빈 배열을 반환할 수 있도록 처리 (없으면 빈 배열로 대체)
 		if (guideTours == null || guideTours.isEmpty()) {
 			return new ArrayList<>();
