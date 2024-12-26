@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mate.common.beans.FileHandler;
-import com.mate.common.s3.S3Service;
 import com.mate.common.vo.CitiesVO;
 import com.mate.common.vo.CountriesVO;
 import com.mate.common.vo.LicenseVO;
@@ -34,8 +33,6 @@ public class GuideServiceImpl implements GuideService {
     @Autowired
     private FileHandler filehandler;
     
-    @Autowired
-    private S3Service s3Service;
     
     @Override
     public RegistGuideVO getGuideInfo(String usrId) { // getGuideInfo 호출해서 User(가이드) 정보 반환
