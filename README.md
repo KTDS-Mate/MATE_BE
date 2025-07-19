@@ -8,4 +8,3 @@ KTDS-university B팀 Mate프로젝트</br>
 
 ## 관련 페이지
 ### [ERD-Cloud](https://www.erdcloud.com/d/Lji4LMmDRzNdWqbG2)
-### [일정관리 시트](https://docs.google.com/spreadsheets/d/1bbMwS6q_UEOcvc82lDbz_B3_R_x7faGfBVxVlQurWqs/edit?gid=0#gid=0)
