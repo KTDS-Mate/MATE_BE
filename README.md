@@ -7,5 +7,5 @@ KTDS-university B팀 Mate프로젝트</br>
  main브런치에 merge가 된다면 main에서 각자 작업물에 머지하시고, 만약 머지되는 부분에 공통된 점이 있다면 해당 main에 머지한 작업자와 상의 후, 수정해주세요</br>
 
 ## 관련 페이지
-### [ERD-Cloud](https://www.erdcloud.com/d/DGLRzuwsAuFoY6Qce)
+### [ERD-Cloud](https://www.erdcloud.com/d/Lji4LMmDRzNdWqbG2)
 ### [일정관리 시트](https://docs.google.com/spreadsheets/d/1bbMwS6q_UEOcvc82lDbz_B3_R_x7faGfBVxVlQurWqs/edit?gid=0#gid=0)
